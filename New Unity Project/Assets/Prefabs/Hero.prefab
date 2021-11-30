@@ -1288,7 +1288,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -1851260875
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3232,7 +3232,7 @@ GameObject:
   - component: {fileID: 2546826965494428596}
   - component: {fileID: 2546826965494428599}
   m_Layer: 0
-  m_Name: HeroCanvas
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
