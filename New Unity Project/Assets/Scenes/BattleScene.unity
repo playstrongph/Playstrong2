@@ -698,6 +698,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill
       objectReference: {fileID: 0}
+    - target: {fileID: 3277504843732610921, guid: 49b539680b34ad14b810180152097a8c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277504843732610926, guid: 49b539680b34ad14b810180152097a8c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277504843732610927, guid: 49b539680b34ad14b810180152097a8c,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 23a8943d79cebe44ab8852daeb599db6, type: 2}
     - target: {fileID: 3277504843743826784, guid: 49b539680b34ad14b810180152097a8c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
