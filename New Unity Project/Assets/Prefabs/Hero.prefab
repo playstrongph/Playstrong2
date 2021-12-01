@@ -563,6 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922050672017}
+  - component: {fileID: 952706789499645014}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -583,10 +584,25 @@ Transform:
   m_Children:
   - {fileID: 3302046147083529670}
   - {fileID: 6604028922773219175}
+  - {fileID: 8718437751679630255}
   - {fileID: 8718437752091825938}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &952706789499645014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922050672022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f485d64189d392d42b6e01324e6a5317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroTest: {fileID: 1709656878388530703}
+  heroTest1: {fileID: 1709656878388530703}
 --- !u!1 &6604028922092122894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1409,6 @@ Transform:
   m_Children:
   - {fileID: 6604028921859288665}
   - {fileID: 8718437751487745832}
-  - {fileID: 8718437751679630255}
   m_Father: {fileID: 6604028922050672017}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3391,7 +3406,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6604028922773219175}
+  m_Father: {fileID: 6604028922050672017}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3855,7 +3870,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6604028922050672017}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8718437752091825937
 BoxCollider:
