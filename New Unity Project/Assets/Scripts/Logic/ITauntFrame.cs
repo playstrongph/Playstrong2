@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
 namespace Logic
@@ -9,5 +10,10 @@ namespace Logic
         Image EnemyGlow { get; }
         Image AllyGlow { get; }
         Image FrameImage { get; }
+        
+        //2D LIGHTS
+        Light2D ActionLight { get; }
+        Light2D EnemyLight { get; }
+        Light2D AllyLight { get; }
     }
 }

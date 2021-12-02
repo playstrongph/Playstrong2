@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
 
@@ -17,5 +18,16 @@ namespace Logic
         
         [SerializeField] private Image frameImage;
         public Image FrameImage { get => frameImage; set => frameImage = value; }
+        
+        [Header("2D LIGHTS")]
+        
+        [SerializeField] private Light2D actionLight;
+        public Light2D ActionLight { get => actionLight; set => actionLight = value; }
+        
+        [SerializeField] private Light2D enemyLight;
+        public Light2D EnemyLight { get => enemyLight; set => enemyLight = value; }
+        
+        [SerializeField] private Light2D allyLight;
+        public Light2D AllyLight { get => allyLight; set => allyLight = value; }
     }
 }
