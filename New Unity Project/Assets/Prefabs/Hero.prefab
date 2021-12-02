@@ -1068,6 +1068,7 @@ MonoBehaviour:
   heroVisual: {fileID: 6241576318421883333}
   heroPreview: {fileID: 5652254700617774921}
   targetCollider: {fileID: 5806936527551603402}
+  coroutineTrees: {fileID: 0}
   heroSkills: {fileID: 0}
   statusEffects: {fileID: 0}
   heroPortrait: {fileID: 0}
@@ -1577,8 +1578,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922252536806}
+  - component: {fileID: 6241576318421883340}
   m_Layer: 0
-  m_Name: Energy
+  m_Name: EnergyVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1606,6 +1608,18 @@ RectTransform:
   m_AnchoredPosition: {x: -0.07375717, y: 0.012016296}
   m_SizeDelta: {x: -0.57295924, y: -0.5038151}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6241576318421883340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922252536807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d556351ce6bce9458ccfb4ca2f170c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028922252946640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,8 +1629,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922252946643}
+  - component: {fileID: 3142600409820791826}
   m_Layer: 0
-  m_Name: Attack
+  m_Name: AttackVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1643,6 +1658,18 @@ RectTransform:
   m_AnchoredPosition: {x: -0.08441162, y: 0.021003723}
   m_SizeDelta: {x: -0.72142625, y: -0.6915804}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3142600409820791826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922252946640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4051b6c080ed3b479d7030ce8e97494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028922297935080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,8 +1813,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922307698779}
+  - component: {fileID: 3677718456471013628}
   m_Layer: 0
-  m_Name: Health
+  m_Name: HealthVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1814,6 +1842,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.051633835, y: 0.037456512}
   m_SizeDelta: {x: 0.12178594, y: -0.6817236}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3677718456471013628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922307698776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5cd3ccc2f804d34c91dea4095bbeade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028922599666575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,6 +1863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922599666574}
+  - component: {fileID: 6241576318421883335}
   m_Layer: 0
   m_Name: TauntFrame
   m_TagString: Untagged
@@ -1853,6 +1894,18 @@ RectTransform:
   m_AnchoredPosition: {x: -0.28548813, y: 0.3039627}
   m_SizeDelta: {x: -2.7996058, y: -3.094931}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6241576318421883335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922599666575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56c149083596004d84546c00cc125de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028922773219172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1951,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3b1368c1b0b4643936d3163f2e3776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroCanvas: {fileID: 6604028921859288666}
+  tauntFrame: {fileID: 6241576318421883335}
+  normalFrame: {fileID: 6241576318421883337}
+  heroGraphic: {fileID: 1474776598543866390}
+  attackVisual: {fileID: 3142600409820791826}
+  healthVisual: {fileID: 3677718456471013628}
+  armorVisual: {fileID: 6241576318421883341}
+  energyVisual: {fileID: 6241576318421883340}
+  fightingSpiritVisual: {fileID: 6241576318421883339}
 --- !u!1 &6604028922929659452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +2044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028922938428731}
+  - component: {fileID: 6241576318421883337}
   m_Layer: 0
   m_Name: NormalFrame
   m_TagString: Untagged
@@ -2013,6 +2076,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.043186188, y: 0.31840134}
   m_SizeDelta: {x: -0.26103848, y: -0.6155395}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6241576318421883337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028922938428728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e90fa1af8a3ea4f816d1e44ab4cbd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028922999954982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,8 +2411,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028923128322343}
+  - component: {fileID: 6241576318421883339}
   m_Layer: 0
-  m_Name: FightingSpirit
+  m_Name: FightingSpiritVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2364,6 +2440,18 @@ RectTransform:
   m_AnchoredPosition: {x: -0.06840134, y: 0.24448204}
   m_SizeDelta: {x: -0.79511106, y: -0.18904388}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6241576318421883339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028923128322340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c6d50efb688a748811b67c48b6109f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028923529477947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,8 +2461,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028923529477946}
+  - component: {fileID: 1474776598543866390}
   m_Layer: 0
-  m_Name: Graphic
+  m_Name: HeroGraphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2400,6 +2489,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.046661377, y: 0.32648087}
   m_SizeDelta: {x: -0.25410628, y: -0.63169014}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1474776598543866390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028923529477947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04849e4936ddad543adfb85420625bcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6604028923583355787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,8 +2510,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6604028923583355786}
+  - component: {fileID: 6241576318421883341}
   m_Layer: 0
-  m_Name: Armor
+  m_Name: ArmorVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2437,6 +2539,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0.041620255, y: 0.22112267}
   m_SizeDelta: {x: 0.10175896, y: -0.23575935}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6241576318421883341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6604028923583355787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914f08bf94916d44e9095f628ad574f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8718437750082881323
 GameObject:
   m_ObjectHideFlags: 0
