@@ -490,7 +490,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.8
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 000000003500a8912bf919d4
   m_LightCookieSprite: {fileID: 0}
@@ -787,11 +787,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
-    - target: {fileID: 3209919024590810417, guid: f62a7bc880be9324594d81fe2d19f523,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6604028922050672017, guid: f62a7bc880be9324594d81fe2d19f523,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -851,11 +846,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 6604028922599666575, guid: f62a7bc880be9324594d81fe2d19f523,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62a7bc880be9324594d81fe2d19f523, type: 3}
