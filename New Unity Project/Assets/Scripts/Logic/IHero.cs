@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts;
+using UnityEngine;
 
 namespace Logic
 {
@@ -22,6 +23,12 @@ namespace Logic
         /// </summary>
         IHeroPreview HeroPreview { get; }
         
+        /// <summary>
+        /// Interface access to Status effects preview
+        /// "Set" parameter is not used
+        /// </summary>
+        Canvas StatusEffectsPreview { get; }
+
         /// <summary>
         /// Interface access to Hero's target collider
         /// "Set" parameter is not used

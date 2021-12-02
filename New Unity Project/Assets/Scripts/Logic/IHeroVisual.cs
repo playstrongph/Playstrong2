@@ -4,7 +4,7 @@ namespace Logic
 {
     public interface IHeroVisual
     {
-        Canvas HeroCanvas { get; }
+        Canvas HeroGraphicCanvas { get; }
 
     }
 }

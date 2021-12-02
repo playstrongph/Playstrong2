@@ -49,6 +49,18 @@ namespace Logic
         }
         
         /// <summary>
+        /// Status Effects preview reference
+        /// set in Inspector
+        /// </summary>
+        [SerializeField] 
+        private Canvas statusEffectsPreview;
+        public Canvas StatusEffectsPreview
+        {
+            get => statusEffectsPreview;
+            set => statusEffectsPreview = value;
+        }
+        
+        /// <summary>
         /// target Collider (Box Collider) reference
         /// set in Inspector
         /// </summary>
