@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using ScriptableObjectScripts;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -23,6 +24,10 @@ namespace Logic
             set => heroLogic = value as Object;
         }
         
+        /// <summary>
+        /// Hero visual reference
+        /// Set in Inspector
+        /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroVisual))]
         private Object heroVisual;
         public IHeroVisual HeroVisual
@@ -31,15 +36,44 @@ namespace Logic
             set => heroVisual = value as Object;
         }
         
+        /// <summary>
+        /// Hero preview reference
+        /// set in Inspector
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPreview))]
+        private Object heroPreview;
+        public IHeroPreview HeroPreview
+        {
+            get => heroPreview as IHeroPreview;
+            set => heroPreview = value as Object;
+        }
         
+        /// <summary>
+        /// target Collider (Box Collider) reference
+        /// set in Inspector
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITargetCollider))]
+        private Object targetCollider;
+        public ITargetCollider TargetCollider
+        {
+            get => targetCollider as ITargetCollider;
+            set => targetCollider = value as Object;
+        }
         
-        
-        
-        
-        
-        
-        
-        
+        /// <summary>
+        /// CoroutineTrees asset reference
+        /// set in Inspector
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ICoroutineTreesAsset))]
+        private Object coroutineTrees;
+        public ICoroutineTreesAsset CoroutineTrees
+        {
+            get => coroutineTrees as ICoroutineTreesAsset;
+            set => coroutineTrees = value as Object;
+        }
+
+
+
         /// <summary>
         /// TODO: To be recoded to return list of heroSkills
         /// </summary>
@@ -63,6 +97,39 @@ namespace Logic
             set => statusEffects = value as Object;
         }
         
+        
+        /// <summary>
+        /// Hero Portrait
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPortrait))]
+        private Object heroPortrait;
+        public IHeroPortrait HeroPortrait
+        {
+            get => heroPortrait as IHeroPortrait;
+            set => heroPortrait = value as Object;
+        }
+        
+        /// <summary>
+        /// Information Panel Hero Portrait
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPanelPortrait))]
+        private Object panelHeroPortrait;
+        public IPanelPortrait PanelHeroPortrait
+        {
+            get => panelHeroPortrait as IPanelPortrait;
+            set => panelHeroPortrait = value as Object;
+        }
+        
+        /// <summary>
+        /// Panel Hero Skills
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPanelSkills))]
+        private Object panelSkills;
+        public IPanelSkills PanelSkills
+        {
+            get => panelSkills as IPanelSkills;
+            set => panelSkills = value as Object;
+        }
         
 
 

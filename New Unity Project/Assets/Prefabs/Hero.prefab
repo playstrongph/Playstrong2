@@ -1066,7 +1066,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroLogic: {fileID: 6241576318421883334}
   heroVisual: {fileID: 6241576318421883333}
+  heroPreview: {fileID: 5652254700617774921}
+  targetCollider: {fileID: 5806936527551603402}
   heroSkills: {fileID: 0}
+  statusEffects: {fileID: 0}
+  heroPortrait: {fileID: 0}
+  panelHeroPortrait: {fileID: 0}
+  panelSkills: {fileID: 0}
 --- !u!1 &6604028922092122894
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,6 +3601,7 @@ GameObject:
   - component: {fileID: 8718437751487745829}
   - component: {fileID: 8718437751487745830}
   - component: {fileID: 8718437751487745831}
+  - component: {fileID: 5652254700617774921}
   m_Layer: 0
   m_Name: HeroPreview
   m_TagString: Untagged
@@ -3688,6 +3695,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5652254700617774921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718437751487745833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2913cef1d892fd4cbb66ca93fe2a8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8718437751490894013
 GameObject:
   m_ObjectHideFlags: 0
@@ -4335,6 +4354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8718437752091825938}
   - component: {fileID: 8718437752091825937}
+  - component: {fileID: 5806936527551603402}
   m_Layer: 0
   m_Name: TargetCollider
   m_TagString: Untagged
@@ -4369,6 +4389,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 59.44185, y: 73.70044, z: 1}
   m_Center: {x: 0.51846695, y: 5.5740204, z: 0}
+--- !u!114 &5806936527551603402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8718437752091825939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87cfbca0c3c0144492837300c34ccbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8885772379816267708
 GameObject:
   m_ObjectHideFlags: 0
