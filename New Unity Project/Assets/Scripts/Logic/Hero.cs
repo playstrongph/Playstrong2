@@ -36,6 +36,18 @@ namespace Logic
             set => heroVisual = value as Object;
         }
         
+        /// <summary> 
+        /// Hero status effects reference
+        /// Set in Inspector
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroStatusEffects))]
+        private Object heroStatusEffects;
+        public IHeroStatusEffects HeroStatusEffects
+        {
+            get => heroStatusEffects as IHeroStatusEffects;
+            set => heroStatusEffects = value as Object;
+        }
+        
         /// <summary>
         /// Hero preview reference
         /// set in Inspector
@@ -47,19 +59,7 @@ namespace Logic
             get => heroPreview as IHeroPreview;
             set => heroPreview = value as Object;
         }
-        
-        /// <summary>
-        /// Status Effects preview reference
-        /// set in Inspector
-        /// </summary>
-        [SerializeField] 
-        private Canvas statusEffectsPreview;
-        public Canvas StatusEffectsPreview
-        {
-            get => statusEffectsPreview;
-            set => statusEffectsPreview = value;
-        }
-        
+
         /// <summary>
         /// target Collider (Box Collider) reference
         /// set in Inspector

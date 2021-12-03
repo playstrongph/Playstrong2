@@ -16,18 +16,18 @@ namespace Logic
         /// "Set" parameter is not used
         /// </summary>
         IHeroVisual HeroVisual { get; }
+        
+        /// <summary>
+        /// Interface access to Hero status effects
+        /// "Set" parameter is not used
+        /// </summary>
+        IHeroStatusEffects HeroStatusEffects { get; }
 
         /// <summary>
         /// Interface access to HeroPreview
         /// "Set" parameter is not used
         /// </summary>
         IHeroPreview HeroPreview { get; }
-        
-        /// <summary>
-        /// Interface access to Status effects preview
-        /// "Set" parameter is not used
-        /// </summary>
-        Canvas StatusEffectsPreview { get; }
 
         /// <summary>
         /// Interface access to Hero's target collider
