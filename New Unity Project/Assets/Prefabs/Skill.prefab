@@ -894,6 +894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277504842448440007}
+  - component: {fileID: 3277504844195739292}
   m_Layer: 0
   m_Name: SkillLogic
   m_TagString: Untagged
@@ -915,6 +916,19 @@ Transform:
   m_Father: {fileID: 3277504842585800668}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3277504844195739292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277504842448440006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956e1541927fde442acd9bbb84a5818e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 3277504844195739296}
 --- !u!1 &3277504842585800671
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +938,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277504842585800668}
+  - component: {fileID: 3277504844195739296}
   m_Layer: 0
   m_Name: Skill
   m_TagString: Untagged
@@ -949,6 +964,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3277504844195739296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277504842585800671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e074a1f56313e86439b8610498d6d803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillLogic: {fileID: 3277504844195739292}
+  skillVisual: {fileID: 4307825188012648619}
+  skillPreview: {fileID: 3277504844195739294}
+  skillTargetCollider: {fileID: 8627285158895822527}
 --- !u!1 &3277504843130088726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1364,7 @@ GameObject:
   - component: {fileID: 3277504843732610926}
   - component: {fileID: 3277504843732610924}
   - component: {fileID: 3277504843732610927}
-  - component: {fileID: 3277504844195739292}
+  - component: {fileID: 8359449723848754870}
   m_Layer: 0
   m_Name: Glow
   m_TagString: Untagged
@@ -1398,7 +1429,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3277504844195739292
+--- !u!114 &8359449723848754870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1451,6 +1482,7 @@ GameObject:
   - component: {fileID: 3277504843743826791}
   - component: {fileID: 3277504843743826790}
   - component: {fileID: 3277504843743826785}
+  - component: {fileID: 4307825188012648619}
   m_Layer: 0
   m_Name: SkillVisual
   m_TagString: Untagged
@@ -1540,6 +1572,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4307825188012648619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277504843743826787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5353ca8f409d8824eaf5f29b4a9eaca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 3277504844195739296}
 --- !u!1 &3277504843856474602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,8 +1819,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6013713818357913706}
   - component: {fileID: 246718954698919284}
+  - component: {fileID: 8627285158895822527}
   m_Layer: 0
-  m_Name: TargetCollider
+  m_Name: SkillTargetCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1809,6 +1855,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 50.13041, y: 47.490997, z: 1}
   m_Center: {x: 0.0011711121, y: -3.0474854, z: 0}
+--- !u!114 &8627285158895822527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923441984469138738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d45899abbf201142b14cee36aae2db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 3277504844195739296}
 --- !u!1 &8437821377452799313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1880,7 @@ GameObject:
   - component: {fileID: 8104356453682608610}
   - component: {fileID: 473048328658407406}
   - component: {fileID: 7252900115724379429}
+  - component: {fileID: 3277504844195739294}
   m_Layer: 0
   m_Name: SkillPreview
   m_TagString: Untagged
@@ -1912,6 +1972,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3277504844195739294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8437821377452799313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b46187f187e766408777ded8db054fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 3277504844195739296}
 --- !u!1 &9094729379500154732
 GameObject:
   m_ObjectHideFlags: 0

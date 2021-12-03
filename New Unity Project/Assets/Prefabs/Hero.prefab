@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb73677ffadda54f81802a04f348ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 952706789499645014}
 --- !u!1 &3209919024590810417
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3b1368c1b0b4643936d3163f2e3776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 952706789499645014}
   heroGraphicCanvas: {fileID: 6604028921859288666}
   tauntFrame: {fileID: 6241576318421883335}
   normalFrame: {fileID: 7959617924784728117}
@@ -4086,7 +4088,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8718437751487745833}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -4151,6 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2913cef1d892fd4cbb66ca93fe2a8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 952706789499645014}
   frame: {fileID: 8718437751793359308}
   heroPreviewGraphic: {fileID: 7382863793947945746}
   heroPreviewText: {fileID: 2371458667104475293}
@@ -4480,6 +4483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812b21d75dcdf6f40a9f365f188e0689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 952706789499645014}
 --- !u!1 &8718437751740426289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4880,6 +4884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87cfbca0c3c0144492837300c34ccbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero: {fileID: 952706789499645014}
 --- !u!1 &8885772379816267708
 GameObject:
   m_ObjectHideFlags: 0
