@@ -27,7 +27,7 @@ namespace Logic
         /// </summary>
         Image GraphicImage { get; set; }
         
-        /// <summary>
+        /// <summary> 
         /// Interface reference to skill preview cooldown
         /// </summary>
         TextMeshProUGUI Cooldown { get;  }

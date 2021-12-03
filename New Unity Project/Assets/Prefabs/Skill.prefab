@@ -1877,6 +1877,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 3277504844195739296}
+  colliderCanvas: {fileID: 762670663}
+  crossHair: {fileID: 557122443}
+  triangle: {fileID: 262182390}
+  targetLine: {fileID: 1100414309}
 --- !u!1 &8437821377452799313
 GameObject:
   m_ObjectHideFlags: 0
