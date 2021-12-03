@@ -7,6 +7,11 @@ namespace Logic
     public interface IHeroPreview
     {
         /// <summary>
+        /// Interface reference to Hero
+        /// </summary>
+        IHero Hero { get; }
+        
+        /// <summary>
         /// Interface access to hero preview frame
         /// "Set" parameter is not used
         /// </summary>

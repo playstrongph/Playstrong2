@@ -6,15 +6,25 @@ namespace Logic
     public class HeroVisual : MonoBehaviour, IHeroVisual
     {
 
+        /// <summary>
+        /// Reference to Hero where other
+        /// components can be accessed
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
+        private Object hero;
+        public IHero Hero
+        {
+            get => hero as IHero;
+            set => hero = value as Object;
+        }
+        
         [SerializeField] private Canvas heroGraphicCanvas;
         public Canvas HeroGraphicCanvas
         {
             get => heroGraphicCanvas;
             set => heroGraphicCanvas = value;
         }
-        
-        
-        
+
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITauntFrame))]private Object tauntFrame;
         public ITauntFrame TauntFrame
         {
