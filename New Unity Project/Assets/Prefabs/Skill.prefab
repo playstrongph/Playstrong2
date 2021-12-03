@@ -1896,7 +1896,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2261777118487884444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1928,7 +1928,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8437821377452799313}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -1994,6 +1994,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 3277504844195739296}
+  previewCanvas: {fileID: 8104356453682608610}
+  frameImage: {fileID: 5200944969510331017}
+  graphicImage: {fileID: 2182036034333878206}
+  cooldown: {fileID: 1824886702}
+  previewName: {fileID: 957133550}
+  description: {fileID: 452518901}
 --- !u!1 &9094729379500154732
 GameObject:
   m_ObjectHideFlags: 0
