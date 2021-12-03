@@ -980,6 +980,8 @@ MonoBehaviour:
   skillVisual: {fileID: 4307825188012648619}
   skillPreview: {fileID: 3277504844195739294}
   skillTargetCollider: {fileID: 8627285158895822527}
+  coroutineTrees: {fileID: 0}
+  hero: {fileID: 0}
 --- !u!1 &3277504843130088726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,7 +1373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3277504843732610926
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1406,7 +1408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3277504843732610921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1436,7 +1438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3277504843732610921}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
@@ -1585,6 +1587,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 3277504844195739296}
+  skillCanvas: {fileID: 3277504843743826791}
+  frameGlowImage: {fileID: 3277504843732610927}
+  frameLight2D: {fileID: 8359449723848754870}
+  frameGraphic: {fileID: 3277504842426732312}
+  skillGraphic: {fileID: 3277504843193066736}
+  cooldownIcon: {fileID: 3277504843729777978}
+  cooldownText: {fileID: 3277504843664972410}
 --- !u!1 &3277504843856474602
 GameObject:
   m_ObjectHideFlags: 0
