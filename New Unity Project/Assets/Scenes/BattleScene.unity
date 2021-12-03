@@ -787,10 +787,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
-    - target: {fileID: 2070090601, guid: f62a7bc880be9324594d81fe2d19f523, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6604028922050672017, guid: f62a7bc880be9324594d81fe2d19f523,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -850,11 +846,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hero
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718437751487745829, guid: f62a7bc880be9324594d81fe2d19f523,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f62a7bc880be9324594d81fe2d19f523, type: 3}
