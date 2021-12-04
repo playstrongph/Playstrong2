@@ -47,11 +47,7 @@ namespace Logic
         /// </summary>
         IHeroSkills HeroSkills { get; set; }
         
-        /// <summary>
-        /// Interface access to list of statusEffects
-        /// </summary>
-        IStatusEffects StatusEffects { get; set; }
-        
+       
         /// <summary>
         /// Hero portrait set during initialization
         /// Same prefab used as panel portrait

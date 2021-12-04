@@ -97,19 +97,7 @@ namespace Logic
             get => heroSkills as IHeroSkills;
             set => heroSkills = value as Object;
         }
-        
-        /// <summary>
-        /// TODO: To be recoded to return list of statusEffects
-        /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffects))]
-        private Object statusEffects;
-        public IStatusEffects StatusEffects
-        {
-            get => statusEffects as IStatusEffects;
-            set => statusEffects = value as Object;
-        }
-        
-        
+
         /// <summary>
         /// Hero Portrait
         /// </summary>
