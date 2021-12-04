@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5718867371681192218}
   - component: {fileID: 5718867371681192219}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,6 +83,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1842614099300152815}
+  - component: {fileID: 1241874520}
   m_Layer: 0
   m_Name: PreviewStatusEffect
   m_TagString: Untagged
@@ -110,6 +111,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1241874520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5718867371753905096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97b7f491c4cb3047ac6dd3e7eb32025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  graphic: {fileID: 5718867371681192219}
+  nameText: {fileID: 5718867372552400379}
+  descriptionText: {fileID: 5718867372389044815}
 --- !u!1 &5718867372077962366
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +347,7 @@ GameObject:
   - component: {fileID: 5718867372392003392}
   - component: {fileID: 5718867372392003393}
   m_Layer: 0
-  m_Name: ImageFrame
+  m_Name: GraphicFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
