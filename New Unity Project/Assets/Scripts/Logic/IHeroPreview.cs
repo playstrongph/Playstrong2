@@ -54,10 +54,10 @@ namespace Logic
         IHeroPreviewChance HeroPreviewChance { get; }
         
         /// <summary>
-        /// Interface access to Status effects preview
+        /// Interface access to preview status effects transform
         /// "Set" parameter is not used
         /// </summary>
-        Canvas PreviewStatusEffects { get; }
+        Transform PreviewStatusEffects { get; }
 
     }
 }

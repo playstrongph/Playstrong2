@@ -17,6 +17,16 @@ namespace Logic
             get => hero as IHero;
             set => hero = value as Object;
         }
-        
+
+        /// <summary>
+        /// Reference to status effects canvas
+        /// </summary>
+        [SerializeField] private Canvas statusEffectsCanvas;
+        public Canvas StatusEffectsCanvas
+        {
+            get => statusEffectsCanvas;
+            set => statusEffectsCanvas = value;
+        }
+
     }
 }

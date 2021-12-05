@@ -115,12 +115,12 @@ namespace Logic
         } 
         
         /// <summary>
-        /// Status Effects preview reference
+        /// Reference to preview status effects transform
         /// set in Inspector
         /// </summary>
         [SerializeField] 
-        private Canvas previewStatusEffects;
-        public Canvas PreviewStatusEffects
+        private Transform previewStatusEffects;
+        public Transform PreviewStatusEffects
         {
             get => previewStatusEffects;
             set => previewStatusEffects = value;

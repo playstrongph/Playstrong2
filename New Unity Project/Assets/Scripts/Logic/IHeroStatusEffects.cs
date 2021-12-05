@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using UnityEngine;
+
+namespace Logic
 {
     public interface IHeroStatusEffects
     {
@@ -6,5 +8,10 @@
         /// Interface reference to Hero
         /// </summary>
         IHero Hero { get; }
+        
+        /// <summary>
+        /// Interface to status effects canvas
+        /// </summary>
+        Canvas StatusEffectsCanvas { get; }
     }
 }
