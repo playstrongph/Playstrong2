@@ -17,7 +17,19 @@ namespace Logic
             get => hero as IHero;
             set => hero = value as Object;
         }
-        
+
+
+        /// <summary>
+        /// Reference to preview canvas
+        /// </summary>
+        [SerializeField] private Canvas previewCanvas;
+        public Canvas PreviewCanvas
+        {
+            get => previewCanvas;
+            set => previewCanvas = value;
+        }
+
+
         /// <summary>
         /// Preview frame reference
         /// set in Inspector

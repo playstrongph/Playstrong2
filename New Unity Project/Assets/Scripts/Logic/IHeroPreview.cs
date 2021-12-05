@@ -10,7 +10,13 @@ namespace Logic
         /// Interface reference to Hero
         /// </summary>
         IHero Hero { get; }
-        
+
+        /// <summary>
+        /// Interface access to hero preview canvas
+        /// "Set" parameter is not used
+        /// </summary>
+        Canvas PreviewCanvas { get;}
+
         /// <summary>
         /// Interface access to hero preview frame
         /// "Set" parameter is not used
