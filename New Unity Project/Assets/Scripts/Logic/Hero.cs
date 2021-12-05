@@ -112,22 +112,22 @@ namespace Logic
         /// <summary>
         /// Information Panel Hero Portrait
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPanelPortrait))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IDisplayPortraits))]
         private Object panelHeroPortrait;
-        public IPanelPortrait PanelHeroPortrait
+        public IDisplayPortraits PanelHeroPortrait
         {
-            get => panelHeroPortrait as IPanelPortrait;
+            get => panelHeroPortrait as IDisplayPortraits;
             set => panelHeroPortrait = value as Object;
         }
         
         /// <summary>
         /// Panel Hero Skills
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPanelSkills))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IDisplaySkills))]
         private Object panelSkills;
-        public IPanelSkills PanelSkills
+        public IDisplaySkills PanelSkills
         {
-            get => panelSkills as IPanelSkills;
+            get => panelSkills as IDisplaySkills;
             set => panelSkills = value as Object;
         }
         

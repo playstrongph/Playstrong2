@@ -3,7 +3,7 @@
 
 namespace Logic
 {
-    public class PanelPortrait : MonoBehaviour, IPanelPortrait
+    public class AliveHeroes : MonoBehaviour, IAliveHeroes
     {
         
     }

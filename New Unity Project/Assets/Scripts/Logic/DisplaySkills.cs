@@ -3,7 +3,7 @@
 
 namespace Logic
 {
-    public class PanelSkills : MonoBehaviour, IPanelSkills
+    public class DisplaySkills : MonoBehaviour, IDisplaySkills
     {
         
     }
