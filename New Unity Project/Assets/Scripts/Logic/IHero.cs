@@ -45,7 +45,7 @@ namespace Logic
         /// <summary>
         /// Interface access to list of heroSkills
         /// </summary>
-        IHeroSkills HeroSkills { get; set; }
+        IAllHeroSkills HeroSkills { get; set; }
         
        
         /// <summary>
