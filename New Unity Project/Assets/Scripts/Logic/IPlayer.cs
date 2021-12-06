@@ -15,7 +15,7 @@
         /// <summary>
         /// Interface access to hero skills
         /// </summary>
-        IAllHeroSkills HeroSkills { get; }
+        ISkillsAllHeroes HeroSkills { get; }
         
         /// <summary>
         /// Interface access to portraits

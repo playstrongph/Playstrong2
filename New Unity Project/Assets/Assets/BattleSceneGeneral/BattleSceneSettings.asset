@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f480f6613805d4eb132043eadeb2dc, type: 3}
+  m_Name: BattleSceneSettings
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 7690881937343701369, guid: d1f18f434d02c7a438691e672098eb5d,
+    type: 3}
+  heroPrefab: {fileID: 4044057493482042295, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
+    type: 3}
+  skillPrefab: {fileID: 359849407904444818, guid: ac3fb736160c8c14cbbe8fe3d1a573de,
+    type: 3}
+  heroSkills: {fileID: 1607392949, guid: decb5a90488163c4dac1257914db9d53, type: 3}
+  heroPortrait: {fileID: 6415171892187465155, guid: 8f6e949bbff241d479c4a3e038f68fe9,
+    type: 3}
+  battleSceneManager: {fileID: 0}

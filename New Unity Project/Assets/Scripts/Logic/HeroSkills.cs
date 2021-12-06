@@ -3,7 +3,7 @@
 
 namespace Logic
 {
-    public class AllHeroSkills : MonoBehaviour, IAllHeroSkills
+    public class HeroSkills : MonoBehaviour, IHeroSkills
     {
         
     }

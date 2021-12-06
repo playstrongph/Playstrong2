@@ -90,11 +90,11 @@ namespace Logic
         /// TODO: To be recoded to return list of heroSkills
         /// </summary>
         [Header("SET IN RUNTIME")]
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAllHeroSkills))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillsAllHeroes))]
         private Object heroSkills;
-        public IAllHeroSkills HeroSkills
+        public ISkillsAllHeroes HeroSkills
         {
-            get => heroSkills as IAllHeroSkills;
+            get => heroSkills as ISkillsAllHeroes;
             set => heroSkills = value as Object;
         }
 
