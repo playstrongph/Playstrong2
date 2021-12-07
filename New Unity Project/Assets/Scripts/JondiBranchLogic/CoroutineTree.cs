@@ -102,16 +102,25 @@ namespace JondiBranchLogic
             Root.AddChild(value);
         }
         
-       
-        /*public void AddCurrentWait(float seconds, ICoroutineTree tree)
+       /// <summary>
+       /// Inserts delay in seconds before the next coroutine execution
+       /// </summary>
+       /// <param name="seconds"></param>
+       /// <param name="tree"></param>
+        public void AddCurrentWait(float seconds, ICoroutineTree tree)
         {        
-            CurrentNode.AddChild(_mono.GetComponent<IBranchLogic>().Wait(seconds,tree));
-        }*/
-
-        /*public void AddRootWait(float seconds, ICoroutineTree tree)
+            CurrentNode.AddChild(Wait(seconds,tree));
+        }
+        
+       /// <summary>
+       ///  Inserts delay in seconds before the next root coroutine execution
+       /// </summary>
+       /// <param name="seconds"></param>
+       /// <param name="tree"></param>
+        public void AddRootWait(float seconds, ICoroutineTree tree)
         {
-            Root.AddChild(_mono.GetComponent<IBranchLogic>().Wait(seconds, tree));
-        }*/
+            Root.AddChild(Wait(seconds, tree));
+        }
         
         /// <summary>
         /// Returns true if the tree is empty, false otherwise.
@@ -176,6 +185,31 @@ namespace JondiBranchLogic
         {
             CurrentNode = Root;
             Root.ClearChildren();
+        }
+        
+        /// <summary>
+        /// Delay sequence for coroutine calls
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <param name="tree"></param>
+        /// <returns></returns>
+        private IEnumerator Wait(float seconds, ICoroutineTree tree)
+        {
+            yield return new WaitForSeconds(seconds);
+            yield return _mono.StartCoroutine(InsertDelay(tree));
+            yield return null;
+
+        }
+        
+        /// <summary>
+        /// Inserts delay in seconds
+        /// </summary>
+        /// <param name="tree"></param>
+        /// <returns></returns>
+        private IEnumerator InsertDelay(ICoroutineTree tree)
+        {
+            tree.EndSequence();
+            yield return null;
         }
         
     }

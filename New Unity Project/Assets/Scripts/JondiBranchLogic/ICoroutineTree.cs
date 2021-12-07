@@ -64,5 +64,19 @@ namespace JondiBranchLogic
         /// Removes all pending coroutines.
         /// </summary>
         void CleanUp();
+
+        /// <summary>
+        /// Add a coroutine as a child of the current node which waits for specified amount of time.
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <param name="tree"></param>
+        void AddCurrentWait(float seconds, ICoroutineTree tree);
+        
+        /// <summary>
+        ///  Add a coroutine as a child of the root node which waits for specified amount of time.
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <param name="tree"></param>
+        void AddRootWait(float seconds, ICoroutineTree tree);
     }
 }

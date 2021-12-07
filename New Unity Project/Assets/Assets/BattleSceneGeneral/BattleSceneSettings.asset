@@ -29,4 +29,5 @@ MonoBehaviour:
   displayPortraitPosition: {x: 0, y: 160, z: 0}
   skillPreviewPosition: {x: -240, y: 0, z: 0}
   heroPreviewPosition: {x: -240, y: 0, z: 0}
-  battleSceneManager: {fileID: 0}
+  coroutineTreesAsset: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4,
+    type: 2}
