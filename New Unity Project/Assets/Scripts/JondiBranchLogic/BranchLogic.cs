@@ -8,7 +8,7 @@ namespace JondiBranchLogic
     /// <summary>
     /// Initializes the global visual and logic coroutine trees 
     /// </summary>
-    public class BranchLogic : MonoBehaviour
+    public class BranchLogic : MonoBehaviour, IBranchLogic
     {
         /// <summary>
         /// Local logic coroutine tree variable
@@ -29,20 +29,27 @@ namespace JondiBranchLogic
         /// Local battle scene settings reference
         /// </summary>
         private IBattleSceneSettingsAsset _battleSceneSettings;
-
+        
+        //TODO: Can this be transferred to the BattleSceneManager instead?
         private void Awake()
         {
             _battleSceneManager = GetComponent<IBattleSceneManager>();
             _battleSceneSettings = _battleSceneManager.BattleSceneSettings;
-            InitGlobalLogicTree();
-            InitGlobVisualTree();
-
         }
         
         /// <summary>
+        /// Visual and Logic trees initialization for global use
+        /// </summary>
+        public void InitializeGlobalCoroutineTrees()
+        {
+            InitializeGlobalLogicTree();
+            InitializeGlobVisualTree();
+        }
+
+        /// <summary>
         /// Initializes the global logic tree
         /// </summary>
-        private void InitGlobalLogicTree()
+        private void InitializeGlobalLogicTree()
         {
             _logicTree = new CoroutineTree();
             _logicTree.CoroutineRunner(this);
@@ -54,7 +61,7 @@ namespace JondiBranchLogic
         /// <summary>
         /// Initializes the global visual tree
         /// </summary>
-        private void InitGlobVisualTree()
+        private void InitializeGlobVisualTree()
         {
             _visualTree = new CoroutineTree();
             _visualTree.CoroutineRunner(this);
