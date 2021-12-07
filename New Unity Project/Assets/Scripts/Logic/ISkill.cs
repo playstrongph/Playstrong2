@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts;
+﻿using JondiBranchLogic;
+using ScriptableObjectScripts;
 using UnityEngine;
 
 namespace Logic
