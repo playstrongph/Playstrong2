@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace JondiBranchLogic
-{
+{   
+    /// <summary>
+    /// Sequence logic utilizing coroutines with a
+    /// Tree, Root, Node, and Branch structure.
+    /// </summary>
     public class CoroutineQueue : ICoroutineQueue
     {
 
