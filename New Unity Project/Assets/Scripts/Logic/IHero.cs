@@ -65,6 +65,11 @@ namespace Logic
         /// Same prefab used as hero skills
         /// </summary>
         IDisplaySkills PanelSkills { get; set; }
+        
+        /// <summary>
+        /// Interface access to this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
 
 
     }

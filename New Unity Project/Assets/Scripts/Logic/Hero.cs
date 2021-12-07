@@ -131,6 +131,11 @@ namespace Logic
             set => panelSkills = value as Object;
         }
         
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
+        
 
 
 

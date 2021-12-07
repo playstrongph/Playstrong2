@@ -38,6 +38,12 @@ namespace Logic
             get => portraitImage;
             set => portraitImage = value;
         }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
+
 
     }
 }

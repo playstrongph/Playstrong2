@@ -22,5 +22,10 @@ namespace Logic
         /// Set in the inspector.
         /// </summary>
         Image PortraitImage { get; set; }
+        
+        /// <summary>
+        /// Interface access to this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
     }
 }

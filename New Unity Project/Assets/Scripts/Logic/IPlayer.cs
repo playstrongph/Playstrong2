@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using UnityEngine;
+
+namespace Logic
 {
     public interface IPlayer
     {
@@ -32,7 +34,10 @@
         /// </summary>
         IDisplayPortraits DisplayPortraits { get; }
 
-
+        /// <summary>
+        /// Interface access to this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
 
     }
 }

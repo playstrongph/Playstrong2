@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts;
+using UnityEngine;
 
 namespace Logic
 {
@@ -29,6 +30,11 @@ namespace Logic
         /// </summary>
         ICoroutineTreesAsset CoroutineTrees { get; }
         
+        /// <summary>
+        /// Interface access to this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
+        
         
         //SET IN RUNTIME
 
@@ -37,5 +43,7 @@ namespace Logic
         /// get and set both used
         /// </summary>
         IHero Hero { get; set; }
+        
+        
     }
 }
