@@ -152,20 +152,23 @@ namespace ScriptableObjectScripts
             get => heroPreviewPosition;
             private set => heroPreviewPosition = value;
         }
-
-
+        
         /// <summary>
-        /// Reference to battle scene manager 
+        /// Reference to coroutine trees asset
         /// </summary>
-        [Header("SET IN RUNTIME")]
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBattleSceneManager))]
-        private Object battleSceneManager;
-        public IBattleSceneManager BattleSceneManager
+        [Header("BATTLE SCENE ASSETS")]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ICoroutineTreesAsset))] 
+        private CoroutineTreesAsset coroutineTreesAsset;
+        public CoroutineTreesAsset CoroutineTreesAsset
         {
-            get => battleSceneManager as IBattleSceneManager;
-            set => battleSceneManager = value as Object;
+            get => coroutineTreesAsset;
+            private set => coroutineTreesAsset = value;
         }
 
-        
+
+
+
+
+
     }
 }

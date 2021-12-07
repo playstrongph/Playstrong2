@@ -86,13 +86,11 @@ namespace ScriptableObjectScripts
         /// preview board position.
         /// </summary>
         Vector3 HeroPreviewPosition { get; }
-
-        //SET IN RUNTIME
         
         /// <summary>
-        /// Interface access to battle scene manager
+        /// Interface access to coroutine tress asset
         /// </summary>
-        IBattleSceneManager BattleSceneManager { get; set; }
+        CoroutineTreesAsset CoroutineTreesAsset { get; }
 
     }
     
