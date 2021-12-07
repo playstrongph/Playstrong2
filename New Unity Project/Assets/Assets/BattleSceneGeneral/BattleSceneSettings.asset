@@ -21,4 +21,12 @@ MonoBehaviour:
   heroSkills: {fileID: 1607392949, guid: decb5a90488163c4dac1257914db9d53, type: 3}
   heroPortrait: {fileID: 6415171892187465155, guid: 8f6e949bbff241d479c4a3e038f68fe9,
     type: 3}
+  allyHeroesPosition: {x: 0, y: -53.3, z: 0}
+  enemyHeroesPosition: {x: 0, y: 64.5, z: 0}
+  skillsPosition: {x: 87, y: -144, z: 0}
+  displaySkillsPosition: {x: 87, y: 145, z: 0}
+  portraitPosition: {x: 0, y: -129.4, z: 0}
+  displayPortraitPosition: {x: 0, y: 160, z: 0}
+  skillPreviewPosition: {x: -240, y: 0, z: 0}
+  heroPreviewPosition: {x: -240, y: 0, z: 0}
   battleSceneManager: {fileID: 0}
