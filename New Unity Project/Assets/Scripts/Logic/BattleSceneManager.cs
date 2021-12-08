@@ -48,6 +48,20 @@ namespace Logic
         /// </summary>
         private IInitializePlayers _initializePlayers;
 
+
+        /// <summary>
+        /// Reference to Main Player
+        /// used in Initializing heroes
+        /// </summary>
+        public IPlayer MainPlayer { get; set; }
+        
+        /// <summary>
+        /// Reference to Enemy Player
+        ///  used in Initializing heroes
+        /// </summary>
+        public IPlayer EnemyPlayer { get; set; }
+
+
         private void Awake()
         {
             _branchLogic = GetComponent<IBranchLogic>();

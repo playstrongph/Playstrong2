@@ -14,5 +14,15 @@ namespace Logic
         /// Interface reference to battle scene manager game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// Interface access to Main player 
+        /// </summary>
+        IPlayer MainPlayer { get; set; }
+        
+        /// <summary>
+        /// Interface access to Enemy player
+        /// </summary>
+        IPlayer EnemyPlayer { get; set; }
     }
 }

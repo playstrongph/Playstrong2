@@ -16,7 +16,11 @@ namespace Logic
         {
             _battleSceneManager = GetComponent<IBattleSceneManager>();
         }
-
+        
+        /// <summary>
+        /// Loads the main and enemy 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator StartAction()
         {
             var logicTree = _battleSceneManager.BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
@@ -30,6 +34,17 @@ namespace Logic
             //Set game object names in inspector
             mainPlayerGameObject.name = "MainPlayer";
             enemyPlayerGameObject.name = "EnemyPlayer";
+            
+            //Set MainPlayer and EnemyPlayer References
+            _battleSceneManager.MainPlayer = mainPlayer;
+            _battleSceneManager.EnemyPlayer = enemyPlayer;
+            
+            //Set AliveHeroes transform position
+            mainPlayer.AliveHeroes.ThisGameObject.transform.position =
+                _battleSceneManager.BattleSceneSettings.AllyHeroesPosition;
+            enemyPlayer.AliveHeroes.ThisGameObject.transform.position =
+                _battleSceneManager.BattleSceneSettings.EnemyHeroesPosition;
+            
 
             logicTree.EndSequence();
             yield return null;
