@@ -35,6 +35,8 @@ namespace JondiBranchLogic
         {
             _battleSceneManager = GetComponent<IBattleSceneManager>();
             _battleSceneSettings = _battleSceneManager.BattleSceneSettings;
+
+            InitializeGlobalCoroutineTrees();
         }
         
         /// <summary>
