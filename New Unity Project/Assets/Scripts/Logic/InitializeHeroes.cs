@@ -21,7 +21,7 @@ namespace Logic
            var heroPrefab = _battleSceneManager.BattleSceneSettings.HeroPrefab.ThisGameObject;
            var heroPreviewPosition = _battleSceneManager.BattleSceneSettings.HeroPreviewPosition;
            var mainPlayerTeamHeroesAsset = _battleSceneManager.BattleSceneSettings.MainPlayerTeamHeroes;
-           var enemyPlayerTeamHeroesAsset = _battleSceneManager.BattleSceneSettings.MainPlayerTeamHeroes;
+           var enemyPlayerTeamHeroesAsset = _battleSceneManager.BattleSceneSettings.EnemyPlayerTeamHeroes;
            var mainPlayerTeamHeroesParentsLocation = _battleSceneManager.MainPlayer.AliveHeroes.ThisGameObject.transform;
            var enemyPlayerTeamHeroesParentsLocation = _battleSceneManager.EnemyPlayer.AliveHeroes.ThisGameObject.transform;
 

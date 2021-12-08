@@ -32,9 +32,13 @@ namespace Logic
 
             foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
             {
+                //Instantiate hero in the scene
                 var heroObject = Instantiate(heroPrefab, heroesParentLocation);
-               
                 
+                //Set hero name in the Inspector
+                heroObject.name = heroAsset.HeroName;
+
+
             }
             
             logicTree.EndSequence();
