@@ -10,10 +10,11 @@ namespace Logic
         /// </summary>
         private IBattleSceneManager _battleSceneManager;
         
+        
+        
         private void Awake()
         {
             _battleSceneManager = GetComponent<IBattleSceneManager>();
-            
         }
 
         public IEnumerator StartAction()
@@ -25,8 +26,10 @@ namespace Logic
             var mainPlayer = mainPlayerGameObject.GetComponent<IPlayer>();
             var enemyPlayerGameObject = Instantiate(playerPrefab, playersParent);
             var enemyPlayer = enemyPlayerGameObject.GetComponent<IPlayer>();
-
-
+            
+            //Set game object names in inspector
+            mainPlayerGameObject.name = "MainPlayer";
+            enemyPlayerGameObject.name = "EnemyPlayer";
 
             logicTree.EndSequence();
             yield return null;
