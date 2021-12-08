@@ -22,8 +22,10 @@ namespace Logic
            var heroPreviewPosition = _battleSceneManager.BattleSceneSettings.HeroPreviewPosition;
            
            //TODO: MainPlayerTeamHeroesAsset and MainEnemyTeamHeroesAsset
+
+           var mainPlayerTeamHeroesPosition = _battleSceneManager.MainPlayer.AliveHeroes.ThisGameObject.transform;
+           var enemyPlayerTeamHeroesPosition = _battleSceneManager.EnemyPlayer.AliveHeroes.ThisGameObject.transform;
            
-           //var mainPlayerTeamHeroesPosition = _battleSceneManager.
            
            
            
