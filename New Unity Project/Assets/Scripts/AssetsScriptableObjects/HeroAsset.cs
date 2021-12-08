@@ -3,7 +3,7 @@
 namespace AssetsScriptableObjects
 {
     [CreateAssetMenu(fileName = "NewHero", menuName = "Assets/NewHero")]
-    public class HeroAsset : ScriptableObject
+    public class HeroAsset : ScriptableObject, IHeroAsset
     {   
         /// <summary>
         /// Hero's name.

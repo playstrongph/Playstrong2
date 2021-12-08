@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
   m_Name: SampleHero
   m_EditorClassIdentifier: 
-  heroName: 
-  heroClass: 
-  heroSprite: {fileID: 0}
-  health: 0
-  attack: 0
-  speed: 0
-  chance: 0
-  armor: 0
-  fightingSpirit: 0
+  heroName: SampleHero
+  heroClass: Warrior
+  heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
+    type: 3}
+  health: 111
+  attack: 111
+  speed: 111
+  chance: 111
+  armor: 111
+  fightingSpirit: 111
