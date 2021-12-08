@@ -1,4 +1,5 @@
-﻿using JondiBranchLogic;
+﻿using AssetsScriptableObjects;
+using JondiBranchLogic;
 using Logic;
 using UnityEngine;
 
@@ -92,6 +93,16 @@ namespace ScriptableObjectScripts
         /// Interface access to coroutine tress asset
         /// </summary>
         CoroutineTreesAsset CoroutineTreesAsset { get; }
+        
+        /// <summary>
+        /// Reference to ITeamHeroesAsset MainPlayerTeamHeroes
+        /// </summary>
+        ITeamHeroesAsset MainPlayerTeamHeroes { get; }
+        
+        /// <summary>
+        /// Reference to ITeamHeroesAsset EnemyPlayerTeamHeroes
+        /// </summary>
+        ITeamHeroesAsset EnemyPlayerTeamHeroes { get; }
 
     }
     

@@ -35,20 +35,7 @@ namespace Logic
             }
             private set => thisGameObject = value;
         }
-
-        /// <summary>
-        /// Local variable for BranchLogic
-        /// used in initialization of global coroutine trees
-        /// </summary>
-        private IBranchLogic _branchLogic;
         
-        /// <summary>
-        /// Local access to InitializePlayers attached
-        /// to the same gameObject
-        /// </summary>
-        private IInitializePlayers _initializePlayers;
-
-
         /// <summary>
         /// Reference to Main Player
         /// used in Initializing heroes
@@ -61,11 +48,29 @@ namespace Logic
         /// </summary>
         public IPlayer EnemyPlayer { get; set; }
 
+        /// <summary>
+        /// Local variable for BranchLogic
+        /// used in initialization of global coroutine trees
+        /// </summary>
+        private IBranchLogic _branchLogic;
+        
+        /// <summary>
+        /// Local access to InitializePlayers attached
+        /// to the same gameObject
+        /// </summary>
+        private IInitializePlayers _initializePlayers;
+        
+        /// <summary>
+        /// Local access to initialize heroes
+        /// attached to the same game object
+        /// </summary>
+        private IInitializeHeroes _initializeHeroes;
 
         private void Awake()
         {
             _branchLogic = GetComponent<IBranchLogic>();
             _initializePlayers = GetComponent<IInitializePlayers>();
+            _initializeHeroes = GetComponent<IInitializeHeroes>();
         }
 
         private void Start()
@@ -81,12 +86,13 @@ namespace Logic
         /// <returns></returns>
         private IEnumerator InitializeBattle()
         {
-            var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
+           var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
             
-           logicTree.AddCurrent(_initializePlayers.StartAction());
+           logicTree.AddSibling(_initializePlayers.StartAction());
+           logicTree.AddSibling(_initializeHeroes.StartAction());
             
-            logicTree.EndSequence();
-            yield return null;
+           logicTree.EndSequence();
+           yield return null;
         }
     }
 }

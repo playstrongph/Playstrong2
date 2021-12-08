@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
-  m_Name: SampleHero
+  m_Name: SampleHero 1
   m_EditorClassIdentifier: 
-  heroName: LunaSample
-  heroClass: Warrior
-  heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
+  heroName: WaterElemental
+  heroClass: Ranger
+  heroSprite: {fileID: 3858775757889453395, guid: 16cb092cf2577ee478fb3bd1c5ad6504,
     type: 3}
-  health: 111
-  attack: 111
-  speed: 111
-  chance: 111
-  armor: 111
-  fightingSpirit: 111
+  health: 222
+  attack: 222
+  speed: 222
+  chance: 222
+  armor: 222
+  fightingSpirit: 222

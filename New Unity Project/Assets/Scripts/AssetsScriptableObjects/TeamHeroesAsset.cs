@@ -18,13 +18,13 @@ namespace AssetsScriptableObjects
         /// Returns the list of team heroes
         /// </summary>
         /// <returns></returns>
-        public List<IHero> TeamHeroes()
+        public List<IHeroAsset> TeamHeroes()
         {
-            var heroes = new List<IHero>();
+            var heroes = new List<IHeroAsset>();
 
             foreach (var heroObject in teamHeroes)
             {
-                heroes.Add(heroObject as IHero);
+                heroes.Add(heroObject as IHeroAsset);
             }
             return heroes;
         }

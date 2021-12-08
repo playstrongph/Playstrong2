@@ -1,4 +1,5 @@
 ﻿using System;
+using AssetsScriptableObjects;
 using JondiBranchLogic;
 using Logic;
 using UnityEngine;
@@ -164,6 +165,28 @@ namespace ScriptableObjectScripts
         {
             get => coroutineTreesAsset;
             private set => coroutineTreesAsset = value;
+        }
+        
+        /// <summary>
+        /// Reference to main player team heroes asset
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITeamHeroesAsset))] 
+        private Object mainPlayerTeamHeroes;
+        public ITeamHeroesAsset MainPlayerTeamHeroes
+        {
+            get => mainPlayerTeamHeroes as ITeamHeroesAsset;
+            private set => mainPlayerTeamHeroes = value as Object;
+        }
+        
+        /// <summary>
+        /// Reference to enemy player team heroes asset
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITeamHeroesAsset))] 
+        private Object enemyPlayerTeamHeroes;
+        public ITeamHeroesAsset EnemyPlayerTeamHeroes
+        {
+            get => enemyPlayerTeamHeroes as ITeamHeroesAsset;
+            private set => enemyPlayerTeamHeroes = value as Object;
         }
 
 

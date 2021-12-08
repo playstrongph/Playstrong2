@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using JondiBranchLogic;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 
 namespace Logic
@@ -72,10 +75,32 @@ namespace Logic
             get => displayPortraits as IDisplayPortraits;
             set => displayPortraits = value as Object;
         }
+        
+        /// <summary>
+        /// Global Main and Visual trees reference
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ICoroutineTreesAsset))]private Object coroutineTrees;
+        public ICoroutineTreesAsset CoroutineTrees
+        {
+            get => coroutineTrees as ICoroutineTreesAsset;
+            private set => coroutineTrees = value as Object;
+
+        }
 
         /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+        
+        /// <summary>
+        /// Initialize player heroes component reference
+        /// </summary>
+        private IInitializePlayerHeroes _initializePlayerHeroes;
+        public IInitializePlayerHeroes InitializePlayerHeroes => _initializePlayerHeroes;
+        
+        private void Awake()
+        {
+            _initializePlayerHeroes = GetComponent<IInitializePlayerHeroes>();
+        }
     }
 }

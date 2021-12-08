@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JondiBranchLogic;
+using UnityEngine;
 
 namespace Logic
 {
@@ -38,6 +39,16 @@ namespace Logic
         /// Interface access to this as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        ///  Global Main and Visual trees reference
+        /// </summary>
+        ICoroutineTreesAsset CoroutineTrees { get; }
+        
+        /// <summary>
+        /// Initialize player heroes component reference
+        /// </summary>
+        IInitializePlayerHeroes InitializePlayerHeroes { get; }
 
     }
 }

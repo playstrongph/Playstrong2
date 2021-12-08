@@ -31,3 +31,7 @@ MonoBehaviour:
   heroPreviewPosition: {x: -240, y: 0, z: 0}
   coroutineTreesAsset: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4,
     type: 2}
+  mainPlayerTeamHeroes: {fileID: 11400000, guid: 56bd71901470ff748a055834eda4bd41,
+    type: 2}
+  enemyPlayerTeamHeroes: {fileID: 11400000, guid: c2349eb6a7a66b140957d7ad396c81f1,
+    type: 2}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class InitializeHeroes : MonoBehaviour
+    public class InitializeHeroes : MonoBehaviour, IInitializeHeroes
     {
         /// <summary>
         /// Reference to battle scene manager
@@ -20,16 +20,14 @@ namespace Logic
            var logicTree = _battleSceneManager.BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
            var heroPrefab = _battleSceneManager.BattleSceneSettings.HeroPrefab.ThisGameObject;
            var heroPreviewPosition = _battleSceneManager.BattleSceneSettings.HeroPreviewPosition;
-           
-           //TODO: MainPlayerTeamHeroesAsset and MainEnemyTeamHeroesAsset
+           var mainPlayerTeamHeroesAsset = _battleSceneManager.BattleSceneSettings.MainPlayerTeamHeroes;
+           var enemyPlayerTeamHeroesAsset = _battleSceneManager.BattleSceneSettings.MainPlayerTeamHeroes;
+           var mainPlayerTeamHeroesParentsLocation = _battleSceneManager.MainPlayer.AliveHeroes.ThisGameObject.transform;
+           var enemyPlayerTeamHeroesParentsLocation = _battleSceneManager.EnemyPlayer.AliveHeroes.ThisGameObject.transform;
 
-           var mainPlayerTeamHeroesPosition = _battleSceneManager.MainPlayer.AliveHeroes.ThisGameObject.transform;
-           var enemyPlayerTeamHeroesPosition = _battleSceneManager.EnemyPlayer.AliveHeroes.ThisGameObject.transform;
-           
-           
-           
-           
-            
+           //TODO: InitializePlayerHeroes
+          logicTree.AddCurrent(_battleSceneManager.MainPlayer.InitializePlayerHeroes.StartAction(mainPlayerTeamHeroesAsset,heroPrefab,mainPlayerTeamHeroesParentsLocation,heroPreviewPosition));
+          logicTree.AddCurrent(_battleSceneManager.EnemyPlayer.InitializePlayerHeroes.StartAction(enemyPlayerTeamHeroesAsset,heroPrefab,enemyPlayerTeamHeroesParentsLocation,heroPreviewPosition));
             
 
            logicTree.EndSequence();

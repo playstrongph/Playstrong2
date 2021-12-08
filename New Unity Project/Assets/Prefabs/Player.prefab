@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7690881937343701368}
   - component: {fileID: 7690881937343701369}
+  - component: {fileID: -4800768828814322915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -176,6 +177,19 @@ MonoBehaviour:
   portraits: {fileID: 7690881938280664285}
   displaySkills: {fileID: 7690881937302385363}
   displayPortraits: {fileID: 7690881938335631633}
+  coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
+--- !u!114 &-4800768828814322915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690881937343701371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c09f350cd17484e8f40dc813c47e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7690881937506106440
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,6 @@ namespace AssetsScriptableObjects
         /// Returns the list of team heroes
         /// </summary>
         /// <returns></returns>
-        List<IHero> TeamHeroes();
+        List<IHeroAsset> TeamHeroes();
     }
 }
