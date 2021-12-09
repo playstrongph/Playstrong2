@@ -15,28 +15,28 @@ namespace Logic
         public IHero Hero
         {
             get => hero as IHero;
-            set => hero = value as Object;
+            private set => hero = value as Object;
         }
         
         [SerializeField] private Canvas heroGraphicCanvas;
         public Canvas HeroGraphicCanvas
         {
             get => heroGraphicCanvas;
-            set => heroGraphicCanvas = value;
+            private set => heroGraphicCanvas = value;
         }
 
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITauntFrame))]private Object tauntFrame;
         public ITauntFrame TauntFrame
         {
             get => tauntFrame as ITauntFrame;
-            set => tauntFrame = value as Object;
+            private set => tauntFrame = value as Object;
         }
         
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(INormalFrame))] private Object normalFrame;
         public INormalFrame NormalFrame
         {
             get => normalFrame as INormalFrame;
-            set => normalFrame = value as Object;
+            private set => normalFrame = value as Object;
         }
         
         [SerializeField][RequireInterfaceAttribute.RequireInterface(typeof(IHeroGraphic))] private Object heroGraphic;
