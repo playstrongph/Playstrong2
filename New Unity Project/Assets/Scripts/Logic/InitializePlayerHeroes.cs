@@ -42,6 +42,9 @@ namespace Logic
                 
                 //Load the hero attributes
                 hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
+                
+                //Load the hero preview visual attributes
+                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
             }
             
             logicTree.EndSequence();

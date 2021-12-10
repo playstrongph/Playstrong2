@@ -54,10 +54,21 @@ namespace Logic
         IHeroPreviewChance HeroPreviewChance { get; }
         
         /// <summary>
+        /// Interface access to hero preview speed
+        /// "Set" parameter not used
+        /// </summary>
+        IHeroPreviewSpeed HeroPreviewSpeed { get; }
+
+        /// <summary>
         /// Interface access to preview status effects transform
         /// "Set" parameter is not used
         /// </summary>
         Transform PreviewStatusEffects { get; }
+
+        /// <summary>
+        /// Loads the hero preview visuals attributes from the hero asset
+        /// </summary>
+        ILoadHeroPreviewVisuals LoadHeroPreviewVisuals { get; }
 
     }
 }

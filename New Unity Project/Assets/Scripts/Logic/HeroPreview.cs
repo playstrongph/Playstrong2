@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 
 namespace Logic
@@ -126,10 +128,16 @@ namespace Logic
             set => previewStatusEffects = value;
         }
 
+        /// <summary>
+        /// Loads the hero preview visuals attributes from the hero asset
+        /// </summary>
+        private ILoadHeroPreviewVisuals _loadHeroPreviewVisuals;
 
-        
-      
-        
-        
+        public ILoadHeroPreviewVisuals LoadHeroPreviewVisuals => _loadHeroPreviewVisuals;
+
+        private void Awake()
+        {
+            _loadHeroPreviewVisuals = GetComponent<ILoadHeroPreviewVisuals>();
+        }
     }
 }
