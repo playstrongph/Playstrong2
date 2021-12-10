@@ -57,7 +57,6 @@ namespace Logic
                 return Color.red;
             else
                 return Color.white;
-            
         }
         
         private void HideTextAndIcon()

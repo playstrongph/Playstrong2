@@ -405,7 +405,6 @@ GameObject:
   - component: {fileID: 3830259919145749639}
   - component: {fileID: 3213002236916842626}
   - component: {fileID: 8243147916161214234}
-  - component: {fileID: 8568346187775761821}
   m_Layer: 0
   m_Name: PreviewStatusEffects
   m_TagString: Untagged
@@ -464,35 +463,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3830259919145749636}
   m_CullTransparentMesh: 0
---- !u!114 &8568346187775761821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3830259919145749636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3992229479853335050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,7 +1376,7 @@ GameObject:
   - component: {fileID: 5609741220658975912}
   - component: {fileID: 1571417680252159868}
   m_Layer: 0
-  m_Name: PreviewText
+  m_Name: PreviewName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,7 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5678d4f3a3371f541b97587c41a3b0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewText: {fileID: 5609741221350604410}
+  previewName: {fileID: 5609741221350604410}
 --- !u!1 &5609741220863645898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,6 +2641,7 @@ GameObject:
   - component: {fileID: 5609741222092607687}
   - component: {fileID: 5609741222092607686}
   - component: {fileID: 8887579734689507496}
+  - component: {fileID: 1993539449}
   m_Layer: 0
   m_Name: HeroPreview
   m_TagString: Untagged
@@ -2712,7 +2683,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5609741222092607688}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -2781,12 +2752,24 @@ MonoBehaviour:
   previewCanvas: {fileID: 5609741222092607684}
   frame: {fileID: 5609741221317953069}
   heroPreviewGraphic: {fileID: 6004110408756393203}
-  heroPreviewText: {fileID: 1571417680252159868}
+  heroPreviewName: {fileID: 1571417680252159868}
   heroPreviewAttack: {fileID: 2504809085661505769}
   heroPreviewHealth: {fileID: 8961125444096633034}
   heroPreviewSpeed: {fileID: 7185873144978900521}
   heroPreviewChance: {fileID: 6421074122645334424}
   previewStatusEffects: {fileID: 3830259919145749639}
+--- !u!114 &1993539449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609741222092607688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da9d426dc9b2934db37d9187366ca9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5654071405585059933
 GameObject:
   m_ObjectHideFlags: 0

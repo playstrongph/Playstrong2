@@ -33,7 +33,7 @@ namespace Logic
         /// Interface access to hero preview text
         /// "Set" parameter is not used
         /// </summary>
-        IHeroPreviewText HeroPreviewText { get; }
+        IHeroPreviewName HeroPreviewName { get; }
         
         /// <summary>
         /// Interface access to hero preview attack

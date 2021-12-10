@@ -2,7 +2,7 @@
 
 namespace Logic
 {
-    public interface IHeroPreviewText
+    public interface IHeroPreviewName
     {
         TextMeshProUGUI PreviewText { get; set; }
     }

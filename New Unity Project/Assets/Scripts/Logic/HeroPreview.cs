@@ -55,15 +55,15 @@ namespace Logic
         }
         
         /// <summary>
-        /// Preview text reference
+        /// Preview name reference
         /// set in Inspector
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPreviewText))]
-        private Object heroPreviewText;
-        public IHeroPreviewText HeroPreviewText
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPreviewName))]
+        private Object heroPreviewName;
+        public IHeroPreviewName HeroPreviewName
         {
-            get => heroPreviewText as IHeroPreviewText;
-            set => heroPreviewText = value as Object;
+            get => heroPreviewName as IHeroPreviewName;
+            set => heroPreviewName = value as Object;
         }
         
         /// <summary>
