@@ -247,6 +247,11 @@ GameObject:
   - component: {fileID: 8137904070298217024}
   - component: {fileID: 300250152711610300}
   - component: {fileID: 3684399267465881610}
+  - component: {fileID: 1212596204}
+  - component: {fileID: 9126273902352579113}
+  - component: {fileID: 7973197268117200403}
+  - component: {fileID: 6093366519108223805}
+  - component: {fileID: 5631988190398378982}
   m_Layer: 0
   m_Name: HeroLogic
   m_TagString: Untagged
@@ -299,7 +304,7 @@ MonoBehaviour:
   speed: 0
   chance: 0
   energy: 0
-  fightingEnergy: 0
+  fightingSpirit: 0
   baseAttack: 0
   baseHealth: 0
   baseArmor: 0
@@ -327,6 +332,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bfcc0c1cee101343b6f4942b25bbc24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1212596204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3e237a02c73c674590e8ae8d16024eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9126273902352579113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3b6db3a33be5b4b9b0d1e6dea24d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7973197268117200403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be838038380eb44a8c9b4e57485e383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6093366519108223805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85bc4e9804f373547b19b8560e872ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5631988190398378982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed6cb15cef4e0d48b884bfd90bd303d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3830259919145749636
@@ -3524,10 +3589,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroLogic: {fileID: 7185873144978900519}
   heroVisual: {fileID: 7185873144978900516}
-  heroStatusEffects: {fileID: 0}
+  heroStatusEffects: {fileID: 7039926553261882656}
   heroPreview: {fileID: 8887579734689507496}
   targetCollider: {fileID: 7327834999142382891}
-  coroutineTrees: {fileID: 0}
+  coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
   heroSkills: {fileID: 0}
   heroPortrait: {fileID: 0}
   panelHeroPortrait: {fileID: 0}

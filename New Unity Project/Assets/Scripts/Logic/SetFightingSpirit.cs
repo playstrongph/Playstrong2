@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Logic
 {   
     /// <summary>
-    /// Sets the hero's attack value and visual text
+    /// Sets the hero's fighting spirit value and visual text
     /// </summary>
-    public class SetAttack : MonoBehaviour, ISetAttack
+    public class SetFightingSpirit : MonoBehaviour, ISetFightingSpirit
     {
         private IHeroLogic _heroLogic;
         
@@ -14,7 +14,12 @@ namespace Logic
         {
             _heroLogic = GetComponent<IHeroLogic>();
         }
-
+        
+        /// <summary>
+        /// Set fighting spirit value 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public IEnumerator StartAction(int value)
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
@@ -22,7 +27,7 @@ namespace Logic
             
             
             //set attribute value
-            _heroLogic.HeroAttributes.Attack = value;
+            _heroLogic.HeroAttributes.FightingSpirit = value;
             
             visualTree.AddCurrent(SetVisualValue(value));
 
@@ -33,30 +38,12 @@ namespace Logic
         private IEnumerator SetVisualValue(int value)
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            var baseValue = _heroLogic.HeroAttributes.BaseAttack;
             
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.text = value.ToString();
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.color = GetTextColor(value, baseValue); 
-            
+            _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Text.text = value.ToString();
+
             visualTree.EndSequence();
             yield return null;
         }
-        
-        private Color GetTextColor(int baseValue, int value)
-        {
-            //Debug.Log("");
-            
-            if(value>baseValue)
-                return Color.green;
-            else if (value == baseValue)
-                return Color.white;
-            else if(value < baseValue)
-                return Color.red;
-            else
-                return Color.white;
-            
-        }
-
 
     }
 }

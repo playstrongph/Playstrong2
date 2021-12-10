@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Logic
 {   
     /// <summary>
-    /// Sets the hero's attack value and visual text
+    /// Sets the hero's health value and visual text
     /// </summary>
-    public class SetAttack : MonoBehaviour, ISetAttack
+    public class SetHealth : MonoBehaviour, ISetHealth
     {
         private IHeroLogic _heroLogic;
         
@@ -22,7 +22,7 @@ namespace Logic
             
             
             //set attribute value
-            _heroLogic.HeroAttributes.Attack = value;
+            _heroLogic.HeroAttributes.Health = value;
             
             visualTree.AddCurrent(SetVisualValue(value));
 
@@ -35,8 +35,8 @@ namespace Logic
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             var baseValue = _heroLogic.HeroAttributes.BaseAttack;
             
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.text = value.ToString();
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.color = GetTextColor(value, baseValue); 
+            _heroLogic.Hero.HeroVisual.HealthVisual.Text.text = value.ToString();
+            _heroLogic.Hero.HeroVisual.HealthVisual.Text.color = GetTextColor(value, baseValue); 
             
             visualTree.EndSequence();
             yield return null;
@@ -44,8 +44,6 @@ namespace Logic
         
         private Color GetTextColor(int baseValue, int value)
         {
-            //Debug.Log("");
-            
             if(value>baseValue)
                 return Color.green;
             else if (value == baseValue)

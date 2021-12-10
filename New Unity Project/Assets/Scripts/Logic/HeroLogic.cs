@@ -33,12 +33,42 @@ namespace Logic
         /// Set armor reference
         /// </summary>
         public ISetArmor SetArmor { get; private set; }
+        
+        /// <summary>
+        /// Set armor reference
+        /// </summary>
+        public ISetSpeed SetSpeed { get; private set; }
+        
+        /// <summary>
+        /// Set health reference
+        /// </summary>
+        public ISetHealth SetHealth { get; private set; }
+        
+        /// <summary>
+        /// Set chance reference
+        /// </summary>
+        public ISetChance SetChance { get; private set; }
+        
+        /// <summary>
+        /// Set fighting spirit reference
+        /// </summary>
+        public ISetFightingSpirit SetFightingSpirit { get; private set; }
+        
+        /// <summary>
+        /// Loads the hero prefab attributes from the hero asset
+        /// </summary>
+        public ILoadHeroAttributes LoadHeroAttributes { get; private set; }
 
         private void Awake()
         {
             HeroAttributes = GetComponent<IHeroAttributes>();
             SetAttack = GetComponent<ISetAttack>();
             SetArmor = GetComponent<ISetArmor>();
+            SetSpeed = GetComponent<ISetSpeed>();
+            SetHealth = GetComponent<ISetHealth>();
+            SetChance = GetComponent<ISetChance>();
+            SetFightingSpirit = GetComponent<ISetFightingSpirit>();
+            LoadHeroAttributes = GetComponent<ILoadHeroAttributes>();
         }
     }
 }

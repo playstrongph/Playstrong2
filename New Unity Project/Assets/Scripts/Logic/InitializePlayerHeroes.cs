@@ -35,10 +35,13 @@ namespace Logic
                 //Instantiate hero in the scene
                 var heroObject = Instantiate(heroPrefab, heroesParentLocation);
                 
+                var hero = heroObject.GetComponent<IHero>();
+                
                 //Set hero name in the Inspector
                 heroObject.name = heroAsset.HeroName;
-
-
+                
+                //Load the hero attributes
+                hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
             }
             
             logicTree.EndSequence();

@@ -22,9 +22,7 @@ namespace Logic
             var heroAttributes = _heroLogic.HeroAttributes;
             var initialEnergy = 0;
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: This should already utilize the SetAttributeMethods in heroLogic
-            
+
             //BASE VALUES
             heroAttributes.BaseAttack = heroAsset.Attack;
             heroAttributes.BaseArmor = heroAsset.Armor;
@@ -35,14 +33,13 @@ namespace Logic
             //CURRENT VALUES
             logicTree.AddCurrent(_heroLogic.SetAttack.StartAction(heroAsset.Attack));
             logicTree.AddCurrent(_heroLogic.SetArmor.StartAction(heroAsset.Armor));
-            
-            heroAttributes.Speed = heroAsset.Speed;
-            
-            heroAttributes.Chance = heroAsset.Chance;
-            
-            heroAttributes.Health = heroAsset.Health;
-            
-            heroAttributes.FightingEnergy = heroAttributes.FightingEnergy;
+            logicTree.AddCurrent(_heroLogic.SetChance.StartAction(heroAsset.Chance));
+            logicTree.AddCurrent(_heroLogic.SetHealth.StartAction(heroAsset.Health));
+            logicTree.AddCurrent(_heroLogic.SetSpeed.StartAction(heroAsset.Speed));
+
+            //Non-basic attributes
+            logicTree.AddCurrent(_heroLogic.SetFightingSpirit.StartAction(heroAsset.FightingSpirit));
+            //TODO: Replace with SetEnergy
             heroAttributes.Energy = initialEnergy;
         }
     }

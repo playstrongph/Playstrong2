@@ -21,5 +21,30 @@
         /// Set attack reference
         /// </summary>
         ISetArmor SetArmor { get; }
+        
+        /// <summary>
+        /// Set speed reference
+        /// </summary>
+        ISetSpeed SetSpeed { get; }
+        
+        /// <summary>
+        /// Set health reference
+        /// </summary>
+        ISetHealth SetHealth { get; }
+        
+        /// <summary>
+        /// Set chance reference
+        /// </summary>
+        ISetChance SetChance { get; }
+        
+        /// <summary>
+        /// Set fighting spirit reference
+        /// </summary>
+        ISetFightingSpirit SetFightingSpirit { get; }
+        
+        /// <summary>
+        /// Loads the hero prefab attributes from the hero asset
+        /// </summary>
+        ILoadHeroAttributes LoadHeroAttributes { get; }
     }
 }

@@ -78,12 +78,12 @@ namespace Logic
         /// <summary>
         /// Hero current fightingEnergy
         /// </summary>
-        [SerializeField] private int fightingEnergy;
+        [SerializeField] private int fightingSpirit;
 
-        public int FightingEnergy
+        public int FightingSpirit
         {
-            get => fightingEnergy;
-            set => fightingEnergy = value;
+            get => fightingSpirit;
+            set => fightingSpirit = value;
         }
         
         

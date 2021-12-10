@@ -35,7 +35,7 @@
         /// <summary>
         /// Current Fighting Energy
         /// </summary>
-        int FightingEnergy { get; set; }
+        int FightingSpirit { get; set; }
         
         /// <summary>
         /// Base Attack
