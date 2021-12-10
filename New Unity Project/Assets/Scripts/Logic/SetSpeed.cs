@@ -18,8 +18,7 @@ namespace Logic
         public IEnumerator StartAction(int value)
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            
+
             //set attribute value
             _heroLogic.HeroAttributes.Speed = value;
 

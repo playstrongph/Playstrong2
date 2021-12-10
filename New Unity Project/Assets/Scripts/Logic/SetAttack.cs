@@ -44,7 +44,7 @@ namespace Logic
         
         private Color GetTextColor(int baseValue, int value)
         {
-            //Debug.Log("");
+           
             
             if(value>baseValue)
                 return Color.green;

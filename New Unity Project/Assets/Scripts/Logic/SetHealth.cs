@@ -33,7 +33,7 @@ namespace Logic
         private IEnumerator SetVisualValue(int value)
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            var baseValue = _heroLogic.HeroAttributes.BaseAttack;
+            var baseValue = _heroLogic.HeroAttributes.BaseHealth;
             
             _heroLogic.Hero.HeroVisual.HealthVisual.Text.text = value.ToString();
             _heroLogic.Hero.HeroVisual.HealthVisual.Text.color = GetTextColor(value, baseValue); 
