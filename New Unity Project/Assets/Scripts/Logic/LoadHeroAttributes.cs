@@ -37,7 +37,7 @@ namespace Logic
             logicTree.AddCurrent(_heroLogic.SetHealth.StartAction(heroAsset.Health));
             logicTree.AddCurrent(_heroLogic.SetSpeed.StartAction(heroAsset.Speed));
 
-            //Non-basic attributes
+            //NON-BASIC ATTRIBUTES
             logicTree.AddCurrent(_heroLogic.SetFightingSpirit.StartAction(heroAsset.FightingSpirit));
             //TODO: Replace with SetEnergy
             heroAttributes.Energy = initialEnergy;

@@ -20,5 +20,5 @@ MonoBehaviour:
   attack: 110
   speed: 120
   chance: 130
-  armor: 140
-  fightingSpirit: 150
+  armor: 0
+  fightingSpirit: 0

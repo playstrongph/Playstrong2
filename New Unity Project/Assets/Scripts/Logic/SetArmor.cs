@@ -38,6 +38,11 @@ namespace Logic
             _heroLogic.Hero.HeroVisual.ArmorVisual.Text.text = value.ToString();
             _heroLogic.Hero.HeroVisual.ArmorVisual.Text.color = GetTextColor(value, baseValue); 
             
+            if(value <=0)
+                HideTextAndIcon();
+            else
+                ShowTextAndIcon();
+            
             visualTree.EndSequence();
             yield return null;
         }
@@ -53,6 +58,18 @@ namespace Logic
             else
                 return Color.white;
             
+        }
+        
+        private void HideTextAndIcon()
+        {
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Text.gameObject.SetActive(false);
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Icon.gameObject.SetActive(false);
+        }
+        
+        private void ShowTextAndIcon()
+        {
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Text.gameObject.SetActive(true);
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Icon.gameObject.SetActive(true);
         }
 
 

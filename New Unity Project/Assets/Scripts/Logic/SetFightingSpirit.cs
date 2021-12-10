@@ -38,11 +38,29 @@ namespace Logic
         private IEnumerator SetVisualValue(int value)
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            
+
             _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Text.text = value.ToString();
+            
+            if(value <=0)
+                HideTextAndIcon();
+            else
+                ShowTextAndIcon();
+            
 
             visualTree.EndSequence();
             yield return null;
+        }
+        
+        private void HideTextAndIcon()
+        {
+            _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Text.gameObject.SetActive(false);
+            _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Icon.gameObject.SetActive(false);
+        }
+        
+        private void ShowTextAndIcon()
+        {
+            _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Text.gameObject.SetActive(true);
+            _heroLogic.Hero.HeroVisual.FightingSpiritVisual.Icon.gameObject.SetActive(true);
         }
 
     }
