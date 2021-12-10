@@ -25,7 +25,7 @@ namespace Logic
            var mainPlayerTeamHeroesParentsLocation = _battleSceneManager.MainPlayer.AliveHeroes.ThisGameObject.transform;
            var enemyPlayerTeamHeroesParentsLocation = _battleSceneManager.EnemyPlayer.AliveHeroes.ThisGameObject.transform;
 
-           //TODO: InitializePlayerHeroes
+          
           logicTree.AddCurrent(_battleSceneManager.MainPlayer.InitializePlayerHeroes.StartAction(mainPlayerTeamHeroesAsset,heroPrefab,mainPlayerTeamHeroesParentsLocation,heroPreviewPosition));
           logicTree.AddCurrent(_battleSceneManager.EnemyPlayer.InitializePlayerHeroes.StartAction(enemyPlayerTeamHeroesAsset,heroPrefab,enemyPlayerTeamHeroesParentsLocation,heroPreviewPosition));
             

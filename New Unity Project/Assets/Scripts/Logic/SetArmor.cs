@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Logic
 {   
     /// <summary>
-    /// Sets the hero's attack value and visual text
+    /// Sets the hero's armor value and visual text
     /// </summary>
-    public class SetAttack : MonoBehaviour, ISetAttack
+    public class SetArmor : MonoBehaviour, ISetArmor
     {
         private IHeroLogic _heroLogic;
         
@@ -22,7 +22,7 @@ namespace Logic
             
             
             //set attribute value
-            _heroLogic.HeroAttributes.Attack = value;
+            _heroLogic.HeroAttributes.Armor = value;
             
             visualTree.AddCurrent(SetVisualValue(value));
 
@@ -33,10 +33,10 @@ namespace Logic
         private IEnumerator SetVisualValue(int value)
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            var baseValue = _heroLogic.HeroAttributes.BaseAttack;
+            var baseValue = _heroLogic.HeroAttributes.BaseArmor;
             
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.text = value.ToString();
-            _heroLogic.Hero.HeroVisual.AttackVisual.Text.color = GetTextColor(value, baseValue); 
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Text.text = value.ToString();
+            _heroLogic.Hero.HeroVisual.ArmorVisual.Text.color = GetTextColor(value, baseValue); 
             
             visualTree.EndSequence();
             yield return null;

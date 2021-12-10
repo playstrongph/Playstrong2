@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class LoadHeroAttributes : MonoBehaviour
+    public class LoadHeroAttributes : MonoBehaviour, ILoadHeroAttributes
     {
         /// <summary>
         /// Hero logic reference
@@ -16,10 +16,12 @@ namespace Logic
             _heroLogic = GetComponent<IHeroLogic>();
         }
 
-        private void StartAction(IHeroAsset heroAsset)
+        public void StartAction(IHeroAsset heroAsset)
         {
+            
             var heroAttributes = _heroLogic.HeroAttributes;
             var initialEnergy = 0;
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
             //TODO: This should already utilize the SetAttributeMethods in heroLogic
             
@@ -31,11 +33,15 @@ namespace Logic
             heroAttributes.BaseSpeed = heroAsset.Speed;
             
             //CURRENT VALUES
-            heroAttributes.Attack = heroAsset.Attack;
-            heroAttributes.Armor = heroAsset.Armor;
+            logicTree.AddCurrent(_heroLogic.SetAttack.StartAction(heroAsset.Attack));
+            logicTree.AddCurrent(_heroLogic.SetArmor.StartAction(heroAsset.Armor));
+            
             heroAttributes.Speed = heroAsset.Speed;
+            
             heroAttributes.Chance = heroAsset.Chance;
+            
             heroAttributes.Health = heroAsset.Health;
+            
             heroAttributes.FightingEnergy = heroAttributes.FightingEnergy;
             heroAttributes.Energy = initialEnergy;
         }

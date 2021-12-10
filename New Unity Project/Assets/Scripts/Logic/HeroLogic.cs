@@ -24,9 +24,21 @@ namespace Logic
         /// </summary>
         public IHeroAttributes HeroAttributes { get; private set; }
 
+        /// <summary>
+        /// Set attack reference
+        /// </summary>
+        public ISetAttack SetAttack { get; private set; }
+        
+        /// <summary>
+        /// Set armor reference
+        /// </summary>
+        public ISetArmor SetArmor { get; private set; }
+
         private void Awake()
         {
             HeroAttributes = GetComponent<IHeroAttributes>();
+            SetAttack = GetComponent<ISetAttack>();
+            SetArmor = GetComponent<ISetArmor>();
         }
     }
 }
