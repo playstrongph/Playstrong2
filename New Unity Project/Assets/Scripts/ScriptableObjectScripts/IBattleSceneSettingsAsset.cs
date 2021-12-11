@@ -37,7 +37,7 @@ namespace ScriptableObjectScripts
         /// Interface access to to hero portrait prefab.
         /// Set in the inspector.
         /// </summary>
-        IPortrait HeroPortrait { get; }
+        IHeroPortrait HeroPortrait { get; }
 
         //TRANSFORMS
         

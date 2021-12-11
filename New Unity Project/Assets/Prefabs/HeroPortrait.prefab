@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6415171892187465164}
   - component: {fileID: 6415171892187465155}
+  - component: {fileID: 2517862135148118060}
   m_Layer: 0
   m_Name: Portrait
   m_TagString: Untagged
@@ -212,6 +213,18 @@ MonoBehaviour:
   portraitCanvas: {fileID: 6415171892827503362}
   frameImage: {fileID: 6415171892403332133}
   portraitImage: {fileID: 6415171891537307872}
+--- !u!114 &2517862135148118060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415171892187465165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06aff1fe138786546905191b60bae3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6415171892403332135
 GameObject:
   m_ObjectHideFlags: 0

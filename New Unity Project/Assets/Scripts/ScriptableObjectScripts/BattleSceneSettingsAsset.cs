@@ -61,11 +61,11 @@ namespace ScriptableObjectScripts
         /// <summary>
         /// Reference to portrait
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPortrait))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPortrait))]
         private Object heroPortrait;
-        public IPortrait HeroPortrait
+        public IHeroPortrait HeroPortrait
         {
-            get => heroPortrait as IPortrait;
+            get => heroPortrait as IHeroPortrait;
             private set => heroPortrait = value as Object;
         }
 
