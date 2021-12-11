@@ -127,6 +127,11 @@ namespace Logic
             get => previewStatusEffects;
             set => previewStatusEffects = value;
         }
+        
+        /// <summary>
+        /// Hero preview gameObject
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
 
         /// <summary>
         /// Loads the hero preview visuals attributes from the hero asset

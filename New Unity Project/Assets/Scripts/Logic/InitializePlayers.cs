@@ -39,6 +39,11 @@ namespace Logic
             _battleSceneManager.MainPlayer = mainPlayer;
             _battleSceneManager.EnemyPlayer = enemyPlayer;
             
+            //Set Players battle scene manager references
+            mainPlayer.BattleSceneManager = _battleSceneManager;
+            enemyPlayer.BattleSceneManager = _battleSceneManager;
+            
+            
             //Set AliveHeroes transform position
             mainPlayer.AliveHeroes.ThisGameObject.transform.position =
                 _battleSceneManager.BattleSceneSettings.AllyHeroesPosition;

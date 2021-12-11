@@ -22,6 +22,9 @@ namespace Logic
             var heroAttributes = _heroLogic.HeroAttributes;
             var initialEnergy = 0;
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            //DISPLAY VALUES
+            _heroLogic.Hero.HeroVisual.HeroGraphic.HeroImage.sprite = heroAsset.HeroSprite;
 
             //BASE VALUES
             heroAttributes.BaseAttack = heroAsset.Attack;

@@ -97,7 +97,13 @@ namespace Logic
         /// </summary>
         private IInitializePlayerHeroes _initializePlayerHeroes;
         public IInitializePlayerHeroes InitializePlayerHeroes => _initializePlayerHeroes;
-        
+
+        /// <summary>
+        /// Reference to BattleSceneManager.
+        /// Set in runtime. 
+        /// </summary>
+        public IBattleSceneManager BattleSceneManager { get; set; }
+
         private void Awake()
         {
             _initializePlayerHeroes = GetComponent<IInitializePlayerHeroes>();

@@ -136,7 +136,11 @@ namespace Logic
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
-        
+
+        /// <summary>
+        /// The player this hero belongs to
+        /// </summary>
+        public IPlayer Player { get; set; }
 
 
 

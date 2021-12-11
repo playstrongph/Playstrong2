@@ -9,7 +9,13 @@ namespace Logic
 
     public class InitializePlayerHeroes : MonoBehaviour, IInitializePlayerHeroes
     {
+        
+        /// <summary>
+        /// Player reference
+        /// Hero belongs to this player
+        /// </summary>
         private IPlayer _player;
+        private IPlayer Player => _player;
 
         private void Awake()
         {
@@ -29,7 +35,10 @@ namespace Logic
             Vector3 heroPreviewLocation)
         {
             var logicTree = _player.CoroutineTrees.MainLogicTree;
-
+            var xCompensation = 0;
+            var compensationValue = 80;
+            
+            
             foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
             {
                 //Instantiate hero in the scene
@@ -40,11 +49,17 @@ namespace Logic
                 //Set hero name in the Inspector
                 heroObject.name = heroAsset.HeroName;
                 
+                //Set the new hero's player reference
+                hero.Player = Player;
+                
                 //Load the hero attributes
                 hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
                 
                 //Load the hero preview visual attributes
-                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
+                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset,xCompensation);
+                
+                //Adjust x position due to grid layout component
+                xCompensation -= compensationValue;
             }
             
             logicTree.EndSequence();

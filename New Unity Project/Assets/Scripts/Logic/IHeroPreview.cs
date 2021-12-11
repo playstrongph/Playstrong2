@@ -70,5 +70,7 @@ namespace Logic
         /// </summary>
         ILoadHeroPreviewVisuals LoadHeroPreviewVisuals { get; }
 
+        GameObject ThisGameObject { get; }
+
     }
 }

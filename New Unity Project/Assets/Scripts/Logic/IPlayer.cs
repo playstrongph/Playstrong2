@@ -49,6 +49,11 @@ namespace Logic
         /// Initialize player heroes component reference
         /// </summary>
         IInitializePlayerHeroes InitializePlayerHeroes { get; }
+        
+        /// <summary>
+        /// Reference to Battle scene manager
+        /// </summary>
+        IBattleSceneManager BattleSceneManager { get; set; }
 
     }
 }

@@ -71,7 +71,11 @@ namespace Logic
         /// Interface access to this as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
-
+        
+        /// <summary>
+        /// The player this hero belongs to
+        /// </summary>
+        IPlayer Player { get; set; }
 
     }
 }
