@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class InitializeHeroPortraits : MonoBehaviour
+    public class InitializeHeroPortrait : MonoBehaviour, IInitializeHeroPortrait
     {
         /// <summary>
         /// Hero reference
@@ -16,14 +16,18 @@ namespace Logic
             _hero = GetComponent<IHero>();
         }
 
-        private IEnumerator StartAction()
+        public IEnumerator StartAction()
         {
             var logicTree = _hero.CoroutineTrees.MainLogicTree;
-            var portraitLocation = _hero.Player.Portraits.ThisGameObject.transform;
+            var portraits = _hero.Player.Portraits;
             var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
-            
-            
-            
+
+            var heroPortraitObject = Instantiate(portraitPrefab, portraits.ThisGameObject.transform);
+            var heroPortrait = heroPortraitObject.GetComponent<IHeroPortrait>();
+
+            //Set hero's portrait reference
+            _hero.HeroPortrait = heroPortrait;
+
             logicTree.EndSequence();
             yield return null;
         }

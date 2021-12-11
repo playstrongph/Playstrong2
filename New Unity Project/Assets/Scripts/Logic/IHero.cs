@@ -76,6 +76,11 @@ namespace Logic
         /// The player this hero belongs to
         /// </summary>
         IPlayer Player { get; set; }
+        
+        /// <summary>
+        /// Initialize hero portrait reference
+        /// </summary>
+        IInitializeHeroPortrait InitializeHeroPortrait { get; }
 
     }
 }

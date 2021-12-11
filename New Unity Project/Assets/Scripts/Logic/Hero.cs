@@ -142,7 +142,14 @@ namespace Logic
         /// </summary>
         public IPlayer Player { get; set; }
 
+        /// <summary>
+        /// Initialize hero portrait reference
+        /// </summary>
+        public IInitializeHeroPortrait InitializeHeroPortrait { get; private set; }
 
-
+        private void Awake()
+        {
+            InitializeHeroPortrait = GetComponent<IInitializeHeroPortrait>();
+        }
     }
 }

@@ -62,6 +62,8 @@ namespace Logic
                 HeroPreviewSetPosition(xCompensation,hero);
                 xCompensation -= compensationValue;
                 
+                //test - initialize hero portrait
+                logicTree.AddCurrent(hero.InitializeHeroPortrait.StartAction());
             }
             
             logicTree.EndSequence();

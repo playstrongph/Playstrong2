@@ -3527,6 +3527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7962901023046380152}
   - component: {fileID: 4044057493482042295}
+  - component: {fileID: 865639984}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -3580,6 +3581,18 @@ MonoBehaviour:
   heroPortrait: {fileID: 0}
   panelHeroPortrait: {fileID: 0}
   panelSkills: {fileID: 0}
+--- !u!114 &865639984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962901023046380151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78264af52d5292b48b829112de82bcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7962901023088880879
 GameObject:
   m_ObjectHideFlags: 0
