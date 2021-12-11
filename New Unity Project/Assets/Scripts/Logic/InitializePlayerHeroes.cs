@@ -56,16 +56,26 @@ namespace Logic
                 hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
                 
                 //Load the hero preview visual attributes
-                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset,xCompensation);
+                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
                 
-                //Adjust x position due to grid layout component
+                //Adjust x position to compensate offset due to grid layout component
+                HeroPreviewSetPosition(xCompensation,hero);
                 xCompensation -= compensationValue;
+                
             }
             
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
+
+        private void HeroPreviewSetPosition(int xCompensation, IHero hero)
+        {
+            var previewPosition = hero.Player.BattleSceneManager.BattleSceneSettings.HeroPreviewPosition;
+           
+            previewPosition.x += xCompensation;
+            hero.HeroPreview.ThisGameObject.transform.position = previewPosition;
+        }
+
+
     }
 }
