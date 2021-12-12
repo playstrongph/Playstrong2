@@ -21,9 +21,19 @@ namespace Logic
             var logicTree = _hero.CoroutineTrees.MainLogicTree;
             var portraits = _hero.Player.Portraits;
             var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
-
+            
+            //Create hero portrait
             var heroPortraitObject = Instantiate(portraitPrefab, portraits.ThisGameObject.transform);
             var heroPortrait = heroPortraitObject.GetComponent<IHeroPortrait>();
+            
+            //Set portrait Inspector name
+            heroPortraitObject.name = _hero.ThisGameObject.name + "Portrait";
+            
+            //Set Portrait Image
+            heroPortrait.PortraitImage.sprite = _hero.HeroVisual.HeroGraphic.HeroImage.sprite;
+            
+            //Hide hero portrait
+            heroPortrait.TogglePortraitDisplay.HidePortrait();
 
             //Set hero's portrait reference
             _hero.HeroPortrait = heroPortrait;
