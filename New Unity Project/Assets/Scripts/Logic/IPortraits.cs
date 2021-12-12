@@ -10,10 +10,6 @@ namespace Logic
         /// </summary>
         GameObject ThisGameObject { get; }
         
-        /// <summary>
-        ///  Returns a list of hero portraits
-        /// </summary>
-        /// <returns></returns>
-        List<IHeroPortrait> HeroPortraits();
+      
     }
 }

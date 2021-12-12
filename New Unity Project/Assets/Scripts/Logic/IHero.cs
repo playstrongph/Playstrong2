@@ -56,10 +56,10 @@ namespace Logic
         IHeroPortrait HeroPortrait { get; set; }
         
         /// <summary>
-        /// Hero portrait set during initialization
+        /// Display hero portrait set during initialization
         /// Same prefab used as portrait
         /// </summary>
-        IDisplayPortraits PanelHeroPortrait { get; set; }
+        IHeroPortrait DisplayHeroPortrait { get; set; }
 
         /// <summary>
         /// Panel skills set during initialization
