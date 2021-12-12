@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Logic;
+using UnityEngine;
 
 namespace AssetsScriptableObjects
 {
@@ -109,8 +111,23 @@ namespace AssetsScriptableObjects
             get => fightingSpirit;
             private set => fightingSpirit = value;
         }
-
-
+        
+        /// <summary>
+        /// Reference to hero skill assets
+        /// </summary>
+        [SerializeField] private List<ScriptableObject> heroSkillAssets;
+        public List<ISkill> HeroSkillAssets
+        {
+            get
+            {
+                var skills = new List<ISkill>();
+                foreach (var heroSkillObject in HeroSkillAssets)
+                {
+                    skills.Add((ISkill) heroSkillObject);
+                }
+                return skills;
+            }
+        }
     }
         
         

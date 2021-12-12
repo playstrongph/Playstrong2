@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Logic
@@ -9,5 +10,11 @@ namespace Logic
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+
+        /// <summary>
+        /// Returns a list of all the hero's skills
+        /// </summary>
+        public IList<ISkill> AllSkills => new List<ISkill>();
+
     }
 }

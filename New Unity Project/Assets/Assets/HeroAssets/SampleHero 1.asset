@@ -22,3 +22,7 @@ MonoBehaviour:
   chance: 130
   armor: 0
   fightingSpirit: 0
+  heroSkillAssets:
+  - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
+  - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
+  - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}

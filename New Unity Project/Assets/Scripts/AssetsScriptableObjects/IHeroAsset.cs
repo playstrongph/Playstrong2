@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Logic;
+using UnityEngine;
 
 namespace AssetsScriptableObjects
 {
@@ -48,5 +50,10 @@ namespace AssetsScriptableObjects
         /// Interface access to fighting spirit
         /// </summary>
         int FightingSpirit { get; }
+        
+        /// <summary>
+        /// Reference to hero skill assets
+        /// </summary>
+        List<ISkill> HeroSkillAssets { get; }
     }
 }

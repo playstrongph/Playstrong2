@@ -1,4 +1,5 @@
-﻿using JondiBranchLogic;
+﻿using System.Collections.Generic;
+using JondiBranchLogic;
 using ScriptableObjectScripts;
 using UnityEngine;
 
@@ -44,9 +45,9 @@ namespace Logic
 
 
         /// <summary>
-        /// Interface access to list of heroSkills
+        /// References hero's skills
         /// </summary>
-        ISkillsAllHeroes HeroSkills { get; set; }
+        IHeroSkills HeroSkills { get; set; }
         
        
         /// <summary>
@@ -81,6 +82,8 @@ namespace Logic
         /// Initialize hero portrait reference
         /// </summary>
         IInitializeHeroPortrait InitializeHeroPortrait { get; }
+        
+        
 
     }
 }
