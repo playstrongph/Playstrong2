@@ -6,5 +6,10 @@
         /// Interface reference to skill
         /// </summary>
         ISkill Skill { get; }
+        
+        /// <summary>
+        /// Reference to skill attributes
+        /// </summary>
+        ISkillAttributes SkillAttributes { get; }
     }
 }

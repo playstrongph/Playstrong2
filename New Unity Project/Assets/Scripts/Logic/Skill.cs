@@ -30,9 +30,9 @@ namespace Logic
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillVisual))]
         private Object skillVisual;
         
-        public ISkillLogic SkillVisual
+        public ISkillVisual SkillVisual
         {
-            get => skillVisual as ISkillLogic;
+            get => skillVisual as ISkillVisual;
             set => skillVisual = value as Object;
         }
         

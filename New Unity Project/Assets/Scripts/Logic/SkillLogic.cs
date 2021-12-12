@@ -22,9 +22,15 @@ namespace Logic
             get => skill as ISkill;
             set => skill = value as Object;
         }
-        
 
+        /// <summary>
+        /// Reference to skill attributes
+        /// </summary>
+        public ISkillAttributes SkillAttributes { get; private set; }
 
-
+        private void Awake()
+        {
+            SkillAttributes = GetComponent<ISkillAttributes>();
+        }
     }
 }

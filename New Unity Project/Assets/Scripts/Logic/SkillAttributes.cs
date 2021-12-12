@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class SkillAttributes : MonoBehaviour
+namespace Logic
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SkillAttributes : MonoBehaviour, ISkillAttributes
     {
-        
-    }
+        private ISkillLogic _skillLogic;
 
-    // Update is called once per frame
-    void Update()
-    {
+        private void Awake()
+        {
+            _skillLogic = GetComponent<ISkillLogic>();
+        }
         
+        /// <summary>
+        /// Skill cooldown reference
+        /// </summary>
+        [Header("SET IN RUNTIME")]
+        [SerializeField] private int skillCooldown;
+        public int SkillCooldown
+        {
+            get => skillCooldown;
+            set => skillCooldown = value;
+        }
     }
 }

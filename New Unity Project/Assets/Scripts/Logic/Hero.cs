@@ -87,10 +87,14 @@ namespace Logic
 
 
 
+
+        [Header("SET IN RUNTIME")]
+        [SerializeField] private string heroName;
+        public String HeroName { get => heroName ; set => heroName = value; }
+
         /// <summary>
         /// References hero's skills
         /// </summary>
-        [Header("SET IN RUNTIME")]
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroSkills))]
         private Object heroSkills;
         public IHeroSkills HeroSkills

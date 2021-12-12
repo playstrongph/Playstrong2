@@ -42,6 +42,8 @@ namespace Logic
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);
                 
+                //Set skill name
+                
                 
                 
                 

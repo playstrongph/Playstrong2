@@ -48,6 +48,7 @@ namespace Logic
                 
                 //Set hero name in the Inspector
                 heroObject.name = heroAsset.HeroName;
+                hero.HeroName = heroAsset.HeroName;
                 
                 //Set the new hero's player reference
                 hero.Player = Player;

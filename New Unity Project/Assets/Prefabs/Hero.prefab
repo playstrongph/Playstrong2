@@ -3578,10 +3578,11 @@ MonoBehaviour:
   heroPreview: {fileID: 8887579734689507496}
   targetCollider: {fileID: 7327834999142382891}
   coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
+  heroName: Jondi
   heroSkills: {fileID: 0}
+  displayHeroSkills: {fileID: 0}
   heroPortrait: {fileID: 0}
   displayHeroPortrait: {fileID: 0}
-  panelSkills: {fileID: 0}
 --- !u!114 &865639984
 MonoBehaviour:
   m_ObjectHideFlags: 0

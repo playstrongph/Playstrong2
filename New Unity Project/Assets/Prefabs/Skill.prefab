@@ -219,9 +219,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillLogic: {fileID: 359849407904444846}
   skillVisual: {fileID: 1317866134977294233}
-  skillPreview: {fileID: 0}
+  skillPreview: {fileID: 9113783201459803175}
   skillTargetCollider: {fileID: 6789244950351700365}
-  coroutineTrees: {fileID: 0}
+  coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
   hero: {fileID: 0}
 --- !u!1 &359849407772675572
 GameObject:
@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e825b217904628b4d8b12fe5dc2e3e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCooldown: 0
 --- !u!1 &359849407779702824
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace Logic
         /// <summary>
         /// Interface reference to skill visual
         /// </summary>
-        ISkillLogic SkillVisual { get; }
+        ISkillVisual SkillVisual { get; }
         
         /// <summary>
         /// Interface reference to skill preview

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using JondiBranchLogic;
 using ScriptableObjectScripts;
 using UnityEngine;
@@ -43,6 +44,10 @@ namespace Logic
         /// </summary>
         ICoroutineTreesAsset CoroutineTrees { get; }
 
+        
+        //SET IN RUNTIME
+
+        String HeroName { get; set; }
 
         /// <summary>
         /// References hero's skills
