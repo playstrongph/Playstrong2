@@ -113,21 +113,24 @@ namespace AssetsScriptableObjects
         }
         
         /// <summary>
-        /// Reference to hero skill assets
+        /// Returns hero skill assets as List of ISkillAsset
         /// </summary>
-        [SerializeField] private List<ScriptableObject> heroSkillAssets;
-        public List<ISkill> HeroSkillAssets
+        [SerializeField] private List<ScriptableObject> heroSkillAssets = new List<ScriptableObject>();
+
+        public List<ISkillAsset> HeroSkillAssets
         {
             get
             {
-                var skills = new List<ISkill>();
-                foreach (var heroSkillObject in HeroSkillAssets)
+                var skillAssets = new List<ISkillAsset>();
+                foreach (var skillAssetObject in heroSkillAssets)
                 {
-                    skills.Add((ISkill) heroSkillObject);
+                    skillAssets.Add(skillAssetObject as ISkillAsset);
                 }
-                return skills;
+
+                return skillAssets;
             }
         }
+
     }
         
         

@@ -52,8 +52,8 @@ namespace AssetsScriptableObjects
         int FightingSpirit { get; }
         
         /// <summary>
-        /// Reference to hero skill assets
+        /// Returns hero skill assets as List of ISkillAsset
         /// </summary>
-        List<ISkill> HeroSkillAssets { get; }
+        List<ISkillAsset> HeroSkillAssets { get; }
     }
 }

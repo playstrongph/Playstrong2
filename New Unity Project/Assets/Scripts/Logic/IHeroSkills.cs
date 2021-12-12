@@ -10,7 +10,17 @@ namespace Logic
         /// Interface access to this as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// All skills scriptable objects setter
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
+        List<GameObject> AllSkillsObjects();
 
-       
+        /// <summary>
+        /// All skills as list of ISkills
+        /// </summary>
+        List<ISkill> AllSkills { get; }
     }
 }

@@ -23,6 +23,6 @@ MonoBehaviour:
   armor: 240
   fightingSpirit: 250
   heroSkillAssets:
-  - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
-  - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
+  - {fileID: 11400000, guid: 9d41826b7480bd04ab51a1e0481b5a52, type: 2}
+  - {fileID: 11400000, guid: 5513111481d3ba04a8d16c4781fa3dd6, type: 2}
   - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
