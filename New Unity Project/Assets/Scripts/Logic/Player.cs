@@ -35,12 +35,12 @@ namespace Logic
         /// Reference access to hero skills
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillsAllHeroes))]
-        private Object heroSkills;
+        private Object skillsAllHeroes;
 
-        public ISkillsAllHeroes HeroSkills
+        public ISkillsAllHeroes SkillsAllHeroes
         {
-            get => heroSkills as ISkillsAllHeroes;
-            set => heroSkills = value as Object;
+            get => skillsAllHeroes as ISkillsAllHeroes;
+            set => skillsAllHeroes = value as Object;
         }
         
         /// <summary>

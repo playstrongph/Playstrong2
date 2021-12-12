@@ -49,6 +49,12 @@ namespace Logic
         /// </summary>
         IHeroSkills HeroSkills { get; set; }
         
+        /// <summary>
+        /// Panel skills set during initialization
+        /// Same prefab used as hero skills
+        /// </summary>
+        IDisplaySkills DisplayHeroSkills { get; set; }
+        
        
         /// <summary>
         /// Hero portrait set during initialization
@@ -62,11 +68,7 @@ namespace Logic
         /// </summary>
         IHeroPortrait DisplayHeroPortrait { get; set; }
 
-        /// <summary>
-        /// Panel skills set during initialization
-        /// Same prefab used as hero skills
-        /// </summary>
-        IDisplaySkills PanelSkills { get; set; }
+       
         
         /// <summary>
         /// Interface access to this as a game object
@@ -83,7 +85,11 @@ namespace Logic
         /// </summary>
         IInitializeHeroPortrait InitializeHeroPortrait { get; }
         
-        
+        /// <summary>
+        /// Initializes the hero skills and display hero skills
+        /// </summary>
+        IInitializeHeroSkills InitializeHeroSkills { get; }
+
 
     }
 }

@@ -20,9 +20,9 @@ namespace Logic
             _hero = GetComponent<IHero>();
         }
 
-        public IEnumerator StartAction()
+        public void StartAction()
         {
-            var logicTree = _hero.CoroutineTrees.MainLogicTree;
+            
             var portraits = _hero.Player.Portraits;
             var displayPortraits = _hero.Player.DisplayPortraits;
             var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
@@ -51,8 +51,7 @@ namespace Logic
             _hero.HeroPortrait = heroPortrait;
             _hero.DisplayHeroPortrait = displayHeroPortrait;
 
-            logicTree.EndSequence();
-            yield return null;
+           
         }
 
 

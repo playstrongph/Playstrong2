@@ -18,7 +18,7 @@ namespace Logic
         /// <summary>
         /// Interface access to hero skills
         /// </summary>
-        ISkillsAllHeroes HeroSkills { get; }
+        ISkillsAllHeroes SkillsAllHeroes { get; }
         
         /// <summary>
         /// Interface access to portraits

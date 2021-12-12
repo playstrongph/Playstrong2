@@ -98,6 +98,17 @@ namespace Logic
             get => heroSkills as IHeroSkills;
             set => heroSkills = value as Object;
         }
+        
+        /// <summary>
+        /// Panel Hero Skills
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IDisplaySkills))]
+        private Object displayHeroSkills;
+        public IDisplaySkills DisplayHeroSkills
+        {
+            get => displayHeroSkills as IDisplaySkills;
+            set => displayHeroSkills = value as Object;
+        }
 
         /// <summary>
         /// Hero Portrait
@@ -120,20 +131,7 @@ namespace Logic
             get => displayHeroPortrait as IHeroPortrait;
             set => displayHeroPortrait = value as Object;
         }
-        
-        
-        
-        /// <summary>
-        /// Panel Hero Skills
-        /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IDisplaySkills))]
-        private Object panelSkills;
-        public IDisplaySkills PanelSkills
-        {
-            get => panelSkills as IDisplaySkills;
-            set => panelSkills = value as Object;
-        }
-        
+
         /// <summary>
         /// Returns this as a game object
         /// </summary>
@@ -148,10 +146,16 @@ namespace Logic
         /// Initialize hero portrait reference
         /// </summary>
         public IInitializeHeroPortrait InitializeHeroPortrait { get; private set; }
+        
+        /// <summary>
+        /// Initializes the hero skills and display hero skills
+        /// </summary>
+        public IInitializeHeroSkills InitializeHeroSkills { get; private set; }
 
         private void Awake()
         {
             InitializeHeroPortrait = GetComponent<IInitializeHeroPortrait>();
+            InitializeHeroSkills = GetComponent<IInitializeHeroSkills>();
         }
     }
 }

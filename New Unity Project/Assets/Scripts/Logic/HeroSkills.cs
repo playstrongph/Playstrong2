@@ -11,10 +11,7 @@ namespace Logic
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
 
-        /// <summary>
-        /// Returns a list of all the hero's skills
-        /// </summary>
-        public IList<ISkill> AllSkills => new List<ISkill>();
+       
 
     }
 }

@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aliveHeroes: {fileID: 7690881936412398595}
   deadHeroes: {fileID: 7690881937709346213}
-  heroSkills: {fileID: 7690881937506106446}
+  skillsAllHeroes: {fileID: 7690881937506106446}
   portraits: {fileID: 7690881938280664285}
   displaySkills: {fileID: 7690881937302385363}
   displayPortraits: {fileID: 7690881938335631633}
@@ -355,7 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d60b0e79bee3c04ba966f3489bb8a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroPortraits: []
 --- !u!1 &7690881938335631635
 GameObject:
   m_ObjectHideFlags: 0
