@@ -58,7 +58,7 @@ namespace Logic
         /// Panel skills set during initialization
         /// Same prefab used as hero skills
         /// </summary>
-        IDisplaySkills DisplayHeroSkills { get; set; }
+        IHeroSkills DisplayHeroSkills { get; set; }
         
        
         /// <summary>

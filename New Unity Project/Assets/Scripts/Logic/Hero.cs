@@ -106,11 +106,11 @@ namespace Logic
         /// <summary>
         /// Panel Hero Skills
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IDisplaySkills))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroSkills))]
         private Object displayHeroSkills;
-        public IDisplaySkills DisplayHeroSkills
+        public IHeroSkills DisplayHeroSkills
         {
-            get => displayHeroSkills as IDisplaySkills;
+            get => displayHeroSkills as IHeroSkills;
             set => displayHeroSkills = value as Object;
         }
 
