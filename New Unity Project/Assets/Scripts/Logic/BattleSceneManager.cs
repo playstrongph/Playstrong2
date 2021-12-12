@@ -23,18 +23,9 @@ namespace Logic
         }
         
         /// <summary>
-        /// Battle scene manager as a game object
+        /// Returns this as a game object
         /// </summary>
-        [SerializeField] private GameObject thisGameObject;
-        public GameObject ThisGameObject
-        {
-            get
-            {
-                thisGameObject = this.gameObject;
-                return thisGameObject;
-            }
-            private set => thisGameObject = value;
-        }
+        public GameObject ThisGameObject => this.gameObject;
         
         /// <summary>
         /// Reference to Main Player
@@ -89,6 +80,7 @@ namespace Logic
            var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
             
            logicTree.AddSibling(_initializePlayers.StartAction());
+           
            logicTree.AddSibling(_initializeHeroes.StartAction());
             
            logicTree.EndSequence();

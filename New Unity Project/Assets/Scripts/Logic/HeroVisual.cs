@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 
 namespace Logic
@@ -81,7 +83,15 @@ namespace Logic
             set => fightingSpiritVisual = value as Object;
         }
         
-        
+        /// <summary>
+        /// Loads the hero visual components
+        /// </summary>
+        public ILoadHeroVisuals LoadHeroVisuals { get; private set; }
+
+        private void Awake()
+        {
+            LoadHeroVisuals = GetComponent<ILoadHeroVisuals>();
+        }
     }
 
     

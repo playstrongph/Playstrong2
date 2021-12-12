@@ -18,14 +18,10 @@ namespace Logic
 
         public void StartAction(IHeroAsset heroAsset)
         {
-            
             var heroAttributes = _heroLogic.HeroAttributes;
             var initialEnergy = 0;
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
-            //DISPLAY VALUES
-            _heroLogic.Hero.HeroVisual.HeroGraphic.HeroImage.sprite = heroAsset.HeroSprite;
-
             //BASE VALUES
             heroAttributes.BaseAttack = heroAsset.Attack;
             heroAttributes.BaseArmor = heroAsset.Armor;
@@ -42,6 +38,7 @@ namespace Logic
 
             //NON-BASIC ATTRIBUTES
             logicTree.AddCurrent(_heroLogic.SetFightingSpirit.StartAction(heroAsset.FightingSpirit));
+            
             //TODO: Replace with SetEnergy
             heroAttributes.Energy = initialEnergy;
         }

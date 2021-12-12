@@ -54,6 +54,11 @@ namespace Logic
         /// Fighting spirit visual text
         /// </summary>
         IFightingSpiritVisual FightingSpiritVisual { get; }
+        
+        /// <summary>
+        /// Loads the hero visual components
+        /// </summary>
+        ILoadHeroVisuals LoadHeroVisuals { get; }
 
     }
 }
