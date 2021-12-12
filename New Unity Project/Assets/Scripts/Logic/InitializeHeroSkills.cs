@@ -39,14 +39,21 @@ namespace Logic
                 var skillObject = Instantiate(skillPrefab, heroSkillsObject.transform);
                 var skill = skillObject.GetComponent<ISkill>();
                 
+                //Set skill name
+                skillObject.name = skillAsset.SkillName;
+                skill.SkillName = skillAsset.SkillName;
+                
+                //Set hero reference
+                skill.Hero = _hero;
+                
+                
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);
                 
-                //Set skill name
+                //TODO: Skill.LoadSkillAttributes
                 
-                
-                
-                
+                //TODO: Skill.LoadSkillVisuals
+
             }
             
 

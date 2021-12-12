@@ -39,6 +39,8 @@ namespace Logic
         
         //SET IN RUNTIME
 
+        string SkillName { get; set; }
+
         /// <summary>
         /// Interface reference to skill's hero
         /// get and set both used

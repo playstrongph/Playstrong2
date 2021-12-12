@@ -73,11 +73,19 @@ namespace Logic
         }
         
         //SET IN RUNTIME
-        
+
+
+        [Header("SET IN RUNTIME")] [SerializeField]private string skillName;
+        public string SkillName
+        {
+            get => skillName;
+            set => skillName = value;
+        }
+
+
         /// <summary>
         /// Reference to skill target collider
         /// </summary>
-        [Header("SET IN RUNTIME")]
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
         private Object hero;
         
