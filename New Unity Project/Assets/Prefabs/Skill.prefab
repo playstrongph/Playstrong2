@@ -2131,6 +2131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9113783201459803174}
   - component: {fileID: 9113783201459803175}
+  - component: {fileID: 996250623}
   m_Layer: 0
   m_Name: SkillPreview
   m_TagString: Untagged
@@ -2172,3 +2173,15 @@ MonoBehaviour:
   cooldown: {fileID: 2991085505059899548}
   previewName: {fileID: 2991085503620806108}
   description: {fileID: 2991085504219784391}
+--- !u!114 &996250623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9113783201459803177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01884bea4dd90994fafab3c698f322de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

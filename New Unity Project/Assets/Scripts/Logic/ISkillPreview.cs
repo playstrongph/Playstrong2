@@ -41,6 +41,16 @@ namespace Logic
         /// Interface reference to skill preview description
         /// </summary>
         TextMeshProUGUI Description { get; }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// Loads the skill preview details and sets the board location
+        /// </summary>
+        ILoadSkillPreviewVisual LoadSkillPreviewVisual { get; }
 
 
     }

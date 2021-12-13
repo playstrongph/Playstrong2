@@ -103,6 +103,8 @@ namespace Logic
         /// Reference to load skill visuals
         /// </summary>
         public ILoadSkillVisual LoadSkillVisual { get; private set; }
+        
+        
 
         private void Awake()
         {

@@ -73,7 +73,8 @@ namespace Logic
                 displaySkill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
                 
                 //TODO: Skill.LoadSkillPreviewVisuals
-
+                skill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
+                displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
             }
             
 

@@ -33,8 +33,6 @@ namespace Logic
             get => previewCanvas;
             set => previewCanvas = value;
         }
-        
-        
 
         /// <summary>
         /// Reference to frame Image
@@ -85,9 +83,20 @@ namespace Logic
             get => description;
             set => description = value;
         }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
 
+        /// <summary>
+        /// Loads the skill preview details and sets the board location
+        /// </summary>
+        public ILoadSkillPreviewVisual LoadSkillPreviewVisual { get; private set; }
 
-
-
+        private void Awake()
+        {
+            LoadSkillPreviewVisual = GetComponent<ILoadSkillPreviewVisual>();
+        }
     }
 }
