@@ -44,7 +44,23 @@ namespace Logic
             return allSkills;
         }
         
-        
+       /// <summary>
+       /// Hide hero skills from display
+       /// </summary>
+       public void HideHeroSkills()
+       {
+           this.gameObject.SetActive(false);
+       }
+       
+       /// <summary>
+       /// Display hero skills
+       /// </summary>
+       public void ShowHeroSkills()
+       {
+           this.gameObject.SetActive(true);
+       }
+       
+       
 
 
 

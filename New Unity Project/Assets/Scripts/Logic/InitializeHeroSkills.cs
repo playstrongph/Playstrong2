@@ -34,7 +34,7 @@ namespace Logic
             var displaySkills = displaySkillsObject.GetComponent<IHeroSkills>();
             
             heroSkillsObject.name = heroAsset.HeroName + "Skills";
-            displaySkillsObject.name = heroAsset.HeroName + "Skills";
+            displaySkillsObject.name = heroAsset.HeroName + "DisplaySkills";
             
             //Set Hero  skills and display Skills reference
             _hero.HeroSkills = heroSkills;
@@ -72,13 +72,14 @@ namespace Logic
                 skill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
                 displaySkill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
                 
-                //TODO: Skill.LoadSkillPreviewVisuals
+                //Loads the skill and skill preview visual details
                 skill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
             }
             
             //Hide hero skills and display skills
-            
+            heroSkills.HideHeroSkills();
+            displaySkills.HideHeroSkills();
 
         }
     }

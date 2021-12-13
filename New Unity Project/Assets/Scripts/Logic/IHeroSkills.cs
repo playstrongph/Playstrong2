@@ -22,5 +22,15 @@ namespace Logic
         /// All skills as list of ISkills
         /// </summary>
         List<ISkill> AllSkills { get; }
+        
+        /// <summary>
+        /// Hide hero skills from display
+        /// </summary>
+        void HideHeroSkills();
+        
+        /// <summary>
+        /// Display hero skills
+        /// </summary>
+        void ShowHeroSkills();
     }
 }
