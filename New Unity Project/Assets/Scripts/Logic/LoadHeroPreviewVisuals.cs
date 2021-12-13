@@ -36,7 +36,7 @@ namespace Logic
             _heroPreview.HeroPreviewSpeed.PreviewText.text = baseSpeedText;
             _heroPreview.HeroPreviewChance.PreviewText.text = baseChanceText;
             
-            //Reposition HeroPreviews
+            //REPOSITION HERO PREVIEWS
             _heroPreview.ThisGameObject.transform.SetParent(heroPreviewTransform);
             _heroPreview.ThisGameObject.transform.localPosition = Vector3.zero;
         }

@@ -13,7 +13,7 @@ namespace Logic
         /// </summary>
         [SerializeField] private float displayDelay = 0.5f;
 
-        private bool enablePreview = false;
+        private bool _enablePreview = false;
         private void Awake()
         {
             _targetCollider = GetComponent<ITargetCollider>();
@@ -23,34 +23,34 @@ namespace Logic
         {
             yield return new WaitForSeconds(displayDelay);
             _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
-            if(enablePreview)
+            if(_enablePreview)
                 _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = true;
-            yield return null;
         }
         
-        private IEnumerator HideHeroPreview()
+        private void HideHeroPreview()
         {
             _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
             _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = false;
-            
-            yield return new WaitForSeconds(displayDelay);
-            _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
-            _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = false;
-            yield return null;
         }
 
         private void OnMouseDown()
         {
-            enablePreview = true;
+            _enablePreview = true;
             StartCoroutine(ShowHeroPreview());
         }
 
         private void OnMouseUp()
         {
-            enablePreview = false;
-            StopCoroutine(ShowHeroPreview());
-            StartCoroutine(HideHeroPreview());
-
+            _enablePreview = false;
+            HideHeroPreview();
         }
+
+        private void OnMouseExit()
+        {
+            _enablePreview = false;
+            HideHeroPreview();
+        }
+        
+        
     }
 }
