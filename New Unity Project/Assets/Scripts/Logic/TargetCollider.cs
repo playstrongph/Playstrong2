@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 
 namespace Logic
@@ -15,6 +17,16 @@ namespace Logic
         {
             get => hero as IHero;
             set => hero = value as Object;
+        }
+        
+        /// <summary>
+        /// Reference to Display Hero Preview script
+        /// </summary>
+        public IDisplayHeroPreview DisplayHeroPreview { get; private set; }
+
+        private void Awake()
+        {
+            DisplayHeroPreview = GetComponent<IDisplayHeroPreview>();
         }
     }
 }
