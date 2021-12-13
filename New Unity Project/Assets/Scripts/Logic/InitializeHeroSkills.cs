@@ -64,11 +64,15 @@ namespace Logic
                 heroSkills.AllSkillsObjects().Add(skillObject);
                 displaySkills.AllSkillsObjects().Add(skillObject);
                 
-                //TODO: Skill.LoadSkillAttributes
+                //Loads the skill attributes from the skill asset to the skill attributes component
                 skill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 displaySkill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 
-                //TODO: Skill.LoadSkillVisuals
+                //Loads the skill visuals from the skill asset to the skill visual component
+                skill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
+                displaySkill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
+                
+                //TODO: Skill.LoadSkillPreviewVisuals
 
             }
             

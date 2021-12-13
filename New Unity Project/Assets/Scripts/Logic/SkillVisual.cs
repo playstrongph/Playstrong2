@@ -1,4 +1,5 @@
 ﻿using System;
+using AssetsScriptableObjects;
 using JetBrains.Annotations;
 using ScriptableObjectScripts;
 using TMPro;
@@ -98,8 +99,14 @@ namespace Logic
             set => cooldownText = value;
         }
         
+        /// <summary>
+        /// Reference to load skill visuals
+        /// </summary>
+        public ILoadSkillVisual LoadSkillVisual { get; private set; }
 
-
-
+        private void Awake()
+        {
+            LoadSkillVisual = GetComponent<ILoadSkillVisual>();
+        }
     }
 }

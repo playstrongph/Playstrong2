@@ -282,7 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e825b217904628b4d8b12fe5dc2e3e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCooldown: 0
+  cooldown: 0
+  baseCooldown: 0
 --- !u!114 &1344746493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,6 +746,7 @@ GameObject:
   - component: {fileID: 359849408559764564}
   - component: {fileID: 359849408559764563}
   - component: {fileID: 1317866134977294233}
+  - component: {fileID: 1242302769}
   m_Layer: 0
   m_Name: SkillVisual
   m_TagString: Untagged
@@ -854,6 +856,18 @@ MonoBehaviour:
   skillGraphic: {fileID: 359849406935786434}
   cooldownIcon: {fileID: 359849408546566664}
   cooldownText: {fileID: 359849408485530952}
+--- !u!114 &1242302769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849408559764561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa825a5b14ab0c42902cb78447f9e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &359849408637974232
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,5 +46,10 @@ namespace Logic
         /// Interface reference to the skill cooldown text
         /// </summary>
         TextMeshProUGUI CooldownText { get; }
+        
+        /// <summary>
+        /// Reference to load skill visual
+        /// </summary>
+        ILoadSkillVisual LoadSkillVisual { get; }
     }
 }
