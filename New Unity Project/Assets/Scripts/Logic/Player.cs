@@ -76,6 +76,15 @@ namespace Logic
             set => displayPortraits = value as Object;
         }
         
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroAndSkillPreviews))]
+        private Object heroAndSkillPreviews;
+
+        public IHeroAndSkillPreviews HeroAndSkillPreviews
+        {
+            get => heroAndSkillPreviews as IHeroAndSkillPreviews;
+            private set => heroAndSkillPreviews = value as Object;
+        }
+        
         /// <summary>
         /// Global Main and Visual trees reference
         /// </summary>
@@ -86,6 +95,8 @@ namespace Logic
             private set => coroutineTrees = value as Object;
 
         }
+
+        //RUNTIME VARIABLES
 
         /// <summary>
         /// Returns this as a game object
@@ -104,9 +115,12 @@ namespace Logic
         /// </summary>
         public IBattleSceneManager BattleSceneManager { get; set; }
 
+       
+
         private void Awake()
         {
             _initializePlayerHeroes = GetComponent<IInitializePlayerHeroes>();
+           
         }
     }
 }

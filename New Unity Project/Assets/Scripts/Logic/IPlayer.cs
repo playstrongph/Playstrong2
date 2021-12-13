@@ -54,6 +54,11 @@ namespace Logic
         /// Reference to Battle scene manager
         /// </summary>
         IBattleSceneManager BattleSceneManager { get; set; }
+        
+        /// <summary>
+        /// Reference to hero and skill previews
+        /// </summary>
+        IHeroAndSkillPreviews HeroAndSkillPreviews { get; }
 
     }
 }

@@ -21,7 +21,7 @@ namespace Logic
             var baseHealthText = heroAttributes.BaseHealth.ToString();
             var baseSpeedText = heroAttributes.BaseSpeed.ToString();
             var baseChanceText = heroAttributes.BaseChance.ToString();
-            var previewPosition = _heroPreview.Hero.Player.BattleSceneManager.BattleSceneSettings.HeroPreviewPosition;
+            var heroPreviewTransform = _heroPreview.Hero.Player.HeroAndSkillPreviews.ThisGameObject.transform;
 
             _heroPreview.HeroPreviewGraphic.HeroImage.sprite = heroAsset.HeroSprite;
             _heroPreview.HeroPreviewName.PreviewText.text = heroAsset.HeroName;
@@ -29,6 +29,10 @@ namespace Logic
             _heroPreview.HeroPreviewHealth.PreviewText.text = baseHealthText;
             _heroPreview.HeroPreviewSpeed.PreviewText.text = baseSpeedText;
             _heroPreview.HeroPreviewChance.PreviewText.text = baseChanceText;
+            
+            //Reposition HeroPreviews
+            _heroPreview.ThisGameObject.transform.SetParent(heroPreviewTransform);
+            _heroPreview.ThisGameObject.transform.localPosition = Vector3.zero;
         }
 
       

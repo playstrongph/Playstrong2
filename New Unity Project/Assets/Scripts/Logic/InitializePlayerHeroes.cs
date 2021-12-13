@@ -35,8 +35,9 @@ namespace Logic
             Vector3 heroPreviewLocation)
         {
             var logicTree = _player.CoroutineTrees.MainLogicTree;
-            var xCompensation = 0.0f;
-            var compensationValue = 80.0f;
+            
+            //var xCompensation = 0.0f;
+            //var compensationValue = 80.0f;
             
             
             foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
@@ -63,8 +64,8 @@ namespace Logic
                 hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
                 
                 //Adjust x position to compensate offset due to grid layout component
-                HeroPreviewSetPosition(xCompensation,hero);
-                xCompensation -= compensationValue;
+                //HeroPreviewSetPosition(xCompensation,hero);
+                //xCompensation -= compensationValue;
                 
                 //Initializes hero portraits and display portraits
                 hero.InitializeHeroPortrait.StartAction();
