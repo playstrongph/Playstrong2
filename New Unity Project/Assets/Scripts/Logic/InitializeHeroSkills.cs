@@ -77,6 +77,8 @@ namespace Logic
                 displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
             }
             
+            //Hide hero skills and display skills
+            
 
         }
     }
