@@ -48,6 +48,7 @@ namespace Logic
                 var displaySkillObject = Instantiate(skillPrefab, displaySkillsObject.transform);
                 var skill = skillObject.GetComponent<ISkill>();
                 var displaySkill = displaySkillObject.GetComponent<ISkill>();
+               
                 
                 //Set skill name
                 skillObject.name = skillAsset.SkillName;
@@ -58,13 +59,14 @@ namespace Logic
                 //Set hero reference
                 skill.Hero = _hero;
                 displaySkill.Hero = _hero;
-                
-                
+
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);
                 displaySkills.AllSkillsObjects().Add(skillObject);
                 
                 //TODO: Skill.LoadSkillAttributes
+                skill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
+                displaySkill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 
                 //TODO: Skill.LoadSkillVisuals
 

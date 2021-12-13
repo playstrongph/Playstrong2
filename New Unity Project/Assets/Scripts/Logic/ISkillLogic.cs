@@ -8,8 +8,13 @@
         ISkill Skill { get; }
         
         /// <summary>
-        /// Reference to skill attributes
+        /// Contains the skill properties such as cooldown, skill type, etc.
         /// </summary>
         ISkillAttributes SkillAttributes { get; }
+        
+        /// <summary>
+        /// Loads the skill attributes from the skill asset
+        /// </summary>
+        ILoadSkillAttributes LoadSkillAttributes { get; }
     }
 }

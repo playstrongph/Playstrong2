@@ -22,6 +22,8 @@ namespace AssetsScriptableObjects
         /// <summary>
         /// Reference to the skill cooldown
         /// </summary>
-        int SkillCooldown { get; }
+        int BaseCooldown { get; }
+        
+       
     }
 }

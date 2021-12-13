@@ -54,12 +54,14 @@ namespace AssetsScriptableObjects
         /// </summary>
         [Header("Skill Cooldown")] 
         [SerializeField]
-        private int skillCooldown;
+        private int baseCooldown;
 
-        public int SkillCooldown
+        public int BaseCooldown
         {
-            get => skillCooldown;
-            private set => skillCooldown = value;
+            get => baseCooldown;
+            private set => baseCooldown = value;
         }
+            
+        
     }
 }

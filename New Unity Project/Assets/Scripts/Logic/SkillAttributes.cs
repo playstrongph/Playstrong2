@@ -16,11 +16,21 @@ namespace Logic
         /// Skill cooldown reference
         /// </summary>
         [Header("SET IN RUNTIME")]
-        [SerializeField] private int skillCooldown;
-        public int SkillCooldown
+        [SerializeField] private int cooldown;
+        public int Cooldown
         {
-            get => skillCooldown;
-            set => skillCooldown = value;
+            get => cooldown;
+            set => cooldown = value;
+        }
+        
+        /// <summary>
+        /// Base skill cooldown reference
+        /// </summary>
+        [SerializeField] private int baseCooldown;
+        public int BaseCooldown
+        {
+            get => baseCooldown;
+            set => baseCooldown = value;
         }
     }
 }

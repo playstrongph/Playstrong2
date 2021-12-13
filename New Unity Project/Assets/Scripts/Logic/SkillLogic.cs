@@ -24,13 +24,19 @@ namespace Logic
         }
 
         /// <summary>
-        /// Reference to skill attributes
+        /// Contains the skill properties such as cooldown, skill type, etc.
         /// </summary>
         public ISkillAttributes SkillAttributes { get; private set; }
+        
+        /// <summary>
+        /// Loads the skill attributes from the skill asset
+        /// </summary>
+        public ILoadSkillAttributes LoadSkillAttributes { get; private set; }
 
         private void Awake()
         {
             SkillAttributes = GetComponent<ISkillAttributes>();
+            LoadSkillAttributes = GetComponent<ILoadSkillAttributes>();
         }
     }
 }

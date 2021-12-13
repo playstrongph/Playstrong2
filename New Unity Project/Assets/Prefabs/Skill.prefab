@@ -222,6 +222,7 @@ MonoBehaviour:
   skillPreview: {fileID: 9113783201459803175}
   skillTargetCollider: {fileID: 6789244950351700365}
   coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
+  skillName: 
   hero: {fileID: 0}
 --- !u!1 &359849407772675572
 GameObject:
@@ -234,6 +235,7 @@ GameObject:
   - component: {fileID: 359849407772675573}
   - component: {fileID: 359849407904444846}
   - component: {fileID: 859601009}
+  - component: {fileID: 1344746493}
   m_Layer: 0
   m_Name: SkillLogic
   m_TagString: Untagged
@@ -281,6 +283,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCooldown: 0
+--- !u!114 &1344746493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849407772675572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775429bd5c3bf9240883264e1c17f6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &359849407779702824
 GameObject:
   m_ObjectHideFlags: 0

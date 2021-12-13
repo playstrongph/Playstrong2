@@ -5,6 +5,12 @@
         /// <summary>
         /// Skill cooldown reference
         /// </summary>
-        int SkillCooldown { get; set; }
+        int Cooldown { get; set; }
+        
+        /// <summary>
+        /// Base Cooldown reference
+        /// </summary>
+        int BaseCooldown { get; set; }
+
     }
 }

@@ -45,7 +45,7 @@ namespace Logic
             
             //Hide hero and display portrait
             heroPortrait.TogglePortraitDisplay.HidePortrait();
-            //displayHeroPortrait.TogglePortraitDisplay.HidePortrait();
+            displayHeroPortrait.TogglePortraitDisplay.HidePortrait();
 
             //Set hero's portrait reference
             _hero.HeroPortrait = heroPortrait;
