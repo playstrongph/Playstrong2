@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class DisplayHeroPreview : MonoBehaviour
+    /// <summary>
+    /// Displays hero preview after a delay
+    /// </summary>
+    public class DisplayHeroPreview : MonoBehaviour, IDisplayHeroPreview
     {
         private ITargetCollider _targetCollider;
         
@@ -18,7 +21,11 @@ namespace Logic
         {
             _targetCollider = GetComponent<ITargetCollider>();
         }
-
+        
+        /// <summary>
+        /// Coroutine used to introduce a delay before showing the hero preview
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ShowHeroPreview()
         {
             yield return new WaitForSeconds(displayDelay);
