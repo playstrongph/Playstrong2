@@ -136,13 +136,21 @@ namespace Logic
         /// <summary>
         /// Loads the hero preview visuals attributes from the hero asset
         /// </summary>
-        private ILoadHeroPreviewVisuals _loadHeroPreviewVisuals;
+        public ILoadHeroPreviewVisuals LoadHeroPreviewVisuals { get; private set; }
+        
+        /// <summary>
+        /// Updates the hero preview's basic attributes with the latest
+        /// base values
+        /// </summary>
+        public IUpdateHeroPreview UpdateHeroPreview { get; private set; }
 
-        public ILoadHeroPreviewVisuals LoadHeroPreviewVisuals => _loadHeroPreviewVisuals;
-
+        
         private void Awake()
         {
-            _loadHeroPreviewVisuals = GetComponent<ILoadHeroPreviewVisuals>();
+            LoadHeroPreviewVisuals = GetComponent<ILoadHeroPreviewVisuals>();
+            UpdateHeroPreview = GetComponent<IUpdateHeroPreview>();
         }
+        
+        
     }
 }

@@ -69,6 +69,12 @@ namespace Logic
         /// Loads the hero preview visuals attributes from the hero asset
         /// </summary>
         ILoadHeroPreviewVisuals LoadHeroPreviewVisuals { get; }
+        
+        /// <summary>
+        /// Updates the hero preview's basic attributes with the latest
+        /// base values
+        /// </summary>
+        IUpdateHeroPreview UpdateHeroPreview { get; }
 
         GameObject ThisGameObject { get; }
 
