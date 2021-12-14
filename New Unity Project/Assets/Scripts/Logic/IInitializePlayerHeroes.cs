@@ -14,7 +14,7 @@ namespace Logic
         /// <param name="heroesParentLocation"></param>
         /// <param name="heroPreviewLocation"></param>
         /// <returns></returns>
-        IEnumerator StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
+        void StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
             Vector3 heroPreviewLocation);
     }
 }

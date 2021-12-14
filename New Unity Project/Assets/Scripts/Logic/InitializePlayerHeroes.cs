@@ -31,7 +31,7 @@ namespace Logic
         /// <param name="heroesParentLocation"></param>
         /// <param name="heroPreviewLocation"></param>
         /// <returns></returns>
-        public IEnumerator StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
+        public void StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
             Vector3 heroPreviewLocation)
         {
             var logicTree = _player.CoroutineTrees.MainLogicTree;
@@ -66,8 +66,8 @@ namespace Logic
                 hero.InitializeHeroSkills.StartAction(heroAsset);
             }
             
-            logicTree.EndSequence();
-            yield return null;
+            //logicTree.EndSequence();
+            //yield return null;
         }
 
 

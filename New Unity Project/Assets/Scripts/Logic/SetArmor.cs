@@ -15,24 +15,25 @@ namespace Logic
             _heroLogic = GetComponent<IHeroLogic>();
         }
 
-        public IEnumerator StartAction(int value)
+        public void StartAction(int value)
         {
-            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
+            //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            //var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             
             
             //set attribute value
             _heroLogic.HeroAttributes.Armor = value;
             
-            visualTree.AddCurrent(SetVisualValue(value));
+            //visualTree.AddCurrent(SetVisualValue(value));
+            SetVisualValue(value);
 
-            logicTree.EndSequence();
-            yield return null;
+            //logicTree.EndSequence();
+            //yield return null;
         }
 
-        private IEnumerator SetVisualValue(int value)
+        private void SetVisualValue(int value)
         {
-            var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
+            //var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             var baseValue = _heroLogic.HeroAttributes.BaseArmor;
             
             _heroLogic.Hero.HeroVisual.ArmorVisual.Text.text = value.ToString();
@@ -43,8 +44,8 @@ namespace Logic
             else
                 ShowTextAndIcon();
             
-            visualTree.EndSequence();
-            yield return null;
+            //visualTree.EndSequence();
+            //yield return null;
         }
         
         private Color GetTextColor(int baseValue, int value)

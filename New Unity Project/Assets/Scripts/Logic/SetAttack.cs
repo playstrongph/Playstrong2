@@ -15,31 +15,32 @@ namespace Logic
             _heroLogic = GetComponent<IHeroLogic>();
         }
 
-        public IEnumerator StartAction(int value)
+        public void StartAction(int value)
         {
-            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
+            //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            //var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             
             
             //set attribute value
             _heroLogic.HeroAttributes.Attack = value;
             
-            visualTree.AddCurrent(SetVisualValue(value));
+            //visualTree.AddCurrent(SetVisualValue(value));
+            SetVisualValue(value);
 
-            logicTree.EndSequence();
-            yield return null;
+            //logicTree.EndSequence();
+            //yield return null;
         }
 
-        private IEnumerator SetVisualValue(int value)
+        private void SetVisualValue(int value)
         {
-            var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
+            //var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             var baseValue = _heroLogic.HeroAttributes.BaseAttack;
             
             _heroLogic.Hero.HeroVisual.AttackVisual.Text.text = value.ToString();
             _heroLogic.Hero.HeroVisual.AttackVisual.Text.color = GetTextColor(value, baseValue); 
             
-            visualTree.EndSequence();
-            yield return null;
+            //visualTree.EndSequence();
+            //yield return null;
         }
         
         private Color GetTextColor(int baseValue, int value)

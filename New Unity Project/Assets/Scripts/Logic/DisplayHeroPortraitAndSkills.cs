@@ -18,15 +18,15 @@ namespace Logic
 
         private void OnMouseDown()
         {
-            DisplayPortraitAndSkillsThisPlayer();
-            DisplayPortraitAndSkillsOtherPlayer();
+            UpdateThisPlayerDisplay();
+            UpdateOtherPlayerDisplay();
             
             _targetCollider.Hero.DisplayHeroPortrait.ThisGameObject.SetActive(true);
             _targetCollider.Hero.DisplayHeroPortrait.TogglePortraitDisplay.ShowPortrait();
             _targetCollider.Hero.DisplayHeroSkills.ThisGameObject.SetActive(true);
         }
 
-        private void DisplayPortraitAndSkillsThisPlayer()
+        private void UpdateThisPlayerDisplay()
         {
             var displayPortraitAndSkills = _targetCollider.Hero.Player.AliveHeroes.DisplayedPortraitAndSkills;
 
@@ -37,7 +37,7 @@ namespace Logic
             displayPortraitAndSkills.DisplayedHeroSkills = _targetCollider.Hero.DisplayHeroSkills;
         }
         
-        private void DisplayPortraitAndSkillsOtherPlayer()
+        private void UpdateOtherPlayerDisplay()
         {
             var displayPortraitAndSkills = _targetCollider.Hero.Player.OtherPlayer.AliveHeroes.DisplayedPortraitAndSkills;
 

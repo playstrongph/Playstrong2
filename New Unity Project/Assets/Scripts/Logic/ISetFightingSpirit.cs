@@ -9,6 +9,6 @@ namespace Logic
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        IEnumerator StartAction(int value);
+        void StartAction(int value);
     }
 }

@@ -4,6 +4,6 @@ namespace Logic
 {
     public interface ISetHealth
     {
-        IEnumerator StartAction(int value);
+        void StartAction(int value);
     }
 }
