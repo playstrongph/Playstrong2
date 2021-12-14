@@ -30,14 +30,20 @@ namespace Logic
         {
             yield return new WaitForSeconds(displayDelay);
             _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
-            if(_enablePreview)
+            if (_enablePreview)
+            {
                 _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = true;
+                _targetCollider.Hero.HeroPreview.ThisGameObject.SetActive(true);    
+            }
+
+            
         }
         
         private void HidePreview()
         {
             _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
             _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = false;
+            _targetCollider.Hero.HeroPreview.ThisGameObject.SetActive(false);
         }
 
         private void OnMouseDown()

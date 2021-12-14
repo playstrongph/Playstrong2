@@ -30,12 +30,16 @@ namespace Logic
         {
             yield return new WaitForSeconds(displayDelay);
             if (_enablePreview)
+            {
                 _skillTargetCollider.Skill.SkillPreview.PreviewCanvas.enabled = true;
+                _skillTargetCollider.Skill.SkillPreview.ThisGameObject.SetActive(true);    
+            }
         }
         
         private void HidePreview()
         {
             _skillTargetCollider.Skill.SkillPreview.PreviewCanvas.enabled = false;
+            _skillTargetCollider.Skill.SkillPreview.ThisGameObject.SetActive(false);
         }
 
         private void OnMouseDown()

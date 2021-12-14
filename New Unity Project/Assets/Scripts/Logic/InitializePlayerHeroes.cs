@@ -35,11 +35,7 @@ namespace Logic
             Vector3 heroPreviewLocation)
         {
             var logicTree = _player.CoroutineTrees.MainLogicTree;
-            
-            //var xCompensation = 0.0f;
-            //var compensationValue = 80.0f;
-            
-            
+
             foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
             {
                 //Instantiate hero in the scene
@@ -62,11 +58,7 @@ namespace Logic
                 
                 //Load the hero preview visual attributes
                 hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
-                
-                //Adjust x position to compensate offset due to grid layout component
-                //HeroPreviewSetPosition(xCompensation,hero);
-                //xCompensation -= compensationValue;
-                
+
                 //Initializes hero portraits and display portraits
                 hero.InitializeHeroPortrait.StartAction();
                 
@@ -79,13 +71,6 @@ namespace Logic
         }
 
 
-        private void HeroPreviewSetPosition(float xCompensation, IHero hero)
-        {
-            var previewPosition = hero.Player.BattleSceneManager.BattleSceneSettings.HeroPreviewPosition;
-           
-            previewPosition.x += xCompensation;
-            hero.HeroPreview.ThisGameObject.transform.position = previewPosition;
-        }
 
 
     }
