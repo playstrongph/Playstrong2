@@ -64,10 +64,14 @@ namespace Logic
             set => targetLine = value;
         }
         
-        
+        /// <summary>
+        /// Reference to display skill preview
+        /// </summary>
+        public IDisplaySkillPreview DisplaySkillPreview { get; private set; }
 
-
-
-
+        private void Awake()
+        {
+            DisplaySkillPreview = GetComponent<IDisplaySkillPreview>();
+        }
     }
 }

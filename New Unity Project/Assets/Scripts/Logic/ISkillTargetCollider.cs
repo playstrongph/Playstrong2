@@ -24,5 +24,11 @@ namespace Logic
         /// Interface reference to target line
         /// </summary>
         LineRenderer TargetLine { get; }
+        
+        /// <summary>
+        /// Reference to display skill preview
+        /// currently no public methods set
+        /// </summary>
+        IDisplaySkillPreview DisplaySkillPreview { get; }
     }
 }

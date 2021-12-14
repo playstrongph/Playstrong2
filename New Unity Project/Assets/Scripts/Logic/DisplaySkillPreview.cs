@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Logic
 {
     /// <summary>
-    /// Displays hero preview after a delay
+    /// Displays skill preview after a delay
     /// </summary>
-    public class DisplayHeroPreview : MonoBehaviour, IDisplayHeroPreview
+    public class DisplaySkillPreview : MonoBehaviour, IDisplaySkillPreview
     {
-        private ITargetCollider _targetCollider;
+        private ISkillTargetCollider _skillTargetCollider;
         
         /// <summary>
         /// Amount of delay before Hero Preview is shown
@@ -19,7 +19,7 @@ namespace Logic
         private bool _enablePreview = false;
         private void Awake()
         {
-            _targetCollider = GetComponent<ITargetCollider>();
+            _skillTargetCollider = GetComponent<ISkillTargetCollider>();
         }
         
         /// <summary>
@@ -29,15 +29,13 @@ namespace Logic
         private IEnumerator ShowPreview()
         {
             yield return new WaitForSeconds(displayDelay);
-            _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
-            if(_enablePreview)
-                _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = true;
+            if (_enablePreview)
+                _skillTargetCollider.Skill.SkillPreview.PreviewCanvas.enabled = true;
         }
         
         private void HidePreview()
         {
-            _targetCollider.Hero.HeroPreview.UpdateHeroPreview.StartAction();
-            _targetCollider.Hero.HeroPreview.PreviewCanvas.enabled = false;
+            _skillTargetCollider.Skill.SkillPreview.PreviewCanvas.enabled = false;
         }
 
         private void OnMouseDown()

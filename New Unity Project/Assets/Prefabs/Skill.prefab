@@ -1801,6 +1801,7 @@ GameObject:
   - component: {fileID: 8860683489808949080}
   - component: {fileID: 3093689262336412230}
   - component: {fileID: 6789244950351700365}
+  - component: {fileID: 267030826}
   m_Layer: 0
   m_Name: SkillTargetCollider
   m_TagString: Untagged
@@ -1853,6 +1854,19 @@ MonoBehaviour:
   crossHair: {fileID: 2991085503754454201}
   triangle: {fileID: 2991085504533844676}
   targetLine: {fileID: 2991085505375451735}
+--- !u!114 &267030826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933624028123183616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9896ab19620c21640abb44321798ba7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayDelay: 0.5
 --- !u!1 &6319817208671606878
 GameObject:
   m_ObjectHideFlags: 0
