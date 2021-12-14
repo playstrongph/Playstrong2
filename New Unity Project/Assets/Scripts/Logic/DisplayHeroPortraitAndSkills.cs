@@ -20,6 +20,10 @@ namespace Logic
         {
             DisplayPortraitAndSkillsThisPlayer();
             DisplayPortraitAndSkillsOtherPlayer();
+            
+            _targetCollider.Hero.DisplayHeroPortrait.ThisGameObject.SetActive(true);
+            _targetCollider.Hero.DisplayHeroPortrait.TogglePortraitDisplay.ShowPortrait();
+            _targetCollider.Hero.DisplayHeroSkills.ThisGameObject.SetActive(true);
         }
 
         private void DisplayPortraitAndSkillsThisPlayer()
@@ -28,10 +32,6 @@ namespace Logic
 
             displayPortraitAndSkills.DisplayedHeroPortrait?.ThisGameObject.SetActive(false);
             displayPortraitAndSkills.DisplayedHeroSkills?.ThisGameObject.SetActive(false);
-            
-            _targetCollider.Hero.DisplayHeroPortrait.ThisGameObject.SetActive(true);
-            _targetCollider.Hero.DisplayHeroPortrait.TogglePortraitDisplay.ShowPortrait();
-            _targetCollider.Hero.DisplayHeroSkills.ThisGameObject.SetActive(true);
 
             displayPortraitAndSkills.DisplayedHeroPortrait = _targetCollider.Hero.DisplayHeroPortrait;
             displayPortraitAndSkills.DisplayedHeroSkills = _targetCollider.Hero.DisplayHeroSkills;
@@ -43,10 +43,6 @@ namespace Logic
 
             displayPortraitAndSkills.DisplayedHeroPortrait?.ThisGameObject.SetActive(false);
             displayPortraitAndSkills.DisplayedHeroSkills?.ThisGameObject.SetActive(false);
-            
-            _targetCollider.Hero.DisplayHeroPortrait.ThisGameObject.SetActive(true);
-            _targetCollider.Hero.DisplayHeroPortrait.TogglePortraitDisplay.ShowPortrait();
-            _targetCollider.Hero.DisplayHeroSkills.ThisGameObject.SetActive(true);
 
             displayPortraitAndSkills.DisplayedHeroPortrait = _targetCollider.Hero.DisplayHeroPortrait;
             displayPortraitAndSkills.DisplayedHeroSkills = _targetCollider.Hero.DisplayHeroSkills;
