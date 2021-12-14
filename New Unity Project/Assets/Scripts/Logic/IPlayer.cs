@@ -59,6 +59,11 @@ namespace Logic
         /// Reference to hero and skill previews
         /// </summary>
         IHeroAndSkillPreviews HeroAndSkillPreviews { get; }
+        
+        /// <summary>
+        /// The enemy of the current player
+        /// </summary>
+        IPlayer OtherPlayer { get; set;}
 
     }
 }

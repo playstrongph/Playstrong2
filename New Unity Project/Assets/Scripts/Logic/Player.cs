@@ -115,12 +115,17 @@ namespace Logic
         /// </summary>
         public IBattleSceneManager BattleSceneManager { get; set; }
 
-       
+        /// <summary>
+        /// The enemy of the current player
+        /// </summary>
+        public IPlayer OtherPlayer { get; set; }
+
+
 
         private void Awake()
         {
             _initializePlayerHeroes = GetComponent<IInitializePlayerHeroes>();
-           
+
         }
     }
 }

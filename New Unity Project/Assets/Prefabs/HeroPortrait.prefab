@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 6415171892187465155}
   - component: {fileID: 2517862135148118060}
   m_Layer: 0
-  m_Name: Portrait
+  m_Name: HeroPortrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

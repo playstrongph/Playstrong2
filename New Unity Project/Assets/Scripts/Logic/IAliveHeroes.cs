@@ -13,5 +13,10 @@ namespace Logic
         /// Interface access to alive heroes as game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// Gives access to currently displayed portrait and skills based on last hero selected by the player
+        /// </summary>
+        IDisplayedPortraitAndSkills DisplayedPortraitAndSkills { get; }
     }
 }

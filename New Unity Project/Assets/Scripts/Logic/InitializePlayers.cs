@@ -50,6 +50,9 @@ namespace Logic
             enemyPlayer.AliveHeroes.ThisGameObject.transform.position =
                 _battleSceneManager.BattleSceneSettings.EnemyHeroesPosition;
             
+            //Set the other player references
+            mainPlayer.OtherPlayer = enemyPlayer;
+            enemyPlayer.OtherPlayer = mainPlayer;
 
             logicTree.EndSequence();
             yield return null;

@@ -1995,6 +1995,7 @@ GameObject:
   - component: {fileID: 5609741221488724208}
   - component: {fileID: 7327834999142382891}
   - component: {fileID: 3765120007474914874}
+  - component: {fileID: 1781538394}
   m_Layer: 0
   m_Name: TargetCollider
   m_TagString: Untagged
@@ -2055,6 +2056,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayDelay: 0.75
+--- !u!114 &1781538394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609741221488724210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f7cc000ba6a30469d671d2a2741cbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5609741221627566437
 GameObject:
   m_ObjectHideFlags: 0
