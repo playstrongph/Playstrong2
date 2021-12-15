@@ -27,18 +27,18 @@ namespace Logic
         /// <summary>
         /// Reference to skill target collider canvas
         /// </summary>
-        [SerializeField] private Canvas colliderCanvas;
-        public Canvas ColliderCanvas
+        [SerializeField] private Canvas targetCanvas;
+        public Canvas TargetCanvas
         {
-            get => colliderCanvas;
-            set => colliderCanvas = value;
+            get => targetCanvas;
+            set => targetCanvas = value;
         }
         
         /// <summary>
         /// Reference to skill target cross hair
         /// </summary>
-        [SerializeField] private Image crossHair;
-        public Image CrossHair
+        [SerializeField] private GameObject crossHair;
+        public GameObject CrossHair
         {
             get => crossHair;
             set => crossHair = value;
@@ -47,8 +47,8 @@ namespace Logic
         /// <summary>
         /// Reference to skill target triangle
         /// </summary>
-        [SerializeField] private Image triangle;
-        public Image Triangle
+        [SerializeField] private GameObject triangle;
+        public GameObject Triangle
         {
             get => triangle;
             set => triangle = value;
@@ -68,10 +68,17 @@ namespace Logic
         /// Reference to display skill preview
         /// </summary>
         public IDisplaySkillPreview DisplaySkillPreview { get; private set; }
+        
+        
+        /// <summary>
+        /// Reference to select drag target
+        /// </summary>
+        public ISelectDragTarget SelectDragTarget { get; private set; }
 
         private void Awake()
         {
             DisplaySkillPreview = GetComponent<IDisplaySkillPreview>();
+            SelectDragTarget = GetComponent<ISelectDragTarget>();
         }
     }
 }

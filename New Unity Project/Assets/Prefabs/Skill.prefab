@@ -1056,7 +1056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2991085503754454200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1381,7 +1381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2991085504533844679
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1589,7 +1589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2991085505375451734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1802,6 +1802,7 @@ GameObject:
   - component: {fileID: 3093689262336412230}
   - component: {fileID: 6789244950351700365}
   - component: {fileID: 267030826}
+  - component: {fileID: 3936515689162569495}
   m_Layer: 0
   m_Name: SkillTargetCollider
   m_TagString: Untagged
@@ -1850,9 +1851,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 359849407904444818}
-  colliderCanvas: {fileID: 2991085503959968117}
-  crossHair: {fileID: 2991085503754454201}
-  triangle: {fileID: 2991085504533844676}
+  targetCanvas: {fileID: 2991085503959968117}
+  crossHair: {fileID: 2991085503754454203}
+  triangle: {fileID: 2991085504533844678}
   targetLine: {fileID: 2991085505375451735}
 --- !u!114 &267030826
 MonoBehaviour:
@@ -1867,6 +1868,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayDelay: 0.5
+--- !u!114 &3936515689162569495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933624028123183616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba80e3328ff4934286f418a1e2b456e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6319817208671606878
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,12 +13,12 @@ namespace Logic
         /// <summary>
         /// Interface reference to crossHair
         /// </summary>
-        Image CrossHair { get; }
+        GameObject CrossHair { get; }
         
         /// <summary>
         /// Interface reference to triangle
         /// </summary>
-        Image Triangle { get; }
+        GameObject Triangle { get; }
         
         /// <summary>
         /// Interface reference to target line
@@ -30,5 +30,10 @@ namespace Logic
         /// currently no public methods set
         /// </summary>
         IDisplaySkillPreview DisplaySkillPreview { get; }
+        
+        /// <summary>
+        /// Reference to select drag target
+        /// </summary>
+        ISelectDragTarget SelectDragTarget { get;}
     }
 }

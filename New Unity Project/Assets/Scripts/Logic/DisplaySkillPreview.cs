@@ -36,7 +36,10 @@ namespace Logic
             }
         }
         
-        private void HidePreview()
+        /// <summary>
+        /// Display the skill preview
+        /// </summary>
+        public void HidePreview()
         {
             _skillTargetCollider.Skill.SkillPreview.PreviewCanvas.enabled = false;
             _skillTargetCollider.Skill.SkillPreview.ThisGameObject.SetActive(false);
