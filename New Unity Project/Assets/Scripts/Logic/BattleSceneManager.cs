@@ -38,12 +38,23 @@ namespace Logic
         ///  used in Initializing heroes
         /// </summary>
         public IPlayer EnemyPlayer { get; set; }
+        
+        /// <summary>
+        /// Reference to the the turn controller
+        /// set during initialization
+        /// </summary>
+        public ITurnController TurnController { get; set; }
 
         /// <summary>
         /// Local variable for BranchLogic
         /// used in initialization of global coroutine trees
         /// </summary>
         private IBranchLogic _branchLogic;
+        
+        /// <summary>
+        /// Local access to initialize turn controller script
+        /// </summary>
+        private IInitializeTurnController _initializeTurnController;
         
         /// <summary>
         /// Local access to InitializePlayers attached
@@ -56,12 +67,16 @@ namespace Logic
         /// attached to the same game object
         /// </summary>
         private IInitializeHeroes _initializeHeroes;
+        
+        
 
         private void Awake()
         {
             _branchLogic = GetComponent<IBranchLogic>();
+            _initializeTurnController = GetComponent<InitializeTurnController>();
             _initializePlayers = GetComponent<IInitializePlayers>();
             _initializeHeroes = GetComponent<IInitializeHeroes>();
+            
         }
 
         private void Start()
@@ -79,10 +94,13 @@ namespace Logic
         {
            var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
             
+           logicTree.AddSibling(_initializeTurnController.StartAction());
+           
            logicTree.AddSibling(_initializePlayers.StartAction());
            
            logicTree.AddSibling(_initializeHeroes.StartAction());
-            
+
+
            logicTree.EndSequence();
            yield return null;
         }

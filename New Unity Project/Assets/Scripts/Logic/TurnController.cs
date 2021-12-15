@@ -6,7 +6,7 @@ namespace Logic
     /// <summary>
     /// Method that controls all the heroes' turns
     /// </summary>
-    public class TurnController : MonoBehaviour
+    public class TurnController : MonoBehaviour, ITurnController
     {
         /// <summary>
         /// 100% percent timer full in speed units
@@ -36,18 +36,19 @@ namespace Logic
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ICoroutineTreesAsset))]
         public Object coroutineTrees;
 
-        private ICoroutineTreesAsset CoroutineTrees
+        public ICoroutineTreesAsset CoroutineTrees
         {
             get => coroutineTrees as ICoroutineTreesAsset;
-            set => coroutineTrees = value as Object;
+            private set => coroutineTrees = value as Object;
         }
 
-
         //SET IN RUNTIME
+        /// <summary>
+        /// Reference to the battle scene manager
+        /// Set during initialization
+        /// </summary>
+        public IBattleSceneManager BattleSceneManager { get; set; }
         
-        
-
-
         /// <summary>
         /// Returns this as a game object
         /// </summary>

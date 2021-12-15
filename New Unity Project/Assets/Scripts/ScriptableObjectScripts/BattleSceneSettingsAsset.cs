@@ -1,5 +1,4 @@
-﻿using System;
-using AssetsScriptableObjects;
+﻿using AssetsScriptableObjects;
 using JondiBranchLogic;
 using Logic;
 using UnityEngine;
@@ -10,13 +9,21 @@ namespace ScriptableObjectScripts
     [CreateAssetMenu(fileName = "BattleSceneSettings", menuName = "Assets/BattleSceneGeneral/BattleSceneSettings")]
     public class BattleSceneSettingsAsset : ScriptableObject, IBattleSceneSettingsAsset
     {
-        
-        
+        /// <summary>
+        /// Reference for instantiating turn controller prefab
+        /// </summary>
+        [Header("BATTLE SCENE PREFABS")]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITurnController))]
+        private Object turnController;
+        public ITurnController TurnController
+        {
+            get => turnController as TurnController;
+            private set => turnController = value as Object;
+        }
         
         /// <summary>
         /// Reference to player prefab
         /// </summary>
-        [Header("BATTLE SCENE PREFABS")]
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPlayer))]
         private Object playerPrefab;
         public IPlayer PlayerPrefab
@@ -25,6 +32,8 @@ namespace ScriptableObjectScripts
             private set => playerPrefab = value as Object;
         }
         
+        
+
         /// <summary>
         /// Reference to hero prefab
         /// </summary>

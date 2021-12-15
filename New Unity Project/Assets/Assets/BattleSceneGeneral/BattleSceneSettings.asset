@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f480f6613805d4eb132043eadeb2dc, type: 3}
   m_Name: BattleSceneSettings
   m_EditorClassIdentifier: 
+  turnController: {fileID: 7814023066259320501, guid: 10c4a968bc3ec864b828f28aa64f7c40,
+    type: 3}
   playerPrefab: {fileID: 7690881937343701369, guid: d1f18f434d02c7a438691e672098eb5d,
     type: 3}
   heroPrefab: {fileID: 4044057493482042295, guid: ba9a23d29ea48ef4695e6d72bede7e4d,

@@ -24,5 +24,10 @@ namespace Logic
         /// Interface access to Enemy player
         /// </summary>
         IPlayer EnemyPlayer { get; set; }
+        
+        /// <summary>
+        /// Reference to the turn controller
+        /// </summary>
+        ITurnController TurnController { get; set; }
     }
 }

@@ -10,6 +10,11 @@ namespace ScriptableObjectScripts
         //PREFABS
         
         /// <summary>
+        /// Reference to the turn controller prefab
+        /// </summary>
+        ITurnController TurnController { get; }
+
+        /// <summary>
         /// Interface access to to player prefab.
         /// Set in the inspector.
         /// </summary>
