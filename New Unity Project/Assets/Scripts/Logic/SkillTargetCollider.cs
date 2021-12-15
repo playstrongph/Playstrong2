@@ -74,11 +74,17 @@ namespace Logic
         /// Reference to select drag target
         /// </summary>
         public ISelectDragTarget SelectDragTarget { get; private set; }
+        
+        /// <summary>
+        /// Reference to draggable component
+        /// </summary>
+        public IDraggable Draggable { get; private set; }
 
         private void Awake()
         {
             DisplaySkillPreview = GetComponent<IDisplaySkillPreview>();
             SelectDragTarget = GetComponent<ISelectDragTarget>();
+            Draggable = GetComponent<IDraggable>();
         }
     }
 }

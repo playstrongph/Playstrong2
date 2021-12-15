@@ -19,7 +19,7 @@ namespace Logic
 
         private void Start()
         {
-            //TODO: Draggable.DisableDraggable
+            SkillTargetCollider.Draggable.DisableDraggable();
         }
 
         private void OnMouseDown()
@@ -27,7 +27,7 @@ namespace Logic
             transform.localPosition = Vector3.zero;
             
             EnableTargetVisuals();
-            //TODO: Draggable.EnableDraggable
+            SkillTargetCollider.Draggable.EnableDraggable();
             ShowLineAndTarget();
         }
         
@@ -36,7 +36,7 @@ namespace Logic
             transform.localPosition = Vector3.zero;
             
             DisableTargetVisuals();
-            //TODO: Draggable.DisableDraggable
+            SkillTargetCollider.Draggable.DisableDraggable();
             
         }
         

@@ -35,5 +35,10 @@ namespace Logic
         /// Reference to select drag target
         /// </summary>
         ISelectDragTarget SelectDragTarget { get;}
+
+        /// <summary>
+        /// Reference to draggable component
+        /// </summary>
+        IDraggable Draggable { get; }
     }
 }
