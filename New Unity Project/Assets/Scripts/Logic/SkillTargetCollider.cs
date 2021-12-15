@@ -79,6 +79,11 @@ namespace Logic
         /// Reference to draggable component
         /// </summary>
         public IDraggable Draggable { get; private set; }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
 
         private void Awake()
         {

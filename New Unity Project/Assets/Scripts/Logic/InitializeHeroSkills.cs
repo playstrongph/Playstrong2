@@ -62,8 +62,11 @@ namespace Logic
 
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);
-                displaySkills.AllSkillsObjects().Add(skillObject);
+                displaySkills.AllSkillsObjects().Add(displaySkillObject);
                 
+                //TEST - Disable display skill target collider canvas gameObject
+                displaySkill.SkillTargetCollider.TargetCanvas.gameObject.SetActive(false);
+
                 //Loads the skill attributes from the skill asset to the skill attributes component
                 skill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 displaySkill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
