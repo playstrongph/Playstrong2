@@ -58,8 +58,8 @@ namespace Logic
            var heroSpeed = HeroLogic.HeroAttributes.Speed;
            TimerValue += heroSpeed * Time.deltaTime * speedConstant;
            
-           //Transfer the method to TurnController
-           //UpdateEnergyAndActiveHeroes(turnController);
+           UpdateEnergy(turnController);
+           UpdateActiveHeroes(turnController);
        }
         
         /// <summary>
@@ -73,7 +73,6 @@ namespace Logic
             TimerValue = timerValueConvert;
             TimerValue = Mathf.Max(0f, TimerValue);  
             
-            //Transfer the method to TurnController
             UpdateEnergy(turnController);
             UpdateActiveHeroes(turnController);
         }
@@ -118,20 +117,25 @@ namespace Logic
             {
                 turnController.FreezeTimers = true;
 
+                //Check first if hero is not in the active heroes list before adding
                 if(!activeHeroes.Contains(this.HeroLogic.Hero)) 
                     activeHeroesList.Add(this.HeroLogic.Hero as Object);
                 
-                //TODO
-                logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
+                //Sort heroes by Highest to lowest energy
+                //logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
+                turnController.SortHeroesByEnergy.StartAction();
             }
             
             //If hero's energy is < 100%, remove form active heroes list
             if (TimerValue < timerFull)
             {
+                //Check first if hero is in the active heroes list
                 if(activeHeroes.Contains(this.HeroLogic.Hero)) 
                     activeHeroesList.Remove(this.HeroLogic.Hero as Object);
-
-                logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
+                
+                //Sort heroes by Highest to lowest energy
+                //logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
+                turnController.SortHeroesByEnergy.StartAction();
             } 
         }
        

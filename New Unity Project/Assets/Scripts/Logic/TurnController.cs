@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using JondiBranchLogic;
 using UnityEngine;
@@ -105,9 +106,37 @@ namespace Logic
             UpdateHeroTimers = GetComponent<IUpdateHeroTimers>();
         }
 
-
         public void StartGame()
         {
+            
+        }
+        
+        private IEnumerator StartHeroTimers()
+        {
+            var logicTree = this.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(RunHeroTimers());
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator RunHeroTimers()
+        {
+            var logicTree = this.CoroutineTrees.MainLogicTree;
+            
+            FreezeTimers = false;
+
+            while (!FreezeTimers)
+            {
+                UpdateHeroTimers.StartAction();
+                yield return null;
+            }
+            
+            //TODO Active Heroes Found
+            //_logicTree.AddCurrent(ActiveHeroesFound());
+
+            logicTree.EndSequence();
+            yield return null;
             
         }
 

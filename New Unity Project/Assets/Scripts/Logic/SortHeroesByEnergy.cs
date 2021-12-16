@@ -20,19 +20,19 @@ namespace Logic
         }
 
         /// <summary>
-        /// Sorts the heroes in the active heroes from highest
-        /// to lowest energy 
+        /// Sorts the heroes in the active heroes from highest to lowest energy
+        /// Originally, this was a Coroutine 
         /// </summary>
         /// <returns></returns>
-        public IEnumerator StartAction()
+        public void StartAction()
         {
-            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            //var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var activeHeroesList = _turnController.ActiveHeroesList;
             
             ShuffleList(activeHeroesList).Sort(CompareListByEnergy);
 
-            logicTree.EndSequence();
-            yield return null;
+            //logicTree.EndSequence();
+            //yield return null;
         }
         
         
