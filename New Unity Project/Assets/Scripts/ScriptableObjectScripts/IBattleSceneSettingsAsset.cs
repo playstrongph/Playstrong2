@@ -15,6 +15,11 @@ namespace ScriptableObjectScripts
         ITurnController TurnController { get; }
 
         /// <summary>
+        /// Reference to the game board prefab
+        /// </summary>
+        IGameBoard GameBoard { get; }
+
+        /// <summary>
         /// Interface access to to player prefab.
         /// Set in the inspector.
         /// </summary>

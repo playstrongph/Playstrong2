@@ -46,6 +46,11 @@ namespace Logic
         public ITurnController TurnController { get; set; }
 
         /// <summary>
+        /// Reference to the game board
+        /// </summary>
+        public IGameBoard GameBoard { get; set; }
+
+        /// <summary>
         /// Local variable for BranchLogic
         /// used in initialization of global coroutine trees
         /// </summary>
@@ -67,6 +72,11 @@ namespace Logic
         /// attached to the same game object
         /// </summary>
         private IInitializeHeroes _initializeHeroes;
+
+        /// <summary>
+        /// Local access to initialize game board script
+        /// </summary>
+        private IInitializeGameBoard _initializeGameBoard;
         
         
 
@@ -76,7 +86,8 @@ namespace Logic
             _initializeTurnController = GetComponent<InitializeTurnController>();
             _initializePlayers = GetComponent<IInitializePlayers>();
             _initializeHeroes = GetComponent<IInitializeHeroes>();
-            
+            _initializeGameBoard = GetComponent<IInitializeGameBoard>();
+
         }
 
         private void Start()
@@ -94,12 +105,13 @@ namespace Logic
         {
            var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
             
+           logicTree.AddSibling(_initializeGameBoard.StartAction());
+           
            logicTree.AddSibling(_initializeTurnController.StartAction());
            
            logicTree.AddSibling(_initializePlayers.StartAction());
            
            logicTree.AddSibling(_initializeHeroes.StartAction());
-
 
            logicTree.EndSequence();
            yield return null;

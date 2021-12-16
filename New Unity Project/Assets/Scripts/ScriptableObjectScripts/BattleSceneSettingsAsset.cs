@@ -22,6 +22,17 @@ namespace ScriptableObjectScripts
         }
         
         /// <summary>
+        /// Reference to the game board prefab
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IGameBoard))]
+        private Object gameBoard;
+        public IGameBoard GameBoard
+        {
+            get => gameBoard as IGameBoard;
+            private set => gameBoard = value as Object;
+        }
+
+        /// <summary>
         /// Reference to player prefab
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPlayer))]

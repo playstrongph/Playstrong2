@@ -29,5 +29,10 @@ namespace Logic
         /// Reference to the turn controller
         /// </summary>
         ITurnController TurnController { get; set; }
+        
+        /// <summary>
+        /// Reference to the game board
+        /// </summary>
+        IGameBoard GameBoard { get; set; }
     }
 }

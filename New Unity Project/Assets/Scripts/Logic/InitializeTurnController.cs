@@ -33,7 +33,7 @@ namespace Logic
             turnController.BattleSceneManager = _battleSceneManager;
             
             //Remove "clone" from the name of the turn controller object in the inspector
-            turnControllerObject.name = "TurnController";
+            turnControllerObject.name = turnControllerPrefab.name;
 
             logicTree.EndSequence();
             yield return null;
