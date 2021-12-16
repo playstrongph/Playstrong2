@@ -47,7 +47,21 @@ namespace Logic
             heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
         }
         
-        /*/// <summary>
+        /// <summary>
+       /// Updates the hero's timer using the hero's speed and the
+       /// turn controllers speed constant
+       /// </summary>
+       public void UpdateHeroTimer(ITurnController turnController )
+       {
+           var speedConstant = turnController.SpeedConstant;
+           var heroSpeed = HeroLogic.HeroAttributes.Speed;
+           TimerValue += heroSpeed * Time.deltaTime * speedConstant;
+           
+           //Transfer the method to TurnController
+           //UpdateEnergyAndActiveHeroes(turnController);
+       }
+        
+        /// <summary>
         /// Sets the hero's timer to the converted energy value
         /// </summary>
         /// <param name="turnController"></param>
@@ -60,21 +74,42 @@ namespace Logic
             
             //Transfer the method to TurnController
             //UpdateEnergyAndActiveHeroes(turnController);
-        }*/
+        }
         
-        /*/// <summary>
-        /// Updates the hero's timer using the hero's speed and the
-        /// turn controllers speed constant
-        /// </summary>
-        public void UpdateHeroTimer(ITurnController turnController )
+        private void UpdateEnergyAndActiveHeroes(ITurnController turnController)
         {
-            var speedConstant = turnController.SpeedConstant;
-            var heroSpeed = HeroLogic.HeroAttributes.Speed;
-            TimerValue += heroSpeed * Time.deltaTime * speedConstant;
+            var timerFull = turnController.TimerFull;
             
-            //Transfer the method to TurnController
-            //UpdateEnergyAndActiveHeroes(turnController);
-        }*/
+            //TODO
+            //var activeHeroes = turnController.ActiveHeroes;
+            
+            var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
+
+            TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
+            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
+            heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
+            
+            if (TimerValue >= timerFull)
+            {
+                turnController.FreezeTimers = true;
+
+                //if(!activeHeroes.Contains(this as Object)) 
+                    //activeHeroes.Add(this as Object);
+                
+                //TODO
+                //turnController.SortHeroesByEnergy.SortByEnergy();
+            }
+            
+            if (TimerValue < timerFull)
+            {
+                
+                //if(activeHeroes.Contains(this as Object)) 
+                    //activeHeroes.Remove(this as Object);
+                
+                //turnController.SortHeroesByEnergy.SortByEnergy();
+            } 
+        }
+       
         
         
         

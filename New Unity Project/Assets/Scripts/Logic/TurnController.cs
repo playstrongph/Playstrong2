@@ -1,4 +1,5 @@
-﻿using JondiBranchLogic;
+﻿using System.Collections.Generic;
+using JondiBranchLogic;
 using UnityEngine;
 
 namespace Logic
@@ -47,12 +48,49 @@ namespace Logic
         /// Reference to the battle scene manager
         /// Set during initialization
         /// </summary>
+        
         public IBattleSceneManager BattleSceneManager { get; set; }
         
         /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+        
+        /// <summary>
+        /// List of active heroes
+        /// Displayed in inspector for debugging purposes
+        /// </summary>
+        [Header("SET IN RUNTIME")]
+        [SerializeField] 
+        private List<Object> activeHeroes = new List<Object>();
+        
+        /// <summary>
+        /// Used for adding heroes to the active heroes list 
+        /// </summary>
+        public List<Object> ActiveHeroesList => activeHeroes;
+
+        /// <summary>
+        /// Returns list of active heroes
+        /// </summary>
+        public List<IHero> ActiveHeroes
+        {
+            get
+            {
+                var heroes = new List<IHero>();
+                foreach (var heroObject in activeHeroes)
+                {
+                    var activeHero = heroObject as IHero;
+                    heroes.Add(activeHero);
+                }
+                return heroes;
+            }
+        }
+
+
+        public void StartGame()
+        {
+            
+        }
 
     }
 }

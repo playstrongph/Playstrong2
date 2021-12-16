@@ -1,4 +1,5 @@
-﻿using JondiBranchLogic;
+﻿using System.Collections.Generic;
+using JondiBranchLogic;
 using UnityEngine;
 
 namespace Logic
@@ -21,6 +22,8 @@ namespace Logic
         bool FreezeTimers { get; set; }
 
         ICoroutineTreesAsset CoroutineTrees { get; }
+        
+        //SET IN RUNTIME
 
         /// <summary>
         /// Reference to the battle scene manager
@@ -32,5 +35,16 @@ namespace Logic
         /// Returns this as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        ///Used for adding heroes to the active heroes list 
+        /// </summary>
+        List<Object> ActiveHeroesList { get; }
+
+        /// <summary>
+        ///  Returns list of active heroes
+        /// </summary>
+        List<IHero> ActiveHeroes { get; }
+
     }
 }
