@@ -45,6 +45,11 @@ namespace Logic
         ///  Returns list of active heroes
         /// </summary>
         List<IHero> ActiveHeroes { get; }
+        
+        /// <summary>
+        ///  Reference to sort heroes by energy
+        /// </summary>
+        ISortHeroesByEnergy SortHeroesByEnergy { get; }
 
     }
 }

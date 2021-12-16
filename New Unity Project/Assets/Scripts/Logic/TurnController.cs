@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using JondiBranchLogic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Logic
 {
@@ -71,6 +73,7 @@ namespace Logic
 
         /// <summary>
         /// Returns list of active heroes
+        /// Don't use this to add to the list
         /// </summary>
         public List<IHero> ActiveHeroes
         {
@@ -84,6 +87,16 @@ namespace Logic
                 }
                 return heroes;
             }
+        }
+        
+        /// <summary>
+        /// Reference to sort heroes by energy
+        /// </summary>
+        public ISortHeroesByEnergy SortHeroesByEnergy { get; private set; }
+
+        private void Awake()
+        {
+            SortHeroesByEnergy = GetComponent<ISortHeroesByEnergy>();
         }
 
 

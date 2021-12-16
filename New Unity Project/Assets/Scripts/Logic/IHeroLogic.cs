@@ -46,5 +46,10 @@
         /// Loads the hero prefab attributes from the hero asset
         /// </summary>
         ILoadHeroAttributes LoadHeroAttributes { get; }
+        
+        /// <summary>
+        /// Access to the hero's energy via hero timers
+        /// </summary>
+        IHeroTimer HeroTimer { get; }
     }
 }

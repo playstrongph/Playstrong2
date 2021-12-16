@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Logic
 {
-    public class HeroTimer : MonoBehaviour
+    public class HeroTimer : MonoBehaviour, IHeroTimer
     {
         /// <summary>
         /// Timer value in units
@@ -42,7 +43,7 @@ namespace Logic
 
             TimerValue = 0;
             TimerValuePercent = 0;
-            HeroLogic.HeroAttributes.Energy = Mathf.RoundToInt(TimerValuePercent);
+            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
             
             heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
         }
@@ -73,28 +74,50 @@ namespace Logic
             TimerValue = Mathf.Max(0f, TimerValue);  
             
             //Transfer the method to TurnController
-            //UpdateEnergyAndActiveHeroes(turnController);
+            UpdateEnergy(turnController);
+            UpdateActiveHeroes(turnController);
         }
         
-        private void UpdateEnergyAndActiveHeroes(ITurnController turnController)
+        
+        //AUXILIARY METHODS
+
+        /// <summary>
+        ///Updates the energy attribute, text, and bar fill 
+        /// </summary>
+        /// <param name="turnController"></param>
+        private void UpdateEnergy(ITurnController turnController)
         {
             var timerFull = turnController.TimerFull;
-            
-            //TODO
-            //var activeHeroes = turnController.ActiveHeroes;
-            
             var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
-
-            TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
-            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
-            heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
             
+            //Set timer value percent
+            TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
+            
+            //Set hero energy attribute
+            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
+            
+            //Visual energy text and bar update
+            heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
+
+        }
+        
+        
+        /// <summary>
+        /// Updates the active heroes in turn controller
+        /// </summary>
+        /// <param name="turnController"></param>
+        private void UpdateActiveHeroes(ITurnController turnController)
+        {
+            var timerFull = turnController.TimerFull;
+            var activeHeroes = turnController.ActiveHeroes;
+            var activeHeroesList = turnController.ActiveHeroesList;
+
             if (TimerValue >= timerFull)
             {
                 turnController.FreezeTimers = true;
 
-                //if(!activeHeroes.Contains(this as Object)) 
-                    //activeHeroes.Add(this as Object);
+                if(!activeHeroes.Contains(this.HeroLogic.Hero)) 
+                    activeHeroesList.Add(this.HeroLogic.Hero as Object);
                 
                 //TODO
                 //turnController.SortHeroesByEnergy.SortByEnergy();
@@ -103,9 +126,10 @@ namespace Logic
             if (TimerValue < timerFull)
             {
                 
-                //if(activeHeroes.Contains(this as Object)) 
-                    //activeHeroes.Remove(this as Object);
+                if(activeHeroes.Contains(this.HeroLogic.Hero)) 
+                    activeHeroesList.Remove(this.HeroLogic.Hero as Object);
                 
+                //TODO
                 //turnController.SortHeroesByEnergy.SortByEnergy();
             } 
         }

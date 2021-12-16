@@ -58,6 +58,11 @@ namespace Logic
         /// Loads the hero prefab attributes from the hero asset
         /// </summary>
         public ILoadHeroAttributes LoadHeroAttributes { get; private set; }
+        
+        /// <summary>
+        /// Access to the hero's energy via hero timers
+        /// </summary>
+        public IHeroTimer HeroTimer { get; private set; }
 
         private void Awake()
         {
@@ -69,6 +74,7 @@ namespace Logic
             SetChance = GetComponent<ISetChance>();
             SetFightingSpirit = GetComponent<ISetFightingSpirit>();
             LoadHeroAttributes = GetComponent<ILoadHeroAttributes>();
+            HeroTimer = GetComponent<IHeroTimer>();
         }
     }
 }
