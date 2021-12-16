@@ -111,7 +111,9 @@ namespace Logic
             var timerFull = turnController.TimerFull;
             var activeHeroes = turnController.ActiveHeroes;
             var activeHeroesList = turnController.ActiveHeroesList;
-
+            var logicTree = turnController.CoroutineTrees.MainLogicTree;
+            
+            //If hero's energy is >= 100%, add to active heroes list
             if (TimerValue >= timerFull)
             {
                 turnController.FreezeTimers = true;
@@ -120,17 +122,16 @@ namespace Logic
                     activeHeroesList.Add(this.HeroLogic.Hero as Object);
                 
                 //TODO
-                //turnController.SortHeroesByEnergy.SortByEnergy();
+                logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
             }
             
+            //If hero's energy is < 100%, remove form active heroes list
             if (TimerValue < timerFull)
             {
-                
                 if(activeHeroes.Contains(this.HeroLogic.Hero)) 
                     activeHeroesList.Remove(this.HeroLogic.Hero as Object);
-                
-                //TODO
-                //turnController.SortHeroesByEnergy.SortByEnergy();
+
+                logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
             } 
         }
        
