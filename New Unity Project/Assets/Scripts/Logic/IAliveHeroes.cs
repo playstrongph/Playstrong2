@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Logic
 {
@@ -18,5 +19,17 @@ namespace Logic
         /// Gives access to currently displayed portrait and skills based on last hero selected by the player
         /// </summary>
         IDisplayedPortraitAndSkills DisplayedPortraitAndSkills { get; }
+        
+        /// <summary>
+        /// Used to add hero objects in the living heroes
+        /// for inspector troubleshooting purposes only
+        /// </summary>
+        List<Object> LivingHeroesList { get; }
+        
+        /// <summary>
+        /// Returns list of living heroes as IHero
+        ///  Do not directly add to this list
+        /// </summary>
+        List<IHero> LivingHeroes { get; }
     }
 }

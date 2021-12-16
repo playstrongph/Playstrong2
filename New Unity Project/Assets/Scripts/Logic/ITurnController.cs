@@ -50,6 +50,11 @@ namespace Logic
         ///  Reference to sort heroes by energy
         /// </summary>
         ISortHeroesByEnergy SortHeroesByEnergy { get; }
+        
+        /// <summary>
+        /// Updates all living heroes' hero timers
+        /// </summary>
+        IUpdateHeroTimers UpdateHeroTimers { get; }
 
     }
 }

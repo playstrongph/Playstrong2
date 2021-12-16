@@ -93,10 +93,16 @@ namespace Logic
         /// Reference to sort heroes by energy
         /// </summary>
         public ISortHeroesByEnergy SortHeroesByEnergy { get; private set; }
+        
+        /// <summary>
+        /// Updates all living heroes' hero timers
+        /// </summary>
+        public IUpdateHeroTimers UpdateHeroTimers { get; private set; }
 
         private void Awake()
         {
             SortHeroesByEnergy = GetComponent<ISortHeroesByEnergy>();
+            UpdateHeroTimers = GetComponent<IUpdateHeroTimers>();
         }
 
 
