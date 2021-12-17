@@ -112,9 +112,24 @@ namespace Logic
            logicTree.AddSibling(_initializePlayers.StartAction());
            
            logicTree.AddSibling(_initializeHeroes.StartAction());
+           
+           //TEMP
+           logicTree.AddSibling(InitializeCombat());
 
            logicTree.EndSequence();
            yield return null;
         }
+        
+        //TEMP
+        private IEnumerator InitializeCombat()
+        {
+            var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
+            
+            TurnController.StartBattle();
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
     }
 }

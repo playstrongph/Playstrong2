@@ -50,7 +50,8 @@ namespace Logic
             _heroLogic.SetFightingSpirit.StartAction(heroAsset.FightingSpirit);
             
             //TODO: Replace with SetEnergy
-            heroAttributes.Energy = initialEnergy;
+            //heroAttributes.Energy = initialEnergy;
+            _heroLogic.SetEnergy.StartAction(initialEnergy);
         }
     }
 }

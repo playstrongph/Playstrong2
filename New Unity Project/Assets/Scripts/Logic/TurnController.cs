@@ -105,9 +105,15 @@ namespace Logic
             SortHeroesByEnergy = GetComponent<ISortHeroesByEnergy>();
             UpdateHeroTimers = GetComponent<IUpdateHeroTimers>();
         }
-
-        public void StartGame()
+        
+        /// <summary>
+        /// First time combat start
+        /// </summary>
+        public void StartBattle()
         {
+
+            var logicTree = this.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(StartHeroTimers());
             
         }
         

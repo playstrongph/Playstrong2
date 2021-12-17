@@ -55,6 +55,11 @@ namespace Logic
         /// Updates all living heroes' hero timers
         /// </summary>
         IUpdateHeroTimers UpdateHeroTimers { get; }
+        
+        /// <summary>
+        /// First time combat start
+        /// </summary>
+        void StartBattle();
 
     }
 }

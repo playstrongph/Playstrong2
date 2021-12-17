@@ -43,6 +43,11 @@
         ISetFightingSpirit SetFightingSpirit { get; }
         
         /// <summary>
+        /// Set energy reference
+        /// </summary>
+        ISetEnergy SetEnergy { get; }
+
+        /// <summary>
         /// Loads the hero prefab attributes from the hero asset
         /// </summary>
         ILoadHeroAttributes LoadHeroAttributes { get; }
