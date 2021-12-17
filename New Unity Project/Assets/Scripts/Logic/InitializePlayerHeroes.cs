@@ -40,8 +40,10 @@ namespace Logic
             {
                 //Instantiate hero in the scene
                 var heroObject = Instantiate(heroPrefab, heroesParentLocation);
-                
                 var hero = heroObject.GetComponent<IHero>();
+                
+                //Add to Alive heroes list
+                 _player.AliveHeroes.HeroesList.Add(heroObject);
                 
                 //Set hero name in the Inspector
                 heroObject.name = heroAsset.HeroName;

@@ -14,13 +14,12 @@
         /// Updates the hero's timer using the hero's speed and the
         /// turn controllers speed constant
         /// </summary>
-        void UpdateHeroTimer(ITurnController turnController );
+        void UpdateHeroTimer();
 
         /// <summary>
         /// Sets the hero's timer to the converted energy value
         /// </summary>
-        /// <param name="turnController"></param>
         /// <param name="energyValue"></param>
-        void SetHeroTimerValue(ITurnController turnController, int energyValue);
+        void SetHeroTimer(int energyValue);
     }
 }

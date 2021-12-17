@@ -20,29 +20,29 @@ namespace Logic
         }
 
         [Header("SET IN RUNTIME")] [SerializeField]
-        private List<Object> livingHeroes = new List<Object>();
+        private List<Object> heroes = new List<Object>();
         
         /// <summary>
         /// Used to add hero objects in the living heroes
         /// for inspector troubleshooting purposes only
         /// </summary>
-        public List<Object> LivingHeroesList => livingHeroes;
+        public List<Object> HeroesList => heroes;
         
         /// <summary>
         /// Returns list of living heroes as IHero
         /// Do not directly add to this list
         /// </summary>
-        public List<IHero> LivingHeroes
+        public List<IHero> Heroes
         {
             get
             {
-                var heroes = new List<IHero>();
-                foreach (var heroObject in livingHeroes)
+                var newHeroes = new List<IHero>();
+                foreach (var heroObject in heroes)
                 {
                     var hero = heroObject as IHero;
-                    heroes.Add(hero);
+                    newHeroes.Add(hero);
                 }
-                return heroes;
+                return newHeroes;
             }
         }
 

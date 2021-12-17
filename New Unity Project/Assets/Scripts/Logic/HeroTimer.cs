@@ -39,25 +39,26 @@ namespace Logic
         /// </summary>
         public void ResetHeroTimer()
         {
-            var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
+            var turnController = HeroLogic.Hero.Player.BattleSceneManager.TurnController;
 
             TimerValue = 0;
-            TimerValuePercent = 0;
-            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
-            
-            heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent);
+
+            UpdateEnergy(turnController);
+            UpdateActiveHeroes(turnController);
         }
         
         /// <summary>
        /// Updates the hero's timer using the hero's speed and the
        /// turn controllers speed constant
        /// </summary>
-       public void UpdateHeroTimer(ITurnController turnController )
+       public void UpdateHeroTimer()
        {
+           var turnController = HeroLogic.Hero.Player.BattleSceneManager.TurnController;
            var speedConstant = turnController.SpeedConstant;
            var heroSpeed = HeroLogic.HeroAttributes.Speed;
+
            TimerValue += heroSpeed * Time.deltaTime * speedConstant;
-           
+
            UpdateEnergy(turnController);
            UpdateActiveHeroes(turnController);
        }
@@ -65,10 +66,10 @@ namespace Logic
         /// <summary>
         /// Sets the hero's timer to the converted energy value
         /// </summary>
-        /// <param name="turnController"></param>
         /// <param name="energyValue"></param>
-        public void SetHeroTimerValue(ITurnController turnController, int energyValue)
+        public void SetHeroTimer(int energyValue)
         {
+            var turnController = HeroLogic.Hero.Player.BattleSceneManager.TurnController;
             var timerValueConvert = energyValue * turnController.TimerFull / 100f;
             TimerValue = timerValueConvert;
             TimerValue = Mathf.Max(0f, TimerValue);  
@@ -86,6 +87,8 @@ namespace Logic
         /// <param name="turnController"></param>
         private void UpdateEnergy(ITurnController turnController)
         {
+            //Debug.Log("Update Energy");
+            
             var timerFull = turnController.TimerFull;
             var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
             

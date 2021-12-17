@@ -24,12 +24,12 @@ namespace Logic
         /// Used to add hero objects in the living heroes
         /// for inspector troubleshooting purposes only
         /// </summary>
-        List<Object> LivingHeroesList { get; }
+        List<Object> HeroesList { get; }
         
         /// <summary>
         /// Returns list of living heroes as IHero
         ///  Do not directly add to this list
         /// </summary>
-        List<IHero> LivingHeroes { get; }
+        List<IHero> Heroes { get; }
     }
 }

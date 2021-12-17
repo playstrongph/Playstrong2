@@ -21,7 +21,7 @@ namespace Logic
             var turnController = _heroLogic.Hero.Player.BattleSceneManager.TurnController;
             var heroTimer = _heroLogic.HeroTimer;
             
-            heroTimer.SetHeroTimerValue(turnController, energyValue);
+            heroTimer.SetHeroTimer(energyValue);
         }
     }
 }
