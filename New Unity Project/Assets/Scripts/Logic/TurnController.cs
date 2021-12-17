@@ -128,8 +128,6 @@ namespace Logic
         
         private IEnumerator RunHeroTimers()
         {
-            Debug.Log("Run Hero Timers");
-            
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
             FreezeTimers = false;
@@ -145,7 +143,6 @@ namespace Logic
 
             logicTree.EndSequence();
             yield return null;
-            
         }
 
     }

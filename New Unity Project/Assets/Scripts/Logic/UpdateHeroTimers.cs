@@ -15,12 +15,25 @@ namespace Logic
             _turnController = GetComponent<ITurnController>();
         }
 
-        //private int i = 0;
-        
         /// <summary>
         /// Updates all living heroes hero timers
         /// </summary>
         public void StartAction()
+        {
+           
+            AllLivingHeroes();
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
+            foreach (var hero in _allLivingHeroes)
+            {
+                hero.HeroLogic.HeroTimer.UpdateHeroTimer();
+            }
+        }
+
+        private void AllLivingHeroes()
         {
             var allyHeroes = _turnController.BattleSceneManager.MainPlayer.AliveHeroes;
             var enemyHeroes = _turnController.BattleSceneManager.EnemyPlayer.AliveHeroes;
@@ -39,15 +52,8 @@ namespace Logic
             {
                 _allLivingHeroes.Add(hero);
             }
-            
-            Debug.Log("All Living Heroes Count: " +_allLivingHeroes.Count);
-            //update each hero's hero timer
-            foreach (var hero in _allLivingHeroes)
-            {
-                hero.HeroLogic.HeroTimer.UpdateHeroTimer();
-            }
         }
 
-        
+
     }
 }
