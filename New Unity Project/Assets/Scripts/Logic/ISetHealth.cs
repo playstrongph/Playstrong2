@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 
-namespace Logic
+public interface ISetHealth
 {
-    public interface ISetHealth
-    {
-        void StartAction(int value);
-    }
+    void StartAction(int value);
 }

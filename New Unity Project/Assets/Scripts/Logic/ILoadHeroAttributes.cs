@@ -1,9 +1,6 @@
 ﻿using AssetsScriptableObjects;
 
-namespace Logic
+public interface ILoadHeroAttributes
 {
-    public interface ILoadHeroAttributes
-    {
-        void StartAction(IHeroAsset heroAsset);
-    }
+    void StartAction(IHeroAsset heroAsset);
 }

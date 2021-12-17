@@ -2,13 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-namespace Logic
+public class HeroPreviewName : MonoBehaviour, IHeroPreviewName
 {
-    public class HeroPreviewName : MonoBehaviour, IHeroPreviewName
-    {
-        [SerializeField] private TextMeshProUGUI previewName;
+    [SerializeField] private TextMeshProUGUI previewName;
         
-        public TextMeshProUGUI PreviewText { get => previewName; set => previewName = value; }
-    }
+    public TextMeshProUGUI PreviewText { get => previewName; set => previewName = value; }
 }

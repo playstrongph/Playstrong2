@@ -1,10 +1,7 @@
-namespace Logic
+public interface IDisplaySkillPreview
 {
-    public interface IDisplaySkillPreview
-    {
-        /// <summary>
-        /// Displays the skill preview
-        /// </summary>
-        void HidePreview();
-    }
+    /// <summary>
+    /// Displays the skill preview
+    /// </summary>
+    void HidePreview();
 }

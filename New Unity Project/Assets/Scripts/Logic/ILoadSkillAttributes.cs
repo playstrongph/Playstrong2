@@ -1,9 +1,6 @@
 ﻿using AssetsScriptableObjects;
 
-namespace Logic
+public interface ILoadSkillAttributes
 {
-    public interface ILoadSkillAttributes
-    {
-        void StartAction(ISkillAsset skillAsset);
-    }
+    void StartAction(ISkillAsset skillAsset);
 }

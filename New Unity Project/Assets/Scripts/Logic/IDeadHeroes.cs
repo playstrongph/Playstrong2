@@ -1,6 +1,3 @@
-﻿namespace Logic
+﻿public interface IDeadHeroes
 {
-    public interface IDeadHeroes
-    {
-    }
 }

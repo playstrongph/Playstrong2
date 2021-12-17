@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 
-namespace Logic
+public interface IInitializeGameBoard
 {
-    public interface IInitializeGameBoard
-    {
-        IEnumerator StartAction();
-    }
+    IEnumerator StartAction();
 }

@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 
-namespace Logic
+public interface IInitializeHeroes
 {
-    public interface IInitializeHeroes
-    {
-        IEnumerator StartAction();
-    }
+    IEnumerator StartAction();
 }

@@ -1,6 +1,5 @@
 ﻿using AssetsScriptableObjects;
 using JondiBranchLogic;
-using Logic;
 using UnityEngine;
 
 namespace ScriptableObjectScripts

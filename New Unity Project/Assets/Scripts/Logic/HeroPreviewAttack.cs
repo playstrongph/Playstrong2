@@ -2,13 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-namespace Logic
+public class HeroPreviewAttack : MonoBehaviour, IHeroPreviewAttack
 {
-    public class HeroPreviewAttack : MonoBehaviour, IHeroPreviewAttack
-    {
-        [SerializeField] private TextMeshProUGUI previewText;
+    [SerializeField] private TextMeshProUGUI previewText;
         
-        public TextMeshProUGUI PreviewText { get => previewText; set => previewText = value; }
-    }
+    public TextMeshProUGUI PreviewText { get => previewText; set => previewText = value; }
 }

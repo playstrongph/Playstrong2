@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using AssetsScriptableObjects;
 
-namespace Logic
+public interface IInitializeHeroSkills
 {
-    public interface IInitializeHeroSkills
-    {
-        void StartAction(IHeroAsset heroAsset);
-    }
+    void StartAction(IHeroAsset heroAsset);
 }

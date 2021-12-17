@@ -1,10 +1,7 @@
-﻿namespace Logic
+﻿public interface IUpdateHeroTimers
 {
-    public interface IUpdateHeroTimers
-    {
-        /// <summary>
-        /// Updates all living heroes hero timers
-        /// </summary>
-        void StartAction();
-    }
+    /// <summary>
+    /// Updates all living heroes hero timers
+    /// </summary>
+    void StartAction();
 }

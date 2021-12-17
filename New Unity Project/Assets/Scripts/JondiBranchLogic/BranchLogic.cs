@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Logic;
 using ScriptableObjectScripts;
 using UnityEngine;
 

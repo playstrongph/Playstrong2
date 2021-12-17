@@ -2,58 +2,54 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Logic
+/// <summary>
+/// Initializes hero portrait and display portrait
+/// </summary>
+public class InitializeHeroPortrait : MonoBehaviour, IInitializeHeroPortrait
 {
-    
     /// <summary>
-    /// Initializes hero portrait and display portrait
+    /// Hero reference
     /// </summary>
-    public class InitializeHeroPortrait : MonoBehaviour, IInitializeHeroPortrait
+    private IHero _hero;
+
+    private void Awake()
     {
-        /// <summary>
-        /// Hero reference
-        /// </summary>
-        private IHero _hero;
+        _hero = GetComponent<IHero>();
+    }
 
-        private void Awake()
-        {
-            _hero = GetComponent<IHero>();
-        }
+    public void StartAction()
+    {
+            
+        var portraits = _hero.Player.Portraits;
+        var displayPortraits = _hero.Player.DisplayPortraits;
+        var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
 
-        public void StartAction()
-        {
+        //Create hero portrait
+        var heroPortraitObject = Instantiate(portraitPrefab, portraits.ThisGameObject.transform);
+        var heroPortrait = heroPortraitObject.GetComponent<IHeroPortrait>();
             
-            var portraits = _hero.Player.Portraits;
-            var displayPortraits = _hero.Player.DisplayPortraits;
-            var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
+        //Create hero displayPortrait
+        var displayHeroPortraitObject = Instantiate(portraitPrefab, displayPortraits.ThisGameObject.transform);
+        var displayHeroPortrait = displayHeroPortraitObject.GetComponent<IHeroPortrait>();
+            
+        //Set portrait and display portrait inspector name
+        heroPortraitObject.name = _hero.ThisGameObject.name + "Portrait";
+        displayHeroPortraitObject.name = _hero.ThisGameObject.name + "DisplayPortrait";
+            
+        //Set portrait and display portrait graphic image
+        heroPortrait.PortraitImage.sprite = _hero.HeroVisual.HeroGraphic.HeroImage.sprite;
+        displayHeroPortrait.PortraitImage.sprite = _hero.HeroVisual.HeroGraphic.HeroImage.sprite;
+            
+        //Hide hero and display portrait
+        heroPortrait.TogglePortraitDisplay.HidePortrait();
+        displayHeroPortrait.TogglePortraitDisplay.HidePortrait();
 
-            //Create hero portrait
-            var heroPortraitObject = Instantiate(portraitPrefab, portraits.ThisGameObject.transform);
-            var heroPortrait = heroPortraitObject.GetComponent<IHeroPortrait>();
-            
-            //Create hero displayPortrait
-            var displayHeroPortraitObject = Instantiate(portraitPrefab, displayPortraits.ThisGameObject.transform);
-            var displayHeroPortrait = displayHeroPortraitObject.GetComponent<IHeroPortrait>();
-            
-            //Set portrait and display portrait inspector name
-            heroPortraitObject.name = _hero.ThisGameObject.name + "Portrait";
-            displayHeroPortraitObject.name = _hero.ThisGameObject.name + "DisplayPortrait";
-            
-            //Set portrait and display portrait graphic image
-            heroPortrait.PortraitImage.sprite = _hero.HeroVisual.HeroGraphic.HeroImage.sprite;
-            displayHeroPortrait.PortraitImage.sprite = _hero.HeroVisual.HeroGraphic.HeroImage.sprite;
-            
-            //Hide hero and display portrait
-            heroPortrait.TogglePortraitDisplay.HidePortrait();
-            displayHeroPortrait.TogglePortraitDisplay.HidePortrait();
-
-            //Set hero's portrait reference
-            _hero.HeroPortrait = heroPortrait;
-            _hero.DisplayHeroPortrait = displayHeroPortrait;
+        //Set hero's portrait reference
+        _hero.HeroPortrait = heroPortrait;
+        _hero.DisplayHeroPortrait = displayHeroPortrait;
 
            
-        }
-
-
     }
+
+
 }
