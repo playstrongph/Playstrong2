@@ -1,28 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class TargetCollider : MonoBehaviour, ITargetCollider
+namespace Logic
 {
-    /// <summary>
-    /// Reference to Hero where other
-    /// components can be accessed
-    /// </summary>
-    [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
-    private Object hero;
-    public IHero Hero
+    public class TargetCollider : MonoBehaviour, ITargetCollider
     {
-        get => hero as IHero;
-        set => hero = value as Object;
-    }
+        /// <summary>
+        /// Reference to Hero where other
+        /// components can be accessed
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
+        private Object hero;
+        public IHero Hero
+        {
+            get => hero as IHero;
+            set => hero = value as Object;
+        }
         
-    /// <summary>
-    /// Reference to Display Hero Preview script
-    /// </summary>
-    public IDisplayHeroPreview DisplayHeroPreview { get; private set; }
+        /// <summary>
+        /// Reference to Display Hero Preview script
+        /// </summary>
+        public IDisplayHeroPreview DisplayHeroPreview { get; private set; }
 
-    private void Awake()
-    {
-        DisplayHeroPreview = GetComponent<IDisplayHeroPreview>();
+        private void Awake()
+        {
+            DisplayHeroPreview = GetComponent<IDisplayHeroPreview>();
+        }
     }
 }

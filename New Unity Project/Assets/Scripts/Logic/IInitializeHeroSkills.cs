@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using AssetsScriptableObjects;
+﻿using AssetsScriptableObjects;
 
-public interface IInitializeHeroSkills
+namespace Logic
 {
-    void StartAction(IHeroAsset heroAsset);
+    public interface IInitializeHeroSkills
+    {
+        void StartAction(IHeroAsset heroAsset);
+    }
 }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine.UI;
 
-public interface IHeroPreviewGraphic
+namespace Logic
 {
-    Image HeroImage { get; set; }
+    public interface IHeroPreviewGraphic
+    {
+        Image HeroImage { get; set; }
+    }
 }

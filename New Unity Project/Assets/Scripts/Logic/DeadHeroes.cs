@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class DeadHeroes : MonoBehaviour, IDeadHeroes
+namespace Logic
 {
+    public class DeadHeroes : MonoBehaviour, IDeadHeroes
+    {
         
+    }
 }

@@ -1,8 +1,11 @@
 ﻿using TMPro;
 using UnityEngine.UI;
 
-public interface IAttackVisual
+namespace Logic
 {
-    Image Icon { get; }
-    TextMeshProUGUI Text { get; }
+    public interface IAttackVisual
+    {
+        Image Icon { get; }
+        TextMeshProUGUI Text { get; }
+    }
 }

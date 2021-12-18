@@ -1,11 +1,12 @@
-﻿using System.Collections;
-
-public interface ISetArmor
+﻿namespace Logic
 {
-    /// <summary>
-    /// Set armor text and color
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    void StartAction(int value);
+    public interface ISetArmor
+    {
+        /// <summary>
+        /// Set armor text and color
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        void StartAction(int value);
+    }
 }

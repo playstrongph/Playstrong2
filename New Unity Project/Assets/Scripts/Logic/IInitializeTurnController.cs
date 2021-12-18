@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 
-public interface IInitializeTurnController
+namespace Logic
 {
-    /// <summary>
-    /// Instantiates and initializes the turn controller
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator StartAction();
+    public interface IInitializeTurnController
+    {
+        /// <summary>
+        /// Instantiates and initializes the turn controller
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator StartAction();
+    }
 }

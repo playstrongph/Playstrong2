@@ -1,31 +1,33 @@
-﻿using AssetsScriptableObjects;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UpdateHeroPreview : MonoBehaviour, IUpdateHeroPreview
+namespace Logic
 {
-    private IHeroPreview _heroPreview;
-
-    private void Awake()
+    public class UpdateHeroPreview : MonoBehaviour, IUpdateHeroPreview
     {
-        _heroPreview = GetComponent<IHeroPreview>();
-    }
+        private IHeroPreview _heroPreview;
+
+        private void Awake()
+        {
+            _heroPreview = GetComponent<IHeroPreview>();
+        }
         
-    /// <summary>
-    /// Updates the values of the hero preview's basic attributes
-    /// </summary>
-    public void StartAction()
-    {
-        var heroAttributes = _heroPreview.Hero.HeroLogic.HeroAttributes;
+        /// <summary>
+        /// Updates the values of the hero preview's basic attributes
+        /// </summary>
+        public void StartAction()
+        {
+            var heroAttributes = _heroPreview.Hero.HeroLogic.HeroAttributes;
             
-        var baseAttackText = heroAttributes.BaseAttack.ToString();
-        var baseHealthText = heroAttributes.BaseHealth.ToString();
-        var baseSpeedText = heroAttributes.BaseSpeed.ToString();
-        var baseChanceText = heroAttributes.BaseChance.ToString();
+            var baseAttackText = heroAttributes.BaseAttack.ToString();
+            var baseHealthText = heroAttributes.BaseHealth.ToString();
+            var baseSpeedText = heroAttributes.BaseSpeed.ToString();
+            var baseChanceText = heroAttributes.BaseChance.ToString();
 
-        //BASIC ATTRIBUTES
-        _heroPreview.HeroPreviewAttack.PreviewText.text = baseAttackText;
-        _heroPreview.HeroPreviewHealth.PreviewText.text = baseHealthText;
-        _heroPreview.HeroPreviewSpeed.PreviewText.text = baseSpeedText;
-        _heroPreview.HeroPreviewChance.PreviewText.text = baseChanceText;
+            //BASIC ATTRIBUTES
+            _heroPreview.HeroPreviewAttack.PreviewText.text = baseAttackText;
+            _heroPreview.HeroPreviewHealth.PreviewText.text = baseHealthText;
+            _heroPreview.HeroPreviewSpeed.PreviewText.text = baseSpeedText;
+            _heroPreview.HeroPreviewChance.PreviewText.text = baseChanceText;
+        }
     }
 }

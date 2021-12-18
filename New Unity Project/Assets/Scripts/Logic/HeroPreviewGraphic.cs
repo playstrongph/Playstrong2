@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroPreviewGraphic : MonoBehaviour, IHeroPreviewGraphic
+namespace Logic
 {
-    [SerializeField] private Image heroImage;
+    public class HeroPreviewGraphic : MonoBehaviour, IHeroPreviewGraphic
+    {
+        [SerializeField] private Image heroImage;
         
-    public Image HeroImage { get => heroImage; set => heroImage = value; }
+        public Image HeroImage { get => heroImage; set => heroImage = value; }
+    }
 }

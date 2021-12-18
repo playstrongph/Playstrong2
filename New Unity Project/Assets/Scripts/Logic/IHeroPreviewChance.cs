@@ -1,6 +1,9 @@
 ﻿using TMPro;
 
-public interface IHeroPreviewChance
+namespace Logic
 {
-    TextMeshProUGUI PreviewText { get; set; }
+    public interface IHeroPreviewChance
+    {
+        TextMeshProUGUI PreviewText { get; set; }
+    }
 }

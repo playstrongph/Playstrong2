@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public interface IGameBoard
+namespace Logic
 {
-    /// <summary>
-    /// Battle scene manager reference.
-    /// Set in runtime.
-    /// </summary>
-    IBattleSceneManager BattleSceneManager { get; set; }
+    public interface IGameBoard
+    {
+        /// <summary>
+        /// Battle scene manager reference.
+        /// Set in runtime.
+        /// </summary>
+        IBattleSceneManager BattleSceneManager { get; set; }
 
-    Canvas BoardCanvas { get; set; }
-    Image BoardImage { get; set; }
+        Canvas BoardCanvas { get; set; }
+        Image BoardImage { get; set; }
 
-    /// <summary>
-    /// Returns this as a game object
-    /// </summary>
-    GameObject ThisGameObject { get; }
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
+    }
 }

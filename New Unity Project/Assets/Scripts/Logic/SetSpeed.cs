@@ -1,30 +1,32 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// Sets the hero's speed value and visual text
-/// </summary>
-public class SetSpeed : MonoBehaviour, ISetSpeed
+namespace Logic
 {
-    private IHeroLogic _heroLogic;
-        
-    private void Awake()
+    /// <summary>
+    /// Sets the hero's speed value and visual text
+    /// </summary>
+    public class SetSpeed : MonoBehaviour, ISetSpeed
     {
-        _heroLogic = GetComponent<IHeroLogic>();
-    }
+        private IHeroLogic _heroLogic;
+        
+        private void Awake()
+        {
+            _heroLogic = GetComponent<IHeroLogic>();
+        }
 
-    public void StartAction(int value)
-    {
-        //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+        public void StartAction(int value)
+        {
+            //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
 
-        //set attribute value
-        _heroLogic.HeroAttributes.Speed = value;
+            //set attribute value
+            _heroLogic.HeroAttributes.Speed = value;
 
-        //logicTree.EndSequence();
-        //yield return null;
-    }
+            //logicTree.EndSequence();
+            //yield return null;
+        }
 
         
 
 
+    }
 }

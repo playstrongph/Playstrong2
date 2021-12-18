@@ -1,31 +1,33 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-public class InitializeGameBoard : MonoBehaviour, IInitializeGameBoard
+namespace Logic
 {
-    private IBattleSceneManager BattleSceneManager { get; set; }
-
-    private void Awake()
+    public class InitializeGameBoard : MonoBehaviour, IInitializeGameBoard
     {
-        BattleSceneManager = GetComponent<IBattleSceneManager>();
-    }
+        private IBattleSceneManager BattleSceneManager { get; set; }
 
-    public IEnumerator StartAction()
-    {
-        var logicTree = BattleSceneManager.BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
-        var gameBoardPrefab = BattleSceneManager.BattleSceneSettings.GameBoard.ThisGameObject;
-        var gameBoardObject = Instantiate(gameBoardPrefab, BattleSceneManager.ThisGameObject.transform);
-        var gameBoard = gameBoardObject.GetComponent<IGameBoard>();
-            
-        //Remove 'clone' from the name
-        gameBoardObject.name = gameBoardPrefab.name;
-            
-        //Set references
-        gameBoard.BattleSceneManager = BattleSceneManager;
-        BattleSceneManager.GameBoard = gameBoard;
+        private void Awake()
+        {
+            BattleSceneManager = GetComponent<IBattleSceneManager>();
+        }
 
-        logicTree.EndSequence();
-        yield return null;
+        public IEnumerator StartAction()
+        {
+            var logicTree = BattleSceneManager.BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
+            var gameBoardPrefab = BattleSceneManager.BattleSceneSettings.GameBoard.ThisGameObject;
+            var gameBoardObject = Instantiate(gameBoardPrefab, BattleSceneManager.ThisGameObject.transform);
+            var gameBoard = gameBoardObject.GetComponent<IGameBoard>();
+            
+            //Remove 'clone' from the name
+            gameBoardObject.name = gameBoardPrefab.name;
+            
+            //Set references
+            gameBoard.BattleSceneManager = BattleSceneManager;
+            BattleSceneManager.GameBoard = gameBoard;
+
+            logicTree.EndSequence();
+            yield return null;
+        }
     }
 }

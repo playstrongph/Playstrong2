@@ -1,25 +1,28 @@
 ﻿using AssetsScriptableObjects;
 using UnityEngine;
 
-public class LoadHeroVisuals : MonoBehaviour, ILoadHeroVisuals
+namespace Logic
 {
-    /// <summary>
-    /// Hero logic reference
-    /// </summary>
-    private IHeroVisual _heroVisual;
-
-    private void Awake()
+    public class LoadHeroVisuals : MonoBehaviour, ILoadHeroVisuals
     {
-        _heroVisual = GetComponent<IHeroVisual>();
-    }
+        /// <summary>
+        /// Hero logic reference
+        /// </summary>
+        private IHeroVisual _heroVisual;
+
+        private void Awake()
+        {
+            _heroVisual = GetComponent<IHeroVisual>();
+        }
         
-    /// <summary>
-    /// Load hero visuals
-    /// </summary>
-    /// <param name="heroAsset"></param>
-    public void StartAction(IHeroAsset heroAsset)
-    {
-        _heroVisual.HeroGraphic.HeroImage.sprite = heroAsset.HeroSprite;
-    }
+        /// <summary>
+        /// Load hero visuals
+        /// </summary>
+        /// <param name="heroAsset"></param>
+        public void StartAction(IHeroAsset heroAsset)
+        {
+            _heroVisual.HeroGraphic.HeroImage.sprite = heroAsset.HeroSprite;
+        }
 
+    }
 }

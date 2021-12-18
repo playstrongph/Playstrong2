@@ -1,28 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TogglePortraitDisplay : MonoBehaviour, ITogglePortraitDisplay
+namespace Logic
 {
-    private IHeroPortrait _portrait;
+    public class TogglePortraitDisplay : MonoBehaviour, ITogglePortraitDisplay
+    {
+        private IHeroPortrait _portrait;
 
-    private void Awake()
-    {
-        _portrait = GetComponent<IHeroPortrait>();
-    }
+        private void Awake()
+        {
+            _portrait = GetComponent<IHeroPortrait>();
+        }
         
-    /// <summary>
-    /// Shows hero portrait
-    /// </summary>
-    public void ShowPortrait()
-    {
-        _portrait.PortraitCanvas.enabled = true;
-    }
+        /// <summary>
+        /// Shows hero portrait
+        /// </summary>
+        public void ShowPortrait()
+        {
+            _portrait.PortraitCanvas.enabled = true;
+        }
         
-    /// <summary>
-    /// Hides hero portrait
-    /// </summary>
-    public void HidePortrait()
-    {
-        _portrait.PortraitCanvas.enabled = false;
+        /// <summary>
+        /// Hides hero portrait
+        /// </summary>
+        public void HidePortrait()
+        {
+            _portrait.PortraitCanvas.enabled = false;
+        }
     }
 }

@@ -1,12 +1,15 @@
-public interface ITargetCollider
+namespace Logic
 {
-    /// <summary>
-    /// Interface reference to Hero
-    /// </summary>
-    IHero Hero { get; }
+    public interface ITargetCollider
+    {
+        /// <summary>
+        /// Interface reference to Hero
+        /// </summary>
+        IHero Hero { get; }
         
-    /// <summary>
-    /// Reference to Display Hero Preview script
-    /// </summary>
-    IDisplayHeroPreview DisplayHeroPreview { get; }
+        /// <summary>
+        /// Reference to Display Hero Preview script
+        /// </summary>
+        IDisplayHeroPreview DisplayHeroPreview { get; }
+    }
 }

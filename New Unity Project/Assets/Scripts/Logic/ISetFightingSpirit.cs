@@ -1,11 +1,12 @@
-﻿using System.Collections;
-
-public interface ISetFightingSpirit
+﻿namespace Logic
 {
-    /// <summary>
-    /// Set fighting spirit value
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    void StartAction(int value);
+    public interface ISetFightingSpirit
+    {
+        /// <summary>
+        /// Set fighting spirit value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        void StartAction(int value);
+    }
 }

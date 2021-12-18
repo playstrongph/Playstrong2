@@ -1,8 +1,11 @@
 ﻿using TMPro;
 using UnityEngine.UI;
 
-public interface IHealthVisual
+namespace Logic
 {
-    Image Icon { get; }
-    TextMeshProUGUI Text { get; }
+    public interface IHealthVisual
+    {
+        Image Icon { get; }
+        TextMeshProUGUI Text { get; }
+    }
 }

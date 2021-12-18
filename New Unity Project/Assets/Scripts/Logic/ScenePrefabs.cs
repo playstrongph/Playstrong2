@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 
-public class ScenePrefabs : MonoBehaviour
+namespace Logic
 {
-    private void Awake()
+    public class ScenePrefabs : MonoBehaviour
     {
-        this.gameObject.SetActive(false);
-    }
+        private void Awake()
+        {
+            this.gameObject.SetActive(false);
+        }
 
-    private void OnApplicationQuit()
-    {
-        this.gameObject.SetActive(true);
+        private void OnApplicationQuit()
+        {
+            this.gameObject.SetActive(true);
+        }
+        
+        
+        
     }
-        
-        
-        
 }

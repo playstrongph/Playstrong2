@@ -1,55 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateHeroTimers : MonoBehaviour, IUpdateHeroTimers
+namespace Logic
 {
-    private ITurnController _turnController;
+    public class UpdateHeroTimers : MonoBehaviour, IUpdateHeroTimers
+    {
+        private ITurnController _turnController;
         
-    private readonly List<IHero> _allLivingHeroes = new List<IHero>();
-    private void Awake()
-    {
-        _turnController = GetComponent<ITurnController>();
-    }
+        private readonly List<IHero> _allLivingHeroes = new List<IHero>();
+        private void Awake()
+        {
+            _turnController = GetComponent<ITurnController>();
+        }
 
-    /// <summary>
-    /// Updates all living heroes hero timers
-    /// </summary>
-    public void StartAction()
-    {
+        /// <summary>
+        /// Updates all living heroes hero timers
+        /// </summary>
+        public void StartAction()
+        {
            
-        AllLivingHeroes();
-        UpdateTimers();
-    }
-
-    private void UpdateTimers()
-    {
-        foreach (var hero in _allLivingHeroes)
-        {
-            hero.HeroLogic.HeroTimer.UpdateHeroTimer();
+            AllLivingHeroes();
+            UpdateTimers();
         }
-    }
 
-    private void AllLivingHeroes()
-    {
-        var allyHeroes = _turnController.BattleSceneManager.MainPlayer.AliveHeroes;
-        var enemyHeroes = _turnController.BattleSceneManager.EnemyPlayer.AliveHeroes;
+        private void UpdateTimers()
+        {
+            foreach (var hero in _allLivingHeroes)
+            {
+                hero.HeroLogic.HeroTimer.UpdateHeroTimer();
+            }
+        }
+
+        private void AllLivingHeroes()
+        {
+            var allyHeroes = _turnController.BattleSceneManager.MainPlayer.AliveHeroes;
+            var enemyHeroes = _turnController.BattleSceneManager.EnemyPlayer.AliveHeroes;
             
-        //ensure list is empty
-        _allLivingHeroes.Clear();
+            //ensure list is empty
+            _allLivingHeroes.Clear();
 
-        //add all ally heroes to all living heroes
-        foreach (var hero in allyHeroes.Heroes)
-        {
-            _allLivingHeroes.Add(hero);
-        }
+            //add all ally heroes to all living heroes
+            foreach (var hero in allyHeroes.Heroes)
+            {
+                _allLivingHeroes.Add(hero);
+            }
             
-        //add all enemy heroes to all living heroes
-        foreach (var hero in enemyHeroes.Heroes)
-        {
-            _allLivingHeroes.Add(hero);
+            //add all enemy heroes to all living heroes
+            foreach (var hero in enemyHeroes.Heroes)
+            {
+                _allLivingHeroes.Add(hero);
+            }
         }
+
+
     }
-
-
 }

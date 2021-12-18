@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IDisplaySkills
+namespace Logic
 {
-    GameObject ThisGameObject { get; }
+    public interface IDisplaySkills
+    {
+        GameObject ThisGameObject { get; }
+    }
 }

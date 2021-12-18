@@ -1,23 +1,25 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DisplayedPortraitAndSkills : MonoBehaviour, IDisplayedPortraitAndSkills
+namespace Logic
 {
-    /// <summary>
-    /// Current displayed heroPortrait
-    /// </summary>
-    public IHeroPortrait DisplayedHeroPortrait { get; set; }
-        
-    /// <summary>
-    /// Current displayed hero skills 
-    /// </summary>
-    public IHeroSkills DisplayedHeroSkills { get; set; }
-
-
-    private IAliveHeroes _aliveHeroes;
-
-    private void Awake()
+    public class DisplayedPortraitAndSkills : MonoBehaviour, IDisplayedPortraitAndSkills
     {
-        _aliveHeroes = GetComponent<IAliveHeroes>();
+        /// <summary>
+        /// Current displayed heroPortrait
+        /// </summary>
+        public IHeroPortrait DisplayedHeroPortrait { get; set; }
+        
+        /// <summary>
+        /// Current displayed hero skills 
+        /// </summary>
+        public IHeroSkills DisplayedHeroSkills { get; set; }
+
+
+        private IAliveHeroes _aliveHeroes;
+
+        private void Awake()
+        {
+            _aliveHeroes = GetComponent<IAliveHeroes>();
+        }
     }
 }

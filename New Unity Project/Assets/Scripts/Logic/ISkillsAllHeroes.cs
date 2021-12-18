@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 
-public interface ISkillsAllHeroes
+namespace Logic
 {
-    /// <summary>
-    /// / Returns this as a game object
-    /// </summary>
-    /// <returns></returns>
-    GameObject ThisGameObject { get; }
+    public interface ISkillsAllHeroes
+    {
+        /// <summary>
+        /// / Returns this as a game object
+        /// </summary>
+        /// <returns></returns>
+        GameObject ThisGameObject { get; }
+    }
 }

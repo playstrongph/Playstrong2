@@ -1,3 +1,6 @@
-public interface IDisplayHeroPreview
+namespace Logic
 {
+    public interface IDisplayHeroPreview
+    {
+    }
 }

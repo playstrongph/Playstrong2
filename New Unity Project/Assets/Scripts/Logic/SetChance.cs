@@ -1,30 +1,32 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// Sets the hero's chance value and visual text
-/// </summary>
-public class SetChance : MonoBehaviour, ISetChance
+namespace Logic
 {
-    private IHeroLogic _heroLogic;
-        
-    private void Awake()
+    /// <summary>
+    /// Sets the hero's chance value and visual text
+    /// </summary>
+    public class SetChance : MonoBehaviour, ISetChance
     {
-        _heroLogic = GetComponent<IHeroLogic>();
-    }
+        private IHeroLogic _heroLogic;
+        
+        private void Awake()
+        {
+            _heroLogic = GetComponent<IHeroLogic>();
+        }
 
-    public void StartAction(int value)
-    {
-        //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+        public void StartAction(int value)
+        {
+            //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
 
-        //set attribute value
-        _heroLogic.HeroAttributes.Chance = value;
+            //set attribute value
+            _heroLogic.HeroAttributes.Chance = value;
 
-        //logicTree.EndSequence();
-        //yield return null;
-    }
+            //logicTree.EndSequence();
+            //yield return null;
+        }
 
         
 
 
+    }
 }

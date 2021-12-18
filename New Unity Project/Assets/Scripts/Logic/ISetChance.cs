@@ -1,6 +1,7 @@
-﻿using System.Collections;
-
-public interface ISetChance
+﻿namespace Logic
 {
-    void StartAction(int value);
+    public interface ISetChance
+    {
+        void StartAction(int value);
+    }
 }

@@ -1,6 +1,7 @@
-﻿using System.Collections;
-
-public interface ISetHealth
+﻿namespace Logic
 {
-    void StartAction(int value);
+    public interface ISetHealth
+    {
+        void StartAction(int value);
+    }
 }

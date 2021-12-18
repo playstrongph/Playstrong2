@@ -1,10 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HeroPreviewSpeed : MonoBehaviour, IHeroPreviewSpeed
+namespace Logic
 {
-    [SerializeField] private TextMeshProUGUI previewText;
+    public class HeroPreviewSpeed : MonoBehaviour, IHeroPreviewSpeed
+    {
+        [SerializeField] private TextMeshProUGUI previewText;
         
-    public TextMeshProUGUI PreviewText { get => previewText; set => previewText = value; }
+        public TextMeshProUGUI PreviewText { get => previewText; set => previewText = value; }
+    }
 }

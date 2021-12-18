@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 
-public interface IInitializePlayers
+namespace Logic
 {
-    /// <summary>
-    /// Interface reference to start action method
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator StartAction();
+    public interface IInitializePlayers
+    {
+        /// <summary>
+        /// Interface reference to start action method
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator StartAction();
+    }
 }

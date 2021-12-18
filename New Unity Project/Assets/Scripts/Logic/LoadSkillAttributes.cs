@@ -1,23 +1,25 @@
-﻿using System;
-using AssetsScriptableObjects;
+﻿using AssetsScriptableObjects;
 using UnityEngine;
 
-public class LoadSkillAttributes : MonoBehaviour, ILoadSkillAttributes
+namespace Logic
 {
-    private ISkillLogic _skillLogic;
-
-    private void Awake()
+    public class LoadSkillAttributes : MonoBehaviour, ILoadSkillAttributes
     {
-        _skillLogic = GetComponent<ISkillLogic>();
-    }
+        private ISkillLogic _skillLogic;
 
-    public void StartAction(ISkillAsset skillAsset)
-    {
-        var skillAttributes = _skillLogic.SkillAttributes;
+        private void Awake()
+        {
+            _skillLogic = GetComponent<ISkillLogic>();
+        }
 
-        skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
-        skillAttributes.Cooldown = skillAsset.BaseCooldown;
+        public void StartAction(ISkillAsset skillAsset)
+        {
+            var skillAttributes = _skillLogic.SkillAttributes;
+
+            skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
+            skillAttributes.Cooldown = skillAsset.BaseCooldown;
             
             
+        }
     }
 }

@@ -1,75 +1,75 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using AssetsScriptableObjects;
+﻿using AssetsScriptableObjects;
 using UnityEngine;
 
-public class InitializePlayerHeroes : MonoBehaviour, IInitializePlayerHeroes
+namespace Logic
 {
-        
-    /// <summary>
-    /// Player reference
-    /// Hero belongs to this player
-    /// </summary>
-    private IPlayer _player;
-    private IPlayer Player => _player;
-
-    private void Awake()
+    public class InitializePlayerHeroes : MonoBehaviour, IInitializePlayerHeroes
     {
-        _player = GetComponent<IPlayer>();
-    }
         
-        
-    /// <summary>
-    /// Instantiates hero in the game and loads all corresponding values
-    /// </summary>
-    /// <param name="teamHeroesAsset"></param>
-    /// <param name="heroPrefab"></param>
-    /// <param name="heroesParentLocation"></param>
-    /// <param name="heroPreviewLocation"></param>
-    /// <returns></returns>
-    public void StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
-        Vector3 heroPreviewLocation)
-    {
-        var logicTree = _player.CoroutineTrees.MainLogicTree;
+        /// <summary>
+        /// Player reference
+        /// Hero belongs to this player
+        /// </summary>
+        private IPlayer _player;
+        private IPlayer Player => _player;
 
-        foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
+        private void Awake()
         {
-            //Instantiate hero in the scene
-            var heroObject = Instantiate(heroPrefab, heroesParentLocation);
-            var hero = heroObject.GetComponent<IHero>();
-                
-            //Add to Alive heroes list
-            _player.AliveHeroes.HeroesList.Add(heroObject);
-                
-            //Set hero name in the Inspector
-            heroObject.name = heroAsset.HeroName;
-            hero.HeroName = heroAsset.HeroName;
-                
-            //Set the new hero's player reference
-            hero.Player = Player;
-                
-            //Load the hero attributes
-            hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
-                
-            //Load the hero visuals
-            hero.HeroVisual.LoadHeroVisuals.StartAction(heroAsset);
-                
-            //Load the hero preview visual attributes
-            hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
-
-            //Initializes hero portraits and display portraits
-            hero.InitializeHeroPortrait.StartAction();
-                
-            //Initializes hero skills and display skills
-            hero.InitializeHeroSkills.StartAction(heroAsset);
+            _player = GetComponent<IPlayer>();
         }
+        
+        
+        /// <summary>
+        /// Instantiates hero in the game and loads all corresponding values
+        /// </summary>
+        /// <param name="teamHeroesAsset"></param>
+        /// <param name="heroPrefab"></param>
+        /// <param name="heroesParentLocation"></param>
+        /// <param name="heroPreviewLocation"></param>
+        /// <returns></returns>
+        public void StartAction(ITeamHeroesAsset teamHeroesAsset, GameObject heroPrefab, Transform heroesParentLocation,
+            Vector3 heroPreviewLocation)
+        {
+            var logicTree = _player.CoroutineTrees.MainLogicTree;
+
+            foreach (var heroAsset in teamHeroesAsset.TeamHeroes())
+            {
+                //Instantiate hero in the scene
+                var heroObject = Instantiate(heroPrefab, heroesParentLocation);
+                var hero = heroObject.GetComponent<IHero>();
+                
+                //Add to Alive heroes list
+                _player.AliveHeroes.HeroesList.Add(heroObject);
+                
+                //Set hero name in the Inspector
+                heroObject.name = heroAsset.HeroName;
+                hero.HeroName = heroAsset.HeroName;
+                
+                //Set the new hero's player reference
+                hero.Player = Player;
+                
+                //Load the hero attributes
+                hero.HeroLogic.LoadHeroAttributes.StartAction(heroAsset);
+                
+                //Load the hero visuals
+                hero.HeroVisual.LoadHeroVisuals.StartAction(heroAsset);
+                
+                //Load the hero preview visual attributes
+                hero.HeroPreview.LoadHeroPreviewVisuals.StartAction(heroAsset);
+
+                //Initializes hero portraits and display portraits
+                hero.InitializeHeroPortrait.StartAction();
+                
+                //Initializes hero skills and display skills
+                hero.InitializeHeroSkills.StartAction(heroAsset);
+            }
             
-        //logicTree.EndSequence();
-        //yield return null;
+            //logicTree.EndSequence();
+            //yield return null;
+        }
+
+
+
+
     }
-
-
-
-
 }

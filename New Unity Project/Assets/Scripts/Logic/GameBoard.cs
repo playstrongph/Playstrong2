@@ -1,39 +1,41 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GameBoard : MonoBehaviour, IGameBoard
+namespace Logic
 {
-    /// <summary>
-    /// Battle scene manager reference.
-    /// Set in runtime.
-    /// </summary>
-    public IBattleSceneManager BattleSceneManager { get; set; }
-        
-    /// <summary>
-    /// Game board canvas reference
-    /// </summary>
-    [SerializeField] private Canvas boardCanvas;
-    public Canvas BoardCanvas
+    public class GameBoard : MonoBehaviour, IGameBoard
     {
-        get => boardCanvas;
-        set => boardCanvas = value;
-    }
+        /// <summary>
+        /// Battle scene manager reference.
+        /// Set in runtime.
+        /// </summary>
+        public IBattleSceneManager BattleSceneManager { get; set; }
         
-    /// <summary>
-    /// Game board image reference
-    /// </summary>
-    [SerializeField] private Image boardImage;
-    public Image BoardImage
-    {
-        get => boardImage;
-        set => boardImage = value;
-    }
+        /// <summary>
+        /// Game board canvas reference
+        /// </summary>
+        [SerializeField] private Canvas boardCanvas;
+        public Canvas BoardCanvas
+        {
+            get => boardCanvas;
+            set => boardCanvas = value;
+        }
         
-    /// <summary>
-    /// Returns this as a game object
-    /// </summary>
-    public GameObject ThisGameObject => this.gameObject;
+        /// <summary>
+        /// Game board image reference
+        /// </summary>
+        [SerializeField] private Image boardImage;
+        public Image BoardImage
+        {
+            get => boardImage;
+            set => boardImage = value;
+        }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
 
 
+    }
 }

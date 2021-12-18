@@ -1,9 +1,12 @@
 ﻿using TMPro;
 using UnityEngine.UI;
 
-public interface IPreviewStatusEffect
+namespace Logic
 {
-    Image Icon { get; set; }
-    TextMeshProUGUI NameText { get; set; }
-    TextMeshProUGUI DescriptionText { get; set; }
+    public interface IPreviewStatusEffect
+    {
+        Image Icon { get; set; }
+        TextMeshProUGUI NameText { get; set; }
+        TextMeshProUGUI DescriptionText { get; set; }
+    }
 }

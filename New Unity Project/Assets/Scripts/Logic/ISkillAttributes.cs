@@ -1,13 +1,16 @@
-﻿public interface ISkillAttributes
+﻿namespace Logic
 {
-    /// <summary>
-    /// Skill cooldown reference
-    /// </summary>
-    int Cooldown { get; set; }
+    public interface ISkillAttributes
+    {
+        /// <summary>
+        /// Skill cooldown reference
+        /// </summary>
+        int Cooldown { get; set; }
         
-    /// <summary>
-    /// Base Cooldown reference
-    /// </summary>
-    int BaseCooldown { get; set; }
+        /// <summary>
+        /// Base Cooldown reference
+        /// </summary>
+        int BaseCooldown { get; set; }
 
+    }
 }

@@ -1,8 +1,11 @@
-﻿public interface ISelectDragTarget
+﻿namespace Logic
 {
-    /// <summary>
-    /// Displays the line and cross hair when the mouse is dragged a certain distance
-    /// from the skill
-    /// </summary>
-    void ShowLineAndTarget();
+    public interface ISelectDragTarget
+    {
+        /// <summary>
+        /// Displays the line and cross hair when the mouse is dragged a certain distance
+        /// from the skill
+        /// </summary>
+        void ShowLineAndTarget();
+    }
 }

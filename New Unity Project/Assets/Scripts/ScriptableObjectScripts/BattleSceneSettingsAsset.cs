@@ -1,5 +1,6 @@
 ﻿using AssetsScriptableObjects;
 using JondiBranchLogic;
+using Logic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

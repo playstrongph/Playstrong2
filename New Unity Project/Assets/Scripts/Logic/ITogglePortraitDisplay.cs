@@ -1,12 +1,15 @@
-﻿public interface ITogglePortraitDisplay
+﻿namespace Logic
 {
-    /// <summary>
-    /// Shows hero portrait
-    /// </summary>
-    void ShowPortrait();
+    public interface ITogglePortraitDisplay
+    {
+        /// <summary>
+        /// Shows hero portrait
+        /// </summary>
+        void ShowPortrait();
 
-    /// <summary>
-    /// Hides hero portrait
-    /// </summary>
-    void HidePortrait();
+        /// <summary>
+        /// Hides hero portrait
+        /// </summary>
+        void HidePortrait();
+    }
 }

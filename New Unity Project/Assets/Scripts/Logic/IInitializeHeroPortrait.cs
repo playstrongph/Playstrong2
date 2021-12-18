@@ -1,6 +1,7 @@
-﻿using System.Collections;
-
-public interface IInitializeHeroPortrait
+﻿namespace Logic
 {
-    void StartAction();
+    public interface IInitializeHeroPortrait
+    {
+        void StartAction();
+    }
 }
