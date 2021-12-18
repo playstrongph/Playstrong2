@@ -90,6 +90,7 @@ namespace Logic
             
             var timerFull = turnController.TimerFull;
             var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
+            var visualTree = HeroLogic.Hero.CoroutineTrees.MainVisualTree;
             
             //Set timer value percent
             TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
