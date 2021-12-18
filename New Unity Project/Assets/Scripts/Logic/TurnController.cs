@@ -59,10 +59,20 @@ namespace Logic
         public GameObject ThisGameObject => this.gameObject;
         
         /// <summary>
+        /// The hero currently taking a turn
+        /// </summary>
+        [Header("SET IN RUNTIME")]
+        [SerializeField] private Object currentActiveHero;
+        private IHero CurrentActiveHero
+        {
+            get => currentActiveHero as IHero;
+            set => currentActiveHero = value as Object;
+        }
+        
+        /// <summary>
         /// List of active heroes
         /// Displayed in inspector for debugging purposes
         /// </summary>
-        [Header("SET IN RUNTIME")]
         [SerializeField] 
         private List<Object> activeHeroes = new List<Object>();
         
@@ -70,6 +80,8 @@ namespace Logic
         /// Used for adding heroes to the active heroes list 
         /// </summary>
         public List<Object> ActiveHeroesList => activeHeroes;
+        
+        
 
         /// <summary>
         /// Returns list of active heroes
@@ -130,16 +142,29 @@ namespace Logic
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
             FreezeTimers = false;
-
+            
+            //Run all hero timers to find next active hero/heroes
             while (!FreezeTimers)
             {
                 UpdateHeroTimers.StartAction();
                 yield return null;
             }
             
-            //TODO Active Heroes Found
-            //_logicTree.AddCurrent(ActiveHeroesFound());
+            //Start the next active hero
+            logicTree.AddCurrent(StartActiveHero());
 
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator StartActiveHero()
+        {
+            var logicTree = this.CoroutineTrees.MainLogicTree;
+            
+            SortHeroesByEnergy.StartAction();
+            
+            
+            
             logicTree.EndSequence();
             yield return null;
         }
