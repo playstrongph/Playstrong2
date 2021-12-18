@@ -75,6 +75,11 @@ public class BattleSceneManager : MonoBehaviour, IBattleSceneManager
     /// Local access to initialize game board script
     /// </summary>
     private IInitializeGameBoard _initializeGameBoard;
+    
+    /// <summary>
+    /// Local access to start battle
+    /// </summary>
+    private IStartBattle _startBattle;
         
         
 
@@ -85,6 +90,7 @@ public class BattleSceneManager : MonoBehaviour, IBattleSceneManager
         _initializePlayers = GetComponent<IInitializePlayers>();
         _initializeHeroes = GetComponent<IInitializeHeroes>();
         _initializeGameBoard = GetComponent<IInitializeGameBoard>();
+        _startBattle = GetComponent<IStartBattle>();
 
     }
 
@@ -110,21 +116,10 @@ public class BattleSceneManager : MonoBehaviour, IBattleSceneManager
         logicTree.AddSibling(_initializePlayers.StartAction());
            
         logicTree.AddSibling(_initializeHeroes.StartAction());
-           
-        //TEMP
-        logicTree.AddSibling(InitializeCombat());
 
-        logicTree.EndSequence();
-        yield return null;
-    }
+        logicTree.AddSibling(_startBattle.StartAction());
         
-    //TEMP
-    private IEnumerator InitializeCombat()
-    {
-        var logicTree = BattleSceneSettings.CoroutineTreesAsset.MainLogicTree;
-            
-        TurnController.StartBattle();
-            
+
         logicTree.EndSequence();
         yield return null;
     }

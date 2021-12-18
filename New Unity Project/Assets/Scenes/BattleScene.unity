@@ -767,6 +767,7 @@ GameObject:
   - component: {fileID: 1564666725}
   - component: {fileID: 1564666726}
   - component: {fileID: 1564666727}
+  - component: {fileID: 1564666729}
   m_Layer: 0
   m_Name: BattleSceneManager
   m_TagString: Untagged
@@ -860,6 +861,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2d7a3501f579154ba36e9c4d78d7288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564666729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564666721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7580497cac4fcf04b8d2a7c5d56a0358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1984551562
