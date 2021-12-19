@@ -161,10 +161,17 @@ namespace Logic
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
+            //Sort the heroes (random sort for heroes with equal energy)
             SortHeroesByEnergy.StartAction();
             
+            //Set the current active hero
+            CurrentActiveHero = ActiveHeroes[ActiveHeroes.Count - 1];
             
+            //Remove the current active hero from the hero active heroes list
+            ActiveHeroesList.Remove(CurrentActiveHero as Object);
             
+            //TODO: Set hero active status to hero Active
+
             logicTree.EndSequence();
             yield return null;
         }

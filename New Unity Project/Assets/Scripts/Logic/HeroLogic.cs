@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Logic
 {
     public class HeroLogic : MonoBehaviour, IHeroLogic
     {
+        
+        
         /// <summary>
         /// Reference to Hero where other
         /// components can be accessed
@@ -16,6 +19,23 @@ namespace Logic
             get => hero as IHero;
             set => hero = value as Object;
         }
+        
+        /// <summary>
+        /// Hero active or inactive status
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroActiveStatusAsset))]
+        private ScriptableObject heroActiveStatus;
+
+        public IHeroActiveStatusAsset HeroActiveStatus
+        {
+            get => heroActiveStatus as IHeroActiveStatusAsset;
+            set => heroActiveStatus = value as ScriptableObject;
+        }
+
+
+
+
+        #region COMPONENT REFERENCES
 
         /// <summary>
         /// Hero attributes reference
@@ -67,6 +87,12 @@ namespace Logic
         /// </summary>
         public IHeroTimer HeroTimer { get; private set; }
         
+        /// <summary>
+        /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
+        /// </summary>
+        public ISetHeroActiveStatus SetHeroActiveStatus { get; private set; }
+
+        #endregion
 
         private void Awake()
         {
@@ -80,6 +106,7 @@ namespace Logic
             SetEnergy = GetComponent<ISetEnergy>();
             LoadHeroAttributes = GetComponent<ILoadHeroAttributes>();
             HeroTimer = GetComponent<IHeroTimer>();
+            SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
         }
     }
 }

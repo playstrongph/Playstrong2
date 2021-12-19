@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
+
+namespace Logic
 {
     public interface IHeroLogic
     {   
@@ -7,6 +9,13 @@
         /// </summary>
         IHero Hero { get; }
         
+        /// <summary>
+        /// Hero active or inactive status
+        /// </summary>
+        IHeroActiveStatusAsset HeroActiveStatus { get; set; }
+
+        #region COMPONENT REFERENCES
+
         /// <summary>
         /// Hero attributes reference
         /// </summary>
@@ -56,5 +65,12 @@
         /// Access to the hero's energy via hero timers
         /// </summary>
         IHeroTimer HeroTimer { get; }
+        
+        /// <summary>
+        /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
+        /// </summary>
+        ISetHeroActiveStatus SetHeroActiveStatus { get; }
+
+        #endregion
     }
 }

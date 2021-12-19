@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 7973197268117200403}
   - component: {fileID: 5631988190398378982}
   - component: {fileID: 2881245421814895743}
+  - component: {fileID: 1458600388}
   m_Layer: 0
   m_Name: HeroLogic
   m_TagString: Untagged
@@ -288,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hero: {fileID: 4044057493482042295}
+  heroActiveStatus: {fileID: 11400000, guid: fea3325dff93e53409a68f57eaeb27b0, type: 2}
 --- !u!114 &8137904070298217024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +424,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerValue: 0
   timerValuePercent: 0
+--- !u!114 &1458600388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd34ea02728b063419be2fb90bffa4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeHeroAsset: {fileID: 11400000, guid: 23d168a0a20280444bf548f069111acb, type: 2}
+  inactiveHeroAsset: {fileID: 11400000, guid: fea3325dff93e53409a68f57eaeb27b0, type: 2}
 --- !u!1 &3830259919145749636
 GameObject:
   m_ObjectHideFlags: 0
