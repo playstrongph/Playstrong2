@@ -156,8 +156,9 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
         }
-
-        private IEnumerator StartActiveHero()
+        
+        
+        private IEnumerator StartActiveHero()  //possible state?
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
@@ -170,7 +171,8 @@ namespace Logic
             //Remove the current active hero from the hero active heroes list
             ActiveHeroesList.Remove(CurrentActiveHero as Object);
             
-            //TODO: Set hero active status to hero Active
+            //Set the current hero's active status to "ActiveHero"
+            CurrentActiveHero.HeroLogic.SetHeroActiveStatus.ActiveHero();
 
             logicTree.EndSequence();
             yield return null;
