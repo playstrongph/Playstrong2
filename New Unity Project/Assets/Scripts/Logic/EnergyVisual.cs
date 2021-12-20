@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,34 +40,53 @@ namespace Logic
         /// Used in queued visual commands
         /// </summary>
         /// <param name="energyValue"></param>
-        public void SetEnergyTextAndBarFill(int energyValue)
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public IEnumerator SetEnergyTextAndBarFill(int energyValue, IHero hero)
         {
             //Clamps the displayed text to 100%
             var energyDisplayText = Mathf.Min(100, energyValue);
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
             
             text.text = energyDisplayText.ToString() +"%";
             
             Icon.fillAmount = energyDisplayText/100f;
+            
+            visualTree.EndSequence();
+            yield return null;
         }
-        
+
         /// <summary>
         /// Sets the energy percentage text color
         /// used by abilities like slow and haste
         /// </summary>
         /// <param name="textColor"></param>
-        public void SetEnergyTextColor(Color textColor)
+        /// <param name="hero"></param>
+        public IEnumerator SetEnergyTextColor(Color textColor, IHero hero)
         {
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            
             text.color = textColor;
+            
+            visualTree.EndSequence();
+            yield return null;
         }
-        
+
         /// <summary>
         /// Sets the energy bar color
         /// used by abilities like slow and haste
         /// </summary>
         /// <param name="energyBarColor"></param>
-        public void SetBarFillColor(Color energyBarColor)
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public IEnumerator SetBarFillColor(Color energyBarColor, IHero hero)
         {
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            
             Icon.color = energyBarColor;
+            
+            visualTree.EndSequence();
+            yield return null;
         }
     }
 }

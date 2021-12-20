@@ -87,10 +87,6 @@ namespace Logic
 
         #region AUXILLIARY METHODS
 
-        
-
-        
-
         /// <summary>
         /// Updates the energy attribute, text, and bar fill
         /// EXCLUSIVELY used by the turn controller update hero timers
@@ -119,10 +115,10 @@ namespace Logic
         /// <param name="turnController"></param>
         private void SetEnergy(ITurnController turnController)
         {
-            //Debug.Log("Update Energy");
-            
+
             var timerFull = turnController.TimerFull;
             var heroEnergyVisual = HeroLogic.Hero.HeroVisual.EnergyVisual;
+            var visualTree = HeroLogic.Hero.CoroutineTrees.MainVisualTree;
             
             //Set timer value percent
             TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
@@ -131,7 +127,7 @@ namespace Logic
             HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
             
             //Visual energy text and bar update
-            heroEnergyVisual.UpdateEnergyTextAndBarFill((int)TimerValuePercent);
+            visualTree.AddCurrent(heroEnergyVisual.SetEnergyTextAndBarFill((int)TimerValuePercent, HeroLogic.Hero));
         }
         
         

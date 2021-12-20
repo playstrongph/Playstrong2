@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,26 +23,31 @@ namespace Logic
         /// </summary>
         /// <param name="energyValue"></param>
         void UpdateEnergyTextAndBarFill(int energyValue);
-        
-        /// <summary>
+       
+       /// <summary>
         /// Updates the displayed energy text and bar fill
         /// Used in queued visual commands
         /// </summary>
         /// <param name="energyValue"></param>
-        void SetEnergyTextAndBarFill(int energyValue);
-        
-        /// <summary>
-        /// Sets the energy bar color
-        /// used by abilities like slow and haste
-        /// </summary>
-        /// <param name="energyBarColor"></param>
-        void SetBarFillColor(Color energyBarColor);
-        
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        IEnumerator SetEnergyTextAndBarFill(int energyValue, IHero hero);
+
+       /// <summary>
+       /// Sets the energy bar color
+       /// used by abilities like slow and haste
+       /// </summary>
+       /// <param name="energyBarColor"></param>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       IEnumerator SetBarFillColor(Color energyBarColor, IHero hero);
+
         /// <summary>
         /// Sets the energy percentage text color
         /// used by abilities like slow and haste
         /// </summary>
         /// <param name="textColor"></param>
-        void SetEnergyTextColor(Color textColor);
+        /// <param name="hero"></param>
+        IEnumerator SetEnergyTextColor(Color textColor, IHero hero);
     }
 }
