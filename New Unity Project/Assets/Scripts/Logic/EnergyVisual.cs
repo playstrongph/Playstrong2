@@ -20,7 +20,23 @@ namespace Logic
         public TextMeshProUGUI Text { get => text; set => text = value; }
         
         /// <summary>
-        /// Sets ths visual energy value and proportional energy bar fill
+        /// Updates the displayed energy text and bar fill
+        /// EXCLUSIVELY used for turn controller update hero timers 
+        /// </summary>
+        /// <param name="energyValue"></param>
+        public void UpdateEnergyTextAndBarFill(int energyValue)
+        {
+            //Clamps the displayed text to 100%
+            var energyDisplayText = Mathf.Min(100, energyValue);
+            
+            text.text = energyDisplayText.ToString() +"%";
+            
+            Icon.fillAmount = energyDisplayText/100f;
+        }
+        
+        /// <summary>
+        /// Updates the displayed energy text and bar fill
+        /// Used in queued visual commands
         /// </summary>
         /// <param name="energyValue"></param>
         public void SetEnergyTextAndBarFill(int energyValue)

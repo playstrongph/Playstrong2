@@ -17,8 +17,15 @@ namespace Logic
         TextMeshProUGUI Text { get; }
 
         /// <summary>
-        /// Sets the energy percentage text color
-        /// used by abilities like slow and haste
+        /// Updates the displayed energy text and bar fill
+        /// EXCLUSIVELY used for turn controller update hero timers 
+        /// </summary>
+        /// <param name="energyValue"></param>
+        void UpdateEnergyTextAndBarFill(int energyValue);
+        
+        /// <summary>
+        /// Updates the displayed energy text and bar fill
+        /// Used in queued visual commands
         /// </summary>
         /// <param name="energyValue"></param>
         void SetEnergyTextAndBarFill(int energyValue);
@@ -29,5 +36,12 @@ namespace Logic
         /// </summary>
         /// <param name="energyBarColor"></param>
         void SetBarFillColor(Color energyBarColor);
+        
+        /// <summary>
+        /// Sets the energy percentage text color
+        /// used by abilities like slow and haste
+        /// </summary>
+        /// <param name="textColor"></param>
+        void SetEnergyTextColor(Color textColor);
     }
 }

@@ -50,7 +50,7 @@ namespace Logic
             
             //TODO: Replace with SetEnergy
             //heroAttributes.Energy = initialEnergy;
-            _heroLogic.SetEnergy.StartAction(initialEnergy);
+            _heroLogic.SetEnergy.SetToValue(initialEnergy);
         }
     }
 }
