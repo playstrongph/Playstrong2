@@ -28,10 +28,11 @@ namespace Logic
         public void UpdateEnergyTextAndBarFill(int energyValue)
         {
             //Clamps the displayed text to 100%
-            var energyDisplayText = Mathf.Min(100, energyValue);
+            //var energyDisplayText = Mathf.Min(100, energyValue);
+
+            var energyDisplayText = energyValue;
             
             text.text = energyDisplayText.ToString() +"%";
-            
             Icon.fillAmount = energyDisplayText/100f;
         }
         
@@ -45,11 +46,12 @@ namespace Logic
         public IEnumerator SetEnergyTextAndBarFill(int energyValue, IHero hero)
         {
             //Clamps the displayed text to 100%
-            var energyDisplayText = Mathf.Min(100, energyValue);
+            //var energyDisplayText = Mathf.Min(100, energyValue);
+            
             var visualTree = hero.CoroutineTrees.MainVisualTree;
+            var energyDisplayText = energyValue;
             
             text.text = energyDisplayText.ToString() +"%";
-            
             Icon.fillAmount = energyDisplayText/100f;
             
             visualTree.EndSequence();

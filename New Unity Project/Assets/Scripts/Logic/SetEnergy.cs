@@ -17,9 +17,7 @@ namespace Logic
         /// </summary>
         public void SetToValue(int energyValue)
         {
-            var turnController = _heroLogic.Hero.Player.BattleSceneManager.TurnController;
             var heroTimer = _heroLogic.HeroTimer;
-            
             heroTimer.SetHeroTimer(energyValue);
         }
         
@@ -28,9 +26,7 @@ namespace Logic
         /// </summary>
         public void ResetToZero()
         {
-            var turnController = _heroLogic.Hero.Player.BattleSceneManager.TurnController;
             var heroTimer = _heroLogic.HeroTimer;
-            
             heroTimer.ResetHeroTimer();
         }
     }

@@ -173,6 +173,9 @@ namespace Logic
             
             //Set the current hero's active status to "ActiveHero"
             CurrentActiveHero.HeroLogic.SetHeroActiveStatus.ActiveHero();
+            
+            //Reset the energy of the current active hero
+            CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
 
             logicTree.EndSequence();
             yield return null;
