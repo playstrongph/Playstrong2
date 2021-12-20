@@ -176,6 +176,8 @@ namespace Logic
             
             //Reset the energy of the current active hero
             CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
+            
+            //TODO: Event call - EventCombatStartTurn
 
             logicTree.EndSequence();
             yield return null;
