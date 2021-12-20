@@ -26,11 +26,11 @@ namespace Logic
         /// <summary>
         /// Stops all hero timers when true
         /// </summary>
-        [SerializeField] private bool freezeTimers = false;
-        public bool FreezeTimers
+        [SerializeField] private bool activeHeroFound = false;
+        public bool ActiveHeroFound
         {
-            get => freezeTimers;
-            set => freezeTimers = value;
+            get => activeHeroFound;
+            set => activeHeroFound = value;
         }
         
         /// <summary>
@@ -141,24 +141,24 @@ namespace Logic
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
-            FreezeTimers = false;
+            ActiveHeroFound = false;
             
             //Run all hero timers to find next active hero/heroes
-            while (!FreezeTimers)
+            while (!ActiveHeroFound)
             {
                 UpdateHeroTimers.StartAction();
                 yield return null;
             }
             
             //Start the next active hero
-            logicTree.AddCurrent(StartActiveHero());
+            logicTree.AddCurrent(SetCurrentActiveHero());
 
             logicTree.EndSequence();
             yield return null;
         }
         
         
-        private IEnumerator StartActiveHero()  //possible state?
+        private IEnumerator SetCurrentActiveHero()  //possible state?
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             

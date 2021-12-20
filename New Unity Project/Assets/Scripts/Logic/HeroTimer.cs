@@ -144,7 +144,7 @@ namespace Logic
             //If hero's energy is >= 100%, add to active heroes list
             if (TimerValue >= timerFull)
             {
-                turnController.FreezeTimers = true;
+                turnController.ActiveHeroFound = true;
 
                 //Check first if hero is not in the active heroes list before adding
                 if(!activeHeroes.Contains(this.HeroLogic.Hero)) 

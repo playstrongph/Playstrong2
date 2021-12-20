@@ -19,7 +19,7 @@ namespace Logic
         /// <summary>
         /// Stops all hero timers when true
         /// </summary>
-        bool FreezeTimers { get; set; }
+        bool ActiveHeroFound { get; set; }
 
         ICoroutineTreesAsset CoroutineTrees { get; }
         
