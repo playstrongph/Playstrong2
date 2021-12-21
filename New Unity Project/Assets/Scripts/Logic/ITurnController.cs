@@ -24,6 +24,11 @@ namespace Logic
         ICoroutineTreesAsset CoroutineTrees { get; }
         
         //SET IN RUNTIME
+        
+        /// <summary>
+        /// The hero currently taking a turn
+        /// </summary>
+        IHero CurrentActiveHero { get; set; }
 
         /// <summary>
         /// Reference to the battle scene manager
@@ -55,11 +60,18 @@ namespace Logic
         /// Updates all living heroes' hero timers
         /// </summary>
         IUpdateHeroTimers UpdateHeroTimers { get; }
+            
+        /// <summary>
+        /// Sets the current active hero
+        /// </summary>
+        ISetCurrentActiveHero SetCurrentActiveHero { get;}
         
         /// <summary>
         /// First time combat start
         /// </summary>
         void StartBattle();
+        
+        
 
     }
 }

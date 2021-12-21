@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+namespace Logic
+{
+    public class SetCurrentActiveHero : MonoBehaviour, ISetCurrentActiveHero
+    {
+        private ITurnController _turnController;
+
+        private void Awake()
+        {
+            _turnController = GetComponent<ITurnController>();
+        }
+        
+        /// <summary>
+        /// Sets the current active heroes from the active heroes list, resets energy to zero, and
+        /// calls combat start turn event
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator StartAction()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            //Sort the heroes (random sort for heroes with equal energy)
+            _turnController.SortHeroesByEnergy.StartAction();
+            
+            //Set the current active hero
+            _turnController.CurrentActiveHero = _turnController.ActiveHeroes[_turnController.ActiveHeroes.Count - 1];
+            
+            //Remove the current active hero from the hero active heroes list
+            _turnController.ActiveHeroesList.Remove(_turnController.CurrentActiveHero as Object);
+            
+            //Set the current hero's active status to "ActiveHero"
+            _turnController.CurrentActiveHero.HeroLogic.SetHeroActiveStatus.ActiveHero();
+            
+            //Reset the energy of the current active hero
+            _turnController.CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
+            
+            //TODO: Event call - EventCombatStartTurn
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+    }
+}

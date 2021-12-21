@@ -63,7 +63,7 @@ namespace Logic
         /// </summary>
         [Header("SET IN RUNTIME")]
         [SerializeField] private Object currentActiveHero;
-        private IHero CurrentActiveHero
+        public IHero CurrentActiveHero
         {
             get => currentActiveHero as IHero;
             set => currentActiveHero = value as Object;
@@ -81,8 +81,6 @@ namespace Logic
         /// </summary>
         public List<Object> ActiveHeroesList => activeHeroes;
         
-        
-
         /// <summary>
         /// Returns list of active heroes
         /// Don't use this to add to the list
@@ -110,11 +108,17 @@ namespace Logic
         /// Updates all living heroes' hero timers
         /// </summary>
         public IUpdateHeroTimers UpdateHeroTimers { get; private set; }
+        
+        /// <summary>
+        /// Sets the current active hero
+        /// </summary>
+        public ISetCurrentActiveHero SetCurrentActiveHero { get; private set; }
 
         private void Awake()
         {
             SortHeroesByEnergy = GetComponent<ISortHeroesByEnergy>();
             UpdateHeroTimers = GetComponent<IUpdateHeroTimers>();
+            SetCurrentActiveHero = GetComponent<ISetCurrentActiveHero>();
         }
         
         /// <summary>
@@ -151,14 +155,15 @@ namespace Logic
             }
             
             //Start the next active hero
-            logicTree.AddCurrent(SetCurrentActiveHero());
+            //logicTree.AddCurrent(SetCurrentActiveHero());
+            logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
 
             logicTree.EndSequence();
             yield return null;
         }
         
         
-        private IEnumerator SetCurrentActiveHero()  //possible state?
+        /*private IEnumerator SetCurrentActiveHero()  //possible state?
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             
@@ -181,7 +186,10 @@ namespace Logic
 
             logicTree.EndSequence();
             yield return null;
-        }
+        }*/
+        
+        
+        
 
     }
 }

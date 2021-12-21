@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7814023066259320501}
   - component: {fileID: 795551811}
   - component: {fileID: 496293905851487854}
+  - component: {fileID: 2976562096499825948}
   m_Layer: 0
   m_Name: TurnController
   m_TagString: Untagged
@@ -47,8 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerFull: 500
   speedConstant: 10
-  freezeTimers: 0
+  activeHeroFound: 0
   coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
+  currentActiveHero: {fileID: 0}
   activeHeroes: []
 --- !u!114 &795551811
 MonoBehaviour:
@@ -72,5 +74,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4298906a866c01c4695041c8d40596d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2976562096499825948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814023066259320491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc9f137a83ed1d4e90eeff3552f79f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
