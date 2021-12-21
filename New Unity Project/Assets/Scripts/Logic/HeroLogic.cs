@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
+using ScriptableObjectScripts.HeroInabilityStatusAssets;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -30,6 +31,18 @@ namespace Logic
         {
             get => heroActiveStatus as IHeroActiveStatusAsset;
             set => heroActiveStatus = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// Hero has inability or no inability (stun, sleep, etc.)
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroInabilityStatusAsset))]
+        private ScriptableObject heroInabilityStatus;
+
+        public IHeroInabilityStatusAsset HeroInabilityStatus
+        {
+            get => heroInabilityStatus as IHeroInabilityStatusAsset;
+            set => heroInabilityStatus = value as ScriptableObject;
         }
 
 

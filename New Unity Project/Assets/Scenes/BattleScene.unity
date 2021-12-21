@@ -628,6 +628,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
+    - target: {fileID: 7185873144978900519, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
+        type: 3}
+      propertyPath: heroInabilityStatus
+      value: 
+      objectReference: {fileID: 11400000, guid: 89ca26f2e92316c4b83d3f802d13e1e1,
+        type: 2}
     - target: {fileID: 7962901023046380151, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
         type: 3}
       propertyPath: m_Name

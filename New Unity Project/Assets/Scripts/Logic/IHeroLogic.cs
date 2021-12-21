@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
+using ScriptableObjectScripts.HeroInabilityStatusAssets;
 
 namespace Logic
 {
@@ -13,6 +14,8 @@ namespace Logic
         /// Hero active or inactive status
         /// </summary>
         IHeroActiveStatusAsset HeroActiveStatus { get; set; }
+
+        IHeroInabilityStatusAsset HeroInabilityStatus { get; set; }
 
         #region COMPONENT REFERENCES
 
