@@ -9,27 +9,27 @@ namespace Logic
         #region VARIABLES AND PROPERTIES
 
         [SerializeField] private Image actionGlow;
-        public Image ActionGlow { get => actionGlow; set => actionGlow = value; }
+        private Image ActionGlow { get => actionGlow; set => actionGlow = value; }
         
         [SerializeField] private Image enemyGlow;
-        public Image EnemyGlow { get => enemyGlow; set => enemyGlow = value; }
+        private Image EnemyGlow { get => enemyGlow; set => enemyGlow = value; }
         
         [SerializeField] private Image allyGlow;
-        public Image AllyGlow { get => allyGlow; set => allyGlow = value; }
+        private Image AllyGlow { get => allyGlow; set => allyGlow = value; }
         
         [SerializeField] private Image frameImage;
-        public Image FrameImage { get => frameImage; set => frameImage = value; }
+        private Image FrameImage { get => frameImage; set => frameImage = value; }
         
         [Header("2D LIGHTS")]
         
         [SerializeField] private Light2D actionLight;
-        public Light2D ActionLight { get => actionLight; set => actionLight = value; }
+        private Light2D ActionLight { get => actionLight; set => actionLight = value; }
         
         [SerializeField] private Light2D enemyLight;
-        public Light2D EnemyLight { get => enemyLight; set => enemyLight = value; }
+        private Light2D EnemyLight { get => enemyLight; set => enemyLight = value; }
         
         [SerializeField] private Light2D allyLight;
-        public Light2D AllyLight { get => allyLight; set => allyLight = value; }
+        private Light2D AllyLight { get => allyLight; set => allyLight = value; }
         
         /// <summary>
         /// Returns the game object component of normal frame
@@ -41,16 +41,79 @@ namespace Logic
         #region EXECUTION
         
         /// <summary>
-        /// Turns on green border and light visual
+        /// Enables green border and light visual
         /// </summary>
-        public void EnableActionGlow()
+        public void EnableActionLightAndGlow()
         {
-          
+            ActionGlow.enabled = true;
+            ActionLight.enabled = true;
         }
         
+        /// <summary>
+        /// Disables green border and light visual
+        /// </summary>
+        public void DisableActionLightAndGlow()
+        {
+            ActionGlow.enabled = false;
+            ActionLight.enabled = false;
+        }
         
+        /// <summary>
+        /// Enable red border and light visual
+        /// </summary>
+        public void EnableEnemyLightAndGlow()
+        {
+            EnemyGlow.enabled = true;
+            EnemyLight.enabled = true;
+        }
         
+        /// <summary>
+        /// Disable red border and light visual
+        /// </summary>
+        public void DisableEnemyLightAndGlow()
+        {
+            EnemyGlow.enabled = false;
+            EnemyLight.enabled = false;
+        }
         
+        /// <summary>
+        /// Enable yellow border and light visual
+        /// </summary>
+        public void EnableAllyLightAndGlow()
+        {
+            AllyGlow.enabled = true;
+            AllyLight.enabled = true;
+        }
+        
+        /// <summary>
+        /// Disable yellow border and light visual
+        /// </summary>
+        public void DisableAllyLightAndGlow()
+        {
+            AllyGlow.enabled = false;
+            AllyLight.enabled = false;
+        }
+        
+        /// <summary>
+        /// Turn-on frame Image
+        /// Used for Taunt frame only
+        /// </summary>
+        public void EnableFrameImage()
+        {
+            FrameImage.enabled = true;
+        }
+        /// <summary>
+        /// Turn-off frame Image
+        /// Used for Taunt frame only
+        /// </summary>
+        public void DisableFrameImage()
+        {
+            FrameImage.enabled = false;
+        }
+
+
+
+
 
         #endregion
         
