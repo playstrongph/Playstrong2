@@ -59,6 +59,12 @@ namespace Logic
         /// Loads the hero visual components
         /// </summary>
         ILoadHeroVisuals LoadHeroVisuals { get; }
+        
+        /// <summary>
+        /// Returns the current hero frame and glow setting or change it
+        /// to either Taunt or Normal frame.
+        /// </summary>
+        ISetHeroFrameAndGlow SetHeroFrameAndGlow { get; }
 
     }
 }

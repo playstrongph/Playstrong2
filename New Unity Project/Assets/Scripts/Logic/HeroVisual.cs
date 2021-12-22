@@ -85,10 +85,17 @@ namespace Logic
         /// Loads the hero visual components
         /// </summary>
         public ILoadHeroVisuals LoadHeroVisuals { get; private set; }
+        
+        /// <summary>
+        /// Returns the current hero frame and glow setting or change it
+        /// to either Taunt or Normal frame.
+        /// </summary>
+        public ISetHeroFrameAndGlow SetHeroFrameAndGlow { get; private set; }
 
         private void Awake()
         {
             LoadHeroVisuals = GetComponent<ILoadHeroVisuals>();
+            SetHeroFrameAndGlow = GetComponent<ISetHeroFrameAndGlow>();
         }
     }
 }

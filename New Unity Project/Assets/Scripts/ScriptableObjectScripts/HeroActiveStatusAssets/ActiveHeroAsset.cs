@@ -17,12 +17,10 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
         
         private IEnumerator VisualEnableActionHeroGlow(IHero hero)
         {
-            var heroLogic = hero.HeroLogic;
             var visualTree = hero.CoroutineTrees.MainVisualTree;
-            
-            //var actionGlowFrame = heroLogic.Hero.HeroVisual.SetHeroFrameAndGlow.HeroFrameAndGlow.ActionGlowFrame;
-            //actionGlowFrame.SetActive(true);
-            
+
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableActionLightAndGlow();
+
             visualTree.EndSequence();
             yield return null;
         }

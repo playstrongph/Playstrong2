@@ -4673,7 +4673,7 @@ GameObject:
   - component: {fileID: 7962901024471513222}
   - component: {fileID: 7185873144978900516}
   - component: {fileID: 7658821371445079881}
-  - component: {fileID: 1373653846970254711}
+  - component: {fileID: 727187635}
   m_Layer: 0
   m_Name: HeroVisual
   m_TagString: Untagged
@@ -4730,7 +4730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1dd5a11aa218d4293cafce48645190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1373653846970254711
+--- !u!114 &727187635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4742,6 +4742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bc50f292ce8334897b0a8610176615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHeroFrame: {fileID: 5836890932902636648}
 --- !u!1 &7962901024661777518
 GameObject:
   m_ObjectHideFlags: 0
