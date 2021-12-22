@@ -19,8 +19,9 @@ namespace Logic
         
         /// <summary>
         /// Energy increase per time "tick" (delta time)
+        /// Instability experienced at a value of 10 and higher
         /// </summary>
-        [SerializeField] private int speedConstant = 10;
+        [SerializeField] private int speedConstant = 7;
         public int SpeedConstant => speedConstant;
 
         /// <summary>

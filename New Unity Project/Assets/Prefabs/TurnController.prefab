@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerFull: 500
-  speedConstant: 10
+  speedConstant: 7
   activeHeroFound: 0
   coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
   currentActiveHero: {fileID: 0}
