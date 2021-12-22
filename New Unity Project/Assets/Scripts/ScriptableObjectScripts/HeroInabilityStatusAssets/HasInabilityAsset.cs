@@ -7,7 +7,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
     [CreateAssetMenu(fileName = "HasInability", menuName = "Assets/HeroInabilityStatus/HasInability")]
     public class HasInabilityAsset : HeroInabilityStatusAsset
     {
-        public override IEnumerator StartAction(ITurnController turnController)
+        public override IEnumerator StatusAction(ITurnController turnController)
         {
 
             yield return null;

@@ -12,7 +12,10 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
     {
         public override void StatusAction(IHero hero)
         {
-            
+            Debug.Log("Active Hero");
+
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(VisualEnableActionHeroGlow(hero));
         }
         
         private IEnumerator VisualEnableActionHeroGlow(IHero hero)

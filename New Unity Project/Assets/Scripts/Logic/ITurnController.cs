@@ -72,6 +72,11 @@ namespace Logic
         IBeforeHeroStartTurn BeforeHeroStartTurn { get; }
         
         /// <summary>
+        /// Hero Start Turn PHASE
+        /// </summary>
+        IHeroStartTurn HeroStartTurn { get; }
+        
+        /// <summary>
         /// First time combat start
         /// </summary>
         void StartBattle();

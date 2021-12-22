@@ -6,7 +6,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
 {
     public abstract class HeroInabilityStatusAsset : ScriptableObject, IHeroInabilityStatusAsset
     {
-        public virtual IEnumerator StartAction(ITurnController turnController)
+        public virtual IEnumerator StatusAction(ITurnController turnController)
         {
             //With Inability - turnController.StartHeroNextTurn
             //No Inability - turnController.StartHeroTurn

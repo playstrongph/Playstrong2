@@ -26,8 +26,8 @@ namespace Logic
             
             //TODO: UpdateStartTurnStatusEffects, wrap this in an IEnumerator
             
-            //Start action relative to hero inability status
-            logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.StartAction(_turnController));
+            //execute hero action relative to hero inability status 
+            logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.StatusAction(_turnController));
 
             logicTree.EndSequence();
             yield return null;
@@ -35,16 +35,15 @@ namespace Logic
         
         /// <summary>
         /// Starts the hero turn when hero has no inability
-        /// CALLS NEXT PHASE IN THE TURN
+        /// called by NoInabilityAsset's status action
         /// </summary>
         public void HeroStartTurn()
         {
-            //TODO: StartHeroTurn IEnumerator
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            logicTree.AddCurrent(_turnController.HeroStartTurn.StartAction());
         }
 
-        private void CheckHeroInability()
-        {
-            
-        }
+       
     }
 }

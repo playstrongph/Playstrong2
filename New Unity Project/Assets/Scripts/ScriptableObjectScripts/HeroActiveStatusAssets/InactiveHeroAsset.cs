@@ -11,7 +11,7 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
     {
         public override void StatusAction(IHero hero)
         {
-            
+            Debug.Log("Inactive Hero");
         }
     }
 }

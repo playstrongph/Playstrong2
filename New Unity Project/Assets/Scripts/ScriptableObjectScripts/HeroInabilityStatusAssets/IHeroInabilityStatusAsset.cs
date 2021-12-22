@@ -5,6 +5,6 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
 {
     public interface IHeroInabilityStatusAsset
     {
-        IEnumerator StartAction(ITurnController turnController);
+        IEnumerator StatusAction(ITurnController turnController);
     }
 }
