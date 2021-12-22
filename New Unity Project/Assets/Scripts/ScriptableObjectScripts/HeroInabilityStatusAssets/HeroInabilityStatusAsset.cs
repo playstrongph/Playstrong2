@@ -10,7 +10,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             //With Inability - turnController.StartHeroNextTurn
             //No Inability - turnController.StartHeroTurn
+            var logicTree = turnController.CoroutineTrees.MainLogicTree;
             
+            logicTree.EndSequence();
             yield return null;
         }
     }

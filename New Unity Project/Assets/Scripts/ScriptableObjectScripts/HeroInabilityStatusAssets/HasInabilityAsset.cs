@@ -9,7 +9,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
     {
         public override IEnumerator StatusAction(ITurnController turnController)
         {
+            var logicTree = turnController.CoroutineTrees.MainLogicTree;
 
+            logicTree.EndSequence();
             yield return null;
         }
     }
