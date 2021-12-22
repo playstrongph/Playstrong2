@@ -41,7 +41,7 @@ namespace Logic
             //TODO: Event call - EventCombatStartTurn
             
             //CALL NEXT PHASE
-            logicTree.AddSibling(_turnController.BeforeHeroStartTurn.StartAction());
+            logicTree.AddCurrent(_turnController.BeforeHeroStartTurn.StartAction());
 
             logicTree.EndSequence();
             yield return null;
