@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Logic
 {
-    public class TauntFrame : MonoBehaviour, IHeroFrameAndGlow
+    public class HeroFrameAndGlow : MonoBehaviour, IHeroFrameAndGlow
     {
         #region VARIABLES AND PROPERTIES
 

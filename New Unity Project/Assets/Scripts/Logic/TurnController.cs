@@ -113,12 +113,18 @@ namespace Logic
         /// Sets the current active hero
         /// </summary>
         public ISetCurrentActiveHero SetCurrentActiveHero { get; private set; }
+        
+        /// <summary>
+        /// Before hero starts the turn actions
+        /// </summary>
+        public IBeforeHeroStartTurn BeforeHeroStartTurn { get; private set; }
 
         private void Awake()
         {
             SortHeroesByEnergy = GetComponent<ISortHeroesByEnergy>();
             UpdateHeroTimers = GetComponent<IUpdateHeroTimers>();
             SetCurrentActiveHero = GetComponent<ISetCurrentActiveHero>();
+            BeforeHeroStartTurn = GetComponent<IBeforeHeroStartTurn>();
         }
         
         /// <summary>
@@ -154,42 +160,13 @@ namespace Logic
                 yield return null;
             }
             
-            //Start the next active hero
-            //logicTree.AddCurrent(SetCurrentActiveHero());
+            //CALL NEXT PHASE
             logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
 
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
-        /*private IEnumerator SetCurrentActiveHero()  //possible state?
-        {
-            var logicTree = this.CoroutineTrees.MainLogicTree;
-            
-            //Sort the heroes (random sort for heroes with equal energy)
-            SortHeroesByEnergy.StartAction();
-            
-            //Set the current active hero
-            CurrentActiveHero = ActiveHeroes[ActiveHeroes.Count - 1];
-            
-            //Remove the current active hero from the hero active heroes list
-            ActiveHeroesList.Remove(CurrentActiveHero as Object);
-            
-            //Set the current hero's active status to "ActiveHero"
-            CurrentActiveHero.HeroLogic.SetHeroActiveStatus.ActiveHero();
-            
-            //Reset the energy of the current active hero
-            CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
-            
-            //TODO: Event call - EventCombatStartTurn
 
-            logicTree.EndSequence();
-            yield return null;
-        }*/
-        
-        
-        
 
     }
 }

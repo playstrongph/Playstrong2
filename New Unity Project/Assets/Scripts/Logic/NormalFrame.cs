@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Logic
 {
-    public class NormalFrame : MonoBehaviour, INormalFrame
+    public class NormalFrame : MonoBehaviour, IHeroFrameAndGlow
     {
         [SerializeField] private Image actionGlow;
         public Image ActionGlow { get => actionGlow; set => actionGlow = value; }
@@ -28,5 +28,10 @@ namespace Logic
         
         [SerializeField] private Light2D allyLight;
         public Light2D AllyLight { get => allyLight; set => allyLight = value; }
+        
+        /// <summary>
+        /// Returns the game object component of normal frame
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
     }
 }

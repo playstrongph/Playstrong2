@@ -39,6 +39,9 @@ namespace Logic
             _turnController.CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
             
             //TODO: Event call - EventCombatStartTurn
+            
+            //CALL NEXT PHASE
+            logicTree.AddSibling(_turnController.BeforeHeroStartTurn.StartAction());
 
             logicTree.EndSequence();
             yield return null;

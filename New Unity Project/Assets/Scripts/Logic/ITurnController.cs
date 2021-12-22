@@ -67,6 +67,11 @@ namespace Logic
         ISetCurrentActiveHero SetCurrentActiveHero { get;}
         
         /// <summary>
+        /// Before hero starts the turn actions
+        /// </summary>
+        IBeforeHeroStartTurn BeforeHeroStartTurn { get; }
+        
+        /// <summary>
         /// First time combat start
         /// </summary>
         void StartBattle();

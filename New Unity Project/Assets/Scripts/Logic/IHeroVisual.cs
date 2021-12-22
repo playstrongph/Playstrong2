@@ -18,12 +18,12 @@ namespace Logic
         /// <summary>
         /// Taunt frame object
         /// </summary>
-        ITauntFrame TauntFrame { get; }
+        IHeroFrameAndGlow TauntFrame { get; }
         
         /// <summary>
         /// Normal frame object
         /// </summary>
-        INormalFrame NormalFrame { get; }
+        IHeroFrameAndGlow NormalFrame { get; }
 
         /// <summary>
         /// Hero graphic image
