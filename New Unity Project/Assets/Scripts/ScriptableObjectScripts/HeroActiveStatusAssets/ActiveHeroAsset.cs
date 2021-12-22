@@ -9,20 +9,34 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
     /// </summary>
     [CreateAssetMenu(fileName = "ActiveHero", menuName = "Assets/HeroActiveStatus/ActiveHero")]
     public class ActiveHeroAsset : HeroActiveStatusAsset
-    {
+    {   
+        /// <summary>
+        /// Displays green action border, hero portrait, and hero skills
+        /// </summary>
+        /// <param name="hero"></param>
         public override void StatusAction(IHero hero)
         {
-            Debug.Log("Active Hero");
-
             var visualTree = hero.CoroutineTrees.MainVisualTree;
-            visualTree.AddCurrent(VisualEnableActionHeroGlow(hero));
+            visualTree.AddCurrent(EnableActiveHeroVisuals(hero));
         }
         
-        private IEnumerator VisualEnableActionHeroGlow(IHero hero)
+        /// <summary>
+        /// Displays green action border, hero portrait, and hero skills
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private IEnumerator EnableActiveHeroVisuals(IHero hero)
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
 
+            //Displays green action border
             hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableActionLightAndGlow();
+            
+            //Displays hero portrait
+            hero.HeroPortrait.TogglePortraitDisplay.ShowPortrait();
+            
+            //Displays Hero Skills
+            hero.HeroSkills.ShowHeroSkills();
 
             visualTree.EndSequence();
             yield return null;

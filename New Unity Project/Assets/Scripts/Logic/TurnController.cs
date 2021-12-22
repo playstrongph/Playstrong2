@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JondiBranchLogic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Object = UnityEngine.Object;
 
 namespace Logic
@@ -21,6 +22,7 @@ namespace Logic
         /// Energy increase per time "tick" (delta time)
         /// Instability experienced at a value of 10 and higher
         /// </summary>
+        
         [SerializeField] private int speedConstant = 7;
         public int SpeedConstant => speedConstant;
 

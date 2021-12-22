@@ -26,8 +26,8 @@ namespace Logic
             
             //TODO: EVENT - EventHeroStartTurn
             
-            //TODO: HeroActiveStatus.StatusAction
-            logicTree.AddCurrent(HeroActiveStatusAction());
+            //Run the current hero active status action
+            logicTree.AddCurrent(CurrentActiveStatusAction());
 
             logicTree.EndSequence();
             yield return null;
@@ -37,7 +37,7 @@ namespace Logic
         /// Executes the action of the hero's current active status
         /// </summary>
         /// <returns></returns>
-        private IEnumerator HeroActiveStatusAction()
+        private IEnumerator CurrentActiveStatusAction()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var currentActiveHero = _turnController.CurrentActiveHero;

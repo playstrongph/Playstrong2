@@ -9,7 +9,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
     {
         public override IEnumerator StatusAction(ITurnController turnController)
         {
-            Debug.Log("No Inability: " +turnController.CurrentActiveHero.HeroName);
+        
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
             
             turnController.BeforeHeroStartTurn.HeroStartTurn();
