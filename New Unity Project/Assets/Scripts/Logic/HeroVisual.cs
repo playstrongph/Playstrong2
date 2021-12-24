@@ -91,11 +91,36 @@ namespace Logic
         /// to either Taunt or Normal frame.
         /// </summary>
         public ISetHeroFrameAndGlow SetHeroFrameAndGlow { get; private set; }
+        
+        /// <summary>
+        /// Set the armor text
+        /// Hide and show armor icon
+        /// </summary>
+        public ISetArmorVisual SetArmorVisual { get; private set; }
+        
+        /// <summary>
+        /// Set the attack text and color
+        /// </summary>
+        public ISetAttackVisual SetAttackVisual { get; private set; }
+        
+        /// <summary>
+        /// Set the health text and color
+        /// </summary>
+        public ISetHealthVisual SetHealthVisual { get; private set; }
+        
+        /// <summary>
+        /// Set the fighting spirit, show and hide icon
+        /// </summary>
+        public ISetFightingSpiritVisual SetFightingSpiritVisual { get; private set; }
 
         private void Awake()
         {
             LoadHeroVisuals = GetComponent<ILoadHeroVisuals>();
             SetHeroFrameAndGlow = GetComponent<ISetHeroFrameAndGlow>();
+            SetArmorVisual = GetComponent<ISetArmorVisual>();
+            SetAttackVisual = GetComponent<ISetAttackVisual>();
+            SetHealthVisual = GetComponent<ISetHealthVisual>();
+            SetFightingSpiritVisual = GetComponent<ISetFightingSpiritVisual>();
         }
     }
 }

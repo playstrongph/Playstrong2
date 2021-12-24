@@ -65,6 +65,27 @@ namespace Logic
         /// to either Taunt or Normal frame.
         /// </summary>
         ISetHeroFrameAndGlow SetHeroFrameAndGlow { get; }
+        
+        /// <summary>
+        /// Set the armor text
+        /// Hide and show armor icon
+        /// </summary>
+        ISetArmorVisual SetArmorVisual { get;}
+        
+        /// <summary>
+        /// Set the attack text and color
+        /// </summary>
+        ISetAttackVisual SetAttackVisual { get; }
+        
+        /// <summary>
+        /// Set the health text and color
+        /// </summary>
+        ISetHealthVisual SetHealthVisual { get; }
+        
+        /// <summary>
+        /// Set the fighting spirit, show and hide icon
+        /// </summary>
+        ISetFightingSpiritVisual SetFightingSpiritVisual { get; }
 
     }
 }
