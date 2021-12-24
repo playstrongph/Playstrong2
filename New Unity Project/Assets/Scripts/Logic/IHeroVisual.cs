@@ -86,6 +86,11 @@ namespace Logic
         /// Set the fighting spirit, show and hide icon
         /// </summary>
         ISetFightingSpiritVisual SetFightingSpiritVisual { get; }
+        
+        /// <summary>
+        /// Sets the energy text, fill, and color
+        /// </summary>
+        ISetEnergyVisual SetEnergyVisual { get; }
 
     }
 }

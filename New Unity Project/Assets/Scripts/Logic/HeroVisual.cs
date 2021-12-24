@@ -112,6 +112,11 @@ namespace Logic
         /// Set the fighting spirit, show and hide icon
         /// </summary>
         public ISetFightingSpiritVisual SetFightingSpiritVisual { get; private set; }
+        
+        /// <summary>
+        /// Sets the energy text, fill, and color
+        /// </summary>
+        public ISetEnergyVisual SetEnergyVisual { get; private set; }
 
         private void Awake()
         {
@@ -121,6 +126,7 @@ namespace Logic
             SetAttackVisual = GetComponent<ISetAttackVisual>();
             SetHealthVisual = GetComponent<ISetHealthVisual>();
             SetFightingSpiritVisual = GetComponent<ISetFightingSpiritVisual>();
+            SetEnergyVisual = GetComponent<ISetEnergyVisual>();
         }
     }
 }
