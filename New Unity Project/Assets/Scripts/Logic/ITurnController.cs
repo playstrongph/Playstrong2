@@ -77,6 +77,11 @@ namespace Logic
         IHeroStartTurn HeroStartTurn { get; }
         
         /// <summary>
+        /// Hero End turn PHASE
+        /// </summary>
+        IHeroEndTurn HeroEndTurn { get; }
+
+        /// <summary>
         /// Add or remove heroes to the active heroes list
         /// </summary>
         ISetActiveHeroes SetActiveHeroes { get; }

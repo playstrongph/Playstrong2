@@ -128,6 +128,11 @@ namespace Logic
         public IHeroStartTurn HeroStartTurn { get; private set; }
         
         /// <summary>
+        /// Hero End Turn PHASE
+        /// </summary>
+        public IHeroEndTurn HeroEndTurn { get; private set; }
+
+        /// <summary>
         /// Add or remove heroes to the active heroes list
         /// </summary>
         public ISetActiveHeroes SetActiveHeroes { get; private set; }
@@ -140,6 +145,7 @@ namespace Logic
             BeforeHeroStartTurn = GetComponent<IBeforeHeroStartTurn>();
             HeroStartTurn = GetComponent<IHeroStartTurn>();
             SetActiveHeroes = GetComponent<ISetActiveHeroes>();
+            HeroEndTurn = GetComponent<IHeroEndTurn>();
         }
         
         /// <summary>
