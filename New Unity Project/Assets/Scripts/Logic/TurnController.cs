@@ -126,6 +126,11 @@ namespace Logic
         /// Hero Start Turn PHASE
         /// </summary>
         public IHeroStartTurn HeroStartTurn { get; private set; }
+        
+        /// <summary>
+        /// Add or remove heroes to the active heroes list
+        /// </summary>
+        public ISetActiveHeroes SetActiveHeroes { get; private set; }
 
         private void Awake()
         {
@@ -134,6 +139,7 @@ namespace Logic
             SetCurrentActiveHero = GetComponent<ISetCurrentActiveHero>();
             BeforeHeroStartTurn = GetComponent<IBeforeHeroStartTurn>();
             HeroStartTurn = GetComponent<IHeroStartTurn>();
+            SetActiveHeroes = GetComponent<ISetActiveHeroes>();
         }
         
         /// <summary>

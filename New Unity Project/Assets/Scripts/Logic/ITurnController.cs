@@ -77,6 +77,11 @@ namespace Logic
         IHeroStartTurn HeroStartTurn { get; }
         
         /// <summary>
+        /// Add or remove heroes to the active heroes list
+        /// </summary>
+        ISetActiveHeroes SetActiveHeroes { get; }
+        
+        /// <summary>
         /// First time combat start
         /// </summary>
         void StartBattle();

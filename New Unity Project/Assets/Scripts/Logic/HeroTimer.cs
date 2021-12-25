@@ -147,8 +147,10 @@ namespace Logic
                 turnController.ActiveHeroFound = true;
 
                 //Check first if hero is not in the active heroes list before adding
-                if(!activeHeroes.Contains(this.HeroLogic.Hero)) 
-                    activeHeroesList.Add(this.HeroLogic.Hero as Object);
+                //if(!activeHeroes.Contains(this.HeroLogic.Hero)) 
+                    //activeHeroesList.Add(this.HeroLogic.Hero as Object);  //TODO: Transfer this functionality to SetActiveHeroes.AddHero
+                
+                turnController.SetActiveHeroes.AddHero(this.HeroLogic.Hero);
                 
                 //Sort heroes by Highest to lowest energy
                 //logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());
@@ -159,8 +161,10 @@ namespace Logic
             if (TimerValue < timerFull)
             {
                 //Check first if hero is in the active heroes list
-                if(activeHeroes.Contains(this.HeroLogic.Hero)) 
-                    activeHeroesList.Remove(this.HeroLogic.Hero as Object);
+                //if(activeHeroes.Contains(this.HeroLogic.Hero)) 
+                    //activeHeroesList.Remove(this.HeroLogic.Hero as Object); //TODO: Transfer this functionality to SetActiveHeroes.RemoveHero
+                
+                turnController.SetActiveHeroes.RemoveHero(this.HeroLogic.Hero);
                 
                 //Sort heroes by Highest to lowest energy
                 //logicTree.AddCurrent(turnController.SortHeroesByEnergy.StartAction());

@@ -41,7 +41,8 @@ namespace Logic
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var currentActiveHero = _turnController.CurrentActiveHero;
-
+            
+            //Displays green action border, hero portrait, and hero skills
             currentActiveHero.HeroLogic.HeroActiveStatus.StatusAction(currentActiveHero);
             
             logicTree.EndSequence();
