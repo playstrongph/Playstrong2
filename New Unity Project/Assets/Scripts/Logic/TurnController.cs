@@ -131,11 +131,18 @@ namespace Logic
         /// Hero End Turn PHASE
         /// </summary>
         public IHeroEndTurn HeroEndTurn { get; private set; }
+        
+        /// <summary>
+        /// After Hero End Turn PHASE
+        /// </summary>
+        public IAfterHeroEndTurn AfterHeroEndTurn { get; private set; }
 
         /// <summary>
         /// Add or remove heroes to the active heroes list
         /// </summary>
         public ISetActiveHeroes SetActiveHeroes { get; private set; }
+        
+        
 
         private void Awake()
         {
@@ -146,6 +153,7 @@ namespace Logic
             HeroStartTurn = GetComponent<IHeroStartTurn>();
             SetActiveHeroes = GetComponent<ISetActiveHeroes>();
             HeroEndTurn = GetComponent<IHeroEndTurn>();
+            AfterHeroEndTurn = GetComponent<IAfterHeroEndTurn>();
         }
         
         /// <summary>
@@ -159,7 +167,11 @@ namespace Logic
             
         }
         
-        private IEnumerator StartHeroTimers()
+        /// <summary>
+        /// Determines the next batch of active hero/heroes
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator StartHeroTimers()
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             logicTree.AddCurrent(RunHeroTimers());

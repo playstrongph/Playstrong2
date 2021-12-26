@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using JondiBranchLogic;
 using UnityEngine;
 
@@ -50,6 +51,12 @@ namespace Logic
         ///  Returns list of active heroes
         /// </summary>
         List<IHero> ActiveHeroes { get; }
+
+        /// <summary>
+        /// Determines the next batch of active hero/heroes
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator StartHeroTimers();
         
         /// <summary>
         ///  Reference to sort heroes by energy
@@ -80,6 +87,11 @@ namespace Logic
         /// Hero End turn PHASE
         /// </summary>
         IHeroEndTurn HeroEndTurn { get; }
+        
+        /// <summary>
+        /// After hero end turn phase
+        /// </summary>
+        IAfterHeroEndTurn AfterHeroEndTurn { get; }
 
         /// <summary>
         /// Add or remove heroes to the active heroes list

@@ -21,27 +21,31 @@ namespace Logic
         public IEnumerator StartAction()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
-            var currentActiveHero = _turnController.CurrentActiveHero;
+            //var currentActiveHero = _turnController.CurrentActiveHero;
             
             //TODO: Visual Delay in Seconds
             
-            //TODO: EVENT - HeroEndTurn
+            //TODO: EventHeroEndTurn
             
-            //Set hero status to Inactive
-            currentActiveHero.HeroLogic.SetHeroActiveStatus.InactiveHero();
+            //Set hero status to Inactive - Transferred to AfterHeroEndTurn
+            //currentActiveHero.HeroLogic.SetHeroActiveStatus.InactiveHero();
             
-            //Hide green border, portrait, and skills
-            currentActiveHero.HeroLogic.HeroActiveStatus.StatusAction(currentActiveHero);
+            //Hide green border, portrait, and skills - Transferred to AfterHeroEndTurn
+            //currentActiveHero.HeroLogic.HeroActiveStatus.StatusAction(currentActiveHero);
 
-            //TODO: StartNextHeroTurn
-
+            //Call AfterHeroEndTurn PHASE
+            logicTree.AddCurrent(_turnController.AfterHeroEndTurn.StartAction());
+            
+           
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
-       
 
         
+
+
+
+
+
     }
 }
