@@ -142,7 +142,10 @@ namespace Logic
         /// </summary>
         public ISetActiveHeroes SetActiveHeroes { get; private set; }
         
-        
+        /// <summary>
+        /// Determines the next active hero from the active heroes list 
+        /// </summary>
+        public IStartNextHeroTurn StartNextHeroTurn { get; private set; }
 
         private void Awake()
         {
@@ -154,6 +157,7 @@ namespace Logic
             SetActiveHeroes = GetComponent<ISetActiveHeroes>();
             HeroEndTurn = GetComponent<IHeroEndTurn>();
             AfterHeroEndTurn = GetComponent<IAfterHeroEndTurn>();
+            StartNextHeroTurn = GetComponent<IStartNextHeroTurn>();
         }
         
         /// <summary>

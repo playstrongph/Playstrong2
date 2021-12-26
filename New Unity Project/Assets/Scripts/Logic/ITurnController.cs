@@ -99,6 +99,11 @@ namespace Logic
         ISetActiveHeroes SetActiveHeroes { get; }
         
         /// <summary>
+        /// Determines the next active hero from the active heroes list 
+        /// </summary>
+        IStartNextHeroTurn StartNextHeroTurn { get; }
+
+        /// <summary>
         /// First time combat start
         /// </summary>
         void StartBattle();

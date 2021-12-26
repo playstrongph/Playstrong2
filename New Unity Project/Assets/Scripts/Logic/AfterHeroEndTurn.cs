@@ -38,25 +38,16 @@ namespace Logic
             
             //TODO - IEnumerator Start Next Active Hero
             
-            //TEST
-            logicTree.AddCurrent(StartNextHeroTurn());
+            //Determines the next active hero from the active heroes list 
+            logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
             
             logicTree.EndSequence();
             yield return null;
             
         }
         
-        private IEnumerator StartNextHeroTurn()
-        {
-            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
-
-            logicTree.AddCurrent(_turnController.ActiveHeroes.Count > 0
-                ? _turnController.SetCurrentActiveHero.StartAction()
-                : _turnController.StartHeroTimers());
-
-            logicTree.EndSequence();
-            yield return null;
-        }
+        
+        
 
 
     }
