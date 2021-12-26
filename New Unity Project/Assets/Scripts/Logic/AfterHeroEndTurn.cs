@@ -36,8 +36,6 @@ namespace Logic
         
             //TODO - UpdateEndTurnStatusEffects
             
-            //TODO - IEnumerator Start Next Active Hero
-            
             //Determines the next active hero from the active heroes list 
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
             

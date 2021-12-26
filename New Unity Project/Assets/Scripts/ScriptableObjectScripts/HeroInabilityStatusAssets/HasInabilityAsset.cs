@@ -6,10 +6,12 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
 {
     [CreateAssetMenu(fileName = "HasInability", menuName = "Assets/HeroInabilityStatus/HasInability")]
     public class HasInabilityAsset : HeroInabilityStatusAsset
-    {
+    {   
         public override IEnumerator StatusAction(ITurnController turnController)
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
+
+            logicTree.AddCurrent(turnController.AfterHeroEndTurn.StartAction());
 
             logicTree.EndSequence();
             yield return null;
