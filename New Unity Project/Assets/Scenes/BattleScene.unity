@@ -121,18 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &52450754 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 52450754, guid: 079ac36190c434c45b3c706db811e944,
+--- !u!4 &52450755 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
     type: 3}
   m_PrefabInstance: {fileID: 3928374107724113584}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9427766bdd3fe4790966753f0a6d9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &255753305
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +225,7 @@ Transform:
   - {fileID: 1458600386}
   - {fileID: 795551809}
   - {fileID: 1507737919}
+  - {fileID: 52450755}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -961,52 +956,22 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 492938962}
     m_Modifications:
     - target: {fileID: 3928374107671671665, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_Name
       value: EndTurnButton
       objectReference: {fileID: 0}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 52450754}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartAction
-      objectReference: {fileID: 0}
-    - target: {fileID: 3928374107671671666, guid: 079ac36190c434c45b3c706db811e944,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 270.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
@@ -1016,17 +981,17 @@ PrefabInstance:
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3928374107671671667, guid: 079ac36190c434c45b3c706db811e944,
         type: 3}

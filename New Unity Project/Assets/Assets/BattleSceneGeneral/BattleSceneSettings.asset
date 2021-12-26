@@ -22,8 +22,10 @@ MonoBehaviour:
     type: 3}
   skillPrefab: {fileID: 359849407904444818, guid: ac3fb736160c8c14cbbe8fe3d1a573de,
     type: 3}
-  heroSkills: {fileID: 1607392949, guid: decb5a90488163c4dac1257914db9d53, type: 3}
-  heroPortrait: {fileID: 6415171892187465155, guid: 8f6e949bbff241d479c4a3e038f68fe9,
+  heroSkillsPrefab: {fileID: 1607392949, guid: decb5a90488163c4dac1257914db9d53, type: 3}
+  heroPortraitPrefab: {fileID: 6415171892187465155, guid: 8f6e949bbff241d479c4a3e038f68fe9,
+    type: 3}
+  endTurnButtonPrefab: {fileID: 52450754, guid: 079ac36190c434c45b3c706db811e944,
     type: 3}
   allyHeroesPosition: {x: 0, y: -53.3, z: 0}
   enemyHeroesPosition: {x: 0, y: 64.5, z: 0}
@@ -33,6 +35,7 @@ MonoBehaviour:
   displayPortraitPosition: {x: 0, y: 160, z: 0}
   skillPreviewPosition: {x: -240, y: 0, z: 0}
   heroPreviewPosition: {x: -240, y: 100, z: 0}
+  endTurnButtonPosition: {x: 270.3, y: 18.7, z: 0}
   coroutineTreesAsset: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4,
     type: 2}
   mainPlayerTeamHeroes: {fileID: 11400000, guid: 56bd71901470ff748a055834eda4bd41,

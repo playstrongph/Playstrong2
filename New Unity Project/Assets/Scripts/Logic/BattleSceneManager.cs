@@ -47,6 +47,11 @@ namespace Logic
         /// Reference to the game board
         /// </summary>
         public IGameBoard GameBoard { get; set; }
+        
+        /// <summary>
+        /// Reference to the end turn button
+        /// </summary>
+        public IEndTurnButton EndTurnButton { get; set; }
 
         /// <summary>
         /// Local variable for BranchLogic

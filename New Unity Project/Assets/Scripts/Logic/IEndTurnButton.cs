@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using UnityEngine;
+
+namespace Logic
 {
     public interface IEndTurnButton
     {
@@ -11,5 +13,10 @@
         /// Ends the current active hero turn
         /// </summary>
         void StartAction();
+        
+        /// <summary>
+        /// EndTurnButton game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
     }
 }

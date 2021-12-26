@@ -10,6 +10,12 @@ namespace Logic
         public IBattleSceneManager BattleSceneManager { get; set; }
         
         /// <summary>
+        /// Return this as a GameObject
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
+
+
+        /// <summary>
         /// Ends the current active hero turn
         /// </summary>
         public void StartAction()
@@ -18,6 +24,8 @@ namespace Logic
 
             logicTree.AddSibling(BattleSceneManager.TurnController.HeroEndTurn.StartAction());
         }
+        
+        
 
     }
 }

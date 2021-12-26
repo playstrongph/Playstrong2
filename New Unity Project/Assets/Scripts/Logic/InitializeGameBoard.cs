@@ -25,9 +25,31 @@ namespace Logic
             //Set references
             gameBoard.BattleSceneManager = BattleSceneManager;
             BattleSceneManager.GameBoard = gameBoard;
+            
+            //Create end turn button
+            CreateEndTurnButton();
 
             logicTree.EndSequence();
             yield return null;
         }
+
+        private void CreateEndTurnButton()
+        {
+            var endTurnButtonPrefab = BattleSceneManager.BattleSceneSettings.EndTurnButtonPrefab.ThisGameObject;
+            var endTurnButtonObject = Instantiate(endTurnButtonPrefab, BattleSceneManager.ThisGameObject.transform);
+            var endTurnButton = endTurnButtonObject.GetComponent<IEndTurnButton>();
+            
+            //Set board position
+            endTurnButtonObject.transform.position = BattleSceneManager.BattleSceneSettings.EndTurnButtonPosition;
+            
+            //Remove 'clone' from the name
+            endTurnButtonObject.name = endTurnButtonPrefab.name;
+            
+            //Set references
+            endTurnButton.BattleSceneManager = BattleSceneManager;
+            BattleSceneManager.EndTurnButton = endTurnButton;
+
+        }
+
     }
 }

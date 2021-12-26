@@ -22,7 +22,7 @@ namespace Logic
             
             var portraits = _hero.Player.Portraits;
             var displayPortraits = _hero.Player.DisplayPortraits;
-            var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortrait.ThisGameObject;
+            var portraitPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroPortraitPrefab.ThisGameObject;
 
             //Create hero portrait
             var heroPortraitObject = Instantiate(portraitPrefab, portraits.ThisGameObject.transform);

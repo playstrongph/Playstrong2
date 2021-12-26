@@ -9,6 +9,8 @@ namespace ScriptableObjectScripts
     [CreateAssetMenu(fileName = "BattleSceneSettings", menuName = "Assets/BattleSceneGeneral/BattleSceneSettings")]
     public class BattleSceneSettingsAsset : ScriptableObject, IBattleSceneSettingsAsset
     {
+        #region PREFABS
+
         /// <summary>
         /// Reference for instantiating turn controller prefab
         /// </summary>
@@ -71,23 +73,39 @@ namespace ScriptableObjectScripts
         /// Reference to hero skills prefab
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroSkills))]
-        private Object heroSkills;
-        public IHeroSkills HeroSkills
+        private Object heroSkillsPrefab;
+        public IHeroSkills HeroSkillsPrefab
         {
-            get => heroSkills as IHeroSkills;
-            private set => heroSkills = value as Object;
+            get => heroSkillsPrefab as IHeroSkills;
+            private set => heroSkillsPrefab = value as Object;
         }
         
         /// <summary>
         /// Reference to portrait
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroPortrait))]
-        private Object heroPortrait;
-        public IHeroPortrait HeroPortrait
+        private Object heroPortraitPrefab;
+        public IHeroPortrait HeroPortraitPrefab
         {
-            get => heroPortrait as IHeroPortrait;
-            private set => heroPortrait = value as Object;
+            get => heroPortraitPrefab as IHeroPortrait;
+            private set => heroPortraitPrefab = value as Object;
         }
+        
+        /// <summary>
+        /// End turn button prefab 
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IEndTurnButton))]
+        private Object endTurnButtonPrefab;
+        public IEndTurnButton EndTurnButtonPrefab
+        {
+            get => endTurnButtonPrefab as IEndTurnButton;
+            private set => endTurnButtonPrefab = value as Object;
+        }
+
+
+        #endregion
+        
+        
 
         /// <summary>
         /// Board location of ally heroes
@@ -173,8 +191,18 @@ namespace ScriptableObjectScripts
         {
             get => heroPreviewPosition;
             private set => heroPreviewPosition = value;
-        }
+        }       
         
+        /// <summary>
+        /// End turn button board position
+        /// </summary>
+        [SerializeField] private Vector3 endTurnButtonPosition;
+        public Vector3 EndTurnButtonPosition
+        {
+            get => endTurnButtonPosition;
+            private set => endTurnButtonPosition = value;
+        }
+
         /// <summary>
         /// Reference to coroutine trees asset
         /// </summary>

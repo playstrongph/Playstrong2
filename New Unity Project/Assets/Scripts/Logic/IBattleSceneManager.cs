@@ -34,5 +34,10 @@ namespace Logic
         /// Reference to the game board
         /// </summary>
         IGameBoard GameBoard { get; set; }
+        
+        /// <summary>
+        /// Reference to the end turn button
+        /// </summary>
+        IEndTurnButton EndTurnButton { get; set; }
     }
 }

@@ -41,13 +41,18 @@ namespace ScriptableObjectScripts
         /// Interface access to to skill prefab.
         /// Set in the inspector.
         /// </summary>
-        IHeroSkills HeroSkills { get; }
+        IHeroSkills HeroSkillsPrefab { get; }
         
         /// <summary>
         /// Interface access to to hero portrait prefab.
         /// Set in the inspector.
         /// </summary>
-        IHeroPortrait HeroPortrait { get; }
+        IHeroPortrait HeroPortraitPrefab { get; }
+        
+        /// <summary>
+        /// End turn button prefab
+        /// </summary>
+        IEndTurnButton EndTurnButtonPrefab { get; }
 
         //TRANSFORMS
         
@@ -99,6 +104,11 @@ namespace ScriptableObjectScripts
         /// </summary>
         Vector3 HeroPreviewPosition { get; }
         
+        /// <summary>
+        /// End turn button board position
+        /// </summary>
+        Vector3 EndTurnButtonPosition { get; }
+
         /// <summary>
         /// Interface access to coroutine tress asset
         /// </summary>

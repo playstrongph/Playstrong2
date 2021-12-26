@@ -17,7 +17,7 @@ namespace Logic
 
         public void StartAction(IHeroAsset heroAsset)
         {
-            var heroSkillsPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroSkills.ThisGameObject;
+            var heroSkillsPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroSkillsPrefab.ThisGameObject;
             var skillPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.SkillPrefab.ThisGameObject;
             var heroSkillsTransform = _hero.Player.SkillsAllHeroes.ThisGameObject.transform;
             var displaySkillsTransform = _hero.Player.DisplaySkills.ThisGameObject.transform;
