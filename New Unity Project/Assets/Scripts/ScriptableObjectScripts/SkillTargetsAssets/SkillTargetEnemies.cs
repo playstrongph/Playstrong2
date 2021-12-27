@@ -11,5 +11,23 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
         {
             return new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
         }
+        /// <summary>
+        /// Displays the enemy glow - red
+        /// </summary>
+        /// <param name="hero"></param>
+        public override void ShowHeroGlow(IHero hero)
+        {
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableEnemyLightAndGlow();
+        }
+        
+        /// <summary>
+        /// Hides the enemy glow - red
+        /// </summary>
+        /// <param name="hero"></param>
+        public override void HideHeroGlow(IHero hero)
+        {
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.DisableEnemyLightAndGlow();
+        }
+
     }
 }

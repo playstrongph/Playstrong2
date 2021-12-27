@@ -17,3 +17,4 @@ MonoBehaviour:
   skillIcon: {fileID: -1275177327444788608, guid: 1e34d481195a8b94caf686256c37b8fa,
     type: 3}
   baseCooldown: 99
+  skillTargetsAsset: {fileID: 11400000, guid: 368d65235b6d6424a90bd6768217a078, type: 2}

@@ -21,6 +21,29 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
 
             return new List<IHero>();
         }
+        
+        /// <summary>
+        /// Displays hero glow for allies - yellow, enemies - red
+        /// </summary>
+        public virtual void ShowHeroGlow(IHero hero)
+        {
+            //Ally Glow
+            //Enemy Glow
+            //No Glow
+        }
+        
+        /// <summary>
+        /// Hides the hero glow for allies - yellow, enemies - red
+        /// </summary>
+        public virtual void HideHeroGlow(IHero hero)
+        {
+            //Ally Glow
+            //Enemy Glow
+            //No Glow
+        }
+
+
+
 
     }
 }

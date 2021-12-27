@@ -16,5 +16,25 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
             
             return otherAllies;
         }
+        
+        /// <summary>
+        /// Displays the ally glow - yellow
+        /// </summary>
+        /// <param name="hero"></param>
+        public override void ShowHeroGlow(IHero hero)
+        {
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableAllyLightAndGlow();
+            
+        }
+        
+        /// <summary>
+        /// Hides the ally glow - yellow
+        /// </summary>
+        /// <param name="hero"></param>
+        public override void HideHeroGlow(IHero hero)
+        {
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.DisableAllyLightAndGlow();
+        }
+
     }
 }
