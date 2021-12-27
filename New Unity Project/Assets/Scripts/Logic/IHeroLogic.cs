@@ -25,6 +25,11 @@ namespace Logic
         IHeroAttributes HeroAttributes { get; }
         
         /// <summary>
+        /// Other hero attributes reference
+        /// </summary>
+        IOtherHeroAttributes OtherHeroAttributes { get; }
+
+        /// <summary>
         /// Set attack reference
         /// </summary>
         ISetAttack SetAttack { get; }

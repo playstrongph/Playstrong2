@@ -9,7 +9,17 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
     {
         public override List<IHero> HeroTargets(IHero hero)
         {
-            return new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
+            var allEnemies = new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
+            var validTargets = new List<IHero>();
+
+            foreach (var enemyHero in allEnemies)
+            {
+                var attackTargetResistance = enemyHero.HeroLogic.OtherHeroAttributes.AttackTargetAssistance;
+                if (attackTargetResistance <= 0 )
+                    validTargets.Add(enemyHero);
+            }
+            
+            return validTargets;
         }
         /// <summary>
         /// Displays the enemy glow - red

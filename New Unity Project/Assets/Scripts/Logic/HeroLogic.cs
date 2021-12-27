@@ -7,8 +7,6 @@ namespace Logic
 {
     public class HeroLogic : MonoBehaviour, IHeroLogic
     {
-        
-        
         /// <summary>
         /// Reference to Hero where other
         /// components can be accessed
@@ -54,6 +52,11 @@ namespace Logic
         /// Hero attributes reference
         /// </summary>
         public IHeroAttributes HeroAttributes { get; private set; }
+        
+        /// <summary>
+        /// Other hero attributes reference
+        /// </summary>
+        public IOtherHeroAttributes OtherHeroAttributes { get; private set; }
 
         /// <summary>
         /// Set attack reference
@@ -110,6 +113,7 @@ namespace Logic
         private void Awake()
         {
             HeroAttributes = GetComponent<IHeroAttributes>();
+            OtherHeroAttributes = GetComponent<IOtherHeroAttributes>();
             SetAttack = GetComponent<ISetAttack>();
             SetArmor = GetComponent<ISetArmor>();
             SetSpeed = GetComponent<ISetSpeed>();
