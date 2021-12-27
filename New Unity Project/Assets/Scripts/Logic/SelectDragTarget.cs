@@ -23,20 +23,12 @@ namespace Logic
 
         private void OnMouseDown()
         {
-            transform.localPosition = Vector3.zero;
-            
             EnableTargetVisuals();
-            SkillTargetCollider.Draggable.EnableDraggable();
-            ShowLineAndTarget();
         }
         
         private void OnMouseUp()
         {
-            transform.localPosition = Vector3.zero;
-            
             DisableTargetVisuals();
-            SkillTargetCollider.Draggable.DisableDraggable();
-            
         }
         
         
@@ -81,23 +73,36 @@ namespace Logic
 
 
         /// <summary>
-        /// Enables the targeting component visuals - cross hair, triangle, and line renderer
+        /// Enables the targeting component visuals - cross hair, triangle, and line renderer.
+        /// Also enables draggable. 
         /// </summary>
         private void EnableTargetVisuals()
         {
+            //Resets local position to zero
+            transform.localPosition = Vector3.zero;
+            
             SkillTargetCollider.CrossHair.SetActive(true);
             SkillTargetCollider.Triangle.SetActive(true);
             SkillTargetCollider.TargetLine.gameObject.SetActive(true);
+            
+            SkillTargetCollider.Draggable.EnableDraggable();
+            
+            ShowLineAndTarget();
         }
         
         /// <summary>
         /// Disables the targeting component visuals - cross hair, triangle, and line renderer
+        /// Also disables draggable.
         /// </summary>
         private void DisableTargetVisuals()
         {
+            transform.localPosition = Vector3.zero;
+            
             SkillTargetCollider.CrossHair.SetActive(false);
             SkillTargetCollider.Triangle.SetActive(false);
             SkillTargetCollider.TargetLine.gameObject.SetActive(false);
+            
+            SkillTargetCollider.Draggable.DisableDraggable();
         }
     }
 }
