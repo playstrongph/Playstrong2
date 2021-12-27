@@ -63,11 +63,11 @@ namespace Logic
         /// target Collider (Box Collider) reference
         /// set in Inspector
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ITargetCollider))]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroTargetCollider))]
         private Object targetCollider;
-        public ITargetCollider TargetCollider
+        public IHeroTargetCollider TargetCollider
         {
-            get => targetCollider as ITargetCollider;
+            get => targetCollider as IHeroTargetCollider;
             set => targetCollider = value as Object;
         }
         

@@ -1,6 +1,6 @@
 namespace Logic
 {
-    public interface ITargetCollider
+    public interface IHeroTargetCollider
     {
         /// <summary>
         /// Interface reference to Hero

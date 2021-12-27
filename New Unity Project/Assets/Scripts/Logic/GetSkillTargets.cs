@@ -6,6 +6,7 @@ namespace Logic
 {
     public class GetSkillTargets : MonoBehaviour, IGetSkillTargets
     {
+        
         private ISkillTargetCollider _skillTargetCollider;
 
         private void Awake()

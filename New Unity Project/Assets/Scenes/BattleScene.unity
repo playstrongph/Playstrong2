@@ -244,6 +244,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill
       objectReference: {fileID: 0}
+    - target: {fileID: 2991085503959968117, guid: ac3fb736160c8c14cbbe8fe3d1a573de,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac3fb736160c8c14cbbe8fe3d1a573de, type: 3}
 --- !u!224 &69477366 stripped
@@ -761,11 +766,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
-    - target: {fileID: 7108924849454746134, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
-        type: 3}
-      propertyPath: targetAttackResistance
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7962901023046380151, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
         type: 3}
       propertyPath: m_Name

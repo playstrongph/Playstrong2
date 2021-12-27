@@ -8,11 +8,11 @@ namespace Logic
     /// </summary>
     public class DisplayHeroPortraitAndSkills : MonoBehaviour
     {
-        private ITargetCollider _targetCollider;
+        private IHeroTargetCollider _targetCollider;
 
         private void Awake()
         {
-            _targetCollider = GetComponent<ITargetCollider>();
+            _targetCollider = GetComponent<IHeroTargetCollider>();
         }
 
         private void OnMouseDown()

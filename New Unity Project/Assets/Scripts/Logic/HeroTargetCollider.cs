@@ -3,7 +3,7 @@ using Object = UnityEngine.Object;
 
 namespace Logic
 {
-    public class TargetCollider : MonoBehaviour, ITargetCollider
+    public class HeroTargetCollider : MonoBehaviour, IHeroTargetCollider
     {
         /// <summary>
         /// Reference to Hero where other

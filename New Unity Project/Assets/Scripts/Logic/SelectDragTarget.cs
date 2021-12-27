@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace Logic
 {
@@ -7,9 +8,23 @@ namespace Logic
     {
         private ISkillTargetCollider SkillTargetCollider { get; set; }
         
-        private delegate void DisplayAction(Vector3 x, Vector3 y);
+        //private delegate void DisplayAction(Vector3 x, Vector3 y);
+        //private List<DisplayAction> _displayActions = new List<DisplayAction>();
         
-        private List<DisplayAction> _displayActions = new List<DisplayAction>();
+        /// <summary>
+        /// List of valid hero targets taken during
+        /// on mouse down event
+        /// </summary>
+        private List<IHero> _validTargets;
+        
+        /// <summary>
+        /// The intended target hero for the skill being used
+        /// </summary>
+        private IHero _skillTargetHero;
+        
+        
+        
+        
 
         private void Awake()
         {
@@ -22,8 +37,12 @@ namespace Logic
         }
 
         private void OnMouseDown()
-        {
+        {   
+            //Displays the hero glows of the valid targets
             EnableTargetVisuals();
+            
+            //Sets the _validTargets list elements
+            SetValidTargets();
         }
         
         private void OnMouseUp()
@@ -32,6 +51,49 @@ namespace Logic
         }
         
         
+        /// <summary>
+        /// If the target is valid, sets the target hero and intended skill action
+        /// (both skill and target hero are 'null' by default
+        /// </summary>
+        private void GetRaycastHits()
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            //Test if this camera referencing works
+            //var ray = SkillTargetCollider.TargetCanvas.worldCamera.ScreenPointToRay(Input.mousePosition);
+            
+            // ReSharper disable once Unity.PreferNonAllocApi
+            var hits = Physics.RaycastAll(ray);
+
+            foreach (var hit in hits)
+            {
+                if (hit.transform.GetComponent<IHeroTargetCollider>() != null)
+                {
+                    var targetHero = hit.transform.GetComponent<IHeroTargetCollider>();
+
+                    if (_validTargets.Contains(targetHero.Hero))
+                    {
+                        //set the skill targetHero
+                        _skillTargetHero = targetHero.Hero;
+                        
+                        //set useSkill
+                    }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Returns a list of valid targets
+        /// </summary>
+        private void SetValidTargets()
+        {
+            _validTargets = SkillTargetCollider.GetSkillTargets.GetValidTargets();
+        }
+
+
+
+        #region DRAGTARGETVISUALS
+
         /// <summary>
         /// Displays the line and cross hair when the mouse is dragged a certain distance
         /// from the skill
@@ -104,5 +166,7 @@ namespace Logic
             
             SkillTargetCollider.Draggable.DisableDraggable();
         }
+        
+        #endregion
     }
 }

@@ -8,7 +8,7 @@ namespace Logic
     /// </summary>
     public class DisplayHeroPreview : MonoBehaviour, IDisplayHeroPreview
     {
-        private ITargetCollider _targetCollider;
+        private IHeroTargetCollider _targetCollider;
         
         /// <summary>
         /// Amount of delay before Hero Preview is shown
@@ -18,7 +18,7 @@ namespace Logic
         private bool _enablePreview = false;
         private void Awake()
         {
-            _targetCollider = GetComponent<ITargetCollider>();
+            _targetCollider = GetComponent<IHeroTargetCollider>();
         }
         
         /// <summary>

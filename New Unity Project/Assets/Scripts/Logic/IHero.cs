@@ -34,7 +34,7 @@ namespace Logic
         /// Interface access to Hero's target collider
         /// "Set" parameter is not used
         /// </summary>
-        ITargetCollider TargetCollider { get; }
+        IHeroTargetCollider TargetCollider { get; }
 
         /// <summary>
         /// Interface access to coroutine trees scriptable Object
