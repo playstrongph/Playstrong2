@@ -44,7 +44,7 @@ namespace Logic
         /// Interface reference to skill's hero
         /// get and set both used
         /// </summary>
-        IHero Hero { get; set; }
+        IHero CasterHero { get; set; }
         
         
     }

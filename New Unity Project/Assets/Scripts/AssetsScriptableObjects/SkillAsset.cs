@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableObjectScripts.SkillTargetsAssets;
 using UnityEngine;
 
 namespace AssetsScriptableObjects   
@@ -61,7 +62,19 @@ namespace AssetsScriptableObjects
             get => baseCooldown;
             private set => baseCooldown = value;
         }
-            
         
+        /// <summary>
+        /// Skill Targets 
+        /// </summary>
+        [Header("Skill Targets")] [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillTargetsAsset))]
+        private ScriptableObject skillTargetsAsset;
+        public ISkillTargetsAsset SkillTargetsAsset
+        {
+            get => skillTargetsAsset as ISkillTargetsAsset;
+            private set => skillTargetsAsset = value as ScriptableObject;
+        }
+
+
+
     }
 }

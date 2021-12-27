@@ -1,4 +1,5 @@
 ﻿using JondiBranchLogic;
+using ScriptableObjectScripts.SkillTargetsAssets;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -84,15 +85,15 @@ namespace Logic
         /// Reference to skill target collider
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
-        private Object hero;
+        private Object casterHero;
         
-        public IHero Hero
+        public IHero CasterHero
         {
-            get => hero as IHero;
-            set => hero = value as Object;
+            get => casterHero as IHero;
+            set => casterHero = value as Object;
         }
-        
-        
+
+
         /// <summary>
         /// Returns this as a game object
         /// </summary>

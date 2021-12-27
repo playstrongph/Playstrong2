@@ -223,7 +223,7 @@ MonoBehaviour:
   skillTargetCollider: {fileID: 6789244950351700365}
   coroutineTrees: {fileID: 11400000, guid: 0b97778588f32f2498c6a293193e56c4, type: 2}
   skillName: 
-  hero: {fileID: 0}
+  casterHero: {fileID: 0}
 --- !u!1 &359849407772675572
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   baseCooldown: 0
+  skillTargets: {fileID: 0}
 --- !u!114 &1344746493
 MonoBehaviour:
   m_ObjectHideFlags: 0

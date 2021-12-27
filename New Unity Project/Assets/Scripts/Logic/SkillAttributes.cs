@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectScripts.SkillTargetsAssets;
+using UnityEngine;
 
 namespace Logic
 {
@@ -31,5 +32,17 @@ namespace Logic
             get => baseCooldown;
             set => baseCooldown = value;
         }
+        
+        /// <summary>
+        /// Skill valid targets - allies, enemies, other allies, or none (passive skills))
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillTargetsAsset))]
+        private ScriptableObject skillTargets;
+        public ISkillTargetsAsset SkillTargets
+        {
+            get => skillTargets as ISkillTargetsAsset;
+            set => skillTargets = value as ScriptableObject;
+        }
+
     }
 }

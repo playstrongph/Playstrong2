@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableObjectScripts.SkillTargetsAssets;
 using UnityEngine;
 
 namespace AssetsScriptableObjects
@@ -24,6 +25,11 @@ namespace AssetsScriptableObjects
         /// </summary>
         int BaseCooldown { get; }
         
-       
+        /// <summary>
+        /// Skill targets asset
+        /// </summary>
+        ISkillTargetsAsset SkillTargetsAsset { get; }
+
+
     }
 }

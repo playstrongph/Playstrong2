@@ -55,8 +55,8 @@ namespace Logic
                 displaySkill.SkillName = skillAsset.SkillName;
                 
                 //Set hero reference
-                skill.Hero = _hero;
-                displaySkill.Hero = _hero;
+                skill.CasterHero = _hero;
+                displaySkill.CasterHero = _hero;
 
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);

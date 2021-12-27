@@ -18,7 +18,7 @@ namespace Logic
         /// <param name="skillAsset"></param>
         public void StartAction(ISkillAsset skillAsset)
         {
-            var skillPreviewTransform = _skillPreview.Skill.Hero.Player.HeroAndSkillPreviews.ThisGameObject.transform;
+            var skillPreviewTransform = _skillPreview.Skill.CasterHero.Player.HeroAndSkillPreviews.ThisGameObject.transform;
             
             //Set skill preview details
             _skillPreview.GraphicImage.sprite = skillAsset.SkillIcon;
