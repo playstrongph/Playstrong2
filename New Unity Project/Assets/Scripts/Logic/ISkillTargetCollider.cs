@@ -41,6 +41,12 @@ namespace Logic
         IDraggable Draggable { get; }
         
         /// <summary>
+        /// Get Skill Targets component reference
+        /// </summary>
+        IGetSkillTargets GetSkillTargets { get; }
+
+
+        /// <summary>
         /// Reference to skill target collider as a game object
         /// </summary>
         GameObject ThisGameObject { get; }

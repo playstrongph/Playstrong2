@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class GetSkillTargets : MonoBehaviour
+    public class GetSkillTargets : MonoBehaviour, IGetSkillTargets
     {
         private ISkillTargetCollider _skillTargetCollider;
 
@@ -12,7 +12,11 @@ namespace Logic
         {
             _skillTargetCollider = GetComponent<ISkillTargetCollider>();
         }
-
+        
+        /// <summary>
+        /// Returns a list of valid skill target heroes
+        /// </summary>
+        /// <returns></returns>
         public List<IHero> GetValidTargets()
         {
             var skill = _skillTargetCollider.Skill;

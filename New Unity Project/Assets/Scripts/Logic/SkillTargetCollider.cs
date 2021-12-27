@@ -64,8 +64,7 @@ namespace Logic
         /// Reference to display skill preview
         /// </summary>
         public IDisplaySkillPreview DisplaySkillPreview { get; private set; }
-        
-        
+
         /// <summary>
         /// Reference to select drag target
         /// </summary>
@@ -77,6 +76,11 @@ namespace Logic
         public IDraggable Draggable { get; private set; }
         
         /// <summary>
+        /// Get skill targets component reference
+        /// </summary>
+        public IGetSkillTargets GetSkillTargets { get; private set; }
+
+        /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
@@ -86,6 +90,7 @@ namespace Logic
             DisplaySkillPreview = GetComponent<IDisplaySkillPreview>();
             SelectDragTarget = GetComponent<ISelectDragTarget>();
             Draggable = GetComponent<IDraggable>();
+            GetSkillTargets = GetComponent<IGetSkillTargets>();
         }
     }
 }
