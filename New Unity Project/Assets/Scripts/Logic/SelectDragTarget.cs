@@ -89,6 +89,25 @@ namespace Logic
         {
             _validTargets = SkillTargetCollider.GetSkillTargets.GetValidTargets();
         }
+        
+        /// <summary>
+        /// Applies skill effect to the target hero and ends the hero turn
+        /// </summary>
+        private void UseSkill()
+        {
+            var casterHero = SkillTargetCollider.Skill.CasterHero;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: SetUsingActiveOrBasicSkillStatus IEnumerator
+            //TODO: ResetSkillCooldown IEnumerator
+            //TODO: UseSkillEffect IEnumerator
+            //TODO: UpdateSkillReadiness IEnumerator
+            
+            //End Hero Turn
+            logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
+
+            //TODO: SetUsedLastTurnSkillStatus IEnumerator
+        }
 
 
 
