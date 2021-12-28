@@ -29,11 +29,17 @@ namespace Logic
         /// Loads the skill attributes from the skill asset
         /// </summary>
         public ILoadSkillAttributes LoadSkillAttributes { get; private set; }
+        
+        /// <summary>
+        /// Updates the skill cooldown based on cooldown type
+        /// </summary>
+        public IUpdateSkillCooldown UpdateSkillCooldown { get; private set; }
 
         private void Awake()
         {
             SkillAttributes = GetComponent<ISkillAttributes>();
             LoadSkillAttributes = GetComponent<ILoadSkillAttributes>();
+            UpdateSkillCooldown = GetComponent<IUpdateSkillCooldown>();
         }
     }
 }

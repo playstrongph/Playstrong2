@@ -16,5 +16,10 @@
         /// Loads the skill attributes from the skill asset
         /// </summary>
         ILoadSkillAttributes LoadSkillAttributes { get; }
+        
+        /// <summary>
+        ///  Updates the skill cooldown based on cooldown type
+        /// </summary>
+        IUpdateSkillCooldown UpdateSkillCooldown { get; }
     }
 }

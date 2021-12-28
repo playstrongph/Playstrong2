@@ -14,7 +14,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         public override void ReduceSkillCooldown(ISkill skill, int counter)
         {
-            //TODO: SkillLogic.UpdateSkillCooldown
+            skill.SkillLogic.UpdateSkillCooldown.DecreaseCooldown(counter);
         }   
     }
 }
