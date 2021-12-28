@@ -19,8 +19,9 @@ namespace Logic
         
         /// <summary>
         /// The intended target hero for the skill being used
+        /// reset to null when target selected is not valid
         /// </summary>
-        private IHero _skillTargetHero;
+        private IHero _validSkillTargetHero;
 
         private void Awake()
         {
@@ -57,9 +58,10 @@ namespace Logic
         private void UseSkillOnTargetHero()
         {   
             //Set _skillTargetHero to either null or a valid target
-            GetRaycastHits();
+            SetValidTargetHero();
             
-            if(_skillTargetHero != null)
+            //if there is a valid target
+            if(_validSkillTargetHero != null)
                 UseSkill();
         }
 
@@ -68,7 +70,7 @@ namespace Logic
         /// If the target is valid, sets the target hero and intended skill action
         /// (both skill and target hero are 'null' by default)
         /// </summary>
-        private void GetRaycastHits()
+        private void SetValidTargetHero()
         {
             Debug.Assert(Camera.main != null, "Camera.main != null");
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -80,9 +82,10 @@ namespace Logic
             {
                 if (hit.transform.GetComponent<IHeroTargetCollider>() != null)
                 {
-                    var targetHero = hit.transform.GetComponent<IHeroTargetCollider>();
-            
-                    _skillTargetHero = _validTargets.Contains(targetHero.Hero) ? targetHero.Hero : null;
+                    var targetHeroCollider = hit.transform.GetComponent<IHeroTargetCollider>();
+                    
+                    //reset target hero to null if there is no valid target
+                    _validSkillTargetHero = _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
                 }
             }
 
