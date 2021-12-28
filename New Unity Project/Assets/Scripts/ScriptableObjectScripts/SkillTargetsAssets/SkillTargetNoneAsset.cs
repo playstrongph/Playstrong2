@@ -8,7 +8,7 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
     /// Used by passive skills, returns an empty heroes list
     /// </summary>
     [CreateAssetMenu(fileName = "SkillTargetNone", menuName = "Assets/SkillTargets/SkillTargetNone")]
-    public class SkillTargetNone : SkillTargetsAsset
+    public class SkillTargetNoneAsset : SkillTargetsAsset
     {
         public override List<IHero> HeroTargets(IHero hero)
         {

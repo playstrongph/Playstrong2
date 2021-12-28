@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.SkillTargetsAssets
 {
     [CreateAssetMenu(fileName = "SkillTargetAllies", menuName = "Assets/SkillTargets/SkillTargetAllies")]
-    public class SkillTargetAllies : SkillTargetsAsset
+    public class SkillTargetAlliesAsset : SkillTargetsAsset
     {
         public override List<IHero> HeroTargets(IHero hero)
         {
