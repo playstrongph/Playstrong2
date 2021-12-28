@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace Logic
@@ -18,9 +19,14 @@ namespace Logic
         /// <param name="value"></param>
         public void StartAction(int value)
         {
+            var skill = _skillVisual.Skill;
+            var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
+            
             //Update skill cooldown text
             _skillVisual.CooldownText.text = value.ToString();
             
+            HideOrShowText(skillCooldown,_skillVisual.CooldownText);
+
             //Update corresponding display skill
             UpdateDisplayPanelSkill();
         }
@@ -33,12 +39,30 @@ namespace Logic
         {
             var skill = _skillVisual.Skill;
             var displaySkills = skill.CasterHero.DisplayHeroSkills.AllSkills;
+            var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
 
             foreach (var displaySkill in displaySkills)
             {
                 if (displaySkill.SkillName == skill.SkillName)
+                {
                     displaySkill.SkillVisual.CooldownText.text = _skillVisual.CooldownText.text;
+                    
+                    HideOrShowText(skillCooldown,displaySkill.SkillVisual.CooldownText);
+                }
             }
+        }
+        
+        //TEST
+        
+        /// <summary>
+        /// Hide text if cooldown is less or equal to zero
+        /// Display text if cooldown is more than zero
+        /// </summary>
+        /// <param name="cooldown"></param>
+        /// <param name="text"></param>
+        private void HideOrShowText(int cooldown, TextMeshProUGUI text)
+        {
+            text.enabled = cooldown > 0;
         }
 
     }
