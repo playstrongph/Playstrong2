@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Debug = System.Diagnostics.Debug;
+
 
 namespace Logic
 {
@@ -72,27 +72,32 @@ namespace Logic
         /// </summary>
         private void SetValidTargetHero()
         {
-            Debug.Assert(Camera.main != null, "Camera.main != null");
+            // ReSharper disable once PossibleNullReferenceException
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            // ReSharper disable once Unity.PreferNonAllocApi
-            var hits = Physics.RaycastAll(ray);
+            //Store at most 5 ray cast hits
+            var mResults = new RaycastHit[5];
+            
+            //ray traverses all layers
+            var layerMask = ~0;
+            
+            //Same to RayCastAll but with no additional garbage
+            int hitsCount = Physics.RaycastNonAlloc(ray, mResults, Mathf.Infinity,layerMask);
 
-            foreach (var hit in hits)
+            for (int i = 0; i < hitsCount; i++)
             {
-                if (hit.transform.GetComponent<IHeroTargetCollider>() != null)
+                if (mResults[i].transform.GetComponent<IHeroTargetCollider>() != null)
                 {
-                    var targetHeroCollider = hit.transform.GetComponent<IHeroTargetCollider>();
-                    
+                    var targetHeroCollider = mResults[i].transform.GetComponent<IHeroTargetCollider>();
+                   
                     //reset target hero to null if there is no valid target
                     _validSkillTargetHero = _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
                 }
             }
-
         }
         
         /// <summary>
-        /// Returns a list of valid targets
+        /// Returns a list of valid targets based on skill targets
         /// </summary>
         private void SetValidTargets()
         {
