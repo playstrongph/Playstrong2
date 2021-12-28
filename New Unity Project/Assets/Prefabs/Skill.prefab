@@ -285,6 +285,7 @@ MonoBehaviour:
   cooldown: 0
   baseCooldown: 0
   skillTargets: {fileID: 0}
+  skillCooldownType: {fileID: 0}
 --- !u!114 &1344746493
 MonoBehaviour:
   m_ObjectHideFlags: 0

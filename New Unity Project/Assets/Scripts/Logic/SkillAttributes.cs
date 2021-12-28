@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.SkillTargetsAssets;
+﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillTargetsAssets;
 using UnityEngine;
 
 namespace Logic
@@ -32,7 +33,7 @@ namespace Logic
             get => baseCooldown;
             set => baseCooldown = value;
         }
-        
+
         /// <summary>
         /// Skill valid targets - allies, enemies, other allies, or none (passive skills))
         /// </summary>
@@ -42,6 +43,17 @@ namespace Logic
         {
             get => skillTargets as ISkillTargetsAsset;
             set => skillTargets = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// Skill cooldown types - normal, immutable, and no cooldown
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillCooldownTypeAsset))]
+        private ScriptableObject skillCooldownType;
+        public ISkillCooldownTypeAsset SkillCooldownType
+        {
+            get => skillCooldownType as ISkillCooldownTypeAsset;
+            set => skillCooldownType = value as ScriptableObject;
         }
 
     }

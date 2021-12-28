@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.SkillTargetsAssets;
+﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillTargetsAssets;
 
 namespace Logic
 {
@@ -18,6 +19,11 @@ namespace Logic
         /// Skill valid targets - allies, enemies, other allies, or none (passive skills))
         /// </summary>
         ISkillTargetsAsset SkillTargets { get; set; }
+        
+        /// <summary>
+        /// Skill cooldown types - normal, immutable, and no cooldown
+        /// </summary>
+        ISkillCooldownTypeAsset SkillCooldownType { get; set; }
 
     }
 }

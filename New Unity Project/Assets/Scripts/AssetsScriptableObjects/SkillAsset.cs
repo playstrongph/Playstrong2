@@ -1,6 +1,8 @@
 ﻿using System;
+using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace AssetsScriptableObjects   
 {
@@ -71,6 +73,20 @@ namespace AssetsScriptableObjects
         public ISkillTargetsAsset SkillTargetsAsset
         {
             get => skillTargetsAsset as ISkillTargetsAsset;
+            private set => skillTargetsAsset = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// Skill Cooldown Type - Normal, Immutable, No cooldown
+        /// </summary>
+        [Header("Skill Cooldown Type")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(ISkillCooldownTypeAsset))]
+        private ScriptableObject skillCooldownTypeAsset;
+
+        public ISkillCooldownTypeAsset SkillCooldownTypeAsset
+        {
+            get => skillCooldownTypeAsset as ISkillCooldownTypeAsset;
             private set => skillTargetsAsset = value as ScriptableObject;
         }
 

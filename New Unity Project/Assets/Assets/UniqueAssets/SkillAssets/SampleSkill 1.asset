@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   baseCooldown: 88
   skillTargetsAsset: {fileID: 11400000, guid: 643261c3c3dc7e14d9eece7e4b0d1015, type: 2}
+  skillCooldownTypeAsset: {fileID: 11400000, guid: 08321c5db338ccf4dafa035d5bd9da6e,
+    type: 2}
