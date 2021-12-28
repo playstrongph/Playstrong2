@@ -5,7 +5,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
 {
     public abstract class SkillCooldownTypeAsset : ScriptableObject, ISkillCooldownTypeAsset
     {
-        public virtual void ReduceCooldown(ISkill skill, int counter)
+        public virtual void DecreaseCooldown(ISkill skill, int counter)
         {
         }
 
@@ -22,6 +22,14 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         }
 
         public virtual void RefreshCooldownToZero(ISkill skill)
+        {
+        }
+        
+        public virtual void TurnControllerReduceCooldown(ISkill skill, int counter = 1)
+        {
+        }
+        
+        public virtual void UseSkillResetCooldown(ISkill skill)
         {
         }
         
