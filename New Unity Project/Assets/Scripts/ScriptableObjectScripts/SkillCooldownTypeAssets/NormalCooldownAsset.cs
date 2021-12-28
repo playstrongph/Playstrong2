@@ -9,8 +9,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
     {
         public override void ReduceCooldown(ISkill skill, int counter)
         {
-            var skillAttributes = skill.SkillLogic.SkillAttributes;     
-            var skillCooldown = skillAttributes.Cooldown;
+            var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
             skillAttributes.Cooldown -= counter;
@@ -18,7 +17,8 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             
             //TODO: UpdateSkillReadinessStatus
             
-            //TODO: Update Visual Skill Cooldown Text
+            //Update the skill and display skill visual cooldown text
+            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction(skillAttributes.Cooldown);
         }
        
     }

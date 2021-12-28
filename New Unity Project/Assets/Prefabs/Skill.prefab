@@ -748,6 +748,7 @@ GameObject:
   - component: {fileID: 359849408559764563}
   - component: {fileID: 1317866134977294233}
   - component: {fileID: 1242302769}
+  - component: {fileID: 398678477}
   m_Layer: 0
   m_Name: SkillVisual
   m_TagString: Untagged
@@ -867,6 +868,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fa825a5b14ab0c42902cb78447f9e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &398678477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849408559764561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770c7b3548c090543aafe2efa7b56133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &359849408637974232

@@ -51,5 +51,10 @@ namespace Logic
         /// Reference to load skill visual
         /// </summary>
         ILoadSkillVisual LoadSkillVisual { get; }
+        
+        /// <summary>
+        /// Reference to update skill cooldown visual
+        /// </summary>
+        IUpdateSkillCooldownVisual UpdateSkillCooldownVisual { get; }
     }
 }
