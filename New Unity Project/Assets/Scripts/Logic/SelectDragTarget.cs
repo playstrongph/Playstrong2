@@ -21,10 +21,6 @@ namespace Logic
         /// The intended target hero for the skill being used
         /// </summary>
         private IHero _skillTargetHero;
-        
-        
-        
-        
 
         private void Awake()
         {
@@ -47,21 +43,36 @@ namespace Logic
         
         private void OnMouseUp()
         {
+            //Hides the hero glows of the valid targets
             DisableTargetVisuals();
+            
+            //Applies skill effect on target hero
+            UseSkillOnTargetHero();
         }
-        
-        
+
+        /// <summary>
+        /// Applies skill effect on target hero
+        /// if there is a valid target
+        /// </summary>
+        private void UseSkillOnTargetHero()
+        {   
+            //Set _skillTargetHero to either null or a valid target
+            GetRaycastHits();
+            
+            if(_skillTargetHero != null)
+                UseSkill();
+        }
+
+
         /// <summary>
         /// If the target is valid, sets the target hero and intended skill action
-        /// (both skill and target hero are 'null' by default
+        /// (both skill and target hero are 'null' by default)
         /// </summary>
         private void GetRaycastHits()
         {
+            Debug.Assert(Camera.main != null, "Camera.main != null");
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
-            //Test if this camera referencing works
-            //var ray = SkillTargetCollider.TargetCanvas.worldCamera.ScreenPointToRay(Input.mousePosition);
-            
+
             // ReSharper disable once Unity.PreferNonAllocApi
             var hits = Physics.RaycastAll(ray);
 
@@ -70,16 +81,11 @@ namespace Logic
                 if (hit.transform.GetComponent<IHeroTargetCollider>() != null)
                 {
                     var targetHero = hit.transform.GetComponent<IHeroTargetCollider>();
-
-                    if (_validTargets.Contains(targetHero.Hero))
-                    {
-                        //set the skill targetHero
-                        _skillTargetHero = targetHero.Hero;
-                        
-                        //set useSkill
-                    }
+            
+                    _skillTargetHero = _validTargets.Contains(targetHero.Hero) ? targetHero.Hero : null;
                 }
             }
+
         }
         
         /// <summary>
@@ -103,6 +109,7 @@ namespace Logic
             //TODO: UseSkillEffect IEnumerator
             //TODO: UpdateSkillReadiness IEnumerator
             
+           
             //End Hero Turn
             logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
 
