@@ -9,5 +9,15 @@ namespace Logic
         /// </summary>
         /// <returns></returns>
         List<IHero> GetValidTargets();
+        
+        /// <summary>
+        /// Target glows are enabled by skill readiness 'Ready' status action
+        /// </summary>
+        void EnableGetSkillTargetActions();
+        
+        /// <summary>
+        /// Target glows are disabled by skill readiness 'NotReady' status action
+        /// </summary>
+        void DisableGetSkillTargetsActions();
     }
 }

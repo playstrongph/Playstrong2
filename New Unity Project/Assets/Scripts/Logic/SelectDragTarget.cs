@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -22,29 +23,81 @@ namespace Logic
         /// reset to null when target selected is not valid
         /// </summary>
         private IHero _validSkillTargetHero;
+        
+        /// <summary>
+        /// Enables targeting visual components (line, triangle, cross hair, and draggable)
+        /// and sets the list of valid targets
+        /// </summary>
+        private Action _setHeroTargets;
+        
+        /// <summary>
+        /// Hides the targeting components and applies the skill effect
+        /// to a valid target hero
+        /// </summary>
+        private Action _useHeroSkill;
+       
 
         private void Awake()
         {
             SkillTargetCollider = GetComponent<ISkillTargetCollider>();
+            
+            //Default setting for _setHeroTargets is No Action
+            _setHeroTargets = NoAction;
+            
+            //Default setting for _useHeroSkill is No Action
+            _useHeroSkill = NoAction;
+
         }
 
         private void Start()
         {
             SkillTargetCollider.Draggable.DisableDraggable();
         }
+        
+        /// <summary>
+        /// Enables actions when skill readiness is in 'ready' status
+        /// </summary>
+        public void EnableSelectDragTargetActions()
+        {
+            _setHeroTargets = SetHeroTargets;
+            _useHeroSkill = UseHeroSkill;
+        }
+        
+        /// <summary>
+        /// Enables actions when skill readiness is in 'ready' status
+        /// </summary>
+        public void DisableSelectDragTargetActions()
+        {
+            _setHeroTargets = NoAction;
+            _useHeroSkill = NoAction;
+        }
 
         private void OnMouseDown()
-        {   
-            //Displays the hero glows of the valid targets
+        {
+            _setHeroTargets();
+        }
+        
+        private void OnMouseUp()
+        {
+            _useHeroSkill();
+        }
+
+        private void SetHeroTargets()
+        {
+            //Enables the triangle, cross hair, line, and draggable 
             EnableTargetVisuals();
             
             //Sets the _validTargets list elements
             SetValidTargets();
         }
         
-        private void OnMouseUp()
+        /// <summary>
+        /// Hides the targeting components and applies the skill effect
+        /// to a valid target hero
+        /// </summary>
+        private void UseHeroSkill()
         {
-            //Hides the hero glows of the valid targets
+            //Disables the triangle, cross hair, line, and draggable
             DisableTargetVisuals();
             
             //Applies skill effect on target hero
@@ -202,5 +255,14 @@ namespace Logic
         }
         
         #endregion
+        
+        /// <summary>
+        /// Dummy action method assigned when skill readiness status is 'Not Ready'
+        /// </summary>
+        private void NoAction()
+        {
+        }
+
+
     }
 }

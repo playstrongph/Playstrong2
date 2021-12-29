@@ -8,10 +8,19 @@ namespace Logic
     {
         
         private ISkillTargetCollider _skillTargetCollider;
+        
+        /// <summary>
+        /// When Enabled, assigned ShowTargetsGlow
+        /// When Disabled, assigned No Action
+        /// </summary>
+        private Action _showTargetsGlow;
 
         private void Awake()
         {
             _skillTargetCollider = GetComponent<ISkillTargetCollider>();
+            
+            //Default setting for _showTargets glow is NoAction
+            _showTargetsGlow = NoAction;
         }
         
         /// <summary>
@@ -27,11 +36,26 @@ namespace Logic
 
             return validTargets;
         }
-
+        
+        /// <summary>
+        /// Target glows are enabled by skill readiness 'Ready' status action
+        /// </summary>
+        public void EnableGetSkillTargetActions()
+        {
+            _showTargetsGlow = ShowTargetsGlow;
+        }
+        
+        /// <summary>
+        /// Target glows are disabled by skill readiness 'NotReady' status action
+        /// </summary>
+        public void DisableGetSkillTargetsActions()
+        {
+            _showTargetsGlow = NoAction;
+        }
 
         private void OnMouseDown()
         {
-            ShowTargetsGlow();
+            _showTargetsGlow();
         }
 
         private void OnMouseUp()
@@ -41,7 +65,8 @@ namespace Logic
 
 
         /// <summary>
-        /// Displays hero glow on mouse down
+        /// Displays hero glow on mouse down after skill readiness 'ready'
+        /// status action
         /// </summary>
         private void ShowTargetsGlow()
         {
@@ -65,6 +90,13 @@ namespace Logic
             {
                 skill.SkillLogic.SkillAttributes.SkillTargets.HideHeroGlow(hero);
             }
+        }
+        
+        /// <summary>
+        /// Dummy method assigned to _showTargetsGlow when it is disabled
+        /// </summary>
+        private void NoAction()
+        {
         }
     }
 }
