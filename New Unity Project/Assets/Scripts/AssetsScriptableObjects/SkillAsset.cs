@@ -1,6 +1,7 @@
 ﻿using System;
 using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
+using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -51,7 +52,20 @@ namespace AssetsScriptableObjects
             private set => skillIcon = value;
 
         }
-        
+
+        /// <summary>
+        /// Skill type asset
+        /// </summary>
+        [Header("Skill Type")] [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillTypeAsset))]
+        private ScriptableObject skillTypeAsset;
+        public ISkillTypeAsset SkillTypeAsset
+        {
+            get => skillTypeAsset as ISkillTypeAsset;
+            set => skillTypeAsset = value as ScriptableObject;
+        }
+
+
+
         /// <summary>
         /// Reference to the skill cooldown
         /// </summary>

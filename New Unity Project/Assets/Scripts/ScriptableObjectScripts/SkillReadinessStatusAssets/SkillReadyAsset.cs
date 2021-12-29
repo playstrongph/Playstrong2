@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillReadinessStatusAssets
 {
-    public abstract class SkillReadinessStatusAsset : ScriptableObject, ISkillReadinessStatusAsset
+    public abstract class SkillReadyAsset : SkillReadinessStatusAsset
     {   
         /// <summary>
         /// Executes skill readiness actions based on skill type
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void StatusAction(ISkill skill)
+        public override void StatusAction(ISkill skill)
         {
             
         }

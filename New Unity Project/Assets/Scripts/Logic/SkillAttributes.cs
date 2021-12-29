@@ -1,5 +1,6 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
+using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
 
 namespace Logic
@@ -13,10 +14,11 @@ namespace Logic
             _skillLogic = GetComponent<ISkillLogic>();
         }
         
+        
         /// <summary>
         /// Skill cooldown reference
         /// </summary>
-        [Header("SET IN RUNTIME")]
+        [Header("ALL SET IN RUNTIME")]
         [SerializeField] private int cooldown;
         public int Cooldown
         {
@@ -33,6 +35,21 @@ namespace Logic
             get => baseCooldown;
             set => baseCooldown = value;
         }
+
+        /// <summary>
+        /// Skill type reference
+        /// </summary>
+        [Header("SKILL PROPERTIES")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(ISkillTypeAsset))]
+        private ScriptableObject skillType;
+
+        public ISkillTypeAsset SkillType
+        {
+            get => skillType as ISkillTypeAsset;
+            set => skillType = value as ScriptableObject;
+        }
+
 
         /// <summary>
         /// Skill valid targets - allies, enemies, other allies, or none (passive skills))

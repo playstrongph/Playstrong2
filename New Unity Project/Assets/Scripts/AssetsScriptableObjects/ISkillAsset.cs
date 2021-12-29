@@ -1,6 +1,7 @@
 ﻿using System;
 using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
+using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
 
 namespace AssetsScriptableObjects
@@ -21,6 +22,11 @@ namespace AssetsScriptableObjects
         /// </summary>
         Sprite SkillIcon { get; }
         
+        /// <summary>
+        /// Skill type asset
+        /// </summary>
+        ISkillTypeAsset SkillTypeAsset { get; }
+
         /// <summary>
         /// Reference to the skill cooldown
         /// </summary>

@@ -18,6 +18,9 @@ namespace Logic
 
             skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
             skillAttributes.Cooldown = skillAsset.BaseCooldown;
+            
+            //SKILL PROPERTIES
+            skillAttributes.SkillType = skillAsset.SkillTypeAsset;
             skillAttributes.SkillTargets = skillAsset.SkillTargetsAsset;
             skillAttributes.SkillCooldownType = skillAsset.SkillCooldownTypeAsset;
 

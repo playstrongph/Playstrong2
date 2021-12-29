@@ -1,5 +1,6 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
+using ScriptableObjectScripts.SkillTypeAssets;
 
 namespace Logic
 {
@@ -15,6 +16,11 @@ namespace Logic
         /// </summary>
         int BaseCooldown { get; set; }
         
+        /// <summary>
+        /// Skill type reference
+        /// </summary>
+        ISkillTypeAsset SkillType { get; set; }
+
         /// <summary>
         /// Skill valid targets - allies, enemies, other allies, or none (passive skills))
         /// </summary>
