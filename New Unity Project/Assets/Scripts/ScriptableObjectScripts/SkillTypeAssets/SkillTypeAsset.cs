@@ -9,8 +9,6 @@ namespace ScriptableObjectScripts.SkillTypeAssets
     /// </summary>
     public abstract class SkillTypeAsset : ScriptableObject, ISkillTypeAsset
     {
-        
-
         #region SkillReadiness
 
         /// <summary>

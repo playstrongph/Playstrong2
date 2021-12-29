@@ -16,14 +16,13 @@ namespace Logic
         /// <summary>
         /// Updates the skill and display skill cooldown text
         /// </summary>
-        /// <param name="value"></param>
-        public void StartAction(int value)
+        public void StartAction()
         {
             var skill = _skillVisual.Skill;
             var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
             
             //Update skill cooldown text
-            _skillVisual.CooldownText.text = value.ToString();
+            _skillVisual.CooldownText.text = skillCooldown.ToString();
             
             HideOrShowText(skillCooldown,_skillVisual.CooldownText);
 

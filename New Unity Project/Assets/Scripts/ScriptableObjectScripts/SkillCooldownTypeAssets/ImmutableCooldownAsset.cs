@@ -24,7 +24,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             //TODO: UpdateSkillReadinessStatus
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction(skillAttributes.Cooldown);
+            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
         }
         
         /// <summary>
@@ -41,7 +41,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             //TODO: UpdateSkillReadinessStatus
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction(skillAttributes.Cooldown);
+            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
         }
 
     }

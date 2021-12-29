@@ -5,7 +5,6 @@
         /// <summary>
         /// Updates the skill and display skill cooldown text
         /// </summary>
-        /// <param name="value"></param>
-        void StartAction(int value);
+        void StartAction();
     }
 }
