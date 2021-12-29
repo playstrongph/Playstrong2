@@ -43,6 +43,27 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
         }
+        
+        
+        public override void DecreaseCooldown(ISkill skill, int counter)
+        {
+        }
+
+        public override void IncreaseCooldown(ISkill skill, int counter)
+        {
+        }
+        
+        public override void SetCooldownToValue(ISkill skill, int value)
+        {
+        }
+
+        public override void ResetCooldownToMax(ISkill skill)
+        {
+        }
+
+        public override void RefreshCooldownToZero(ISkill skill)
+        {
+        }
 
     }
 }
