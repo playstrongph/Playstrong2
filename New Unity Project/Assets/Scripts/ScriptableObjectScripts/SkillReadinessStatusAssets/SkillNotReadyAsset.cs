@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillReadinessStatusAssets
 {
-    [CreateAssetMenu(fileName = "SkillReady", menuName = "Assets/SkillReadiness/SkillReady")]
-    public class SkillReadyAsset : SkillReadinessStatusAsset
+    [CreateAssetMenu(fileName = "SkillNotReady", menuName = "Assets/SkillReadiness/SkillNotReady")]
+    public class SkillNotReadyAsset : SkillReadinessStatusAsset
     {   
         /// <summary>
         /// Executes skill readiness actions based on skill type
@@ -12,7 +12,7 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// <param name="skill"></param>
         public override void StatusAction(ISkill skill)
         {
-            skill.SkillLogic.SkillAttributes.SkillType.SkillReadyActions(skill);
+            skill.SkillLogic.SkillAttributes.SkillType.SkillNotReadyActions(skill);
         }
         
         
