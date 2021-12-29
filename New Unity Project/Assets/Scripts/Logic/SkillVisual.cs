@@ -104,13 +104,18 @@ namespace Logic
         /// Reference to update skill and display skill visual cooldown
         /// </summary>
         public IUpdateSkillCooldownVisual UpdateSkillCooldownVisual { get; private set; }
-
+        
+        /// <summary>
+        /// Shows or Hides the skill glow 
+        /// </summary>
+        public ISkillGlowDisplay SkillGlowDisplay { private set; get; }
 
 
         private void Awake()
         {
             LoadSkillVisual = GetComponent<ILoadSkillVisual>();
             UpdateSkillCooldownVisual = GetComponent<IUpdateSkillCooldownVisual>();
+            SkillGlowDisplay = GetComponent<ISkillGlowDisplay>();
         }
     }
 }

@@ -56,5 +56,10 @@ namespace Logic
         /// Reference to update skill cooldown visual
         /// </summary>
         IUpdateSkillCooldownVisual UpdateSkillCooldownVisual { get; }
+        
+        /// <summary>
+        /// Hides or shows skill glow 
+        /// </summary>
+        ISkillGlowDisplay SkillGlowDisplay { get; }
     }
 }

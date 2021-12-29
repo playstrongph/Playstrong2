@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// Passive Skills - hides cooldown text  
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void SetSkillReady(ISkill skill)
+        public virtual void SkillReadyActions(ISkill skill)
         {
         }
         
@@ -28,7 +28,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// Passive Skills - shows cooldown text if CD > 0 
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void SetSkillNotReady(ISkill skill)
+        public virtual void SkillNotReadyActions(ISkill skill)
         {
         }
         

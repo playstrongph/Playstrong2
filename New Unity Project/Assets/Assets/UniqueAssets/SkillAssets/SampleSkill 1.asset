@@ -16,7 +16,7 @@ MonoBehaviour:
   skillDescription: The quick brown fox jumps over the lazy dog. 88
   skillIcon: {fileID: -1275177327444788608, guid: 1e34d481195a8b94caf686256c37b8fa,
     type: 3}
-  baseCooldown: 88
+  baseCooldown: 1
   skillTargetsAsset: {fileID: 11400000, guid: 643261c3c3dc7e14d9eece7e4b0d1015, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 08321c5db338ccf4dafa035d5bd9da6e,
     type: 2}

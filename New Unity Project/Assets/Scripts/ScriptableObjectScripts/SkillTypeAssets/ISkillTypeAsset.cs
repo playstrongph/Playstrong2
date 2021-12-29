@@ -11,7 +11,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// Passive Skills - hides cooldown text  
         /// </summary>
         /// <param name="skill"></param>
-        void SetSkillReady(ISkill skill);
+        void SkillReadyActions(ISkill skill);
 
         /// <summary>
         /// Skill Readiness status action depending on skill type
@@ -20,7 +20,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// Passive Skills - shows cooldown text if CD > 0 
         /// </summary>
         /// <param name="skill"></param>
-        void SetSkillNotReady(ISkill skill);
+        void SkillNotReadyActions(ISkill skill);
 
         /// <summary>
         /// Used by 'Silence' and 'Seal' type effects - sets skill enabled status to skill disabled and
