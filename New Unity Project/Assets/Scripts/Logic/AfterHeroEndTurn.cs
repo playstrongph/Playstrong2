@@ -21,21 +21,22 @@ namespace Logic
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var currentActiveHero = _turnController.CurrentActiveHero;
-            
+
             //Set hero status to Inactive
             currentActiveHero.HeroLogic.SetHeroActiveStatus.InactiveHero();
             
             //Hide green border, portrait, and skills
             currentActiveHero.HeroLogic.HeroActiveStatus.StatusAction(currentActiveHero);
             
-            //TODO: Update Hero Skills Cooldown
+            //Reduce All Hero Skills Cooldown by 1
+            ReduceAllSkillsCooldown();
+            
+            //TODO - UpdateEndTurnStatusEffects
         
             //TODO - EventAfterHeroEndTurn
         
             //TODO - EventAfterCombatTurn
-        
-            //TODO - UpdateEndTurnStatusEffects
-            
+
             //Determines the next active hero from the active heroes list 
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
             
@@ -44,8 +45,25 @@ namespace Logic
             
         }
         
-        
-        
+        /// <summary>
+        /// Normal end turn all hero skill cooldown reduction by 1  
+        /// </summary>
+        private void ReduceAllSkillsCooldown()
+        {
+            var currentActiveHero = _turnController.CurrentActiveHero;
+            var allSkills = currentActiveHero.HeroSkills.AllSkills;
+
+            foreach (var skill in allSkills)
+            {
+                skill.SkillLogic.UpdateSkillCooldown.TurnControllerReduceCooldown();
+            }
+
+        }
+
+
+
+
+
 
 
     }
