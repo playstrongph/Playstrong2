@@ -25,7 +25,13 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             skill.SkillVisual.SkillGlowDisplay.ShowGlow();
         }
         
-        
+        /// <summary>
+        /// No Action for Basic Skills
+        /// </summary>
+        /// <param name="skill"></param>
+        public override void SkillNotReadyActions(ISkill skill)
+        {
+        }
         
         
         
