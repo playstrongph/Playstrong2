@@ -62,7 +62,7 @@ namespace Logic
                 heroSkills.AllSkillsObjects().Add(skillObject);
                 displaySkills.AllSkillsObjects().Add(displaySkillObject);
                 
-                //TEST - Disable display skill target collider canvas gameObject
+                //Disable display skill target collider canvas gameObject
                 displaySkill.SkillTargetCollider.TargetCanvas.gameObject.SetActive(false);
 
                 //Loads the skill attributes from the skill asset to the skill attributes component
@@ -76,6 +76,12 @@ namespace Logic
                 //Loads the skill and skill preview visual details
                 skill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
+                
+                //TEST - Initialize skill cooldown text visuals
+                skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+                displaySkill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+                
+                //TODO: Skill Glows - based on skill type and skill readiness
             }
             
             //Hide hero skills and display skills
