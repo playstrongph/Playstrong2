@@ -37,7 +37,10 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
-            skillAttributes.Cooldown = maxSkillCooldown;
+            //Compensates for the skill cooldown reduction right after the skill is used
+            var cooldownCompensation = 1;
+            
+            skillAttributes.Cooldown = maxSkillCooldown + cooldownCompensation;
 
             //TODO: UpdateSkillReadinessStatus
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
