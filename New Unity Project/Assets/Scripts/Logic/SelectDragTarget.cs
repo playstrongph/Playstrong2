@@ -164,17 +164,22 @@ namespace Logic
         {
             var casterHero = SkillTargetCollider.Skill.CasterHero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var skill = SkillTargetCollider.Skill;
             
-            //TODO: SetUsingActiveOrBasicSkillStatus IEnumerator
-            //TODO: ResetSkillCooldown IEnumerator
+            //TODO: SetUsingActiveOrBasicSkillStatus 
+            
+            //TODO: ResetSkillCooldown
+            skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
+            
+            //TODO: SetUsedLastTurnSkillStatus 
+            
             //TODO: UseSkillEffect IEnumerator
-            //TODO: UpdateSkillReadiness IEnumerator
-            
-           
-            //End Hero Turn
-            logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
 
-            //TODO: SetUsedLastTurnSkillStatus IEnumerator
+            //UpdateSkillReadiness coroutine
+            logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());
+            
+            //End hero turn coroutine
+            logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
         }
 
 

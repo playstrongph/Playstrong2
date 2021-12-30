@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.SkillReadinessStatusAssets;
+﻿using System.Collections;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using UnityEngine;
 
 namespace Logic
@@ -45,7 +46,20 @@ namespace Logic
                 SetSkillReady();
             else
                 SetSkillNotReady();
+        }
+        
+        /// <summary>
+        /// Coroutine version for sequential logic
+        /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
+        /// </summary>
+        public IEnumerator StartActionCoroutine()
+        {
+            var logicTree = _skillLogic.Skill.CoroutineTrees.MainLogicTree;
             
+            StartAction();
+            
+            logicTree.EndSequence();
+            yield return null;
         }
 
         /// <summary>
