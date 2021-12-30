@@ -80,8 +80,10 @@ namespace Logic
                 //TEST - Initialize skill cooldown text visuals
                 skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
                 displaySkill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
-                
-                //TODO: Skill Glows - based on skill type and skill readiness
+
+                //Skill Glows - based on skill type and skill readiness
+                skill.SkillLogic.SkillAttributes.SkillReadiness.StatusAction(skill);
+                displaySkill.SkillLogic.SkillAttributes.SkillReadiness.StatusAction(displaySkill);
             }
             
             //Hide hero skills and display skills

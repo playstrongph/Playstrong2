@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
     [CreateAssetMenu(fileName = "ActiveSkill", menuName = "Assets/SkillType/ActiveSkill")]
     public class ActiveSkillAsset : SkillTypeAsset
     {
-        
+
         /// <summary>
         /// Displays skill glow and enables hero skill targeting
         /// </summary>
@@ -39,6 +40,8 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             //Show skill glows
             skill.SkillVisual.SkillGlowDisplay.HideGlow();
         }
+        
+        
         
         
         

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca7bd92a342cd84fb62c08402f477e6, type: 3}
   m_Name: HybridSkill
   m_EditorClassIdentifier: 
+  startingSkillReadiness: {fileID: 11400000, guid: 44e72a367e8c48b46832a04e30241d18,
+    type: 2}

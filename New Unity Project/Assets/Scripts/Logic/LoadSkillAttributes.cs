@@ -23,6 +23,7 @@ namespace Logic
             skillAttributes.SkillType = skillAsset.SkillTypeAsset;
             skillAttributes.SkillTargets = skillAsset.SkillTargetsAsset;
             skillAttributes.SkillCooldownType = skillAsset.SkillCooldownTypeAsset;
+            skillAttributes.SkillReadiness = skillAsset.SkillTypeAsset.StartingSkillReadiness;
 
 
         }

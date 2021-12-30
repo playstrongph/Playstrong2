@@ -1,10 +1,16 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 
 namespace ScriptableObjectScripts.SkillTypeAssets
 {
     public interface ISkillTypeAsset
     {
+        /// <summary>
+        /// Default starting skill readiness status for each skill type
+        /// </summary>
+        ISkillReadinessStatusAsset StartingSkillReadiness { get; }
+
         /// <summary>
         /// Skill Readiness checks skill enabled status and executes status action depending on skill type
         /// Active and Basic Skills - Enables select drag target, enables target visual,  skill glow, and hides cooldown text 

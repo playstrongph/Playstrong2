@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec258cee151c7c41a6abae680833608, type: 3}
   m_Name: PassiveSkill
   m_EditorClassIdentifier: 
+  startingSkillReadiness: {fileID: 11400000, guid: 80b36681a906f54499e6840228e37f0f,
+    type: 2}

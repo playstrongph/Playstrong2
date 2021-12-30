@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,19 @@ namespace ScriptableObjectScripts.SkillTypeAssets
     /// </summary>
     public abstract class SkillTypeAsset : ScriptableObject, ISkillTypeAsset
     {
+        
+        /// <summary>
+        /// Default starting skill readiness status for each skill type
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
+        private ScriptableObject startingSkillReadiness;
+        public ISkillReadinessStatusAsset StartingSkillReadiness
+        {
+            get => startingSkillReadiness as ISkillReadinessStatusAsset;
+            private set => startingSkillReadiness = value as ScriptableObject;
+        }
+
+
         #region SkillReadiness
 
         /// <summary>
