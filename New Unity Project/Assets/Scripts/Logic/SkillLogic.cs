@@ -34,12 +34,18 @@ namespace Logic
         /// Updates the skill cooldown based on cooldown type
         /// </summary>
         public IUpdateSkillCooldown UpdateSkillCooldown { get; private set; }
+        
+        /// <summary>
+        /// Updates the skill readiness status and executes status actions
+        /// </summary>
+        public IUpdateSkillReadiness UpdateSkillReadiness { get; private set; }
 
         private void Awake()
         {
             SkillAttributes = GetComponent<ISkillAttributes>();
             LoadSkillAttributes = GetComponent<ILoadSkillAttributes>();
             UpdateSkillCooldown = GetComponent<IUpdateSkillCooldown>();
+            UpdateSkillReadiness = GetComponent<IUpdateSkillReadiness>();
         }
     }
 }

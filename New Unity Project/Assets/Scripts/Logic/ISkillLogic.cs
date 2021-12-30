@@ -21,5 +21,10 @@
         ///  Updates the skill cooldown based on cooldown type
         /// </summary>
         IUpdateSkillCooldown UpdateSkillCooldown { get; }
+        
+        /// <summary>
+        /// Updates the skill readiness status and executes status actions
+        /// </summary>
+        IUpdateSkillReadiness UpdateSkillReadiness { get; }
     }
 }

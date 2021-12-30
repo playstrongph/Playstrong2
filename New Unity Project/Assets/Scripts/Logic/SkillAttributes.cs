@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
@@ -35,6 +36,21 @@ namespace Logic
             get => baseCooldown;
             set => baseCooldown = value;
         }
+        
+        /// <summary>
+        /// Skill 'Ready' or 'Not Ready' readiness status 
+        /// </summary>
+        [Header("SKILL STATUSES")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
+        private ScriptableObject skillReadiness;
+
+        public ISkillReadinessStatusAsset SkillReadiness
+        {
+            get => skillReadiness as ISkillReadinessStatusAsset;
+            set => skillReadiness = value as ScriptableObject;
+        }
+
 
         /// <summary>
         /// Skill type reference
@@ -72,6 +88,8 @@ namespace Logic
             get => skillCooldownType as ISkillCooldownTypeAsset;
             set => skillCooldownType = value as ScriptableObject;
         }
+        
+        
 
     }
 }

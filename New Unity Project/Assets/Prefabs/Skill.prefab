@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 859601009}
   - component: {fileID: 1344746493}
   - component: {fileID: 2798504930243116092}
+  - component: {fileID: 69477368}
   m_Layer: 0
   m_Name: SkillLogic
   m_TagString: Untagged
@@ -285,6 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   baseCooldown: 0
+  skillReadiness: {fileID: 0}
+  skillType: {fileID: 0}
   skillTargets: {fileID: 0}
   skillCooldownType: {fileID: 0}
 --- !u!114 &1344746493
@@ -311,6 +314,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5194bb52433021c44bd4049b77668cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &69477368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849407772675572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680c1de9fbd09ed4a8f3830af89cf8fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillReadyAsset: {fileID: 11400000, guid: 80b36681a906f54499e6840228e37f0f, type: 2}
+  skillNotReadyAsset: {fileID: 11400000, guid: 44e72a367e8c48b46832a04e30241d18, type: 2}
 --- !u!1 &359849407779702824
 GameObject:
   m_ObjectHideFlags: 0
