@@ -18,8 +18,7 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
         /// <param name="hero"></param>
         public override void ShowHeroGlow(IHero hero)
         {
-            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableAllyLightAndGlow();
-            
+            hero.HeroVisual.SetHeroFrameAndGlow.CurrentHeroFrame.EnableAllyLightAndGlow(); 
         }
         
         /// <summary>
