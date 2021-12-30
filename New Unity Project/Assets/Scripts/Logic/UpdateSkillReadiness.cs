@@ -35,9 +35,23 @@ namespace Logic
         }
         
         /// <summary>
+        /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
+        /// </summary>
+        public void StartAction()
+        {
+            var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
+
+            if (skillCooldown <= 0)
+                SetSkillReady();
+            else
+                SetSkillNotReady();
+            
+        }
+
+        /// <summary>
         /// Set skill status to 'Ready' and execute status actions
         /// </summary>
-        public void SetSkillReady()
+        private void SetSkillReady()
         {
             _skillLogic.SkillAttributes.SkillReadiness = SkillReadyAsset;
             _skillLogic.SkillAttributes.SkillReadiness.StatusAction(_skillLogic.Skill);
@@ -46,7 +60,7 @@ namespace Logic
         /// <summary>
         /// Set skill status to 'Not Ready' and execute status actions
         /// </summary>
-        public void SetSkillNotReady()
+        private void SetSkillNotReady()
         {
             _skillLogic.SkillAttributes.SkillReadiness = SkillNotReadyAsset;
             _skillLogic.SkillAttributes.SkillReadiness.StatusAction(_skillLogic.Skill);

@@ -77,7 +77,7 @@ namespace Logic
                 skill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 
-                //TEST - Initialize skill cooldown text visuals
+                //Initialize skill cooldown text visuals
                 skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
                 displaySkill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
 

@@ -3,13 +3,10 @@
     public interface IUpdateSkillReadiness
     {
         /// <summary>
-        /// Set skill status to 'Ready' and execute status actions
+        /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
         /// </summary>
-        void SetSkillReady();
-
-        /// <summary>
-        /// Set skill status to 'Not Ready' and execute status actions
-        /// </summary>
-        void SetSkillNotReady();
+        void StartAction();
+        
+       
     }
 }
