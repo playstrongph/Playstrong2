@@ -128,7 +128,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             
             skillAttributes.Cooldown = maxSkillCooldown;
 
-            //TODO: UpdateSkillReadinessStatus
+            //UpdateSkillReadinessStatus
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
