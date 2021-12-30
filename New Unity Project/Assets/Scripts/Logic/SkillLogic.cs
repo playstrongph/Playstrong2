@@ -40,12 +40,15 @@ namespace Logic
         /// </summary>
         public IUpdateSkillReadiness UpdateSkillReadiness { get; private set; }
 
+        public IOtherSkillAttributes OtherSkillAttributes { get; private set; }
+
         private void Awake()
         {
             SkillAttributes = GetComponent<ISkillAttributes>();
             LoadSkillAttributes = GetComponent<ILoadSkillAttributes>();
             UpdateSkillCooldown = GetComponent<IUpdateSkillCooldown>();
             UpdateSkillReadiness = GetComponent<IUpdateSkillReadiness>();
+            OtherSkillAttributes = GetComponent<IOtherSkillAttributes>();
         }
     }
 }

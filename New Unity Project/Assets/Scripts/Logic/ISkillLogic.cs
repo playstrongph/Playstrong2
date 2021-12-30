@@ -13,6 +13,11 @@
         ISkillAttributes SkillAttributes { get; }
         
         /// <summary>
+        /// Contains other skill properties and factors
+        /// </summary>
+        IOtherSkillAttributes OtherSkillAttributes { get; }
+        
+        /// <summary>
         /// Loads the skill attributes from the skill asset
         /// </summary>
         ILoadSkillAttributes LoadSkillAttributes { get; }
@@ -26,5 +31,7 @@
         /// Updates the skill readiness status and executes status actions
         /// </summary>
         IUpdateSkillReadiness UpdateSkillReadiness { get; }
+        
+       
     }
 }

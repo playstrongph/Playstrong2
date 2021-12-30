@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 359849407772675573}
   - component: {fileID: 359849407904444846}
   - component: {fileID: 859601009}
+  - component: {fileID: 7007043526335358787}
   - component: {fileID: 1344746493}
   - component: {fileID: 2798504930243116092}
   - component: {fileID: 69477368}
@@ -290,6 +291,20 @@ MonoBehaviour:
   skillType: {fileID: 0}
   skillTargets: {fileID: 0}
   skillCooldownType: {fileID: 0}
+--- !u!114 &7007043526335358787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849407772675572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6115dcd91ad266041ad25ba38dc5eb18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usableSkillFactor: 1
+  skillCounters: 0
 --- !u!114 &1344746493
 MonoBehaviour:
   m_ObjectHideFlags: 0
