@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingSkillReadiness: {fileID: 11400000, guid: 44e72a367e8c48b46832a04e30241d18,
     type: 2}
+  startingSkillEnableStatus: {fileID: 11400000, guid: 95ffeecbea434384d813720511451a26,
+    type: 2}

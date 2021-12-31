@@ -11,6 +11,11 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// Default starting skill readiness status for each skill type
         /// </summary>
         ISkillReadinessStatusAsset StartingSkillReadiness { get; }
+        
+        /// <summary>
+        /// Default - Skill Enabled
+        /// </summary>
+        ISkillEnableStatusAsset StartingSkillEnableStatus { get; }
 
         /// <summary>
         /// Skill Readiness checks skill enabled status and executes status action depending on skill type

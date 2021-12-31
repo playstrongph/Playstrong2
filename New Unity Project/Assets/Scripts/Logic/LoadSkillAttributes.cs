@@ -19,11 +19,12 @@ namespace Logic
             skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
             skillAttributes.Cooldown = skillAsset.BaseCooldown;
             
-            //SKILL PROPERTIES
+            //SKILL PROPERTIES AND STATUSES
             skillAttributes.SkillType = skillAsset.SkillTypeAsset;
             skillAttributes.SkillTargets = skillAsset.SkillTargetsAsset;
             skillAttributes.SkillCooldownType = skillAsset.SkillCooldownTypeAsset;
             skillAttributes.SkillReadiness = skillAsset.SkillTypeAsset.StartingSkillReadiness;
+            skillAttributes.SkillEnableStatus = skillAsset.SkillTypeAsset.StartingSkillEnableStatus;
 
 
         }

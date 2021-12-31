@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class UpdateSkillEnableStatus : MonoBehaviour
+    public class UpdateSkillEnableStatus : MonoBehaviour, IUpdateSkillEnableStatus
     {
 
         /// <summary>
@@ -64,9 +64,11 @@ namespace Logic
             //e.g.unique silence effects
             if(_skillLogic.OtherSkillAttributes.UsableSkillFactor >= 1)
                 _skillLogic.SkillAttributes.SkillType.EnableActiveSkill(_skillLogic.Skill,SkillEnabledAsset);
-            
         }
-
+        
+        /// <summary>
+        /// Method used by 'Seal' and similar effects
+        /// </summary>
         public void DisablePassiveSkill()
         {
             //Decrease the skill's usable skill factor
@@ -77,7 +79,10 @@ namespace Logic
             if(_skillLogic.OtherSkillAttributes.UsableSkillFactor < 1)
                 _skillLogic.SkillAttributes.SkillType.DisablePassiveSkill(_skillLogic.Skill,SkillDisabledAsset);
         }
-
+        
+        /// <summary>
+        /// Method used by 'Seal' and similar effects
+        /// </summary>
         public void EnablePassiveSkill()
         {
             //Increase the skill's usable skill factor

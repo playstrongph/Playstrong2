@@ -23,6 +23,19 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             private set => startingSkillReadiness = value as ScriptableObject;
         }
 
+        /// <summary>
+        /// Default - Skill Enabled
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillEnableStatusAsset))]
+        private ScriptableObject startingSkillEnableStatus;
+        public ISkillEnableStatusAsset StartingSkillEnableStatus
+        {
+            get => startingSkillEnableStatus as ISkillEnableStatusAsset;
+            private set => startingSkillReadiness = value as ScriptableObject;
+        }
+
+
+
 
         #region SkillReadiness
 

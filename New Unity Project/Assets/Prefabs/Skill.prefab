@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   baseCooldown: 0
-  skillEnableStatus: {fileID: 11400000, guid: 95ffeecbea434384d813720511451a26, type: 2}
+  skillEnableStatus: {fileID: 0}
   skillReadiness: {fileID: 0}
   skillType: {fileID: 0}
   skillTargets: {fileID: 0}
