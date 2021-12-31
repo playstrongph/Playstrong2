@@ -101,7 +101,7 @@ namespace AssetsScriptableObjects
         public ISkillCooldownTypeAsset SkillCooldownTypeAsset
         {
             get => skillCooldownTypeAsset as ISkillCooldownTypeAsset;
-            private set => skillTargetsAsset = value as ScriptableObject;
+            private set => skillCooldownTypeAsset = value as ScriptableObject;
         }
 
 

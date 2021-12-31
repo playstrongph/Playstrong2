@@ -31,9 +31,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         public ISkillEnableStatusAsset StartingSkillEnableStatus
         {
             get => startingSkillEnableStatus as ISkillEnableStatusAsset;
-            private set => startingSkillReadiness = value as ScriptableObject;
-            
-            
+            private set => startingSkillEnableStatus = value as ScriptableObject;
         }
 
 
