@@ -57,7 +57,7 @@ namespace Logic
         /// </summary>
         public void EnableActiveSkill()
         {
-            //Decrease the skill's usable skill factor
+            //Increase the skill's usable skill factor
             _skillLogic.OtherSkillAttributes.UsableSkillFactor += 1;
             
             //Check if there are no other effects preventing to enable the active skill
@@ -69,12 +69,24 @@ namespace Logic
 
         public void DisablePassiveSkill()
         {
+            //Decrease the skill's usable skill factor
+            _skillLogic.OtherSkillAttributes.UsableSkillFactor -= 1;
             
+            //Check if there are no other effects preventing to disable the passive skill
+            //e.g. skill immune to seal effects
+            if(_skillLogic.OtherSkillAttributes.UsableSkillFactor < 1)
+                _skillLogic.SkillAttributes.SkillType.DisablePassiveSkill(_skillLogic.Skill,SkillDisabledAsset);
         }
 
         public void EnablePassiveSkill()
         {
+            //Increase the skill's usable skill factor
+            _skillLogic.OtherSkillAttributes.UsableSkillFactor += 1;
             
+            //Check if there are no other effects preventing to enable the passive skill
+            //e.g.unique seal effects
+            if(_skillLogic.OtherSkillAttributes.UsableSkillFactor >= 1)
+                _skillLogic.SkillAttributes.SkillType.EnablePassiveSkill(_skillLogic.Skill,SkillEnabledAsset);
         }
 
 
