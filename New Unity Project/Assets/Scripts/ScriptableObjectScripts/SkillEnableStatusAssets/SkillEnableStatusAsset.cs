@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillEnableStatusAssets
 {
-    public abstract class SkillEnableStatusAsset : MonoBehaviour
+    public abstract class SkillEnableStatusAsset : ScriptableObject
     {
-        public virtual void DisableSkill(ISkill skill)
+        public virtual void StatusAction(ISkill skill)
         {
             
         }
