@@ -14,6 +14,16 @@ namespace Logic
         /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
         /// </summary>
         IEnumerator StartActionCoroutine();
+        
+        /// <summary>
+        /// Sets skill readiness start action back to default 
+        /// </summary>
+        void EnableSkillReadiness();
+
+        /// <summary>
+        /// Sets the skill readiness start action to no action
+        /// </summary>
+        void DisableSkillReadiness();
 
 
     }

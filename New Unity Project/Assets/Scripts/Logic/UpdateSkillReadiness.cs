@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using UnityEngine;
 
@@ -29,23 +30,24 @@ namespace Logic
         }
         
         private ISkillLogic _skillLogic;
+
+        private Action _startAction;
         
         private void Awake()
         {
             _skillLogic = GetComponent<ISkillLogic>();
+            
+            //_startAction initialized with default action
+            _startAction = StartActionLogic;
         }
         
         /// <summary>
         /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
+        /// when skill is enabled.  No action when skill is disabled.
         /// </summary>
         public void StartAction()
         {
-            var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
-
-            if (skillCooldown <= 0)
-                SetSkillReady();
-            else
-                SetSkillNotReady();
+            _startAction();
         }
         
         /// <summary>
@@ -60,6 +62,44 @@ namespace Logic
             
             logicTree.EndSequence();
             yield return null;
+        }
+        
+        /// <summary>
+        /// Sets skill readiness start action back to default 
+        /// </summary>
+        public void EnableSkillReadiness()
+        {
+            //Returns the default skill readiness status action
+            _startAction = StartActionLogic;
+            
+            //Re-updates the skill with its current skill readiness status action based on skill cooldown
+            _startAction();
+        }
+        
+        /// <summary>
+        /// Sets the skill readiness start action to no action
+        /// </summary>
+        public void DisableSkillReadiness()
+        {
+            //Disables the skill readiness status action
+            _startAction = NoAction;
+            
+            //Sets the disabled skill to "Not Ready" status
+            SetSkillNotReady();
+        }
+
+
+        /// <summary>
+        /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
+        /// </summary>
+        private void StartActionLogic()
+        {
+            var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
+
+            if (skillCooldown <= 0)
+                SetSkillReady();
+            else
+                SetSkillNotReady();
         }
 
         /// <summary>
@@ -79,6 +119,15 @@ namespace Logic
             _skillLogic.SkillAttributes.SkillReadiness = SkillNotReadyAsset;
             _skillLogic.SkillAttributes.SkillReadiness.StatusAction(_skillLogic.Skill);
         }
+        
+        /// <summary>
+        /// Do nothing when skill is disabled
+        /// </summary>
+        private void NoAction()
+        {
+        }
+
+
 
 
 
