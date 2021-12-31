@@ -44,7 +44,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         public override void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
-            //Set active skill enable status to SkillDisabled
+            //Set skill enable status to SkillDisabled
             skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
             
             //Execute skill disabled status action
@@ -53,14 +53,30 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         public override void EnableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
-            //Set active skill enable status to SkillDisabled
+            //Set skill enable status to SkillDisabled
             skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
         }
         
+        /// <summary>
+        /// No Action
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="skillEnableStatusAsset"></param>
+        public override void DisablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+        }
         
+        /// <summary>
+        /// No Action
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="skillEnableStatusAsset"></param>
+        public override void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+        }
         
         
 
