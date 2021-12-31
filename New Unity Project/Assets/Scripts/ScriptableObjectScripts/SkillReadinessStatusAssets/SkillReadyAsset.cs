@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillReadinessStatusAssets
 {
-    [CreateAssetMenu(fileName = "SkillReady", menuName = "Assets/SkillReadiness/SkillReady")]
+    [CreateAssetMenu(fileName = "SkillReady", menuName = "Assets/SkillReadinessStatus/SkillReady")]
     public class SkillReadyAsset : SkillReadinessStatusAsset
     {   
        

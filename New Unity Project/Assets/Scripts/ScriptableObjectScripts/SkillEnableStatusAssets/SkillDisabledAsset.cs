@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillEnableStatusAssets
 {
-    [CreateAssetMenu(fileName = "SkillEnabled", menuName = "Assets/SkillEnableStatus/SkillEnabled")]
-    public class SkillEnabledAsset : SkillEnableStatusAsset, ISkillEnabledAsset
+    [CreateAssetMenu(fileName = "SkillDisabled", menuName = "Assets/SkillEnableStatus/SkillDisabled")]
+    public class SkillDisabledAsset : SkillEnableStatusAsset, ISkillEnabledAsset
     {
         /// <summary>
         /// Skill enabled status action 
@@ -12,7 +12,7 @@ namespace ScriptableObjectScripts.SkillEnableStatusAssets
         /// <param name="skill"></param>
         public override void StatusAction(ISkill skill)
         {
-            skill.SkillLogic.UpdateSkillReadiness.EnableSkillReadiness();         
+            skill.SkillLogic.UpdateSkillReadiness.DisableSkillReadiness();         
         }
 
 
