@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;
@@ -17,6 +18,11 @@ namespace Logic
         /// </summary>
         int BaseCooldown { get; set; }
         
+        /// <summary>
+        /// Skill is enabled or disabled status
+        /// </summary>
+        ISkillEnableStatusAsset SkillEnableStatus { get; set; }
+
         /// <summary>
         /// Skill 'Ready' or 'Not Ready' readiness status 
         /// </summary>

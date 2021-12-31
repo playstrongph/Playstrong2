@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 using UnityEngine;
@@ -41,7 +42,23 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             skill.SkillVisual.SkillGlowDisplay.HideGlow();
         }
         
+        public override void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+            //Set active skill enable status to SkillDisabled
+            skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
+            
+            //Execute skill disabled status action
+            skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+        }
         
+        public override void EnableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+            //Set active skill enable status to SkillDisabled
+            skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
+            
+            //Execute skill disabled status action
+            skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+        }
         
         
         

@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 using UnityEngine;
@@ -49,22 +50,44 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         #endregion
 
         #region SkillEnabledDisabled
-        
+
         /// <summary>
-        /// Used by 'Silence' and 'Seal' type effects - sets skill enabled status to skill disabled and
-        /// executes skill disabled status actions
+        /// Used by 'Silence' type effects - sets skill enabled status to skill disabled
+        /// and executes skill disabled status actions
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void DisableSkill(ISkill skill)
+        /// <param name="skillEnableStatusAsset"></param>
+        public virtual void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
         }
         
         /// <summary>
-        /// Used by 'Silence' and 'Seal' type effects - sets skill enabled status to skill enabled and
-        /// executes skill enabled status actions
+        /// Used by 'Silence' type effects - sets skill enabled status to skill disabled
+        /// and executes skill disabled status actions
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void EnableSkill(ISkill skill)
+        /// <param name="skillEnableStatusAsset"></param>
+        public virtual void EnableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+        }
+        
+        /// <summary>
+        /// Used by 'Seal' type effects - sets skill enabled status to skill disabled
+        /// and executes skill disabled status actions
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="skillEnableStatusAsset"></param>
+        public virtual void DisablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
+        {
+        }
+        
+        /// <summary>
+        /// Used by 'Seal' type effects - sets skill enabled status to skill disabled
+        /// and executes skill disabled status actions
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="skillEnableStatusAsset"></param>
+        public virtual void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
         }
         

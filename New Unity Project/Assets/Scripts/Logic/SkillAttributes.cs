@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;
@@ -36,15 +37,30 @@ namespace Logic
             get => baseCooldown;
             set => baseCooldown = value;
         }
-        
-        /// <summary>
-        /// Skill 'Ready' or 'Not Ready' readiness status 
-        /// </summary>
+
+
+
         [Header("SKILL STATUSES")]
+        [SerializeReference]
+        [RequireInterfaceAttribute.RequireInterface(typeof(ISkillEnableStatusAsset))]
+        private ScriptableObject skillEnableStatus;
+        /// <summary>
+        /// Skill Enabled Status
+        /// </summary>
+        public ISkillEnableStatusAsset SkillEnableStatus
+        {
+            get => skillEnableStatus as ISkillEnableStatusAsset;
+            set => skillEnableStatus = value as ScriptableObject;
+        }
+
+
+
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
         private ScriptableObject skillReadiness;
-
+        /// <summary>
+        /// Skill 'Ready' or 'Not Ready' readiness status 
+        /// </summary>
         public ISkillReadinessStatusAsset SkillReadiness
         {
             get => skillReadiness as ISkillReadinessStatusAsset;

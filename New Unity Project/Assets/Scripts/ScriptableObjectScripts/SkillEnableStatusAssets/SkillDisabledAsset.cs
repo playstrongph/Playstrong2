@@ -4,7 +4,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.SkillEnableStatusAssets
 {
     [CreateAssetMenu(fileName = "SkillDisabled", menuName = "Assets/SkillEnableStatus/SkillDisabled")]
-    public class SkillDisabledAsset : SkillEnableStatusAsset, ISkillEnabledAsset
+    public class SkillDisabledAsset : SkillEnableStatusAsset
     {
         /// <summary>
         /// Skill enabled status action 

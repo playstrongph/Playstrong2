@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
 
@@ -29,17 +30,35 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         void SkillNotReadyActions(ISkill skill);
 
         /// <summary>
-        /// Used by 'Silence' and 'Seal' type effects - sets skill enabled status to skill disabled and
+        /// Used by 'Silence' type effects - sets skill enabled status to skill disabled and
         /// executes skill disabled status actions
         /// </summary>
         /// <param name="skill"></param>
-        void DisableSkill(ISkill skill);
+        /// <param name="skillEnableStatusAsset"></param>
+        void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset);
 
         /// <summary>
-        /// Used by 'Silence' and 'Seal' type effects - sets skill enabled status to skill enabled and
+        /// Used by 'Silence' type effects - sets skill enabled status to skill enabled and
         /// executes skill enabled status actions
         /// </summary>
         /// <param name="skill"></param>
-        void EnableSkill(ISkill skill);
+        ///  /// <param name="skillEnableStatusAsset"></param>
+        void EnableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset);
+        
+        /// <summary>
+        /// Used by 'Seal' type effects - sets skill enabled status to skill disabled and
+        /// executes skill disabled status actions
+        /// </summary>
+        /// <param name="skill"></param>
+        ///  /// <param name="skillEnableStatusAsset"></param>
+        void DisablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset);
+
+        /// <summary>
+        /// Used by 'Seal' type effects - sets skill enabled status to skill enabled and
+        /// executes skill enabled status actions
+        /// </summary>
+        /// <param name="skill"></param>
+        ///  /// <param name="skillEnableStatusAsset"></param>
+        void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset);
     }
 }
