@@ -14,22 +14,8 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// <param name="skill"></param>
         public override void StatusAction(ISkill skill)
         {
-           //Initialize local Skill variable
-           Skill = skill;
-            
-           //Default action is EnabledStatusAction
-           ReadinessAction();
+            skill.SkillLogic.SkillAttributes.SkillType.SkillReadyActions(skill);
         }
-        
-        /// <summary>
-        /// This is the default readiness action for skill 'Ready'
-        /// </summary>
-        protected override void EnabledStatusAction()
-        {
-            Skill.SkillLogic.SkillAttributes.SkillType.SkillReadyActions(Skill);
-            
-        }
-
 
     }
 }
