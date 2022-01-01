@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -168,19 +169,39 @@ namespace Logic
             
             //TODO: SetUsingActiveOrBasicSkillStatus 
             
-            //TODO: ResetSkillCooldown
+            //ResetSkillCooldown
             skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
-            //TODO: SetUsedLastTurnSkillStatus 
+            //TODO: SetUsedLastTurnSkillStatus - Reworked, check if still needed
             
             //TODO: UseSkillEffect IEnumerator
+            logicTree.AddCurrent(UseSkillEffect());
 
-            //UpdateSkillReadiness coroutine
+            //UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
             logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());
-            
+
             //End hero turn coroutine
             logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
         }
+
+        private IEnumerator UseSkillEffect()
+        {
+            var casterHero = SkillTargetCollider.Skill.CasterHero;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var skill = SkillTargetCollider.Skill;
+                
+            //set caster hero's targeted hero 
+            casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
+            
+            //set targeted hero's targeting hero
+            _validSkillTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
+            
+            //TODO - call skill event EventSkillDragTarget
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
 
 
 

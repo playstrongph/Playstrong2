@@ -78,6 +78,11 @@ namespace Logic
         /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
         /// </summary>
         ISetHeroActiveStatus SetHeroActiveStatus { get; }
+        
+        /// <summary>
+        ///  Sets the hero's/other hero's targeted/targeting hero 
+        /// </summary>
+        ILastHeroTargets LastHeroTargets { get; }
 
         #endregion
     }

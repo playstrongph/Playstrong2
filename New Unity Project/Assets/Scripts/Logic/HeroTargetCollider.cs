@@ -17,29 +17,6 @@ namespace Logic
             set => hero = value as Object;
         }
 
-        [Header("SET IN RUNTIME")] [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
-        private Object targetedHero;
-        /// <summary>
-        /// The last hero targeted by this hero
-        /// </summary>
-        public IHero TargetedHero
-        {
-            get => targetedHero as IHero;
-            set => targetedHero = value as Object;
-        }
-        
-        [SerializeField][RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
-        private Object targetingHero;
-        /// <summary>
-        /// Last hero who targeted this hero
-        /// </summary>
-        public IHero TargetingHero
-        {
-            get => targetingHero as IHero;
-            set => targetingHero = value as Object;
-        }
-
-
         /// <summary>
         /// Reference to Display Hero Preview script
         /// </summary>
