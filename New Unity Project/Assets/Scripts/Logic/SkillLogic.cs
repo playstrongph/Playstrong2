@@ -39,8 +39,16 @@ namespace Logic
         /// Updates the skill readiness status and executes status actions
         /// </summary>
         public IUpdateSkillReadiness UpdateSkillReadiness { get; private set; }
-
+        
+        /// <summary>
+        /// Reference to the other skill attributes
+        /// </summary>
         public IOtherSkillAttributes OtherSkillAttributes { get; private set; }
+        
+        /// <summary>
+        /// Reference to skill events
+        /// </summary>
+        public ISkillEvents SkillEvents { get; private set; }
 
         private void Awake()
         {
@@ -49,6 +57,7 @@ namespace Logic
             UpdateSkillCooldown = GetComponent<IUpdateSkillCooldown>();
             UpdateSkillReadiness = GetComponent<IUpdateSkillReadiness>();
             OtherSkillAttributes = GetComponent<IOtherSkillAttributes>();
+            SkillEvents = GetComponent<ISkillEvents>();
         }
     }
 }

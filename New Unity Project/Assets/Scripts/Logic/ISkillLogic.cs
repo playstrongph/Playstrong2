@@ -32,6 +32,11 @@
         /// </summary>
         IUpdateSkillReadiness UpdateSkillReadiness { get; }
         
-       
+        /// <summary>
+        /// Reference to skill events
+        /// </summary>
+        ISkillEvents SkillEvents { get; }
+
+
     }
 }
