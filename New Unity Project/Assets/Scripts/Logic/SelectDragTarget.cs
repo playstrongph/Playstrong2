@@ -196,7 +196,7 @@ namespace Logic
             //set targeted hero's targeting hero
             _validSkillTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
             
-            //Call skill event EventSkillDragTarget
+            //Call all EventSkillDragTarget subscribers' start action
             skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero);
             
             logicTree.EndSequence();
