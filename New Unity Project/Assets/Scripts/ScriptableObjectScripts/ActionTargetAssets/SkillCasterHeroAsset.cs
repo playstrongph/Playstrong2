@@ -14,9 +14,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <returns></returns>
         public override List<IHero> ActionTargets(IHero hero)
         {
-            var actionTargets = new List<IHero>();
-
-            
+            var actionTargets = new List<IHero> {SkillCasterHero};
             
             return actionTargets;
         }

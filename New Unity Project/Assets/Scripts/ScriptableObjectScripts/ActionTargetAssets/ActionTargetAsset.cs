@@ -11,6 +11,16 @@ namespace ScriptableObjectScripts.ActionTargetAssets
     public abstract class ActionTargetAsset : ScriptableObject, IActionTargetAsset
     {
         /// <summary>
+        /// Reference to the hero who casts the skill
+        /// </summary>
+        protected IHero SkillCasterHero;
+        
+        /// <summary>
+        /// Reference to the hero who created the status effect
+        /// </summary>
+        protected IHero StatusEffectCasterHero;
+        
+        /// <summary>
         /// Returns list of action or basic condition targets
         /// </summary>
         /// <param name="hero"></param>
@@ -24,9 +34,22 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             return actionTargets;
         }
         
-       
+        /// <summary>
+        /// Initializes the skill's caster hero used by SkillCasterHero action target
+        /// </summary>
+        /// <param name="skill"></param>
+        public virtual void InitializeSkillCasterHero(ISkill skill)
+        {
+            SkillCasterHero = skill.CasterHero;
+        }
         
-        
+        //TODO - public virtual void InitializeStatusEffectCasterHero(IStatusEffect statusEffect)
+
+
+
+
+
+
 
 
     }
