@@ -44,8 +44,27 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         }
         
         //TODO - public virtual void InitializeStatusEffectCasterHero(IStatusEffect statusEffect)
+        
+        
+        /// <summary>
+        /// Returns a randomized hero list.
+        /// Used in multiple action targets.
+        /// </summary>
+        /// <param name="heroList"></param>
+        /// <returns></returns>
+        protected List<IHero> ShuffleList(List<IHero> heroList)
+        {
+            //Randomize the List
+            for (var i = 0; i < heroList.Count; i++) 
+            {
+                var temp = heroList[i];
+                var randomIndex = Random.Range(i, heroList.Count);
+                heroList[i] = heroList[randomIndex];
+                heroList[randomIndex] = temp;
+            }
 
-
+            return heroList;
+        }
 
 
 
