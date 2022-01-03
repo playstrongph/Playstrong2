@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.ActionTargetAssets;
+using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.BasicConditionAssets;
 using ScriptableObjectScripts.BasicEventAssets;
 using UnityEngine;
@@ -12,10 +13,13 @@ namespace ScriptableObjectScripts.StandardActionAssets
     /// </summary>
     public abstract class StandardActionAsset : ScriptableObject, IStandardActionAsset
     {
+        #region VARIABLES AND PROPERTIES
+
         /// <summary>
         /// Set in the inspector but 
         /// is only used locally in the class
         /// </summary>
+        [Header("BASIC EVENT COMPONENTS")]
         [SerializeField] private ScriptableObject basicEvent;
         private IBasicEventAsset BasicEvent
         {
@@ -33,9 +37,11 @@ namespace ScriptableObjectScripts.StandardActionAssets
             private set => subscribers = value as ScriptableObject;
         }
         
+        
         /// <summary>
         /// Hero targets used in the basic condition logic
         /// </summary>
+        [Header("BASIC CONDITION COMPONENTS")]
         [SerializeField] private ScriptableObject basicConditionTargets;
         public IActionTargetAsset BasicConditionTargets
         {
@@ -96,18 +102,41 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public List<ScriptableObject> AndBasicConditionsScriptableObjects => orBasicConditions;
         
         
+        /// <summary>
+        /// Heroes used ion basic action logic
+        /// </summary>
+        [Header("BASIC ACTION COMPONENTS")]
+        [SerializeField] private ScriptableObject basicActionTargets;
+        public IActionTargetAsset BasicActionTargets
+        {
+            get => basicActionTargets as IActionTargetAsset;
+            private set => basicActionTargets = value as ScriptableObject;
+        }
         
+        /// <summary>
+        /// List of basic actions used in the standard action
+        /// Only used locally
+        /// </summary>
+        [SerializeField] private List<ScriptableObject> basicActions = new List<ScriptableObject>();
+        private List<IBasicActionAsset> BasicActions
+        {
+            get
+            {
+                var newBasicActions = new List<IBasicActionAsset>();
+                foreach (var basicActionObject in basicActions)
+                {
+                    var basicAction = basicActionObject as IBasicActionAsset;
+                    newBasicActions.Add(basicAction);
+                }
+
+                return newBasicActions;
+            }
+        }
         
-        
-        
-        
-        
-        
+        #endregion
 
 
-
-
-
+        #region EXECUTION
 
         /// <summary>
         /// Base method for actions execution
@@ -117,5 +146,9 @@ namespace ScriptableObjectScripts.StandardActionAssets
         {
             
         }
+
+        #endregion
+        
+       
     }
 }
