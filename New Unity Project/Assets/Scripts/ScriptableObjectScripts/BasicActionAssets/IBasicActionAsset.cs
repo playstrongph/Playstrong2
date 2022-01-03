@@ -19,5 +19,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="hero"></param>
         IEnumerator ExecuteAction(IHero hero);
+        
+        /// <summary>
+        ///  Undoes the effect of execute action, mostly
+        /// used in status effects
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        IEnumerator UndoExecuteAction(IHero hero);
     }
 }
