@@ -1,10 +1,9 @@
 ﻿using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
-using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
 {
-    public abstract class HeroLifeStatusAsset : ScriptableObject, IHeroLifeStatusAsset
+    public interface IHeroLifeStatusAsset
     {
         /// <summary>
         /// Target HeroAlive - call hero Caster Action
@@ -13,11 +12,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public virtual void TargetAction(IBasicActionAsset basicAction, IHero hero)
-        {
-            
-        }
-        
+        void TargetAction(IBasicActionAsset basicAction, IHero hero);
+
         /// <summary>
         /// HeroAlive - basic action Execute action
         /// HeroDead - Do nothing
@@ -25,16 +21,6 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public virtual void CasterAction(IBasicActionAsset basicAction, IHero hero)
-        {
-            
-        }
-        
-        
-        
-        
-        
-
-
+        void CasterAction(IBasicActionAsset basicAction, IHero hero);
     }
 }

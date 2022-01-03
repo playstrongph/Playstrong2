@@ -295,6 +295,7 @@ MonoBehaviour:
   heroActiveStatus: {fileID: 11400000, guid: fea3325dff93e53409a68f57eaeb27b0, type: 2}
   heroInabilityStatus: {fileID: 11400000, guid: 89ca26f2e92316c4b83d3f802d13e1e1,
     type: 2}
+  heroLifeStatus: {fileID: 11400000, guid: 0f72273172a5a494a94972d9fe862588, type: 2}
 --- !u!114 &8137904070298217024
 MonoBehaviour:
   m_ObjectHideFlags: 0

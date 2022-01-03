@@ -1,5 +1,6 @@
 ﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
 using ScriptableObjectScripts.HeroInabilityStatusAssets;
+using ScriptableObjectScripts.HeroLifeStatusAssets;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -22,6 +23,7 @@ namespace Logic
         /// <summary>
         /// Hero active or inactive status
         /// </summary>
+        [Header("HERO STATUSES")]
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroActiveStatusAsset))]
         private ScriptableObject heroActiveStatus;
 
@@ -41,6 +43,17 @@ namespace Logic
         {
             get => heroInabilityStatus as IHeroInabilityStatusAsset;
             set => heroInabilityStatus = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// Hero is alive or dead
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHeroLifeStatusAsset))]
+        private ScriptableObject heroLifeStatus;
+        public IHeroLifeStatusAsset HeroLifeStatus
+        {
+            get => heroLifeStatus as IHeroLifeStatusAsset;
+            set => heroLifeStatus = value as ScriptableObject;
         }
 
         #region COMPONENT REFERENCES
