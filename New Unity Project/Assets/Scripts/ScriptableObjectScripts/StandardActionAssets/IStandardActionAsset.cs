@@ -81,7 +81,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Unsubscribe standard action to the skill event
         /// </summary>
         /// <param name="skill"></param>
-        void UnSubscribeStandardAction(ISkill skill);
+        void UnsubscribeStandardAction(ISkill skill);
         
         /// <summary>
         /// Base method for actions execution

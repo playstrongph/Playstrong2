@@ -190,7 +190,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Unsubscribe standard action to the skill event
         /// </summary>
         /// <param name="skill"></param>
-        public void UnSubscribeStandardAction(ISkill skill)
+        public void UnsubscribeStandardAction(ISkill skill)
         {
             BasicEvent.UnsubscribeStandardAction(skill,this);
         }
