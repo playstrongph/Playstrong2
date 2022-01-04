@@ -9,19 +9,17 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         /// The skill originator of the basic condition
         /// </summary>
         protected ISkill SkillParent;
-
+        
         /// <summary>
-        /// Overriden by the deriving classes that implements their logic
-        /// E.g. ConditionUsingSpecificSkill
+        /// Set the skill parent during initialization
+        /// 
         /// </summary>
-        /// <param name="hero"></param>
-        /// <returns></returns>
-        protected virtual int CheckConditionValue(IHero hero)
+        /// <param name="skill"></param>
+        public void InitializeSkillParent(ISkill skill)
         {
-            return 0;
+            SkillParent = skill;
         }
-        
-        
+
         /// <summary>
         /// If Check condition logic is met, returns 1
         /// If Check condition logic is not met, returns 0
@@ -32,16 +30,19 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         {
             return CheckConditionValue(hero);
         }
-
+        
         /// <summary>
-        /// Set the skill parent during initialization
-        /// 
+        /// Overriden by the deriving classes that implements their logic
+        /// E.g. ConditionUsingSpecificSkill
         /// </summary>
-        /// <param name="skill"></param>
-        public void InitializeSkillParent(ISkill skill)
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        protected virtual int CheckConditionValue(IHero hero)
         {
-            SkillParent = skill;
+            return 0;
         }
+
+       
 
 
 

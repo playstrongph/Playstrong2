@@ -21,7 +21,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// is only used locally in the class
         /// </summary>
         [Header("BASIC EVENT COMPONENTS")]
-        [SerializeField] private ScriptableObject basicEvent;
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicEventAsset))] private ScriptableObject basicEvent;
         private IBasicEventAsset BasicEvent
         {
             get => basicEvent as IBasicEventAsset;
@@ -31,7 +31,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Hero subscribers to the basic events
         /// </summary>
-        [SerializeField] private ScriptableObject subscribers;
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))] private ScriptableObject subscribers;
         public IActionTargetAsset Subscribers
         {
             get => subscribers as IActionTargetAsset;
@@ -43,7 +43,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Hero targets used in the basic condition logic
         /// </summary>
         [Header("BASIC CONDITION COMPONENTS")]
-        [SerializeField] private ScriptableObject basicConditionTargets;
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))]private ScriptableObject basicConditionTargets;
         public IActionTargetAsset BasicConditionTargets
         {
             get => basicConditionTargets as IActionTargetAsset;
@@ -55,7 +55,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// List of basic conditions in 'OR' logic configuration
         /// Returns orBasicConditions as list of basic condition assets
         /// </summary>
-        [SerializeField] private List<ScriptableObject> orBasicConditions = new List<ScriptableObject>();
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicConditionAsset))]private List<ScriptableObject> orBasicConditions = new List<ScriptableObject>();
         public List<IBasicConditionAsset> OrBasicConditions
         {
             get
@@ -81,7 +81,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// List of basic conditions in 'And' logic configuration
         /// Returns andBasicConditions as list of basic condition assets
         /// </summary>
-        [SerializeField] private List<ScriptableObject> andBasicConditions = new List<ScriptableObject>();
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicConditionAsset))]private List<ScriptableObject> andBasicConditions = new List<ScriptableObject>();
         public List<IBasicConditionAsset> AndBasicConditions
         {
             get
@@ -107,7 +107,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Heroes used ion basic action logic
         /// </summary>
         [Header("BASIC ACTION COMPONENTS")]
-        [SerializeField] private ScriptableObject basicActionTargets;
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))]private ScriptableObject basicActionTargets;
         public IActionTargetAsset BasicActionTargets
         {
             get => basicActionTargets as IActionTargetAsset;
@@ -118,7 +118,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// List of basic actions used in the standard action
         /// Only used locally
         /// </summary>
-        [SerializeField] private List<ScriptableObject> basicActions = new List<ScriptableObject>();
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicActionAsset))]private List<ScriptableObject> basicActions = new List<ScriptableObject>();
         private List<IBasicActionAsset> BasicActions
         {
             get

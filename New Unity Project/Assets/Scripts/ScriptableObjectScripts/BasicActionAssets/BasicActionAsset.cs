@@ -17,14 +17,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
+            hero.HeroLogic.HeroLifeStatus.TargetAction(this,hero);
+            
             logicTree.EndSequence();
             yield return null;
         }
         
         
         /// <summary>
-        /// Executes the basic action logic
-        /// Exclusively used by hero life status
+        /// Executes the basic action logic, used by hero life status
+        /// This is the method overriden by the specific basic actions
         /// </summary>
         /// <param name="hero"></param>
         public virtual IEnumerator ExecuteAction(IHero hero)
