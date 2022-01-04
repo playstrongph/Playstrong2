@@ -54,12 +54,41 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
 
         #endregion
+
+
+        #region EXECUTION
         
+        /// <summary>
+        /// Subscribe standard action to each hero (subscriber) event
+        /// </summary>
+        /// <param name="hero"></param>
+        void SubscribeStandardAction(IHero hero);
+        
+        /// <summary>
+        /// Unsubscribe standard action to each hero (subscriber) event
+        /// </summary>
+        /// <param name="hero"></param>
+        void UnsubscribeStandardAction(IHero hero);
+        
+        /// <summary>
+        /// Subscribe standard action to the skill event
+        /// </summary>
+        /// <param name="skill"></param>
+        void SubscribeStandardAction(ISkill skill);
+
+        
+        /// <summary>
+        /// Unsubscribe standard action to the skill event
+        /// </summary>
+        /// <param name="skill"></param>
+        void UnSubscribeStandardAction(ISkill skill);
         
         /// <summary>
         /// Base method for actions execution
         /// </summary>
         /// <param name="hero"></param>
         void StartAction(IHero hero);
+        
+        #endregion
     }
 }

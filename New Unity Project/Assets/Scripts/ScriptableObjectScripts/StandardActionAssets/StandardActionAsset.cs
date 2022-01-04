@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.ActionTargetAssets;
 using ScriptableObjectScripts.BasicActionAssets;
@@ -137,6 +138,53 @@ namespace ScriptableObjectScripts.StandardActionAssets
 
 
         #region EXECUTION
+        
+        /// <summary>
+        /// Subscribe standard action to each hero (subscriber) event
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public void SubscribeStandardAction(IHero hero)
+        {
+            foreach (var subscriber in Subscribers.ActionTargets(hero))
+            {
+                BasicEvent.SubscribeStandardAction(subscriber,this);
+            }
+        }
+        
+        /// <summary>
+        /// Unsubscribe standard action to each hero (subscriber) event
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public void UnsubscribeStandardAction(IHero hero)
+        {
+            foreach (var subscriber in Subscribers.ActionTargets(hero))
+            {
+                BasicEvent.UnsubscribeStandardAction(subscriber,this);
+            }
+        }
+        
+        /// <summary>
+        /// Subscribe standard action to the skill event
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        public void SubscribeStandardAction(ISkill skill)
+        {
+            BasicEvent.SubscribeStandardAction(skill,this);
+        }
+        
+        /// <summary>
+        /// Unsubscribe standard action to the skill event
+        /// </summary>
+        /// <param name="skill"></param>
+        public void UnSubscribeStandardAction(ISkill skill)
+        {
+            BasicEvent.UnsubscribeStandardAction(skill,this);
+        }
+        
+        
 
         /// <summary>
         /// Base method for actions execution
@@ -146,6 +194,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         {
             
         }
+        
+        
 
         #endregion
         
