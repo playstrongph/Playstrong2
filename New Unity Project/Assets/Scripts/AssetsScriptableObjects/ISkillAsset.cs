@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillEffectAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
@@ -17,6 +18,11 @@ namespace AssetsScriptableObjects
         /// </summary>
         String SkillDescription { get; }
         
+        /// <summary>
+        /// Skill Effect Asset
+        /// </summary>
+        ISkillEffectAsset SkillEffectAsset { get; }
+
         /// <summary>
         /// Reference to the skill graphic icon
         /// </summary>

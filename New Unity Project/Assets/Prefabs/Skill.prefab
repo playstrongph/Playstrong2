@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skill: {fileID: 359849407904444818}
+  skillEffect: {fileID: 0}
 --- !u!114 &859601009
 MonoBehaviour:
   m_ObjectHideFlags: 0

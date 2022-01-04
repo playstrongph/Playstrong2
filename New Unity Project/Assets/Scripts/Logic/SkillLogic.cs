@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectScripts.SkillEffectAssets;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Logic
@@ -18,6 +19,18 @@ namespace Logic
         {
             get => skill as ISkill;
             set => skill = value as Object;
+        }
+        
+        /// <summary>
+        /// Skill Effect Reference
+        /// </summary>
+        [Header("SET IN RUNTIME")]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillEffectAsset))]
+        private ScriptableObject skillEffect;
+        public ISkillEffectAsset SkillEffect
+        {
+            get => skillEffect as ISkillEffectAsset;
+            set => skillEffect = value as ScriptableObject;
         }
 
         /// <summary>

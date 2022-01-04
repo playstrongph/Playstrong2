@@ -1,4 +1,6 @@
-﻿namespace Logic
+﻿using ScriptableObjectScripts.SkillEffectAssets;
+
+namespace Logic
 {
     public interface ISkillLogic
     {
@@ -6,7 +8,12 @@
         /// Interface reference to skill
         /// </summary>
         ISkill Skill { get; }
-        
+
+        /// <summary>
+        /// Skill Effect Reference
+        /// </summary>
+        ISkillEffectAsset SkillEffect { get; set; }
+
         /// <summary>
         /// Contains the skill properties such as cooldown, skill type, etc.
         /// </summary>

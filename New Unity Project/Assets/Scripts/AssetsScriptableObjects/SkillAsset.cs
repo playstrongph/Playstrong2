@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjectScripts.SkillCooldownTypeAssets;
+using ScriptableObjectScripts.SkillEffectAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;
 using UnityEngine;
@@ -37,6 +38,17 @@ namespace AssetsScriptableObjects
             get => skillDescription;
             private set => skillDescription = value;
 
+        }
+        
+        /// <summary>
+        /// Skill Effect Asset
+        /// </summary>
+        [Header("Skill Effect")][SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillEffectAsset))]
+        private ScriptableObject skillEffectAsset;
+        public ISkillEffectAsset SkillEffectAsset
+        {
+            get => skillEffectAsset as ISkillEffectAsset;
+            private set => skillEffectAsset = value as ScriptableObject;
         }
         
         /// <summary>
