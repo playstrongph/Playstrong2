@@ -134,6 +134,17 @@ namespace ScriptableObjectScripts.StandardActionAssets
             }
         }
         
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalAndConditionsValue;
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalOrConditionsValue;
+        
         #endregion
 
 
@@ -198,6 +209,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         }
         
         /// <summary>
+        /// Runs basic action/s if basic condition/s are met
         /// Coroutine is required because this is a sequential logic
         /// </summary>
         /// <param name="hero"></param>
@@ -231,18 +243,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         
         //Basic Condition Execution Logic
-        
-        /// <summary>
-        /// AllAndBasicConditionsValue accumulator
-        /// </summary>
-        private int _finalAndConditionsValue;
-        
-        /// <summary>
-        /// AllAndBasicConditionsValue accumulator
-        /// </summary>
-        private int _finalOrConditionsValue;
-        
-        
+
         private int FinalConditionValue(IHero hero)
         {
             var finalCondition = AllAndBasicConditionsValue(hero) * AllOrBasicConditionsValue(hero);

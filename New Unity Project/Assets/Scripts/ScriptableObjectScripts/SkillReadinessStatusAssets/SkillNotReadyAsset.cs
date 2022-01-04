@@ -1,5 +1,6 @@
 ﻿using System;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillReadinessStatusAssets
@@ -15,6 +16,16 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         public override void StatusAction(ISkill skill)
         {
             skill.SkillLogic.SkillAttributes.SkillType.SkillNotReadyActions(skill);
+        }
+        
+        /// <summary>
+        /// Does nothing
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="hero"></param>
+        public override void SkillStartAction(ISkillActionAsset skillAction, IHero hero)
+        {
+            
         }
 
     }

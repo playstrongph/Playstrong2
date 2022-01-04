@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 
 namespace ScriptableObjectScripts.SkillReadinessStatusAssets
 {
@@ -9,7 +10,13 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// </summary>
         /// <param name="skill"></param>
         void StatusAction(ISkill skill);
-        
-        
+
+        /// <summary>
+        /// Executes skill action's skill start action when skill readiness is in 'SkillReady' state
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="hero"></param>
+        void SkillStartAction(ISkillActionAsset skillAction, IHero hero);
+
     }
 }
