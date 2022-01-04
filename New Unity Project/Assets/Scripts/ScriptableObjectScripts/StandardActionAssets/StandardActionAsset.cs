@@ -192,10 +192,107 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public virtual void StartAction(IHero hero)
         {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
+            logicTree.AddCurrent(StartActionCoroutine(hero));
+        }
+        
+        /// <summary>
+        /// Coroutine is required because this is a sequential logic
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        protected IEnumerator StartActionCoroutine(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var actionTargetHeroes = BasicActionTargets.ActionTargets(hero);
+            
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var newTargetHero = actionTargetHeroes[index];
+                
+                var conditionTargetHeroes = BasicConditionTargets.ActionTargets(hero);
+
+               
+               //Check if conditionTargetHeroes and actionTargetHeroes are the same
+               //If not, use index 0 (meaning there is only 1 condition target)
+               var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+               //Product of all 'And' and 'Or' basic condition logic
+               if (FinalConditionValue(conditionTargetHeroes[conditionIndex]) > 0)
+                {
+                    foreach (var basicAction in BasicActions)
+                        logicTree.AddCurrent(basicAction.StartAction(newTargetHero));
+                }
+            }
+            logicTree.EndSequence();
+            yield return null;
         }
         
         
+        //Basic Condition Execution Logic
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalAndConditionsValue;
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalOrConditionsValue;
+        
+        
+        private int FinalConditionValue(IHero hero)
+        {
+            var finalCondition = AllAndBasicConditionsValue(hero) * AllOrBasicConditionsValue(hero);
+            return finalCondition;
+        }
+        
+        /// <summary>
+        /// Returns the result of multiplying all 'And' conditions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private int AllAndBasicConditionsValue(IHero hero)
+        {
+            if (AndBasicConditions.Count > 0)
+            {
+                _finalAndConditionsValue = 1;
+                foreach (var basicCondition in AndBasicConditions)
+                {
+                    _finalAndConditionsValue *= basicCondition.ConditionValue(hero);
+                    _finalAndConditionsValue = Mathf.Clamp(_finalAndConditionsValue, 0, 1);
+                }
+            }
+            else
+                _finalAndConditionsValue = 1; 
+            
+            return _finalAndConditionsValue;
+        }
+        
+        /// <summary>
+        /// Returns the result of multiplying all 'Or' conditions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private int AllOrBasicConditionsValue(IHero hero)
+        {
+            if (OrBasicConditions.Count > 0)
+            {
+                _finalOrConditionsValue = 0;
+                foreach (var basicCondition in OrBasicConditions)
+                {
+                    _finalOrConditionsValue += basicCondition.ConditionValue(hero);
+                    _finalOrConditionsValue = Mathf.Clamp(_finalOrConditionsValue, 0, 1);
+
+                }
+            }
+            else _finalOrConditionsValue =  1;
+
+            return _finalOrConditionsValue;
+        }
+       
 
         #endregion
         
