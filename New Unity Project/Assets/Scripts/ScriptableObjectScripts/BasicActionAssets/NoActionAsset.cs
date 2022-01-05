@@ -16,6 +16,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
+            Debug.Log("No Action Caster Hero:" +hero.HeroName);
+
             logicTree.EndSequence();
             yield return null;
         }
