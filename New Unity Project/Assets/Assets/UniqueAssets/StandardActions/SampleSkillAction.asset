@@ -16,9 +16,9 @@ MonoBehaviour:
   subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicConditionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab,
     type: 2}
-  orBasicConditions: []
-  andBasicConditions:
+  orBasicConditions:
   - {fileID: 11400000, guid: f2600ac79650d5648bc586e145d3f348, type: 2}
+  andBasicConditions: []
   basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActions:
   - {fileID: 11400000, guid: d62a0f150e217cd4ea300d56711abbf1, type: 2}

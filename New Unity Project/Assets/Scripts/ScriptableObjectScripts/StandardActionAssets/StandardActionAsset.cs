@@ -100,7 +100,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Used in creating unique basic conditions
         /// Returns andBasicConditions as list of scriptable objects
         /// </summary>
-        public List<ScriptableObject> AndBasicConditionsScriptableObjects => orBasicConditions;
+        public List<ScriptableObject> AndBasicConditionsScriptableObjects => andBasicConditions;
         
         
         /// <summary>

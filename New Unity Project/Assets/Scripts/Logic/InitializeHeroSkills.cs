@@ -86,7 +86,7 @@ namespace Logic
                 displaySkill.SkillLogic.SkillAttributes.SkillReadiness.StatusAction(displaySkill);
                 
                 //Load unique skill effect assets
-                
+                skill.SkillLogic.LoadSkillEffectAsset.StartAction(skillAsset);
                 
             }
             
