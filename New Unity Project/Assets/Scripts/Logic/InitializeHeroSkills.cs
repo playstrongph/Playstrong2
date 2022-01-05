@@ -30,6 +30,9 @@ namespace Logic
             
             var heroSkills = heroSkillsObject.GetComponent<IHeroSkills>();
             var displaySkills = displaySkillsObject.GetComponent<IHeroSkills>();
+
+            //all skills of all heroes of the player
+            var playerSkillsAllHeroes = _hero.Player.SkillsAllHeroes;
             
             heroSkillsObject.name = heroAsset.HeroName + "Skills";
             displaySkillsObject.name = heroAsset.HeroName + "DisplaySkills";
@@ -87,6 +90,9 @@ namespace Logic
                 
                 //Load unique skill effect assets
                 skill.SkillLogic.LoadSkillEffectAsset.StartAction(skillAsset);
+                
+                //add skills to playerSkillsAllHeroes list
+                playerSkillsAllHeroes.AllHeroesSkills.Add(skill);
                 
             }
             

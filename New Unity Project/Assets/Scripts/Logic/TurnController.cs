@@ -146,6 +146,11 @@ namespace Logic
         /// Determines the next active hero from the active heroes list 
         /// </summary>
         public IStartNextHeroTurn StartNextHeroTurn { get; private set; }
+        
+        /// <summary>
+        /// Used by turn controller to initialize all skill effects of all heroes 
+        /// </summary>
+        private IInitializeAllSkillEffects InitializeAllSkillEffects { get; set; }
 
         private void Awake()
         {
@@ -158,6 +163,7 @@ namespace Logic
             HeroEndTurn = GetComponent<IHeroEndTurn>();
             AfterHeroEndTurn = GetComponent<IAfterHeroEndTurn>();
             StartNextHeroTurn = GetComponent<IStartNextHeroTurn>();
+            InitializeAllSkillEffects = GetComponent<IInitializeAllSkillEffects>();
         }
         
         /// <summary>
@@ -165,6 +171,10 @@ namespace Logic
         /// </summary>
         public void StartBattle()
         {
+            //Initialize all skill effects of all heroes 
+            InitializeAllSkillEffects.StartAction();
+            
+            //TODO: Game Start Event Enumerator
 
             var logicTree = this.CoroutineTrees.MainLogicTree;
             logicTree.AddCurrent(StartHeroTimers());
