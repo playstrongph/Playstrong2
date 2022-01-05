@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 69477368}
   - component: {fileID: 6405361284868594001}
   - component: {fileID: 1595532410864436150}
+  - component: {fileID: 4422343254684008384}
   m_Layer: 0
   m_Name: SkillLogic
   m_TagString: Untagged
@@ -371,6 +372,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d01c7b6c068d7c14f836f96810b0464e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4422343254684008384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849407772675572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 130be3f85cc09104aa4c2de1f03e35eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &359849407779702824

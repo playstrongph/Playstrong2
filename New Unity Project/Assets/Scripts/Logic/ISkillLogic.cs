@@ -30,6 +30,11 @@ namespace Logic
         ILoadSkillAttributes LoadSkillAttributes { get; }
         
         /// <summary>
+        /// Loads the skill effect from the skill asset
+        /// </summary>
+        ILoadSkillEffectAsset LoadSkillEffectAsset { get; }
+
+        /// <summary>
         ///  Updates the skill cooldown based on cooldown type
         /// </summary>
         IUpdateSkillCooldown UpdateSkillCooldown { get; }

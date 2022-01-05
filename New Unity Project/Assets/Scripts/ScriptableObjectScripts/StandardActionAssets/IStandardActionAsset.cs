@@ -15,12 +15,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Hero subscribers to the basic events
         /// </summary>
-        IActionTargetAsset Subscribers { get; }
+        IActionTargetAsset Subscribers { get; set; }
         
         /// <summary>
         /// Hero targets used in the basic condition logic
         /// </summary>
-        IActionTargetAsset BasicConditionTargets { get; }
+        IActionTargetAsset BasicConditionTargets { get; set; }
         
         
         /// <summary>
@@ -50,7 +50,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Heroes used ion basic action logic
         /// </summary>
-        IActionTargetAsset BasicActionTargets { get; }
+        IActionTargetAsset BasicActionTargets { get; set; }
         
 
         #endregion

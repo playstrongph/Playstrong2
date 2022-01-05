@@ -1,12 +1,18 @@
 ﻿using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.StandardActionAssets;
+using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillEffectAssets
 {
     public interface ISkillEffectAsset
     {
         List<IStandardActionAsset> StandardActions { get; }
+        
+        /// <summary>
+        /// Public access to standardActions - used in unique asset creation at  LoadSkillEffect
+        /// </summary>
+        List<ScriptableObject> StandardActionsScriptableObjects { get; }
 
         /// <summary>
         /// Subscribe all standard actions to their respective skill basic events

@@ -84,6 +84,10 @@ namespace Logic
                 //Skill Glows - based on skill type and skill readiness
                 skill.SkillLogic.SkillAttributes.SkillReadiness.StatusAction(skill);
                 displaySkill.SkillLogic.SkillAttributes.SkillReadiness.StatusAction(displaySkill);
+                
+                //Load unique skill effect assets
+                
+                
             }
             
             //Hide hero skills and display skills

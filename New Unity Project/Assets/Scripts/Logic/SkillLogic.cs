@@ -44,6 +44,12 @@ namespace Logic
         public ILoadSkillAttributes LoadSkillAttributes { get; private set; }
         
         /// <summary>
+        /// Loads the skill effect from the skill asset
+        /// </summary>
+        public ILoadSkillEffectAsset LoadSkillEffectAsset { get; private set; }
+
+
+        /// <summary>
         /// Updates the skill cooldown based on cooldown type
         /// </summary>
         public IUpdateSkillCooldown UpdateSkillCooldown { get; private set; }
@@ -67,6 +73,7 @@ namespace Logic
         {
             SkillAttributes = GetComponent<ISkillAttributes>();
             LoadSkillAttributes = GetComponent<ILoadSkillAttributes>();
+            LoadSkillEffectAsset = GetComponent<ILoadSkillEffectAsset>();
             UpdateSkillCooldown = GetComponent<IUpdateSkillCooldown>();
             UpdateSkillReadiness = GetComponent<IUpdateSkillReadiness>();
             OtherSkillAttributes = GetComponent<IOtherSkillAttributes>();

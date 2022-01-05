@@ -35,7 +35,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public IActionTargetAsset Subscribers
         {
             get => subscribers as IActionTargetAsset;
-            private set => subscribers = value as ScriptableObject;
+            set => subscribers = value as ScriptableObject;
         }
         
         
@@ -47,7 +47,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public IActionTargetAsset BasicConditionTargets
         {
             get => basicConditionTargets as IActionTargetAsset;
-            private set => basicConditionTargets = value as ScriptableObject;
+            set => basicConditionTargets = value as ScriptableObject;
         }
         
         
@@ -111,7 +111,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public IActionTargetAsset BasicActionTargets
         {
             get => basicActionTargets as IActionTargetAsset;
-            private set => basicActionTargets = value as ScriptableObject;
+            set => basicActionTargets = value as ScriptableObject;
         }
         
         /// <summary>

@@ -29,6 +29,11 @@ namespace ScriptableObjectScripts.SkillEffectAssets
         }
         
         /// <summary>
+        /// Public access to standardActions - used in unique asset creation at  LoadSkillEffect
+        /// </summary>
+        public List<ScriptableObject> StandardActionsScriptableObjects => standardActions;
+        
+        /// <summary>
         /// Subscribe all standard actions to their respective skill basic events
         /// </summary>
         /// <param name="skill"></param>
