@@ -168,14 +168,14 @@ namespace Logic
             var skill = SkillTargetCollider.Skill;
             
             //TODO: SetUsingActiveOrBasicSkillStatus 
-            
-            //ResetSkillCooldown
-            skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
-            
+
             //TODO: SetUsedLastTurnSkillStatus - Reworked, check if still needed
             
             //TODO: UseSkillEffect IEnumerator
             logicTree.AddCurrent(UseSkillEffect());
+            
+            //ResetSkillCooldown
+            logicTree.AddCurrent(ResetSkillCooldown());
 
             //UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
             logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());
@@ -198,6 +198,21 @@ namespace Logic
             
             //Call all EventSkillDragTarget subscribers' start action
             skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Reset skill cooldown after skill use
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator ResetSkillCooldown()
+        {
+            var skill = SkillTargetCollider.Skill;
+            var logicTree = skill.CasterHero.CoroutineTrees.MainLogicTree;
+
+            skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
             logicTree.EndSequence();
             yield return null;

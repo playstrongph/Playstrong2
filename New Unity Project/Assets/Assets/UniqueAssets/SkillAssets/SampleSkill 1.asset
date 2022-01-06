@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
   m_Name: SampleSkill 1
   m_EditorClassIdentifier: 
-  skillName: SampleSkill1
+  skillName: ActiveSkill1
   skillDescription: The quick brown fox jumps over the lazy dog. 88
   skillEffectAsset: {fileID: 11400000, guid: 612d333a5f98d814ca50ddbc5b82af92, type: 2}
   skillIcon: {fileID: -1275177327444788608, guid: 1e34d481195a8b94caf686256c37b8fa,
