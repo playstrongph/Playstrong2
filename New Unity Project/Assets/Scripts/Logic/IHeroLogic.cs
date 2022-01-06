@@ -86,6 +86,11 @@ namespace Logic
         ///  Sets the hero's/other hero's targeted/targeting hero 
         /// </summary>
         ILastHeroTargets LastHeroTargets { get; }
+        
+        /// <summary>
+        /// Reference to hero events
+        /// </summary>
+        IHeroEvents HeroEvents { get; }
 
         #endregion
     }

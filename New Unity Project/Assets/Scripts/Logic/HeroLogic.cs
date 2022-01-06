@@ -122,6 +122,11 @@ namespace Logic
         /// Sets the hero's/other hero's targeted/targeting hero 
         /// </summary>
         public ILastHeroTargets LastHeroTargets { get; private set; }
+        
+        /// <summary>
+        /// Reference to hero events
+        /// </summary>
+        public IHeroEvents HeroEvents { get; private set; }
 
         #endregion
 
@@ -140,6 +145,7 @@ namespace Logic
             HeroTimer = GetComponent<IHeroTimer>();
             SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
             LastHeroTargets = GetComponent<ILastHeroTargets>();
+            HeroEvents = GetComponent<IHeroEvents>();
         }
     }
 }

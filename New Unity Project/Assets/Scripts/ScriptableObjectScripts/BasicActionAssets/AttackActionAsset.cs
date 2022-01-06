@@ -45,14 +45,62 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         private void AttackHero(IHero hero)
         {
+            //Before hero attacks events
             PreSkillAttackEvents(hero);
-
-        }
-
-        private void PreSkillAttackEvents(IHero hero)
-        {
+            PreAttackEvents(hero);
+            
+            //TODO: private set normal or critical attack
+            
+            //After hero attacks events
+            PostAttackEvents(hero);
+            PostSkillAttackEvents(hero);
             
         }
+
+        #region EVENTS
+        
+        /// <summary>
+        /// Before hero skill attacks event
+        /// </summary>
+        /// <param name="casterHero"></param>
+        private void PreSkillAttackEvents(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetedHero);
+        }
+        
+        private void PreAttackEvents(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(casterHero);
+        }
+        
+        private void PostAttackEvents(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
+        }
+        
+        private void PostSkillAttackEvents(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetedHero);
+
+        }
+        
+        
+
+        #endregion
+        
+       
 
 
 
