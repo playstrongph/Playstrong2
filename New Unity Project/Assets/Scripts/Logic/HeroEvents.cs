@@ -20,11 +20,11 @@ namespace Logic
         public event HeroEvent EAfterHeroIsAttacked;
         public event HeroEvent EAfterHeroSkillAttacks;
         public event HeroEvent EAfterHeroIsSkillAttacked;
-        
-        
-        
-        
-        
+        public event HeroEvent EBeforeHeroCriticalStrikes;
+        public event HeroEvent EBeforeHeroIsDealtCriticalStrike;
+        public event HeroEvent EAfterHeroIsDealtCriticalStrike;
+        public event HeroEvent EAfterHeroDealsCriticalStrike;
+
 
         #endregion
 
@@ -101,6 +101,42 @@ namespace Logic
         {
             EAfterHeroIsSkillAttacked?.Invoke(hero);
         }
+        
+        /// <summary>
+        /// Before the caster hero deals critical strike
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroCriticalStrikes(IHero hero)
+        {
+            EBeforeHeroCriticalStrikes?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before the targeted hero is dealt critical strike
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroIsDealtCriticalStrike(IHero hero)
+        {
+            EBeforeHeroIsDealtCriticalStrike?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After the targeted hero is dealt critical strike
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroIsDealtCriticalStrike(IHero hero)
+        {
+            EAfterHeroIsDealtCriticalStrike?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After the hero deals critical strike
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroDealsCriticalStrike(IHero hero)
+        {
+            EAfterHeroDealsCriticalStrike?.Invoke(hero);
+        }
 
 
         #endregion
@@ -172,6 +208,38 @@ namespace Logic
                     EAfterHeroIsSkillAttacked -= client as HeroEvent;
         }
         
+        private void UnsubscribeEventBeforeHeroCriticalStrikes()
+        {
+            var clients = EBeforeHeroCriticalStrikes?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroCriticalStrikes -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeHeroIsDealtCriticalStrike()
+        {
+            var clients = EBeforeHeroIsDealtCriticalStrike?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroIsDealtCriticalStrike -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroIsDealtCriticalStrike()
+        {
+            var clients = EAfterHeroIsDealtCriticalStrike?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroIsDealtCriticalStrike -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroDealsCriticalStrike()
+        {
+            var clients = EAfterHeroDealsCriticalStrike?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroDealsCriticalStrike -= client as HeroEvent;
+        }
+        
         
 
         #endregion
@@ -202,6 +270,12 @@ namespace Logic
             
             UnsubscribeEventAfterHeroSkillAttacks();
             UnsubscribeEventAfterHeroIsSkillAttacked();
+
+            UnsubscribeEventBeforeHeroCriticalStrikes();
+            UnsubscribeEventBeforeHeroIsDealtCriticalStrike();
+
+            UnsubscribeEventAfterHeroIsDealtCriticalStrike();
+            UnsubscribeEventAfterHeroDealsCriticalStrike();
         }
     }
 }
