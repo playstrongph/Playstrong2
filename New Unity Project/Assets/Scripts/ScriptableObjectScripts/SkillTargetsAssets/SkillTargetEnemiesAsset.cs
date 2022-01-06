@@ -14,7 +14,7 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
 
             foreach (var enemyHero in allEnemies)
             {
-                var attackTargetResistance = enemyHero.HeroLogic.OtherHeroAttributes.TargetAttackResistance;
+                var attackTargetResistance = enemyHero.HeroLogic.ResistanceAttributes.TargetAttackResistance;
                 if (attackTargetResistance <= 0 )
                     validTargets.Add(enemyHero);
             }

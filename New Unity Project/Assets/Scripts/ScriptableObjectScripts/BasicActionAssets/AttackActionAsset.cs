@@ -25,7 +25,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         [Header("ADDITIONAL DAMAGE FACTORS")] 
         [SerializeField] private int flatValue;
-        
+
         //TODO: CalculatedValue
         
         //TODO: Attack animation

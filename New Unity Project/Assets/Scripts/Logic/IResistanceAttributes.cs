@@ -1,6 +1,6 @@
 ﻿namespace Logic
 {
-    public interface IOtherHeroAttributes
+    public interface IResistanceAttributes
     {
         /// <summary>
         ///  Value greater than zero means the hero can't be targeted directly by attack type skills.

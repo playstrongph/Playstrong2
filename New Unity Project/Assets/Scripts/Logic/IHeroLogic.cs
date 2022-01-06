@@ -30,7 +30,7 @@ namespace Logic
         /// <summary>
         /// Other hero attributes reference
         /// </summary>
-        IOtherHeroAttributes OtherHeroAttributes { get; }
+        IResistanceAttributes ResistanceAttributes { get; }
 
         /// <summary>
         /// Set attack reference

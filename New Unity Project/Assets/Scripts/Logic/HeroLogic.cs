@@ -66,7 +66,7 @@ namespace Logic
         /// <summary>
         /// Other hero attributes reference
         /// </summary>
-        public IOtherHeroAttributes OtherHeroAttributes { get; private set; }
+        public IResistanceAttributes ResistanceAttributes { get; private set; }
 
         /// <summary>
         /// Set attack reference
@@ -133,7 +133,7 @@ namespace Logic
         private void Awake()
         {
             HeroAttributes = GetComponent<IHeroAttributes>();
-            OtherHeroAttributes = GetComponent<IOtherHeroAttributes>();
+            ResistanceAttributes = GetComponent<IResistanceAttributes>();
             SetAttack = GetComponent<ISetAttack>();
             SetArmor = GetComponent<ISetArmor>();
             SetSpeed = GetComponent<ISetSpeed>();
