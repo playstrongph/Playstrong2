@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 2881245421814895743}
   - component: {fileID: 1458600388}
   - component: {fileID: 2068203322}
+  - component: {fileID: 21120098}
   m_Layer: 0
   m_Name: HeroLogic
   m_TagString: Untagged
@@ -485,6 +486,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasInabilityAsset: {fileID: 11400000, guid: 5b42462864d184540b2e623ca790c003, type: 2}
   noInabilityAsset: {fileID: 11400000, guid: 89ca26f2e92316c4b83d3f802d13e1e1, type: 2}
+--- !u!114 &21120098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12405f645073404b9d959b5bafb394b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3830259919145749636
 GameObject:
   m_ObjectHideFlags: 0

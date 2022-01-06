@@ -52,9 +52,8 @@ namespace Logic
             var clients = EDragSkillTarget?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                {
                     EDragSkillTarget -= client as SkillEvent;
-                }
+                
         }
     }
 }

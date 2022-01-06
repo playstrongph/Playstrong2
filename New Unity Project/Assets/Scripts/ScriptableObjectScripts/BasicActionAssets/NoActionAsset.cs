@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
-    [CreateAssetMenu(fileName = "NoAction", menuName = "Assets/BasicActions/NoAction")]
+    [CreateAssetMenu(fileName = "NoAction", menuName = "Assets/BasicActions/N/NoAction")]
     public class NoActionAsset : BasicActionAsset
     {
         /// <summary>
