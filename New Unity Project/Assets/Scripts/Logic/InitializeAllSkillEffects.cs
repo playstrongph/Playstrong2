@@ -19,9 +19,6 @@ namespace Logic
             var mainPlayerAllHeroesSkills = _turnController.BattleSceneManager.MainPlayer.SkillsAllHeroes.AllHeroesSkills;
             var enemyPlayerAllHeroesSkills =_turnController.BattleSceneManager.EnemyPlayer.SkillsAllHeroes.AllHeroesSkills;
             
-            Debug.Log("Main All Skills Count: " +mainPlayerAllHeroesSkills.Count );
-            Debug.Log("Enemy All Skills Count: " +enemyPlayerAllHeroesSkills.Count );
-            
             foreach (var skill in mainPlayerAllHeroesSkills)
             {
                 skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
