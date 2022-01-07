@@ -24,6 +24,10 @@ namespace Logic
         public event HeroEvent EBeforeHeroIsDealtCriticalStrike;
         public event HeroEvent EAfterHeroIsDealtCriticalStrike;
         public event HeroEvent EAfterHeroDealsCriticalStrike;
+        public event HeroEvent EBeforeHeroDealsSkillDamage;
+        public event HeroEvent EAfterHeroDealsSkillDamage;
+        public event HeroEvent EBeforeDealingNonSkillDamage;
+        public event HeroEvent EAfterDealingNonSkillDamage;
 
 
         #endregion
@@ -137,6 +141,42 @@ namespace Logic
         {
             EAfterHeroDealsCriticalStrike?.Invoke(hero);
         }
+        
+        /// <summary>
+        /// Before hero deals skill damage 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroDealsSkillDamage(IHero hero)
+        {
+            EBeforeHeroDealsSkillDamage?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After hero deals skill damage
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroDealsSkillDamage(IHero hero)
+        {
+            EAfterHeroDealsSkillDamage?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before a non-hero source deals damage (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeDealingNonSkillDamage(IHero hero)
+        {
+            EBeforeDealingNonSkillDamage?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After a non-hero source deals damage (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterDealingNonSkillDamage(IHero hero)
+        {
+            EAfterDealingNonSkillDamage?.Invoke(hero);
+        }
 
 
         #endregion
@@ -240,6 +280,38 @@ namespace Logic
                     EAfterHeroDealsCriticalStrike -= client as HeroEvent;
         }
         
+        private void UnsubscribeEventBeforeHeroDealsSkillDamage()
+        {
+            var clients = EBeforeHeroDealsSkillDamage?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroDealsSkillDamage -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroDealsSkillDamage()
+        {
+            var clients = EAfterHeroDealsSkillDamage?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroDealsSkillDamage -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeDealingNonSkillDamage()
+        {
+            var clients = EBeforeDealingNonSkillDamage?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeDealingNonSkillDamage -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterDealingNonSkillDamage()
+        {
+            var clients = EAfterDealingNonSkillDamage?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterDealingNonSkillDamage -= client as HeroEvent;
+        }
+        
         
 
         #endregion
@@ -261,21 +333,22 @@ namespace Logic
         {
             UnsubscribeEventBeforeHeroSkillAttacks();
             UnsubscribeEventEBeforeHeroIsSkillAttacked();
-            
             UnsubscribeEventBeforeHeroAttacks();
             UnsubscribeEventBeforeHeroIsAttacked();
-            
             UnsubscribeEventAfterHeroAttacks();
             UnsubscribeEventAfterHeroIsAttacked();
-            
             UnsubscribeEventAfterHeroSkillAttacks();
             UnsubscribeEventAfterHeroIsSkillAttacked();
-
             UnsubscribeEventBeforeHeroCriticalStrikes();
             UnsubscribeEventBeforeHeroIsDealtCriticalStrike();
-
             UnsubscribeEventAfterHeroIsDealtCriticalStrike();
             UnsubscribeEventAfterHeroDealsCriticalStrike();
+
+            UnsubscribeEventBeforeHeroDealsSkillDamage();
+            UnsubscribeEventAfterHeroDealsSkillDamage();
+
+            UnsubscribeEventBeforeDealingNonSkillDamage();
+            UnsubscribeEventAfterDealingNonSkillDamage();
         }
     }
 }

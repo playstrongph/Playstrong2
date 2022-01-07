@@ -134,6 +134,8 @@ namespace Logic
         public IHeroEvents HeroEvents { get; private set; }
         
         
+        
+        
 
         #endregion
 

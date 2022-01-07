@@ -16,6 +16,10 @@
         event HeroEvents.HeroEvent EBeforeHeroIsDealtCriticalStrike;
         event HeroEvents.HeroEvent EAfterHeroIsDealtCriticalStrike;
         event HeroEvents.HeroEvent EAfterHeroDealsCriticalStrike;
+        event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
+        event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
+        event HeroEvents.HeroEvent EBeforeDealingNonSkillDamage;
+        event HeroEvents.HeroEvent EAfterDealingNonSkillDamage;
         
         
         
@@ -95,6 +99,30 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventAfterHeroDealsCriticalStrike(IHero hero);
+        
+        /// <summary>
+        /// Before hero deals skill damage
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroDealsSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// After hero deals skill damage
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroDealsSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// Before a non-hero source deals damage (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeDealingNonSkillDamage(IHero hero);
+        
+        /// <summary>
+        ///  After a non-hero source deals damage (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterDealingNonSkillDamage(IHero hero);
 
         #endregion
     }
