@@ -64,9 +64,14 @@ namespace Logic
         public IHeroAttributes HeroAttributes { get; private set; }
         
         /// <summary>
-        /// Other hero attributes reference
+        /// Reference to the hero's resistance attributes
         /// </summary>
         public IResistanceAttributes ResistanceAttributes { get; private set; }
+        
+        /// <summary>
+        /// Reference to the hero's chance attributes
+        /// </summary>
+        public IChanceAttributes ChanceAttributes { get; private set; }
 
         /// <summary>
         /// Set attack reference
@@ -127,6 +132,8 @@ namespace Logic
         /// Reference to hero events
         /// </summary>
         public IHeroEvents HeroEvents { get; private set; }
+        
+        
 
         #endregion
 
@@ -134,6 +141,7 @@ namespace Logic
         {
             HeroAttributes = GetComponent<IHeroAttributes>();
             ResistanceAttributes = GetComponent<IResistanceAttributes>();
+            ChanceAttributes = GetComponent<IChanceAttributes>();
             SetAttack = GetComponent<ISetAttack>();
             SetArmor = GetComponent<ISetArmor>();
             SetSpeed = GetComponent<ISetSpeed>();

@@ -7,5 +7,10 @@
         /// Used by stealth, taunt, and similar effects.
         /// </summary>
         int TargetAttackResistance { get; set; }
+        
+        /// <summary>
+        /// Probability for a hero to resist critical strike
+        /// </summary>
+        int CriticalResistance { get; set; }
     }
 }
