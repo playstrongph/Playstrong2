@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
 {
-    public abstract class AttackTargetCountTypeAsset : ScriptableObject
+    public abstract class AttackTargetCountTypeAsset : ScriptableObject, IAttackTargetCountTypeAsset
     {
-        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero hero)
+        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero hero, int nonCriticalDamage, int criticalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
