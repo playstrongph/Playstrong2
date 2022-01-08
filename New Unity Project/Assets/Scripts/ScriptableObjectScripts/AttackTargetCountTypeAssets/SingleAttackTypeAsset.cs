@@ -22,7 +22,7 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
             
            logicTree.AddCurrent(PreSingleAttackEvents(hero));
 
-           logicTree.AddCurrent(dealDamage.DealSingleAttackDamage(hero,nonCriticalDamage,criticalDamage));
+           logicTree.AddCurrent(dealDamage.DealSingleAttackDamage(nonCriticalDamage,criticalDamage));
            
            logicTree.AddCurrent(PostSingleAttackEvents(hero));
             

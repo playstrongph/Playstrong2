@@ -16,9 +16,56 @@ namespace Logic
         }
 
 
-        public IEnumerator TakeSingleAttackDamage(int targetedHero, int nonCriticalDamage, int criticalDamage)
+        public IEnumerator TakeSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
+            var targetedHero = _heroLogic.Hero;
+            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+
+        }
+        
+        public IEnumerator TakeMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
+        {
+            var targetedHero = _heroLogic.Hero;
+            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+
+        }
+        
+        public IEnumerator TakeNonAttackSkillDamage(int nonAttackSkillDamage, int penetrateArmorChance)
+        {
+            var targetedHero = _heroLogic.Hero;
+            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+
+        }
+        
+        public IEnumerator TakeNonSkillDamage(int nonSkillDamage, int penetrateArmorChance)
+        {
+            var targetedHero = _heroLogic.Hero;
+            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+
         }
 
     }
