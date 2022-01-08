@@ -12,5 +12,10 @@
         /// Probability for a hero to resist critical strike
         /// </summary>
         int CriticalResistance { get; set; }
+        
+        /// <summary>
+        /// Probability for hero to resist ignore armor 
+        /// </summary>
+        int PenetrateArmorResistance { get; set; }
     }
 }

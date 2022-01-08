@@ -12,7 +12,6 @@ namespace Logic
         }
         
         [SerializeField] private int criticalChance;
-        
         /// <summary>
         /// Probability for a hero to deal critical strike
         /// </summary>
@@ -21,7 +20,17 @@ namespace Logic
             get => criticalChance;
             set => criticalChance = value;
         }
-    
-    
+
+        [SerializeField] private int penetrateArmorChance;
+        /// <summary>
+        /// Probability for damage to ignore armor
+        /// </summary>
+        public int PenetrateArmorChance
+        {
+            get => penetrateArmorChance;
+            set => penetrateArmorChance = value;
+        }
+
+
     }
 }

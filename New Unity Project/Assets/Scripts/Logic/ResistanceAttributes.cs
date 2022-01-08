@@ -35,6 +35,15 @@ namespace Logic
             set => criticalResistance = value;
         }
 
+        [SerializeField] private int penetrateArmorResistance;
+        /// <summary>
+        /// Probability for hero to resist ignore armor 
+        /// </summary>
+        public int PenetrateArmorResistance
+        {
+            get => penetrateArmorResistance;
+            set => penetrateArmorResistance = value;
+        }
 
     }
 }
