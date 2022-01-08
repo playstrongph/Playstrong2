@@ -16,12 +16,12 @@ namespace Logic
         /// <summary>
         /// Deal single attack damage
         /// </summary>
-        /// <param name="casterHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        public IEnumerator DealSingleAttackDamage(IHero casterHero, int nonCriticalDamage, int criticalDamage)
+        public IEnumerator DealSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
+            var casterHero = _heroLogic.Hero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var finalNonCriticalDamage = ComputeSingleAttackNonCriticalDamage(casterHero,nonCriticalDamage);
@@ -39,12 +39,12 @@ namespace Logic
         /// <summary>
         /// Deals multi attack damage
         /// </summary>
-        /// <param name="casterHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        public IEnumerator DealMultiAttackDamage(IHero casterHero, int nonCriticalDamage, int criticalDamage)
+        public IEnumerator DealMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
+            var casterHero = _heroLogic.Hero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var finalNonCriticalDamage = ComputeMultiAttackNonCriticalDamage(casterHero,nonCriticalDamage);
@@ -63,12 +63,12 @@ namespace Logic
         /// <summary>
         /// For non-attack damage abilities in skills - e.g. Whenever you are attacked, deal damage to your  attacker
         /// </summary>
-        /// <param name="casterHero"></param>
         /// <param name="nonAttackSkillDamage"></param>
         /// <param name="penetrateArmorChance"></param>
         /// <returns></returns>
-        public IEnumerator DealNonAttackSkillDamage(IHero casterHero, int nonAttackSkillDamage, int penetrateArmorChance)
+        public IEnumerator DealNonAttackSkillDamage(int nonAttackSkillDamage, int penetrateArmorChance)
         {
+            var casterHero = _heroLogic.Hero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var heroPenetrateArmorChance = casterHero.HeroLogic.ChanceAttributes.PenetrateArmorChance;
@@ -89,12 +89,12 @@ namespace Logic
         /// <summary>
         /// For non-skill damage sources like weapons, status effects, etc. 
         /// </summary>
-        /// <param name="casterHero"></param>
         /// <param name="nonSkillDamage"></param>
         /// <param name="penetrateArmorChance"></param>
         /// <returns></returns>
-        public IEnumerator DealNonSkillDamage(IHero casterHero, int nonSkillDamage, int penetrateArmorChance)
+        public IEnumerator DealNonSkillDamage(int nonSkillDamage, int penetrateArmorChance)
         {
+            var casterHero = _heroLogic.Hero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var finalNonSkillDamage = ComputeNonSkillDamage(casterHero,nonSkillDamage);
@@ -109,10 +109,6 @@ namespace Logic
             yield return null;
         }
         
-        
-        
-        
-
         #region EVENTS
 
         private IEnumerator EventBeforeHeroDealsSkillDamage(IHero casterHero)
