@@ -245,9 +245,10 @@ GameObject:
   - component: {fileID: 1798317666912842279}
   - component: {fileID: 7185873144978900519}
   - component: {fileID: 8137904070298217024}
-  - component: {fileID: 4984183594923297854}
   - component: {fileID: 7108924849454746134}
   - component: {fileID: 4706899635905714222}
+  - component: {fileID: 4264826968411871100}
+  - component: {fileID: 4984183594923297854}
   - component: {fileID: 300250152711610300}
   - component: {fileID: 3684399267465881610}
   - component: {fileID: 1212596204}
@@ -323,20 +324,6 @@ MonoBehaviour:
   baseArmor: 0
   baseSpeed: 0
   baseChance: 0
---- !u!114 &4984183594923297854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2494495862489387502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51d36133ce8ffb94592ec457255854a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetedHero: {fileID: 0}
-  targetingHero: {fileID: 0}
 --- !u!114 &7108924849454746134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +351,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criticalChance: 0
+--- !u!114 &4264826968411871100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf839fef50015f47a29204c4d88ed58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4984183594923297854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d36133ce8ffb94592ec457255854a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetedHero: {fileID: 0}
+  targetingHero: {fileID: 0}
 --- !u!114 &300250152711610300
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,6 +36,11 @@ namespace Logic
         /// Reference to the hero's chance attributes
         /// </summary>
         IChanceAttributes ChanceAttributes { get;  }
+        
+        /// <summary>
+        /// Reference to the hero's damage factors 
+        /// </summary>
+        IDamageAttributes DamageAttributes { get; }
 
         /// <summary>
         /// Set attack reference
