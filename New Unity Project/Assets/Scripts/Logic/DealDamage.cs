@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class DealDamage : MonoBehaviour
+    public class DealDamage : MonoBehaviour, IDealDamage
     {
         private IHeroLogic _heroLogic;
 
