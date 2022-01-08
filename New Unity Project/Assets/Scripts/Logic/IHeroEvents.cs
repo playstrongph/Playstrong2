@@ -20,6 +20,16 @@
         event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
         event HeroEvents.HeroEvent EBeforeDealingNonSkillDamage;
         event HeroEvents.HeroEvent EAfterDealingNonSkillDamage;
+        event HeroEvents.HeroEvent EBeforeHeroDealsSingleTargetAttack;
+        event HeroEvents.HeroEvent EBeforeHeroTakesSingleTargetAttack;
+        event HeroEvents.HeroEvent EAfterHeroDealsSingleTargetAttack;
+        event HeroEvents.HeroEvent EAfterHeroTakesSingleTargetAttack;
+        event HeroEvents.HeroEvent EBeforeHeroTakesMultiTargetAttack;
+        event HeroEvents.HeroEvent EBeforeHeroDealsMultiTargetAttack;
+        event HeroEvents.HeroEvent EAfterHeroDealsMultiTargetAttack;
+        event HeroEvents.HeroEvent EAfterHeroTakesMultiTargetAttack;
+       
+        
         
         
         
@@ -123,6 +133,54 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventAfterDealingNonSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// Before hero deals single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroDealsSingleTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// Before hero takes single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroTakesSingleTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// After hero deals single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroDealsSingleTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// After hero takes single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroTakesSingleTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// Before hero takes multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroTakesMultiTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// Before hero deals multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroDealsMultiTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// After hero deals multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroDealsMultiTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// After hero takes multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroTakesMultiTargetAttack(IHero hero);
 
         #endregion
     }

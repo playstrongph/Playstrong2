@@ -28,6 +28,17 @@ namespace Logic
         public event HeroEvent EAfterHeroDealsSkillDamage;
         public event HeroEvent EBeforeDealingNonSkillDamage;
         public event HeroEvent EAfterDealingNonSkillDamage;
+        public event HeroEvent EBeforeHeroDealsSingleTargetAttack;
+        public event HeroEvent EBeforeHeroTakesSingleTargetAttack;
+        public event HeroEvent EAfterHeroDealsSingleTargetAttack;
+        public event HeroEvent EAfterHeroTakesSingleTargetAttack;
+        public event HeroEvent EBeforeHeroTakesMultiTargetAttack;
+        public event HeroEvent EBeforeHeroDealsMultiTargetAttack;
+        public event HeroEvent EAfterHeroDealsMultiTargetAttack;
+        public event HeroEvent EAfterHeroTakesMultiTargetAttack;
+     
+        
+        
 
 
         #endregion
@@ -177,6 +188,78 @@ namespace Logic
         {
             EAfterDealingNonSkillDamage?.Invoke(hero);
         }
+        
+        /// <summary>
+        /// Before hero deals single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroDealsSingleTargetAttack(IHero hero)
+        {
+            EBeforeHeroDealsSingleTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before hero takes single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroTakesSingleTargetAttack(IHero hero)
+        {
+            EBeforeHeroTakesSingleTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After hero deals single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroDealsSingleTargetAttack(IHero hero)
+        {
+            EAfterHeroDealsSingleTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After hero takes single target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroTakesSingleTargetAttack(IHero hero)
+        {
+            EAfterHeroTakesSingleTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before hero takes multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroTakesMultiTargetAttack(IHero hero)
+        {
+            EBeforeHeroTakesMultiTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before hero deals multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroDealsMultiTargetAttack(IHero hero)
+        {
+            EBeforeHeroDealsMultiTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After hero deals multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroDealsMultiTargetAttack(IHero hero)
+        {
+            EAfterHeroDealsMultiTargetAttack?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// After hero takes multi target attack 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroTakesMultiTargetAttack(IHero hero)
+        {
+            EAfterHeroTakesMultiTargetAttack?.Invoke(hero);
+        }
 
 
         #endregion
@@ -312,6 +395,70 @@ namespace Logic
                     EAfterDealingNonSkillDamage -= client as HeroEvent;
         }
         
+        private void UnsubscribeEventBeforeHeroDealsSingleTargetAttack()
+        {
+            var clients = EBeforeHeroDealsSingleTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroDealsSingleTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeHeroTakesSingleTargetAttack()
+        {
+            var clients = EBeforeHeroTakesSingleTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroTakesSingleTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroDealsSingleTargetAttack()
+        {
+            var clients = EAfterHeroDealsSingleTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroDealsSingleTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroTakesSingleTargetAttack()
+        {
+            var clients = EAfterHeroTakesSingleTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroTakesSingleTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeHeroDealsMultiTargetAttack()
+        {
+            var clients = EBeforeHeroDealsMultiTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroDealsMultiTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroDealsMultiTargetAttack()
+        {
+            var clients = EAfterHeroDealsMultiTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroDealsMultiTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeHeroTakesMultiTargetAttack()
+        {
+            var clients = EBeforeHeroTakesMultiTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroTakesMultiTargetAttack -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventAfterHeroTakesMultiTargetAttack()
+        {
+            var clients = EAfterHeroTakesMultiTargetAttack?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroTakesMultiTargetAttack -= client as HeroEvent;
+        }
+        
         
 
         #endregion
@@ -343,12 +490,19 @@ namespace Logic
             UnsubscribeEventBeforeHeroIsDealtCriticalStrike();
             UnsubscribeEventAfterHeroIsDealtCriticalStrike();
             UnsubscribeEventAfterHeroDealsCriticalStrike();
-
             UnsubscribeEventBeforeHeroDealsSkillDamage();
             UnsubscribeEventAfterHeroDealsSkillDamage();
-
             UnsubscribeEventBeforeDealingNonSkillDamage();
             UnsubscribeEventAfterDealingNonSkillDamage();
+
+            UnsubscribeEventBeforeHeroDealsSingleTargetAttack();
+            UnsubscribeEventBeforeHeroTakesSingleTargetAttack();
+            UnsubscribeEventAfterHeroDealsSingleTargetAttack();
+            UnsubscribeEventAfterHeroTakesSingleTargetAttack();
+            UnsubscribeEventBeforeHeroDealsMultiTargetAttack();
+            UnsubscribeEventAfterHeroDealsMultiTargetAttack();
+            UnsubscribeEventBeforeHeroTakesMultiTargetAttack();
+            UnsubscribeEventAfterHeroTakesMultiTargetAttack();
         }
     }
 }
