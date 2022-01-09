@@ -152,7 +152,12 @@ namespace Logic
             
             return finalTakeDamage;
         }
-
+        
+        /// <summary>
+        /// Calculates the value of the new armor
+        /// and residual damage
+        /// </summary>
+        /// <param name="damage"></param>
         private void ComputeNewArmor(int damage)
         {
             var armor = _heroLogic.HeroAttributes.Armor;
@@ -163,10 +168,44 @@ namespace Logic
             //New armor is zero when damage is greater than armor
             var newArmor = Mathf.Max(0, armor - damage);
             
-            //LOGIC: Armor Update
-            //TODO: Change this to SetArmor after logic visual separation
-            _heroLogic.HeroAttributes.Armor = newArmor;
+            //Update armor attribute
+            _heroLogic.SetArmor.StartAction(newArmor);
         }
+        
+        /// <summary>
+        /// Calculates the value of new health
+        /// </summary>
+        /// <param name="damage"></param>
+        private void ComputeNewHealth(int damage)
+        {
+            var health = _heroLogic.HeroAttributes.Health;
+            var newHealth = health - damage;
+            
+            _heroLogic.SetHealth.StartAction(newHealth);
+        }
+        
+        
+        //TODO: Visual Updates
+
+        #endregion
+
+        #region EVENTS
+        
+        /// <summary>
+        /// Before targeted hero takes skill damage
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator BeforeHeroTakesSkillDamage()
+        {
+            
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+           
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
 
 
 

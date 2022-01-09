@@ -17,9 +17,13 @@
         event HeroEvents.HeroEvent EAfterHeroIsDealtCriticalStrike;
         event HeroEvents.HeroEvent EAfterHeroDealsCriticalStrike;
         event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
+        event HeroEvents.HeroEvent EBeforeHeroTakesSkillDamage;
         event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
+        event HeroEvents.HeroEvent EAfterHeroTakesSkillDamage;
         event HeroEvents.HeroEvent EBeforeDealingNonSkillDamage;
+        event HeroEvents.HeroEvent EBeforeHeroTakesNonSkillDamage;
         event HeroEvents.HeroEvent EAfterDealingNonSkillDamage;
+        event HeroEvents.HeroEvent EAfterHeroTakesNonSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroDealsSingleTargetAttack;
         event HeroEvents.HeroEvent EBeforeHeroTakesSingleTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroDealsSingleTargetAttack;
@@ -117,10 +121,22 @@
         void EventBeforeHeroDealsSkillDamage(IHero hero);
         
         /// <summary>
+        /// Before hero takes skill damage
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroTakesSkillDamage(IHero hero);
+        
+        /// <summary>
         /// After hero deals skill damage
         /// </summary>
         /// <param name="hero"></param>
         void EventAfterHeroDealsSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// After hero takes skill damage
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroTakesSkillDamage(IHero hero);
         
         /// <summary>
         /// Before a non-hero source deals damage (e.g. weapons, status effects)
@@ -133,6 +149,12 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventAfterDealingNonSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// After a hero takes damage from a non-hero source (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroTakesNonSkillDamage(IHero hero);
         
         /// <summary>
         /// Before hero deals single target attack 
