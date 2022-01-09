@@ -101,6 +101,16 @@ namespace Logic
         /// Reference to hero events
         /// </summary>
         IHeroEvents HeroEvents { get; }
+        
+        /// <summary>
+        /// Reference to deal damage
+        /// </summary>
+        IDealDamage DealDamage { get; }
+        
+        /// <summary>
+        /// Reference to take damage
+        /// </summary>
+        ITakeDamage TakeDamage { get; }
 
         #endregion
     }

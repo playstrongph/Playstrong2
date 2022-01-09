@@ -137,6 +137,16 @@ namespace Logic
         /// Reference to hero events
         /// </summary>
         public IHeroEvents HeroEvents { get; private set; }
+        
+        /// <summary>
+        /// Reference to deal damage
+        /// </summary>
+        public IDealDamage DealDamage { get; private set; }
+        
+        /// <summary>
+        /// Reference to take damage
+        /// </summary>
+        public ITakeDamage TakeDamage { get; private set; }
 
         #endregion
 
@@ -158,7 +168,9 @@ namespace Logic
             SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
             LastHeroTargets = GetComponent<ILastHeroTargets>();
             HeroEvents = GetComponent<IHeroEvents>();
-            
+            DealDamage = GetComponent<IDealDamage>();
+            TakeDamage = GetComponent<ITakeDamage>();
+
         }
     }
 }

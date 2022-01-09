@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 namespace Logic
 {
-    public class TakeDamage : MonoBehaviour
-    {   
+    public class TakeDamage : MonoBehaviour, ITakeDamage
+    {
+        [Header("SET IN RUNTIME")][SerializeField]private int finalDamageTaken;
+        /// <summary>
+        /// Final damage taken by targeted hero, also same as
+        /// final damage dealt by targeting hero.
+        /// </summary>
+        public int FinalDamageTaken
+        {
+            get => finalDamageTaken;
+            private set => finalDamageTaken = value;
+        }
+
         /// <summary>
         /// Remaining damage after armor is reduced
         /// </summary>
@@ -18,28 +31,74 @@ namespace Logic
             _heroLogic = GetComponent<IHeroLogic>();
         }
 
-
+        /// <summary>
+        /// Take single attack damage 
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
         public IEnumerator TakeSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
             var targetedHero = _heroLogic.Hero;
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+
+            //Penetrate armor calculation
+            var chance = casterHero.HeroLogic.ChanceAttributes.PenetrateArmorChance;
+            var resistance = _heroLogic.ResistanceAttributes.PenetrateArmorResistance;
+            var netChance = chance - resistance;
+            var randomChance = Random.Range(1, 101);
             
+            //Single Attack Type Damage
+            FinalDamageTaken = ComputeSingleAttackDamage(nonCriticalDamage, criticalDamage);
+
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
+
+            //Apply take damage
+            logicTree.AddCurrent(randomChance <= netChance
+                ? HeroTakesDamageIgnoreArmor(FinalDamageTaken)
+                : HeroTakesDamage(FinalDamageTaken));
+
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
-            
+            //TODO: Check Hero Death
+
             logicTree.EndSequence();
             yield return null;
-
         }
         
+        /// <summary>
+        /// Take multi attack damage
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
         public IEnumerator TakeMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
             var targetedHero = _heroLogic.Hero;
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+
+            //Penetrate armor calculation
+            var chance = casterHero.HeroLogic.ChanceAttributes.PenetrateArmorChance;
+            var resistance = _heroLogic.ResistanceAttributes.PenetrateArmorResistance;
+            var netChance = chance - resistance;
+            var randomChance = Random.Range(1, 101);
             
+            //Multi Attack Type Damage
+            FinalDamageTaken = ComputeMultiAttackDamage(nonCriticalDamage, criticalDamage);
+
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
+
+            //Apply take damage
+            logicTree.AddCurrent(randomChance <= netChance
+                ? HeroTakesDamageIgnoreArmor(FinalDamageTaken)
+                : HeroTakesDamage(FinalDamageTaken));
+
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
-            
+            //TODO: Check Hero Death
+
             logicTree.EndSequence();
             yield return null;
 
@@ -50,9 +109,27 @@ namespace Logic
             var targetedHero = _heroLogic.Hero;
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+
+            //Penetrate armor calculation
+            var chance = casterHero.HeroLogic.ChanceAttributes.PenetrateArmorChance + penetrateArmorChance;
+            var resistance = _heroLogic.ResistanceAttributes.PenetrateArmorResistance;
+            var netChance = chance - resistance;
+            var randomChance = Random.Range(1, 101);
             
+            //Non-attack skill damage
+            FinalDamageTaken = ComputeNonAttackSkillDamage(nonAttackSkillDamage,0);
             
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
             
+            //Apply take damage
+            logicTree.AddCurrent(randomChance <= netChance
+                ? HeroTakesDamageIgnoreArmor(FinalDamageTaken)
+                : HeroTakesDamage(FinalDamageTaken));
+            
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
+            
+            //TODO: Check Hero Death
+
             logicTree.EndSequence();
             yield return null;
 
@@ -63,13 +140,56 @@ namespace Logic
             var targetedHero = _heroLogic.Hero;
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+
+            //Penetrate armor calculation
+            var resistance = _heroLogic.ResistanceAttributes.PenetrateArmorResistance;
+            var netChance = penetrateArmorChance - resistance;
+            var randomChance = Random.Range(1, 101);
             
+            //Non-skill Damage
+            FinalDamageTaken = ComputeNonSkillDamage(nonSkillDamage,0);
+
+            logicTree.AddCurrent(BeforeHeroTakesNonSkillDamageEvent());
             
+            //Apply take damage
+            logicTree.AddCurrent(randomChance <= netChance
+                ? HeroTakesDamageIgnoreArmor(FinalDamageTaken)
+                : HeroTakesDamage(FinalDamageTaken));
             
+            logicTree.AddCurrent(AfterHeroTakesNonSkillDamageEvent());
+            
+            //TODO: Check Hero Death
+
             logicTree.EndSequence();
             yield return null;
 
         }
+
+        private IEnumerator HeroTakesDamage(int finalDamage)
+        {
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            ComputeNewArmor(finalDamage);
+            ComputeNewHealth(_residualDamage);
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator HeroTakesDamageIgnoreArmor(int finalDamage)
+        {
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            ComputeNewHealth(finalDamage);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
+
+
+
 
         #region COMPUTE DAMAGE
         
@@ -195,7 +315,7 @@ namespace Logic
         /// Before targeted hero takes skill damage
         /// </summary>
         /// <returns></returns>
-        private IEnumerator BeforeHeroTakesSkillDamage()
+        private IEnumerator BeforeHeroTakesSkillDamageEvent()
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
@@ -209,7 +329,7 @@ namespace Logic
         /// After targeted hero takes skill damage
         /// </summary>
         /// <returns></returns>
-        private IEnumerator AfterHeroTakesSkillDamage()
+        private IEnumerator AfterHeroTakesSkillDamageEvent()
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
@@ -223,7 +343,7 @@ namespace Logic
         /// Before targeted hero takes non-skill damage
         /// </summary>
         /// <returns></returns>
-        private IEnumerator BeforeHeroTakesNonSkillDamage()
+        private IEnumerator BeforeHeroTakesNonSkillDamageEvent()
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
@@ -237,7 +357,7 @@ namespace Logic
         /// After targeted hero takes non-skill damage
         /// </summary>
         /// <returns></returns>
-        private IEnumerator AfterHeroTakesNonSkillDamage()
+        private IEnumerator AfterHeroTakesNonSkillDamageEvent()
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
