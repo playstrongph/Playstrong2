@@ -22,8 +22,6 @@ namespace Logic
         public void StartAction(int value)
         {
             _heroLogic.HeroAttributes.FightingSpirit = value;
-            
-            _heroLogic.Hero.HeroVisual.SetFightingSpiritVisual.StartAction();
         }
 
         

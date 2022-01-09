@@ -16,13 +16,7 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            //var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-
-            //set attribute value
             _heroLogic.HeroAttributes.Speed = value;
-
-            //logicTree.EndSequence();
-            //yield return null;
         }
 
         

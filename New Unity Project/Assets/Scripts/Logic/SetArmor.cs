@@ -17,11 +17,7 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            var setArmorVisual = _heroLogic.Hero.HeroVisual.SetArmorVisual;
-            
             _heroLogic.HeroAttributes.Armor = value;
-            
-            setArmorVisual.StartAction();
         }
 
        

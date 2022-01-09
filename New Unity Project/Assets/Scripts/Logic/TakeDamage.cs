@@ -152,10 +152,23 @@ namespace Logic
             
             return finalTakeDamage;
         }
-        
-        
 
-       
+        private void ComputeNewArmor(int damage)
+        {
+            var armor = _heroLogic.HeroAttributes.Armor;
+
+            //No residual damage when armor is greater than damage
+            _residualDamage = Mathf.Max(0,damage - armor);
+            
+            //New armor is zero when damage is greater than armor
+            var newArmor = Mathf.Max(0, armor - damage);
+            
+            //LOGIC: Armor Update
+            //TODO: Change this to SetArmor after logic visual separation
+            _heroLogic.HeroAttributes.Armor = newArmor;
+        }
+
+
 
         #endregion
 

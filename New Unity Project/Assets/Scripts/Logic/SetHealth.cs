@@ -16,10 +16,7 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            //set attribute value
             _heroLogic.HeroAttributes.Health = value;
-            
-            _heroLogic.Hero.HeroVisual.SetHealthVisual.StartAction();
         }
 
 
