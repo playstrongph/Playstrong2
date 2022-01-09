@@ -18,7 +18,7 @@ namespace Logic
         public void StartAction(IHeroAsset heroAsset)
         {
             StartActionLogic(heroAsset);
-            StartActionVisual();
+            LoadHeroVisualAttributes();
         }
         
         /// <summary>
@@ -49,9 +49,9 @@ namespace Logic
         }
         
         /// <summary>
-        /// Start action visual component
+        /// Loads visual component of hero attributes
         /// </summary>
-        private void StartActionVisual()
+        private void LoadHeroVisualAttributes()
         {
             var heroVisual = _heroLogic.Hero.HeroVisual;
             

@@ -36,25 +36,6 @@ namespace Logic
         }
         
         /// <summary>
-        ///  Updates the displayed energy text and bar fill
-        /// </summary>
-        /// <param name="hero"></param>
-        public void SetEnergyTextAndBarFill(IHero hero)
-        {
-
-            var timerValuePercent = _heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
-
-            var energyText = _heroVisual.EnergyVisual.Text;
-            var energyIcon = _heroVisual.EnergyVisual.Icon;
-            
-            //var energyDisplayText = energyValue;
-            var energyDisplayText = (int)timerValuePercent;
-            
-            energyText.text = energyDisplayText.ToString() +"%";
-            energyIcon.fillAmount = energyDisplayText/100f;
-        }
-
-       /// <summary>
        /// Sets the energy percentage text color
        /// </summary>
        /// <param name="textColor"></param>

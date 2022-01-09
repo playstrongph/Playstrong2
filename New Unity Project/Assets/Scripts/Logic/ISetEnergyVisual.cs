@@ -11,12 +11,6 @@ namespace Logic
         void StartAction();
 
         /// <summary>
-        ///  Updates the displayed energy text and bar fill
-        /// </summary>
-        /// <param name="hero"></param>
-        void SetEnergyTextAndBarFill(IHero hero);
-
-        /// <summary>
         /// Sets the energy percentage text color
         /// </summary>
         /// <param name="textColor"></param>

@@ -65,7 +65,7 @@ namespace Logic
 
             TimerValue = 0;
 
-            SetEnergy(turnController);
+            UpdateEnergy(turnController);
             
             UpdateActiveHeroes(turnController);
         }
@@ -81,7 +81,7 @@ namespace Logic
             TimerValue = timerValueConvert;
             TimerValue = Mathf.Max(0f, TimerValue);  
             
-            SetEnergy(turnController);
+            UpdateEnergy(turnController);
             
             UpdateActiveHeroes(turnController);
         }
@@ -98,37 +98,15 @@ namespace Logic
         private void UpdateEnergy(ITurnController turnController)
         {
             var timerFull = turnController.TimerFull;
-         
             
             //Set timer value percent
             TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
             
             //Set hero energy attribute
             HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
-            
-         
         }
         
-        /// <summary>
-        /// Updates the energy attribute, text, and bar fill
-        /// </summary>
-        /// <param name="turnController"></param>
-        private void SetEnergy(ITurnController turnController)
-        {
-
-            var timerFull = turnController.TimerFull;
-            var setHeroEnergyVisual = HeroLogic.Hero.HeroVisual.SetEnergyVisual;
-            var visualTree = HeroLogic.Hero.CoroutineTrees.MainVisualTree;
-            
-            //Set timer value percent
-            TimerValuePercent = Mathf.FloorToInt(TimerValue * 100 / timerFull);
-            
-            //Set hero energy attribute
-            HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
-            
-            //Visual energy text and bar update
-            //setHeroEnergyVisual.SetEnergyTextAndBarFill(HeroLogic.Hero);
-        }
+       
         
         
         /// <summary>

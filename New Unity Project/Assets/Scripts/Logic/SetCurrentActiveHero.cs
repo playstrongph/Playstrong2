@@ -38,7 +38,7 @@ namespace Logic
             //Reset the energy of the current active hero
             _turnController.CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
             
-            //Energy Visual Update
+            //VISUAL
             _turnController.CurrentActiveHero.HeroVisual.SetEnergyVisual.StartAction();
             
             //TODO: Event call - EventCombatStartTurn
