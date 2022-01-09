@@ -530,8 +530,6 @@ namespace Logic
                 foreach (var client in clients)
                     EAfterHeroTakesMultiTargetAttack -= client as HeroEvent;
         }
-        
-        
 
         #endregion
         

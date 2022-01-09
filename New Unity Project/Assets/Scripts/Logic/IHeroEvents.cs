@@ -32,11 +32,7 @@
         event HeroEvents.HeroEvent EBeforeHeroDealsMultiTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroDealsMultiTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroTakesMultiTargetAttack;
-       
-        
-        
-        
-        
+
         #endregion
 
 
@@ -143,6 +139,12 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventBeforeDealingNonSkillDamage(IHero hero);
+        
+        /// <summary>
+        /// Before hero takes damage from a non-hero source (e.g. weapons, status effects)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroTakesNonSkillDamage(IHero hero);
         
         /// <summary>
         ///  After a non-hero source deals damage (e.g. weapons, status effects)

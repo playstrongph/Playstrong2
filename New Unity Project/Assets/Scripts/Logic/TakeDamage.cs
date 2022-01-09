@@ -197,14 +197,57 @@ namespace Logic
         /// <returns></returns>
         private IEnumerator BeforeHeroTakesSkillDamage()
         {
-            
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
-           
+           _heroLogic.HeroEvents.EventBeforeHeroTakesSkillDamage(_heroLogic.Hero);
             
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// After targeted hero takes skill damage
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator AfterHeroTakesSkillDamage()
+        {
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            _heroLogic.HeroEvents.EventAfterHeroTakesSkillDamage(_heroLogic.Hero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Before targeted hero takes non-skill damage
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator BeforeHeroTakesNonSkillDamage()
+        {
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            _heroLogic.HeroEvents.EventBeforeHeroTakesNonSkillDamage(_heroLogic.Hero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// After targeted hero takes non-skill damage
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator AfterHeroTakesNonSkillDamage()
+        {
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            
+            _heroLogic.HeroEvents.EventAfterHeroTakesNonSkillDamage(_heroLogic.Hero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        
 
 
 
