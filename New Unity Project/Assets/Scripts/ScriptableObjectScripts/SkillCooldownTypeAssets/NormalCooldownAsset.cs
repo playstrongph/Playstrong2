@@ -21,6 +21,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
             
             //TODO: UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
@@ -40,6 +41,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skillAttributes.Cooldown = Mathf.Min(skillAttributes.Cooldown, maxSkillCooldown);
             
             //TODO: UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
@@ -59,6 +61,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skillAttributes.Cooldown = Mathf.Clamp(skillAttributes.Cooldown, 0, maxSkillCooldown);
             
             //TODO: UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
@@ -76,6 +79,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skillAttributes.Cooldown = maxSkillCooldown;
 
             //TODO: UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
@@ -92,6 +96,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skillAttributes.Cooldown = 0;
 
             //TODO: UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();

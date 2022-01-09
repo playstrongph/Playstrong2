@@ -72,15 +72,15 @@ namespace Logic
                 skill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 displaySkill.SkillLogic.LoadSkillAttributes.StartAction(skillAsset);
                 
-                //Loads the skill visuals from the skill asset to the skill visual component
+                //VISUAL - Loads the skill visuals from the skill asset to the skill visual component
                 skill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
                 displaySkill.SkillVisual.LoadSkillVisual.StartAction(skillAsset);
                 
-                //Loads the skill and skill preview visual details
+                //VISUAL - Loads the skill and skill preview visual details
                 skill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 displaySkill.SkillPreview.LoadSkillPreviewVisual.StartAction(skillAsset);
                 
-                //Initialize skill cooldown text visuals
+                //VISUAL - Initialize skill cooldown text visuals
                 skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
                 displaySkill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
 
@@ -96,7 +96,7 @@ namespace Logic
                 
             }
             
-            //Hide hero skills and display skills
+            //VISUAL Hide hero skills and display skills
             heroSkills.HideHeroSkills();
             displaySkills.HideHeroSkills();
 
