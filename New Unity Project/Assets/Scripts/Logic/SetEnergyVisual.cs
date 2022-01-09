@@ -19,14 +19,17 @@ namespace Logic
         /// Updates the displayed energy text and bar fill
         /// EXCLUSIVELY used for turn controller update hero timers 
         /// </summary>
-        /// <param name="energyValue"></param>
-        public void UpdateEnergyTextAndBarFill(int energyValue)
+        public void StartAction()
         {
+            var timerValuePercent = _heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
+            
             //Clamps the displayed text to 100%
             //var energyDisplayText = Mathf.Min(100, energyValue);
             var energyText = _heroVisual.EnergyVisual.Text;
             var energyIcon = _heroVisual.EnergyVisual.Icon;
-            var energyDisplayText = energyValue;
+            
+            //var energyDisplayText = energyValue;
+            var energyDisplayText = (int)timerValuePercent;
             
             energyText.text = energyDisplayText.ToString() +"%";
             energyIcon.fillAmount = energyDisplayText/100f;
@@ -35,16 +38,17 @@ namespace Logic
         /// <summary>
         ///  Updates the displayed energy text and bar fill
         /// </summary>
-        /// <param name="energyValue"></param>
         /// <param name="hero"></param>
-        public void SetEnergyTextAndBarFill(int energyValue, IHero hero)
+        public void SetEnergyTextAndBarFill(IHero hero)
         {
-            //Clamps the displayed text to 100%
-            //var energyDisplayText = Mathf.Min(100, energyValue);
+
+            var timerValuePercent = _heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
 
             var energyText = _heroVisual.EnergyVisual.Text;
             var energyIcon = _heroVisual.EnergyVisual.Icon;
-            var energyDisplayText = energyValue;
+            
+            //var energyDisplayText = energyValue;
+            var energyDisplayText = (int)timerValuePercent;
             
             energyText.text = energyDisplayText.ToString() +"%";
             energyIcon.fillAmount = energyDisplayText/100f;

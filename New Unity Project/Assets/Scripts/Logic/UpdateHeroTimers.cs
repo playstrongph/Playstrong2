@@ -27,6 +27,8 @@ namespace Logic
             foreach (var hero in _allLivingHeroes)
             {
                 hero.HeroLogic.HeroTimer.UpdateHeroTimer();
+                
+                hero.HeroVisual.SetEnergyVisual.StartAction();
             }
         }
 

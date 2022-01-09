@@ -27,7 +27,9 @@ namespace Logic
         public void ResetToZero()
         {
             var heroTimer = _heroLogic.HeroTimer;
+            
             heroTimer.ResetHeroTimer();
+            
         }
     }
 }

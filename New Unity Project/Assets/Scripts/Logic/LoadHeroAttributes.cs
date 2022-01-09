@@ -45,9 +45,6 @@ namespace Logic
             _heroLogic.SetHealth.StartAction(heroAsset.Health);
             _heroLogic.SetSpeed.StartAction(heroAsset.Speed);
             _heroLogic.SetFightingSpirit.StartAction(heroAsset.FightingSpirit);
-
-
-            //TODO: Break this down
             _heroLogic.SetEnergy.SetToValue(initialEnergy);
         }
         
@@ -62,6 +59,7 @@ namespace Logic
             heroVisual.SetArmorVisual.StartAction();
             heroVisual.SetHealthVisual.StartAction();
             heroVisual.SetFightingSpiritVisual.StartAction();
+            heroVisual.SetEnergyVisual.StartAction();
             
         }
     }

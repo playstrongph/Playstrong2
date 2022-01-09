@@ -810,6 +810,24 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: b23c3e2343340eb449493d046e1f9598, type: 2}
+--- !u!1 &1020078292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7962901024471513221, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1458600385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1020078293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020078292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2e74c009c80df4a9b83c8bdb0e8c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1276296724
 PrefabInstance:
   m_ObjectHideFlags: 0

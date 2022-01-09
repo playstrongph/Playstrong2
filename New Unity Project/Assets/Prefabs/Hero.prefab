@@ -338,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetAttackResistance: 0
   criticalResistance: 0
+  penetrateArmorResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criticalChance: 0
+  penetrateArmorChance: 0
 --- !u!114 &4264826968411871100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +365,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf839fef50015f47a29204c4d88ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  criticalDamage: 100
+  allDealDamageReduction: 0
+  singleDealDamageReduction: 0
+  multiDealDamageReduction: 0
+  skillDealDamageReduction: 0
+  nonSkillDealDamageReduction: 0
+  allTakeDamageReduction: 0
+  singleTakeDamageReduction: 0
+  multiTakeDamageReduction: 0
+  skillTakeDamageReduction: 0
+  nonSkillTakeDamageReduction: 0
 --- !u!114 &4984183594923297854
 MonoBehaviour:
   m_ObjectHideFlags: 0

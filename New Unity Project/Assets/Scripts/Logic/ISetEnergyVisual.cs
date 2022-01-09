@@ -8,15 +8,13 @@ namespace Logic
         /// Updates the displayed energy text and bar fill
         /// EXCLUSIVELY used for turn controller update hero timers 
         /// </summary>
-        /// <param name="energyValue"></param>
-        void UpdateEnergyTextAndBarFill(int energyValue);
+        void StartAction();
 
         /// <summary>
         ///  Updates the displayed energy text and bar fill
         /// </summary>
-        /// <param name="energyValue"></param>
         /// <param name="hero"></param>
-        void SetEnergyTextAndBarFill(int energyValue, IHero hero);
+        void SetEnergyTextAndBarFill(IHero hero);
 
         /// <summary>
         /// Sets the energy percentage text color
