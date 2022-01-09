@@ -5,7 +5,10 @@ using UnityEngine;
 namespace Logic
 {
     public class TakeDamage : MonoBehaviour
-    {
+    {   
+        /// <summary>
+        /// Remaining damage after armor is reduced
+        /// </summary>
         private int _residualDamage;
 
         private IHeroLogic _heroLogic;
@@ -67,6 +70,94 @@ namespace Logic
             yield return null;
 
         }
+
+        #region COMPUTE DAMAGE
+        
+        /// <summary>
+        /// Calculates final single attack take damage
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
+        private int ComputeSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
+        {
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
+            var singleAttackDamageReduction = _heroLogic.DamageAttributes.SingleTakeDamageReduction;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var damage = criticalDamage + nonCriticalDamage;
+
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - singleAttackDamageReduction) *
+                (1 - skillDamageReduction) * damage / 100f;
+
+            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            
+            return finalTakeDamage;
+        }
+        
+        /// <summary>
+        /// Calculates final multi attack take damage
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
+        private int ComputeMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
+        {
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
+            var multiAttackDamageReduction = _heroLogic.DamageAttributes.MultiTakeDamageReduction;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var damage = criticalDamage + nonCriticalDamage;
+
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - multiAttackDamageReduction) *
+                (1 - skillDamageReduction) * damage / 100f;
+
+            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            
+            return finalTakeDamage;
+        }
+        
+        /// <summary>
+        /// Calculates the final non-attack skill damage
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
+        private int ComputeNonAttackSkillDamage(int nonCriticalDamage, int criticalDamage)
+        {
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var damage = criticalDamage + nonCriticalDamage;
+
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - skillDamageReduction) * damage / 100f;
+
+            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            
+            return finalTakeDamage;
+        }
+        
+        /// <summary>
+        /// Calculates the final non-skill damage
+        /// </summary>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <returns></returns>
+        private int ComputeNonSkillDamage(int nonCriticalDamage, int criticalDamage)
+        {
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
+            var nonSkillDamageReduction = _heroLogic.DamageAttributes.NonSkillTakeDamageReduction;
+            var damage = criticalDamage + nonCriticalDamage;
+
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - nonSkillDamageReduction) * damage / 100f;
+
+            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            
+            return finalTakeDamage;
+        }
+        
+        
+
+       
+
+        #endregion
 
     }
 }
