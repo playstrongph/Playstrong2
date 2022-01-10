@@ -23,12 +23,17 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
+
         /// <summary>
         /// Hero performs no action
         /// </summary>
         /// <param name="attackHero"></param>
         /// <param name="hero"></param>
-        public override void AttackAction(IAttackHero attackHero, IHero hero){ }
+        public override void AttackAction(IAttackHero attackHero, IHero hero)
+        {
+            //var logicTree = hero.CoroutineTrees.MainLogicTree;
+            //logicTree.EndSequence();
+            //yield return null;
+        }
     }
 }

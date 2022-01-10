@@ -29,7 +29,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="hero"></param>
         public virtual void AttackAction(IAttackHero attackHero, IHero hero)
         {
-           
+            //var logicTree = hero.CoroutineTrees.MainLogicTree;
+            //logicTree.EndSequence();
+            //yield return null;
         }
         
         //TODO: Include Other Basic Actions that can't be done when hero has an 'Inability'

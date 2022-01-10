@@ -45,7 +45,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //TEST: If hero has no inability, proceeds to do attackAction
-            hero.HeroLogic.HeroInabilityStatus.AttackAction(this,hero);
+            //logicTree.AddCurrent(hero.HeroLogic.HeroInabilityStatus.AttackAction(this,hero));
+
+            hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
 
             logicTree.EndSequence();
             yield return null;
@@ -57,6 +59,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="hero"></param>
         public void AttackHero(IHero hero)
         {
+            Debug.Log("AttackHero");
+            
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //Before hero attacks events
@@ -68,6 +72,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //After hero attacks events
             logicTree.AddCurrent(PostAttackEvents(hero));
             logicTree.AddCurrent(PostSkillAttackEvents(hero));
+            
+            //logicTree.EndSequence();
+            //yield return null;
         }
         
         /// <summary>
