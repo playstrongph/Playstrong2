@@ -29,7 +29,7 @@ namespace Logic
             
             logicTree.AddCurrent(EventBeforeHeroDealsSkillDamage(casterHero));
             
-            //TODO: logicTree.AddCurrent(targetHero.HeroLogic.TakeDamageTest.TakeSingleAttackDamage(finalNonCriticalDamage, finalCriticalDamage,attackerHero));
+            logicTree.AddCurrent(targetedHero.HeroLogic.TakeDamage.TakeSingleAttackDamage(finalNonCriticalDamage, finalCriticalDamage));
             
             logicTree.AddCurrent(EventAfterHeroDealsSkillDamage(casterHero));
             
@@ -52,7 +52,7 @@ namespace Logic
             
             logicTree.AddCurrent(EventBeforeHeroDealsSkillDamage(casterHero));
             
-            //TODO: logicTree.AddCurrent(targetHero.HeroLogic.TakeDamageTest.TakeMultiAttackDamage(finalNonCriticalDamage, finalCriticalDamage,attackerHero));
+            logicTree.AddCurrent(targetedHero.HeroLogic.TakeDamage.TakeMultiAttackDamage(finalNonCriticalDamage, finalCriticalDamage));
             
             logicTree.AddCurrent(EventAfterHeroDealsSkillDamage(casterHero));
             
@@ -78,7 +78,7 @@ namespace Logic
             
             logicTree.AddCurrent(EventBeforeHeroDealsSkillDamage(casterHero));
             
-            //TODO:  logicTree.AddCurrent(targetHero.HeroLogic.TakeDamageTest.TakeNonAttackSkillDamage(finalNonAttackSkillDamage, totalIgnoreArmorChance));
+            logicTree.AddCurrent(targetedHero.HeroLogic.TakeDamage.TakeNonAttackSkillDamage(finalNonAttackSkillDamage, totalPenetrateArmorChance));
             
             logicTree.AddCurrent(EventAfterHeroDealsSkillDamage(casterHero));
             
@@ -101,7 +101,7 @@ namespace Logic
 
             logicTree.AddCurrent(EventBeforeDealingNonSkillDamage(casterHero));
             
-            //TODO:  logicTree.AddCurrent(targetHero.HeroLogic.TakeDamageTest.TakeNonSkillDamage(finalNonSkillDamage, ignoreArmorChance));
+            logicTree.AddCurrent(targetedHero.HeroLogic.TakeDamage.TakeNonSkillDamage(finalNonSkillDamage, penetrateArmorChance));
             
             logicTree.AddCurrent(EventAfterDealingNonSkillDamage(casterHero));
             
