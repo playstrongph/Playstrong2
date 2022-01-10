@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.BasicActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroInabilityStatusAssets
@@ -13,7 +14,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// </summary>
         /// <param name="turnController"></param>
         /// <returns></returns>
-        public override IEnumerator StatusAction(ITurnController turnController)
+        public override IEnumerator TurnControllerAction(ITurnController turnController)
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
 
@@ -22,5 +23,12 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Hero performs no action
+        /// </summary>
+        /// <param name="attackHero"></param>
+        /// <param name="hero"></param>
+        public override void AttackAction(IAttackHero attackHero, IHero hero){ }
     }
 }

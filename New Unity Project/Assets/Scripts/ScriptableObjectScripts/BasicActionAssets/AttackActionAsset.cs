@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.BasicActionAssets
 {
     [CreateAssetMenu(fileName = "AttackAction", menuName = "Assets/BasicActions/A/AttackAction")]
-    public class AttackActionAsset : BasicActionAsset
+    public class AttackActionAsset : BasicActionAsset, IAttackHero
     {
         /// <summary>
         /// Skill critical strike chance.  This is additional to other
@@ -25,13 +25,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Additional flat value added to the attack damage
         /// </summary>
         [Header("ADDITIONAL DAMAGE FACTORS")] 
-        [SerializeField] private int flatValue;
+        [SerializeField] private int flatValue = 0;
 
         //TODO: CalculatedValue
-        
-        //TODO: Attack animation
-        
-        
+
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackTargetCountTypeAsset))] 
         private ScriptableObject attackTargetCountType;
         /// <summary>
@@ -47,15 +44,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
-            //TODO: Check inability chance at HeroLogic.OtherAttributes
-            
-            AttackHero(hero);
+            //TEST: If hero has no inability, proceeds to do attackAction
+            hero.HeroLogic.HeroInabilityStatus.AttackAction(this,hero);
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        private void AttackHero(IHero hero)
+        /// <summary>
+        /// Used by Inability Asset under the interface IAttackHero
+        /// </summary>
+        /// <param name="hero"></param>
+        public void AttackHero(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             

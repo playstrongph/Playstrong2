@@ -27,7 +27,7 @@ namespace Logic
             //TODO: UpdateStartTurnStatusEffects, wrap this in an IEnumerator
             
             //execute hero action relative to hero inability status 
-            logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.StatusAction(_turnController));
+            logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.TurnControllerAction(_turnController));
 
             logicTree.EndSequence();
             yield return null;

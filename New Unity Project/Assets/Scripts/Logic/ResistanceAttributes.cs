@@ -44,6 +44,16 @@ namespace Logic
             get => penetrateArmorResistance;
             set => penetrateArmorResistance = value;
         }
+        
+        [SerializeField] private int inabilityResistance;
+        /// <summary>
+        /// Probability for a hero to resist stun, sleep, and other inability effects
+        /// </summary>
+        public int InabilityResistance
+        {
+            get => inabilityResistance;
+            set => inabilityResistance = value;
+        }
 
     }
 }

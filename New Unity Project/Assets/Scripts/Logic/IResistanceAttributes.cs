@@ -17,5 +17,10 @@
         /// Probability for hero to resist ignore armor 
         /// </summary>
         int PenetrateArmorResistance { get; set; }
+        
+        /// <summary>
+        /// Probability for a hero to resist stun, sleep, and other inability effects
+        /// </summary>
+        int InabilityResistance { get; set; }
     }
 }
