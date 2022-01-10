@@ -138,7 +138,6 @@ namespace Logic
         public IEnumerator TakeNonSkillDamage(int nonSkillDamage, int penetrateArmorChance)
         {
             var targetedHero = _heroLogic.Hero;
-            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
 
             //Penetrate armor calculation

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.AttackTargetCountTypeAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
@@ -30,13 +31,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         //TODO: Attack animation
         
-        //TODO: AttackType - SingleTarget or MultiTarget attack
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackTargetCountTypeAsset))] 
+        private ScriptableObject attackTargetCountType;
+        /// <summary>
+        /// Indicates how many attack targets 
+        /// </summary>
+        private IAttackTargetCountTypeAsset AttackTargetCountType
+        {
+            get => attackTargetCountType as IAttackTargetCountTypeAsset;
+            set => attackTargetCountType = value as ScriptableObject;
+        }
 
         public override IEnumerator ExecuteAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //TODO: Check inability chance at HeroLogic.OtherAttributes
+            
             AttackHero(hero);
 
             logicTree.EndSequence();
@@ -84,12 +96,32 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         private void NormalAttack(IHero casterHero)
         {
-            //TODO: DealDamage 
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree; 
+            var dealDamage = casterHero.HeroLogic.DealDamage;
+            var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
+            var criticalAttackDamage = 0;
+            
+            //Attack target based on attack target count type - single or multi attack
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
+            
+            
         }
         
         private void CriticalAttack(IHero casterHero)
         {
-            //TODO: DealDamage
+           
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree; 
+            var dealDamage = casterHero.HeroLogic.DealDamage;
+            var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
+            var criticalFactor = casterHero.HeroLogic.DamageAttributes.CriticalDamage + skillCriticalDamage;
+            var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
+            
+            logicTree.AddCurrent(PreCriticalAttackEvents(casterHero));
+            
+            //Attack target based on attack target count type - single or multi attack
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
+            
+            logicTree.AddCurrent(PostCriticalAttackEvents(casterHero));
         }
         
         
@@ -163,7 +195,41 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
+        /// <summary>
+        /// Before hero deals critical strike attack event
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator PreCriticalAttackEvents(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetedHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
         
+        /// <summary>
+        /// After hero deals critical strike attack event
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator PostCriticalAttackEvents(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetedHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
 
         #endregion
         
