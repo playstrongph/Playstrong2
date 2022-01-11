@@ -19,11 +19,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public virtual IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Iterate over hero targets
-            //TODO: Check final conditions
-            //TODO: Check Hero life status 
-            //TODO: Execute Action
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             
             for (var index = 0; index < actionTargetHeroes.Count; index++)
@@ -41,8 +36,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Target action calls execute action if both the caster and target are alive
                     newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
-                    
-                    Debug.Log("Start Action 1: " +newTargetHero.HeroName );
                 }
             }
             logicTree.EndSequence();

@@ -44,12 +44,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
-            //TEST: If hero has no inability, proceeds to do attackAction
-            //logicTree.AddCurrent(hero.HeroLogic.HeroInabilityStatus.AttackAction(this,hero));
-
+            //Check hero inability status before proceeding with attack action
             hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
-            
-            Debug.Log("Attack action");
 
             logicTree.EndSequence();
             yield return null;

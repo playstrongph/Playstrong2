@@ -210,8 +210,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
             foreach (var basicAction in BasicActions)
             {
                 logicTree.AddCurrent(basicAction.StartAction(hero, this));
-                
-                Debug.Log("Basic Action StartAction1");
             }
             
             logicTree.EndSequence();
