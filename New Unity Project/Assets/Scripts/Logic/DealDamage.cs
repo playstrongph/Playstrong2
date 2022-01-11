@@ -163,12 +163,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeSingleAttackNonCriticalDamage(IHero hero, int nonCriticalDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealSingleDamageReduction = hero.HeroLogic.DamageAttributes.SingleDealDamageReduction;
-            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealSingleDamageReduction = hero.HeroLogic.DamageAttributes.SingleDealDamageReduction/100f;
+            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction/100f;
 
-            var damage = (100 - allDealDamageReduction) * (100 - dealSingleDamageReduction) *
-                (100 - dealSkillDamageReduction) * nonCriticalDamage / 100f;
+            var damage = (1 - allDealDamageReduction) * (1 - dealSingleDamageReduction) *
+                (1 - dealSkillDamageReduction) * nonCriticalDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 
@@ -184,12 +184,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeSingleAttackCriticalDamage(IHero hero, int criticalDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealSingleDamageReduction = hero.HeroLogic.DamageAttributes.SingleDealDamageReduction;
-            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealSingleDamageReduction = hero.HeroLogic.DamageAttributes.SingleDealDamageReduction/100f;
+            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction/100f;
 
-            var damage = (100 - allDealDamageReduction) * (100 - dealSingleDamageReduction) *
-                (100 - dealSkillDamageReduction) * criticalDamage / 100f;
+            var damage = (1 - allDealDamageReduction) * (1 - dealSingleDamageReduction) *
+                (1 - dealSkillDamageReduction) * criticalDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 
@@ -204,12 +204,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeMultiAttackNonCriticalDamage(IHero hero, int nonCriticalDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealMultiDamageReduction = hero.HeroLogic.DamageAttributes.MultiDealDamageReduction;
-            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealMultiDamageReduction = hero.HeroLogic.DamageAttributes.MultiDealDamageReduction/100f;
+            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction/100f;
 
-            var damage = (100 - allDealDamageReduction) * (100 - dealMultiDamageReduction) *
-                (100 - dealSkillDamageReduction) * nonCriticalDamage / 100f;
+            var damage = (1 - allDealDamageReduction) * (1 - dealMultiDamageReduction) *
+                (1 - dealSkillDamageReduction) * nonCriticalDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 
@@ -225,12 +225,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeMultiAttackCriticalDamage(IHero hero, int criticalDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealMultiDamageReduction = hero.HeroLogic.DamageAttributes.MultiDealDamageReduction;
-            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealMultiDamageReduction = hero.HeroLogic.DamageAttributes.MultiDealDamageReduction/100f;
+            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction/100f;
 
-            var damage = (100 - allDealDamageReduction) * (100 - dealMultiDamageReduction) *
-                (100 - dealSkillDamageReduction) * criticalDamage / 100f;
+            var damage = (1 - allDealDamageReduction) * (1 - dealMultiDamageReduction) *
+                (1 - dealSkillDamageReduction) * criticalDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 
@@ -246,10 +246,10 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonAttackSkillDamage(IHero hero, int nonAttackSkillDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealSkillDamageReduction = hero.HeroLogic.DamageAttributes.SkillDealDamageReduction/100f;
             
-            var damage = (100 - allDealDamageReduction)*(100 - dealSkillDamageReduction) * nonAttackSkillDamage / 100f;
+            var damage = (1 - allDealDamageReduction)*(1 - dealSkillDamageReduction) * nonAttackSkillDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 
@@ -264,10 +264,10 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonSkillDamage(IHero hero, int nonAttackSkillDamage)
         {
-            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction;
-            var dealNonSkillDamageReduction = hero.HeroLogic.DamageAttributes.NonSkillDealDamageReduction;
+            var allDealDamageReduction = hero.HeroLogic.DamageAttributes.AllDealDamageReduction/100f;
+            var dealNonSkillDamageReduction = hero.HeroLogic.DamageAttributes.NonSkillDealDamageReduction/100f;
             
-            var damage = (100 - allDealDamageReduction)*(100 - dealNonSkillDamageReduction) * nonAttackSkillDamage / 100f;
+            var damage = (1 - allDealDamageReduction)*(1 - dealNonSkillDamageReduction) * nonAttackSkillDamage;
 
             var finalDamage = Mathf.RoundToInt(damage);
 

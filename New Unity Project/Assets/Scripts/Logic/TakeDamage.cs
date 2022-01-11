@@ -200,13 +200,13 @@ namespace Logic
         /// <returns></returns>
         private int ComputeSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
-            var singleAttackDamageReduction = _heroLogic.DamageAttributes.SingleTakeDamageReduction;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
+            var singleAttackDamageReduction = _heroLogic.DamageAttributes.SingleTakeDamageReduction/100f;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - singleAttackDamageReduction) *
-                (1 - skillDamageReduction) * damage / 100f;
+                (1 - skillDamageReduction) * damage;
 
             var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
             
@@ -221,13 +221,13 @@ namespace Logic
         /// <returns></returns>
         private int ComputeMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
-            var multiAttackDamageReduction = _heroLogic.DamageAttributes.MultiTakeDamageReduction;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
+            var multiAttackDamageReduction = _heroLogic.DamageAttributes.MultiTakeDamageReduction/100f;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - multiAttackDamageReduction) *
-                (1 - skillDamageReduction) * damage / 100f;
+                (1 - skillDamageReduction) * damage;
 
             var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
             
@@ -242,11 +242,11 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonAttackSkillDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction;
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
+            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
             var damage = criticalDamage + nonCriticalDamage;
 
-            var floatFinalDamage = (1 - allDamageReduction) * (1 - skillDamageReduction) * damage / 100f;
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - skillDamageReduction) * damage;
 
             var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
             
@@ -261,11 +261,11 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonSkillDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction;
-            var nonSkillDamageReduction = _heroLogic.DamageAttributes.NonSkillTakeDamageReduction;
+            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
+            var nonSkillDamageReduction = _heroLogic.DamageAttributes.NonSkillTakeDamageReduction/100f;
             var damage = criticalDamage + nonCriticalDamage;
 
-            var floatFinalDamage = (1 - allDamageReduction) * (1 - nonSkillDamageReduction) * damage / 100f;
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - nonSkillDamageReduction) * damage;
 
             var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
             
@@ -301,6 +301,8 @@ namespace Logic
             var newHealth = health - damage;
             
             _heroLogic.SetHealth.StartAction(newHealth);
+            
+            
         }
         
         
