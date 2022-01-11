@@ -6,13 +6,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     public interface IBasicActionAsset
     {
+        
         /// <summary>
-        /// Checks if the targeted and targeting hero are both alive before
-        /// executing the basic action.  Can be overriden to bypass these checks
-        /// as required - e.g. resurrect, base stats change
+        /// Checks if all conditions are met (basic conditions plus caster and target life status)
+        /// before proceeding to execute action 
         /// </summary>
         /// <param name="hero"></param>
-        IEnumerator StartAction(IHero hero);
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction);
 
         /// <summary>
         /// Executes the basic action logic
@@ -30,9 +32,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
         IEnumerator UndoExecuteAction(IHero hero);
 
 
-        #region TEST LOGIC
+        #region OLD LOGIC
 
-        IEnumerator StartAction1(IHero hero, IStandardActionAsset standardAction);
+        /*/// <summary>
+        /// Checks if the targeted and targeting hero are both alive before
+        /// executing the basic action.  Can be overriden to bypass these checks
+        /// as required - e.g. resurrect, base stats change
+        /// </summary>
+        /// <param name="hero"></param>
+        IEnumerator StartAction(IHero hero);*/
 
         #endregion
     }

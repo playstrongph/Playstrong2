@@ -209,7 +209,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //Iterate per basic action
             foreach (var basicAction in BasicActions)
             {
-                logicTree.AddCurrent(basicAction.StartAction1(hero, this));
+                logicTree.AddCurrent(basicAction.StartAction(hero, this));
                 
                 Debug.Log("Basic Action StartAction1");
             }
