@@ -42,7 +42,6 @@ namespace Logic
         /// <param name="hero"></param>
         public void SetTargetedHero(IHero hero)
         {
-            Debug.Log("Set Targeted Hero");
             TargetedHero = hero;
         }
         

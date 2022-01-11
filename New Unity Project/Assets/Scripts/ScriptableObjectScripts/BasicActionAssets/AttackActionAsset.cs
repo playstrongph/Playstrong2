@@ -59,8 +59,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="hero"></param>
         public void AttackHero(IHero hero)
         {
-            Debug.Log("AttackHero");
-            
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //Before hero attacks events
@@ -143,7 +141,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
+
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
             targetedHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetedHero);
             

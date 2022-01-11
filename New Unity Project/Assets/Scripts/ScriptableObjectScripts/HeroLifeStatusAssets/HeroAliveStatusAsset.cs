@@ -15,7 +15,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="hero"></param>
         public override void TargetAction(IBasicActionAsset basicAction, IHero hero)
         {
-            hero.HeroLogic.HeroLifeStatus.CasterAction(basicAction,hero);
+            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            
+            //call the hero alive status of the original caster hero (the attacker, or healer)
+            hero.HeroLogic.HeroLifeStatus.CasterAction(basicAction,casterHero);
         }
         
         /// <summary>
