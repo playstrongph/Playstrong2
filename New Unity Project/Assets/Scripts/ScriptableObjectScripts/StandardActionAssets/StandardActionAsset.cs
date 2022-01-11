@@ -133,18 +133,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
                 return newBasicActions;
             }
         }
-        
-        
-        /// <summary>
-        /// AllAndBasicConditionsValue accumulator
-        /// </summary>
-        private int _finalAndConditionsValue;
-        
-        /// <summary>
-        /// AllAndBasicConditionsValue accumulator
-        /// </summary>
-        private int _finalOrConditionsValue;
-        
+
         #endregion
 
 
@@ -204,14 +193,47 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public virtual void StartAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Temporarily disabled to test StartActionCoroutine1
-            //logicTree.AddCurrent(StartActionCoroutine(hero));
-            
-            logicTree.AddCurrent(StartActionCoroutine1(hero));
+
+            logicTree.AddCurrent(StartActionCoroutine(hero));
         }
+
+        /// <summary>
+        /// Start basic actions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        protected IEnumerator StartActionCoroutine(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            //Iterate per basic action
+            foreach (var basicAction in BasicActions)
+            {
+                logicTree.AddCurrent(basicAction.StartAction1(hero, this));
+                
+                Debug.Log("Basic Action StartAction1");
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
+        #endregion
+
+        #region OLD LOGIC
+        
+        /*/// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalAndConditionsValue;
         
         /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalOrConditionsValue;*/
+
+        /*/// <summary>
         /// Runs basic action/s if basic condition/s are met
         /// Coroutine is required because this is a sequential logic
         /// </summary>
@@ -229,12 +251,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
                 var conditionTargetHeroes = BasicConditionTargets.ActionTargets(hero);
 
                
-               //Check if conditionTargetHeroes and actionTargetHeroes are the same
-               //If not, use index 0 (meaning there is only 1 condition target)
-               var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
                 
-               //Product of all 'And' and 'Or' basic condition logic
-               if (FinalConditionValue(conditionTargetHeroes[conditionIndex]) > 0)
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex]) > 0)
                 {
                     foreach (var basicAction in BasicActions)
                         logicTree.AddCurrent(basicAction.StartAction(newTargetHero));
@@ -244,16 +266,15 @@ namespace ScriptableObjectScripts.StandardActionAssets
             
             logicTree.EndSequence();
             yield return null;
-        }
-
-        //Basic Condition Execution Logic
-
-        private int FinalConditionValue(IHero hero)
+        }*/
+        
+        /*private int FinalConditionValue(IHero hero)
         {
             var finalCondition = AllAndBasicConditionsValue(hero) * AllOrBasicConditionsValue(hero);
             return finalCondition;
-        }
+        }*/
         
+        /*
         /// <summary>
         /// Returns the result of multiplying all 'And' conditions
         /// </summary>
@@ -297,32 +318,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
 
             return _finalOrConditionsValue;
         }
-       
-
-        #endregion
-
-        #region TEST LOGIC
-
-        /// <summary>
-        /// Start basic actions
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <returns></returns>
-        protected IEnumerator StartActionCoroutine1(IHero hero)
-        {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-            //Iterate per basic action
-            foreach (var basicAction in BasicActions)
-            {
-                logicTree.AddCurrent(basicAction.StartAction1(hero, this));
-                
-                Debug.Log("Basic Action StartAction1");
-            }
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
+        */
 
         #endregion
         
