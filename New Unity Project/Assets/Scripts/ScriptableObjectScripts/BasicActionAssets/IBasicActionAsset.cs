@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
@@ -27,5 +28,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="hero"></param>
         /// <returns></returns>
         IEnumerator UndoExecuteAction(IHero hero);
+
+
+        #region TEST LOGIC
+
+        IEnumerator StartAction1(IHero hero, IStandardActionAsset standardAction);
+
+        #endregion
     }
 }

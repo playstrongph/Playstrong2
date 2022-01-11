@@ -205,7 +205,10 @@ namespace ScriptableObjectScripts.StandardActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
-            logicTree.AddCurrent(StartActionCoroutine(hero));
+            //TODO: Temporarily disabled to test StartActionCoroutine1
+            //logicTree.AddCurrent(StartActionCoroutine(hero));
+            
+            logicTree.AddCurrent(StartActionCoroutine1(hero));
         }
         
         /// <summary>
@@ -242,23 +245,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        //TEST Logic
-        protected IEnumerator StartActionCoroutine2(IHero hero)
-        {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-            //Iterate per basic action
-            foreach (var basicAction in BasicActions)
-            {
-                //TODO: basicAction.StartAction1(hero,this);
-            }
-            
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-
 
         //Basic Condition Execution Logic
 
@@ -312,6 +298,31 @@ namespace ScriptableObjectScripts.StandardActionAssets
             return _finalOrConditionsValue;
         }
        
+
+        #endregion
+
+        #region TEST LOGIC
+
+        /// <summary>
+        /// Start basic actions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        protected IEnumerator StartActionCoroutine1(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            //Iterate per basic action
+            foreach (var basicAction in BasicActions)
+            {
+                logicTree.AddCurrent(basicAction.StartAction1(hero, this));
+                
+                Debug.Log("Basic Action StartAction1");
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
 
         #endregion
         

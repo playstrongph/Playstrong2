@@ -23,48 +23,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        //TEST Logic
-        public virtual IEnumerator StartAction1(IHero hero, IStandardActionAsset standardAction)
-        {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Iterate over hero targets
-            //TODO: Check final conditions
-            //TODO: Check Hero life status 
-            //TODO: Execute Action
-            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
-            
-            for (var index = 0; index < actionTargetHeroes.Count; index++)
-            {
-                var newTargetHero = actionTargetHeroes[index];
-                
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
 
-               
-                //Check if conditionTargetHeroes and actionTargetHeroes are the same
-                //If not, use index 0 (meaning there is only 1 condition target)
-                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
-                
-                //Product of all 'And' and 'Or' basic condition logic
-                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
-                {
-                    //foreach (var basicAction in BasicActions)
-                        //logicTree.AddCurrent(basicAction.StartAction(newTargetHero));
-                        
-                        newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
-                }
-            }
-            
-            
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        
-        
-        
+
         /// <summary>
         /// Executes the basic action logic, used by hero life status
         /// This is the method overriden by the specific basic actions
@@ -132,7 +92,48 @@ namespace ScriptableObjectScripts.BasicActionAssets
             return statusEffectsList;
         }
 
-        #region FINAL CONDITION
+        #region TEST LOGIC
+        
+        /// <summary>
+        /// Checks if all conditions are met (basic conditions plus caster and target life status)
+        /// before proceeding to execute action 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        public virtual IEnumerator StartAction1(IHero hero, IStandardActionAsset standardAction)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: Iterate over hero targets
+            //TODO: Check final conditions
+            //TODO: Check Hero life status 
+            //TODO: Execute Action
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+                
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                var newTargetHero = actionTargetHeroes[index];
+                
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //Target action calls execute action if both the caster and target are alive
+                    newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
+                    
+                    Debug.Log("Start Action 1: " +newTargetHero.HeroName );
+                }
+            }
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
         
         
         /// <summary>

@@ -48,6 +48,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //logicTree.AddCurrent(hero.HeroLogic.HeroInabilityStatus.AttackAction(this,hero));
 
             hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
+            
+            Debug.Log("Attack action");
 
             logicTree.EndSequence();
             yield return null;
