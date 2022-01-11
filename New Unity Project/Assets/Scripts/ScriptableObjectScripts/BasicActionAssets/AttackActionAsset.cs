@@ -160,7 +160,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetedHero);
             
             logicTree.EndSequence();
             yield return null;
