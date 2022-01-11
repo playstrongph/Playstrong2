@@ -68,9 +68,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //After hero attacks events
             logicTree.AddCurrent(PostAttackEvents(hero));
             logicTree.AddCurrent(PostSkillAttackEvents(hero));
-            
-            //logicTree.EndSequence();
-            //yield return null;
         }
         
         /// <summary>
