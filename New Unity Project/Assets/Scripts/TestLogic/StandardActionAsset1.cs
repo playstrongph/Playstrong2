@@ -5,14 +5,15 @@ using ScriptableObjectScripts.ActionTargetAssets;
 using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.BasicConditionAssets;
 using ScriptableObjectScripts.BasicEventAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
-namespace ScriptableObjectScripts.StandardActionAssets
+namespace TestLogic
 {
     /// <summary>
     /// Base class for SkillActionAsset and StatusEffectActionAsset
     /// </summary>
-    public abstract class StandardActionAsset : ScriptableObject, IStandardActionAsset
+    public abstract class StandardActionAsset1 : ScriptableObject, IStandardActionAsset
     {
         #region VARIABLES AND PROPERTIES
 

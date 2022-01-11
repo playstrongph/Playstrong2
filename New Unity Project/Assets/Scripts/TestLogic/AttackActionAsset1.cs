@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using Logic;
 using ScriptableObjectScripts.AttackTargetCountTypeAssets;
+using ScriptableObjectScripts.BasicActionAssets;
 using UnityEngine;
 
-namespace ScriptableObjectScripts.BasicActionAssets
+namespace TestLogic
 {
     [CreateAssetMenu(fileName = "AttackAction", menuName = "Assets/BasicActions/A/AttackAction")]
-    public class AttackActionAsset : BasicActionAsset, IAttackHero
+    public class AttackActionAsset1 : BasicActionAsset1, IAttackHero
     {
         /// <summary>
         /// Skill critical strike chance.  This is additional to other
