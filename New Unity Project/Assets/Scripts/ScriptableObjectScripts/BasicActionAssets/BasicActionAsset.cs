@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
@@ -22,6 +23,46 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        //TEST Logic
+        public virtual IEnumerator StartAction1(IHero hero, IStandardActionAsset standardAction)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: Iterate over hero targets
+            //TODO: Check final conditions
+            //TODO: Check Hero life status 
+            //TODO: Execute Action
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var newTargetHero = actionTargetHeroes[index];
+                
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+
+               
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //foreach (var basicAction in BasicActions)
+                        //logicTree.AddCurrent(basicAction.StartAction(newTargetHero));
+                        
+                        newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
+                }
+            }
+            
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        
         
         
         /// <summary>
@@ -90,6 +131,74 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             return statusEffectsList;
         }
+
+        #region FINAL CONDITION
+        
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalAndConditionsValue;
+        
+        /// <summary>
+        /// AllAndBasicConditionsValue accumulator
+        /// </summary>
+        private int _finalOrConditionsValue;
+
+        private int FinalConditionValue(IHero hero, IStandardActionAsset standardAction)
+        {
+            var finalCondition = AllAndBasicConditionsValue(hero, standardAction) * AllOrBasicConditionsValue(hero,standardAction);
+            return finalCondition;
+        }
+        
+        /// <summary>
+        /// Returns the result of multiplying all 'And' conditions
+        /// </summary>
+        /// <param name="hero"></param>
+        ///  /// <param name="standardAction"></param>
+        /// <returns></returns>
+        private int AllAndBasicConditionsValue(IHero hero, IStandardActionAsset standardAction)
+        {
+            if (standardAction.AndBasicConditions.Count > 0)
+            {
+                _finalAndConditionsValue = 1;
+                foreach (var basicCondition in standardAction.AndBasicConditions)
+                {
+                    _finalAndConditionsValue *= basicCondition.ConditionValue(hero);
+                    _finalAndConditionsValue = Mathf.Clamp(_finalAndConditionsValue, 0, 1);
+                }
+            }
+            else
+                _finalAndConditionsValue = 1; 
+            
+            return _finalAndConditionsValue;
+        }
+        
+        /// <summary>
+        /// Returns the result of multiplying all 'Or' conditions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        private int AllOrBasicConditionsValue(IHero hero, IStandardActionAsset standardAction)
+        {
+            if (standardAction.OrBasicConditions.Count > 0)
+            {
+                _finalOrConditionsValue = 0;
+                foreach (var basicCondition in standardAction.OrBasicConditions)
+                {
+                    _finalOrConditionsValue += basicCondition.ConditionValue(hero);
+                    _finalOrConditionsValue = Mathf.Clamp(_finalOrConditionsValue, 0, 1);
+
+                }
+            }
+            else _finalOrConditionsValue =  1;
+
+            return _finalOrConditionsValue;
+        }
+        
+
+        #endregion
 
     }
 }

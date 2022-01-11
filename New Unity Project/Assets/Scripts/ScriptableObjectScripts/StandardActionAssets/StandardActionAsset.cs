@@ -243,7 +243,23 @@ namespace ScriptableObjectScripts.StandardActionAssets
             yield return null;
         }
         
-        
+        //TEST Logic
+        protected IEnumerator StartActionCoroutine2(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            //Iterate per basic action
+            foreach (var basicAction in BasicActions)
+            {
+                //TODO: basicAction.StartAction1(hero,this);
+            }
+            
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
         //Basic Condition Execution Logic
 
         private int FinalConditionValue(IHero hero)
