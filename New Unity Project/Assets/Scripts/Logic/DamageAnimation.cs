@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Logic
 {
-    public class DamageAnimation : MonoBehaviour
+    public class DamageAnimation : MonoBehaviour, IDamageAnimation
     {
         /// <summary>
         /// Damage animation canvas
@@ -13,14 +13,14 @@ namespace Logic
         [SerializeField] private Canvas canvas;
         
         /// <summary>
-        /// 
+        /// Canvas group for alpha control, set in the inspector.
         /// </summary>
-        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private CanvasGroup canvasGroup = null;
         
         /// <summary>
-        /// Damage text
+        /// Damage text, set in the inspector
         /// </summary>
-        [SerializeField] private TextMeshProUGUI text;
+        [SerializeField] private TextMeshProUGUI text = null;
 
         /// <summary>
         /// Damage cloud
@@ -33,13 +33,32 @@ namespace Logic
         /// <summary>
         /// Duration of the change scale animation 
         /// </summary>
+        [Header("DO TWEEN VALUES")]
         [SerializeField] private float doScaleDuration = 0.2f;
         
-        
+        /// <summary>
+        /// Scale enhancer
+        /// </summary>
         [SerializeField] private float localScaleMultiplier = 1.5f;
+        
+        /// <summary>
+        /// Number of times the animation bounces
+        /// </summary>
         [SerializeField] private int doScaleLoopCount = 4;
+        
+        /// <summary>
+        /// Duration of the image fading to full invisible
+        /// </summary>
         [SerializeField] private float fadeInterval = 0.2f;
+        
+        /// <summary>
+        /// Alpha value start, 1 means fully visible 
+        /// </summary>
         [SerializeField] private float fadeAlphaStart = 1.0f;
+        
+        /// <summary>
+        /// Alpha value end, 0 means fully invisible
+        /// </summary>
         [SerializeField] private float fadeAlphaEnd = 0.0f;
 
         #endregion
