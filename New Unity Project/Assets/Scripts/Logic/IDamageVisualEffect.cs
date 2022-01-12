@@ -1,11 +1,11 @@
 ﻿namespace Logic
 {
-    public interface IDamageAnimation
+    public interface IDamageVisualEffect
     {
         /// <summary>
         /// Plays the damage animation
         /// </summary>
         /// <param name="damageText"></param>
-        void PlayAnimation(int damageText);
+        void PlayVisualEffect(int damageText);
     }
 }

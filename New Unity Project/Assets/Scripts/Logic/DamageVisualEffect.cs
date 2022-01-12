@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Logic
 {
-    public class DamageAnimation : MonoBehaviour, IDamageAnimation
+    public class DamageVisualEffect : MonoBehaviour, IDamageVisualEffect
     {
         /// <summary>
         /// Damage animation canvas
@@ -67,7 +67,7 @@ namespace Logic
         /// Plays the damage animation
         /// </summary>
         /// <param name="damageText"></param>
-        public void PlayAnimation(int damageText)
+        public void PlayVisualEffect(int damageText)
         {
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
