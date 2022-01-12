@@ -149,9 +149,8 @@ namespace Logic
                 {
                     var targetHeroCollider = mResults[i].transform.GetComponent<IHeroTargetCollider>();
 
-                    //reset target hero to null if there is no valid target
-                    _validSkillTargetHero =
-                        _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
+                    //check if hero is included in the valid targets
+                    _validSkillTargetHero = _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
                 }
 
             }
