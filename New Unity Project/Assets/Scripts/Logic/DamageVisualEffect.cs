@@ -69,6 +69,17 @@ namespace Logic
         /// <param name="damageText"></param>
         public void PlayVisualEffect(int damageText)
         {
+            var s = DOTween.Sequence();
+            
+            //Play damage effect, then destroy after fade interval
+            s.AppendCallback(() => DamageEffect(damageText))
+                .AppendInterval(2 * fadeInterval)
+                .AppendCallback(() => Destroy(gameObject));
+
+        }
+
+        private void DamageEffect(int damageText)
+        {
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
 

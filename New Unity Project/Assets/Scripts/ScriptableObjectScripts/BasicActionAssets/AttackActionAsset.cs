@@ -1,13 +1,28 @@
 ﻿using System.Collections;
 using Logic;
 using ScriptableObjectScripts.AttackTargetCountTypeAssets;
+using ScriptableObjectScripts.GameAnimationAssets;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
     [CreateAssetMenu(fileName = "AttackAction", menuName = "Assets/BasicActions/A/AttackAction")]
     public class AttackActionAsset : BasicActionAsset, IAttackHero
     {
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackTargetCountTypeAsset))] 
+        private ScriptableObject attackTargetCountType;
+        /// <summary>
+        /// Indicates how many attack targets 
+        /// </summary>
+        private IAttackTargetCountTypeAsset AttackTargetCountType
+        {
+            get => attackTargetCountType as IAttackTargetCountTypeAsset;
+            set => attackTargetCountType = value as ScriptableObject;
+        }
+        
+        
         /// <summary>
         /// Skill critical strike chance.  This is additional to other
         /// critical strike factors.
@@ -28,17 +43,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int flatValue = 0;
 
         //TODO: CalculatedValue
-
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackTargetCountTypeAsset))] 
-        private ScriptableObject attackTargetCountType;
+        
+        
+        [Header("ANIMATIONS")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject damageAnimationAsset;
         /// <summary>
-        /// Indicates how many attack targets 
+        /// Damage animation asset
         /// </summary>
-        private IAttackTargetCountTypeAsset AttackTargetCountType
+        private IGameAnimationsAsset DamageAnimationAsset
         {
-            get => attackTargetCountType as IAttackTargetCountTypeAsset;
-            set => attackTargetCountType = value as ScriptableObject;
+            get => damageAnimationAsset as IGameAnimationsAsset;
+            set => damageAnimationAsset = value as ScriptableObject;
         }
+
+
 
         public override IEnumerator ExecuteAction(IHero hero)
         {
@@ -68,8 +88,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //After hero attacks events
             logicTree.AddCurrent(PostAttackEvents(hero));
             logicTree.AddCurrent(PostSkillAttackEvents(hero));
+            
+            
+            //TEST - VISUAL
+            logicTree.AddCurrent(AttackHeroAnimation(hero));
+            
         }
-        
+
         /// <summary>
         /// Determines if attack is a critical strike based on critical chance and resistance
         /// Has to be a coroutine due to events
@@ -123,6 +148,38 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(PostCriticalAttackEvents(casterHero));
             
         }
+
+        #region ATTACK ANIMATION
+        
+        private IEnumerator AttackHeroAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //TODO: Skill Preview
+            
+            //TODO: Attack movement animation
+            
+            //TODO: Damage animation
+            DamageAnimation(targetedHero);
+
+            //TODO:  Text Animation
+            
+            logicTree.EndSequence();
+            yield return null;
+
+        }
+
+
+        private void DamageAnimation(IHero hero)
+        {
+            DamageAnimationAsset.PlayAnimation(hero, 99);
+        }
+
+
+        #endregion
+        
+
         
         
 

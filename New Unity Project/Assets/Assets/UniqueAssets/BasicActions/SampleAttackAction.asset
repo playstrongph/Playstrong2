@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afaba4c53fba5de4bb2c656ec66fbac1, type: 3}
   m_Name: SampleAttackAction
   m_EditorClassIdentifier: 
+  attackTargetCountType: {fileID: 11400000, guid: c22cbd54481e65c44a6a97046bc4108d,
+    type: 2}
   skillCriticalChance: 0
   skillCriticalDamage: 0
   flatValue: 0
-  attackTargetCountType: {fileID: 11400000, guid: c22cbd54481e65c44a6a97046bc4108d,
+  damageAnimationAsset: {fileID: 11400000, guid: bddee005a09834e42b10fad1a0f41c8e,
     type: 2}
