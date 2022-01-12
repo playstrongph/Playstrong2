@@ -60,6 +60,11 @@ namespace Logic
         /// Alpha value end, 0 means fully invisible
         /// </summary>
         [SerializeField] private float fadeAlphaEnd = 0.0f;
+        
+        /// <summary>
+        /// Additional delay before destroying the game object
+        /// </summary>
+        [SerializeField] private float delayInterval = 1.5f;
 
         #endregion
 
@@ -69,15 +74,14 @@ namespace Logic
         /// <param name="damageText"></param>
         public void PlayVisualEffect(int damageText)
         {
-            var s = DOTween.Sequence();
-            
-            //Play damage effect, then destroy after fade interval
-            s.AppendCallback(() => DamageEffect(damageText))
-                .AppendInterval(2 * fadeInterval)
-                .AppendCallback(() => Destroy(gameObject));
+            DamageEffect(damageText);
 
         }
-
+        
+        /// <summary>
+        /// Damage effect tween animation
+        /// </summary>
+        /// <param name="damageText"></param>
         private void DamageEffect(int damageText)
         {
             //Display damage animation
@@ -86,12 +90,22 @@ namespace Logic
             //Display damage text
             text.text = "-" + damageText.ToString();
             
-            //Bounce image animation
-            transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
-                .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+            //delay before destroying the game object. Setting delay interval to zero results to error
+            var totalInterval = fadeInterval + delayInterval*doScaleLoopCount * doScaleDuration;
+
+            var s = DOTween.Sequence();
             
-            //Fade the damage image
-            canvasGroup.DOFade(fadeAlphaEnd, fadeInterval);
+            //Bounce image animation
+            s.AppendCallback(() =>
+                    transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
+                        .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
+                .AppendInterval(doScaleDuration * doScaleLoopCount)
+                .AppendCallback(() =>
+                    //Fade the damage image
+                    canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
+                
+                .AppendInterval(totalInterval)
+                .AppendCallback(() => Destroy(gameObject));
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7141874222350928602}
   - component: {fileID: 7141874222350928601}
   m_Layer: 0
-  m_Name: DamageAnimation
+  m_Name: DamageVisualEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,12 +53,13 @@ MonoBehaviour:
   canvasGroup: {fileID: 7141874222832558365}
   text: {fileID: 7141874223857600754}
   image: {fileID: 7141874222719936453}
-  doScaleDuration: 0.2
-  localScaleMultiplier: 1.5
+  doScaleDuration: 0.15
+  localScaleMultiplier: 1.6
   doScaleLoopCount: 4
-  fadeInterval: 0.2
+  fadeInterval: 1
   fadeAlphaStart: 1
   fadeAlphaEnd: 0
+  delayInterval: 0.1
 --- !u!1 &7141874222719936455
 GameObject:
   m_ObjectHideFlags: 0

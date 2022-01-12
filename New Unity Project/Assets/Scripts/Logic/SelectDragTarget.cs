@@ -117,6 +117,7 @@ namespace Logic
             //if there is a valid target
             if(_validSkillTargetHero != null)
                 UseSkill();
+            
         }
 
 
@@ -137,16 +138,22 @@ namespace Logic
             
             //Same to RayCastAll but with no additional garbage
             int hitsCount = Physics.RaycastNonAlloc(ray, mResults, Mathf.Infinity,layerMask);
+            
+            //Update the latest targeted hero to null
+            _validSkillTargetHero = null;
+            SkillTargetCollider.Skill.CasterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
 
             for (int i = 0; i < hitsCount; i++)
             {
                 if (mResults[i].transform.GetComponent<IHeroTargetCollider>() != null)
                 {
                     var targetHeroCollider = mResults[i].transform.GetComponent<IHeroTargetCollider>();
-                   
+
                     //reset target hero to null if there is no valid target
-                    _validSkillTargetHero = _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
+                    _validSkillTargetHero =
+                        _validTargets.Contains(targetHeroCollider.Hero) ? targetHeroCollider.Hero : null;
                 }
+
             }
         }
         
