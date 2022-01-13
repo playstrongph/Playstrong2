@@ -16,5 +16,5 @@ MonoBehaviour:
     type: 3}
   doScaleDuration: 0.2
   localScaleMultiplier: 1.5
-  doMoveDuration: 0.1
+  doMoveDuration: 0.25
   delayInterval: 0.1

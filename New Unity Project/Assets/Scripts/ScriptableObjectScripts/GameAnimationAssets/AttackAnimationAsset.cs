@@ -38,7 +38,8 @@ namespace ScriptableObjectScripts.GameAnimationAssets
             var attackProjectileGameObject = Instantiate(attackProjectilePrefab, casterHero.ThisGameObject.transform);
             var attackProjectile = attackProjectileGameObject.GetComponent<IAttackProjectile>();
             var projectileGraphic = casterHero.HeroVisual.HeroGraphic.HeroImage.sprite;
-            var totalInterval = (1 + delayInterval) * (doMoveDuration + doScaleDuration);
+            
+            var destroyDelayInterval = delayInterval*(doMoveDuration + doScaleDuration);
             
             //Set Projectile Graphic
             attackProjectile.SetProjectileGraphic(projectileGraphic);
@@ -58,7 +59,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
                         .DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
                 
                 .AppendInterval(doMoveDuration)
-                .AppendInterval(totalInterval)
+                .AppendInterval(destroyDelayInterval)
                 .AppendCallback(() =>
                     Destroy(attackProjectileGameObject));
 
