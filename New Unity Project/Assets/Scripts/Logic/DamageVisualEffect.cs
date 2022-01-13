@@ -34,12 +34,12 @@ namespace Logic
         /// Duration of the change scale animation 
         /// </summary>
         [Header("DO TWEEN VALUES")]
-        [SerializeField] private float doScaleDuration = 0.2f;
+        [SerializeField] private float doScaleDuration = 0.15f;
         
         /// <summary>
         /// Scale enhancer
         /// </summary>
-        [SerializeField] private float localScaleMultiplier = 1.5f;
+        [SerializeField] private float localScaleMultiplier = 1.6f;
         
         /// <summary>
         /// Number of times the animation bounces
@@ -49,7 +49,7 @@ namespace Logic
         /// <summary>
         /// Duration of the image fading to full invisible
         /// </summary>
-        [SerializeField] private float fadeInterval = 0.2f;
+        [SerializeField] private float fadeInterval = 1;
         
         /// <summary>
         /// Alpha value start, 1 means fully visible 
@@ -64,7 +64,7 @@ namespace Logic
         /// <summary>
         /// Additional delay before destroying the game object
         /// </summary>
-        [SerializeField] private float delayInterval = 1.5f;
+        [SerializeField] private float delayInterval = 0.1f;
 
         #endregion
 
