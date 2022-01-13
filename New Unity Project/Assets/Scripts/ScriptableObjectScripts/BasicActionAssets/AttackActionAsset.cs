@@ -57,6 +57,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => damageAnimationAsset as IGameAnimationsAsset;
             set => damageAnimationAsset = value as ScriptableObject;
         }
+        
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject attackAnimationAsset;
+        /// <summary>
+        /// Attack animation asset
+        /// </summary>
+        private IGameAnimationsAsset AttackAnimationAsset
+        {
+            get => attackAnimationAsset as IGameAnimationsAsset;
+            set => attackAnimationAsset = value as ScriptableObject;
+        }
 
 
 
@@ -182,6 +194,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
             //TODO: Attack movement animation
+            AttackAnimation(casterHero);
             
             //TODO: need to append this to a sequence
             DamageAnimation(targetedHero);
@@ -197,10 +210,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Damage animation played from GameAnimationsAsset
         /// </summary>
-        /// <param name="hero"></param>
-        private void DamageAnimation(IHero hero)
+        /// <param name="targetedHero"></param>
+        private void DamageAnimation(IHero targetedHero)
         {
-            DamageAnimationAsset.PlayAnimation(hero, 99);
+            DamageAnimationAsset.PlayAnimation(targetedHero, 99);
+        }
+        
+        
+        private void AttackAnimation(IHero casterHero)
+        {
+           AttackAnimationAsset.PlayAnimation(casterHero);    
         }
 
 

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808d4fe8ebe4c234a947e00697f6ca69, type: 3}
+  m_Name: AttackAnimation
+  m_EditorClassIdentifier: 
+  attackProjectilePrefab: {fileID: 4343189324778924597, guid: facb6dfbe7a9ffe4e9c3132065363e56,
+    type: 3}
+  doScaleDuration: 0.2
+  localScaleMultiplier: 1.5
+  doMoveDuration: 0.1
+  delayInterval: 0.1

@@ -8,7 +8,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
     [CreateAssetMenu(fileName = "AttackAnimation", menuName = "Assets/GameAnimations/AttackAnimation")]
     public class AttackAnimationAsset : GameAnimationsAsset
     {
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackProjectile))]
+        [SerializeField] 
         private GameObject attackProjectilePrefab = null;
         
         /// <summary>
@@ -32,7 +32,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// </summary>
         [SerializeField] private float delayInterval = 0.1f;
 
-        public override void PlayAnimation(IHero casterHero, int value)
+        public override void PlayAnimation(IHero casterHero)
         {
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var attackProjectileGameObject = Instantiate(attackProjectilePrefab, casterHero.ThisGameObject.transform);
@@ -49,12 +49,14 @@ namespace ScriptableObjectScripts.GameAnimationAssets
             s.AppendCallback(() =>
                     attackProjectileGameObject.transform
                         .DOScale(attackProjectileGameObject.transform.localScale * localScaleMultiplier,
-                            doScaleDuration)
-                        .SetEase(Ease.InOutQuad))
+                            doScaleDuration).SetEase(Ease.InOutQuad))
+                
                 .AppendInterval(doScaleDuration)
+                
                 .AppendCallback(() =>
                     attackProjectileGameObject.transform
                         .DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
+                
                 .AppendInterval(doMoveDuration)
                 .AppendInterval(totalInterval)
                 .AppendCallback(() =>
