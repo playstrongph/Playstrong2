@@ -85,13 +85,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
             
+            //TEST - VISUAL
+            logicTree.AddCurrent(AttackHeroAnimation(hero));
+            
             //After hero attacks events
             logicTree.AddCurrent(PostAttackEvents(hero));
             logicTree.AddCurrent(PostSkillAttackEvents(hero));
             
             
-            //TEST - VISUAL
-            logicTree.AddCurrent(AttackHeroAnimation(hero));
+            
             
         }
 
@@ -151,26 +153,51 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region ATTACK ANIMATION
         
+        
+        /// <summary>
+        /// Logic tree wrapper for visual tree command
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
         private IEnumerator AttackHeroAnimation(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             
-            //TODO: Skill Preview
-            
-            //TODO: Attack movement animation
-            
-            //TODO: Damage animation
-            DamageAnimation(targetedHero);
-
-            //TODO:  Text Animation
+            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
             
             logicTree.EndSequence();
             yield return null;
 
         }
+        
+        /// <summary>
+        /// Attack hero animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator VisualAttackHeroAnimation(IHero casterHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
+            //TODO: Attack movement animation
+            
+            //TODO: need to append this to a sequence
+            DamageAnimation(targetedHero);
 
+            //TODO:  Text Animation
+            
+            //TODO: this needs to be delayed using an overall animation delay interval
+            visualTree.EndSequence();
+            yield return null;
+
+        }
+        
+        /// <summary>
+        /// Damage animation played from GameAnimationsAsset
+        /// </summary>
+        /// <param name="hero"></param>
         private void DamageAnimation(IHero hero)
         {
             DamageAnimationAsset.PlayAnimation(hero, 99);
