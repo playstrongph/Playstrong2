@@ -11,60 +11,18 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         [SerializeField] 
         private GameObject attackProjectilePrefab = null;
         
-        /// <summary>
-        /// Duration of the change scale animation
-        /// </summary>
-        [Header("DO TWEEN VALUES")]
-        [SerializeField] private float doScaleDuration = 0.2f;
         
         /// <summary>
-        /// Scale enhancer
+        /// Play animation in visual effects
         /// </summary>
-        [SerializeField] private float localScaleMultiplier = 1.5f;
-        
-        /// <summary>
-        /// Additional delay before destroying the game object
-        /// </summary>
-        [SerializeField] private float doMoveDuration = 0.1f;
-        
-        /// <summary>
-        /// Additional delay before destroying the game object
-        /// </summary>
-        [SerializeField] private float delayInterval = 0.1f;
-
+        /// <param name="casterHero"></param>
         public override void PlayAnimation(IHero casterHero)
         {
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var attackProjectileGameObject = Instantiate(attackProjectilePrefab, casterHero.ThisGameObject.transform);
-            var attackProjectile = attackProjectileGameObject.GetComponent<IAttackProjectile>();
-            var projectileGraphic = casterHero.HeroVisual.HeroGraphic.HeroImage.sprite;
+            var attackProjectile = attackProjectileGameObject.GetComponent<IGameVisualEffects>();
             
-            var destroyDelayInterval = delayInterval*(doMoveDuration + doScaleDuration);
-            
-            //Set Projectile Graphic
-            attackProjectile.SetProjectileGraphic(projectileGraphic);
-
-
-            var s = DOTween.Sequence();
-
-            s.AppendCallback(() =>
-                    attackProjectileGameObject.transform
-                        .DOScale(attackProjectileGameObject.transform.localScale * localScaleMultiplier,
-                            doScaleDuration).SetEase(Ease.InOutQuad))
-                
-                .AppendInterval(doScaleDuration)
-                
-                .AppendCallback(() =>
-                    attackProjectileGameObject.transform
-                        .DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
-                
-                .AppendInterval(doMoveDuration)
-                .AppendInterval(destroyDelayInterval)
-                .AppendCallback(() =>
-                    Destroy(attackProjectileGameObject));
-
+            attackProjectile.PlayVisualEffect(casterHero);
         }
-
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Animation;
+using DG.Tweening;
 using Logic;
 using UnityEngine;
 
@@ -8,14 +9,13 @@ namespace ScriptableObjectScripts.GameAnimationAssets
     public class DamageAnimationAsset : GameAnimationsAsset
     {
         [SerializeField] private GameObject damageVisualEffectPrefab = null;
-        
+
         public override void PlayAnimation(IHero hero, int value)
         {
             var damageVisualEffectGameObject = Instantiate(damageVisualEffectPrefab, hero.ThisGameObject.transform);
-            var damageVisualEffect = damageVisualEffectGameObject.GetComponent<IDamageVisualEffect>();
+            var damageVisualEffect = damageVisualEffectGameObject.GetComponent<IGameVisualEffects>();
 
             damageVisualEffect.PlayVisualEffect(value);
-            
         }
 
 

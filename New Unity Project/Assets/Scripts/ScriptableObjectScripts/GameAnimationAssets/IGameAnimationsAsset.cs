@@ -7,5 +7,11 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         void PlayAnimation(IHero hero, int value);
 
         void PlayAnimation(IHero hero);
+        
+        /// <summary>
+        /// Animation duration.  Not necessarily equal to the total animation duration,
+        /// can be less for timing for purposes
+        /// </summary>
+        float AnimationDuration { get; set; }
     }
 }

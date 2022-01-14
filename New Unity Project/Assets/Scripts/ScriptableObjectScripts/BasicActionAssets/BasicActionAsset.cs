@@ -20,7 +20,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
-            
+
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
                 var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
@@ -38,6 +38,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
                 }
             }
+
             logicTree.EndSequence();
             yield return null;
         }

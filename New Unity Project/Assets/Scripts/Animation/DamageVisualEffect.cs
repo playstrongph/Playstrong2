@@ -1,11 +1,12 @@
 ﻿using DG.Tweening;
+using Logic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Logic
+namespace Animation
 {
-    public class DamageVisualEffect : MonoBehaviour, IDamageVisualEffect
+    public class DamageVisualEffect : GameVisualEffects
     {
         /// <summary>
         /// Damage animation canvas
@@ -71,10 +72,10 @@ namespace Logic
         /// <summary>
         /// Plays the damage animation
         /// </summary>
-        /// <param name="damageText"></param>
-        public void PlayVisualEffect(int damageText)
+        /// <param name="value"></param>
+        public void PlayVisualEffect(int value)
         {
-            DamageEffect(damageText);
+            DamageEffect(value);
 
         }
         
@@ -82,13 +83,13 @@ namespace Logic
         /// Damage effect tween animation
         /// </summary>
         /// <param name="damageText"></param>
-        private void DamageEffect(int damageText)
+        private void DamageEffect(int value)
         {
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
 
             //Display damage text
-            text.text = "-" + damageText.ToString();
+            text.text = "-" + value.ToString();
             
             //delay before destroying the game object. Setting delay interval to zero results to error
             var totalInterval = fadeInterval + delayInterval*doScaleLoopCount * doScaleDuration;

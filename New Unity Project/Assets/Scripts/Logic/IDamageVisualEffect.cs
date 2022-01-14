@@ -1,11 +1,13 @@
-﻿namespace Logic
+﻿using UnityEngine.UI;
+
+namespace Logic
 {
     public interface IDamageVisualEffect
     {
         /// <summary>
         /// Plays the damage animation
         /// </summary>
-        /// <param name="damageText"></param>
-        void PlayVisualEffect(int damageText);
+        /// <param name="value"></param>
+        void PlayVisualEffect(int value);
     }
 }
