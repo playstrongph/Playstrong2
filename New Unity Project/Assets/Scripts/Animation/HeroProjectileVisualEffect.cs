@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Animation
 {
-    public class AttackProjectileHero : GameVisualEffects
+    public class HeroProjectileVisualEffect : GameVisualEffects
     {
         /// <summary>
         /// Set in the inspector

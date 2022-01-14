@@ -73,7 +73,7 @@ namespace Animation
         /// Plays the damage animation
         /// </summary>
         /// <param name="value"></param>
-        public void PlayVisualEffect(int value)
+        public override void PlayVisualEffect(int value)
         {
             DamageEffect(value);
 
@@ -82,7 +82,7 @@ namespace Animation
         /// <summary>
         /// Damage effect tween animation
         /// </summary>
-        /// <param name="damageText"></param>
+        /// <param name="value"></param>
         private void DamageEffect(int value)
         {
             //Display damage animation
