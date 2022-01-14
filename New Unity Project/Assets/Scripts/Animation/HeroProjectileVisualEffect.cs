@@ -54,7 +54,7 @@ namespace Animation
                     transform.DOScale(transform.localScale * localScaleMultiplier,
                             doScaleDuration).SetEase(Ease.InOutQuad))
                 
-                .AppendInterval(doScaleDuration)
+                .AppendInterval(2*doScaleDuration)
                 
                 .AppendCallback(() =>
                     transform.DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
