@@ -20,5 +20,10 @@ namespace Animation
         public virtual void PlayVisualEffect(IHero hero)
         {
         }
+        
+        /// <summary>
+        /// Total visual effect duration in seconds
+        /// </summary>
+        public float VisualEffectDuration { get; protected set; }
     }
 }

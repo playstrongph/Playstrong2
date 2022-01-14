@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Logic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,15 +37,25 @@ namespace Animation
         [SerializeField] private float doMoveDuration = 0.25f;
         
         /// <summary>
+        /// Delay between do scale and do move
+        /// </summary>
+        [SerializeField] private float displayInterval = 0.2f;
+        
+        /// <summary>
         /// Additional delay before destroying the game object
         /// </summary>
         [SerializeField] private float delayInterval = 0.1f;
 
+
+        private void Start()
+        {
+            VisualEffectDuration = doScaleDuration + displayInterval + doMoveDuration;
+        }
+
         public override void PlayVisualEffect(IHero casterHero)
         {
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            var destroyDelayInterval = delayInterval*(doMoveDuration + doScaleDuration);
-            
+
             //Set projectile image
             image.sprite = casterHero.HeroVisual.HeroGraphic.HeroImage.sprite;
 
@@ -54,13 +65,17 @@ namespace Animation
                     transform.DOScale(transform.localScale * localScaleMultiplier,
                             doScaleDuration).SetEase(Ease.InOutQuad))
                 
-                .AppendInterval(2*doScaleDuration)
+                .AppendInterval(doScaleDuration)
+                
+                .AppendInterval(displayInterval)
                 
                 .AppendCallback(() =>
                     transform.DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
                 
                 .AppendInterval(doMoveDuration)
-                .AppendInterval(destroyDelayInterval)
+                
+                .AppendInterval(delayInterval)
+                
                 .AppendCallback(() =>
                     Destroy(gameObject));
         }

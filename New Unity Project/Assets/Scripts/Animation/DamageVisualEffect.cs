@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Logic;
 using TMPro;
 using UnityEngine;
@@ -69,30 +70,23 @@ namespace Animation
 
         #endregion
 
+
+        private void Start()
+        {
+            VisualEffectDuration = (doScaleDuration * doScaleLoopCount) + fadeInterval;
+        }
+
         /// <summary>
         /// Plays the damage animation
         /// </summary>
         /// <param name="value"></param>
         public override void PlayVisualEffect(int value)
         {
-            DamageEffect(value);
-
-        }
-        
-        /// <summary>
-        /// Damage effect tween animation
-        /// </summary>
-        /// <param name="value"></param>
-        private void DamageEffect(int value)
-        {
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
 
             //Display damage text
             text.text = "-" + value.ToString();
-            
-            //delay before destroying the game object. Setting delay interval to zero results to error
-            var totalInterval = fadeInterval + delayInterval*doScaleLoopCount * doScaleDuration;
 
             var s = DOTween.Sequence();
             
@@ -101,12 +95,17 @@ namespace Animation
                     transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
                         .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
                 .AppendInterval(doScaleDuration * doScaleLoopCount)
+                
                 .AppendCallback(() =>
                     //Fade the damage image
                     canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
                 
-                .AppendInterval(totalInterval)
+                .AppendInterval(fadeInterval)
+                
+                .AppendInterval(delayInterval)
+                
                 .AppendCallback(() => Destroy(gameObject));
+
         }
     }
 }

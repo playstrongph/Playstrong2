@@ -13,5 +13,6 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// can be less for timing for purposes
         /// </summary>
         float AnimationDuration { get; set; }
+
     }
 }

@@ -15,5 +15,10 @@ namespace Animation
         /// </summary>
         /// <param name="hero"></param>
         void PlayVisualEffect(IHero hero);
+        
+        /// <summary>
+        /// Total visual effect duration in seconds
+        /// </summary>
+        float VisualEffectDuration { get; }
     }
 }
