@@ -45,12 +45,11 @@ namespace Animation
         /// Additional delay before destroying the game object
         /// </summary>
         [SerializeField] private float delayInterval = 0.1f;
-
-
-        private void Start()
-        {
-            VisualEffectDuration = doScaleDuration + displayInterval + doMoveDuration;
-        }
+        
+        /// <summary>
+        /// Total visual effect duration for hero projectile visual effect
+        /// </summary>
+        public override float VisualEffectDuration => doScaleDuration + displayInterval + doMoveDuration;
 
         public override void PlayVisualEffect(IHero casterHero)
         {

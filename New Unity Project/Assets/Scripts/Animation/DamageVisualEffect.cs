@@ -69,12 +69,12 @@ namespace Animation
         [SerializeField] private float delayInterval = 0.1f;
 
         #endregion
+        
+        /// <summary>
+        /// Total visual effect duration for damage visual effect
+        /// </summary>
+        public override float VisualEffectDuration => (doScaleDuration * doScaleLoopCount) + fadeInterval;
 
-
-        private void Start()
-        {
-            VisualEffectDuration = (doScaleDuration * doScaleLoopCount) + fadeInterval;
-        }
 
         /// <summary>
         /// Plays the damage animation

@@ -24,7 +24,7 @@ namespace Animation
         /// <summary>
         /// Total visual effect duration in seconds
         /// </summary>
-        public float VisualEffectDuration { get; protected set; }
+        public virtual float VisualEffectDuration { get => 0; protected set => value = 0; }
 
         public GameObject ThisGameObject => this.gameObject;
     }
