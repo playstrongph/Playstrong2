@@ -10,7 +10,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// Animation duration.  Not necessarily equal to the total animation duration,
         /// can be less for timing for purposes
         /// </summary>
-        float AnimationDuration { get; set; }
+        float AnimationDuration { get; }
 
     }
 }

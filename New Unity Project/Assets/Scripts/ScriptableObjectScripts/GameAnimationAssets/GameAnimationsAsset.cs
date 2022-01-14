@@ -8,7 +8,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
     [CreateAssetMenu(fileName = "GenericAnimation", menuName = "Assets/GameAnimations/GenericAnimation")]
     public class GameAnimationsAsset : ScriptableObject, IGameAnimationsAsset
     {
-        public virtual void PlayAnimation(IHero hero)
+        public void PlayAnimation(IHero hero)
         {
             foreach (var gameVisualEffect in GameVisualEffects)
             {
@@ -20,11 +20,11 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         }
 
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IGameVisualEffects))]
-        protected List<Object> gameVisualEffects;
+        private List<Object> gameVisualEffects;
         /// <summary>
         /// Visual effects to be used in the animation
         /// </summary>
-        protected List<IGameVisualEffects> GameVisualEffects
+        private List<IGameVisualEffects> GameVisualEffects
         {
             get
             {
@@ -36,10 +36,23 @@ namespace ScriptableObjectScripts.GameAnimationAssets
                 return visualEffects;
             }
         }
-        
+
         /// <summary>
         /// Sum of all visual effect durations
         /// </summary>
-        public float AnimationDuration { get; set; } = 0;
+        public float AnimationDuration
+        {
+            get
+            {
+                float duration = 0;
+                foreach (var visualEffect in GameVisualEffects)
+                {
+                    duration += visualEffect.VisualEffectDuration;
+                }
+
+                return duration;
+            }
+            private set => value = 0;
+        }
     }
 }
