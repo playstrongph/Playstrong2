@@ -79,14 +79,17 @@ namespace Animation
         /// <summary>
         /// Plays the damage animation
         /// </summary>
-        /// <param name="value"></param>
-        public override void PlayVisualEffect(int value)
+        /// <param name="targetedHero"></param>
+        public override void PlayVisualEffect(IHero targetedHero)
         {
+
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
-
+            
+            var damageValue = targetedHero.HeroLogic.TakeDamage.FinalDamageTaken;
+    
             //Display damage text
-            text.text = "-" + value.ToString();
+            text.text = "-" + damageValue.ToString();
 
             var s = DOTween.Sequence();
             

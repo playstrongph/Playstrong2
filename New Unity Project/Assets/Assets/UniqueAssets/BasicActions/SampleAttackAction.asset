@@ -17,7 +17,7 @@ MonoBehaviour:
   skillCriticalChance: 0
   skillCriticalDamage: 0
   flatValue: 0
-  damageAnimationAsset: {fileID: 11400000, guid: bddee005a09834e42b10fad1a0f41c8e,
+  damageAnimationAsset: {fileID: 11400000, guid: 9ebb69daab9716943a061dd7ba079806,
     type: 2}
-  attackAnimationAsset: {fileID: 11400000, guid: d1e126396f7682c44b15fa4884874a14,
+  attackAnimationAsset: {fileID: 11400000, guid: d58e53a4db7d71c4fbbefbb8e14f8cdf,
     type: 2}

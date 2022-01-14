@@ -213,7 +213,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetedHero"></param>
         private void DamageAnimation(IHero targetedHero)
         {
-            DamageAnimationAsset.PlayAnimation(targetedHero, 99);
+            DamageAnimationAsset.PlayAnimation(targetedHero);
         }
         
         
