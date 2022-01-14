@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.AttackTargetCountTypeAssets;
 using ScriptableObjectScripts.GameAnimationAssets;
@@ -192,19 +193,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-
-            //TODO: Attack movement animation
-            AttackAnimation(casterHero);
             
-            //TODO: need to append this to a sequence
-            DamageAnimation(targetedHero);
+            //TODO: Temporary tween sequence here, to be moved to base class later?
 
-            //TODO:  Text Animation
+            var s = DOTween.Sequence();
+
+            var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
+
+            var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
+
+            s.AppendCallback(() => AttackAnimation(casterHero))
+                .AppendInterval(attackAnimationInterval)
+                .AppendCallback(() => DamageAnimation(targetedHero))
+                .AppendInterval(damageAnimationInterval);
             
-            //TODO: this needs to be delayed using an overall animation delay interval
             visualTree.EndSequence();
             yield return null;
-
         }
         
         /// <summary>
