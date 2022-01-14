@@ -8,19 +8,9 @@ namespace ScriptableObjectScripts.GameAnimationAssets
     [CreateAssetMenu(fileName = "GenericAnimation", menuName = "Assets/GameAnimations/GenericAnimation")]
     public class GameAnimationsAsset : ScriptableObject, IGameAnimationsAsset
     {
-        public void PlayAnimation(IHero hero)
-        {
-            foreach (var gameVisualEffect in GameVisualEffects)
-            {
-                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, hero.ThisGameObject.transform);
-                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
-                
-                visualEffect.PlayVisualEffect(hero);
-            }
-        }
-
+        
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IGameVisualEffects))]
-        private List<Object> gameVisualEffects;
+        private List<Object> gameVisualEffects = new List<Object>();
         /// <summary>
         /// Visual effects to be used in the animation
         /// </summary>
@@ -54,5 +44,17 @@ namespace ScriptableObjectScripts.GameAnimationAssets
             }
             private set => value = 0;
         }
+        
+        public void PlayAnimation(IHero hero)
+        {
+            foreach (var gameVisualEffect in GameVisualEffects)
+            {
+                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, hero.ThisGameObject.transform);
+                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
+                
+                visualEffect.PlayVisualEffect(hero);
+            }
+        }
+
     }
 }
