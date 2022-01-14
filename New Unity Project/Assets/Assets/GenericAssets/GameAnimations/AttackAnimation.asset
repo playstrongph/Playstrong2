@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808d4fe8ebe4c234a947e00697f6ca69, type: 3}
   m_Name: AttackAnimation
   m_EditorClassIdentifier: 
-  attackProjectilePrefab: {fileID: 4343189324778924597, guid: facb6dfbe7a9ffe4e9c3132065363e56,
-    type: 3}
-  doScaleDuration: 0.2
-  localScaleMultiplier: 1.5
-  doMoveDuration: 0.25
-  delayInterval: 0.1
+  gameVisualEffects:
+  - {fileID: 4343189324778924596, guid: facb6dfbe7a9ffe4e9c3132065363e56, type: 3}

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce289633e05747045abb039c2db06479, type: 3}
   m_Name: DamageAnimation
   m_EditorClassIdentifier: 
+  gameVisualEffects:
+  - {fileID: 7141874222350928601, guid: 17fe2edd27c499d4eb1c56944948ba43, type: 3}
   damageVisualEffectPrefab: {fileID: 7141874222350928603, guid: 17fe2edd27c499d4eb1c56944948ba43,
     type: 3}

@@ -1,4 +1,5 @@
 ﻿using Logic;
+using UnityEngine;
 
 namespace Animation
 {
@@ -20,5 +21,10 @@ namespace Animation
         /// Total visual effect duration in seconds
         /// </summary>
         float VisualEffectDuration { get; }
+
+        /// <summary>
+        /// Returns the game visual effect as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
     }
 }
