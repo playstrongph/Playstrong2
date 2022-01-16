@@ -42,8 +42,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="hero"></param>
         public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
+            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            
             //call the hero alive status of the original caster hero (the attacker, or healer)
-            hero.HeroLogic.HeroLifeStatus.CasterPreExecutionAction(basicAction,hero);
+            hero.HeroLogic.HeroLifeStatus.CasterPreExecutionAction(basicAction,casterHero);
         }
         
         /// <summary>
@@ -67,8 +69,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="hero"></param>
         public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
+            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            
             //call the hero alive status of the original caster hero (the attacker, or healer)
-            hero.HeroLogic.HeroLifeStatus.CasterPostExecutionAction(basicAction,hero);
+            hero.HeroLogic.HeroLifeStatus.CasterPostExecutionAction(basicAction,casterHero);
         }
         
         /// <summary>

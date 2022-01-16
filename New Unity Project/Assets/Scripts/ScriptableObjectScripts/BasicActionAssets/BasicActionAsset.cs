@@ -8,15 +8,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
-        //TEST NEW
+       /// <summary>
+       /// Checks for the validity of the conditions and targets before running the
+       /// pre-events, main execution, and post-events
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <param name="standardAction"></param>
+       /// <returns></returns>
         public virtual IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
+            //Run all pre-event actions when conditions and targets are valid
             logicTree.AddCurrent(PreExecuteAction(hero, standardAction));
             
+            //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainExecuteAction(hero, standardAction));
             
+            ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(hero, standardAction));
             
             logicTree.EndSequence();

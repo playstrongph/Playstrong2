@@ -91,19 +91,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public void AttackHero(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //Before hero attacks events
-            //logicTree.AddCurrent(PreSkillAttackEvents(hero));
-            //logicTree.AddCurrent(PreAttackEvents(hero));
 
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
             
             //TEST - VISUAL
             logicTree.AddCurrent(AttackHeroAnimation(hero));
-            
-            //After hero attacks events
-            //logicTree.AddCurrent(PostAttackEvents(hero));
-            //logicTree.AddCurrent(PostSkillAttackEvents(hero));
         }
 
         /// <summary>
@@ -129,8 +121,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
 
         private void NormalAttack(IHero casterHero)
         {
@@ -151,19 +141,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
             var criticalFactor = casterHero.HeroLogic.DamageAttributes.CriticalDamage + skillCriticalDamage;
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
-            
-            
-            //logicTree.AddCurrent(PreCriticalAttackEvents(casterHero));
-            
+
             //Attack target based on attack target count type - single or multi attack
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
-
-            //logicTree.AddCurrent(PostCriticalAttackEvents(casterHero));
-            
         }
-        
-        
-        
+
 
         #region ATTACK ANIMATION
         
