@@ -8,18 +8,55 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
-
-        /// <summary>
-        /// Checks if all conditions are met (basic conditions plus caster and target life status)
-        /// before proceeding to execute action 
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        /// <returns></returns>
+        //TEST NEW
         public virtual IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            PreExecuteAction(hero, standardAction);
+            
+            MainExecuteAction(hero, standardAction);
+            
+            PostExecuteAction(hero, standardAction);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        /// <summary>
+        /// Run all the pre-action events 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        private void PreExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+                
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                var newTargetHero = actionTargetHeroes[index];
+                
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //TODO: Need to check if new Target Hero / Caster are both alive
+                    //make this pass via HeroAliveStatus
+                    logicTree.AddCurrent(PreExecuteActionEvents(newTargetHero));
+                }
+            }
+        }
+        
+        private void MainExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        {
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
@@ -38,10 +75,38 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
                 }
             }
-
-            logicTree.EndSequence();
-            yield return null;
         }
+        
+        private void PostExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        {
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+                
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                var newTargetHero = actionTargetHeroes[index];
+                
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //TODO: Need to check if new Target Hero / Caster are both alive
+                    //make this pass via HeroAliveStatus
+                    logicTree.AddCurrent(PostExecuteActionEvents(newTargetHero));
+                }
+            }
+        }
+
+
+
+
+
+
 
 
         /// <summary>
@@ -70,7 +135,32 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+
         
+        /// <summary>
+        /// All events before Execute Action
+        /// </summary>
+        /// <param name="hero"></param>
+        protected virtual IEnumerator PreExecuteActionEvents(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// All events after Execute Action
+        /// </summary>
+        /// <param name="hero"></param>
+        protected virtual IEnumerator PostExecuteActionEvents(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
         /// <summary>
         /// Returns a random list of heroes
         /// </summary>
@@ -195,6 +285,40 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }*/
+        
+        /*/// <summary>
+      /// Checks if all conditions are met (basic conditions plus caster and target life status)
+      /// before proceeding to execute action 
+      /// </summary>
+      /// <param name="hero"></param>
+      /// <param name="standardAction"></param>
+      /// <returns></returns>
+      public virtual IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction)
+      {
+          var logicTree = hero.CoroutineTrees.MainLogicTree;
+          var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+
+          for (var index = 0; index < actionTargetHeroes.Count; index++)
+          {
+              var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+              
+              //Check if conditionTargetHeroes and actionTargetHeroes are the same
+              //If not, use index 0 (meaning there is only 1 condition target)
+              var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+              
+              var newTargetHero = actionTargetHeroes[index];
+              
+              //Product of all 'And' and 'Or' basic condition logic
+              if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+              {
+                  //Target action calls execute action if both the caster and target are alive
+                  newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
+              }
+          }
+
+          logicTree.EndSequence();
+          yield return null;
+      }*/
         
 
         #endregion

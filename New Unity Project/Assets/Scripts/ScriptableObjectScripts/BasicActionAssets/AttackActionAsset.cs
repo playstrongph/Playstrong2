@@ -93,8 +93,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //Before hero attacks events
-            logicTree.AddCurrent(PreSkillAttackEvents(hero));
-            logicTree.AddCurrent(PreAttackEvents(hero));
+            //logicTree.AddCurrent(PreSkillAttackEvents(hero));
+            //logicTree.AddCurrent(PreAttackEvents(hero));
 
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
             
@@ -102,12 +102,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(AttackHeroAnimation(hero));
             
             //After hero attacks events
-            logicTree.AddCurrent(PostAttackEvents(hero));
-            logicTree.AddCurrent(PostSkillAttackEvents(hero));
-            
-            
-            
-            
+            //logicTree.AddCurrent(PostAttackEvents(hero));
+            //logicTree.AddCurrent(PostSkillAttackEvents(hero));
         }
 
         /// <summary>
@@ -133,6 +129,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        
 
         private void NormalAttack(IHero casterHero)
         {
@@ -155,14 +153,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
             
             
-            logicTree.AddCurrent(PreCriticalAttackEvents(casterHero));
+            //logicTree.AddCurrent(PreCriticalAttackEvents(casterHero));
             
             //Attack target based on attack target count type - single or multi attack
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
 
-            logicTree.AddCurrent(PostCriticalAttackEvents(casterHero));
+            //logicTree.AddCurrent(PostCriticalAttackEvents(casterHero));
             
         }
+        
+        
+        
 
         #region ATTACK ANIMATION
         
@@ -225,15 +226,98 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
            AttackAnimationAsset.PlayAnimation(casterHero);    
         }
-
-
+        
         #endregion
-        
 
-        
-        
+
 
         #region EVENTS
+        
+        protected override IEnumerator PreExecuteActionEvents(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            
+            //Pre-skill attack
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetedHero);
+            
+            //Pre-attack
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetedHero);
+            
+            //Pre-Critical
+            PreCriticalAttackEvent(casterHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        protected override IEnumerator PostExecuteActionEvents(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //Post-skill attack
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
+            
+            //Post-attack
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
+            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
+            
+            //Post-Critical
+            PostCriticalAttackEvent(casterHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Determines if Pre-critical attack events are called
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private void PreCriticalAttackEvent(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
+            var criticalResistance = targetedHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            var netChance = criticalChance - criticalResistance;
+            var randomChance = Random.Range(1, 101);
+
+
+            if (randomChance <= netChance)
+            {
+                casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero);
+                targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetedHero);
+            }
+
+        }
+        
+        /// <summary>
+        /// Determines if Pre-critical attack events are called
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private void PostCriticalAttackEvent(IHero casterHero)
+        {
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
+            var criticalResistance = targetedHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            var netChance = criticalChance - criticalResistance;
+            var randomChance = Random.Range(1, 101);
+
+
+            if (randomChance <= netChance)
+            {
+                casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero);
+                targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetedHero);
+            }
+
+        }
+        
         
         /// <summary>
         /// Before hero skill attacks event
