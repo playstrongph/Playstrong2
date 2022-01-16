@@ -46,9 +46,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //TODO: Need to check if new Target Hero / Caster are both alive
-                    //make this pass via HeroAliveStatus
-                    logicTree.AddCurrent(PreExecuteActionEvents(newTargetHero));
+                    //Target action calls pre execute action if both the caster and target are alive
+                    newTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,newTargetHero);
                 }
             }
             
@@ -111,9 +110,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //TODO: Need to check if new Target Hero / Caster are both alive
-                    //make this pass via HeroAliveStatus
-                    logicTree.AddCurrent(PostExecuteActionEvents(newTargetHero));
+                    //Target action calls pre execute action if both the caster and target are alive
+                    newTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,newTargetHero);
                 }
             }
             
