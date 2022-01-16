@@ -30,6 +30,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="hero"></param>
         /// <returns></returns>
         IEnumerator UndoExecuteAction(IHero hero);
+        
+        /// <summary>
+        /// All the events before execute action
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        IEnumerator PreExecuteActionEvents(IHero hero);
+        
+        /// <summary>
+        /// All the events after execute action
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        IEnumerator PostExecuteActionEvents(IHero hero);
 
 
         #region OLD LOGIC

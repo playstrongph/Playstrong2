@@ -13,7 +13,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public override void TargetAction(IBasicActionAsset basicAction, IHero hero)
+        public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             
         }
@@ -24,9 +24,49 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public override void CasterAction(IBasicActionAsset basicAction, IHero hero)
+        public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
                
+        }
+        
+        /// <summary>
+        /// HeroDead - Do nothing
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        
+        /// <summary>
+        /// HeroDead - Do nothing
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        
+        /// <summary>
+        /// HeroDead - Do nothing
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        
+        /// <summary>
+        /// HeroDead - Do nothing
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        public override void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        {
+            
         }
 
       

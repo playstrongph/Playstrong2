@@ -13,12 +13,12 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public override void TargetAction(IBasicActionAsset basicAction, IHero hero)
+        public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
             
             //call the hero alive status of the original caster hero (the attacker, or healer)
-            hero.HeroLogic.HeroLifeStatus.CasterAction(basicAction,casterHero);
+            hero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero);
         }
         
         /// <summary>
@@ -27,12 +27,14 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        public override void CasterAction(IBasicActionAsset basicAction, IHero hero)
+        public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(basicAction.ExecuteAction(hero));   
         }
+        
+        
 
       
     }

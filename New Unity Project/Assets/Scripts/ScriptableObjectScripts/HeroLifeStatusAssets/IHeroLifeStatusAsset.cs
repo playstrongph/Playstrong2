@@ -12,7 +12,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        void TargetAction(IBasicActionAsset basicAction, IHero hero);
+        void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero);
 
         /// <summary>
         /// HeroAlive - basic action Execute action
@@ -21,6 +21,38 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
-        void CasterAction(IBasicActionAsset basicAction, IHero hero);
+        void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero hero);
+        
+        /// <summary>
+        /// After confirming target is alive, check if caster is alive
+        /// before implementing the basic action's pre execution action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero);
+        
+        /// <summary>
+        /// After confirming the caster is alive, implement the basic action's
+        /// pre execution action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero hero);
+        
+        /// <summary>
+        /// After confirming target is alive, check if caster is alive
+        /// before implementing the basic action's post execution action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero);
+        
+        /// <summary>
+        /// After confirming the caster is alive, implement the basic action's
+        /// post execution action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero);
     }
 }

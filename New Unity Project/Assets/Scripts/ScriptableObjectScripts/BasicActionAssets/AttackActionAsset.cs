@@ -233,7 +233,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region EVENTS
         
-        protected override IEnumerator PreExecuteActionEvents(IHero casterHero)
+        public override IEnumerator PreExecuteActionEvents(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
@@ -254,7 +254,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        protected override IEnumerator PostExecuteActionEvents(IHero casterHero)
+        public override IEnumerator PostExecuteActionEvents(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;

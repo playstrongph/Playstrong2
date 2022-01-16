@@ -13,11 +13,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
-            PreExecuteAction(hero, standardAction);
+            logicTree.AddCurrent(PreExecuteAction(hero, standardAction));
             
-            MainExecuteAction(hero, standardAction);
+            logicTree.AddCurrent(MainExecuteAction(hero, standardAction));
             
-            PostExecuteAction(hero, standardAction);
+            logicTree.AddCurrent(PostExecuteAction(hero, standardAction));
             
             logicTree.EndSequence();
             yield return null;
@@ -28,7 +28,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
-        private void PreExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        private IEnumerator PreExecuteAction(IHero hero,  IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -51,9 +51,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     logicTree.AddCurrent(PreExecuteActionEvents(newTargetHero));
                 }
             }
+            
+            logicTree.EndSequence();
+            yield return null;
         }
         
-        private void MainExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        /// <summary>
+        /// Run all the Main Execute Actions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        private IEnumerator MainExecuteAction(IHero hero,  IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -72,12 +80,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Target action calls execute action if both the caster and target are alive
-                    newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
+                    newTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,newTargetHero);
                 }
             }
+            
+            logicTree.EndSequence();
+            yield return null;
         }
         
-        private void PostExecuteAction(IHero hero,  IStandardActionAsset standardAction)
+        /// <summary>
+        /// Run all the post-action events 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        private IEnumerator PostExecuteAction(IHero hero,  IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -100,14 +116,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     logicTree.AddCurrent(PostExecuteActionEvents(newTargetHero));
                 }
             }
+            
+            logicTree.EndSequence();
+            yield return null;
         }
-
-
-
-
-
-
-
 
         /// <summary>
         /// Executes the basic action logic, used by hero life status
@@ -141,7 +153,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// All events before Execute Action
         /// </summary>
         /// <param name="hero"></param>
-        protected virtual IEnumerator PreExecuteActionEvents(IHero hero)
+        public virtual IEnumerator PreExecuteActionEvents(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
@@ -153,7 +165,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// All events after Execute Action
         /// </summary>
         /// <param name="hero"></param>
-        protected virtual IEnumerator PostExecuteActionEvents(IHero hero)
+        public virtual IEnumerator PostExecuteActionEvents(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
