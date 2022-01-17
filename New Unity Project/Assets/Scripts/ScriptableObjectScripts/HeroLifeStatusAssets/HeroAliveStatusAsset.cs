@@ -101,8 +101,26 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             logicTree.AddCurrent(basicAction.PostExecuteActionEvents(hero));
         }
 
+        //TEST
+        public override void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Update the caster hero's target hero - in the case of multiple targets
+            logicTree.AddCurrent(SetTargetHero(hero));
+            
+            //call the hero alive status of the original caster hero (the attacker, or healer)
+            hero.HeroLogic.HeroLifeStatus.CasterMainAnimation(basicAction,casterHero);
+        }
         
-        
+        //TEST
+        public override void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            logicTree.AddCurrent(basicAction.MainAnimation(hero));
+        }
 
       
     }

@@ -54,5 +54,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="basicAction"></param>
         /// <param name="hero"></param>
         void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero);
+        
+        //TEST
+        void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero);
+
+        void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero);
     }
 }

@@ -44,6 +44,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="hero"></param>
         /// <returns></returns>
         IEnumerator PostExecuteActionEvents(IHero hero);
+        
+        //TEST
+        IEnumerator MainAnimation(IHero hero);
 
 
         #region OLD LOGIC

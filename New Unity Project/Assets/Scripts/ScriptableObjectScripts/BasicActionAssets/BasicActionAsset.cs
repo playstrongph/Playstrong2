@@ -25,6 +25,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainExecuteAction(hero, standardAction));
             
+            //TEST - MainAnimation
+            logicTree.AddCurrent(MainAnimation(hero,standardAction));
+            
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(hero, standardAction));
             
@@ -99,6 +102,41 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     
                     //Target action calls execute action if both the caster and target are alive
                     newTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,newTargetHero);
+                }
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Play the main animation
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="standardAction"></param>
+        private IEnumerator MainAnimation(IHero hero,  IStandardActionAsset standardAction)
+        {
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+                
+                //Check if conditionTargetHeroes and actionTargetHeroes are the same
+                //If not, use index 0 (meaning there is only 1 condition target)
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                var newTargetHero = actionTargetHeroes[index];
+
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //Set targeting hero of the targeted hero    
+                    newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(hero);
+                    
+                    //Target action calls execute action if both the caster and target are alive
+                    newTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,newTargetHero);
                 }
             }
             
@@ -297,6 +335,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
             return _finalOrConditionsValue;
         }
         
+        
+        
+        
+        
+        //TEST
+        public virtual IEnumerator MainAnimation(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
 
         #endregion
 

@@ -95,7 +95,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
             
             //TEST - VISUAL
-            logicTree.AddCurrent(AttackHeroAnimation(hero));
+            //logicTree.AddCurrent(AttackHeroAnimation(hero));
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
 
         }
-        
+
         /// <summary>
         /// Attack hero animation
         /// </summary>
@@ -204,12 +204,28 @@ namespace ScriptableObjectScripts.BasicActionAssets
             DamageAnimationAsset.PlayAnimation(targetedHero);
         }
         
-        
+        /// <summary>
+        /// Attack animation played from GameAnimationAsset
+        /// </summary>
+        /// <param name="casterHero"></param>
         private void AttackAnimation(IHero casterHero)
         {
            AttackAnimationAsset.PlayAnimation(casterHero);    
         }
         
+        
+        //TEST
+        public override IEnumerator MainAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
         #endregion
 
 

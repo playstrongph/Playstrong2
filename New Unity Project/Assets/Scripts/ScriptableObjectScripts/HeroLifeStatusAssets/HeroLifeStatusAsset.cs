@@ -90,7 +90,15 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
         
         
-
+        //TEST
+        public virtual void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        public virtual void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
 
     }
 }
