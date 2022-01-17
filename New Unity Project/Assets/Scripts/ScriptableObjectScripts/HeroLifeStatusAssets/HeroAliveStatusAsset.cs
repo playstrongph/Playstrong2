@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 using UnityEngine;
 
@@ -17,10 +18,27 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
             
+            //TEST
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(SetTargetHero(hero));
+            
+
             //call the hero alive status of the original caster hero (the attacker, or healer)
             hero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero);
         }
         
+        //TEST
+        private IEnumerator SetTargetHero(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            
+            casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(hero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
         /// <summary>
         /// HeroAlive - basic action Execute action 
         /// After confirming, caster is alive, execute action

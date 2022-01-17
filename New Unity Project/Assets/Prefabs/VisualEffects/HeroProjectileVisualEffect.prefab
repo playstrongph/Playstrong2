@@ -450,7 +450,7 @@ GameObject:
   - component: {fileID: 4343189324778924588}
   - component: {fileID: 4343189324778924596}
   m_Layer: 0
-  m_Name: AttackProjectileHero
+  m_Name: HeroProjectileVisualEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,3 +486,8 @@ MonoBehaviour:
   canvas: {fileID: 4343189323734811866}
   canvasGroup: {fileID: 4343189323734811865}
   image: {fileID: 4343189322710764166}
+  doScaleDuration: 0.2
+  localScaleMultiplier: 1.5
+  doMoveDuration: 0.25
+  displayInterval: 0.2
+  delayInterval: 0.1

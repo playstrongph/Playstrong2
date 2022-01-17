@@ -52,6 +52,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 
                 var newTargetHero = actionTargetHeroes[index];
                 
+                //TEST - set targeting hero and targeted hero here (for multiple targets)
+                newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(hero);
+                
+                //hero.HeroLogic.LastHeroTargets.SetTargetedHero(newTargetHero);
+                
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
@@ -84,6 +89,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 
                 var newTargetHero = actionTargetHeroes[index];
                 
+                //TEST - set targeting hero and targeted hero here (for multiple targets)
+                newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(hero);
+                
+                //hero.HeroLogic.LastHeroTargets.SetTargetedHero(newTargetHero);
+                
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
@@ -115,6 +125,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
                 
                 var newTargetHero = actionTargetHeroes[index];
+                
+                //TEST - set targeting hero and targeted hero here (for multiple targets)
+                newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(hero);
+                
+                //hero.HeroLogic.LastHeroTargets.SetTargetedHero(newTargetHero);
                 
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)

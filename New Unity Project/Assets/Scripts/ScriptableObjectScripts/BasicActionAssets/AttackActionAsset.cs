@@ -191,6 +191,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 .AppendInterval(damageAnimationInterval);
             
             visualTree.EndSequence();
+            
             yield return null;
         }
         
