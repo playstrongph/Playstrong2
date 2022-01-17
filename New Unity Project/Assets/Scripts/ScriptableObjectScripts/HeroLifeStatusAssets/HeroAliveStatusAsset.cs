@@ -17,26 +17,13 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
-            
-            //TEST
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            logicTree.AddCurrent(SetTargetHero(hero));
             
+            //Update the caster hero's target hero - in the case of multiple targets
+            logicTree.AddCurrent(SetTargetHero(hero));
 
             //call the hero alive status of the original caster hero (the attacker, or healer)
             hero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero);
-        }
-        
-        //TEST
-        private IEnumerator SetTargetHero(IHero hero)
-        {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
-            
-            casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(hero);
-            
-            logicTree.EndSequence();
-            yield return null;
         }
 
         /// <summary>
@@ -61,6 +48,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Update the caster hero's target hero - in the case of multiple targets
+            logicTree.AddCurrent(SetTargetHero(hero));
             
             //call the hero alive status of the original caster hero (the attacker, or healer)
             hero.HeroLogic.HeroLifeStatus.CasterPreExecutionAction(basicAction,casterHero);
@@ -88,6 +79,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Update the caster hero's target hero - in the case of multiple targets
+            logicTree.AddCurrent(SetTargetHero(hero));
             
             //call the hero alive status of the original caster hero (the attacker, or healer)
             hero.HeroLogic.HeroLifeStatus.CasterPostExecutionAction(basicAction,casterHero);
