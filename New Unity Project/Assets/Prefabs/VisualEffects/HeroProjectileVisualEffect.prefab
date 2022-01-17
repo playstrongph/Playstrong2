@@ -488,6 +488,6 @@ MonoBehaviour:
   image: {fileID: 4343189322710764166}
   doScaleDuration: 0.2
   localScaleMultiplier: 1.5
-  doMoveDuration: 0.25
+  doMoveDuration: 1
   displayInterval: 0.2
   delayInterval: 0.1

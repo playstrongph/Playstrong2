@@ -94,7 +94,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
             
-            //TEST - VISUAL
+            //TODO - Delete
             //logicTree.AddCurrent(AttackHeroAnimation(hero));
         }
 
@@ -215,7 +215,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         
         //TEST
-        public override IEnumerator MainAnimation(IHero casterHero)
+        public override IEnumerator MainAnimationAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;

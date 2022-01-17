@@ -25,8 +25,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainExecuteAction(hero, standardAction));
             
-            //TEST - MainAnimation
-            logicTree.AddCurrent(MainAnimation(hero,standardAction));
+            //Run the animation sequence for each target
+            logicTree.AddCurrent(MainAnimationAction(hero,standardAction));
             
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(hero, standardAction));
@@ -114,7 +114,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator MainAnimation(IHero hero,  IStandardActionAsset standardAction)
+        private IEnumerator MainAnimationAction(IHero hero,  IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -340,7 +340,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         
         //TEST
-        public virtual IEnumerator MainAnimation(IHero hero)
+        public virtual IEnumerator MainAnimationAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
