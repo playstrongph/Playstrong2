@@ -18,5 +18,11 @@ namespace Logic
         /// EndTurnButton game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// Enable end turn button after hero start turn actions
+        /// to prevent turn cycling if button is spammed
+        /// </summary>
+        void EnableEndTurnButton();
     }
 }

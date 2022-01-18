@@ -28,6 +28,9 @@ namespace Logic
             
             //Run the current hero active status action
             logicTree.AddCurrent(CurrentActiveStatusAction());
+            
+            //Re-enable end turn button
+            logicTree.AddCurrent(EnableEndTurnButton());
 
             logicTree.EndSequence();
             yield return null;
@@ -44,6 +47,20 @@ namespace Logic
             
             //Displays green action border, hero portrait, and hero skills
             currentActiveHero.HeroLogic.HeroActiveStatus.StatusAction(currentActiveHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Re-enables end turn button after hero on turn intializes
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EnableEndTurnButton()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            _turnController.BattleSceneManager.EndTurnButton.EnableEndTurnButton();
             
             logicTree.EndSequence();
             yield return null;
