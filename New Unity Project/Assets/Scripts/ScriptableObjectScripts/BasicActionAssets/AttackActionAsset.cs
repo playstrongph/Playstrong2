@@ -22,8 +22,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => attackTargetCountType as IAttackTargetCountTypeAsset;
             set => attackTargetCountType = value as ScriptableObject;
         }
-        
-        
+
         /// <summary>
         /// Skill critical strike chance.  This is additional to other
         /// critical strike factors.
@@ -71,8 +70,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => attackAnimationAsset = value as ScriptableObject;
         }
 
-
-
+        
+        /// <summary>
+        /// Called after confirming target and caster hero are still both alive
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
         public override IEnumerator ExecuteAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -164,7 +167,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
-            visualTree.AddCurrent(AttackHeroAnimation(casterHero));
+            visualTree.AddCurrent(BasicActionAnimation(casterHero));
             
             logicTree.EndSequence();
             yield return null;
@@ -175,7 +178,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
-        private IEnumerator AttackHeroAnimation(IHero casterHero)
+        private IEnumerator BasicActionAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
