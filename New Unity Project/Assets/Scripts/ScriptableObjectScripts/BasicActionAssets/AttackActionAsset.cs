@@ -163,7 +163,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
+
             visualTree.AddCurrent(AttackHeroAnimation(casterHero));
             
             logicTree.EndSequence();
@@ -182,6 +182,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var s = DOTween.Sequence();
             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
             var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
+            
+            //Set the value of the main animation duration
+            MainAnimationDuration = attackAnimationInterval;
 
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero))
                 .AppendInterval(attackAnimationInterval)
@@ -189,7 +192,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 .AppendInterval(damageAnimationInterval);
             
             visualTree.EndSequence();
-            
             yield return null;
         }
         

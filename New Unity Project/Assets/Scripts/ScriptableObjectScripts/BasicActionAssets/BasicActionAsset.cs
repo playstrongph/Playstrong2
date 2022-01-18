@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
@@ -8,6 +9,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
+       
+        //TEST
+        /// <summary>
+        /// The duration (seconds) of the main animation
+        /// </summary>
+        protected float MainAnimationDuration = 0;
+        
+        
+        
        /// <summary>
        /// Checks for the validity of the conditions and targets before running the
        /// pre-events, main execution, and post-events
@@ -27,7 +37,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Run the animation sequence for each target
             logicTree.AddCurrent(MainAnimationAction(hero,standardAction));
-            
+
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(hero, standardAction));
             
@@ -36,7 +46,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
         /// <summary>
-        /// Run all the pre-action events 
+        /// Run all the standard actions subscribed to the pre-action events before the main execute action
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
@@ -73,7 +83,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// Run all the Main Execute Actions
+        /// Run all the Main Execute Actions logic only
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
@@ -110,11 +120,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// Play the main animation
+        /// Play the main execute action animations
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator MainAnimationAction(IHero hero,  IStandardActionAsset standardAction)
+        private IEnumerator MainAnimationAction(IHero hero, IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -140,15 +150,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 }
             }
             
+            //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
+            //example - multiple targets for attack, heal, etc.
+            logicTree.AddCurrent(AnimationInterval(hero,MainAnimationDuration));
+
             logicTree.EndSequence();
             yield return null;
         }
-        
+
         /// <summary>
-        /// Run all the post-action events 
+        ///  Run all the standard actions subscribed to the post-action events before the main execute action
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
+        /// <returns></returns>
         private IEnumerator PostExecuteAction(IHero hero,  IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
@@ -205,8 +220,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
         
+        /// <summary>
+        /// Basic action animation
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public virtual IEnumerator MainAnimationAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
         /// <summary>
         /// All events before Execute Action
         /// </summary>
@@ -230,46 +257,45 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
+        
         /// <summary>
-        /// Returns a random list of heroes
+        /// logic tree wrapper for animation interval, to ensure correct timing of
+        /// visual tree method calls
         /// </summary>
-        /// <param name="heroList"></param>
+        /// <param name="hero"></param>
+        /// <param name="duration"></param>
         /// <returns></returns>
-        protected List<IHero> ShuffleList(List<IHero> heroList)
+        private IEnumerator AnimationInterval(IHero hero, float duration)
         {
-            var randomList = heroList;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
             
-            //Randomize the List
-            for (int i = 0; i < randomList.Count; i++) 
-            {
-                var temp = randomList[i];
-                int randomIndex = Random.Range(i, randomList.Count);
-                randomList[i] = randomList[randomIndex];
-                randomList[randomIndex] = temp;
-            }
-
-            return randomList;
+            visualTree.AddCurrent(AnimationIntervalVisual(hero,duration));
+            
+            logicTree.EndSequence();
+            yield return null;
         }
         
         /// <summary>
-        /// Returns a random list of status effects
+        /// The animation duration interval (in seconds) before next animation is played
         /// </summary>
-        /// <param name="statusEffectsList"></param>
+        /// <param name="hero"></param>
+        /// <param name="duration"></param>
         /// <returns></returns>
-        protected List<IStatusEffect> ShuffleList(List<IStatusEffect> statusEffectsList)
+        private IEnumerator AnimationIntervalVisual(IHero hero, float duration)
         {
-            //Randomize the List
-            for (int i = 0; i < statusEffectsList.Count; i++) 
-            {
-                var temp = statusEffectsList[i];
-                int randomIndex = Random.Range(i, statusEffectsList.Count);
-                statusEffectsList[i] = statusEffectsList[randomIndex];
-                statusEffectsList[randomIndex] = temp;
-            }
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
 
-            return statusEffectsList;
+            var s = DOTween.Sequence();
+
+            s.AppendInterval(duration)
+                .AppendCallback(() =>
+                    visualTree.EndSequence()
+                );
+            
+            yield return null;
         }
+        
 
         #region FINAL CONDITION LOGIC
 
@@ -339,21 +365,54 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         
         
+       
+
+
+
+        #endregion
+
+        #region SHUFFLE LOGIC
+        
         /// <summary>
-        /// Basic action animation
+        /// Returns a random list of heroes
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="heroList"></param>
         /// <returns></returns>
-        public virtual IEnumerator MainAnimationAction(IHero hero)
+        protected List<IHero> ShuffleList(List<IHero> heroList)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var randomList = heroList;
             
-            logicTree.EndSequence();
-            yield return null;
+            //Randomize the List
+            for (int i = 0; i < randomList.Count; i++) 
+            {
+                var temp = randomList[i];
+                int randomIndex = Random.Range(i, randomList.Count);
+                randomList[i] = randomList[randomIndex];
+                randomList[randomIndex] = temp;
+            }
+
+            return randomList;
         }
+        
+        /// <summary>
+        /// Returns a random list of status effects
+        /// </summary>
+        /// <param name="statusEffectsList"></param>
+        /// <returns></returns>
+        protected List<IStatusEffect> ShuffleList(List<IStatusEffect> statusEffectsList)
+        {
+            //Randomize the List
+            for (int i = 0; i < statusEffectsList.Count; i++) 
+            {
+                var temp = statusEffectsList[i];
+                int randomIndex = Random.Range(i, statusEffectsList.Count);
+                statusEffectsList[i] = statusEffectsList[randomIndex];
+                statusEffectsList[randomIndex] = temp;
+            }
 
-
-
+            return statusEffectsList;
+        }
+        
         #endregion
 
         #region OLD LOGIC
