@@ -339,7 +339,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         
         
-        //TEST
+        /// <summary>
+        /// Basic action animation
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
         public virtual IEnumerator MainAnimationAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;

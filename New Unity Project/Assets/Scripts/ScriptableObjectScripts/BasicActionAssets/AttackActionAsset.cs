@@ -93,9 +93,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = hero.CoroutineTrees.MainLogicTree;
 
             logicTree.AddCurrent(NormalOrCriticalAttack(hero));
-            
-            //TODO - Delete
-            //logicTree.AddCurrent(AttackHeroAnimation(hero));
         }
 
         /// <summary>
@@ -121,7 +118,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
+        
+        /// <summary>
+        /// Critical attack damage is zero
+        /// </summary>
+        /// <param name="casterHero"></param>
         private void NormalAttack(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree; 
@@ -133,6 +134,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
         }
         
+        /// <summary>
+        /// Critical attack damaged calculated based on critical factor 
+        /// </summary>
+        /// <param name="casterHero"></param>
         private void CriticalAttack(IHero casterHero)
         {
            
@@ -149,22 +154,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region ATTACK ANIMATION
         
-        
         /// <summary>
-        /// Logic tree wrapper for visual tree command
+        /// Basic action animation
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
-        private IEnumerator AttackHeroAnimation(IHero casterHero)
+        public override IEnumerator MainAnimationAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             
-            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
+            visualTree.AddCurrent(AttackHeroAnimation(casterHero));
             
             logicTree.EndSequence();
             yield return null;
-
         }
 
         /// <summary>
@@ -172,22 +175,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
-        private IEnumerator VisualAttackHeroAnimation(IHero casterHero)
+        private IEnumerator AttackHeroAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            //TODO: Temporary tween sequence here, to be moved to base class later?
-
             var s = DOTween.Sequence();
-
             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
-
             var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
 
-            s.AppendCallback(() => AttackAnimation(casterHero))
+            s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero))
                 .AppendInterval(attackAnimationInterval)
-                .AppendCallback(() => DamageAnimation(targetedHero))
+                .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetedHero))
                 .AppendInterval(damageAnimationInterval);
             
             visualTree.EndSequence();
@@ -195,37 +193,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        /// <summary>
-        /// Damage animation played from GameAnimationsAsset
-        /// </summary>
-        /// <param name="targetedHero"></param>
-        private void DamageAnimation(IHero targetedHero)
-        {
-            DamageAnimationAsset.PlayAnimation(targetedHero);
-        }
-        
-        /// <summary>
-        /// Attack animation played from GameAnimationAsset
-        /// </summary>
-        /// <param name="casterHero"></param>
-        private void AttackAnimation(IHero casterHero)
-        {
-           AttackAnimationAsset.PlayAnimation(casterHero);    
-        }
-        
-        
-        //TEST
-        public override IEnumerator MainAnimationAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-
         #endregion
 
 
@@ -316,9 +283,30 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
 
         }
+
+        #endregion
+
+
+        #region OLD LOGIC
+
+        /*/// <summary>
+        /// Logic tree wrapper for visual tree command
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator AttackHeroAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+
+        }*/
         
-        
-        /// <summary>
+         /*/// <summary>
         /// Before hero skill attacks event
         /// </summary>
         /// <param name="casterHero"></param>
@@ -417,14 +405,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             logicTree.EndSequence();
             yield return null;
-        }
-
-
+        }*/
 
         #endregion
-        
-       
-
 
 
     }
