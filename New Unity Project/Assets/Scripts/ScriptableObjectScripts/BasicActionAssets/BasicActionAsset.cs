@@ -13,12 +13,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         //TEST
         /// <summary>
         /// The duration (seconds) of the main animation
+        /// set in the specific basic action
         /// </summary>
         protected float MainAnimationDuration = 0;
-        
-        
-        
-       /// <summary>
+
+        /// <summary>
        /// Checks for the validity of the conditions and targets before running the
        /// pre-events, main execution, and post-events
        /// </summary>

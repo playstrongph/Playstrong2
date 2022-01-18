@@ -101,7 +101,11 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             logicTree.AddCurrent(basicAction.PostExecuteActionEvents(hero));
         }
 
-        //TEST
+       /// <summary>
+       /// After confirming target is alive, check if caster is still alive
+       /// </summary>
+       /// <param name="basicAction"></param>
+       /// <param name="hero"></param>
         public override void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
         {
             var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
@@ -114,7 +118,11 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             hero.HeroLogic.HeroLifeStatus.CasterMainAnimation(basicAction,casterHero);
         }
         
-        //TEST
+        /// <summary>
+        /// After confirming caster is alive, execute main animation action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
         public override void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;

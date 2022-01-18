@@ -55,9 +55,18 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="hero"></param>
         void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero);
         
-        //TEST
+       /// <summary>
+       /// After confirming target is alive, check if caster is still alive
+       /// </summary>
+       /// <param name="basicAction"></param>
+       /// <param name="hero"></param>
         void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero);
-
+        
+        /// <summary>
+        /// After confirming caster is alive, execute main animation action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
         void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero);
     }
 }

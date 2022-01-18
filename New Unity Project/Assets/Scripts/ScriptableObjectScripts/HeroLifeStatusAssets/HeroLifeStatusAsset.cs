@@ -73,6 +73,28 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             
         }
         
+       /// <summary>
+       ///  After confirming target is alive, check if caster is alive
+       /// before implementing the basic action's main animation action
+       /// </summary>
+       /// <param name="basicAction"></param>
+       /// <param name="hero"></param>
+        public virtual void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        
+        /// <summary>
+        ///  After confirming the caster is alive, implement the basic action's
+        ///  main animation action
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="hero"></param>
+        public virtual void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        {
+            
+        }
+        
         /// <summary>
         /// Update the caster hero's target hero - in the case of multiple targets
         /// </summary>
@@ -90,15 +112,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
         
         
-        //TEST
-        public virtual void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
-        {
-            
-        }
-        public virtual void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
-        {
-            
-        }
+        
 
     }
 }
