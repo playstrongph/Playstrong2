@@ -19,6 +19,7 @@ namespace Logic
         public void StartAction()
         {
             AllLivingHeroes();
+            
             UpdateTimers();
         }
 

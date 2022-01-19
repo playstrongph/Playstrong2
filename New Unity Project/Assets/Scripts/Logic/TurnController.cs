@@ -193,14 +193,20 @@ namespace Logic
             ActiveHeroFound = false;
 
             visualTree.AddCurrent(RunHeroTimersVisual());
+
+            while (!ActiveHeroFound)
+            {
+                yield return null;
+            }
+            
+            logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
             
             logicTree.EndSequence();
             yield return null;
         }
 
         /// <summary>
-        /// Update all hero timers
-        /// TODO: This is a mixed visual/logic implementation that needs to be cleaned up
+        /// Update all hero timers 
         /// </summary>
         /// <returns></returns>
         private IEnumerator RunHeroTimersVisual()
@@ -216,9 +222,6 @@ namespace Logic
                 yield return null;
             }
             
-            //CALL NEXT PHASE
-            logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
-
             visualTree.EndSequence();
             yield return null;
         }
