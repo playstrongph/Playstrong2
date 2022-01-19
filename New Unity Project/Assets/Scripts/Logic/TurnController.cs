@@ -188,7 +188,12 @@ namespace Logic
         public IEnumerator StartHeroTimers()
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
-            logicTree.AddCurrent(RunHeroTimers());
+            
+            //logicTree.AddCurrent(RunHeroTimers());
+            
+            //TEST
+            var visualTree = this.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(RunHeroTimersVisual());
             
             logicTree.EndSequence();
             yield return null;
@@ -204,6 +209,7 @@ namespace Logic
             while (!ActiveHeroFound)
             {
                 UpdateHeroTimers.StartAction();
+                
                 yield return null;
             }
             
@@ -211,6 +217,29 @@ namespace Logic
             logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
 
             logicTree.EndSequence();
+            yield return null;
+        }
+        
+        //TEST
+        private IEnumerator RunHeroTimersVisual()
+        {
+            var logicTree = this.CoroutineTrees.MainLogicTree;
+            var visualTree = this.CoroutineTrees.MainVisualTree;
+            
+            ActiveHeroFound = false;
+            
+            //Run all hero timers to find next active hero/heroes
+            while (!ActiveHeroFound)
+            {
+                UpdateHeroTimers.StartAction();
+                
+                yield return null;
+            }
+            
+            //CALL NEXT PHASE
+            logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
+
+            visualTree.EndSequence();
             yield return null;
         }
 
