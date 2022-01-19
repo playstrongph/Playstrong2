@@ -188,46 +188,26 @@ namespace Logic
         public IEnumerator StartHeroTimers()
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
-            
-            //logicTree.AddCurrent(RunHeroTimers());
-            
-            //TEST
             var visualTree = this.CoroutineTrees.MainVisualTree;
+
+            ActiveHeroFound = false;
+
             visualTree.AddCurrent(RunHeroTimersVisual());
             
             logicTree.EndSequence();
             yield return null;
         }
-        
-        private IEnumerator RunHeroTimers()
-        {
-            var logicTree = this.CoroutineTrees.MainLogicTree;
-            
-            ActiveHeroFound = false;
-            
-            //Run all hero timers to find next active hero/heroes
-            while (!ActiveHeroFound)
-            {
-                UpdateHeroTimers.StartAction();
-                
-                yield return null;
-            }
-            
-            //CALL NEXT PHASE
-            logicTree.AddCurrent(SetCurrentActiveHero.StartAction());
 
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        //TEST
+        /// <summary>
+        /// Update all hero timers
+        /// TODO: This is a mixed visual/logic implementation that needs to be cleaned up
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator RunHeroTimersVisual()
         {
             var logicTree = this.CoroutineTrees.MainLogicTree;
             var visualTree = this.CoroutineTrees.MainVisualTree;
-            
-            ActiveHeroFound = false;
-            
+
             //Run all hero timers to find next active hero/heroes
             while (!ActiveHeroFound)
             {
