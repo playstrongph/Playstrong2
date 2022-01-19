@@ -25,13 +25,9 @@ namespace Logic
         /// <returns></returns>
         public void StartAction()
         {
-            //var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var activeHeroesList = _turnController.ActiveHeroesList;
             
             ShuffleList(activeHeroesList).Sort(CompareListByEnergy);
-
-            //logicTree.EndSequence();
-            //yield return null;
         }
         
         
