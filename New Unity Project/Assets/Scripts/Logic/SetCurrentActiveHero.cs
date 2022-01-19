@@ -22,6 +22,7 @@ namespace Logic
         public IEnumerator StartAction()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            var visualTree = _turnController.CoroutineTrees.MainVisualTree;
             
             //Sort the heroes (random sort for heroes with equal energy)
             _turnController.SortHeroesByEnergy.StartAction();
@@ -39,14 +40,24 @@ namespace Logic
             _turnController.CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
             
             //VISUAL
-            _turnController.CurrentActiveHero.HeroVisual.SetEnergyVisual.StartAction();
-            
+            visualTree.AddCurrent(SetEnergyVisual());
+
             //TODO: Event call - EventCombatStartTurn
             
             //CALL NEXT PHASE
             logicTree.AddCurrent(_turnController.BeforeHeroStartTurn.StartAction());
 
             logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator SetEnergyVisual()
+        {
+            var visualTree = _turnController.CoroutineTrees.MainVisualTree;
+            
+            _turnController.CurrentActiveHero.HeroVisual.SetEnergyVisual.StartAction();
+            
+            visualTree.EndSequence();
             yield return null;
         }
     }
