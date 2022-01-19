@@ -16,6 +16,8 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillReadyActions(ISkill skill)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            
             //Enable get skill target actions - show valid targets glow
             skill.SkillTargetCollider.GetSkillTargets.EnableGetSkillTargetActions();
             
@@ -23,7 +25,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             skill.SkillTargetCollider.SelectDragTarget.EnableSelectDragTargetActions();
             
             //Show skill glows
-            skill.SkillVisual.SkillGlowDisplay.ShowGlow();
+            visualTree.AddCurrent(ShowSkillGlowDisplayVisual(skill));
         }
         
         /// <summary>

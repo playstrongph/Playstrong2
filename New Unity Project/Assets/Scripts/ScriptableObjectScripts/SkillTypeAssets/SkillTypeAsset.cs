@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.SkillEnableStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using TMPro;
@@ -32,6 +33,36 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         {
             get => startingSkillEnableStatus as ISkillEnableStatusAsset;
             private set => startingSkillEnableStatus = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// Show skill glow visual
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        protected IEnumerator ShowSkillGlowDisplayVisual(ISkill skill)
+        {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            
+            skill.SkillVisual.SkillGlowDisplay.ShowGlow();
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Hide skill glow visual
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        protected IEnumerator HideSkillGlowDisplayVisual(ISkill skill)
+        {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            
+            skill.SkillVisual.SkillGlowDisplay.HideGlow();
+            
+            visualTree.EndSequence();
+            yield return null;
         }
 
 
