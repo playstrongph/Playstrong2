@@ -15,17 +15,18 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="counter"></param>
         public override void TurnControllerReduceCooldown(ISkill skill, int counter = 1)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
-            var maxSkillCooldown = skillAttributes.BaseCooldown;
+            
             
             skillAttributes.Cooldown -= counter;
-            skillAttributes.Cooldown = Mathf.Clamp(skillAttributes.Cooldown, 0, maxSkillCooldown);
+            skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
             
-            //TODO: UpdateSkillReadinessStatus
+            //Update skill readiness and start its action
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
 
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -34,6 +35,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="skill"></param>
         public override void UseSkillResetCooldown(ISkill skill)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
@@ -42,11 +44,11 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             
             skillAttributes.Cooldown = maxSkillCooldown + cooldownCompensation;
 
-            //TODO: UpdateSkillReadinessStatus
+            //Update skill readiness and start its action
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         

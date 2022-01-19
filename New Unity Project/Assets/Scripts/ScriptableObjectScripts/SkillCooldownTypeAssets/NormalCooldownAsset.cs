@@ -14,9 +14,9 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="counter"></param>
         public override void DecreaseCooldown(ISkill skill, int counter)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
-            var maxSkillCooldown = skillAttributes.BaseCooldown;
-            
+
             skillAttributes.Cooldown -= counter;
             skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
             
@@ -24,7 +24,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -34,6 +34,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="counter"></param>
         public override void IncreaseCooldown(ISkill skill, int counter)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
@@ -44,7 +45,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -54,6 +55,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="value"></param>
         public override void SetCooldownToValue(ISkill skill, int value)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
@@ -64,7 +66,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -73,6 +75,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="skill"></param>
         public override void ResetCooldownToMax(ISkill skill)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
@@ -82,7 +85,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -91,6 +94,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="skill"></param>
         public override void RefreshCooldownToZero(ISkill skill)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
 
             skillAttributes.Cooldown = 0;
@@ -99,7 +103,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -109,8 +113,9 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="counter"></param>
         public override void TurnControllerReduceCooldown(ISkill skill, int counter = 1)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
-            var maxSkillCooldown = skillAttributes.BaseCooldown;
+            
             
             skillAttributes.Cooldown -= counter;
             skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
@@ -119,7 +124,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         /// <summary>
@@ -128,6 +133,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         /// <param name="skill"></param>
         public override void UseSkillResetCooldown(ISkill skill)
         {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
@@ -140,7 +146,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
-            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
         
         

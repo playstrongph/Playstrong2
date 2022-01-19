@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.SkillCooldownTypeAssets
@@ -31,6 +32,22 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         
         public virtual void UseSkillResetCooldown(ISkill skill)
         {
+        }
+        
+        //TEST
+        /// <summary>
+        /// Visual reduction of skill cooldown
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        protected IEnumerator UpdateSkillCooldownVisual(ISkill skill)
+        {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            
+            skill.SkillVisual.UpdateSkillCooldownVisual.StartAction();
+            
+            visualTree.EndSequence();
+            yield return null;
         }
         
         
