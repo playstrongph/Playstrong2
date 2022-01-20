@@ -25,6 +25,22 @@ namespace Logic
             get => statusEffectsCanvas;
             set => statusEffectsCanvas = value;
         }
+        
+        [Header("PREFABS")]
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffect))]
+        private Object statusEffectPrefab;
+        /// <summary>
+        /// Returns status effect prefab as interface object
+        /// </summary>
+        public IStatusEffect StatusEffectPrefab
+        {
+            get => statusEffectPrefab as IStatusEffect;
+            private set => statusEffectPrefab = value as Object;
+        }
+        
+        
+
 
     }
 }
