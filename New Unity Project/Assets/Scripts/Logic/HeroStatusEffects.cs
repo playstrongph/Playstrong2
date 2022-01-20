@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Logic
 {
@@ -49,8 +52,27 @@ namespace Logic
             get => previewStatusEffectPrefab as IPreviewStatusEffect;
             private set => previewStatusEffectPrefab = value as Object;
         }
+        
+        /// <summary>
+        /// All hero buff effects
+        /// </summary>
+        public IBuffEffects BuffEffects { get; private set; }
+        
+        /// <summary>
+        /// All hero debuff effects
+        /// </summary>
+        public IDebuffEffects DebuffEffects { get; private set; }
+        
+        /// <summary>
+        /// All hero unique status effects
+        /// </summary>
+        public IUniqueStatusEffects UniqueStatusEffects { get; private set; }
 
-
-
+        private void Awake()
+        {
+            BuffEffects = GetComponent<IBuffEffects>();
+            DebuffEffects = GetComponent<IDebuffEffects>();
+            UniqueStatusEffects = GetComponent<IUniqueStatusEffects>();
+        }
     }
 }
