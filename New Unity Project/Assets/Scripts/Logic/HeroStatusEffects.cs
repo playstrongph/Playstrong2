@@ -67,12 +67,18 @@ namespace Logic
         /// All hero unique status effects
         /// </summary>
         public IUniqueStatusEffects UniqueStatusEffects { get; private set; }
+        
+        /// <summary>
+        /// Updates all the status effect counters
+        /// </summary>
+        public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; private set; }
 
         private void Awake()
         {
             BuffEffects = GetComponent<IBuffEffects>();
             DebuffEffects = GetComponent<IDebuffEffects>();
             UniqueStatusEffects = GetComponent<IUniqueStatusEffects>();
+            UpdateStatusEffectCounters = GetComponent<IUpdateStatusEffectCounters>();
         }
     }
 }

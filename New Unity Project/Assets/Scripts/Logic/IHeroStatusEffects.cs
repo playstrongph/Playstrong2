@@ -28,5 +28,10 @@ namespace Logic
         /// All hero unique status effects
         /// </summary>
         IUniqueStatusEffects UniqueStatusEffects { get; }
+        
+        /// <summary>
+        /// Updates all the status effect counters
+        /// </summary>
+        IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; }
     }
 }
