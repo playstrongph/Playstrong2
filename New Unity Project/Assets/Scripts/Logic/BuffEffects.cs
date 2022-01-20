@@ -4,17 +4,17 @@ using UnityEngine;
 namespace Logic
 {
     /// <summary>
-    /// Base class for the different status effects lists - buff effects, debuff effects, unique status effects
+    /// List of all hero buff effects
     /// </summary>
-    public abstract class StatusEffectLists : MonoBehaviour, IStatusEffectLists
+    public class BuffEffects : MonoBehaviour, IBuffEffects
     {
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffect))]
-        protected List<Object> statusEffects = new List<Object>();
+        private List<Object> statusEffects = new List<Object>();
         
         /// <summary>
         /// Returns the list of status effect objects as a list of IStatusEffect
         /// </summary>
-        public virtual List<IStatusEffect> StatusEffects
+        public List<IStatusEffect> StatusEffects
         {
             get
             {
@@ -33,7 +33,7 @@ namespace Logic
         /// Add status effect to interface and object list
         /// </summary>
         /// <param name="statusEffect"></param>
-        public virtual void AddToList(IStatusEffect statusEffect)
+        public void AddToList(IStatusEffect statusEffect)
         {
             //Add to IStatusEffect list
             StatusEffects.Add(statusEffect);
@@ -46,7 +46,7 @@ namespace Logic
         /// Remove status effect to interface and object list
         /// </summary>
         /// <param name="statusEffect"></param>
-        public virtual void RemoveFromList(IStatusEffect statusEffect)
+        public void RemoveFromList(IStatusEffect statusEffect)
         {
             //Remove from IStatusEffect list
             StatusEffects.Remove(statusEffect);
@@ -54,12 +54,6 @@ namespace Logic
             //Remove from object list
             statusEffects.Remove(statusEffect as Object);
         }
-
-
-
-
-
-
 
     }
 }

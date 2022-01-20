@@ -2,7 +2,7 @@
 
 namespace Logic
 {
-    public interface IStatusEffectLists
+    public interface IBuffEffects
     {
         /// <summary>
         /// Returns the list of status effect objects as a list of IStatusEffect

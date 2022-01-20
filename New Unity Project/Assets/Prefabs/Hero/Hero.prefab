@@ -3110,6 +3110,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7039926553261882655}
   - component: {fileID: 7039926553261882656}
+  - component: {fileID: 762759511}
+  - component: {fileID: 762759510}
+  - component: {fileID: 762759509}
   m_Layer: 0
   m_Name: HeroStatusEffects
   m_TagString: Untagged
@@ -3150,6 +3153,45 @@ MonoBehaviour:
     type: 3}
   previewStatusEffectPrefab: {fileID: 1241874520, guid: f80cb37dd92dee449886a2997aed0a9d,
     type: 3}
+--- !u!114 &762759511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039926553261882654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c44bde3e43d604b8911cb18630bafa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusEffects: []
+--- !u!114 &762759510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039926553261882654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3f78b5c001af14aa50f89c12b5db5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusEffects: []
+--- !u!114 &762759509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7039926553261882654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b379e4fcc2268db409e03bff0586e3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statusEffects: []
 --- !u!1 &7962901022843646769
 GameObject:
   m_ObjectHideFlags: 0
