@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
@@ -65,6 +66,11 @@ namespace Logic
             get => previewStatusEffect as IPreviewStatusEffect;
             set => previewStatusEffect = value as Object;
         }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
 
     }
 }

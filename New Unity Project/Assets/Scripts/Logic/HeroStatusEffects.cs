@@ -38,8 +38,18 @@ namespace Logic
             get => statusEffectPrefab as IStatusEffect;
             private set => statusEffectPrefab = value as Object;
         }
-        
-        
+
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPreviewStatusEffect))]
+        private Object previewStatusEffectPrefab;
+        /// <summary>
+        /// Returns preview status effect prefab as an interface object
+        /// </summary>
+        public IPreviewStatusEffect PreviewStatusEffectPrefab
+        {
+            get => previewStatusEffectPrefab as IPreviewStatusEffect;
+            private set => previewStatusEffectPrefab = value as Object;
+        }
+
 
 
     }

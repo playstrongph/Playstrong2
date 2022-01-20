@@ -38,5 +38,10 @@ namespace Logic
             get => descriptionText;
             set => descriptionText = value;
         }
+        
+        /// <summary>
+        /// Returns this as a game object
+        /// </summary>
+        public GameObject ThisGameObject => this.gameObject;
     }
 }

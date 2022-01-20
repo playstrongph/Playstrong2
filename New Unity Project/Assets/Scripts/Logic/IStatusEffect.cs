@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Logic
@@ -32,6 +33,10 @@ namespace Logic
         /// </summary>
         IPreviewStatusEffect PreviewStatusEffect { get; set; }
 
+        /// <summary>
+        /// Returns the inheriting class as a game object
+        /// </summary>
+        GameObject ThisGameObject { get; }
 
     }
 }

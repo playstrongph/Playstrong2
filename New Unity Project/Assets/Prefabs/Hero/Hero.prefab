@@ -340,6 +340,7 @@ MonoBehaviour:
   targetAttackResistance: 0
   criticalResistance: 0
   penetrateArmorResistance: 0
+  inabilityResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,6 +3146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hero: {fileID: 4044057493482042295}
   statusEffectsCanvas: {fileID: 5609741221347091533}
+  statusEffectPrefab: {fileID: 9025590045596622920, guid: e787de88d498b7741bc5501b00237415,
+    type: 3}
+  previewStatusEffectPrefab: {fileID: 1241874520, guid: f80cb37dd92dee449886a2997aed0a9d,
+    type: 3}
 --- !u!1 &7962901022843646769
 GameObject:
   m_ObjectHideFlags: 0
