@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using ScriptableObjectScripts.StatusEffectTypeAssets;
+using TMPro;
 using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,7 +56,7 @@ namespace Logic
             set => countersValue = value;
         }
         
-       
+        
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPreviewStatusEffect))]
         private Object previewStatusEffect;
         /// <summary>
@@ -66,6 +67,21 @@ namespace Logic
             get => previewStatusEffect as IPreviewStatusEffect;
             set => previewStatusEffect = value as Object;
         }
+
+        [Header("STATUS EFFECT ATTRIBUTES")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
+        private Object statusEffectType;
+        /// <summary>
+        /// Status Effect Type Attribute
+        /// </summary>
+        public IStatusEffectTypeAsset StatusEffectType
+        {
+            get => statusEffectType as IStatusEffectTypeAsset;
+            set => statusEffectType = value as Object;
+        }
+
+
         
         /// <summary>
         /// Returns this as a game object
