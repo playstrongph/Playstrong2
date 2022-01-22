@@ -40,6 +40,8 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
 
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
+            
+            //TODO: RemoveStatus effect counters
         }
         
         /// <summary>
@@ -56,6 +58,8 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
 
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
+            
+            //TODO: RemoveStatus effect counters
         }
         
         /// <summary>
@@ -70,8 +74,10 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             
             statusEffect.CountersValue -= fixedReduction;
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
-
+            
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
+            
+            //TODO: RemoveStatus effect counters
         }
 
         /// <summary>
