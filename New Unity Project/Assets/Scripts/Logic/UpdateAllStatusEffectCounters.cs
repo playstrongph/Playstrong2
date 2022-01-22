@@ -21,21 +21,22 @@ namespace Logic
         /// </summary>
         public void UpdateCountersStartTurn()
         {
-            //Update all buff counters
+            //Update all buff counters (reduce their counters)
             foreach (var buffEffect in _heroStatusEffects.BuffEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersStartTurn
+                buffEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
             
-            //Update all debuff counters
+            //Update all debuff counters (reduce their counters)
             foreach (var debuffEffect in _heroStatusEffects.DebuffEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersStartTurn
+                debuffEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
-
+            
+            //Update all unique status effect counters (reduce their counters)
             foreach (var uniqueStatusEffect in _heroStatusEffects.UniqueStatusEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersStartTurn
+                uniqueStatusEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
         }
         
@@ -44,21 +45,22 @@ namespace Logic
         /// </summary>
         public void UpdateCountersEndTurn()
         {
-            //Update all buff counters
+            //Update all buff counters (reduce their counters)
             foreach (var buffEffect in _heroStatusEffects.BuffEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersEndTurn
+                buffEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
             
-            //Update all debuff counters
+            //Update all debuff counters (reduce their counters)
             foreach (var debuffEffect in _heroStatusEffects.DebuffEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersEndTurn
+                debuffEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
-
+            
+            //Update all unique status effect counters (reduce their counters)
             foreach (var uniqueStatusEffect in _heroStatusEffects.UniqueStatusEffects.StatusEffects)
             {
-                //TODO: statusEffectUpdateType.UpdateCountersEndTurn
+                uniqueStatusEffect.UpdateStatusEffectCounters.TurnReduceCounters();
             }
         }
     }
