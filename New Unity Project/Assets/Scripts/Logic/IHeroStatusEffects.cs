@@ -32,6 +32,6 @@ namespace Logic
         /// <summary>
         /// Updates all the status effect counters
         /// </summary>
-        IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; }
+        IUpdateAllStatusEffectCounters UpdateStatusEffectCounters { get; }
     }
 }

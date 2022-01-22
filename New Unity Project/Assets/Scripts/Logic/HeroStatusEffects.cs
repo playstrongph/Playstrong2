@@ -71,14 +71,14 @@ namespace Logic
         /// <summary>
         /// Updates all the status effect counters
         /// </summary>
-        public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; private set; }
+        public IUpdateAllStatusEffectCounters UpdateStatusEffectCounters { get; private set; }
 
         private void Awake()
         {
             BuffEffects = GetComponent<IBuffEffects>();
             DebuffEffects = GetComponent<IDebuffEffects>();
             UniqueStatusEffects = GetComponent<IUniqueStatusEffects>();
-            UpdateStatusEffectCounters = GetComponent<IUpdateStatusEffectCounters>();
+            UpdateStatusEffectCounters = GetComponent<IUpdateAllStatusEffectCounters>();
         }
     }
 }

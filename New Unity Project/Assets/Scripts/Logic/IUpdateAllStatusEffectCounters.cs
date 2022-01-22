@@ -1,6 +1,6 @@
 ﻿namespace Logic
 {
-    public interface IUpdateStatusEffectCounters
+    public interface IUpdateAllStatusEffectCounters
     {
         /// <summary>
         /// Update all status effects with start turn update type 
