@@ -1,4 +1,6 @@
-﻿using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+﻿using System;
+using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
+using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectTypeAssets;
 using TMPro;
 using UnityEditor.MemoryProfiler;
@@ -74,6 +76,8 @@ namespace Logic
         /// </summary>
         public IHeroStatusEffects HeroStatusEffects { get; set; }
 
+        
+
         [Header("STATUS EFFECT ATTRIBUTES")]
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
@@ -99,12 +103,32 @@ namespace Logic
             set => statusEffectCounterType = value as Object;
         }
 
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterUpdateTypeAsset))]
+        private Object statusEffectCounterUpdateType;
+        
+        /// <summary>
+        /// Counter update types - start turn update, end turn update, and no update
+        /// </summary>
+        public IStatusEffectCounterUpdateTypeAsset StatusEffectCounterUpdateType
+        {
+            get => statusEffectCounterUpdateType as IStatusEffectCounterUpdateTypeAsset;
+            set => statusEffectCounterUpdateType = value as Object;
+        }
 
 
         /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+        
+        /// <summary>
+        /// Update status effect counters component
+        /// </summary>
+        public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
 
+        private void Awake()
+        {
+            UpdateStatusEffectCounters = GetComponent<UpdateStatusEffectCounters>();
+        }
     }
 }

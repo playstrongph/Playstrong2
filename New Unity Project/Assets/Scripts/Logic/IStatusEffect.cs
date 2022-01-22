@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+﻿using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
+using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectTypeAssets;
 using TMPro;
 using UnityEngine;
@@ -56,5 +57,15 @@ namespace Logic
         /// Status effect counter type attribute - Normal or Immutable 
         /// </summary>
         IStatusEffectCounterTypeAsset StatusEffectCounterType { get; set; }
+        
+        /// <summary>
+        /// Counter update types - start turn update, end turn update, and no update
+        /// </summary>
+        IStatusEffectCounterUpdateTypeAsset StatusEffectCounterUpdateType { get; set; }
+
+        /// <summary>
+        /// Update status effect counters component
+        /// </summary>
+        IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
     }
 }

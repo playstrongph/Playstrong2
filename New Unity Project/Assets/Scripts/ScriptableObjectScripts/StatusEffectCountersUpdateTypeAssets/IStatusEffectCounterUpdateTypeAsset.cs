@@ -1,8 +1,8 @@
 ﻿using Logic;
 
-namespace ScriptableObjectScripts.StatusEffectCountersUpdateAssets
+namespace ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets
 {
-    public interface IStatusEffectCountersUpdateAsset
+    public interface IStatusEffectCounterUpdateTypeAsset
     {
         /// <summary>
         /// Update the status effect counter at the start of the turn
