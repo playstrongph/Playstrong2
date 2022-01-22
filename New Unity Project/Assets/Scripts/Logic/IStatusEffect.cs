@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+using ScriptableObjectScripts.StatusEffectTypeAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +44,17 @@ namespace Logic
         /// Returns the inheriting class as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
-
+        
+        //ATTRIBUTES
+        
+        /// <summary>
+        /// Status Effect Type Attribute - Buff, Debuff, Unique
+        /// </summary>
+        IStatusEffectTypeAsset StatusEffectType { get; set; }
+        
+        /// <summary>
+        /// Status effect counter type attribute - Normal or Immutable 
+        /// </summary>
+        IStatusEffectCounterTypeAsset StatusEffectCounterType { get; set; }
     }
 }

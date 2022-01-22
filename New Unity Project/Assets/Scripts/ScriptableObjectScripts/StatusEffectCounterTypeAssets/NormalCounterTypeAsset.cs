@@ -66,8 +66,9 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         {
             var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
             
+            //TODO: Logic to not reduce "fresh" counters
+            
             statusEffect.CountersValue -= fixedReduction;
-
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
 
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));

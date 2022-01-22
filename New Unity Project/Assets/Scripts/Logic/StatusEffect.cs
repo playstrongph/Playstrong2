@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.StatusEffectTypeAssets;
+﻿using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+using ScriptableObjectScripts.StatusEffectTypeAssets;
 using TMPro;
 using UnityEditor.MemoryProfiler;
 using UnityEngine;
@@ -78,7 +79,7 @@ namespace Logic
         [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
         private Object statusEffectType;
         /// <summary>
-        /// Status Effect Type Attribute
+        /// Status Effect Type Attribute - Buff, Debuff, Unique
         /// </summary>
         public IStatusEffectTypeAsset StatusEffectType
         {
@@ -86,8 +87,20 @@ namespace Logic
             set => statusEffectType = value as Object;
         }
 
-
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterTypeAsset))]
+        private Object statusEffectCounterType;
         
+        /// <summary>
+        /// Status effect counter type attribute - Normal or Immutable 
+        /// </summary>
+        public IStatusEffectCounterTypeAsset StatusEffectCounterType
+        {
+            get => statusEffectCounterType as IStatusEffectCounterTypeAsset;
+            set => statusEffectCounterType = value as Object;
+        }
+
+
+
         /// <summary>
         /// Returns this as a game object
         /// </summary>

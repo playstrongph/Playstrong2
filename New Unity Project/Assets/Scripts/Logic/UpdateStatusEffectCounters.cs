@@ -6,7 +6,7 @@ namespace Logic
     /// <summary>
     /// Updates the individual status effect counter`
     /// </summary>
-    public class UpdateStatusEffectCounter : MonoBehaviour
+    public class UpdateStatusEffectCounters : MonoBehaviour
     {
         private IStatusEffect _statusEffect;
 
