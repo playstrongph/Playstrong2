@@ -67,6 +67,11 @@ namespace Logic
             get => previewStatusEffect as IPreviewStatusEffect;
             set => previewStatusEffect = value as Object;
         }
+        
+        /// <summary>
+        /// Reference to Hero Status Effects
+        /// </summary>
+        public IHeroStatusEffects HeroStatusEffects { get; set; }
 
         [Header("STATUS EFFECT ATTRIBUTES")]
         [SerializeField]
