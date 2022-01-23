@@ -31,7 +31,8 @@ namespace Logic
             //Reduce all "start turn counter update" status effect counters
             logicTree.AddCurrent(UpdateStatusEffects());
         
-            //TODO: Hero event - EventAfterHeroStartTurn, wrap this in an IEnumerator
+            //Call after hero end turn event 
+            logicTree.AddCurrent(EventAfterHeroEndTurn());
             
             //TODO: Turn controller Event - Event After Combat  
 
@@ -95,6 +96,21 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
 
+        }
+        
+        /// <summary>
+        /// Call after hero end turn event
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EventAfterHeroEndTurn()
+        {
+            var currentActiveHero = _turnController.CurrentActiveHero;
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            currentActiveHero.HeroLogic.HeroEvents.EventAfterHeroEndTurn(currentActiveHero);
+
+            logicTree.EndSequence();
+            yield return null;
         }
 
 

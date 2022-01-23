@@ -32,6 +32,8 @@
         event HeroEvents.HeroEvent EBeforeHeroDealsMultiTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroDealsMultiTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroTakesMultiTargetAttack;
+        event HeroEvents.HeroEvent EAfterHeroEndTurn;
+        event HeroEvents.HeroEvent EBeforeHeroStartTurn;
 
         #endregion
 
@@ -205,6 +207,18 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventAfterHeroTakesMultiTargetAttack(IHero hero);
+        
+        /// <summary>
+        /// After hero end turn (different from hero end turn event)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroEndTurn(IHero hero);
+        
+        /// <summary>
+        /// Before hero start turn (different from hero end turn event)
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventBeforeHeroStartTurn(IHero hero);
 
         #endregion
     }

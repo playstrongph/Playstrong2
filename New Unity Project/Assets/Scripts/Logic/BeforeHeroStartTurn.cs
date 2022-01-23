@@ -24,7 +24,8 @@ namespace Logic
             
             //TODO: Turn controller Event - Event Before Combat  
             
-            //TODO: Hero event - EventBeforeHeroStartTurn, wrap this in an IEnumerator
+            //Call before hero start turn event
+            logicTree.AddCurrent(EventBeforeHeroStartTurn());
             
             //Update start turn status effects (reduce their counters)
             logicTree.AddCurrent(UpdateStatusEffects());
@@ -61,6 +62,21 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
 
+        }
+        
+        /// <summary>
+        /// Call before hero start turn event
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EventBeforeHeroStartTurn()
+        {
+            var currentActiveHero = _turnController.CurrentActiveHero;
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            currentActiveHero.HeroLogic.HeroEvents.EventBeforeHeroStartTurn(currentActiveHero);
+
+            logicTree.EndSequence();
+            yield return null;
         }
 
 

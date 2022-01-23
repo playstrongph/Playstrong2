@@ -39,7 +39,9 @@ namespace Logic
         public event HeroEvent EBeforeHeroTakesMultiTargetAttack;
         public event HeroEvent EBeforeHeroDealsMultiTargetAttack;
         public event HeroEvent EAfterHeroDealsMultiTargetAttack;
-        public event HeroEvent EAfterHeroTakesMultiTargetAttack;
+        public event HeroEvent EAfterHeroTakesMultiTargetAttack; 
+        public event HeroEvent EAfterHeroEndTurn;
+        public event HeroEvent EBeforeHeroStartTurn;
      
         
         
@@ -300,6 +302,26 @@ namespace Logic
         {
             EAfterHeroTakesMultiTargetAttack?.Invoke(hero);
         }
+        
+        /// <summary>
+        /// After hero end turn (different from hero end turn event)
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroEndTurn(IHero hero)
+        {
+            EAfterHeroEndTurn?.Invoke(hero);
+        }
+        
+        /// <summary>
+        /// Before hero start turn (different from hero end turn event)
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventBeforeHeroStartTurn(IHero hero)
+        {
+            EBeforeHeroStartTurn?.Invoke(hero);
+        }
+        
+        
 
 
         #endregion
@@ -530,6 +552,22 @@ namespace Logic
                 foreach (var client in clients)
                     EAfterHeroTakesMultiTargetAttack -= client as HeroEvent;
         }
+        
+        private void UnsubscribeEventAfterHeroEndTurn()
+        {
+            var clients = EAfterHeroEndTurn?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroEndTurn -= client as HeroEvent;
+        }
+        
+        private void UnsubscribeEventBeforeHeroStartTurn()
+        {
+            var clients = EBeforeHeroStartTurn?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroStartTurn -= client as HeroEvent;
+        }
 
         #endregion
         
@@ -576,6 +614,8 @@ namespace Logic
             UnsubscribeEventAfterHeroDealsMultiTargetAttack();
             UnsubscribeEventBeforeHeroTakesMultiTargetAttack();
             UnsubscribeEventAfterHeroTakesMultiTargetAttack();
+            UnsubscribeEventAfterHeroEndTurn();
+            UnsubscribeEventBeforeHeroStartTurn();
         }
     }
 }
