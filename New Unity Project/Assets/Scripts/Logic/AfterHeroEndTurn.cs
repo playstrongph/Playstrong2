@@ -20,7 +20,7 @@ namespace Logic
         public IEnumerator StartAction()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
-            var currentActiveHero = _turnController.CurrentActiveHero;
+            
 
             //Updates and executes the hero active status and action
             logicTree.AddCurrent(UpdateHeroActiveStatus());
@@ -34,7 +34,8 @@ namespace Logic
             //Call after hero end turn event 
             logicTree.AddCurrent(EventAfterHeroEndTurn());
             
-            //TODO: Turn controller Event - Event After Combat  
+            //Turn controller end combat turn
+            logicTree.AddCurrent(EventEndCombatTurn());
 
             //Determines the next active hero from the active heroes list 
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
@@ -108,6 +109,20 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             
             currentActiveHero.HeroLogic.HeroEvents.EventAfterHeroEndTurn(currentActiveHero);
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// End of combat turn event
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EventEndCombatTurn()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            _turnController.TurnControllerEvents.EventEndCombatTurn();
 
             logicTree.EndSequence();
             yield return null;

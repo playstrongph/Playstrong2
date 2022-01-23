@@ -148,9 +148,17 @@ namespace Logic
         public IStartNextHeroTurn StartNextHeroTurn { get; private set; }
         
         /// <summary>
+        /// Turn controller events
+        /// </summary>
+        public ITurnControllerEvents TurnControllerEvents { get; private set; }
+
+        /// <summary>
         /// Used by turn controller to initialize all skill effects of all heroes 
         /// </summary>
         private IInitializeAllSkillEffects InitializeAllSkillEffects { get; set; }
+        
+        
+        
 
         private void Awake()
         {
@@ -164,6 +172,7 @@ namespace Logic
             AfterHeroEndTurn = GetComponent<IAfterHeroEndTurn>();
             StartNextHeroTurn = GetComponent<IStartNextHeroTurn>();
             InitializeAllSkillEffects = GetComponent<IInitializeAllSkillEffects>();
+            TurnControllerEvents = GetComponent<ITurnControllerEvents>();
         }
         
         /// <summary>

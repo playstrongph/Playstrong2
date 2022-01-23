@@ -22,7 +22,8 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var currentActiveHero = _turnController.CurrentActiveHero;
             
-            //TODO: Turn controller Event - Event Before Combat  
+            //Turn controller start combat event
+            logicTree.AddCurrent(EventStartCombatTurn());
             
             //Call before hero start turn event
             logicTree.AddCurrent(EventBeforeHeroStartTurn());
@@ -74,6 +75,20 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             
             currentActiveHero.HeroLogic.HeroEvents.EventBeforeHeroStartTurn(currentActiveHero);
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Start of combat turn event
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator EventStartCombatTurn()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            
+            _turnController.TurnControllerEvents.EventStartCombatTurn();
 
             logicTree.EndSequence();
             yield return null;

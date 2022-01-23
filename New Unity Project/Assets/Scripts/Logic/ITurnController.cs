@@ -102,6 +102,11 @@ namespace Logic
         /// Determines the next active hero from the active heroes list 
         /// </summary>
         IStartNextHeroTurn StartNextHeroTurn { get; }
+        
+        /// <summary>
+        /// Turn controller events
+        /// </summary>
+        ITurnControllerEvents TurnControllerEvents { get;}
 
         /// <summary>
         /// First time combat start

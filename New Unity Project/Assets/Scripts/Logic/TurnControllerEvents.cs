@@ -1,19 +1,71 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Logic
 {
-    public class TurnControllerEvents : MonoBehaviour
+    public class TurnControllerEvents : MonoBehaviour, ITurnControllerEvents
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+       
+        /// <summary>
+        /// Turn controller event signature 
+        /// </summary>
+        public delegate void TurnControllerEvent();
+
+        #region EVENT DELEGATES
+
+        public event TurnControllerEvent EStartCombatTurn;
+        public event TurnControllerEvent EEndCombatTurn;
+
+        #endregion
+
+
+        #region EVENT CALLS
         
+        /// <summary>
+        /// Start of combat event
+        /// </summary>
+        public void EventStartCombatTurn()
+        {
+            EStartCombatTurn?.Invoke();
+        }
+        
+        /// <summary>
+        /// End of combat event
+        /// </summary>
+        public void EventEndCombatTurn()
+        {
+            EEndCombatTurn?.Invoke();
+        }
+        
+
+        #endregion
+
+        #region UNSUBSCRIPTION
+
+        private void UnsubscribeEventStartCombatTurn()
+        {
+            var clients = EStartCombatTurn?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EStartCombatTurn -= client as TurnControllerEvent;
+        }
+        
+        private void UnsubscribeEventEndCombatTurn()
+        {
+            var clients = EEndCombatTurn?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EEndCombatTurn -= client as TurnControllerEvent;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDestroy()
         {
-        
+            UnsubscribeEventStartCombatTurn();
+            UnsubscribeEventEndCombatTurn();
         }
+
+        #endregion
+
+       
     }
 }
