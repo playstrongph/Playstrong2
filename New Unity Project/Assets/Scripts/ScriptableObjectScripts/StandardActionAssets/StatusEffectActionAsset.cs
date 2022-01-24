@@ -1,18 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Logic;
 using UnityEngine;
 
-public class StatusEffectActionAsset : MonoBehaviour
+namespace ScriptableObjectScripts.StandardActionAssets
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "StatusEffectAction", menuName = "Assets/StandardActions/StatusEffectAction")]
+    public class StatusEffectActionAsset : StandardActionAsset, IStatusEffectActionAsset
     {
+        /// <summary>
+        /// The status effect's caster 
+        /// </summary>
+        public IHero StatusEffectCasterHero { get; set; }
         
-    }
+        /// <summary>
+        /// Executes the base class method StartActionCoroutine
+        /// </summary>
+        /// <param name="hero"></param>
+        public void StatusEffectStartAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            logicTree.AddCurrent(StartActionCoroutine(hero));
+
+        }
     }
 }
