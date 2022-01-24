@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 {
-    public abstract class StatusEffectInstanceTypeAsset : ScriptableObject
+    public abstract class StatusEffectInstanceTypeAsset : ScriptableObject, IStatusEffectInstanceTypeAsset
     {
         /// <summary>
         /// Add a new status effect 
@@ -43,6 +43,20 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //TODO: put logic here
             return null;
         }
+        
+        /// <summary>
+        /// Checks if the new status effect to be added is already existing and calls either create or update status effect respectively 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="newStatusEffect"></param>
+        /// <returns></returns>
+        protected IStatusEffect CheckForExistingStatusEffect(IHero hero, IStatusEffect newStatusEffect)
+        {
+            //TODO: put logic here
+            return null;
+        }
+        
+        
         
         
     }
