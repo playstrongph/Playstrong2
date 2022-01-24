@@ -7,19 +7,19 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 {
     public class StatusEffectAsset : ScriptableObject, IStatusEffectAsset
     {
-        [SerializeField] private string statusEffectName;
+        [SerializeField] private string statusEffectName = "";
         
         /// <summary>
         /// Status effect name - SLOW, HASTE, etc.
         /// </summary>
         public string StatusEffectName
         {
-            get => statusEffectName; 
+            get => statusEffectName;
             private set => value = "";
         }
         
         [TextArea(1,2)]
-        [SerializeField] private string description;
+        [SerializeField] private string description = "";
         /// <summary>
         /// What the status effect does - increase attack by 50%
         /// </summary>
