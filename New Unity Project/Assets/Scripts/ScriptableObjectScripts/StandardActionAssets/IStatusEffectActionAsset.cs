@@ -14,5 +14,17 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// </summary>
         /// <param name="hero"></param>
         void StatusEffectStartAction(IHero hero);
+        
+        /// <summary>
+        /// Subscribes the standard action to an event
+        /// </summary>
+        /// <param name="hero"></param>
+        void SubscribeStandardAction(IHero hero);
+        
+        /// <summary>
+        /// Unsubscribes the standard action to an event
+        /// </summary>
+        /// <param name="hero"></param>
+        void UnsubscribeStandardAction(IHero hero);
     }
 }

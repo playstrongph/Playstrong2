@@ -1,4 +1,7 @@
-﻿using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
+﻿using System.Collections.Generic;
+using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
+using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
 using UnityEngine;
@@ -72,9 +75,58 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             get => statusEffectCounterType as IStatusEffectCounterTypeAsset;
             private set => statusEffectCounterType = value as Object;
         }
-        
-        
 
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectActionAsset))]
+        private List<ScriptableObject> statusEffectActions = new List<ScriptableObject>();
+        
+        /// <summary>
+        /// Returns a list of IStatusEffectActionAsset
+        /// </summary>
+        public List<IStatusEffectActionAsset> StatusEffectActions
+        {
+            get
+            {
+                var newStatusEffectActions = new List<IStatusEffectActionAsset>();
+                
+                foreach (var scriptableObject in statusEffectActions)
+                {
+                    var statusEffectAction = scriptableObject as IStatusEffectActionAsset;
+                    newStatusEffectActions.Add(statusEffectAction);
+                }
+
+                return newStatusEffectActions;
+            }
+        }
+        /// <summary>
+        /// Returns status effect actions as scriptable objects
+        /// </summary>
+        public List<ScriptableObject> StatusEffectActionObjects => statusEffectActions;
+        
+        /// <summary>
+        /// Apply status effect action
+        /// </summary>
+        /// <param name="hero"></param>
+        public void ApplyAction(IHero hero)
+        {
+            foreach (var action in StatusEffectActions)
+            {
+                action.SubscribeStandardAction(hero);
+            }
+        }
+        
+        /// <summary>
+        /// Unapply status effect action
+        /// </summary>
+        /// <param name="hero"></param>
+        public void UnapplyAction(IHero hero)
+        {
+            foreach (var action in StatusEffectActions)
+            {
+                action.UnsubscribeStandardAction(hero);
+            }
+        }
+        
+        //TODO: remove status effect on death
 
 
 
