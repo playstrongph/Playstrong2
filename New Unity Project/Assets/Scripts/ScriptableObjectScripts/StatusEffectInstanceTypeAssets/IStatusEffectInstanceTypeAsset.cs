@@ -8,9 +8,14 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <summary>
         /// Add a new status effect 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetHero"></param>
+        /// /// <param name="casterHero"></param>
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
-        void AddStatusEffect(IHero hero, IStatusEffectAsset statusEffectAsset, int counters);
+        void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters);
+        
+        
+        
+        
     }
 }

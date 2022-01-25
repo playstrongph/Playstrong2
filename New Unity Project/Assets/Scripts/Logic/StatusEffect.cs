@@ -47,7 +47,18 @@ namespace Logic
             set => statusEffectName = value;
         }
         
-        
+        [SerializeField]
+        private string statusEffectDescription;
+        /// <summary>
+        /// Status effect description
+        /// </summary>
+        public string StatusEffectDescription
+        {
+            get => statusEffectDescription;
+            set => statusEffectDescription = value;
+        }
+
+
         [SerializeField] private int countersValue;
         
         /// <summary>
@@ -125,6 +136,16 @@ namespace Logic
         /// Update status effect counters component
         /// </summary>
         public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
+
+        /// <summary>
+        /// Caster of the status effect
+        /// </summary>
+        public IHero StatusEffectCasterHero { get; set; }
+        
+        /// <summary>
+        /// Target of the status effect
+        /// </summary>
+        public IHero StatusEffectTargetHero { get; set; }
 
         private void Awake()
         {

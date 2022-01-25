@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 9025590045280894976}
   - component: {fileID: 9025590045596622920}
   - component: {fileID: 2136267900}
+  - component: {fileID: 2319012873105728947}
   m_Layer: 0
   m_Name: StatusEffect
   m_TagString: Untagged
@@ -192,6 +193,8 @@ MonoBehaviour:
   countersValue: 0
   previewStatusEffect: {fileID: 0}
   statusEffectType: {fileID: 0}
+  statusEffectCounterType: {fileID: 0}
+  statusEffectCounterUpdateType: {fileID: 0}
 --- !u!114 &2136267900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +205,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 504604aa3df784044ad7d0237d074402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2319012873105728947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025590045280894979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69cfc487b1d6ef544a20e7afe26aba7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9025590045478412368

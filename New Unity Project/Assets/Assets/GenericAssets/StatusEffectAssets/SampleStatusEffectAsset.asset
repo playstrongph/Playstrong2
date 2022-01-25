@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SampleStatusEffectAsset
   m_EditorClassIdentifier: 
   statusEffectName: SampleStatusEffectAsset
-  description: 
+  description: Sample Status Effect
   icon: {fileID: 0}
   statusEffectCounterUpdateType: {fileID: 0}
   statusEffectInstanceType: {fileID: 0}

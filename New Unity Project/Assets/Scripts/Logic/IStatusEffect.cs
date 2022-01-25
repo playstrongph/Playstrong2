@@ -27,6 +27,11 @@ namespace Logic
         string StatusEffectName { get; set; }
         
         /// <summary>
+        /// Status effect description
+        /// </summary>
+        string StatusEffectDescription { get; set; }
+
+        /// <summary>
         /// Interface access to status effect counters duration
         /// </summary>
         int CountersValue { get; set; }
@@ -67,5 +72,15 @@ namespace Logic
         /// Update status effect counters component
         /// </summary>
         IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
+        
+        /// <summary>
+        /// Caster of the status effect
+        /// </summary>
+        IHero StatusEffectCasterHero { get; set; }
+        
+        /// <summary>
+        /// Target of the status effect
+        /// </summary>
+        IHero StatusEffectTargetHero { get; set; }
     }
 }

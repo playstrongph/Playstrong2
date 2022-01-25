@@ -9,10 +9,11 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <summary>
         /// Add a new status effect 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
-        public virtual void AddStatusEffect(IHero hero, IStatusEffectAsset statusEffectAsset, int counters)
+        public virtual void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             
         }
@@ -20,19 +21,20 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <summary>
         /// Create a new status effect
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        protected IStatusEffect CreateStatusEffect(IHero hero, IStatusEffectAsset statusEffectAsset, int counters)
+        protected IStatusEffect CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             //TODO: put logic here
 
-            var statusEffectPrefab = hero.HeroStatusEffects.StatusEffectPrefab;
+            var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
             
             //Instantiate status effect game object
             var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
-                hero.HeroStatusEffects.StatusEffectsCanvas.transform);
+                targetHero.HeroStatusEffects.StatusEffectsCanvas.transform);
 
             //This is the new status effect
             var statusEffect = statusEffectObject.GetComponent<IStatusEffect>();
@@ -48,12 +50,13 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <summary>
         /// Update the counters of an existing status effect 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
         /// <param name="existingStatusEffect"></param>
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        protected IStatusEffect UpdateStatusEffect(IHero hero, IStatusEffect existingStatusEffect, IStatusEffectAsset statusEffectAsset, int counters)
+        protected IStatusEffect UpdateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect existingStatusEffect, IStatusEffectAsset statusEffectAsset, int counters)
         {
             //TODO: put logic here
             return null;
@@ -62,10 +65,11 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <summary>
         /// Checks if the new status effect to be added is already existing and calls either create or update status effect respectively 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
         /// <param name="newStatusEffect"></param>
         /// <returns></returns>
-        protected IStatusEffect CheckForExistingStatusEffect(IHero hero, IStatusEffect newStatusEffect)
+        protected IStatusEffect CheckForExistingStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect newStatusEffect)
         {
             //TODO: put logic here
             return null;
