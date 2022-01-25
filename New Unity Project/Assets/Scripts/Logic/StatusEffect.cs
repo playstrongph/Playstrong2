@@ -1,6 +1,8 @@
 ﻿using System;
+using ScriptableObjectScripts.StatusEffectAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
 using ScriptableObjectScripts.StatusEffectTypeAssets;
 using TMPro;
 using UnityEditor.MemoryProfiler;
@@ -13,31 +15,11 @@ namespace Logic
     public class StatusEffect : MonoBehaviour, IStatusEffect
     {
        
-        [SerializeField] private Image icon;
-        /// <summary>
-        /// StatusEffect icon
-        /// </summary>
-        public Image Icon
-        {
-            get => icon;
-            set => icon = value;
-        }
-        
        
-        [SerializeField] private TextMeshProUGUI countersText;
-        /// <summary>
-        /// StatusEffect visual text counters 
-        /// </summary>
-        public TextMeshProUGUI CountersText
-        {
-            get => countersText;
-            set => countersText = value;
-        }
 
        
-        [Header("SET IN RUNTIME")] [SerializeField]
-        
-        private string statusEffectName;
+       [SerializeField]
+       private string statusEffectName;
         /// <summary>
         /// Status effect name 
         /// </summary>
@@ -48,6 +30,7 @@ namespace Logic
         }
         
         [SerializeField]
+        [TextArea(1,2)]
         private string statusEffectDescription;
         /// <summary>
         /// Status effect description
@@ -57,7 +40,16 @@ namespace Logic
             get => statusEffectDescription;
             set => statusEffectDescription = value;
         }
-
+        
+        [SerializeField] private Image icon;
+        /// <summary>
+        /// StatusEffect icon
+        /// </summary>
+        public Image Icon
+        {
+            get => icon;
+            set => icon = value;
+        }
 
         [SerializeField] private int countersValue;
         
@@ -69,8 +61,30 @@ namespace Logic
             get => countersValue;
             set => countersValue = value;
         }
+
+        [SerializeField] private TextMeshProUGUI countersText;
+        /// <summary>
+        /// StatusEffect visual text counters 
+        /// </summary>
+        public TextMeshProUGUI CountersText
+        {
+            get => countersText;
+            set => countersText = value;
+        }
+
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectAsset))]
+        private Object statusEffectAsset;
         
-        
+        /// <summary>
+        /// Status effect asset reference
+        /// </summary>
+        public IStatusEffectAsset StatusEffectAsset
+        {
+            get => statusEffectAsset as IStatusEffectAsset;
+            set => statusEffectAsset = value as Object;
+        }
+
+
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IPreviewStatusEffect))]
         private Object previewStatusEffect;
         /// <summary>
@@ -124,6 +138,17 @@ namespace Logic
         {
             get => statusEffectCounterUpdateType as IStatusEffectCounterUpdateTypeAsset;
             set => statusEffectCounterUpdateType = value as Object;
+        }
+
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectInstanceTypeAsset))]
+        private Object statusEffectInstanceType;
+        /// <summary>
+        /// Status effect instance type - single, multiple
+        /// </summary>
+        public IStatusEffectInstanceTypeAsset StatusEffectInstanceType
+        {
+            get => statusEffectInstanceType as IStatusEffectInstanceTypeAsset;
+            set => statusEffectInstanceType = value as Object;
         }
 
 

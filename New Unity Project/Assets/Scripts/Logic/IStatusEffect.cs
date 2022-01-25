@@ -1,5 +1,7 @@
-﻿using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
+﻿using ScriptableObjectScripts.StatusEffectAssets;
+using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
+using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
 using ScriptableObjectScripts.StatusEffectTypeAssets;
 using TMPro;
 using UnityEngine;
@@ -37,6 +39,11 @@ namespace Logic
         int CountersValue { get; set; }
         
         /// <summary>
+        /// Status effect asset reference
+        /// </summary>
+        IStatusEffectAsset StatusEffectAsset { get; set; }
+
+        /// <summary>
         /// Interface access to status effect preview reference 
         /// </summary>
         IPreviewStatusEffect PreviewStatusEffect { get; set; }
@@ -67,6 +74,11 @@ namespace Logic
         /// Counter update types - start turn update, end turn update, and no update
         /// </summary>
         IStatusEffectCounterUpdateTypeAsset StatusEffectCounterUpdateType { get; set; }
+        
+        /// <summary>
+        /// Status effect instance type - single, multiple
+        /// </summary>
+        IStatusEffectInstanceTypeAsset StatusEffectInstanceType { get; set; }
 
         /// <summary>
         /// Update status effect counters component

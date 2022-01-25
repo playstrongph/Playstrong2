@@ -4,6 +4,7 @@ using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
+using ScriptableObjectScripts.StatusEffectTypeAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectAssets
@@ -43,6 +44,40 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             get => icon;
             private set => icon = value;
         }
+        
+        [SerializeField] private int countersValue = 0;
+        
+        /// <summary>
+        /// Status effect counters duration
+        /// </summary>
+        public int CountersValue
+        {
+            get => countersValue;
+            private set => countersValue = value;
+        }
+        
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
+        private Object statusEffectType;
+        /// <summary>
+        /// Status Effect Type Attribute - Buff, Debuff, Unique
+        /// </summary>
+        public IStatusEffectTypeAsset StatusEffectType
+        {
+            get => statusEffectType as IStatusEffectTypeAsset;
+            private set => statusEffectType = value as Object;
+        }
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterTypeAsset))]
+        private Object statusEffectCounterType;
+        /// <summary>
+        /// What are the counter type updates - immutable, no change, normal
+        /// </summary>
+        public IStatusEffectCounterTypeAsset StatusEffectCounterType
+        {
+            get => statusEffectCounterType as IStatusEffectCounterTypeAsset;
+            private set => statusEffectCounterType = value as Object;
+        }
 
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterUpdateTypeAsset))]
         private Object statusEffectCounterUpdateType;
@@ -64,17 +99,6 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         {
             get => statusEffectInstanceType as IStatusEffectInstanceTypeAsset;
             private set => statusEffectInstanceType = value as Object;
-        }
-
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterTypeAsset))]
-        private Object statusEffectCounterType;
-        /// <summary>
-        /// What are the counter type updates - immutable, no change, normal
-        /// </summary>
-        public IStatusEffectCounterTypeAsset StatusEffectCounterType
-        {
-            get => statusEffectCounterType as IStatusEffectCounterTypeAsset;
-            private set => statusEffectCounterType = value as Object;
         }
 
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectActionAsset))]

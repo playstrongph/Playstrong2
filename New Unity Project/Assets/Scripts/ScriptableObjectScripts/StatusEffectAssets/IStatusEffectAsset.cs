@@ -4,6 +4,7 @@ using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
+using ScriptableObjectScripts.StatusEffectTypeAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectAssets
@@ -26,6 +27,16 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         Sprite Icon { get; }
         
         /// <summary>
+        /// Status effect counters duration
+        /// </summary>
+        int CountersValue { get; }
+        
+        /// <summary>
+        /// Status Effect Type Attribute - Buff, Debuff, Unique
+        /// </summary>
+        IStatusEffectTypeAsset StatusEffectType { get; }
+
+        /// <summary>
         /// When shall the counters be updated - Start turn or End turn
         /// </summary>
         IStatusEffectCounterUpdateTypeAsset StatusEffectCounterUpdateType { get; }
@@ -39,7 +50,10 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// What are the counter type updates - immutable, no change, normal
         /// </summary>
         IStatusEffectCounterTypeAsset StatusEffectCounterType { get; }
+
+
         
+
         /// <summary>
         /// Returns a list of IStatusEffectActionAsset
         /// </summary>
