@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectAssets
 {
+    [CreateAssetMenu(fileName = "StatusEffectAsset", menuName = "Assets/StatusEffectAsset")]
     public class StatusEffectAsset : ScriptableObject, IStatusEffectAsset
     {
         [SerializeField] private string statusEffectName = "";
@@ -46,7 +47,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCounterUpdateTypeAsset))]
         private Object statusEffectCounterUpdateType;
         /// <summary>
-        /// When shall the counters be update - Start turn or End turn
+        /// When shall the counters be updated - Start turn or End turn
         /// </summary>
         public IStatusEffectCounterUpdateTypeAsset StatusEffectCounterUpdateType
         {
