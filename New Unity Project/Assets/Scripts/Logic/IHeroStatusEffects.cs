@@ -15,6 +15,16 @@ namespace Logic
         Canvas StatusEffectsCanvas { get; }
         
         /// <summary>
+        /// Returns status effect prefab as interface object
+        /// </summary>
+        IStatusEffect StatusEffectPrefab { get; }
+
+        /// <summary>
+        /// Returns preview status effect prefab as an interface object
+        /// </summary>
+        IPreviewStatusEffect PreviewStatusEffectPrefab { get; }
+
+        /// <summary>
         /// All hero buff effects
         /// </summary>
         IBuffEffects BuffEffects { get; }

@@ -27,6 +27,21 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         protected IStatusEffect CreateStatusEffect(IHero hero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             //TODO: put logic here
+
+            var statusEffectPrefab = hero.HeroStatusEffects.StatusEffectPrefab;
+            
+            //Instantiate status effect game object
+            var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
+                hero.HeroStatusEffects.StatusEffectsCanvas.transform);
+
+            //This is the new status effect
+            var statusEffect = statusEffectObject.GetComponent<IStatusEffect>();
+            
+            //TODO: Load status effect values from status effect asset
+            
+            
+           
+            
             return null;
         }
         
