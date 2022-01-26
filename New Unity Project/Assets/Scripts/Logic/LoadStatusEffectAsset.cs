@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjectScripts.ActionTargetAssets;
+using ScriptableObjectScripts.BasicConditionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
@@ -40,18 +41,22 @@ namespace Logic
             //Change counters type - normal, immutable, no change
             _statusEffect.StatusEffectCounterType = statusEffectAsset.StatusEffectCounterType;
             
-            //TODO: Create unique status effect values
+            //Creat unique status effect assets
+            CreateUniqueStatusEffectAsset(statusEffectAsset);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="statusEffectAsset"></param>
         private void CreateUniqueStatusEffectAsset(IStatusEffectAsset statusEffectAsset)
         {
             //Replace with a unique instance
             _statusEffect.StatusEffectAsset = Instantiate(statusEffectAsset as ScriptableObject) as IStatusEffectAsset;
-            
-            //TODO: Create unique standard actions
+
             CreateUniqueStandardActions();
 
-            //TODO: Create unique basic conditions
+            CreateUniqueBasicConditions();
         }
         
         /// <summary>
@@ -89,7 +94,45 @@ namespace Logic
             }
         }
         
-        
+        /// <summary>
+        /// Create unique basic conditions
+        /// </summary>
+        private void CreateUniqueBasicConditions()
+        {
+            
+            foreach (var statusEffectActionObject in  _statusEffect.StatusEffectAsset.StatusEffectActionObjects)
+            {   
+                //cast status effect action object as a standard action asset
+                var standardAction = statusEffectActionObject as IStandardActionAsset;
+
+                var i = 0;
+                // ReSharper disable once PossibleNullReferenceException
+                foreach (var basicCondition in standardAction.OrBasicConditions)
+                {
+                    //replace OR basic condition with a unique instance
+                    var basicConditionObject = Instantiate(basicCondition as ScriptableObject);
+                    standardAction.OrBasicConditionsScriptableObjects[i] = basicConditionObject;
+                    
+                    i++;
+                }
+                
+                var j = 0;
+                // ReSharper disable once PossibleNullReferenceException
+                foreach (var basicCondition in standardAction.OrBasicConditions)
+                {
+                    //replace AND basic condition with a unique instance
+                    var basicConditionObject = Instantiate(basicCondition as ScriptableObject);
+                    standardAction.AndBasicConditionsScriptableObjects[j] = basicConditionObject;
+                    
+                    j++;
+                }
+
+
+
+            }
+        }
+
+
 
 
     }
