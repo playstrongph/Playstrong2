@@ -156,7 +156,12 @@ namespace Logic
         /// <summary>
         /// Update status effect counters component
         /// </summary>
-        public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
+        public IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; private set; }
+        
+        /// <summary>
+        /// Load the status effect asset values and create unique standard actions, and components
+        /// </summary>
+        public ILoadStatusEffectAsset LoadStatusEffectAsset { get; private set; }
 
         /// <summary>
         /// Caster of the status effect
@@ -167,10 +172,13 @@ namespace Logic
         /// Target of the status effect
         /// </summary>
         public IHero StatusEffectTargetHero { get; set; }
+        
+       
 
         private void Awake()
         {
             UpdateStatusEffectCounters = GetComponent<UpdateStatusEffectCounters>();
+            LoadStatusEffectAsset = GetComponent<ILoadStatusEffectAsset>();
         }
     }
 }

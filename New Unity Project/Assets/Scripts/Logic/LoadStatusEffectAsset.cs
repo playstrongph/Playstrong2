@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class LoadStatusEffectAsset : MonoBehaviour
+    public class LoadStatusEffectAsset : MonoBehaviour, ILoadStatusEffectAsset
     {
 
         private IStatusEffect _statusEffect;
@@ -16,8 +16,15 @@ namespace Logic
         {
             _statusEffect = GetComponent<IStatusEffect>();
         }
-
-        private void StartAction(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
+        
+        /// <summary>
+        /// Load status effect asset values to status effect and create unique instances
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="statusEffectAsset"></param>
+        /// <param name="counters"></param>
+        public void StartAction(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             _statusEffect.StatusEffectName = statusEffectAsset.StatusEffectName;
             _statusEffect.StatusEffectDescription = statusEffectAsset.Description;

@@ -83,8 +83,13 @@ namespace Logic
         /// <summary>
         /// Update status effect counters component
         /// </summary>
-        IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; set; }
+        IUpdateStatusEffectCounters UpdateStatusEffectCounters { get; }
         
+        /// <summary>
+        /// Load the status effect asset values and create unique standard actions, and components
+        /// </summary>
+        ILoadStatusEffectAsset LoadStatusEffectAsset { get; }
+
         /// <summary>
         /// Caster of the status effect
         /// </summary>

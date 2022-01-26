@@ -41,9 +41,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             
             //TODO: Load status effect values from status effect asset
             
-            
-           
-            
+
+
+
             return null;
         }
         
