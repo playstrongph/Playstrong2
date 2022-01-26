@@ -43,7 +43,14 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             SkillCasterHero = skill.CasterHero;
         }
         
-        //TODO - public virtual void InitializeStatusEffectCasterHero(IStatusEffect statusEffect)
+        /// <summary>
+        /// Sets the reference to the status effect's caster hero
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        public virtual void InitializeStatusEffectCasterHero(IStatusEffect statusEffect)
+        {
+            StatusEffectCasterHero = statusEffect.StatusEffectCasterHero;
+        }
         
         
         /// <summary>

@@ -17,5 +17,11 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// </summary>
         /// <param name="skill"></param>
         void InitializeSkillCasterHero(ISkill skill);
+        
+        /// <summary>
+        /// Sets the reference to the status effect's caster hero
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        void InitializeStatusEffectCasterHero(IStatusEffect statusEffect);
     }
 }

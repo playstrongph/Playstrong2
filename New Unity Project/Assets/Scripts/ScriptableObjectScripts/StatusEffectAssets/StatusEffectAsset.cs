@@ -152,14 +152,5 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         }
         
         //TODO: remove status effect on death
-
-
-
-
-
-
-
-
-
     }
 }

@@ -14,12 +14,8 @@ namespace Logic
 {
     public class StatusEffect : MonoBehaviour, IStatusEffect
     {
-       
-       
-
-       
-       [SerializeField]
-       private string statusEffectName;
+        [SerializeField]
+        private string statusEffectName;
         /// <summary>
         /// Status effect name 
         /// </summary>
