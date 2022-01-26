@@ -39,12 +39,18 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //This is the new status effect
             var statusEffect = statusEffectObject.GetComponent<IStatusEffect>();
             
-            //TODO: Load status effect values from status effect asset
+            //Load status effect values from status effect asset
+            statusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
             
+            //TODO: Add to status effects list
+            
+            //TODO: Apply status effect
+            
+            //TODO: Create status effect preview
+            
+            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
 
-
-
-            return null;
+            return statusEffect;
         }
         
         /// <summary>
