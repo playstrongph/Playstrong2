@@ -67,7 +67,16 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <returns></returns>
         protected IStatusEffect UpdateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect existingStatusEffect, IStatusEffectAsset statusEffectAsset, int counters)
         {
-            //TODO: put logic here
+            var newCounters = Mathf.Max(existingStatusEffect.CountersValue, counters);
+            
+            //Update the existing status effect counters
+            existingStatusEffect.UpdateStatusEffectCounters.SetCountersToValue(newCounters);
+            
+            //Update the status effect caster hero
+            existingStatusEffect.StatusEffectCasterHero = casterHero;
+
+            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
+            
             return null;
         }
         
@@ -75,12 +84,31 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// Checks if the new status effect to be added is already existing and calls either create or update status effect respectively 
         /// </summary>
         /// <param name="targetHero"></param>
-        /// <param name="casterHero"></param>
         /// <param name="newStatusEffect"></param>
         /// <returns></returns>
-        protected IStatusEffect CheckForExistingStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect newStatusEffect)
+        protected IStatusEffect CheckForExistingStatusEffect(IHero targetHero, IStatusEffect newStatusEffect)
         {
-            //TODO: put logic here
+            //Check all buffs
+            foreach (var buff in targetHero.HeroStatusEffects.BuffEffects.StatusEffects)
+            {
+                if (newStatusEffect.StatusEffectName == buff.StatusEffectName)
+                    return buff;
+            }
+            
+            //Check all debuffs
+            foreach (var debuff in targetHero.HeroStatusEffects.DebuffEffects.StatusEffects)
+            {
+                if (newStatusEffect.StatusEffectName == debuff.StatusEffectName)
+                    return debuff;
+            }
+            
+            //Check all unique status effects
+            foreach (var uniqueStatusEffect in targetHero.HeroStatusEffects.UniqueStatusEffects.StatusEffects)
+            {
+                if (newStatusEffect.StatusEffectName == uniqueStatusEffect.StatusEffectName)
+                    return uniqueStatusEffect;
+            }
+
             return null;
         }
         
