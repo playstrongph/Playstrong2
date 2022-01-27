@@ -14,5 +14,10 @@ namespace Logic
         /// Returns the inheriting class as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+        
+        /// <summary>
+        /// Load preview status effect values
+        /// </summary>
+        ILoadPreviewStatusEffectAsset LoadPreviewStatusEffectAsset { get; }
     }
 }

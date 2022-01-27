@@ -42,12 +42,15 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Load status effect values from status effect asset
             statusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
             
-            //TODO: Add to status effects list
+            //Add to status effects list
+            statusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, statusEffect);
             
-            //TODO: Apply status effect
+            //Apply status effect
+            statusEffect.StatusEffectAsset.ApplyAction(targetHero);
             
-            //TODO: Create status effect preview
-            
+            //Create status effect preview
+            CreateStatusEffectPreview(targetHero,statusEffectAsset,statusEffect);
+
             //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
 
             return statusEffect;
@@ -81,8 +84,25 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             return null;
         }
         
-        
-        
-        
+        /// <summary>
+        /// Creates and loads the status effect preview
+        /// </summary>
+        private void CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset, IStatusEffect statusEffect)
+        {
+            var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
+            var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
+
+            var previewObject = Instantiate(previewPrefab, previewParent);
+            var previewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
+            
+            //Load preview status effect values
+            previewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+
+            //Set status effect reference to status effect preview
+            statusEffect.PreviewStatusEffect = previewStatusEffect;
+
+        }
+
+
     }
 }

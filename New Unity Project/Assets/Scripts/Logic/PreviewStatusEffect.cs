@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,6 +33,7 @@ namespace Logic
         /// StatusEffect description text  
         /// </summary>
         [SerializeField] private TextMeshProUGUI descriptionText;
+        
 
         public TextMeshProUGUI DescriptionText
         {
@@ -43,5 +45,15 @@ namespace Logic
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+        
+        /// <summary>
+        /// Load preview status effect values
+        /// </summary>
+        public ILoadPreviewStatusEffectAsset LoadPreviewStatusEffectAsset { get; private set; }
+
+        private void Awake()
+        {
+            LoadPreviewStatusEffectAsset = GetComponent<ILoadPreviewStatusEffectAsset>();
+        }
     }
 }
