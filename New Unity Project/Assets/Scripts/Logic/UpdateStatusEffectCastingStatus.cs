@@ -23,10 +23,10 @@ namespace Logic
         /// When the target hero and caster hero of the status effect is the same this turn
         /// Example circumstances - Buff all allies (the caster hero is also a target). 
         /// </summary>
-        public IStatusEffectCastingStatusAsset FreshCastAsset
+        private IStatusEffectCastingStatusAsset FreshCastAsset
         {
             get => freshCastAsset as IStatusEffectCastingStatusAsset;
-            private set => freshCastAsset = value as Object;
+            set => freshCastAsset = value as Object;
         }
         
         /// <summary>
@@ -36,17 +36,23 @@ namespace Logic
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCastingStatusAsset))]
         private Object oldCastAsset;
 
-        public IStatusEffectCastingStatusAsset OldCastAsset
+        private IStatusEffectCastingStatusAsset OldCastAsset
         {
             get => oldCastAsset as IStatusEffectCastingStatusAsset;
-            private set => oldCastAsset = value as Object;
+            set => oldCastAsset = value as Object;
         }
-
+        
+        /// <summary>
+        /// Set to fresh cast status
+        /// </summary>
         public void SetFreshCastStatus()
         {
             _statusEffect.StatusEffectCastingStatus = FreshCastAsset;
         }
         
+        /// <summary>
+        /// Set to old cast status
+        /// </summary>
         public void SetOldCastStatus()
         {
             _statusEffect.StatusEffectCastingStatus = OldCastAsset;
