@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 {
     public abstract class StatusEffectInstanceTypeAsset : ScriptableObject, IStatusEffectInstanceTypeAsset
     {
+
+        protected IStatusEffect NewStatusEffect;
+        
         /// <summary>
         /// Add a new status effect 
         /// </summary>
@@ -26,38 +30,22 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        protected IStatusEffect CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
+        protected IEnumerator CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
-            //TODO: put logic here
 
-            var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
-            //Instantiate status effect game object
-            var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
-                targetHero.HeroStatusEffects.StatusEffectsCanvas.transform);
+            visualTree.AddCurrent(CreateStatusEffectVisual(targetHero,casterHero,statusEffectAsset,counters));
 
-            //This is the new status effect
-            var statusEffect = statusEffectObject.GetComponent<IStatusEffect>();
-            
-            //Load status effect values from status effect asset
-            statusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
-            
-            //Add to status effects list
-            statusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, statusEffect);
-            
-            //Apply status effect
-            statusEffect.StatusEffectAsset.ApplyAction(targetHero);
-            
-            //Create status effect preview
-            CreateStatusEffectPreview(targetHero,statusEffectAsset,statusEffect);
+            logicTree.EndSequence();
+            yield return null;
 
-            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
-
-            return statusEffect;
         }
         
         /// <summary>
-        /// Update the counters of an existing status effect 
+        /// Update the counters of an existing status effect
+        /// Set SetCountersToValue already contains the visual trees
         /// </summary>
         /// <param name="targetHero"></param>
         /// <param name="casterHero"></param>
@@ -65,7 +53,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        protected IStatusEffect UpdateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect existingStatusEffect, IStatusEffectAsset statusEffectAsset, int counters)
+        protected void UpdateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffect existingStatusEffect, IStatusEffectAsset statusEffectAsset, int counters)
         {
             var newCounters = Mathf.Max(existingStatusEffect.CountersValue, counters);
             
@@ -76,8 +64,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             existingStatusEffect.StatusEffectCasterHero = casterHero;
 
             //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
-            
-            return null;
         }
         
         /// <summary>
@@ -128,6 +114,45 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             //Set status effect reference to status effect preview
             statusEffect.PreviewStatusEffect = previewStatusEffect;
+
+        }
+        
+        /// <summary>
+        /// Visual tree queueing for create status effect
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="statusEffectAsset"></param>
+        /// <param name="counters"></param>
+        /// <returns></returns>
+        private IEnumerator CreateStatusEffectVisual(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
+            
+            //Instantiate status effect game object
+            var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
+                targetHero.HeroStatusEffects.StatusEffectsCanvas.transform);
+
+            //This is the new status effect
+            NewStatusEffect = statusEffectObject.GetComponent<IStatusEffect>();
+            
+            //Load status effect values from status effect asset
+            NewStatusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
+            
+            //Add to status effects list
+            NewStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, NewStatusEffect);
+            
+            //Apply status effect
+            NewStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
+            
+            //Create status effect preview
+            CreateStatusEffectPreview(targetHero,statusEffectAsset,NewStatusEffect);
+
+            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
+            
+            visualTree.EndSequence();
+            yield return null;
 
         }
 
