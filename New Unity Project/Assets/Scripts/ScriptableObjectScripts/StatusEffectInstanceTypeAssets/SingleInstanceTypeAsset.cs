@@ -7,6 +7,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
     /// <summary>
     /// Status effects that can only have 1 instance per hero at a time during combat
     /// </summary>
+    [CreateAssetMenu(fileName = "SingleInstanceType", menuName = "Assets/StatusEffectsInstanceTypeAsset/SingleInstanceType")]
     public class SingleInstanceTypeAsset : StatusEffectInstanceTypeAsset
     {
         public override void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
