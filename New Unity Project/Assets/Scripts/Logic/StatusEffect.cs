@@ -152,6 +152,16 @@ namespace Logic
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
+
+        /// <summary>
+        /// Caster of the status effect
+        /// </summary>
+        public IHero StatusEffectCasterHero { get; set; }
+        
+        /// <summary>
+        /// Target of the status effect
+        /// </summary>
+        public IHero StatusEffectTargetHero { get; set; }
         
         /// <summary>
         /// Update status effect counters component
@@ -164,21 +174,17 @@ namespace Logic
         public ILoadStatusEffectAsset LoadStatusEffectAsset { get; private set; }
 
         /// <summary>
-        /// Caster of the status effect
+        /// Removes the status effect and its game objects
         /// </summary>
-        public IHero StatusEffectCasterHero { get; set; }
-        
-        /// <summary>
-        /// Target of the status effect
-        /// </summary>
-        public IHero StatusEffectTargetHero { get; set; }
-        
-       
+        public IRemoveStatusEffect RemoveStatusEffect { get; private set; }
+
+
 
         private void Awake()
         {
             UpdateStatusEffectCounters = GetComponent<UpdateStatusEffectCounters>();
             LoadStatusEffectAsset = GetComponent<ILoadStatusEffectAsset>();
+            RemoveStatusEffect = GetComponent<IRemoveStatusEffect>();
         }
     }
 }

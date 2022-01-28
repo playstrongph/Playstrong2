@@ -89,6 +89,11 @@ namespace Logic
         /// Load the status effect asset values and create unique standard actions, and components
         /// </summary>
         ILoadStatusEffectAsset LoadStatusEffectAsset { get; }
+        
+        /// <summary>
+        /// Removes and destroys the status effect
+        /// </summary>
+        IRemoveStatusEffect RemoveStatusEffect { get; }
 
         /// <summary>
         /// Caster of the status effect

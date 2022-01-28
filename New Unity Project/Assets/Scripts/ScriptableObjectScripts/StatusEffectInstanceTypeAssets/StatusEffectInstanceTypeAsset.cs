@@ -70,28 +70,28 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// Checks if the new status effect to be added is already existing and calls either create or update status effect respectively 
         /// </summary>
         /// <param name="targetHero"></param>
-        /// <param name="newStatusEffect"></param>
+        /// <param name="statusEffectAsset"></param>
         /// <returns></returns>
-        protected IStatusEffect CheckForExistingStatusEffect(IHero targetHero, IStatusEffect newStatusEffect)
+        protected IStatusEffect CheckForExistingStatusEffect(IHero targetHero, IStatusEffectAsset statusEffectAsset)
         {
             //Check all buffs
             foreach (var buff in targetHero.HeroStatusEffects.BuffEffects.StatusEffects)
             {
-                if (newStatusEffect.StatusEffectName == buff.StatusEffectName)
+                if (statusEffectAsset.StatusEffectName == buff.StatusEffectName)
                     return buff;
             }
             
             //Check all debuffs
             foreach (var debuff in targetHero.HeroStatusEffects.DebuffEffects.StatusEffects)
             {
-                if (newStatusEffect.StatusEffectName == debuff.StatusEffectName)
+                if (statusEffectAsset.StatusEffectName == debuff.StatusEffectName)
                     return debuff;
             }
             
             //Check all unique status effects
             foreach (var uniqueStatusEffect in targetHero.HeroStatusEffects.UniqueStatusEffects.StatusEffects)
             {
-                if (newStatusEffect.StatusEffectName == uniqueStatusEffect.StatusEffectName)
+                if (statusEffectAsset.StatusEffectName == uniqueStatusEffect.StatusEffectName)
                     return uniqueStatusEffect;
             }
 
