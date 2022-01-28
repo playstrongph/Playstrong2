@@ -51,6 +51,8 @@ namespace Logic
         /// </summary>
         public void TurnReduceCounters()
         {
+            //TODO: Logic - if casting stats is freshCast, change to oldCast.  If oldCast, proceed with turnReduceCounters 
+            
             _statusEffect.StatusEffectCounterType.TurnReduceCounters(_statusEffect);
         }
         

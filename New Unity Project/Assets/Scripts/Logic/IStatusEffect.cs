@@ -1,4 +1,5 @@
 ﻿using ScriptableObjectScripts.StatusEffectAssets;
+using ScriptableObjectScripts.StatusEffectCastingStatusAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
@@ -79,6 +80,11 @@ namespace Logic
         /// Status effect instance type - single, multiple
         /// </summary>
         IStatusEffectInstanceTypeAsset StatusEffectInstanceType { get; set; }
+        
+        /// <summary>
+        /// "Fresh" or "Old" status effect casting status 
+        /// </summary>
+        IStatusEffectCastingStatusAsset StatusEffectCastingStatus { get; set; }
 
         /// <summary>
         /// Update status effect counters component
@@ -94,6 +100,11 @@ namespace Logic
         /// Removes and destroys the status effect
         /// </summary>
         IRemoveStatusEffect RemoveStatusEffect { get; }
+        
+        /// <summary>
+        /// Sets the status effect casting status to "fresh" or "old"
+        /// </summary>
+        IUpdateStatusEffectCastingStatus UpdateStatusEffectCastingStatus { get; }
 
         /// <summary>
         /// Caster of the status effect

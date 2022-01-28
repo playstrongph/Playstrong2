@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjectScripts.StatusEffectAssets;
+using ScriptableObjectScripts.StatusEffectCastingStatusAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
 using ScriptableObjectScripts.StatusEffectInstanceTypeAssets;
@@ -147,6 +148,16 @@ namespace Logic
             set => statusEffectInstanceType = value as Object;
         }
 
+        [Header("STATUS EFFECT STATUSES")]
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectCastingStatusAsset))]
+        private Object statusEffectCastingStatus;
+        
+        public IStatusEffectCastingStatusAsset StatusEffectCastingStatus
+        {
+            get => statusEffectCastingStatus as IStatusEffectCastingStatusAsset;
+            set => statusEffectCastingStatus = value as Object;
+        }
+
 
         /// <summary>
         /// Returns this as a game object
@@ -177,14 +188,18 @@ namespace Logic
         /// Removes the status effect and its game objects
         /// </summary>
         public IRemoveStatusEffect RemoveStatusEffect { get; private set; }
-
-
+        
+        /// <summary>
+        /// Sets the status effect casting status to "fresh" or "old"
+        /// </summary>
+        public IUpdateStatusEffectCastingStatus UpdateStatusEffectCastingStatus { get; private set;}
 
         private void Awake()
         {
             UpdateStatusEffectCounters = GetComponent<UpdateStatusEffectCounters>();
             LoadStatusEffectAsset = GetComponent<ILoadStatusEffectAsset>();
             RemoveStatusEffect = GetComponent<IRemoveStatusEffect>();
+            UpdateStatusEffectCastingStatus = GetComponent<IUpdateStatusEffectCastingStatus>();
         }
     }
 }
