@@ -63,7 +63,11 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Update the status effect caster hero
             existingStatusEffect.StatusEffectCasterHero = casterHero;
 
-            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
+            //Set status effect casting status
+            if(targetHero==casterHero)
+                NewStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
+            else
+                NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
         }
         
         /// <summary>
@@ -149,7 +153,12 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Create status effect preview
             CreateStatusEffectPreview(targetHero,statusEffectAsset,NewStatusEffect);
 
-            //TODO:: Temporary no decrease if status effect target is also the caster hero this turn
+            //Set status effect casting status
+            if(targetHero==casterHero)
+                NewStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
+            else
+                NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
+            
             
             visualTree.EndSequence();
             yield return null;

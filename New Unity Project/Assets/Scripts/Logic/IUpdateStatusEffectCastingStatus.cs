@@ -11,5 +11,9 @@ namespace Logic
         IStatusEffectCastingStatusAsset FreshCastAsset { get; }
 
         IStatusEffectCastingStatusAsset OldCastAsset { get; }
+
+        void SetFreshCastStatus();
+
+        void SetOldCastStatus();
     }
 }

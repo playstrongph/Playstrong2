@@ -41,8 +41,19 @@ namespace Logic
             get => oldCastAsset as IStatusEffectCastingStatusAsset;
             private set => oldCastAsset = value as Object;
         }
+
+        public void SetFreshCastStatus()
+        {
+            _statusEffect.StatusEffectCastingStatus = FreshCastAsset;
+        }
         
-        
+        public void SetOldCastStatus()
+        {
+            _statusEffect.StatusEffectCastingStatus = OldCastAsset;
+        }
+
+
+
 
     }
 }

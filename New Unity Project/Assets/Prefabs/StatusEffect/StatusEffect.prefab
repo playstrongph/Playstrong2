@@ -200,6 +200,7 @@ MonoBehaviour:
   statusEffectCounterType: {fileID: 0}
   statusEffectCounterUpdateType: {fileID: 0}
   statusEffectInstanceType: {fileID: 0}
+  statusEffectCastingStatus: {fileID: 0}
 --- !u!114 &2136267900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25ce49d378b9cf4395bd9b2abba7711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freshCastAsset: {fileID: 11400000, guid: cc0f3c8c06848024ebbbb898a6193459, type: 2}
+  oldCastAsset: {fileID: 11400000, guid: 8a4c5bbd938ea0f45ab404ad8aa8a6a0, type: 2}
 --- !u!1 &9025590045478412368
 GameObject:
   m_ObjectHideFlags: 0
