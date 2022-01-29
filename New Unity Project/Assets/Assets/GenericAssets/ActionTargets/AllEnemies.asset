@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8ad7c23b4a6a0b46b07e5f5bbd4049a, type: 3}
-  m_Name: SampleAllEnemies
+  m_Name: AllEnemies
   m_EditorClassIdentifier: 

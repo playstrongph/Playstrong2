@@ -241,6 +241,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             
+            //No action for status effects and other skills
+            
             logicTree.EndSequence();
             yield return null;
         }
@@ -252,6 +254,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public virtual IEnumerator PostExecuteActionEvents(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //No action for status effects and other skills
             
             logicTree.EndSequence();
             yield return null;

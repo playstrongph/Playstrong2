@@ -15,7 +15,10 @@ MonoBehaviour:
   statusEffectName: SampleStatusEffectAsset
   description: Sample Status Effect
   icon: {fileID: 0}
+  countersValue: 0
+  statusEffectType: {fileID: 0}
+  statusEffectCounterType: {fileID: 0}
   statusEffectCounterUpdateType: {fileID: 0}
   statusEffectInstanceType: {fileID: 0}
-  statusEffectCounterType: {fileID: 0}
-  statusEffectActions: []
+  statusEffectActions:
+  - {fileID: 0}

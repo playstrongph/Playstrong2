@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf58b89c0c300884da9e342fa997b825, type: 3}
-  m_Name: SampleThisHero
+  m_Name: ThisHero
   m_EditorClassIdentifier: 
