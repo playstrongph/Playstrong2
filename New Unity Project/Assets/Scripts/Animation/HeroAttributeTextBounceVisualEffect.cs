@@ -89,6 +89,8 @@ namespace Animation
             displayText.faceColor = text.faceColor;
             displayText.text = text.text;
             
+            displayText.transform.position = text.transform.position;
+            
             //Display damage animation
             canvasGroup.alpha = fadeAlphaStart;
 
