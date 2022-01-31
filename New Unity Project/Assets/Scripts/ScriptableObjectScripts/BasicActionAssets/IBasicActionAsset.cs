@@ -20,16 +20,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Executes the basic action logic
         /// Exclusively used by hero life status
         /// </summary>
-        /// <param name="hero"></param>
-        IEnumerator ExecuteAction(IHero hero);
+        /// <param name="targetedHero"></param>
+        IEnumerator ExecuteAction(IHero targetedHero);
         
         /// <summary>
         ///  Undoes the effect of execute action, mostly
         /// used in status effects
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        IEnumerator UndoExecuteAction(IHero hero);
+        IEnumerator UndoExecuteAction(IHero targetedHero);
         
         /// <summary>
         /// All the events before execute action
@@ -46,7 +46,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         IEnumerator PostExecuteActionEvents(IHero hero);
         
         //TEST
-        IEnumerator MainAnimationAction(IHero hero);
+        IEnumerator MainAnimationAction(IHero targetedHero);
 
 
         #region OLD LOGIC

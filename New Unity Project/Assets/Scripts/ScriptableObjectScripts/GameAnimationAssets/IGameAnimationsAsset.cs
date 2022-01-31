@@ -1,4 +1,5 @@
 ﻿using Logic;
+using TMPro;
 
 namespace ScriptableObjectScripts.GameAnimationAssets
 {
@@ -9,8 +10,8 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// </summary>
         /// <param name="hero"></param>
         void PlayAnimation(IHero hero);
-        
-        
+
+        void PlayAnimation(TextMeshProUGUI text);
         
         /// <summary>
         /// Animation duration.  Not necessarily equal to the total animation duration,

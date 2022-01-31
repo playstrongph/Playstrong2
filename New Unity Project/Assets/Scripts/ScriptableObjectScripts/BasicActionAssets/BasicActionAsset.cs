@@ -121,16 +121,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Play the main execute action animations
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator MainAnimationAction(IHero hero, IStandardActionAsset standardAction)
+        private IEnumerator MainAnimationAction(IHero targetedHero, IStandardActionAsset standardAction)
         {
-            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(targetedHero);
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(targetedHero);
                 
                 //Check if conditionTargetHeroes and actionTargetHeroes are the same
                 //If not, use index 0 (meaning there is only 1 condition target)
@@ -142,7 +142,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Set targeting hero of the targeted hero    
-                    newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(hero);
+                    newTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(targetedHero);
                     
                     //Target action calls execute action if both the caster and target are alive
                     newTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,newTargetHero);
@@ -151,7 +151,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
             //example - multiple targets for attack, heal, etc.
-            logicTree.AddCurrent(AnimationInterval(hero,MainAnimationDuration));
+            logicTree.AddCurrent(AnimationInterval(targetedHero,MainAnimationDuration));
 
             logicTree.EndSequence();
             yield return null;
@@ -197,10 +197,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Executes the basic action logic, used by hero life status
         /// This is the method overriden by the specific basic actions
         /// </summary>
-        /// <param name="hero"></param>
-        public virtual IEnumerator ExecuteAction(IHero hero)
+        /// <param name="targetedHero"></param>
+        public virtual IEnumerator ExecuteAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
             logicTree.EndSequence();
             yield return null;
@@ -210,11 +210,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Undoes the effect of execute action, mostly
         /// used in status effects
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator UndoExecuteAction(IHero hero)
+        public virtual IEnumerator UndoExecuteAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
             logicTree.EndSequence();
             yield return null;
@@ -223,11 +223,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Basic action animation
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator MainAnimationAction(IHero hero)
+        public virtual IEnumerator MainAnimationAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
             logicTree.EndSequence();
             yield return null;

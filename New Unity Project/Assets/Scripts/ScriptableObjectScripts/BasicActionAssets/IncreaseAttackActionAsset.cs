@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.GameAnimationAssets;
+using TMPro;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
+    [CreateAssetMenu(fileName = "IncreaseAttackAction", menuName = "Assets/BasicActions/I/IncreaseAttackAction")]
     public class IncreaseAttackActionAsset : BasicActionAsset
     {   
         /// <summary>
@@ -22,43 +25,56 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// change in attribute value - used by execute and undo execute action
         /// </summary>
         private int _changeValue = 0;
-        
+
+
+        [Header("ANIMATIONS")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject heroAttributeAnimationAsset;
+
+        private IGameAnimationsAsset HeroAttributeAnimationAsset
+        {
+            get => heroAttributeAnimationAsset as IGameAnimationsAsset;
+            set => heroAttributeAnimationAsset = value as ScriptableObject;
+        }
+
+
         /// <summary>
         /// Increase attack logic execution
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
 
-            var baseValue = hero.HeroLogic.HeroAttributes.BaseAttack;
+            var baseValue = targetedHero.HeroLogic.HeroAttributes.BaseAttack;
             
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newAttackValue = hero.HeroLogic.HeroAttributes.Attack + _changeValue;
+            var newAttackValue = targetedHero.HeroLogic.HeroAttributes.Attack + _changeValue;
             
             //Set the new attack value in hero attributes
-            hero.HeroLogic.SetAttack.StartAction(newAttackValue);
+            targetedHero.HeroLogic.SetAttack.StartAction(newAttackValue);
             
             logicTree.EndSequence();
             yield return null;
         }
         
-        public override IEnumerator UndoExecuteAction(IHero hero)
+        public override IEnumerator UndoExecuteAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
-            var newAttackValue = hero.HeroLogic.HeroAttributes.Attack - _changeValue;
+            var newAttackValue = targetedHero.HeroLogic.HeroAttributes.Attack - _changeValue;
             
             //Set the new attack value in hero attributes
-            hero.HeroLogic.SetAttack.StartAction(newAttackValue);
+            targetedHero.HeroLogic.SetAttack.StartAction(newAttackValue);
             
             //Update the attack text with no animation
-            visualTree.AddCurrent(SetAttackVisual(hero));
+            visualTree.AddCurrent(SetAttackVisual(targetedHero));
             
             logicTree.EndSequence();
             yield return null;
@@ -67,18 +83,37 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Text Update Animation
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimationAction(IHero hero)
+        public override IEnumerator MainAnimationAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
             
+            visualTree.AddCurrent(BasicActionAnimation(targetedHero));
             
             
             logicTree.EndSequence();
             yield return null;
         }
         
+        /// <summary>
+        /// Bounce Visual Text animation
+        /// </summary>
+        /// <param name="targetedHero"></param>
+        /// <returns></returns>
+        private IEnumerator BasicActionAnimation(IHero targetedHero)
+        {
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            
+            //attack text mesh pro GUI
+            var attackText = targetedHero.HeroVisual.AttackVisual.Text;
+            
+            HeroAttributeAnimationAsset.PlayAnimation(attackText);
+
+            visualTree.EndSequence();
+            yield return null;
+        }
         
         
         

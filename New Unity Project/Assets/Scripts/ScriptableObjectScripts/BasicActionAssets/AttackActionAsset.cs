@@ -74,14 +74,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Called after confirming target and caster hero are still both alive
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero targetedHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
             //Check hero inability status before proceeding with attack action
-            hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
+            targetedHero.HeroLogic.HeroInabilityStatus.AttackAction(this, targetedHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -160,14 +160,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Basic action animation
         /// </summary>
-        /// <param name="casterHero"></param>
+        /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimationAction(IHero casterHero)
+        public override IEnumerator MainAnimationAction(IHero targetedHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
 
-            visualTree.AddCurrent(BasicActionAnimation(casterHero));
+            visualTree.AddCurrent(BasicActionAnimation(targetedHero));
             
             logicTree.EndSequence();
             yield return null;
