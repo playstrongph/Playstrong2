@@ -37,17 +37,17 @@ namespace Animation
         /// Duration of the change scale animation 
         /// </summary>
         [Header("DO TWEEN VALUES")]
-        [SerializeField] private float doScaleDuration = 0.15f;
+        [SerializeField] private float doScaleDuration = 0.3f;
         
         /// <summary>
         /// Scale enhancer
         /// </summary>
-        [SerializeField] private float localScaleMultiplier = 1.6f;
+        [SerializeField] private float localScaleMultiplier = 2f;
         
         /// <summary>
         /// Number of times the animation bounces
         /// </summary>
-        [SerializeField] private int doScaleLoopCount = 4;
+        [SerializeField] private int doScaleLoopCount = 2;
         
         /// <summary>
         /// Duration of the image fading to full invisible
@@ -83,12 +83,11 @@ namespace Animation
         /// <param name="text"></param>
         public override void PlayVisualEffect(TextMeshProUGUI text)
         {
-            //TEST - Set display text properties
+            //Set display text properties
             displayText.fontStyle = text.fontStyle;
             displayText.fontSize = text.fontSize;
             displayText.faceColor = text.faceColor;
             displayText.text = text.text;
-            
             displayText.transform.position = text.transform.position;
             
             //Display damage animation

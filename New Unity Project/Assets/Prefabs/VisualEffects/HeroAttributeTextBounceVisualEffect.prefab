@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7141874222350928602}
   - component: {fileID: 1858058756829736400}
   m_Layer: 0
-  m_Name: TextBounceVisualEffect
+  m_Name: HeroAttributeTextBounceVisualEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,9 +53,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 7141874222832558365}
   image: {fileID: 7141874222719936453}
   displayText: {fileID: 7141874223857600754}
-  doScaleDuration: 0.15
-  localScaleMultiplier: 1.6
-  doScaleLoopCount: 4
+  doScaleDuration: 0.3
+  localScaleMultiplier: 2
+  doScaleLoopCount: 2
   fadeInterval: 1
   fadeAlphaStart: 1
   fadeAlphaEnd: 0
