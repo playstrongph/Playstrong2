@@ -17,10 +17,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public void StatusEffectStartAction(IHero hero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-            logicTree.AddCurrent(StartActionCoroutine(hero));
-
+            StartAction(hero);
         }
         
         /// <summary>
@@ -29,10 +26,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public void UndoStatusEffectStartAction(IHero hero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-            logicTree.AddCurrent(UndoStartActionCoroutine(hero));
-
+            UndoStartAction(hero);
         }
         
         

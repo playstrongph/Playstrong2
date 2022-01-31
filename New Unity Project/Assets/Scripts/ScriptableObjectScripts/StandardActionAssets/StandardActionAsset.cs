@@ -202,7 +202,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
-        protected IEnumerator StartActionCoroutine(IHero hero)
+        private IEnumerator StartActionCoroutine(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
 
@@ -232,7 +232,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
-        protected IEnumerator UndoStartActionCoroutine(IHero hero)
+        private IEnumerator UndoStartActionCoroutine(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
 

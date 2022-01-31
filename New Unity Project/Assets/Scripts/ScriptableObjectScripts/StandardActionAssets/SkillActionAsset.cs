@@ -41,7 +41,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //logicTree.AddCurrent(SetUsingPassiveSkillStatus());
 
             //TEST
-            logicTree.AddCurrent(StartActionCoroutine(hero));
+            //logicTree.AddCurrent(StartActionCoroutine(hero));
+            StartAction(hero);
             
             //TODO - Check if this is still needed - can be void?
             //logicTree.AddCurrent(SetHeroUsedPassiveSkill());
