@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectName: Attack Up
   description: Attack +50%
-  icon: {fileID: 0}
+  icon: {fileID: 5653184534992381442, guid: a47d7dd823067e6418b6a0d85d4d051c, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
