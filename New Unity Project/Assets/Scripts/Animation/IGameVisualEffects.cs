@@ -1,4 +1,5 @@
 ﻿using Logic;
+using TMPro;
 using UnityEngine;
 
 namespace Animation
@@ -6,10 +7,10 @@ namespace Animation
     public interface IGameVisualEffects
     {
         /// <summary>
-        /// Play visual effect, int argument
+        /// Play visual effect, text argument
         /// </summary>
-        /// <param name="value"></param>
-        void PlayVisualEffect(int value);
+        /// <param name="text"></param>
+        void PlayVisualEffect(TextMeshProUGUI text);
 
         /// <summary>
         /// Play visual effect, hero argument

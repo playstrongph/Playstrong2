@@ -4,7 +4,13 @@ namespace ScriptableObjectScripts.GameAnimationAssets
 {
     public interface IGameAnimationsAsset
     {   
+        /// <summary>
+        /// Play animation hero argument
+        /// </summary>
+        /// <param name="hero"></param>
         void PlayAnimation(IHero hero);
+        
+        
         
         /// <summary>
         /// Animation duration.  Not necessarily equal to the total animation duration,

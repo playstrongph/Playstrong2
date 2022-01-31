@@ -17,8 +17,8 @@ MonoBehaviour:
   skillEffectAsset: {fileID: 11400000, guid: 612d333a5f98d814ca50ddbc5b82af92, type: 2}
   skillIcon: {fileID: -1275177327444788608, guid: 1e34d481195a8b94caf686256c37b8fa,
     type: 3}
-  skillTypeAsset: {fileID: 11400000, guid: 8a7626581c2f0aa458b6d8d26522444b, type: 2}
+  skillTypeAsset: {fileID: 11400000, guid: 7a6600c8b3493fb41a40502c9ab7c3a0, type: 2}
   baseCooldown: 0
-  skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
-  skillCooldownTypeAsset: {fileID: 11400000, guid: cc4c8b90983ec8d4fa2cc4d2f087974c,
+  skillTargetsAsset: {fileID: 11400000, guid: 53f8e961d49a0424585dcc79f30d849a, type: 2}
+  skillCooldownTypeAsset: {fileID: 11400000, guid: 6cefc260956c40a44973d55b4a3e3835,
     type: 2}

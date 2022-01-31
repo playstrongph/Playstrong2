@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Animation;
 using Logic;
+using TMPro;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.GameAnimationAssets
@@ -45,6 +46,10 @@ namespace ScriptableObjectScripts.GameAnimationAssets
             private set => value = 0;
         }
         
+        /// <summary>
+        /// Play animation hero argument
+        /// </summary>
+        /// <param name="hero"></param>
         public void PlayAnimation(IHero hero)
         {
             foreach (var gameVisualEffect in GameVisualEffects)
@@ -53,6 +58,22 @@ namespace ScriptableObjectScripts.GameAnimationAssets
                 var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
                 
                 visualEffect.PlayVisualEffect(hero);
+            }
+        }
+        
+        /// <summary>
+        /// Play animation hero argument
+        /// </summary>
+        /// <param name="text"></param>
+        public void PlayAnimation(TextMeshProUGUI text)
+        {
+            foreach (var gameVisualEffect in GameVisualEffects)
+            {
+                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, text.gameObject.transform);
+                
+                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
+                
+                visualEffect.PlayVisualEffect(text);
             }
         }
 
