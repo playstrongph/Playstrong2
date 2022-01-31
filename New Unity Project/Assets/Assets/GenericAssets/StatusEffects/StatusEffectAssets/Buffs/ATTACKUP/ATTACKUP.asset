@@ -15,9 +15,12 @@ MonoBehaviour:
   statusEffectName: Attack Up
   description: Attack +50%
   icon: {fileID: 0}
-  countersValue: 0
-  statusEffectType: {fileID: 0}
-  statusEffectCounterType: {fileID: 0}
-  statusEffectCounterUpdateType: {fileID: 0}
-  statusEffectInstanceType: {fileID: 0}
-  statusEffectActions: []
+  statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
+  statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
+    type: 2}
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
+    type: 2}
+  statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
+    type: 2}
+  statusEffectActions:
+  - {fileID: 11400000, guid: e44fce7eceebd5242a5d18322d70c6bc, type: 2}
