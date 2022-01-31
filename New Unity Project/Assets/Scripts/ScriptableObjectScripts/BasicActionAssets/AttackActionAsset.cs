@@ -184,7 +184,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             var s = DOTween.Sequence();
             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
-            var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
+            
+            //var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
             
             //Set the value of the main animation duration
             MainAnimationDuration = attackAnimationInterval;
@@ -192,8 +193,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetedHero))
-                .AppendInterval(damageAnimationInterval);
-            
+                //.AppendInterval(damageAnimationInterval)
+                .AppendCallback(() => targetedHero.HeroVisual.SetHealthVisual.StartAction());
+
             visualTree.EndSequence();
             yield return null;
         }
