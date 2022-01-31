@@ -26,10 +26,10 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// </summary>
         Sprite Icon { get; }
         
-        /// <summary>
+        /*/// <summary>
         /// Status effect counters duration
         /// </summary>
-        int CountersValue { get; }
+        int CountersValue { get; }*/
         
         /// <summary>
         /// Status Effect Type Attribute - Buff, Debuff, Unique

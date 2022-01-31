@@ -215,6 +215,36 @@ namespace ScriptableObjectScripts.StandardActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Undoes the start action.  Primarily used by status effects
+        /// </summary>
+        /// <param name="hero"></param>
+        public virtual void UndoStartAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            logicTree.AddCurrent(UndoStartActionCoroutine(hero));
+        }
+        
+        /// <summary>
+        /// Undoes the start action.  Primarily used by status effects 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        protected IEnumerator UndoStartActionCoroutine(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            //Iterate per basic action
+            foreach (var basicAction in BasicActions)
+            {
+                logicTree.AddCurrent(basicAction.UndoExecuteAction(hero));
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
 
 
         #endregion

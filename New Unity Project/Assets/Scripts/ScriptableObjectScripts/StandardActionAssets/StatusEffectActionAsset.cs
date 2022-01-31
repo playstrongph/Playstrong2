@@ -22,5 +22,23 @@ namespace ScriptableObjectScripts.StandardActionAssets
             logicTree.AddCurrent(StartActionCoroutine(hero));
 
         }
+        
+        /// <summary>
+        /// Undoes the status effect start action
+        /// </summary>
+        /// <param name="hero"></param>
+        public void UndoStatusEffectStartAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            logicTree.AddCurrent(UndoStartActionCoroutine(hero));
+
+        }
+        
+        
+        
+       
+        
+        
     }
 }

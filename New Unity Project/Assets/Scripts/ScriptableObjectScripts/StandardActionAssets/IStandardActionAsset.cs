@@ -88,9 +88,15 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// </summary>
         /// <param name="hero"></param>
         void StartAction(IHero hero);
-        
+
+        /// <summary>
+        /// Undo the start action.  Primarily used by status effects
+        /// </summary>
+        /// <param name="hero"></param>
+        void UndoStartAction(IHero hero);
+
         #endregion
 
-        
+
     }
 }

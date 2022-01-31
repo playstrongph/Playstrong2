@@ -28,7 +28,10 @@ namespace Logic
         {
             _statusEffect.StatusEffectName = statusEffectAsset.StatusEffectName;
             _statusEffect.StatusEffectDescription = statusEffectAsset.Description;
-            _statusEffect.CountersValue = statusEffectAsset.CountersValue;
+            
+            //For cleanup - counters value should be set by Add status effect action
+            //_statusEffect.CountersValue = statusEffectAsset.CountersValue;
+            
             _statusEffect.Icon.sprite = statusEffectAsset.Icon;
             
             _statusEffect.StatusEffectCasterHero = casterHero;

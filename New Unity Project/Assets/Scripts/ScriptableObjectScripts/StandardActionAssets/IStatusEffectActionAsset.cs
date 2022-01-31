@@ -16,6 +16,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
         void StatusEffectStartAction(IHero hero);
         
         /// <summary>
+        /// Undoes the status effect start action
+        /// </summary>
+        /// <param name="hero"></param>
+        void UndoStatusEffectStartAction(IHero hero);
+        
+        /// <summary>
         /// Subscribes the standard action to an event
         /// </summary>
         /// <param name="hero"></param>

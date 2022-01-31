@@ -45,7 +45,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             private set => icon = value;
         }
         
-        [SerializeField] private int countersValue = 0;
+        /*[SerializeField] private int countersValue = 0;
         
         /// <summary>
         /// Status effect counters duration
@@ -54,7 +54,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         {
             get => countersValue;
             private set => countersValue = value;
-        }
+        }*/
         
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
