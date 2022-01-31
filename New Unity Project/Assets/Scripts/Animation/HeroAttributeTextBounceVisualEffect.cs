@@ -13,11 +13,6 @@ namespace Animation
         /// Damage animation canvas
         /// </summary>
         [SerializeField] private Canvas canvas;
-        
-        /// <summary>
-        /// Canvas group for alpha control, set in the inspector.
-        /// </summary>
-        [SerializeField] private CanvasGroup canvasGroup = null;
 
         /// <summary>
         /// Damage cloud

@@ -28,5 +28,10 @@ namespace Logic
 
         IEnumerator TakeNonAttackSkillDamage(int nonAttackSkillDamage, int penetrateArmorChance);
         IEnumerator TakeNonSkillDamage(int nonSkillDamage, int penetrateArmorChance);
+        
+        /// <summary>
+        /// Damage dealt to health
+        /// </summary>
+        int HealthDamage { get; }
     }
 }

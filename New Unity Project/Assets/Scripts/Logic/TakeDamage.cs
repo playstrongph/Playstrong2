@@ -25,6 +25,11 @@ namespace Logic
         private int _residualDamage;
 
         private IHeroLogic _heroLogic;
+        
+        /// <summary>
+        /// Damage dealt to health
+        /// </summary>
+        public int HealthDamage { get; private set; }
 
         private void Awake()
         {
@@ -299,6 +304,9 @@ namespace Logic
         {
             var health = _heroLogic.HeroAttributes.Health;
             var newHealth = health - damage;
+            
+            //Used by visual updates to check if there is health damage
+            HealthDamage = damage;
             
             _heroLogic.SetHealth.StartAction(newHealth);
             
