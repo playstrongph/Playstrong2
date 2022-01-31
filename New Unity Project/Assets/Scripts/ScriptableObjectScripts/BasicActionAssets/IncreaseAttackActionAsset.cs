@@ -90,10 +90,29 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
             
+            //Update the attack text with no animation
+            visualTree.AddCurrent(SetAttackVisual(targetedHero));
+            
+            //Play text update animation
             visualTree.AddCurrent(BasicActionAnimation(targetedHero));
             
-            
             logicTree.EndSequence();
+            yield return null;
+        }
+
+
+        /// <summary>
+        /// Updates the attack "text" in game
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private IEnumerator SetAttackVisual(IHero hero)
+        {
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            
+            hero.HeroVisual.SetAttackVisual.StartAction();
+            
+            visualTree.EndSequence();
             yield return null;
         }
         
@@ -111,24 +130,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             HeroAttributeAnimationAsset.PlayAnimation(attackText);
 
-            visualTree.EndSequence();
-            yield return null;
-        }
-        
-        
-        
-        
-        /// <summary>
-        /// Updates the attack "text" in game
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <returns></returns>
-        private IEnumerator SetAttackVisual(IHero hero)
-        {
-            var visualTree = hero.CoroutineTrees.MainVisualTree;
-            
-            hero.HeroVisual.SetAttackVisual.StartAction();
-            
             visualTree.EndSequence();
             yield return null;
         }
