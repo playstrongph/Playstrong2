@@ -69,6 +69,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => attackAnimationAsset as IGameAnimationsAsset;
             set => attackAnimationAsset = value as ScriptableObject;
         }
+        
+        //TEST
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject heroAttributeAnimationAsset;
+
+        private IGameAnimationsAsset HeroAttributeAnimationAsset
+        {
+            get => heroAttributeAnimationAsset as IGameAnimationsAsset;
+            set => heroAttributeAnimationAsset = value as ScriptableObject;
+        }
 
         
         /// <summary>
@@ -194,7 +205,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetedHero))
                 //.AppendInterval(damageAnimationInterval)
-                .AppendCallback(() => targetedHero.HeroVisual.SetHealthVisual.StartAction());
+                .AppendCallback(() => targetedHero.HeroVisual.SetHealthVisual.StartAction())
+            
+                //TEST
+                .AppendCallback(() => HeroAttributeAnimationAsset.PlayAnimation(targetedHero.HeroVisual.HealthVisual.Text));
 
             visualTree.EndSequence();
             yield return null;

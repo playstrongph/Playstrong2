@@ -53,10 +53,10 @@ MonoBehaviour:
   canvasGroup: {fileID: 7141874222832558365}
   image: {fileID: 7141874222719936453}
   displayText: {fileID: 7141874223857600754}
-  doScaleDuration: 0.3
-  localScaleMultiplier: 2
+  doScaleDuration: 0.2
+  localScaleMultiplier: 1.4
   doScaleLoopCount: 2
-  fadeInterval: 1
+  fadeInterval: 0.1
   fadeAlphaStart: 1
   fadeAlphaEnd: 0
   delayInterval: 0.1

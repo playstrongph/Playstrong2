@@ -37,33 +37,18 @@ namespace Animation
         /// Duration of the change scale animation 
         /// </summary>
         [Header("DO TWEEN VALUES")]
-        [SerializeField] private float doScaleDuration = 0.3f;
+        [SerializeField] private float doScaleDuration = 0.2f;
         
         /// <summary>
         /// Scale enhancer
         /// </summary>
-        [SerializeField] private float localScaleMultiplier = 2f;
+        [SerializeField] private float localScaleMultiplier = 1.4f;
         
         /// <summary>
         /// Number of times the animation bounces
         /// </summary>
         [SerializeField] private int doScaleLoopCount = 2;
-        
-        /// <summary>
-        /// Duration of the image fading to full invisible
-        /// </summary>
-        [SerializeField] private float fadeInterval = 1;
-        
-        /// <summary>
-        /// Alpha value start, 1 means fully visible 
-        /// </summary>
-        [SerializeField] private float fadeAlphaStart = 1.0f;
-        
-        /// <summary>
-        /// Alpha value end, 0 means fully invisible
-        /// </summary>
-        [SerializeField] private float fadeAlphaEnd = 0.0f;
-        
+
         /// <summary>
         /// Additional delay before destroying the game object
         /// </summary>
@@ -74,7 +59,7 @@ namespace Animation
         /// <summary>
         /// Total visual effect duration for damage visual effect
         /// </summary>
-        public override float VisualEffectDuration => (doScaleDuration * doScaleLoopCount) + fadeInterval;
+        public override float VisualEffectDuration => (doScaleDuration * doScaleLoopCount);
 
 
         /// <summary>
@@ -87,11 +72,12 @@ namespace Animation
             displayText.fontStyle = text.fontStyle;
             displayText.fontSize = text.fontSize;
             displayText.faceColor = text.faceColor;
+            displayText.color = text.color;
             displayText.text = text.text;
             displayText.transform.position = text.transform.position;
             
             //Display damage animation
-            canvasGroup.alpha = fadeAlphaStart;
+            //canvasGroup.alpha = 1;
 
 
             var s = DOTween.Sequence();
@@ -101,15 +87,7 @@ namespace Animation
                     transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
                         .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
                 .AppendInterval(doScaleDuration * doScaleLoopCount)
-                
-                .AppendCallback(() =>
-                    //Fade the damage image
-                    canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
-                
-                .AppendInterval(fadeInterval)
-                
                 .AppendInterval(delayInterval)
-                
                 .AppendCallback(() => Destroy(gameObject));
 
         }

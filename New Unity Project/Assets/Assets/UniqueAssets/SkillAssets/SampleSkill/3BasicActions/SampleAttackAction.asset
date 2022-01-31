@@ -21,3 +21,5 @@ MonoBehaviour:
     type: 2}
   attackAnimationAsset: {fileID: 11400000, guid: d58e53a4db7d71c4fbbefbb8e14f8cdf,
     type: 2}
+  heroAttributeAnimationAsset: {fileID: 11400000, guid: 791fa693a54744d4fb0197e57dbb7a50,
+    type: 2}
