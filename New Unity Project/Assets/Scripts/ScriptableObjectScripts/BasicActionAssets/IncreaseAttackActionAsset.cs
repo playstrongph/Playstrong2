@@ -103,6 +103,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         /// <summary>
         /// Updates the attack "text" in game
+        /// used separately by undo execute action
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
