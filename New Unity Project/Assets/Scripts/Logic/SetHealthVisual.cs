@@ -30,7 +30,7 @@ namespace Logic
             var healthValue = heroLogic.HeroAttributes.Health;
             
             _heroVisual.HealthVisual.Text.text = healthValue.ToString();
-            _heroVisual.HealthVisual.Text.color = GetTextColor(healthValue, baseValue);
+            _heroVisual.HealthVisual.Text.color = GetTextColor(baseValue,healthValue );
         }
         
         private Color GetTextColor(int baseValue, int value)

@@ -32,7 +32,7 @@ namespace Logic
             var attackVisualValue = Mathf.Max(0, attackValue);
             
             _heroVisual.AttackVisual.Text.text = attackVisualValue.ToString();
-            _heroVisual.AttackVisual.Text.color = GetTextColor(attackValue, baseValue);
+            _heroVisual.AttackVisual.Text.color = GetTextColor(baseValue, attackValue);
         }
         
         private Color GetTextColor(int baseValue, int value)
