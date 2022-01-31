@@ -124,7 +124,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator BasicActionAnimation(IHero targetedHero)
         {
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
-            
+
             //attack text mesh pro GUI
             var attackText = targetedHero.HeroVisual.AttackVisual.Text;
             
