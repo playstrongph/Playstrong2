@@ -22,5 +22,10 @@
         /// Probability for a hero to resist stun, sleep, and other inability effects
         /// </summary>
         int InabilityResistance { get; set; }
+        
+        /// <summary>
+        /// Probability to resist buff effects
+        /// </summary>
+        int BuffResistance { get; set; }
     }
 }

@@ -341,6 +341,7 @@ MonoBehaviour:
   criticalResistance: 0
   penetrateArmorResistance: 0
   inabilityResistance: 0
+  buffResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalChance: 0
   penetrateArmorChance: 0
+  buffChance: 100
 --- !u!114 &4264826968411871100
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,5 +55,15 @@ namespace Logic
             set => inabilityResistance = value;
         }
 
+        [SerializeField] private int buffResistance;
+        /// <summary>
+        /// Probability for a hero to resist buff effects
+        /// </summary>
+        public int BuffResistance
+        {
+            get => buffResistance;
+            set => buffResistance = value;
+        }
+
     }
 }
