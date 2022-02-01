@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
@@ -25,6 +26,28 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int defaultAddBuffChance = 0;
         
         
+        public override IEnumerator ExecuteAction(IHero targetedHero)
+        {
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+
+            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            
+            AddStatusEffect(targetedHero,casterHero);
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        public override IEnumerator MainAnimationAction(IHero targetedHero)
+        {
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            
+            //No animation for add buff action
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
         
         
         /// <summary>
@@ -32,9 +55,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="targetHero"></param>
         /// <param name="casterHero"></param>
-        /// <param name="targetStatusEffectAsset"></param>
-        /// <param name="counters"></param>
-        private void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset targetStatusEffectAsset, int counters)
+        private void AddStatusEffect(IHero targetHero, IHero casterHero)
         {
             //Caster's total add buff chance.  Default hero buff chance is 100.
             var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + defaultAddBuffChance;
@@ -50,7 +71,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Example - addBuffChance is 75% and random chance is 50.
             if(randomChance <= addBuffChance)
-                targetStatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,targetStatusEffectAsset, counters);
+                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);
         }
 
 

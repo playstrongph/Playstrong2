@@ -92,6 +92,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             
             //Check hero inability status before proceeding with attack action
+            //this is for counter-attack effects
             targetedHero.HeroLogic.HeroInabilityStatus.AttackAction(this, targetedHero);
 
             logicTree.EndSequence();
