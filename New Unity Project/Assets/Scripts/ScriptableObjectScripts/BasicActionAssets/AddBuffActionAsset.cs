@@ -23,7 +23,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Default add buff chance as utilized by some skills.
         /// </summary>
-        [SerializeField] private int defaultAddBuffChance = 0;
+        //[SerializeField] private int defaultAddBuffChance = 0;
         
         
         public override IEnumerator ExecuteAction(IHero targetedHero)
@@ -31,6 +31,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
 
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+
+            Debug.Log("Caster Hero: " +casterHero.HeroName );
             
             AddStatusEffect(casterHero,targetedHero);
 
