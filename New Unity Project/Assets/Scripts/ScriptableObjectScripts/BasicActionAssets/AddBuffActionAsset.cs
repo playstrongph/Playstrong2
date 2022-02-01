@@ -26,13 +26,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         //[SerializeField] private int defaultAddBuffChance = 0;
         
         
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero casterHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            var targetedHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
+            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
-            Debug.Log("Caster Hero: " +hero.HeroName );
+            Debug.Log("Caster Hero: " +casterHero.HeroName );
             Debug.Log("Targeted Hero: " +targetedHero.HeroName );
             
             //AddStatusEffect(targetedHero,hero);
@@ -41,9 +41,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator MainAnimationAction(IHero targetedHero)
+        public override IEnumerator MainAnimationAction(IHero casterHero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //No animation for add buff action
             
