@@ -32,10 +32,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
-            Debug.Log("Caster Hero: " +casterHero.HeroName );
-            Debug.Log("Targeted Hero: " +targetedHero.HeroName );
-            
-            //AddStatusEffect(targetedHero,hero);
+            AddStatusEffect(targetedHero,casterHero);
 
             logicTree.EndSequence();
             yield return null;

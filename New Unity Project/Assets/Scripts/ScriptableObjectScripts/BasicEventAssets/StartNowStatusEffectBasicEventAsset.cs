@@ -15,6 +15,10 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
         {
             var statusEffectAction = standardAction as IStatusEffectActionAsset;
+            
+            Debug.Log("Start Now Status Effect Basic Event");
+            
+            Debug.Log("Hero: " +hero.HeroName);
 
             statusEffectAction?.StatusEffectStartAction(hero);
         }

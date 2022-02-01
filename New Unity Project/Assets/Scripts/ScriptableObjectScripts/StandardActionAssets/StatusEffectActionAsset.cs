@@ -17,6 +17,11 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public void StatusEffectStartAction(IHero hero)
         {
+            Debug.Log("Status Effect Start Action");
+            
+            Debug.Log("Hero: " +hero.HeroName);
+            
+            
             base.StartAction(hero);
         }
         

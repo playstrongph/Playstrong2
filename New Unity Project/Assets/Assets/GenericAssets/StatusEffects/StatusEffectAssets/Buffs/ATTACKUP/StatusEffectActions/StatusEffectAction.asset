@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: StatusEffectAction
   m_EditorClassIdentifier: 
   basicEvent: {fileID: 11400000, guid: 269598a789ae200429d3b03805fc538d, type: 2}
-  subscribers: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
+  subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicConditionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab,
     type: 2}
   orBasicConditions: []
   andBasicConditions: []
-  basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
+  basicActionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicActions:
   - {fileID: 11400000, guid: 80491bc5460938c4c85aab75d8efd3f3, type: 2}
