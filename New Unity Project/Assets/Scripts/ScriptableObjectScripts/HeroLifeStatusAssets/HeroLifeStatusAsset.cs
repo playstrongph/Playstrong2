@@ -107,6 +107,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             
             casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(hero);
             
+            
+            
             logicTree.EndSequence();
             yield return null;
         }

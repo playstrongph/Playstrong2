@@ -20,8 +20,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Executes the basic action logic
         /// Exclusively used by hero life status
         /// </summary>
-        /// <param name="targetedHero"></param>
-        IEnumerator ExecuteAction(IHero targetedHero);
+        /// <param name="hero"></param>
+        IEnumerator ExecuteAction(IHero hero);
         
         /// <summary>
         ///  Undoes the effect of execute action, mostly

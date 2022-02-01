@@ -10,13 +10,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Hero performs no action
         /// </summary>
-        /// <param name="targetedHero"></param>
+        /// <param name="hero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero targetedHero)
+        public override IEnumerator ExecuteAction(IHero hero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
-            Debug.Log("No Action Caster Hero:" +targetedHero.HeroName);
+            Debug.Log("No Action Caster Hero:" +hero.HeroName);
 
             logicTree.EndSequence();
             yield return null;

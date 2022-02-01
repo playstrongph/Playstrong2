@@ -26,15 +26,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         //[SerializeField] private int defaultAddBuffChance = 0;
         
         
-        public override IEnumerator ExecuteAction(IHero targetedHero)
+        public override IEnumerator ExecuteAction(IHero hero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
-            var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
+            var targetedHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
 
-            Debug.Log("Caster Hero: " +casterHero.HeroName );
+            Debug.Log("Caster Hero: " +hero.HeroName );
+            Debug.Log("Targeted Hero: " +targetedHero.HeroName );
             
-            AddStatusEffect(casterHero,targetedHero);
+            //AddStatusEffect(targetedHero,hero);
 
             logicTree.EndSequence();
             yield return null;

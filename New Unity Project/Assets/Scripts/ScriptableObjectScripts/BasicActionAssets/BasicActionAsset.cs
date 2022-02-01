@@ -197,10 +197,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Executes the basic action logic, used by hero life status
         /// This is the method overriden by the specific basic actions
         /// </summary>
-        /// <param name="targetedHero"></param>
-        public virtual IEnumerator ExecuteAction(IHero targetedHero)
+        /// <param name="hero"></param>
+        public virtual IEnumerator ExecuteAction(IHero hero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             logicTree.EndSequence();
             yield return null;

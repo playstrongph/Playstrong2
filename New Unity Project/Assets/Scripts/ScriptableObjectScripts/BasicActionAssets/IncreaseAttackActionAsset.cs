@@ -42,21 +42,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Increase attack logic execution
         /// </summary>
-        /// <param name="targetedHero"></param>
+        /// <param name="hero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero targetedHero)
+        public override IEnumerator ExecuteAction(IHero hero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
-            var baseValue = targetedHero.HeroLogic.HeroAttributes.BaseAttack;
+            var baseValue = hero.HeroLogic.HeroAttributes.BaseAttack;
             
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newAttackValue = targetedHero.HeroLogic.HeroAttributes.Attack + _changeValue;
+            var newAttackValue = hero.HeroLogic.HeroAttributes.Attack + _changeValue;
             
             //Set the new attack value in hero attributes
-            targetedHero.HeroLogic.SetAttack.StartAction(newAttackValue);
+            hero.HeroLogic.SetAttack.StartAction(newAttackValue);
             
             logicTree.EndSequence();
             yield return null;

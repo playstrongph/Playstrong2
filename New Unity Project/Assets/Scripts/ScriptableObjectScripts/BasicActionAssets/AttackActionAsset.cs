@@ -85,15 +85,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Called after confirming target and caster hero are still both alive
         /// </summary>
-        /// <param name="targetedHero"></param>
+        /// <param name="hero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero targetedHero)
+        public override IEnumerator ExecuteAction(IHero hero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             //Check hero inability status before proceeding with attack action
             //this is for counter-attack effects
-            targetedHero.HeroLogic.HeroInabilityStatus.AttackAction(this, targetedHero);
+            hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
 
             logicTree.EndSequence();
             yield return null;
