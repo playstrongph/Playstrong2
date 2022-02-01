@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public void StatusEffectStartAction(IHero hero)
         {
-            StartAction(hero);
+            base.StartAction(hero);
         }
         
         /// <summary>
@@ -26,7 +26,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="hero"></param>
         public void UndoStatusEffectStartAction(IHero hero)
         {
-            UndoStartAction(hero);
+            base.UndoStartAction(hero);
         }
         
         
