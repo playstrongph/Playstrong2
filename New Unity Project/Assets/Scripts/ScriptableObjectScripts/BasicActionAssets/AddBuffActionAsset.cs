@@ -32,7 +32,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var casterHero = targetedHero.HeroLogic.LastHeroTargets.TargetingHero;
             
-            AddStatusEffect(targetedHero,casterHero);
+            AddStatusEffect(casterHero,targetedHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -57,7 +57,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         private void AddStatusEffect(IHero targetHero, IHero casterHero)
         {
-            //Caster's total add buff chance.  Default hero buff chance is 100.
+            /*//Caster's total add buff chance.  Default hero buff chance is 100.
             var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + defaultAddBuffChance;
             
             //Target's buff resistance
@@ -71,7 +71,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Example - addBuffChance is 75% and random chance is 50.
             if(randomChance <= addBuffChance)
-                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);
+                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);*/
+            
+            
+            StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);
         }
 
 

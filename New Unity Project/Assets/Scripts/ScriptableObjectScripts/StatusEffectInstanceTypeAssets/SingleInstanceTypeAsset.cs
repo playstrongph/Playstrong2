@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
@@ -22,10 +23,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             {
                 logicTree.AddCurrent(CreateStatusEffect(targetHero,casterHero,statusEffectAsset,counters));
             }
-            
-            if(NewStatusEffect.CountersValue <=0)
-                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
-
         }
+        
+        
+
     }
 }

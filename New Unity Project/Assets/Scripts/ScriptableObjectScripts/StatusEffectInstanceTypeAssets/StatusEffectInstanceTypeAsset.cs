@@ -68,6 +68,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
                 NewStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
             else
                 NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
+            
+            //Remove status effect if counters are less than or equal to zero
+            if(NewStatusEffect.CountersValue <=0)
+                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
         }
         
         /// <summary>
@@ -159,6 +163,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             else
                 NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
             
+            
+            //Remove status effect if counters are less than or equal to zero
+            if(NewStatusEffect.CountersValue <=0)
+                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
             
             visualTree.EndSequence();
             yield return null;
