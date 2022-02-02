@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 3830259919145749639}
   - component: {fileID: 3213002236916842626}
   - component: {fileID: 8243147916161214234}
+  - component: {fileID: 1992989395}
   m_Layer: 0
   m_Name: PreviewStatusEffects
   m_TagString: Untagged
@@ -638,6 +639,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3830259919145749636}
   m_CullTransparentMesh: 0
+--- !u!210 &1992989395
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830259919145749636}
+  m_Enabled: 1
+  m_SortingLayerID: -1851260875
+  m_SortingLayer: 1
+  m_SortingOrder: 3
 --- !u!1 &3992229479853335050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1971,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -1851260875
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &5609741221347091532
 MonoBehaviour:

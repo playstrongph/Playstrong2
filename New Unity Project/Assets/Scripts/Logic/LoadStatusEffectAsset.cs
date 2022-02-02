@@ -33,9 +33,12 @@ namespace Logic
             
             _statusEffect.StatusEffectCasterHero = casterHero;
             _statusEffect.StatusEffectTargetHero = targetHero;
-            
+
             //set status effect counters value
             _statusEffect.CountersValue = counters;
+            
+            //set status effect counters text
+            _statusEffect.CountersText.text = _statusEffect.CountersValue.ToString();
 
             //STATUS EFFECT ATTRIBUTES
             

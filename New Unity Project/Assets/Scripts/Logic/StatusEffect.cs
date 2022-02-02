@@ -158,22 +158,36 @@ namespace Logic
             set => statusEffectCastingStatus = value as Object;
         }
 
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
+        private Object statusEffectTargetHero;
+        
+        /// <summary>
+        /// The hero where the status effect is attached to
+        /// </summary>
+        public IHero StatusEffectTargetHero
+        {
+            get => statusEffectTargetHero as IHero;
+            set => statusEffectTargetHero = value as Object;
+        }
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IHero))]
+        private Object statusEffectCasterHero;
+        
+        /// <summary>
+        /// The caster of the status effect
+        /// </summary>
+        public IHero StatusEffectCasterHero
+        {
+            get => statusEffectCasterHero as IHero;
+            set => statusEffectCasterHero = value as Object;
+        }
+
 
         /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
 
-        /// <summary>
-        /// Caster of the status effect
-        /// </summary>
-        public IHero StatusEffectCasterHero { get; set; }
-        
-        /// <summary>
-        /// Target of the status effect
-        /// </summary>
-        public IHero StatusEffectTargetHero { get; set; }
-        
         /// <summary>
         /// Update status effect counters component
         /// </summary>

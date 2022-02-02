@@ -37,6 +37,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
             visualTree.AddCurrent(CreateStatusEffectVisual(targetHero,casterHero,statusEffectAsset,counters));
+            
+            //TEST
+            //visualTree.AddCurrent(CreateStatusEffectPreview(targetHero, statusEffectAsset, NewStatusEffect));
+           
 
             logicTree.EndSequence();
             yield return null;
@@ -106,24 +110,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             return null;
         }
         
-        /// <summary>
-        /// Creates and loads the status effect preview
-        /// </summary>
-        private void CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset, IStatusEffect statusEffect)
-        {
-            var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
-            var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
-
-            var previewObject = Instantiate(previewPrefab, previewParent);
-            var previewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
-            
-            //Load preview status effect values
-            previewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
-
-            //Set status effect reference to status effect preview
-            statusEffect.PreviewStatusEffect = previewStatusEffect;
-
-        }
+       
         
         /// <summary>
         /// Visual tree queueing for create status effect
@@ -137,7 +124,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
-            
+
             //Instantiate status effect game object
             var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
                 targetHero.HeroStatusEffects.StatusEffectsCanvas.transform);
@@ -156,8 +143,8 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             
             //Create status effect preview
             
-            //TEST - Disable
-            //CreateStatusEffectPreview(targetHero,statusEffectAsset,NewStatusEffect);
+            //TODO: Fix create status effect preview
+            CreateStatusEffectPreview(targetHero,statusEffectAsset);
 
             //Set status effect casting status
             if(targetHero==casterHero)
@@ -165,16 +152,36 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             else
                 NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
             
-            
+           
             //Remove status effect if counters are less than or equal to zero
             if(NewStatusEffect.CountersValue <=0)
                 NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
+            
+            
             
             visualTree.EndSequence();
             yield return null;
 
         }
+        
+        /// <summary>
+        /// Creates and loads the status effect preview
+        /// </summary>
+        private void CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset)
+        {
+            var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
+            var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
 
+            var previewObject = Instantiate(previewPrefab, previewParent);
 
+            //Set status effect preview reference
+            NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
+
+            //Load preview status effect values
+            //statusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+        }
+
+      
     }
+
 }
