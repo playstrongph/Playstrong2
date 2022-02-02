@@ -8,17 +8,13 @@ namespace ScriptableObjectScripts.BasicEventAssets
     public class StartNowStatusEffectBasicEventAsset : BasicEventAsset
     {
         /// <summary>
-        /// Subscribes standard action to drag skill target event 
+        /// Subscribes standard action to drag skill target event
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="standardAction"></param>
         public override void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
         {
             var statusEffectAction = standardAction as IStatusEffectActionAsset;
-            
-            Debug.Log("Start Now Status Effect Basic Event");
-            
-            Debug.Log("Hero: " +hero.HeroName);
 
             statusEffectAction?.StatusEffectStartAction(hero);
         }

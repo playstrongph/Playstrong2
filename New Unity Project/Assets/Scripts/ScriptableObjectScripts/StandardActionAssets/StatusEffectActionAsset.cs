@@ -13,14 +13,13 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         /// <summary>
         /// Executes the base class method StartActionCoroutine
+        /// Note that hero here is the status effect's target hero
         /// </summary>
         /// <param name="hero"></param>
-        public void StatusEffectStartAction(IHero hero)
+        public void StatusEffectStartAction(IHero hero) 
         {
-            Debug.Log("Status Effect Start Action");
-            
-            Debug.Log("Hero: " +hero.HeroName);
-            
+            //Set status effect caster hero
+            StatusEffectCasterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
             
             base.StartAction(hero);
         }

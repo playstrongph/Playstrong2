@@ -155,7 +155,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             NewStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
             
             //Create status effect preview
-            CreateStatusEffectPreview(targetHero,statusEffectAsset,NewStatusEffect);
+            
+            //TEST - Disable
+            //CreateStatusEffectPreview(targetHero,statusEffectAsset,NewStatusEffect);
 
             //Set status effect casting status
             if(targetHero==casterHero)
