@@ -163,24 +163,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             yield return null;
 
         }
-        
-        /// <summary>
-        /// Creates and loads the status effect preview
-        /// </summary>
-        private void CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset)
-        {
-            var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
-            var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
 
-            var previewObject = Instantiate(previewPrefab, previewParent);
-
-            //Set status effect preview reference
-            NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
-
-            //Load preview status effect values
-            NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
-        }
-        
         private IEnumerator CreateStatusEffectPreviewCoroutine(IHero targetHero, IStatusEffectAsset statusEffectAsset)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
@@ -194,11 +177,15 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
 
             //Load preview status effect values
-            //NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+            //NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset,NewStatusEffect);
             
-            NewStatusEffect.PreviewStatusEffect.Icon.sprite = statusEffectAsset.Icon;
+            //previewObject.GetComponent<IPreviewStatusEffect>().LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset,NewStatusEffect);
+            
+            NewStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
+            
+            /*NewStatusEffect.PreviewStatusEffect.GraphicIcon.sprite = statusEffectAsset.Icon;
             NewStatusEffect.PreviewStatusEffect.NameText.text = statusEffectAsset.StatusEffectName;
-            NewStatusEffect.PreviewStatusEffect.DescriptionText.text = statusEffectAsset.Description;
+            NewStatusEffect.PreviewStatusEffect.DescriptionText.text = statusEffectAsset.Description;*/
             
             visualTree.EndSequence();
             yield return null;

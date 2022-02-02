@@ -1,4 +1,5 @@
 ﻿using System;
+using ScriptableObjectScripts.StatusEffectAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,12 +11,12 @@ namespace Logic
         /// <summary>
         /// StatusEffect preview graphic
         /// </summary>
-        [SerializeField] private Image graphic;
+        [SerializeField] private Image graphicIcon;
 
-        public Image Icon
+        public Image GraphicIcon
         {
-            get => graphic;
-            set => graphic = value;
+            get => graphicIcon;
+            set => graphicIcon = value;
         }
         
         /// <summary>
@@ -55,5 +56,14 @@ namespace Logic
         {
             LoadPreviewStatusEffectAsset = GetComponent<ILoadPreviewStatusEffectAsset>();
         }
+
+        public void UpdatePreviewStatusEffect(IStatusEffectAsset statusEffectAsset)
+        {
+            GraphicIcon.sprite = statusEffectAsset.Icon;
+            NameText.text = statusEffectAsset.StatusEffectName;
+            DescriptionText.text = statusEffectAsset.Description;
+        }
+
+
     }
 }

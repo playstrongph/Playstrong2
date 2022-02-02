@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using ScriptableObjectScripts.StatusEffectAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ namespace Logic
 {
     public interface IPreviewStatusEffect
     {
-        Image Icon { get; set; }
+        Image GraphicIcon { get; set; }
         TextMeshProUGUI NameText { get; set; }
         TextMeshProUGUI DescriptionText { get; set; }
         
@@ -14,6 +15,8 @@ namespace Logic
         /// Returns the inheriting class as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+
+        void UpdatePreviewStatusEffect(IStatusEffectAsset statusEffectAsset);
         
         /// <summary>
         /// Load preview status effect values

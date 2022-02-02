@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97b7f491c4cb3047ac6dd3e7eb32025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  graphic: {fileID: 5718867371681192219}
+  graphicIcon: {fileID: 5718867371681192219}
   nameText: {fileID: 5718867372552400379}
   descriptionText: {fileID: 5718867372389044815}
 --- !u!114 &6558859771734983515
