@@ -8,7 +8,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
     public abstract class StatusEffectInstanceTypeAsset : ScriptableObject, IStatusEffectInstanceTypeAsset
     {
 
-        protected IStatusEffect NewStatusEffect;
+        protected IStatusEffect NewStatusEffect = null;
         
         /// <summary>
         /// Add a new status effect 
@@ -39,7 +39,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             visualTree.AddCurrent(CreateStatusEffectVisual(targetHero,casterHero,statusEffectAsset,counters));
             
             //TEST
-            //visualTree.AddCurrent(CreateStatusEffectPreview(targetHero, statusEffectAsset, NewStatusEffect));
+            visualTree.AddCurrent(CreateStatusEffectPreviewCoroutine(targetHero, statusEffectAsset));
            
 
             logicTree.EndSequence();
@@ -134,17 +134,17 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             
             //Load status effect values from status effect asset
             NewStatusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
-            
+
             //Add to status effects list
             NewStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, NewStatusEffect);
             
             //Apply status effect
             NewStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
             
-            //Create status effect preview
+            
             
             //TODO: Fix create status effect preview
-            CreateStatusEffectPreview(targetHero,statusEffectAsset);
+            //CreateStatusEffectPreview(targetHero,statusEffectAsset);
 
             //Set status effect casting status
             if(targetHero==casterHero)
@@ -178,7 +178,30 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
 
             //Load preview status effect values
-            //statusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+            NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+        }
+        
+        private IEnumerator CreateStatusEffectPreviewCoroutine(IHero targetHero, IStatusEffectAsset statusEffectAsset)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
+            var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
+
+            var previewObject = Instantiate(previewPrefab, previewParent);
+
+            //Set status effect preview reference
+            NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
+
+            //Load preview status effect values
+            //NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset);
+            
+            NewStatusEffect.PreviewStatusEffect.Icon.sprite = statusEffectAsset.Icon;
+            NewStatusEffect.PreviewStatusEffect.NameText.text = statusEffectAsset.StatusEffectName;
+            NewStatusEffect.PreviewStatusEffect.DescriptionText.text = statusEffectAsset.Description;
+            
+            visualTree.EndSequence();
+            yield return null;
         }
 
       
