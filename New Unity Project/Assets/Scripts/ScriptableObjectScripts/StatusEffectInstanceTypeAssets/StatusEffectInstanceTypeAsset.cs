@@ -36,10 +36,11 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
+            //Create the status effect
             visualTree.AddCurrent(CreateStatusEffectVisual(targetHero,casterHero,statusEffectAsset,counters));
             
-            //TEST
-            visualTree.AddCurrent(CreateStatusEffectPreviewCoroutine(targetHero, statusEffectAsset));
+            //Create the status effect preview
+            visualTree.AddCurrent(CreateStatusEffectPreview(targetHero, statusEffectAsset));
            
 
             logicTree.EndSequence();
@@ -140,11 +141,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             
             //Apply status effect
             NewStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
-            
-            
-            
-            //TODO: Fix create status effect preview
-            //CreateStatusEffectPreview(targetHero,statusEffectAsset);
 
             //Set status effect casting status
             if(targetHero==casterHero)
@@ -163,8 +159,15 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             yield return null;
 
         }
-
-        private IEnumerator CreateStatusEffectPreviewCoroutine(IHero targetHero, IStatusEffectAsset statusEffectAsset)
+        
+        
+        /// <summary>
+        /// Creates the status effect preview game object
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <param name="statusEffectAsset"></param>
+        /// <returns></returns>
+        private IEnumerator CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
@@ -177,21 +180,14 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
 
             //Load preview status effect values
-            //NewStatusEffect.PreviewStatusEffect.LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset,NewStatusEffect);
-            
-            //previewObject.GetComponent<IPreviewStatusEffect>().LoadPreviewStatusEffectAsset.StartAction(statusEffectAsset,NewStatusEffect);
-            
             NewStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
-            
-            /*NewStatusEffect.PreviewStatusEffect.GraphicIcon.sprite = statusEffectAsset.Icon;
-            NewStatusEffect.PreviewStatusEffect.NameText.text = statusEffectAsset.StatusEffectName;
-            NewStatusEffect.PreviewStatusEffect.DescriptionText.text = statusEffectAsset.Description;*/
-            
+
             visualTree.EndSequence();
             yield return null;
         }
 
-      
+
+
     }
 
 }

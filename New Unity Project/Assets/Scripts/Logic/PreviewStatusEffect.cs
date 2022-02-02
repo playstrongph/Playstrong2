@@ -13,7 +13,7 @@ namespace Logic
         /// </summary>
         [SerializeField] private Image graphicIcon;
 
-        public Image GraphicIcon
+        private Image GraphicIcon
         {
             get => graphicIcon;
             set => graphicIcon = value;
@@ -24,7 +24,7 @@ namespace Logic
         /// </summary>
         [SerializeField] private TextMeshProUGUI nameText;
 
-        public TextMeshProUGUI NameText
+        private TextMeshProUGUI NameText
         {
             get => nameText;
             set => nameText = value;
@@ -36,7 +36,7 @@ namespace Logic
         [SerializeField] private TextMeshProUGUI descriptionText;
         
 
-        public TextMeshProUGUI DescriptionText
+        private TextMeshProUGUI DescriptionText
         {
             get => descriptionText;
             set => descriptionText = value;
@@ -48,15 +48,9 @@ namespace Logic
         public GameObject ThisGameObject => this.gameObject;
         
         /// <summary>
-        /// Load preview status effect values
+        /// Updates the preview status effect game object details from the status effect asset 
         /// </summary>
-        public ILoadPreviewStatusEffectAsset LoadPreviewStatusEffectAsset { get; private set; }
-
-        private void Awake()
-        {
-            LoadPreviewStatusEffectAsset = GetComponent<ILoadPreviewStatusEffectAsset>();
-        }
-
+        /// <param name="statusEffectAsset"></param>
         public void UpdatePreviewStatusEffect(IStatusEffectAsset statusEffectAsset)
         {
             GraphicIcon.sprite = statusEffectAsset.Icon;
