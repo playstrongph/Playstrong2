@@ -25,17 +25,17 @@ namespace Logic
             if (speed == baseSpeed)
             {
                 energyFillIcon.color = Color.white;
-                energyTextColor.color = Color.white;
+                //energyTextColor.color = Color.white;
             }
             else if (speed > baseSpeed)
             {
                 energyFillIcon.color = Color.green;
-                energyTextColor.color = Color.yellow;
+                //energyTextColor.color = Color.yellow;
             }
             else if (speed < baseSpeed)
             {
                 energyFillIcon.color = Color.red;
-                energyTextColor.color = Color.magenta;
+                //energyTextColor.color = Color.magenta;
             }
         }
     }
