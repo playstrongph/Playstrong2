@@ -19,7 +19,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="counters"></param>
         public override void IncreaseCounters(IStatusEffect statusEffect, int counters)
         {
-            var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             
             statusEffect.CountersValue += counters;
             
@@ -33,7 +33,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="counters"></param>
         public override void DecreaseCounters(IStatusEffect statusEffect, int counters)
         {
-            var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             
             statusEffect.CountersValue -= counters;
 
@@ -51,7 +51,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="counters"></param>
         public override void SetCountersToValue(IStatusEffect statusEffect, int counters)
         {
-            var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             
             statusEffect.CountersValue = counters;
 
@@ -68,7 +68,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="statusEffect"></param>
         public override void TurnReduceCounters(IStatusEffect statusEffect)
         {
-            var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             
             //TODO: Logic to not reduce "fresh" counters
             
@@ -87,8 +87,8 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <returns></returns>
         private IEnumerator UpdateCountersVisual(IStatusEffect statusEffect)
         {
-            var logicTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainLogicTree;
-            var visualTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainVisualTree;
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
             
             visualTree.AddCurrent(VisualUpdate(statusEffect));
             
@@ -103,7 +103,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <returns></returns>
         private IEnumerator VisualUpdate(IStatusEffect statusEffect)
         {
-            var visualTree = statusEffect.HeroStatusEffects.Hero.CoroutineTrees.MainVisualTree;
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
 
             statusEffect.CountersText.text = statusEffect.CountersValue.ToString();
 

@@ -50,11 +50,6 @@ namespace Logic
         IPreviewStatusEffect PreviewStatusEffect { get; set; }
         
         /// <summary>
-        /// Reference to Hero Status Effects
-        /// </summary>
-        IHeroStatusEffects HeroStatusEffects { get; set; }
-
-        /// <summary>
         /// Returns the inheriting class as a game object
         /// </summary>
         GameObject ThisGameObject { get; }

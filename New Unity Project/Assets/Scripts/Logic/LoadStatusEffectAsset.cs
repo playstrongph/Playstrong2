@@ -53,7 +53,7 @@ namespace Logic
             
             //Change counters type - normal, immutable, no change
             _statusEffect.StatusEffectCounterType = statusEffectAsset.StatusEffectCounterType;
-            
+
             //Creat unique status effect assets
             CreateUniqueStatusEffectAsset(statusEffectAsset);
         }
