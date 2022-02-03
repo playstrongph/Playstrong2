@@ -40,6 +40,38 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         public virtual void TurnReduceCounters(IStatusEffect statusEffect)
         { }
         
+        
+        /// <summary>
+        /// Logic tree wrapper for visual counters update
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        /// <returns></returns>
+        protected IEnumerator UpdateCountersVisual(IStatusEffect statusEffect)
+        {
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(VisualUpdate(statusEffect));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Visual tree counters update
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        /// <returns></returns>
+        private IEnumerator VisualUpdate(IStatusEffect statusEffect)
+        {
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
+
+            statusEffect.CountersText.text = statusEffect.CountersValue.ToString();
+
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
         /// <summary>
         /// Logic wrapper for visual effect
         /// </summary>

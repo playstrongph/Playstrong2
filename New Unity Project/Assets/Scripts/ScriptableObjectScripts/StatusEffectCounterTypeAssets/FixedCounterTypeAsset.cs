@@ -5,11 +5,16 @@ using UnityEngine;
 namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
 {
     /// <summary>
-    /// Status effect counters can't be changed.  Utilized by some unique status effects
+    /// Status effect counters can't be changed, except by turn reduce counter. 
     /// </summary>
-    [CreateAssetMenu(fileName = "ImmutableCounterType", menuName = "Assets/StatusEffectCounterType/ImmutableCounterType")]
-    public class ImmutableCounterTypeAsset : StatusEffectCounterTypeAsset
+    [CreateAssetMenu(fileName = "FixedCounterType", menuName = "Assets/StatusEffectCounterType/FixedCounterType")]
+    public class FixedCounterTypeAsset : StatusEffectCounterTypeAsset
     {
+        /// <summary>
+        /// Fixed normal turn counter reduction, 1 by default
+        /// </summary>
+        [SerializeField] private int fixedReduction = 1;
+        
         /// <summary>
         /// Increase the status effect counters by the specified amount
         /// </summary>
@@ -46,7 +51,14 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="statusEffect"></param>
         public override void TurnReduceCounters(IStatusEffect statusEffect)
         {
-            //Do Nothing
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
+
+            statusEffect.CountersValue -= fixedReduction;
+            statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
+            
+            logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
+
+            logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
 
         

@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: AddBuffAction
+  m_Script: {fileID: 11500000, guid: ce07c6c6b72939341ad7df44056bb441, type: 3}
+  m_Name: FixedCounterType
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: 3cdab27785a7f65498517c4a8416995f, type: 2}
-  statusEffectCounters: 1
+  fixedReduction: 1

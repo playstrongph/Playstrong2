@@ -24,6 +24,8 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             statusEffect.CountersValue += counters;
             
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
+            
+            logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
         
         /// <summary>
@@ -41,7 +43,6 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
 
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
-            //TODO: RemoveStatus effect counters
             logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
             
             
@@ -61,8 +62,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
 
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
-            
-            //TODO: RemoveStatus effect counters
+
             logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
         
@@ -79,39 +79,9 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
-            //TODO: RemoveStatus effect counters
             logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
 
-        /// <summary>
-        /// Logic tree wrapper for visual counters update
-        /// </summary>
-        /// <param name="statusEffect"></param>
-        /// <returns></returns>
-        private IEnumerator UpdateCountersVisual(IStatusEffect statusEffect)
-        {
-            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
-            
-            visualTree.AddCurrent(VisualUpdate(statusEffect));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
         
-        /// <summary>
-        /// Visual tree counters update
-        /// </summary>
-        /// <param name="statusEffect"></param>
-        /// <returns></returns>
-        private IEnumerator VisualUpdate(IStatusEffect statusEffect)
-        {
-            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
-
-            statusEffect.CountersText.text = statusEffect.CountersValue.ToString();
-
-            visualTree.EndSequence();
-            yield return null;
-        }
     }
 }
