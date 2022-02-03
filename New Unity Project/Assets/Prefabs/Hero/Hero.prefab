@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalChance: 0
   penetrateArmorChance: 0
-  buffChance: 100
+  buffChance: 0
 --- !u!114 &4264826968411871100
 MonoBehaviour:
   m_ObjectHideFlags: 0

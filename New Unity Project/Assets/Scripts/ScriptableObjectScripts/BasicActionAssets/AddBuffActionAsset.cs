@@ -9,6 +9,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
     public class AddBuffActionAsset : BasicActionAsset
     {
         
+        
+        
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectAsset))]
         private ScriptableObject statusEffectAsset;
 
@@ -22,8 +24,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         /// <summary>
         /// Default add buff chance as utilized by some skills.
+        /// Example 50% chance to add Attack Up
         /// </summary>
-        //[SerializeField] private int defaultAddBuffChance = 0;
+        [SerializeField] private int addBuffChance = 0;
         
         
         public override IEnumerator ExecuteAction(IHero casterHero)
@@ -57,24 +60,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         private void AddStatusEffect(IHero targetHero, IHero casterHero)
         {
-            /*//Caster's total add buff chance.  Default hero buff chance is 100.
-            var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + defaultAddBuffChance;
+            //Caster's total add buff chance. 
+            var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + addBuffChance;
             
             //Target's buff resistance
             var buffResistance = targetHero.HeroLogic.ResistanceAttributes.BuffResistance;
             
             //Effective add buff chance
-            var addBuffChance = buffChance - buffResistance;
+            var netBuffChance = buffChance - buffResistance;
             
             //Random chance, 1 to 100.
             var randomChance = Random.Range(1, 101);
             
             //Example - addBuffChance is 75% and random chance is 50.
-            if(randomChance <= addBuffChance)
-                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);*/
-            
-            
-            StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset, statusEffectCounters);
+            if(randomChance <= netBuffChance)
+                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
+
         }
 
 

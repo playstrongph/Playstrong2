@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: e3c629bd87f8e76449e917da781b9946, type: 2}
   statusEffectCounters: 2
+  addBuffChance: 100
