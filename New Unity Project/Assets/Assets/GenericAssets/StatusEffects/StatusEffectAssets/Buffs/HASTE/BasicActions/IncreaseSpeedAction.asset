@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: SampleAddBuffAction
+  m_Script: {fileID: 11500000, guid: 88c3d5689596af14f990ea17ae3892cd, type: 3}
+  m_Name: IncreaseSpeedAction
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: e3c629bd87f8e76449e917da781b9946, type: 2}
-  statusEffectCounters: 2
+  flatValue: 0
+  percentValue: 30

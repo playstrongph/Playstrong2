@@ -38,10 +38,27 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newAttackValue = hero.HeroLogic.HeroAttributes.Speed + _changeValue;
+            var newValue = hero.HeroLogic.HeroAttributes.Speed + _changeValue;
             
             //Set the new attack value in hero attributes
-            hero.HeroLogic.SetSpeed.StartAction(newAttackValue);
+            hero.HeroLogic.SetSpeed.StartAction(newValue);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        public override IEnumerator UndoExecuteAction(IHero targetedHero)
+        {
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+
+            var newValue = targetedHero.HeroLogic.HeroAttributes.Speed - _changeValue;
+            
+            //Set the new attack value in hero attributes
+            targetedHero.HeroLogic.SetSpeed.StartAction(newValue);
+            
+            //Update the energy bar and text color
+            visualTree.AddCurrent(SetSpeedVisual(targetedHero));
             
             logicTree.EndSequence();
             yield return null;
@@ -57,7 +74,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
             
-            //Update the energy bar color
+            //Update the energy bar and text color
             visualTree.AddCurrent(SetSpeedVisual(targetedHero));
 
             logicTree.EndSequence();
@@ -65,8 +82,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// 
-        /// 
+        /// Update the energy speed and text value 
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>

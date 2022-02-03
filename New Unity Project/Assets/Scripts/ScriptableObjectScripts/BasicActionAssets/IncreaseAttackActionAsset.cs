@@ -53,10 +53,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newAttackValue = hero.HeroLogic.HeroAttributes.Attack + _changeValue;
+            var newValue = hero.HeroLogic.HeroAttributes.Attack + _changeValue;
             
             //Set the new attack value in hero attributes
-            hero.HeroLogic.SetAttack.StartAction(newAttackValue);
+            hero.HeroLogic.SetAttack.StartAction(newValue);
             
             logicTree.EndSequence();
             yield return null;
@@ -68,10 +68,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
-            var newAttackValue = targetedHero.HeroLogic.HeroAttributes.Attack - _changeValue;
+            var newValue = targetedHero.HeroLogic.HeroAttributes.Attack - _changeValue;
             
             //Set the new attack value in hero attributes
-            targetedHero.HeroLogic.SetAttack.StartAction(newAttackValue);
+            targetedHero.HeroLogic.SetAttack.StartAction(newValue);
             
             //Update the attack text with no animation
             visualTree.AddCurrent(SetAttackVisual(targetedHero));
