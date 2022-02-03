@@ -91,6 +91,11 @@ namespace Logic
         /// Sets the energy text, fill, and color
         /// </summary>
         ISetEnergyVisual SetEnergyVisual { get; }
+        
+        /// <summary>
+        /// Sets the energy text and fill color based on changes in speed
+        /// </summary>
+        ISetSpeedVisual SetSpeedVisual { get;}
 
     }
 }

@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: StatusEffectAsset
+  m_Name: HASTE
   m_EditorClassIdentifier: 
-  statusEffectName: 
-  description: 
-  icon: {fileID: 0}
-  statusEffectType: {fileID: 0}
-  statusEffectCounterType: {fileID: 0}
-  statusEffectCounterUpdateType: {fileID: 0}
-  statusEffectInstanceType: {fileID: 0}
-  statusEffectActions: []
+  statusEffectName: Haste
+  description: Increases target's Speed by 30%.
+  icon: {fileID: -5027423351736864352, guid: 8bc6643d9f85aa449bd5bd6f890c7d42, type: 3}
+  statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
+  statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
+    type: 2}
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
+    type: 2}
+  statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
+    type: 2}
+  statusEffectActions:
+  - {fileID: 0}

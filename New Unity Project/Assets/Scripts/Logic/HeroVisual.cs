@@ -117,6 +117,11 @@ namespace Logic
         /// Sets the energy text, fill, and color
         /// </summary>
         public ISetEnergyVisual SetEnergyVisual { get; private set; }
+        
+        /// <summary>
+        /// Sets the energy text and fill color based on changes in speed
+        /// </summary>
+        public ISetSpeedVisual SetSpeedVisual { get; private set; }
 
         private void Awake()
         {
@@ -127,6 +132,7 @@ namespace Logic
             SetHealthVisual = GetComponent<ISetHealthVisual>();
             SetFightingSpiritVisual = GetComponent<ISetFightingSpiritVisual>();
             SetEnergyVisual = GetComponent<ISetEnergyVisual>();
+            SetSpeedVisual = GetComponent<ISetSpeedVisual>();
         }
     }
 }

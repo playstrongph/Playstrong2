@@ -1,18 +1,85 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using Logic;
 using UnityEngine;
 
-public class IncreaseSpeedActionAsset : MonoBehaviour
+namespace ScriptableObjectScripts.BasicActionAssets
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "IncreaseSpeedAction", menuName = "Assets/BasicActions/I/IncreaseSpeedAction")]
+    public class IncreaseSpeedActionAsset : BasicActionAsset
     {
+        /// <summary>
+        /// Increase value by a fixed amount
+        /// </summary>
+        [SerializeField] private int flatValue = 0;
         
-    }
+        /// <summary>
+        /// Increase value by a percentage speed amount
+        /// </summary>
+        [SerializeField] private int percentValue = 0;
+        
+        //TODO: CalculatedValue
+        
+        /// <summary>
+        /// change in attribute value - used by execute and undo execute action
+        /// </summary>
+        private int _changeValue = 0;
+        
+        /// <summary>
+        /// Increase speed logic execution
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public override IEnumerator ExecuteAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
-    // Update is called once per frame
-    void Update()
-    {
+            var baseValue = hero.HeroLogic.HeroAttributes.BaseSpeed;
+            
+            //Compute change in attack value
+            _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
+
+            var newAttackValue = hero.HeroLogic.HeroAttributes.Speed + _changeValue;
+            
+            //Set the new attack value in hero attributes
+            hero.HeroLogic.SetSpeed.StartAction(newAttackValue);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Text Update Animation
+        /// </summary>
+        /// <param name="targetedHero"></param>
+        /// <returns></returns>
+        public override IEnumerator MainAnimationAction(IHero targetedHero)
+        {
+            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            
+            //Update the energy bar color
+            visualTree.AddCurrent(SetSpeedVisual(targetedHero));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private IEnumerator SetSpeedVisual(IHero hero)
+        {
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+            
+            hero.HeroVisual.SetSpeedVisual.StartAction();
+
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
         
     }
 }

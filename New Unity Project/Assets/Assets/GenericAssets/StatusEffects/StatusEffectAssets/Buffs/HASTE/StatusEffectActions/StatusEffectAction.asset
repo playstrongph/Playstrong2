@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eb56c136c7b9043a6254241e933c24, type: 3}
   m_Name: StatusEffectAction
   m_EditorClassIdentifier: 
-  basicEvent: {fileID: 0}
-  subscribers: {fileID: 0}
-  basicConditionTargets: {fileID: 0}
+  basicEvent: {fileID: 11400000, guid: 269598a789ae200429d3b03805fc538d, type: 2}
+  subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
+  basicConditionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30,
+    type: 2}
   orBasicConditions: []
   andBasicConditions: []
-  basicActionTargets: {fileID: 0}
+  basicActionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicActions: []
