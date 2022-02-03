@@ -16,9 +16,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(CreateStatusEffect(targetHero,casterHero,statusEffectAsset,counters));
-            
-            if(NewStatusEffect.CountersValue <=0)
-                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
         }
         
     }
