@@ -34,6 +34,17 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         {
         }
         
+        /// <summary>
+        /// Used to check and update skill readiness status
+        /// Used at the first start of combat
+        /// </summary>
+        /// <param name="skill"></param>
+        public virtual void UpdateSkillReadiness(ISkill skill)
+        {
+        }
+        
+        
+        
         //TEST
         /// <summary>
         /// Visual reduction of skill cooldown

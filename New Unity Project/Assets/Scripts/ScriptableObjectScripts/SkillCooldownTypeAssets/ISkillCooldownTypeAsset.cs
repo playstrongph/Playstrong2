@@ -12,5 +12,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
 
         void TurnControllerReduceCooldown(ISkill skill, int counter = 1);
         void UseSkillResetCooldown(ISkill skill);
+
+        void UpdateSkillReadiness(ISkill skill);
     }
 }

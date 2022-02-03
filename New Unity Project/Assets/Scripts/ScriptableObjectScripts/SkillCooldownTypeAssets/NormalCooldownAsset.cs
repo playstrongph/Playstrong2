@@ -148,10 +148,22 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             //Update the skill and display skill visual cooldown text
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
         }
-        
-        
-        
-        
-       
+
+        public override void UpdateSkillReadiness(ISkill skill)
+        {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            
+            //UpdateSkillReadinessStatus
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
+            
+            //TODO - is this required?
+            //Update the skill and display skill visual cooldown text
+            visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
+        }
+
+
+
+
+
     }
 }

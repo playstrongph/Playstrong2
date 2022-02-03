@@ -75,7 +75,16 @@ namespace Logic
             _skillLogic.SkillAttributes.SkillCooldownType.UseSkillResetCooldown(_skill);
         }
         
-        
+        /// <summary>
+        /// Checks and updates the skill readiness status during the hero's start turn.
+        /// E.g. - refresh skill target of another ally on another turn
+        /// </summary>
+        public void UpdateSkillReadiness()
+        {
+            _skillLogic.SkillAttributes.SkillCooldownType.UpdateSkillReadiness(_skill);
+        }
+
+
 
 
 

@@ -42,5 +42,11 @@
         /// except for passive skills (with no cooldown)
         /// </summary>
         void UseSkillResetCooldown();
+        
+        /// <summary>
+        /// Checks and updates the skill readiness status during the hero's start turn.
+        /// E.g. - refresh skill target of another ally on another turn
+        /// </summary>
+        void UpdateSkillReadiness();
     }
 }

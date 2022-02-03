@@ -29,6 +29,9 @@ namespace Logic
             //Run the current hero active status action
             logicTree.AddCurrent(CurrentActiveStatusAction());
             
+            //Update skill readiness based on skill cooldown
+            logicTree.AddCurrent(UpdateAllSkillsReadinessStatus());
+            
             //Re-enable end turn button
             logicTree.AddCurrent(EnableEndTurnButton());
 
@@ -53,7 +56,7 @@ namespace Logic
         }
         
         /// <summary>
-        /// Re-enables end turn button after hero on turn intializes
+        /// Re-enables end turn button after hero on turn initializes
         /// </summary>
         /// <returns></returns>
         private IEnumerator EnableEndTurnButton()
@@ -61,6 +64,25 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             
             _turnController.BattleSceneManager.EndTurnButton.EnableEndTurnButton();
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Updates each skill's readiness status based on skill cooldown
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator UpdateAllSkillsReadinessStatus()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            var currentActiveHero = _turnController.CurrentActiveHero;
+            var allSkills = currentActiveHero.HeroSkills.AllSkills;
+
+            foreach (var skill in allSkills)
+            {
+                skill.SkillLogic.UpdateSkillCooldown.UpdateSkillReadiness();
+            }
             
             logicTree.EndSequence();
             yield return null;
