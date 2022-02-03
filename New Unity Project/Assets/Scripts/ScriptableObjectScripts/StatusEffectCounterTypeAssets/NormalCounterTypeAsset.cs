@@ -42,6 +42,9 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
             //TODO: RemoveStatus effect counters
+            logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
+            
+            
         }
         
         /// <summary>
@@ -60,6 +63,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
             //TODO: RemoveStatus effect counters
+            logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
         
         /// <summary>
@@ -76,6 +80,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
             //TODO: RemoveStatus effect counters
+            logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
@@ -38,6 +39,38 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         /// <param name="statusEffect"></param>
         public virtual void TurnReduceCounters(IStatusEffect statusEffect)
         { }
+        
+        /// <summary>
+        /// Logic wrapper for visual effect
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        /// <returns></returns>
+        protected IEnumerator CheckRemoveStatusEffect(IStatusEffect statusEffect)
+        {
+            var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(CheckRemoveStatusEffectVisual(statusEffect));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Removes the status effect when the counters is less or equal to zero.
+        /// </summary>
+        /// <param name="statusEffect"></param>
+        /// <returns></returns>
+        private IEnumerator CheckRemoveStatusEffectVisual(IStatusEffect statusEffect)
+        {
+            var visualTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
+            
+            if(statusEffect.CountersValue <=0)
+                statusEffect.RemoveStatusEffect.StartAction(statusEffect.StatusEffectTargetHero);
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
 
 
     }
