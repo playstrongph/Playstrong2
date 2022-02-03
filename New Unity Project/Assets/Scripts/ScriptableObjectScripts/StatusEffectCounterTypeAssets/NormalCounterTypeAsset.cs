@@ -69,9 +69,7 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
         public override void TurnReduceCounters(IStatusEffect statusEffect)
         {
             var logicTree = statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Logic to not reduce "fresh" counters
-            
+
             statusEffect.CountersValue -= fixedReduction;
             statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
             

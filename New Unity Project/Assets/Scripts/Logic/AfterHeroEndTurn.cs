@@ -92,7 +92,7 @@ namespace Logic
             var currentActiveHero = _turnController.CurrentActiveHero;
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             
-            currentActiveHero.HeroStatusEffects.UpdateStatusEffectCounters.UpdateCountersStartTurn();
+            currentActiveHero.HeroStatusEffects.UpdateStatusEffectCounters.UpdateCountersEndTurn();
 
             logicTree.EndSequence();
             yield return null;
