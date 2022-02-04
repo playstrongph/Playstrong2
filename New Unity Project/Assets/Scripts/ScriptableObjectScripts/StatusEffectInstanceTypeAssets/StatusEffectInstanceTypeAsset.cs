@@ -7,8 +7,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 {
     public abstract class StatusEffectInstanceTypeAsset : ScriptableObject, IStatusEffectInstanceTypeAsset
     {
-
-        protected IStatusEffect NewStatusEffect = null;
+        private IStatusEffect _newStatusEffect = null;
         
         /// <summary>
         /// Add a new status effect 
@@ -70,13 +69,13 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             //Set status effect casting status
             if(targetHero==casterHero)
-                NewStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
+                _newStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
             else
-                NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
+                _newStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
             
             //Remove status effect if counters are less than or equal to zero
-            if(NewStatusEffect.CountersValue <=0)
-                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
+            if(_newStatusEffect.CountersValue <=0)
+                _newStatusEffect.RemoveStatusEffect.StartAction(targetHero);
         }
         
         /// <summary>
@@ -131,27 +130,27 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
                 targetHero.HeroStatusEffects.StatusEffectsCanvas.transform);
 
             //This is the new status effect
-            NewStatusEffect = statusEffectObject.GetComponent<IStatusEffect>();
+            _newStatusEffect = statusEffectObject.GetComponent<IStatusEffect>();
             
             //Load status effect values from status effect asset
-            NewStatusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
+            _newStatusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
 
             //Add to status effects list
-            NewStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, NewStatusEffect);
+            _newStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, _newStatusEffect);
             
             //Apply status effect
-            NewStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
+            _newStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
 
             //Set status effect casting status
             if(targetHero==casterHero)
-                NewStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
+                _newStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
             else
-                NewStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
+                _newStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
             
            
             //Remove status effect if counters are less than or equal to zero
-            if(NewStatusEffect.CountersValue <=0)
-                NewStatusEffect.RemoveStatusEffect.StartAction(targetHero);
+            if(_newStatusEffect.CountersValue <=0)
+                _newStatusEffect.RemoveStatusEffect.StartAction(targetHero);
             
             
             
@@ -177,10 +176,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             var previewObject = Instantiate(previewPrefab, previewParent);
 
             //Set status effect preview reference
-            NewStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
+            _newStatusEffect.PreviewStatusEffect = previewObject.GetComponent<IPreviewStatusEffect>();
 
             //Load preview status effect values
-            NewStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
+            _newStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
 
             visualTree.EndSequence();
             yield return null;
