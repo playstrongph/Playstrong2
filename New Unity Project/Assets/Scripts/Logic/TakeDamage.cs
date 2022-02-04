@@ -253,8 +253,10 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonAttackSkillDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
+            var allDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
+            
+            var skillDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.SkillTakeDamageReduction/100f,1);
+            
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - skillDamageReduction) * damage;
@@ -272,8 +274,10 @@ namespace Logic
         /// <returns></returns>
         private int ComputeNonSkillDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
-            var nonSkillDamageReduction = _heroLogic.DamageAttributes.NonSkillTakeDamageReduction/100f;
+            var allDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
+            
+            var nonSkillDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.NonSkillTakeDamageReduction/100f,1);
+            
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - nonSkillDamageReduction) * damage;
