@@ -205,9 +205,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeSingleAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
-            var singleAttackDamageReduction = _heroLogic.DamageAttributes.SingleTakeDamageReduction/100f;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
+            var allDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
+            
+            var singleAttackDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.SingleTakeDamageReduction/100f,1);
+            
+            var skillDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.SkillTakeDamageReduction/100f,1);
+            
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - singleAttackDamageReduction) *
@@ -226,9 +229,12 @@ namespace Logic
         /// <returns></returns>
         private int ComputeMultiAttackDamage(int nonCriticalDamage, int criticalDamage)
         {
-            var allDamageReduction = _heroLogic.DamageAttributes.AllTakeDamageReduction/100f;
-            var multiAttackDamageReduction = _heroLogic.DamageAttributes.MultiTakeDamageReduction/100f;
-            var skillDamageReduction = _heroLogic.DamageAttributes.SkillTakeDamageReduction/100f;
+            var allDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
+            
+            var multiAttackDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.MultiTakeDamageReduction/100f,1);
+            
+            var skillDamageReduction = Mathf.Min(_heroLogic.DamageAttributes.SkillTakeDamageReduction/100f,1);
+            
             var damage = criticalDamage + nonCriticalDamage;
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - multiAttackDamageReduction) *
