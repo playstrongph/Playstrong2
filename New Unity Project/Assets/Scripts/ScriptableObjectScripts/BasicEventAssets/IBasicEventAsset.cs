@@ -8,9 +8,18 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <summary>
         /// Subscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction);
+        void SubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction);
+        
+        /// <summary>
+        /// Unsubscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        void UnsubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction);
 
         /// <summary>
         /// Subscribes the standard action to the SKILL specific basic event - e.g. EventDragSkillTarget
@@ -19,12 +28,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         void SubscribeStandardAction(ISkill skill, IStandardActionAsset standardAction);
 
-        /// <summary>
-        /// Unsubscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        void UnsubscribeStandardAction(IHero hero, IStandardActionAsset standardAction);
+      
 
         /// <summary>
         /// Subscribes the standard action to the SKILL specific basic event - e.g. EventDragSkillTarget

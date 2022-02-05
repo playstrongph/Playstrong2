@@ -7,14 +7,16 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Executes the base class method StartActionCoroutine
         /// </summary>
-        /// <param name="hero"></param>
-        void StatusEffectStartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void StatusEffectStartAction(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// Undoes the status effect start action
         /// </summary>
-        /// <param name="hero"></param>
-        void UndoStatusEffectStartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void UndoStatusEffectStartAction(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// Subscribes the standard action to an event

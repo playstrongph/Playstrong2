@@ -14,7 +14,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Executes the base class method StartActionCoroutine
         /// When skill readiness status is 'SkillReady'
         /// </summary>
-        /// <param name="hero"></param>
-        void SkillStartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void SkillStartAction(IHero casterHero,IHero targetHero);
     }
 }

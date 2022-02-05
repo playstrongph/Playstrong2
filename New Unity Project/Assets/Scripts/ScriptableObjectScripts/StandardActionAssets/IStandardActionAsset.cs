@@ -86,14 +86,16 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Base method for actions execution
         /// </summary>
-        /// <param name="hero"></param>
-        void StartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void StartAction(IHero casterHero,IHero targetHero);
 
         /// <summary>
         /// Undo the start action.  Primarily used by status effects
         /// </summary>
-        /// <param name="hero"></param>
-        void UndoStartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void UndoStartAction(IHero casterHero,IHero targetHero);
 
         #endregion
 

@@ -10,25 +10,27 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <summary>
         /// Subscribes standard action to drag skill target event
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        public override void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
+        public override void SubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             var statusEffectAction = standardAction as IStatusEffectActionAsset;
 
-            statusEffectAction?.StatusEffectStartAction(hero);
+            statusEffectAction?.StatusEffectStartAction(casterHero,targetHero);
         }
         
         /// <summary>
         /// Unsubscribes standard action to drag skill target event 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        public override void UnsubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
+        public override void UnsubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             var statusEffectAction = standardAction as IStatusEffectActionAsset;
 
-            statusEffectAction?.UndoStatusEffectStartAction(hero);
+            statusEffectAction?.UndoStatusEffectStartAction(casterHero,targetHero);
         }
     }
 }

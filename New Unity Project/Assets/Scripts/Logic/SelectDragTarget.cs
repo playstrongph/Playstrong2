@@ -193,14 +193,19 @@ namespace Logic
         private IEnumerator UseSkillEffect()
         {
             var casterHero = SkillTargetCollider.Skill.CasterHero;
+            var targetHero = _validSkillTargetHero;
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var skill = SkillTargetCollider.Skill;
                 
-            //set caster hero's targeted hero 
+            //set caster hero's targeted hero
+            //TODO: For cleanup
             casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
+            
+            
 
             //Call all EventSkillDragTarget subscribers' start action
-            skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero);
+            skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;

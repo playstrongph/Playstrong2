@@ -22,8 +22,9 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// Does nothing
         /// </summary>
         /// <param name="skillAction"></param>
-        /// <param name="hero"></param>
-        public override void SkillStartAction(ISkillActionAsset skillAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
         {
             
         }

@@ -5,9 +5,9 @@ namespace Logic
     public class SkillEvents : MonoBehaviour, ISkillEvents
     {
         /// <summary>
-        /// Skill event signature - single hero
+        /// Skill event signature
         /// </summary>
-        public delegate void SkillEvent(IHero casterHero);
+        public delegate void SkillEvent(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// Drag skill event delegate
@@ -25,9 +25,10 @@ namespace Logic
         /// Call all drag skill event subscribers
         /// </summary>
         /// <param name="casterHero"></param>
-        public void EventDragSkillTarget(IHero casterHero)
+        ///  <param name="targetHero"></param>
+        public void EventDragSkillTarget(IHero casterHero,IHero targetHero)
         {
-            EDragSkillTarget?.Invoke(casterHero);
+            EDragSkillTarget?.Invoke(casterHero,targetHero);
         }
         
         private void OnDestroy()

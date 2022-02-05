@@ -20,8 +20,9 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// Executes skill action's skill start action when skill readiness is in 'SkillReady' state
         /// </summary>
         /// <param name="skillAction"></param>
-        /// <param name="hero"></param>
-        public virtual void SkillStartAction(ISkillActionAsset skillAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
         {
             
         }

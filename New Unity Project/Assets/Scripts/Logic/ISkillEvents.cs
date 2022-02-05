@@ -11,6 +11,7 @@
         /// Call all drag skill event subscribers
         /// </summary>
         /// <param name="casterHero"></param>
-        void EventDragSkillTarget(IHero casterHero);
+        /// /// <param name="targetHero"></param>
+        void EventDragSkillTarget(IHero casterHero,IHero targetHero);
     }
 }

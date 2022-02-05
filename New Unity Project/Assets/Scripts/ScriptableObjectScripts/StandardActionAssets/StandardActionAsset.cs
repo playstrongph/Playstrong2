@@ -142,26 +142,28 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Subscribe standard action to each hero (subscriber) event
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
         /// <returns></returns>
-        public void SubscribeStandardAction(IHero hero)
+        public void SubscribeStandardAction(IHero casterHero)
         {
-            foreach (var subscriber in Subscribers.ActionTargets(hero))
+            //The targetHero is the subscriber ?
+            foreach (var subscriber in Subscribers.ActionTargets(casterHero))
             {
-                BasicEvent.SubscribeStandardAction(subscriber,this);
+                BasicEvent.SubscribeStandardAction(casterHero,subscriber,this);
             }
         }
         
         /// <summary>
         /// Unsubscribe standard action to each hero (subscriber) event
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
         /// <returns></returns>
-        public void UnsubscribeStandardAction(IHero hero)
+        public void UnsubscribeStandardAction(IHero casterHero)
         {
-            foreach (var subscriber in Subscribers.ActionTargets(hero))
+            //The targetHero is the subscriber ?
+            foreach (var subscriber in Subscribers.ActionTargets(casterHero))
             {
-                BasicEvent.UnsubscribeStandardAction(subscriber,this);
+                BasicEvent.UnsubscribeStandardAction(casterHero,subscriber,this);
             }
         }
         
@@ -189,27 +191,29 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Base method for actions execution
         /// </summary>
-        /// <param name="hero"></param>
-        public virtual void StartAction(IHero hero)
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        public virtual void StartAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            logicTree.AddCurrent(StartActionCoroutine(hero));
+            logicTree.AddCurrent(StartActionCoroutine(casterHero,targetHero));
         }
 
         /// <summary>
         /// Start basic actions
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <returns></returns>
-        private IEnumerator StartActionCoroutine(IHero hero)
+        private IEnumerator StartActionCoroutine(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //Iterate per basic action
             foreach (var basicAction in BasicActions)
             {
-                logicTree.AddCurrent(basicAction.StartAction(hero, this));
+                logicTree.AddCurrent(basicAction.StartAction(casterHero, targetHero, this));
             }
             
             logicTree.EndSequence();
@@ -219,27 +223,29 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Undoes the start action.  Primarily used by status effects
         /// </summary>
-        /// <param name="hero"></param>
-        public virtual void UndoStartAction(IHero hero)
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        public virtual void UndoStartAction(IHero casterHero,IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            logicTree.AddCurrent(UndoStartActionCoroutine(hero));
+            logicTree.AddCurrent(UndoStartActionCoroutine(casterHero,targetHero));
         }
         
         /// <summary>
         /// Undoes the start action.  Primarily used by status effects 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        private IEnumerator UndoStartActionCoroutine(IHero hero)
+        private IEnumerator UndoStartActionCoroutine(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //Iterate per basic action
             foreach (var basicAction in BasicActions)
             {
-                logicTree.AddCurrent(basicAction.UndoExecuteAction(hero));
+                logicTree.AddCurrent(basicAction.UndoExecuteAction(casterHero,targetHero));
             }
             
             logicTree.EndSequence();
