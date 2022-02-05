@@ -46,7 +46,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         IEnumerator PostExecuteActionEvents(IHero hero);
         
         //TEST
-        IEnumerator MainAnimationAction(IHero targetedHero);
+        IEnumerator MainAnimation(IHero targetedHero);
 
 
         #region OLD LOGIC

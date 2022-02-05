@@ -174,12 +174,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimationAction(IHero targetedHero)
+        public override IEnumerator MainAnimation(IHero targetedHero)
         {
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
 
-            visualTree.AddCurrent(BasicActionAnimation(targetedHero));
+            visualTree.AddCurrent(BasicAnimation(targetedHero));
             
             logicTree.EndSequence();
             yield return null;
@@ -190,7 +190,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
-        private IEnumerator BasicActionAnimation(IHero casterHero)
+        private IEnumerator BasicAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;

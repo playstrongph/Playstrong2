@@ -127,7 +127,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
 
-            logicTree.AddCurrent(basicAction.MainAnimationAction(hero));
+            logicTree.AddCurrent(basicAction.MainAnimation(hero));
         }
 
       

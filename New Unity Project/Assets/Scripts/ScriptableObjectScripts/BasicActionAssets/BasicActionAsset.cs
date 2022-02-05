@@ -35,7 +35,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(MainExecuteAction(casterHero, standardAction));
             
             //Run the animation sequence for each target
-            logicTree.AddCurrent(MainAnimationAction(casterHero,standardAction));
+            logicTree.AddCurrent(MainAnimation(casterHero,standardAction));
 
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(casterHero, standardAction));
@@ -123,7 +123,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator MainAnimationAction(IHero casterHero, IStandardActionAsset standardAction)
+        private IEnumerator MainAnimation(IHero casterHero, IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(casterHero);
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
@@ -151,7 +151,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
             //example - multiple targets for attack, heal, etc.
-            logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
+            
+            //TODO: - this is causing errors - re-implement elsewhere
+            //logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
 
             logicTree.EndSequence();
             yield return null;
@@ -225,7 +227,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator MainAnimationAction(IHero casterHero)
+        public virtual IEnumerator MainAnimation(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             

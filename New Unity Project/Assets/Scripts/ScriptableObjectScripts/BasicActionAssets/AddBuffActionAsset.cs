@@ -41,7 +41,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator MainAnimationAction(IHero casterHero)
+        public override IEnumerator MainAnimation(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             

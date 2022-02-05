@@ -69,7 +69,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimationAction(IHero targetedHero)
+        public override IEnumerator MainAnimation(IHero targetedHero)
         {
             var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
