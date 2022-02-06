@@ -29,19 +29,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int addBuffChance = 0;
         
         
-        public override IEnumerator ExecuteAction(IHero casterHero)
+        public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
-            AddStatusEffect(targetedHero,casterHero);
+            AddStatusEffect(targetHero,casterHero);
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        public override IEnumerator MainAnimation(IHero casterHero)
+        public override IEnumerator MainAnimation(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             

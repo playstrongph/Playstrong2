@@ -12,12 +12,13 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="turnController"></param>
         /// <returns></returns>
         IEnumerator TurnControllerAction(ITurnController turnController);
-        
+
         /// <summary>
         /// Attack basic action asset "AttackHero" action based on inability
         /// </summary>
         /// <param name="attackHero"></param>
-        /// <param name="hero"></param>
-        void AttackAction(IAttackHero attackHero, IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void AttackAction(IAttackHero attackHero, IHero casterHero, IHero targetHero);
     }
 }

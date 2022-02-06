@@ -28,8 +28,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// Hero performs no action
         /// </summary>
         /// <param name="attackHero"></param>
-        /// <param name="hero"></param>
-        public override void AttackAction(IAttackHero attackHero, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void AttackAction(IAttackHero attackHero, IHero casterHero,IHero targetHero)
         {
             //var logicTree = hero.CoroutineTrees.MainLogicTree;
             //logicTree.EndSequence();

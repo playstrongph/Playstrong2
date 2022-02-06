@@ -85,15 +85,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Called after confirming target and caster hero are still both alive
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Check hero inability status before proceeding with attack action
             //this is for counter-attack effects
-            hero.HeroLogic.HeroInabilityStatus.AttackAction(this, hero);
+            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -102,12 +103,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Used by Inability Asset under the interface IAttackHero
         /// </summary>
-        /// <param name="hero"></param>
-        public void AttackHero(IHero hero)
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        public void AttackHero(IHero casterHero,IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            logicTree.AddCurrent(NormalOrCriticalAttack(hero));
+            logicTree.AddCurrent(NormalOrCriticalAttack(casterHero,targetHero));
         }
 
         /// <summary>
@@ -115,20 +117,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Has to be a coroutine due to events
         /// </summary>
         /// <param name="casterHero"></param>
-        private IEnumerator NormalOrCriticalAttack(IHero casterHero)
+        ///  <param name="targetHero"></param>
+        private IEnumerator NormalOrCriticalAttack(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
             var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
-            var criticalResistance = targetedHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            var criticalResistance = targetHero.HeroLogic.ResistanceAttributes.CriticalResistance;
             var netChance = criticalChance - criticalResistance;
             var randomChance = Random.Range(1, 101);
             
             
             if(randomChance<=netChance)
-                CriticalAttack(casterHero);
+                CriticalAttack(casterHero,targetHero);
             else
-                NormalAttack(casterHero);
+                NormalAttack(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -138,7 +143,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Critical attack damage is zero
         /// </summary>
         /// <param name="casterHero"></param>
-        private void NormalAttack(IHero casterHero)
+        /// <param name="targetHero"></param>
+        private void NormalAttack(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree; 
             var dealDamage = casterHero.HeroLogic.DealDamage;
@@ -146,14 +152,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var criticalAttackDamage = 0;
 
             //Attack target based on attack target count type - single or multi attack
-            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage));
         }
         
         /// <summary>
         /// Critical attack damaged calculated based on critical factor 
         /// </summary>
         /// <param name="casterHero"></param>
-        private void CriticalAttack(IHero casterHero)
+        /// <param name="targetHero"></param>
+        private void CriticalAttack(IHero casterHero,IHero targetHero)
         {
            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree; 
@@ -163,7 +170,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
 
             //Attack target based on attack target count type - single or multi attack
-            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,nonCriticalAttackDamage,criticalAttackDamage));
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
         }
 
 
@@ -174,12 +181,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="targetedHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimation(IHero targetedHero)
+        public override IEnumerator MainAnimation(IHero casterHero, IHero targetHero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
-            visualTree.AddCurrent(BasicAnimation(targetedHero));
+            visualTree.AddCurrent(BasicAnimation(casterHero,targetHero));
             
             logicTree.EndSequence();
             yield return null;
@@ -189,11 +196,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Attack hero animation
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        private IEnumerator BasicAnimation(IHero casterHero)
+        private IEnumerator BasicAnimation(IHero casterHero,IHero targetHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
             var s = DOTween.Sequence();
             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
             
@@ -204,9 +214,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero))
                 .AppendInterval(attackAnimationInterval)
-                .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetedHero))
+                .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
                 //.AppendInterval(damageAnimationInterval)
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetedHero));
+                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero));
 
             visualTree.EndSequence();
             yield return null;
@@ -215,20 +225,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Armor and Health text animation
         /// </summary>
-        /// <param name="targetedHero"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero targetedHero)
+        /// <param name="targetHero"></param>
+        private void AnimateUpdateArmorAndHealthText(IHero targetHero)
         {
             //Set Armor text
-            targetedHero.HeroVisual.SetArmorVisual.StartAction();
+            targetHero.HeroVisual.SetArmorVisual.StartAction();
             //Set health text
-            targetedHero.HeroVisual.SetHealthVisual.StartAction();
+            targetHero.HeroVisual.SetHealthVisual.StartAction();
             
             //Animate armor text
-            HeroAttributeAnimationAsset.PlayAnimation(targetedHero.HeroVisual.ArmorVisual.Text);
+            HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);
             
             //Animate health text only when damage taken is greater than zero
-            if(targetedHero.HeroLogic.TakeDamage.HealthDamage > 0 )
-                HeroAttributeAnimationAsset.PlayAnimation(targetedHero.HeroVisual.HealthVisual.Text);
+            if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
+                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);
         }
 
 
@@ -238,42 +248,48 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region EVENTS
         
-        public override IEnumerator PreExecuteActionEvents(IHero casterHero)
+        public override IEnumerator PreExecuteActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             
             //Pre-skill attack
+            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetHero);
             
             //Pre-attack
+            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetHero);
             
             //Pre-Critical
-            PreCriticalAttackEvent(casterHero);
+            PreCriticalAttackEvent(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;
         }
         
-        public override IEnumerator PostExecuteActionEvents(IHero casterHero)
+        public override IEnumerator PostExecuteActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             //Post-skill attack
+            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
             
             //Post-attack
+            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
             
             //Post-Critical
-            PostCriticalAttackEvent(casterHero);
+            PostCriticalAttackEvent(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -283,20 +299,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Determines if Pre-critical attack events are called
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        private void PreCriticalAttackEvent(IHero casterHero)
+        private void PreCriticalAttackEvent(IHero casterHero,IHero targetHero)
         {
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
             var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
-            var criticalResistance = targetedHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            var criticalResistance = targetHero.HeroLogic.ResistanceAttributes.CriticalResistance;
             var netChance = criticalChance - criticalResistance;
             var randomChance = Random.Range(1, 101);
 
 
             if (randomChance <= netChance)
             {
+                //TODO - Do these events need to have double arguments as well?
                 casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero);
-                targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetedHero);
+                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetHero);
             }
 
         }
@@ -305,20 +324,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Determines if Pre-critical attack events are called
         /// </summary>
         /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <returns></returns>
-        private void PostCriticalAttackEvent(IHero casterHero)
+        private void PostCriticalAttackEvent(IHero casterHero,IHero targetHero)
         {
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
             var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
-            var criticalResistance = targetedHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            var criticalResistance = targetHero.HeroLogic.ResistanceAttributes.CriticalResistance;
             var netChance = criticalChance - criticalResistance;
             var randomChance = Random.Range(1, 101);
 
 
             if (randomChance <= netChance)
             {
+                //TODO - Do these events need to have double arguments as well?
                 casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero);
-                targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetedHero);
+                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetHero);
             }
 
         }
@@ -327,124 +349,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
 
         #region OLD LOGIC
-
-        /*/// <summary>
-        /// Logic tree wrapper for visual tree command
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator AttackHeroAnimation(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            visualTree.AddCurrent(VisualAttackHeroAnimation(casterHero));
-            
-            logicTree.EndSequence();
-            yield return null;
-
-        }*/
-        
-         /*/// <summary>
-        /// Before hero skill attacks event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        private IEnumerator PreSkillAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// Before hero attacks event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator PreAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// After hero attacks event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator PostAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// After hero skill attacks event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator PostSkillAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// Before hero deals critical strike attack event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator PreCriticalAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// After hero deals critical strike attack event
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator PostCriticalAttackEvents(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetedHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }*/
 
         #endregion
 

@@ -26,8 +26,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// Attack basic action asset "AttackHero" action based on inability
         /// </summary>
         /// <param name="attackHero"></param>
-        /// <param name="hero"></param>
-        public virtual void AttackAction(IAttackHero attackHero, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void AttackAction(IAttackHero attackHero, IHero casterHero, IHero targetHero)
         {
             //var logicTree = hero.CoroutineTrees.MainLogicTree;
             //logicTree.EndSequence();

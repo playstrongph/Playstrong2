@@ -23,7 +23,9 @@ namespace Logic
         {
             var casterHero = _heroLogic.Hero;
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
             var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
             var finalNonCriticalDamage = ComputeSingleAttackNonCriticalDamage(casterHero,nonCriticalDamage);
             var finalCriticalDamage = ComputeSingleAttackCriticalDamage(casterHero, criticalDamage);
             
