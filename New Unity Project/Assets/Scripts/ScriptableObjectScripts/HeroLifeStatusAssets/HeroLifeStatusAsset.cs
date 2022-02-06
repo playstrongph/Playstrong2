@@ -13,7 +13,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="casterHero"></param>
-        public virtual void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero)
+        /// <param name="targetHero"></param>
+        public virtual void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -23,8 +24,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// main execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -34,8 +36,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// before implementing the basic action's pre execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -45,8 +48,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// pre execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -56,8 +60,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// before implementing the basic action's post execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -67,8 +72,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// post execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CasterPostExecutionAction(IBasicActionAsset basicAction,  IHero casterHero,IHero targetHero)
         {
             
         }
@@ -78,8 +84,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
        /// before implementing the basic action's main animation action
        /// </summary>
        /// <param name="basicAction"></param>
-       /// <param name="hero"></param>
-        public virtual void TargetMainAnimation(IBasicActionAsset basicAction, IHero hero)
+       /// <param name="casterHero"></param>
+       /// <param name="targetHero"></param>
+        public virtual void TargetMainAnimation(IBasicActionAsset basicAction,  IHero casterHero,IHero targetHero)
         {
             
         }
@@ -89,12 +96,14 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         ///  main animation action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void CasterMainAnimation(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CasterMainAnimation(IBasicActionAsset basicAction,  IHero casterHero,IHero targetHero)
         {
             
         }
         
+        //TODO - To be obsoleted
         /// <summary>
         /// Update the caster hero's target hero - in the case of multiple targets
         /// </summary>

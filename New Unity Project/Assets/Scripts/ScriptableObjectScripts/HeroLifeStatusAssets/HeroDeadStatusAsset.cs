@@ -12,8 +12,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// After confirming target is alive, check if caster is alive
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -23,8 +24,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// After confirming, caster is alive, execute action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
                
         }
@@ -33,8 +35,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// HeroDead - Do nothing
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -43,8 +46,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// HeroDead - Do nothing
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -53,8 +57,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// HeroDead - Do nothing
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }
@@ -63,8 +68,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// HeroDead - Do nothing
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public override void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             
         }

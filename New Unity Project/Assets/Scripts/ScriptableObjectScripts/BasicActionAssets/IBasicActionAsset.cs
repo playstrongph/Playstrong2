@@ -21,8 +21,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Executes the basic action logic
         /// Exclusively used by hero life status
         /// </summary>
-        /// <param name="hero"></param>
-        IEnumerator ExecuteAction(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        IEnumerator ExecuteAction(IHero casterHero, IHero targetHero);
         
         /// <summary>
         ///  Undoes the effect of execute action, mostly
@@ -36,19 +37,26 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// All the events before execute action
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        IEnumerator PreExecuteActionEvents(IHero hero);
+        IEnumerator PreExecuteActionEvents(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// All the events after execute action
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        IEnumerator PostExecuteActionEvents(IHero hero);
+        IEnumerator PostExecuteActionEvents(IHero casterHero, IHero targetHero);
         
-        //TEST
-        IEnumerator MainAnimation(IHero targetedHero);
+        /// <summary>
+        /// Main animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        IEnumerator MainAnimation(IHero casterHero, IHero targetHero);
 
 
         #region OLD LOGIC

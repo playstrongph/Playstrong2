@@ -79,11 +79,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Set targeting hero of the targeted hero    
                     //TODO - this shouldn't be used
-                    actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
+                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
                     
                     //Target action calls pre execute action if both the caster and target are alive
                     //TODO - caster hero and targeted hero should be sent
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
                 }
             }
             
@@ -120,11 +120,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Set targeting hero of the targeted hero    
                     //TODO - this shouldn't be used
-                    actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
+                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
                     
                     //Target action calls execute action if both the caster and target are alive
                     //TODO - caster hero and targeted hero should be sent
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,actionTargetHero);
                     
                     //TEST - Update animation target heroes list
                     _animationTargetHeroes.Add(actionTargetHero);
@@ -149,7 +149,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             foreach (var animationTargetHero in (_animationTargetHeroes))
             {
                 //TODO - caster hero and targeted hero should be sent ?
-                animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,animationTargetHero);
+                animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
             }
             
             //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
@@ -190,11 +190,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Set targeting hero of the targeted hero    
                     //TODO - this shouldn't be used
-                    actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
+                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
                     
                     //Target action calls pre execute action if both the caster and target are alive
                     //TODO - caster hero and targeted hero should be sent
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,actionTargetHero);
                 }
             }
             
@@ -207,7 +207,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// This is the method overriden by the specific basic actions
         /// </summary>
         /// <param name="casterHero"></param>
-        public virtual IEnumerator ExecuteAction(IHero casterHero)
+        /// <param name="targetHero"></param>
+        public virtual IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
@@ -234,8 +235,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Basic action animation
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator MainAnimation(IHero casterHero)
+        public virtual IEnumerator MainAnimation(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
@@ -247,7 +249,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// All events before Execute Action
         /// </summary>
         /// <param name="casterHero"></param>
-        public virtual IEnumerator PreExecuteActionEvents(IHero casterHero)
+        /// <param name="targetHero"></param>
+        public virtual IEnumerator PreExecuteActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
@@ -261,7 +264,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// All events after Execute Action
         /// </summary>
         /// <param name="casterHero"></param>
-        public virtual IEnumerator PostExecuteActionEvents(IHero casterHero)
+        /// <param name="targetHero"></param>
+        public virtual IEnumerator PostExecuteActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
