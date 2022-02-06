@@ -11,10 +11,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Checks if all conditions are met (basic conditions plus caster and target life status)
         /// before proceeding to execute action 
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction);
+        IEnumerator StartAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction);
 
         /// <summary>
         /// Executes the basic action logic
@@ -27,9 +28,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         ///  Undoes the effect of execute action, mostly
         /// used in status effects
         /// </summary>
-        /// <param name="targetedHero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        IEnumerator UndoExecuteAction(IHero targetedHero);
+        IEnumerator UndoExecuteAction(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// All the events before execute action

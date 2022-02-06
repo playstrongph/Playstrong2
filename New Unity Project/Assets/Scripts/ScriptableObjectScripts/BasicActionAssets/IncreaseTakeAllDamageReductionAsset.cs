@@ -29,10 +29,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator UndoExecuteAction(IHero hero)
+        public override IEnumerator UndoExecuteAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            var damageAttributes = hero.HeroLogic.DamageAttributes;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var damageAttributes = targetHero.HeroLogic.DamageAttributes;
 
             damageAttributes.AllTakeDamageReduction -= value;
             

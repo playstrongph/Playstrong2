@@ -25,9 +25,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
        /// pre-events, main execution, and post-events
        /// </summary>
        /// <param name="casterHero"></param>
+       /// <param name="targetHero"></param>
        /// <param name="standardAction"></param>
        /// <returns></returns>
-        public virtual IEnumerator StartAction(IHero casterHero, IStandardActionAsset standardAction)
+        public virtual IEnumerator StartAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
@@ -204,8 +205,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// used in status effects
         /// </summary>
         /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator UndoExecuteAction(IHero casterHero)
+        public virtual IEnumerator UndoExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             

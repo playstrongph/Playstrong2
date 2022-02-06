@@ -47,18 +47,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator UndoExecuteAction(IHero targetedHero)
+        public override IEnumerator UndoExecuteAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
-            var newValue = targetedHero.HeroLogic.HeroAttributes.Speed - _changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Speed - _changeValue;
             
             //Set the new attack value in hero attributes
-            targetedHero.HeroLogic.SetSpeed.StartAction(newValue);
+            targetHero.HeroLogic.SetSpeed.StartAction(newValue);
             
             //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetedHero));
+            visualTree.AddCurrent(SetSpeedVisual(targetHero));
             
             logicTree.EndSequence();
             yield return null;

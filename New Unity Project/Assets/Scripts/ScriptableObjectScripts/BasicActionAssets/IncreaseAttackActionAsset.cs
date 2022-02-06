@@ -62,19 +62,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator UndoExecuteAction(IHero targetedHero)
+        public override IEnumerator UndoExecuteAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
-            var newValue = targetedHero.HeroLogic.HeroAttributes.Attack - _changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Attack - _changeValue;
             
             //Set the new attack value in hero attributes
-            targetedHero.HeroLogic.SetAttack.StartAction(newValue);
+            targetHero.HeroLogic.SetAttack.StartAction(newValue);
             
             //Update the attack text with no animation
-            visualTree.AddCurrent(SetAttackVisual(targetedHero));
+            visualTree.AddCurrent(SetAttackVisual(targetHero));
             
             logicTree.EndSequence();
             yield return null;
