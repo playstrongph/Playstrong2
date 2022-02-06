@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicEventAssets
 {
-    [CreateAssetMenu(fileName = "StartNowStatusEffectBasicEvent", menuName = "Assets/BasicEvents/StartNowStatusEffectBasicEvent")]
-    public class StartNowStatusEffectBasicEventAsset : BasicEventAsset
+    [CreateAssetMenu(fileName = "StatusEffectBasicEvent", menuName = "Assets/BasicEvents/StatusEffectBasicEvent")]
+    public class StatusEffectBasicEventAsset : BasicEventAsset
     {
         /// <summary>
         /// Subscribes standard action to drag skill target event

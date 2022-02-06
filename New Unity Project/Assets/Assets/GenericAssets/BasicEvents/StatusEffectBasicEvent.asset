@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a70dff9a2e371dd4397f1e26ecc73438, type: 3}
-  m_Name: StartNowStatusEffectBasicEvent
+  m_Name: StatusEffectBasicEvent
   m_EditorClassIdentifier: 

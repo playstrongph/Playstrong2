@@ -12,8 +12,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// before implementing the basic action's main execution action
         /// </summary>
         /// <param name="basicAction"></param>
-        /// <param name="hero"></param>
-        public virtual void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero hero)
+        /// <param name="casterHero"></param>
+        public virtual void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero)
         {
             
         }
