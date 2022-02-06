@@ -13,11 +13,19 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override List<IHero> ActionTargets(IHero casterHero,IHero targetHero)
+        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero)
         {
             var actionTargets = new List<IHero> {casterHero};
             
             return actionTargets;
+        }
+        
+        public override List<IHero> GetEventSubscribers(IHero hero)
+        {
+            var actionTargets = new List<IHero> {hero};
+            
+            return actionTargets;
+            
         }
         
         

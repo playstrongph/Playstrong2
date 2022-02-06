@@ -11,14 +11,21 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        List<IHero> ActionTargets(IHero casterHero, IHero targetHero);
+        List<IHero> GetActionTargets(IHero casterHero, IHero targetHero);
         
+        /// <summary>
+        /// Returns a list of heroes subscribing to the basic event
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        List<IHero> GetEventSubscribers(IHero hero);
+
         /*/// <summary>
         /// Initializes the skill's caster hero used by SkillCasterHero action target
         /// </summary>
         /// <param name="skill"></param>
         void InitializeSkillCasterHero(ISkill skill);*/
-        
+
         /*/// <summary>
         /// Sets the reference to the status effect's caster hero
         /// </summary>

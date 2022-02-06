@@ -13,7 +13,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override List<IHero> ActionTargets(IHero casterHero,IHero targetHero)
+        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero)
         {
             //var targetHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
             
@@ -22,6 +22,16 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             var actionTargets = ShuffleList(new List<IHero>(allEnemies));
             
             return actionTargets;
+        }
+        
+        public override List<IHero> GetEventSubscribers(IHero hero)
+        {
+            var allEnemies = hero.Player.OtherPlayer.AliveHeroes.Heroes;
+
+            var actionTargets = ShuffleList(new List<IHero>(allEnemies));
+            
+            return actionTargets;
+            
         }
         
         

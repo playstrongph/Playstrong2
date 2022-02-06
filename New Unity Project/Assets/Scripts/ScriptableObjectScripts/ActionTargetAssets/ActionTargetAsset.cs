@@ -24,18 +24,37 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         
         /// <summary>
         /// Returns list of action or basic condition targets
+        /// Used by Basic Conditions and Basic Actions
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public virtual List<IHero> ActionTargets(IHero casterHero, IHero targetHero)
+        public virtual List<IHero> GetActionTargets(IHero casterHero, IHero targetHero)
         {
             var actionTargets = new List<IHero>();
             
             Debug.Log("Base Class Action Targets");
             
             return actionTargets;
+            
         }
+        
+        /// <summary>
+        /// Returns a list of heroes subscribing to the basic event
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        public virtual List<IHero> GetEventSubscribers(IHero hero)
+        {
+            var actionTargets = new List<IHero>();
+            
+            Debug.Log("Base Class Get Event Subscribers");
+            
+            return actionTargets;
+            
+        }
+        
+        
         
         /*/// <summary>
         /// Initializes the skill's caster hero used by SkillCasterHero action target

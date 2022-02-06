@@ -147,7 +147,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public void SubscribeStandardAction(IHero casterHero)
         {
             //The targetHero is the subscriber ?
-            foreach (var subscriber in Subscribers.ActionTargets(casterHero))
+            foreach (var subscriber in Subscribers.GetEventSubscribers(casterHero))
             {
                 BasicEvent.SubscribeStandardAction(casterHero,subscriber,this);
             }
@@ -161,7 +161,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public void UnsubscribeStandardAction(IHero casterHero)
         {
             //The targetHero is the subscriber ?
-            foreach (var subscriber in Subscribers.ActionTargets(casterHero))
+            foreach (var subscriber in Subscribers.GetEventSubscribers(casterHero))
             {
                 BasicEvent.UnsubscribeStandardAction(casterHero,subscriber,this);
             }
