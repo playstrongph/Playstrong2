@@ -10,15 +10,16 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <summary>
         /// Returns the hero's targeted hero
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override List<IHero> ActionTargets(IHero hero)
+        public override List<IHero> ActionTargets(IHero casterHero,IHero targetHero)
         {
-            var actionTargets = new List<IHero>();
+            var actionTargets = new List<IHero>{targetHero};
 
-            var targetHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
             
-            actionTargets.Add(targetHero);
+            //actionTargets.Add(targetHero);
             
             return actionTargets;
         }

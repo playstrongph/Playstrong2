@@ -10,22 +10,25 @@ namespace ScriptableObjectScripts.ActionTargetAssets
     /// </summary>
     public abstract class ActionTargetAsset : ScriptableObject, IActionTargetAsset
     {
-        /// <summary>
+        /*/// <summary>
         /// Reference to the hero who casts the skill
         /// </summary>
+        ///TODO: Try to clean this up
         protected IHero SkillCasterHero;
         
         /// <summary>
         /// Reference to the hero who created the status effect
         /// </summary>
-        protected IHero StatusEffectCasterHero;
+        ///TODO: Try to clean this up
+        protected IHero StatusEffectCasterHero;*/
         
         /// <summary>
         /// Returns list of action or basic condition targets
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        public virtual List<IHero> ActionTargets(IHero hero)
+        public virtual List<IHero> ActionTargets(IHero casterHero, IHero targetHero)
         {
             var actionTargets = new List<IHero>();
             
@@ -34,23 +37,23 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             return actionTargets;
         }
         
-        /// <summary>
+        /*/// <summary>
         /// Initializes the skill's caster hero used by SkillCasterHero action target
         /// </summary>
         /// <param name="skill"></param>
         public virtual void InitializeSkillCasterHero(ISkill skill)
         {
             SkillCasterHero = skill.CasterHero;
-        }
+        }*/
         
-        /// <summary>
+        /*/// <summary>
         /// Sets the reference to the status effect's caster hero
         /// </summary>
         /// <param name="statusEffect"></param>
         public virtual void InitializeStatusEffectCasterHero(IStatusEffect statusEffect)
         {
             StatusEffectCasterHero = statusEffect.StatusEffectCasterHero;
-        }
+        }*/
         
         
         /// <summary>

@@ -55,15 +55,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="standardAction"></param>
         private IEnumerator PreExecuteAction(IHero casterHero,  IStandardActionAsset standardAction)
         {
+            //These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
             var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(casterHero);
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
+                //These are the basic condition target heroes - thisHero,targetHero, allEnemies, etc.
                 var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(casterHero);
                 
-                //Check if conditionTargetHeroes and actionTargetHeroes are the same
-                //If not, use index 0 (meaning there is only 1 condition target)
+               
+                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
                 
                 var targetedHero = actionTargetHeroes[index];

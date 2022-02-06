@@ -94,14 +94,16 @@ namespace Logic
 
                 // ReSharper disable once PossibleNullReferenceException
                 //Initialize caster hero reference
-                standardAction.BasicActionTargets.InitializeStatusEffectCasterHero(_statusEffect);
+                //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
+                //standardAction.BasicActionTargets.InitializeStatusEffectCasterHero(_statusEffect);
                 
                 //Create unique instance of subscribers
                 standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionTargetAsset;
                 
                 // ReSharper disable once PossibleNullReferenceException
                 //Initialize caster hero reference
-                standardAction.Subscribers.InitializeStatusEffectCasterHero(_statusEffect);
+                //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
+                //standardAction.Subscribers.InitializeStatusEffectCasterHero(_statusEffect);
 
                 i++;
             }

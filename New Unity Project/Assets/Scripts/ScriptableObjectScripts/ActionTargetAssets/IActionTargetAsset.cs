@@ -8,20 +8,21 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <summary>
         /// Returns list of action or basic condition targets
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        List<IHero> ActionTargets(IHero hero);
+        List<IHero> ActionTargets(IHero casterHero, IHero targetHero);
         
-        /// <summary>
+        /*/// <summary>
         /// Initializes the skill's caster hero used by SkillCasterHero action target
         /// </summary>
         /// <param name="skill"></param>
-        void InitializeSkillCasterHero(ISkill skill);
+        void InitializeSkillCasterHero(ISkill skill);*/
         
-        /// <summary>
+        /*/// <summary>
         /// Sets the reference to the status effect's caster hero
         /// </summary>
         /// <param name="statusEffect"></param>
-        void InitializeStatusEffectCasterHero(IStatusEffect statusEffect);
+        void InitializeStatusEffectCasterHero(IStatusEffect statusEffect);*/
     }
 }

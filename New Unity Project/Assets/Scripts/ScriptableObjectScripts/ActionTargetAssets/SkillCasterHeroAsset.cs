@@ -7,7 +7,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
     [CreateAssetMenu(fileName = "SkillCasterHero", menuName = "Assets/ActionTargets/SkillCasterHero")]
     public class SkillCasterHeroAsset : ActionTargetAsset
     {
-        /// <summary>
+        /*/// <summary>
         /// Returns the hero's targeted hero
         /// </summary>
         /// <param name="hero"></param>
@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             var actionTargets = new List<IHero> {SkillCasterHero};
             
             return actionTargets;
-        }
+        }*/
         
         
     }
