@@ -141,7 +141,8 @@ namespace Logic
             
             //Update the latest targeted hero to null
             _validSkillTargetHero = null;
-            SkillTargetCollider.Skill.CasterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
+            
+            //SkillTargetCollider.Skill.CasterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
 
             for (int i = 0; i < hitsCount; i++)
             {
@@ -200,7 +201,7 @@ namespace Logic
                 
             //set caster hero's targeted hero
             //TODO: For cleanup
-            casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
+            //casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
             
             
 

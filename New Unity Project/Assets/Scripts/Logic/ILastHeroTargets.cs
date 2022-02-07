@@ -2,7 +2,7 @@
 {
     public interface ILastHeroTargets
     {
-        /// <summary>
+        /*/// <summary>
         /// The last hero targeted by this hero
         /// </summary>
         IHero TargetedHero { get; }
@@ -22,6 +22,6 @@
         /// Set targeting hero
         /// </summary>
         /// <param name="hero"></param>
-        void SetTargetingHero(IHero hero);
+        void SetTargetingHero(IHero hero);*/
     }
 }

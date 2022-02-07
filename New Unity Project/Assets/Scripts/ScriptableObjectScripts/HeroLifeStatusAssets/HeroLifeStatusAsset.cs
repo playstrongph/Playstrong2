@@ -104,7 +104,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
         
         //TODO - To be obsoleted
-        /// <summary>
+        /*/// <summary>
         /// Update the caster hero's target hero - in the case of multiple targets
         /// </summary>
         /// <param name="hero"></param>
@@ -112,15 +112,15 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         protected IEnumerator SetTargetHero(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
             
-            casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(hero);
+            //var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
+            //casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(hero);
             
             
             
             logicTree.EndSequence();
             yield return null;
-        }
+        }*/
         
         
         
