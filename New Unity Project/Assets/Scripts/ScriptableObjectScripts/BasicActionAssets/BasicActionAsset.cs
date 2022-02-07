@@ -146,11 +146,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Animation target heroes have already been selected in main execute action
-            foreach (var animationTargetHero in (_animationTargetHeroes))
+            /*foreach (var animationTargetHero in (_animationTargetHeroes))
             {
                 //TODO - caster hero and targeted hero should be sent ?
                 animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
+            }*/
+            
+            //TEST
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
+            foreach (var actionTargetHero in actionTargetHeroes)
+            {
+                actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,actionTargetHero);
             }
+            
             
             //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
             //example - multiple targets for attack, heal, etc.

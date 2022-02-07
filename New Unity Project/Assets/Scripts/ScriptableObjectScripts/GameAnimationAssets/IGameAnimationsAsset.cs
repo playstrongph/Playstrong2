@@ -10,6 +10,13 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// </summary>
         /// <param name="hero"></param>
         void PlayAnimation(IHero hero);
+        
+        /// <summary>
+        /// Play animation - caster to hero target argument
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void PlayAnimation(IHero casterHero,IHero targetHero);
 
         void PlayAnimation(TextMeshProUGUI text);
         

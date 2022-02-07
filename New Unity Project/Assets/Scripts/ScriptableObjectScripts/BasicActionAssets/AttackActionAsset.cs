@@ -179,7 +179,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Basic action animation
         /// </summary>
-        /// <param name="targetedHero"></param>
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
         /// <returns></returns>
         public override IEnumerator MainAnimation(IHero casterHero, IHero targetHero)
         {
@@ -212,11 +213,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Set the value of the main animation duration
             MainAnimationDuration = attackAnimationInterval;
 
-            s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero))
+            s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero,targetHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
                 //.AppendInterval(damageAnimationInterval)
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero));
+                .AppendCallback(() => AnimateUpdateArmorAndHealthText(casterHero,targetHero));
 
             visualTree.EndSequence();
             yield return null;
@@ -226,7 +227,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Armor and Health text animation
         /// </summary>
         /// <param name="targetHero"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero targetHero)
+        /// <param name="casterHero"></param>
+        private void AnimateUpdateArmorAndHealthText(IHero casterHero,IHero targetHero)
         {
             //Set Armor text
             targetHero.HeroVisual.SetArmorVisual.StartAction();

@@ -23,6 +23,15 @@ namespace Animation
         }
         
         /// <summary>
+        /// Play visual effect - caster to target hero effect (2 arguments)
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void PlayVisualEffect(IHero casterHero,IHero targetHero)
+        {
+        }
+        
+        /// <summary>
         /// Total visual effect duration in seconds
         /// </summary>
         public virtual float VisualEffectDuration { get => 0; protected set => value = 0; }

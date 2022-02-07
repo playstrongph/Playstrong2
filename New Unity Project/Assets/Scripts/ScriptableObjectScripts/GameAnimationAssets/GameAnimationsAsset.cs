@@ -47,7 +47,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         }
         
         /// <summary>
-        /// Play animation hero argument
+        /// Play animation - single hero argument
         /// </summary>
         /// <param name="hero"></param>
         public void PlayAnimation(IHero hero)
@@ -62,7 +62,23 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         }
         
         /// <summary>
-        /// Play animation hero argument
+        /// Play animation - single hero argument
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void PlayAnimation(IHero casterHero,IHero targetHero)
+        {
+            foreach (var gameVisualEffect in GameVisualEffects)
+            {
+                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, casterHero.ThisGameObject.transform);
+                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
+                
+                visualEffect.PlayVisualEffect(casterHero,targetHero);
+            }
+        }
+        
+        /// <summary>
+        /// Play animation  - Text arrgument 
         /// </summary>
         /// <param name="text"></param>
         public void PlayAnimation(TextMeshProUGUI text)

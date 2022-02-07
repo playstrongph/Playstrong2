@@ -51,9 +51,9 @@ namespace Animation
         /// </summary>
         public override float VisualEffectDuration => doScaleDuration + displayInterval + doMoveDuration;
 
-        public override void PlayVisualEffect(IHero casterHero)
+        public override void PlayVisualEffect(IHero casterHero,IHero targetHero)
         {
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
 
             //Set projectile image
             image.sprite = casterHero.HeroVisual.HeroGraphic.HeroImage.sprite;
@@ -69,7 +69,7 @@ namespace Animation
                 .AppendInterval(displayInterval)
                 
                 .AppendCallback(() =>
-                    transform.DOMove(targetedHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
+                    transform.DOMove(targetHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
                 
                 .AppendInterval(doMoveDuration)
                 
