@@ -27,21 +27,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Increase speed logic execution
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            var baseValue = hero.HeroLogic.HeroAttributes.BaseSpeed;
+            var baseValue = targetHero.HeroLogic.HeroAttributes.BaseSpeed;
             
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newValue = hero.HeroLogic.HeroAttributes.Speed + _changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Speed + _changeValue;
             
             //Set the new attack value in hero attributes
-            hero.HeroLogic.SetSpeed.StartAction(newValue);
+            targetHero.HeroLogic.SetSpeed.StartAction(newValue);
             
             logicTree.EndSequence();
             yield return null;
@@ -67,15 +68,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Text Update Animation
         /// </summary>
-        /// <param name="targetedHero"></param>
+        ///  <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator MainAnimation(IHero targetedHero)
+        public override IEnumerator MainAnimation(IHero casterHero,IHero targetHero)
         {
-            var logicTree = targetedHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetedHero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
             //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetedHero));
+            visualTree.AddCurrent(SetSpeedVisual(targetHero));
 
             logicTree.EndSequence();
             yield return null;

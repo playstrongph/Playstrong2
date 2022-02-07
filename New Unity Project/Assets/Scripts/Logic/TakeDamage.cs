@@ -115,6 +115,14 @@ namespace Logic
 
         }
         
+        /// <summary>
+        /// Non-attack skill damage - e.g. passive skill damage
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="nonAttackSkillDamage"></param>
+        /// <param name="penetrateArmorChance"></param>
+        /// <returns></returns>
         public IEnumerator TakeNonAttackSkillDamage(IHero casterHero, IHero targetHero, int nonAttackSkillDamage, int penetrateArmorChance)
         {
             //var targetedHero = _heroLogic.Hero;
@@ -147,6 +155,14 @@ namespace Logic
 
         }
         
+        /// <summary>
+        /// Non-skill damage - e.g. status effect damage, weapon damage
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="nonSkillDamage"></param>
+        /// <param name="penetrateArmorChance"></param>
+        /// <returns></returns>
         public IEnumerator TakeNonSkillDamage(IHero casterHero, IHero targetHero,int nonSkillDamage, int penetrateArmorChance)
         {
             //var targetedHero = _heroLogic.Hero;
@@ -176,10 +192,18 @@ namespace Logic
             yield return null;
 
         }
-
+        
+        /// <summary>
+        /// Computes damage to armor and health
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="finalDamage"></param>
+        /// <returns></returns>
         private IEnumerator HeroTakesDamage(IHero hero,int finalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: percent damage distribution?
             
             ComputeNewArmor(hero,finalDamage);
             ComputeNewHealth(hero,_residualDamage);
@@ -188,6 +212,12 @@ namespace Logic
             yield return null;
         }
         
+        /// <summary>
+        /// Direct health damage, ignores hero armor
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="finalDamage"></param>
+        /// <returns></returns>
         private IEnumerator HeroTakesDamageIgnoreArmor(IHero hero,int finalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -197,9 +227,6 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
         }
-
-
-
 
 
 

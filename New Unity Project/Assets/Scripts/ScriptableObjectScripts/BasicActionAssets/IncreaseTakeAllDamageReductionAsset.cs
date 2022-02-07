@@ -18,10 +18,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         [SerializeField] private int value = 0;
         
-        public override IEnumerator ExecuteAction(IHero hero)
+        public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            var damageAttributes = hero.HeroLogic.DamageAttributes;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            var damageAttributes = targetHero.HeroLogic.DamageAttributes;
 
             damageAttributes.AllTakeDamageReduction += value;
             
