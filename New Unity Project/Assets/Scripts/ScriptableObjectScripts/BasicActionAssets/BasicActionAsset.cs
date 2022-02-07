@@ -311,7 +311,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var s = DOTween.Sequence();
 
-            s.AppendInterval(3f)
+            s.AppendInterval(duration)
                 .AppendCallback(() =>
                     visualTree.EndSequence()
                 );
