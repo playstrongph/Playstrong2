@@ -162,9 +162,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
             //example - multiple targets for attack, heal, etc.
-            
-            //TODO: - this is causing errors - re-implement elsewhere
-            //logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
+            logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
 
             logicTree.EndSequence();
             yield return null;
@@ -313,7 +311,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var s = DOTween.Sequence();
 
-            s.AppendInterval(duration)
+            s.AppendInterval(3f)
                 .AppendCallback(() =>
                     visualTree.EndSequence()
                 );
