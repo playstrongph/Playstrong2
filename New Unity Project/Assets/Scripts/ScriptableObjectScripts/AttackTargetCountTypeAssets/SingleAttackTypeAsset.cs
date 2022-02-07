@@ -12,19 +12,20 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
         /// Used by attack basic action
         /// </summary>
         /// <param name="dealDamage"></param>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        public override IEnumerator StartAction(IDealDamage dealDamage, IHero hero, int nonCriticalDamage, int criticalDamage)
+        public override IEnumerator StartAction(IDealDamage dealDamage, IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-           logicTree.AddCurrent(PreSingleAttackEvents(hero));
+           logicTree.AddCurrent(PreSingleAttackEvents(casterHero,targetHero));
 
-           logicTree.AddCurrent(dealDamage.DealSingleAttackDamage(nonCriticalDamage,criticalDamage));
+           logicTree.AddCurrent(dealDamage.DealSingleAttackDamage(casterHero,targetHero,nonCriticalDamage,criticalDamage));
            
-           logicTree.AddCurrent(PostSingleAttackEvents(hero));
+           logicTree.AddCurrent(PostSingleAttackEvents(casterHero,targetHero));
             
             logicTree.EndSequence();
             yield return null;

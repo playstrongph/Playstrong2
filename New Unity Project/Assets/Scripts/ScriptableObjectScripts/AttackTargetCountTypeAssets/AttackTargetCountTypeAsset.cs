@@ -6,9 +6,9 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
 {
     public abstract class AttackTargetCountTypeAsset : ScriptableObject, IAttackTargetCountTypeAsset
     {
-        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero hero, int nonCriticalDamage, int criticalDamage)
+        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             Debug.Log("For Overload");
             
@@ -22,14 +22,16 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
         /// Before hero deals singe attack events
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        protected IEnumerator PreSingleAttackEvents(IHero casterHero)
+        protected IEnumerator PreSingleAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
+            //TODO: Events double argument?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroDealsSingleTargetAttack(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroTakesSingleTargetAttack(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroTakesSingleTargetAttack(targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -39,14 +41,17 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
         /// After hero deals singe attack events
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        protected IEnumerator PostSingleAttackEvents(IHero casterHero)
+        protected IEnumerator PostSingleAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //TODO: Events double argument?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsSingleTargetAttack(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroTakesSingleTargetAttack(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroTakesSingleTargetAttack(targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -56,14 +61,17 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
         /// Before hero deals multi attack events
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        protected IEnumerator PreMultiAttackEvents(IHero casterHero)
+        protected IEnumerator PreMultiAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //TODO: Events double argument?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroDealsMultiTargetAttack(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventBeforeHeroTakesMultiTargetAttack(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroTakesMultiTargetAttack(targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -73,14 +81,17 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
         /// After hero deals multi attack events
         /// </summary>
         /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         /// <returns></returns>
-        protected IEnumerator PostMultiAttackEvents(IHero casterHero)
+        protected IEnumerator PostMultiAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
+            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
+            
+            //TODO: Events double argument?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsMultiTargetAttack(casterHero);
-            targetedHero.HeroLogic.HeroEvents.EventAfterHeroTakesMultiTargetAttack(targetedHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroTakesMultiTargetAttack(targetHero);
             
             logicTree.EndSequence();
             yield return null;
