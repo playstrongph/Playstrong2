@@ -33,7 +33,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator?
+            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));   
         }
         
@@ -62,7 +62,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
         
             //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator?
+            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.PreExecuteActionEvents(casterHero,targetHero));
         }
         
@@ -91,7 +91,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator?
+            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.PostExecuteActionEvents(casterHero,targetHero));
         }
 
@@ -118,7 +118,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator?
+            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.MainAnimation(casterHero,targetHero));
         }
 
