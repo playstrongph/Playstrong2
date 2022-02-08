@@ -40,6 +40,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Run the animation sequence for each target.  Target hero is provided by main execute action (animation targets)
             logicTree.AddCurrent(MainAnimationAction(casterHero));
+            
+            //Animation duration interval before next animation is called
+            logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
 
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(casterHero, targetHero, standardAction));
@@ -132,16 +135,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator MainAnimationAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
+            
             //Execute animation for each animation target hero
             foreach (var animationTargetHero in _animationTargetHeroes)
             {
                 animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
             }
-            
-            //Animation delay interval
-            visualTree.AddCurrent(AnimationIntervalVisual(casterHero,MainAnimationDuration));
 
             logicTree.EndSequence();
             yield return null;
@@ -254,6 +253,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Animation duration interval
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
+        private IEnumerator AnimationInterval(IHero casterHero, float duration)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(AnimationIntervalVisual(casterHero,duration));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
 
         /// <summary>
         /// The animation duration interval (in seconds) before next animation is played

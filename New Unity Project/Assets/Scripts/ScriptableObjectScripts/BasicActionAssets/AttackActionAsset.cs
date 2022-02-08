@@ -121,11 +121,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator NormalOrCriticalAttack(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
             var criticalChance = casterHero.HeroLogic.ChanceAttributes.CriticalChance + skillCriticalChance;
             var criticalResistance = targetHero.HeroLogic.ResistanceAttributes.CriticalResistance;
+            
             var netChance = criticalChance - criticalResistance;
             var randomChance = Random.Range(1, 101);
             
@@ -188,7 +186,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
             visualTree.AddCurrent(BasicAnimation(casterHero,targetHero));
-            
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -207,9 +205,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             var s = DOTween.Sequence();
             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
-            
-            //var damageAnimationInterval = DamageAnimationAsset.AnimationDuration;
-            
+
             //Set the value of the main animation duration
             MainAnimationDuration = attackAnimationInterval;
 
@@ -222,7 +218,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             visualTree.EndSequence();
             yield return null;
         }
-        
+
         /// <summary>
         /// Armor and Health text animation
         /// </summary>
