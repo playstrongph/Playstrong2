@@ -38,8 +38,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainExecuteAction(casterHero, targetHero, standardAction));
             
-            //Run the animation sequence for each target
-            logicTree.AddCurrent(MainAnimationAction(casterHero, targetHero, standardAction));
+            //Run the animation sequence for each target.  Target hero is provided by main execute action (animation targets)
+            logicTree.AddCurrent(MainAnimationAction(casterHero));
 
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostExecuteAction(casterHero, targetHero, standardAction));
@@ -72,17 +72,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //This is effectively the actual "target hero" 
                 var actionTargetHero = actionTargetHeroes[index];
 
-                //hero.HeroLogic.LastHeroTargets.SetTargetedHero(newTargetHero);
-                
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Set targeting hero of the targeted hero    
-                    //TODO - this shouldn't be used
-                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
-                    
                     //Target action calls pre execute action if both the caster and target are alive
-                    //TODO - caster hero and targeted hero should be sent
                     actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
                 }
             }
@@ -99,7 +92,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="standardAction"></param>
         private IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
+            //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //animation target heroes list 
@@ -118,15 +113,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Set targeting hero of the targeted hero    
-                    //TODO - this shouldn't be used
-                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
-                    
                     //Target action calls execute action if both the caster and target are alive
-                    //TODO - caster hero and targeted hero should be sent
                     actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,actionTargetHero);
                     
-                    //TEST - Update animation target heroes list
+                    //Animation target heroes
                     _animationTargetHeroes.Add(actionTargetHero);
                 }
             }
@@ -139,30 +129,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Play the main execute action animations
         /// </summary>
         /// <param name="casterHero"></param>
-        ///  <param name="targetHero"></param>
-        /// <param name="standardAction"></param>
-        private IEnumerator MainAnimationAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
+        private IEnumerator MainAnimationAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Animation target heroes have already been selected in main execute action
-            /*foreach (var animationTargetHero in (_animationTargetHeroes))
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+
+            //Execute animation for each animation target hero
+            foreach (var animationTargetHero in _animationTargetHeroes)
             {
-                //TODO - caster hero and targeted hero should be sent ?
                 animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
-            }*/
-            
-            //TEST
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
-            foreach (var actionTargetHero in actionTargetHeroes)
-            {
-                actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,actionTargetHero);
             }
             
-            
-            //Animation interval delay.  Called here instead inside specific basic action due to parallel animations
-            //example - multiple targets for attack, heal, etc.
-            logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
+            //Animation delay interval
+            visualTree.AddCurrent(AnimationIntervalVisual(casterHero,MainAnimationDuration));
 
             logicTree.EndSequence();
             yield return null;
@@ -194,12 +173,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Set targeting hero of the targeted hero    
-                    //TODO - this shouldn't be used
-                    //actionTargetHero.HeroLogic.LastHeroTargets.SetTargetingHero(casterHero);
-                    
                     //Target action calls pre execute action if both the caster and target are alive
-                    //TODO - caster hero and targeted hero should be sent
                     actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,actionTargetHero);
                 }
             }
@@ -280,25 +254,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        /// <summary>
-        /// logic tree wrapper for animation interval, to ensure correct timing of
-        /// visual tree method calls
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="duration"></param>
-        /// <returns></returns>
-        private IEnumerator AnimationInterval(IHero casterHero, float duration)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            visualTree.AddCurrent(AnimationIntervalVisual(casterHero,duration));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
+
         /// <summary>
         /// The animation duration interval (in seconds) before next animation is played
         /// </summary>
@@ -383,12 +339,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             return _finalOrConditionsValue;
         }
-        
-        
-        
-        
-        
-       
+
 
 
 
@@ -439,57 +390,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         #endregion
 
         #region OLD LOGIC
-        
-        /*/// <summary>
-        /// Checks if the targeted and targeting hero are both alive before
-        /// executing the basic action.  Can be overriden to bypass these checks
-        /// as required - e.g. resurrect, base stats change
-        /// </summary>
-        /// <param name="hero"></param>
-        public virtual IEnumerator StartAction(IHero hero)
-        {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            hero.HeroLogic.HeroLifeStatus.TargetAction(this,hero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }*/
-        
-        /*/// <summary>
-      /// Checks if all conditions are met (basic conditions plus caster and target life status)
-      /// before proceeding to execute action 
-      /// </summary>
-      /// <param name="hero"></param>
-      /// <param name="standardAction"></param>
-      /// <returns></returns>
-      public virtual IEnumerator StartAction(IHero hero, IStandardActionAsset standardAction)
-      {
-          var logicTree = hero.CoroutineTrees.MainLogicTree;
-          var actionTargetHeroes = standardAction.BasicActionTargets.ActionTargets(hero);
-
-          for (var index = 0; index < actionTargetHeroes.Count; index++)
-          {
-              var conditionTargetHeroes = standardAction.BasicConditionTargets.ActionTargets(hero);
-              
-              //Check if conditionTargetHeroes and actionTargetHeroes are the same
-              //If not, use index 0 (meaning there is only 1 condition target)
-              var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
-              
-              var newTargetHero = actionTargetHeroes[index];
-              
-              //Product of all 'And' and 'Or' basic condition logic
-              if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
-              {
-                  //Target action calls execute action if both the caster and target are alive
-                  newTargetHero.HeroLogic.HeroLifeStatus.TargetAction(this,newTargetHero);
-              }
-          }
-
-          logicTree.EndSequence();
-          yield return null;
-      }*/
-        
 
         #endregion
 

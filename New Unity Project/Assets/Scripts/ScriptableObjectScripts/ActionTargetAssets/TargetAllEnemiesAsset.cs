@@ -15,18 +15,18 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <returns></returns>
         public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero)
         {
-            //var targetHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            var allEnemies = targetHero.Player.AliveHeroes.Heroes;
+            //Should be from the perspective of the caster hero
+            var allEnemies = casterHero.Player.OtherPlayer.AliveHeroes.Heroes;
 
             var actionTargets = ShuffleList(new List<IHero>(allEnemies));
             
             return actionTargets;
         }
         
-        public override List<IHero> GetEventSubscribers(IHero hero)
+        public override List<IHero> GetEventSubscribers(IHero casterHero)
         {
-            var allEnemies = hero.Player.OtherPlayer.AliveHeroes.Heroes;
+            //Should be from the perspective of the caster hero
+            var allEnemies = casterHero.Player.OtherPlayer.AliveHeroes.Heroes;
 
             var actionTargets = ShuffleList(new List<IHero>(allEnemies));
             

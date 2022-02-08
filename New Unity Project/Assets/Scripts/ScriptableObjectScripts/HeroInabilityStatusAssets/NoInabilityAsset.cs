@@ -31,14 +31,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="targetHero"></param>
         public override void AttackAction(IAttackHero attackHero, IHero casterHero,IHero targetHero)
         {
-            //var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //logicTree.AddCurrent(attackHero.AttackHero(hero));
-
             attackHero.AttackHero(casterHero,targetHero);
-
-            //logicTree.EndSequence();
-            //yield return null;
         }
     }
 }
