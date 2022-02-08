@@ -127,12 +127,7 @@ namespace Logic
         /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
         /// </summary>
         public ISetHeroActiveStatus SetHeroActiveStatus { get; private set; }
-        
-        /// <summary>
-        /// Sets the hero's/other hero's targeted/targeting hero 
-        /// </summary>
-        public ILastHeroTargets LastHeroTargets { get; private set; }
-        
+
         /// <summary>
         /// Reference to hero events
         /// </summary>
@@ -166,7 +161,9 @@ namespace Logic
             LoadHeroAttributes = GetComponent<ILoadHeroAttributes>();
             HeroTimer = GetComponent<IHeroTimer>();
             SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
-            LastHeroTargets = GetComponent<ILastHeroTargets>();
+            
+            //LastHeroTargets = GetComponent<ILastHeroTargets>();
+            
             HeroEvents = GetComponent<IHeroEvents>();
             DealDamage = GetComponent<IDealDamage>();
             TakeDamage = GetComponent<ITakeDamage>();

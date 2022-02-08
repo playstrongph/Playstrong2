@@ -17,13 +17,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            //var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Update the caster hero's target hero - in the case of multiple targets
-            //logicTree.AddCurrent(SetTargetHero(hero));
-
-            //call the hero alive status of the original caster hero (the attacker, or healer)
+            //Check if the caster is still alive
             targetHero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero,targetHero);
         }
 
@@ -38,6 +32,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
+            //call the hero alive status of the original caster hero (the attacker, or healer)
+            //TODO - Does this have to be an IEnumerator?
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));   
         }
         
@@ -50,13 +46,6 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            //var casterHero = hero.HeroLogic.LastHeroTargets.TargetingHero;
-            
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Update the caster hero's target hero - in the case of multiple targets
-           //logicTree.AddCurrent(SetTargetHero(hero));
-            
             //call the hero alive status of the original caster hero (the attacker, or healer)
             targetHero.HeroLogic.HeroLifeStatus.CasterPreExecutionAction(basicAction,casterHero,targetHero);
         }
@@ -71,7 +60,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-
+            
+            
             logicTree.AddCurrent(basicAction.PreExecuteActionEvents(casterHero,targetHero));
         }
         
