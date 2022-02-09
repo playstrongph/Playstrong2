@@ -13,15 +13,13 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
     {
         public override void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            
             var existingStatusEffect = CheckForExistingStatusEffect(targetHero, statusEffectAsset);
             
             if(existingStatusEffect != null)
                 UpdateStatusEffect(targetHero,casterHero,existingStatusEffect,statusEffectAsset,counters);
             else
             {
-                logicTree.AddCurrent(CreateStatusEffect(targetHero,casterHero,statusEffectAsset,counters));
+                CreateStatusEffect(targetHero,casterHero,statusEffectAsset,counters);
             }
         }
         

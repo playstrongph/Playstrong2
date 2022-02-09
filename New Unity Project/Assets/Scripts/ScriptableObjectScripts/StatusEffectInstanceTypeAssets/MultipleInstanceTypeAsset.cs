@@ -10,13 +10,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
     [CreateAssetMenu(fileName = "MultipleInstanceType", menuName = "Assets/StatusEffectsInstanceTypeAsset/MultipleInstanceType")]
     public class MultipleInstanceTypeAsset : StatusEffectInstanceTypeAsset
     {
-       
         public override void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            
-            logicTree.AddCurrent(CreateStatusEffect(targetHero,casterHero,statusEffectAsset,counters));
+            CreateStatusEffect(targetHero, casterHero, statusEffectAsset, counters);
         }
-        
     }
 }

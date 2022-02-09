@@ -21,6 +21,9 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             
         }
         
+       
+       
+        
         /// <summary>
         /// Create a new status effect
         /// </summary>
@@ -29,22 +32,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        protected IEnumerator CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
+        protected void CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
-
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
-            //Create the status effect
-            visualTree.AddCurrent(CreateStatusEffectVisual(targetHero,casterHero,statusEffectAsset,counters));
-            
-            //Create the status effect preview
-            visualTree.AddCurrent(CreateStatusEffectPreview(targetHero, statusEffectAsset));
-           
-
-            logicTree.EndSequence();
-            yield return null;
-
+            CreateStatusEffectVisual(targetHero, casterHero, statusEffectAsset, counters);
+            CreateStatusEffectPreview(targetHero, statusEffectAsset);
         }
         
         /// <summary>
@@ -112,6 +103,8 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         
        
         
+        
+             
         /// <summary>
         /// Visual tree queueing for create status effect
         /// </summary>
@@ -120,9 +113,8 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         /// <returns></returns>
-        private IEnumerator CreateStatusEffectVisual(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
+        private void CreateStatusEffectVisual(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
 
             //Instantiate status effect game object
@@ -151,25 +143,18 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Remove status effect if counters are less than or equal to zero
             if(_newStatusEffect.CountersValue <=0)
                 _newStatusEffect.RemoveStatusEffect.StartAction(targetHero);
-            
-            
-            
-            visualTree.EndSequence();
-            yield return null;
 
         }
-        
-        
+
+
         /// <summary>
         /// Creates the status effect preview game object
         /// </summary>
         /// <param name="targetHero"></param>
         /// <param name="statusEffectAsset"></param>
         /// <returns></returns>
-        private IEnumerator CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset)
+        private void CreateStatusEffectPreview(IHero targetHero, IStatusEffectAsset statusEffectAsset)
         {
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
             var previewPrefab = targetHero.HeroStatusEffects.PreviewStatusEffectPrefab.ThisGameObject;
             var previewParent = targetHero.HeroPreview.PreviewStatusEffects.transform;
 
@@ -180,9 +165,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             //Load preview status effect values
             _newStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
-
-            visualTree.EndSequence();
-            yield return null;
         }
 
 
