@@ -15,7 +15,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// The duration (seconds) of the main animation
         /// set in the specific basic action
         /// </summary>
-        public float MainAnimationDuration { get; protected set; }
+        protected float MainAnimationDuration = 0f;
 
         //TEST
         private readonly List<IHero> _animationTargetHeroes = new List<IHero>();

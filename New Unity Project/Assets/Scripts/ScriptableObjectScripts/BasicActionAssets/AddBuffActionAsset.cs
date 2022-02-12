@@ -47,6 +47,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //No animation for add buff action
             
+            //TODO:Enable status effect canvas
+            
+            //TODO: Define main animation duration interval
+            
+            
+
             logicTree.EndSequence();
             yield return null;
         }

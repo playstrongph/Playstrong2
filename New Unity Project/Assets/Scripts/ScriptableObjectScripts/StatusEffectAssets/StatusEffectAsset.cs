@@ -184,17 +184,11 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         public void ApplyAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Apply Actions: " +BasicActions.Count.ToString());
-            
+
             foreach (var action in BasicActions)
             {
-               
-                //Orig
                 logicTree.AddCurrent(action.PreExecuteActionEvents(casterHero,targetHero));
-                
-                Debug.Log("CasterHero: " +casterHero.HeroName +" TargetHero: " +targetHero.HeroName);
-                
+
                 logicTree.AddCurrent(action.ExecuteAction(casterHero,targetHero));
 
                 logicTree.AddCurrent(action.MainAnimation(casterHero, targetHero));
@@ -215,7 +209,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
              foreach (var action in BasicActions)
              {
                  //action.ExecuteAction(casterHero,targetHero);
-                 action.UndoExecuteAction(casterHero, targetHero);
+                 logicTree.AddCurrent(action.UndoExecuteAction(casterHero, targetHero));
              }
          }
         

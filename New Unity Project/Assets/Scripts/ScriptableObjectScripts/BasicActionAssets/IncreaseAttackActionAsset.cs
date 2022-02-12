@@ -47,8 +47,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
-            Debug.Log("Increase Attack Action");
-            
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;
@@ -93,9 +91,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
-            Debug.Log("Increase Attack Main Animation");
-            
+
             //Update the attack text with no animation
             visualTree.AddCurrent(SetAttackVisual(targetHero));
             
