@@ -57,6 +57,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <returns></returns>
         IEnumerator MainAnimation(IHero casterHero, IHero targetHero);
+        
+        
+        //TEST
+        float MainAnimationDuration { get;}
+      
 
 
         #region OLD LOGIC

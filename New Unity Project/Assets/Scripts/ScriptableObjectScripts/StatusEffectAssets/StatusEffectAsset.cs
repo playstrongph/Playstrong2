@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
+using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectCountersUpdateTypeAssets;
 using ScriptableObjectScripts.StatusEffectCounterTypeAssets;
@@ -122,16 +124,39 @@ namespace ScriptableObjectScripts.StatusEffectAssets
                 return newStatusEffectActions;
             }
         }
-        /// <summary>
-        /// Returns status effect actions as scriptable objects
-        /// </summary>
         public List<ScriptableObject> StatusEffectActionObjects => statusEffectActions;
         
+        
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicActionAsset))]
+        private List<ScriptableObject> basicActions = new List<ScriptableObject>();
         /// <summary>
-        /// Apply status effect action
+        /// Status Effect Basic Actions
+        /// </summary>
+        public List<IBasicActionAsset> BasicActions
+        {
+            get
+            {
+                var newBasicActions = new List<IBasicActionAsset>();
+                
+                foreach (var scriptableObject in basicActions)
+                {
+                    var basicAction = scriptableObject as IBasicActionAsset;
+                    newBasicActions.Add(basicAction);
+                }
+                
+                return newBasicActions;
+            }
+        }
+        
+        public List<ScriptableObject> BasicActionObjects => basicActions;
+
+       
+        /// <summary>
+        /// Subscribe status effect action
         /// </summary>
         /// <param name="hero"></param>
-        public void ApplyAction(IHero hero)
+        public void SubscribeAction(IHero hero)
         {
             foreach (var action in StatusEffectActions)
             {
@@ -140,16 +165,63 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         }
         
         /// <summary>
-        /// Unapply status effect action
+        /// Unsubscribe status effect action
         /// </summary>
         /// <param name="hero"></param>
-        public void UnapplyAction(IHero hero)
+        public void UnsubscribeAction(IHero hero)
         {
             foreach (var action in StatusEffectActions)
             {
                 action.UnsubscribeStandardAction(hero);
             }
         }
+
+        /// <summary>
+        /// Apply status effect 
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void ApplyAction(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            Debug.Log("Apply Actions: " +BasicActions.Count.ToString());
+            
+            foreach (var action in BasicActions)
+            {
+               
+                //Orig
+                logicTree.AddCurrent(action.PreExecuteActionEvents(casterHero,targetHero));
+                
+                Debug.Log("CasterHero: " +casterHero.HeroName +" TargetHero: " +targetHero.HeroName);
+                
+                logicTree.AddCurrent(action.ExecuteAction(casterHero,targetHero));
+
+                logicTree.AddCurrent(action.MainAnimation(casterHero, targetHero));
+
+                logicTree.AddCurrent(action.PostExecuteActionEvents(casterHero,targetHero));
+            }
+        }   
+         
+         /// <summary>
+         /// Unapply the status effect
+         /// </summary>
+         /// <param name="casterHero"></param>
+         /// <param name="targetHero"></param>
+         public void UndoApplyAction(IHero casterHero, IHero targetHero)
+         {
+             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+             foreach (var action in BasicActions)
+             {
+                 //action.ExecuteAction(casterHero,targetHero);
+                 action.UndoExecuteAction(casterHero, targetHero);
+             }
+         }
+        
+       
+
+
         
         //TODO: remove status effect on death
     }

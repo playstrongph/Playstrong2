@@ -22,5 +22,6 @@ MonoBehaviour:
     type: 2}
   statusEffectInstanceType: {fileID: 11400000, guid: 4c1706fa46fecb44f9da2fcc2490811d,
     type: 2}
-  statusEffectActions:
-  - {fileID: 11400000, guid: e44fce7eceebd5242a5d18322d70c6bc, type: 2}
+  statusEffectActions: []
+  basicActions:
+  - {fileID: 11400000, guid: 80491bc5460938c4c85aab75d8efd3f3, type: 2}

@@ -130,8 +130,12 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Add to status effects list
             _newStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, _newStatusEffect);
             
-            //Apply status effect
-            _newStatusEffect.StatusEffectAsset.ApplyAction(targetHero);
+            //Subscribe Status Effect Asset
+            _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
+            
+            //Apply Status effect asset basic actions
+            //TODO: TargetHero, TargetHero fix
+            _newStatusEffect.StatusEffectAsset.ApplyAction(targetHero,targetHero);
 
             //Set status effect casting status
             if(targetHero==casterHero)

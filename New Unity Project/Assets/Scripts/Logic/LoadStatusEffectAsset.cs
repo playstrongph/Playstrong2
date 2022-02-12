@@ -1,5 +1,6 @@
 ﻿using System;
 using ScriptableObjectScripts.ActionTargetAssets;
+using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.BasicConditionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectAssets;
@@ -69,6 +70,8 @@ namespace Logic
 
             CreateUniqueStandardActions();
 
+            CreateUniqueBasicActions();
+
             CreateUniqueBasicConditions();
         }
         
@@ -86,6 +89,7 @@ namespace Logic
                 
                 //replace the status effect actions with unique clones
                 _statusEffect.StatusEffectAsset.StatusEffectActionObjects[i] = standardAction as ScriptableObject;
+
 
                 // ReSharper disable once PossibleNullReferenceException
                 //Create a unique instance of action targets
@@ -107,8 +111,29 @@ namespace Logic
 
                 i++;
             }
+
+           
+
         }
         
+        /// <summary>
+        /// Creates unique object instances of Basic Actions
+        /// </summary>
+        private void CreateUniqueBasicActions()
+        {
+            var i = 0;
+            foreach (var basicAction in _statusEffect.StatusEffectAsset.BasicActions)
+            {
+                //Create a unique instance of the basic action
+                var cloneBasicAction = Instantiate(basicAction as ScriptableObject) as IBasicActionAsset;
+                
+                //replace the basic action with unique clones
+                _statusEffect.StatusEffectAsset.BasicActionObjects[i] = cloneBasicAction as ScriptableObject;
+
+                i++;
+            }
+        }
+
         /// <summary>
         /// Create unique basic conditions
         /// </summary>
