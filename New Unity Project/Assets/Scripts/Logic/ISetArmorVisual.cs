@@ -5,6 +5,6 @@
         /// <summary>
         /// Sets the armor visual value
         /// </summary>
-        void StartAction();
+        void StartAction(int value);
     }
 }

@@ -18,18 +18,21 @@ namespace Logic
         /// <summary>
         /// Sets the armor visual value
         /// </summary>
-        public void StartAction()
+        public void StartAction(int value)
         {
-            SetVisualValue();
+            SetVisualValue(value);
         }
 
-        private void SetVisualValue()
+        private void SetVisualValue(int value)
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
             var armorValue = heroLogic.HeroAttributes.Armor;
             
             //Clamp minimum display value to zero
-            var armorVisualValue = Mathf.Max(0, armorValue);
+            //var armorVisualValue = Mathf.Max(0, armorValue);
+            
+            //TEST
+            var armorVisualValue = Mathf.Max(0, value);
             
             _heroVisual.ArmorVisual.Text.text = armorVisualValue.ToString();
 

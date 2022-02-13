@@ -209,11 +209,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Set the value of the main animation duration
             MainAnimationDuration = attackAnimationInterval;
 
-            s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero,targetHero))
+            //get the armor value at this instance
+            var armorValue = targetHero.HeroLogic.HeroAttributes.Armor;
+
+            s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero, targetHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
-                //.AppendInterval(damageAnimationInterval)
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero));
+                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero,armorValue));
 
             visualTree.EndSequence();
             yield return null;
@@ -223,10 +225,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Armor and Health text animation
         /// </summary>
         /// <param name="targetHero"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero targetHero)
+        /// <param name="armorValue"></param>
+        private void AnimateUpdateArmorAndHealthText(IHero targetHero, int armorValue)
         {
             //Set Armor text
-            targetHero.HeroVisual.SetArmorVisual.StartAction();
+            targetHero.HeroVisual.SetArmorVisual.StartAction(armorValue);
             //Set health text
             targetHero.HeroVisual.SetHealthVisual.StartAction();
             
