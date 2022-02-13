@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
 using TMPro;
@@ -75,7 +76,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             targetHero.HeroLogic.SetAttack.StartAction(newValue);
             
             //Update the attack text with no animation
-            visualTree.AddCurrent(SetAttackVisual(targetHero));
+            visualTree.AddCurrent(SetAttackVisual(targetHero,newValue));
             
             logicTree.EndSequence();
             yield return null;
@@ -91,12 +92,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-
+            
+            //gets the attack value at this instance
+            var attackValue = targetHero.HeroLogic.HeroAttributes.Attack;
+            
             //Update the attack text with no animation
-            visualTree.AddCurrent(SetAttackVisual(targetHero));
+            //visualTree.AddCurrent(SetAttackVisual(targetHero,attackValue));
             
             //Play text update animation
-            visualTree.AddCurrent(BasicActionAnimation(targetHero));
+            visualTree.AddCurrent(BasicActionAnimation(targetHero,attackValue));
             
             logicTree.EndSequence();
             yield return null;
@@ -108,12 +112,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// used separately by undo execute action
         /// </summary>
         /// <param name="hero"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        private IEnumerator SetAttackVisual(IHero hero)
+        private IEnumerator SetAttackVisual(IHero hero, int value)
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
             
-            hero.HeroVisual.SetAttackVisual.StartAction();
+            hero.HeroVisual.SetAttackVisual.StartAction(value);
             
             visualTree.EndSequence();
             yield return null;
@@ -123,16 +128,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Bounce Visual Text animation
         /// </summary>
         /// <param name="targetHero"></param>
+        ///  /// <param name="value"></param>
         /// <returns></returns>
-        private IEnumerator BasicActionAnimation(IHero targetHero)
+        private IEnumerator BasicActionAnimation(IHero targetHero,int value)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
+            //set attack text value
+            targetHero.HeroVisual.SetAttackVisual.StartAction(value);
+            
             //attack text mesh pro GUI
             var attackText = targetHero.HeroVisual.AttackVisual.Text;
             
             HeroAttributeAnimationAsset.PlayAnimation(attackText);
-
+            
             visualTree.EndSequence();
             yield return null;
         }

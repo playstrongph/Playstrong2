@@ -55,8 +55,7 @@ namespace Logic
         {
             var heroVisual = _heroLogic.Hero.HeroVisual;
             
-            heroVisual.SetAttackVisual.StartAction();
-            
+            heroVisual.SetAttackVisual.StartAction(_heroLogic.HeroAttributes.Attack);
             heroVisual.SetArmorVisual.StartAction(_heroLogic.HeroAttributes.Armor);
             heroVisual.SetHealthVisual.StartAction(_heroLogic.HeroAttributes.Health);
             

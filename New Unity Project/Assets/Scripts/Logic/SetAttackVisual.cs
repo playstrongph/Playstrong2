@@ -14,19 +14,22 @@ namespace Logic
             _heroVisual = GetComponent<IHeroVisual>();
         }
         
-        /// <summary>
-        /// Sets the attack visual value
-        /// </summary>
-        public void StartAction()
+       /// <summary>
+       /// Sets attack text value
+       /// </summary>
+       /// <param name="value"></param>
+        public void StartAction(int value)
         {
-            SetVisualValue();
+            SetVisualValue(value);
         }
 
-        private void SetVisualValue()
+        private void SetVisualValue(int value)
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
             var baseValue = heroLogic.HeroAttributes.BaseAttack;
-            var attackValue = heroLogic.HeroAttributes.Attack;
+            
+            //var attackValue = heroLogic.HeroAttributes.Attack;
+            var attackValue = value;
             
             //Clamp minimum display value to zero
             var attackVisualValue = Mathf.Max(0, attackValue);

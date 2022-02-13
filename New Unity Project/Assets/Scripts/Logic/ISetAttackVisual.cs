@@ -3,8 +3,9 @@
     public interface ISetAttackVisual
     {
         /// <summary>
-        /// Sets the attack visual value
+        /// Sets attack text value
         /// </summary>
-        void StartAction();
+        /// <param name="value"></param>
+        void StartAction(int value);
     }
 }
