@@ -57,10 +57,9 @@ namespace Logic
             
             heroVisual.SetAttackVisual.StartAction();
             
-            //TEST
             heroVisual.SetArmorVisual.StartAction(_heroLogic.HeroAttributes.Armor);
+            heroVisual.SetHealthVisual.StartAction(_heroLogic.HeroAttributes.Health);
             
-            heroVisual.SetHealthVisual.StartAction();
             heroVisual.SetFightingSpiritVisual.StartAction();
             heroVisual.SetEnergyVisual.StartAction();
             

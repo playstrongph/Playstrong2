@@ -6,6 +6,6 @@
         /// Sets the health visual value
         /// value can be negative
         /// </summary>
-        void StartAction();
+        void StartAction(int value);
     }
 }

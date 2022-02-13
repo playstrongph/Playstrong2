@@ -18,16 +18,18 @@ namespace Logic
         /// Sets the health visual value
         /// value can be negative
         /// </summary>
-        public void StartAction()
+        public void StartAction(int value)
         {
-            SetVisualValue();
+            SetVisualValue(value);
         }
 
-        private void SetVisualValue()
+        private void SetVisualValue(int value)
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
             var baseValue = heroLogic.HeroAttributes.BaseHealth;
-            var healthValue = heroLogic.HeroAttributes.Health;
+            
+            //var healthValue = heroLogic.HeroAttributes.Health;
+            var healthValue = value;
             
             _heroVisual.HealthVisual.Text.text = healthValue.ToString();
             _heroVisual.HealthVisual.Text.color = GetTextColor(baseValue,healthValue );

@@ -211,11 +211,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //get the armor value at this instance
             var armorValue = targetHero.HeroLogic.HeroAttributes.Armor;
-
+            
+            //get the health value at this instance
+            var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
+            
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero, targetHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero,armorValue));
+                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero,armorValue,healthValue));
 
             visualTree.EndSequence();
             yield return null;
@@ -226,12 +229,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="targetHero"></param>
         /// <param name="armorValue"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero targetHero, int armorValue)
+        /// /// <param name="healthValue"></param>
+        private void AnimateUpdateArmorAndHealthText(IHero targetHero, int armorValue, int healthValue)
         {
             //Set Armor text
             targetHero.HeroVisual.SetArmorVisual.StartAction(armorValue);
             //Set health text
-            targetHero.HeroVisual.SetHealthVisual.StartAction();
+            targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
             
             //Animate armor text
             if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )
