@@ -218,7 +218,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero, targetHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero,armorValue,healthValue));
+                .AppendCallback(() => HealthAndArmorTextAnimation(targetHero,armorValue,healthValue));
 
             visualTree.EndSequence();
             yield return null;
@@ -230,7 +230,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="armorValue"></param>
         /// /// <param name="healthValue"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero targetHero, int armorValue, int healthValue)
+        private void HealthAndArmorTextAnimation(IHero targetHero, int armorValue, int healthValue)
         {
             //Set Armor text
             targetHero.HeroVisual.SetArmorVisual.StartAction(armorValue);
