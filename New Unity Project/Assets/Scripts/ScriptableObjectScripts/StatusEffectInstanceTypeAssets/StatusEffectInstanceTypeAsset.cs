@@ -35,6 +35,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         protected void CreateStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             CreateStatusEffectVisual(targetHero, casterHero, statusEffectAsset, counters);
+            
             CreateStatusEffectPreview(targetHero, statusEffectAsset);
         }
         
@@ -124,18 +125,25 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //This is the new status effect
             _newStatusEffect = statusEffectObject.GetComponent<IStatusEffect>();
             
+
             //Load status effect values from status effect asset
             _newStatusEffect.LoadStatusEffectAsset.StartAction(targetHero, casterHero, statusEffectAsset, counters);
 
             //Add to status effects list
             _newStatusEffect.StatusEffectType.AddToStatusEffectsList(targetHero.HeroStatusEffects, _newStatusEffect);
             
-            //Subscribe Status Effect Asset
+            //Hide the status effect symbol first
+            _newStatusEffect.StatusEffectSymbol.HideSymbol();
+
+            //Subscribe Status Effect Asset. 
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
             
-            //Apply Status effect asset basic actions
+            //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
             _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
 
+            //Display the status effect symbol 
+            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
+            
             //Set status effect casting status
             if(targetHero==casterHero)
                 _newStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
@@ -169,6 +177,8 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Load preview status effect values
             _newStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
         }
+
+
 
 
 

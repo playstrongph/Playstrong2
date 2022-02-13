@@ -22,6 +22,8 @@ namespace Logic
         /// </summary>
         TextMeshProUGUI CountersText { get; set; }
 
+        Image Frame { get; set; }
+
         //SET IN RUN TIME
         
         /// <summary>
@@ -100,6 +102,11 @@ namespace Logic
         /// Sets the status effect casting status to "fresh" or "old"
         /// </summary>
         IUpdateStatusEffectCastingStatus UpdateStatusEffectCastingStatus { get; }
+        
+        /// <summary>
+        /// Shows or hides the status effect symbol
+        /// </summary>
+        IStatusEffectSymbol StatusEffectSymbol { get;}
 
         /// <summary>
         /// Caster of the status effect
@@ -110,5 +117,7 @@ namespace Logic
         /// Target of the status effect
         /// </summary>
         IHero StatusEffectTargetHero { get; set; }
+        
+      
     }
 }

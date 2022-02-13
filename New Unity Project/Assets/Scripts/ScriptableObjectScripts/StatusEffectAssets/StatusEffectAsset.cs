@@ -195,9 +195,10 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 
                 logicTree.AddCurrent(action.PostExecuteActionEvents(casterHero,targetHero));
             }
-        }   
-         
-         /// <summary>
+        }
+
+
+        /// <summary>
          /// Unapply the status effect
          /// </summary>
          /// <param name="casterHero"></param>

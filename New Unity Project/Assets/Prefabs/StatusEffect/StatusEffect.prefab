@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 2319012873105728947}
   - component: {fileID: 3758751352414681440}
   - component: {fileID: 8347972122509097006}
+  - component: {fileID: 477866597}
   m_Layer: 0
   m_Name: StatusEffect
   m_TagString: Untagged
@@ -191,8 +192,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectName: 
   statusEffectDescription: 
-  icon: {fileID: 9025590046319691858}
   countersValue: 0
+  icon: {fileID: 9025590046319691858}
+  frame: {fileID: 9025590045478412382}
   countersText: {fileID: 9025590045110359400}
   statusEffectAsset: {fileID: 0}
   previewStatusEffect: {fileID: 0}
@@ -201,6 +203,8 @@ MonoBehaviour:
   statusEffectCounterUpdateType: {fileID: 0}
   statusEffectInstanceType: {fileID: 0}
   statusEffectCastingStatus: {fileID: 0}
+  statusEffectTargetHero: {fileID: 0}
+  statusEffectCasterHero: {fileID: 0}
 --- !u!114 &2136267900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +255,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freshCastAsset: {fileID: 11400000, guid: cc0f3c8c06848024ebbbb898a6193459, type: 2}
   oldCastAsset: {fileID: 11400000, guid: 8a4c5bbd938ea0f45ab404ad8aa8a6a0, type: 2}
+--- !u!114 &477866597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025590045280894979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d196b98eba37924d9b78aa8e810d9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9025590045478412368
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //No animation for add buff action
             
-            //TODO:Enable status effect canvas
+            //TODO:Show Status Effect Symbol
             
             //TODO: Define main animation duration interval
             
@@ -81,8 +81,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Example - addBuffChance is 75% and random chance is 50.
             if(randomChance <= netBuffChance)
                 StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
-
         }
+
+      
 
 
 

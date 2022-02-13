@@ -38,16 +38,6 @@ namespace Logic
             set => statusEffectDescription = value;
         }
         
-        [SerializeField] private Image icon;
-        /// <summary>
-        /// StatusEffect icon
-        /// </summary>
-        public Image Icon
-        {
-            get => icon;
-            set => icon = value;
-        }
-
         [SerializeField] private int countersValue;
         
         /// <summary>
@@ -57,6 +47,26 @@ namespace Logic
         {
             get => countersValue;
             set => countersValue = value;
+        }
+        
+        [SerializeField] private Image icon;
+        /// <summary>
+        /// StatusEffect icon
+        /// </summary>
+        public Image Icon
+        {
+            get => icon;
+            set => icon = value;
+        }
+        
+        [SerializeField] private Image frame;
+        /// <summary>
+        /// StatusEffect frame
+        /// </summary>
+        public Image Frame
+        {
+            get => frame;
+            set => frame = value;
         }
 
         [SerializeField] private TextMeshProUGUI countersText;
@@ -200,6 +210,13 @@ namespace Logic
         /// Sets the status effect casting status to "fresh" or "old"
         /// </summary>
         public IUpdateStatusEffectCastingStatus UpdateStatusEffectCastingStatus { get; private set;}
+        
+        /// <summary>
+        /// Shows or hides the status effect symbol
+        /// </summary>
+        public IStatusEffectSymbol StatusEffectSymbol { get; private set; }
+
+
 
         private void Awake()
         {
@@ -207,6 +224,7 @@ namespace Logic
             LoadStatusEffectAsset = GetComponent<ILoadStatusEffectAsset>();
             RemoveStatusEffect = GetComponent<IRemoveStatusEffect>();
             UpdateStatusEffectCastingStatus = GetComponent<IUpdateStatusEffectCastingStatus>();
+            StatusEffectSymbol = GetComponent<IStatusEffectSymbol>();
         }
     }
 }
