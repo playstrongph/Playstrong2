@@ -213,7 +213,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
                 //.AppendInterval(damageAnimationInterval)
-                .AppendCallback(() => AnimateUpdateArmorAndHealthText(casterHero,targetHero));
+                .AppendCallback(() => AnimateUpdateArmorAndHealthText(targetHero));
 
             visualTree.EndSequence();
             yield return null;
@@ -223,8 +223,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Armor and Health text animation
         /// </summary>
         /// <param name="targetHero"></param>
-        /// <param name="casterHero"></param>
-        private void AnimateUpdateArmorAndHealthText(IHero casterHero,IHero targetHero)
+        private void AnimateUpdateArmorAndHealthText(IHero targetHero)
         {
             //Set Armor text
             targetHero.HeroVisual.SetArmorVisual.StartAction();
@@ -232,7 +231,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             targetHero.HeroVisual.SetHealthVisual.StartAction();
             
             //Animate armor text
-            HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);
+            if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )
+                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);
             
             //Animate health text only when damage taken is greater than zero
             if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )

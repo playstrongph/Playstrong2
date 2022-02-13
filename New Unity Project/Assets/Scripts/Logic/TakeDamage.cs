@@ -27,9 +27,14 @@ namespace Logic
         private IHeroLogic _heroLogic;
         
         /// <summary>
-        /// Damage dealt to health
+        /// Damage dealt to health, used in health text animation
         /// </summary>
         public int HealthDamage { get; private set; }
+        
+        /// <summary>
+        /// Damage dealt to armor, used in armor text animation
+        /// </summary>
+        public int ArmorDamage { get; private set; }
 
         private void Awake()
         {
@@ -335,6 +340,8 @@ namespace Logic
         private void ComputeNewArmor(IHero hero, int damage)
         {
             var armor = hero.HeroLogic.HeroAttributes.Armor;
+
+            ArmorDamage = damage;
 
             //No residual damage when armor is greater than damage
             _residualDamage = Mathf.Max(0,damage - armor);

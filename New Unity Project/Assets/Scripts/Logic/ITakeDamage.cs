@@ -34,8 +34,13 @@ namespace Logic
         IEnumerator TakeNonSkillDamage(IHero casterHero,IHero targetHero, int nonSkillDamage, int penetrateArmorChance);
         
         /// <summary>
-        /// Damage dealt to health
+        /// Used in health text animation
         /// </summary>
         int HealthDamage { get; }
+        
+        /// <summary>
+        /// Used in armor text animation
+        /// </summary>
+        int ArmorDamage { get;}
     }
 }
