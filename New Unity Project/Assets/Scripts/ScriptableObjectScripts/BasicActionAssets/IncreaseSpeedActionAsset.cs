@@ -59,7 +59,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             targetHero.HeroLogic.SetSpeed.StartAction(newValue);
             
             //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetHero));
+            visualTree.AddCurrent(SetSpeedVisual(targetHero,newValue));
             
             logicTree.EndSequence();
             yield return null;
@@ -76,8 +76,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
+            //get the speed value at this instance
+            var speedValue =  targetHero.HeroLogic.HeroAttributes.Speed;
+            
             //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetHero));
+            visualTree.AddCurrent(SetSpeedVisual(targetHero,speedValue));
 
             logicTree.EndSequence();
             yield return null;
@@ -87,12 +90,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Update the energy speed and text value 
         /// </summary>
         /// <param name="hero"></param>
+        ///  /// <param name="value"></param>
         /// <returns></returns>
-        private IEnumerator SetSpeedVisual(IHero hero)
+        private IEnumerator SetSpeedVisual(IHero hero,int value)
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
+          
             
-            hero.HeroVisual.SetSpeedVisual.StartAction();
+            hero.HeroVisual.SetSpeedVisual.StartAction(value);
 
             visualTree.EndSequence();
             yield return null;

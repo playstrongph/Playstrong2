@@ -5,6 +5,6 @@
         /// <summary>
         /// Changes the energy fill and color 
         /// </summary>
-        void StartAction();
+        void StartAction(int value);
     }
 }

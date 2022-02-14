@@ -15,12 +15,14 @@ namespace Logic
         /// <summary>
         /// Changes the energy fill and color 
         /// </summary>
-        public void StartAction()
+        public void StartAction(int value)
         {
             var energyFillIcon = _heroVisual.EnergyVisual.Icon;
             var energyTextColor = _heroVisual.EnergyVisual.Text;
             var baseSpeed = _heroVisual.Hero.HeroLogic.HeroAttributes.BaseSpeed;
-            var speed = _heroVisual.Hero.HeroLogic.HeroAttributes.Speed;
+            
+            //var speed = _heroVisual.Hero.HeroLogic.HeroAttributes.Speed;
+            var speed = value;
 
             if (speed == baseSpeed)
             {
