@@ -17,15 +17,18 @@ namespace Logic
         /// <summary>
         /// Sets the fighting spirit visual value
         /// </summary>
-        public void StartAction()
+        /// <param name="value"></param>
+        public void StartAction(int value)
         {
-            SetVisualValue();
+            SetVisualValue(value);
         }
 
-        private void SetVisualValue()
+        private void SetVisualValue(int value)
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
-            var fightingSpiritValue = heroLogic.HeroAttributes.FightingSpirit;
+            
+            //var fightingSpiritValue = heroLogic.HeroAttributes.FightingSpirit;
+            var fightingSpiritValue = value;
 
             var fightingSpiritVisualValue = Mathf.Max(0, fightingSpiritValue);
 

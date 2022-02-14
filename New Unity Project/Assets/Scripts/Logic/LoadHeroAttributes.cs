@@ -54,13 +54,14 @@ namespace Logic
         private void LoadHeroVisualAttributes()
         {
             var heroVisual = _heroLogic.Hero.HeroVisual;
+            var energy = (int)heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
             
             heroVisual.SetAttackVisual.StartAction(_heroLogic.HeroAttributes.Attack);
             heroVisual.SetArmorVisual.StartAction(_heroLogic.HeroAttributes.Armor);
             heroVisual.SetHealthVisual.StartAction(_heroLogic.HeroAttributes.Health);
+            heroVisual.SetFightingSpiritVisual.StartAction(_heroLogic.HeroAttributes.FightingSpirit);
             
-            heroVisual.SetFightingSpiritVisual.StartAction();
-            heroVisual.SetEnergyVisual.StartAction();
+            heroVisual.SetEnergyVisual.StartAction(energy);
             
         }
     }

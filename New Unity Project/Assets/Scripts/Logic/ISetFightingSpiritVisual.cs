@@ -5,6 +5,7 @@
         /// <summary>
         /// Sets the fighting spirit visual value
         /// </summary>
-        void StartAction();
+        /// <param name="value"></param>
+        void StartAction(int value);
     }
 }

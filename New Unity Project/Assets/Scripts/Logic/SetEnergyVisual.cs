@@ -15,21 +15,22 @@ namespace Logic
             _heroVisual = GetComponent<IHeroVisual>();
         }
         
-        /// <summary>
-        /// Updates the displayed energy text and bar fill
-        /// EXCLUSIVELY used for turn controller update hero timers 
-        /// </summary>
-        public void StartAction()
+       /// <summary>
+       /// Updates the displayed energy text and bar fill
+       /// EXCLUSIVELY used for turn controller update hero timers 
+       /// </summary>
+       /// <param name="value"></param>
+        public void StartAction(int value)
         {
-            var timerValuePercent = _heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
+            //var timerValuePercent = _heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
             
             //Clamps the displayed text to 100%
-            //var energyDisplayText = Mathf.Min(100, energyValue);
             var energyText = _heroVisual.EnergyVisual.Text;
             var energyIcon = _heroVisual.EnergyVisual.Icon;
             
-            //var energyDisplayText = energyValue;
-            var energyDisplayText = (int)timerValuePercent;
+            
+            //var energyDisplayText = (int)timerValuePercent;
+            var energyDisplayText = value;
             
             energyText.text = energyDisplayText.ToString() +"%";
             energyIcon.fillAmount = energyDisplayText/100f;

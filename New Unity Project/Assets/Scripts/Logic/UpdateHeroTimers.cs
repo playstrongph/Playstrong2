@@ -29,7 +29,8 @@ namespace Logic
             {
                 hero.HeroLogic.HeroTimer.UpdateHeroTimer();
                 
-                hero.HeroVisual.SetEnergyVisual.StartAction();
+                var energy = (int) hero.HeroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
+                hero.HeroVisual.SetEnergyVisual.StartAction(energy);
             }
         }
 

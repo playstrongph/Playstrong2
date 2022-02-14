@@ -4,11 +4,12 @@ namespace Logic
 {
     public interface ISetEnergyVisual
     {
-        /// <summary>
-        /// Updates the displayed energy text and bar fill
-        /// EXCLUSIVELY used for turn controller update hero timers 
-        /// </summary>
-        void StartAction();
+       /// <summary>
+       /// Updates the displayed energy text and bar fill
+       /// EXCLUSIVELY used for turn controller update hero timers 
+       /// </summary>
+       /// <param name="value"></param>
+        void StartAction(int value);
 
         /// <summary>
         /// Sets the energy percentage text color
