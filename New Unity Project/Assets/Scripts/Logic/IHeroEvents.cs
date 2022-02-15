@@ -34,6 +34,7 @@
         event HeroEvents.HeroEvent EAfterHeroTakesMultiTargetAttack;
         event HeroEvents.HeroEvent EAfterHeroEndTurn;
         event HeroEvents.HeroEvent EBeforeHeroStartTurn;
+        event HeroEvents.HeroEvent EHeroTakesFatalDamage;
 
         #endregion
 
@@ -219,6 +220,12 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventBeforeHeroStartTurn(IHero hero);
+        
+        /// <summary>
+        /// When hero takes fatal damage, before hero dies
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventHeroTakesFatalDamage(IHero hero);
 
         #endregion
     }
