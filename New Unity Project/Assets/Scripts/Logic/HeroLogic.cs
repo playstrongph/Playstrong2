@@ -127,6 +127,11 @@ namespace Logic
         /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
         /// </summary>
         public ISetHeroActiveStatus SetHeroActiveStatus { get; private set; }
+        
+        /// <summary>
+        /// Sets the hero's life status to either hero dead or hero alive
+        /// </summary>
+        public ISetHeroLifeStatus SetHeroLifeStatus { get; private set; }
 
         /// <summary>
         /// Reference to hero events
@@ -161,6 +166,7 @@ namespace Logic
             LoadHeroAttributes = GetComponent<ILoadHeroAttributes>();
             HeroTimer = GetComponent<IHeroTimer>();
             SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
+            SetHeroLifeStatus = GetComponent<ISetHeroLifeStatus>();
             
             //LastHeroTargets = GetComponent<ILastHeroTargets>();
             

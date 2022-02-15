@@ -91,6 +91,11 @@ namespace Logic
         /// Sets the hero's active status to either "ActiveHero" or "InactiveHero"
         /// </summary>
         ISetHeroActiveStatus SetHeroActiveStatus { get; }
+        
+        /// <summary>
+        /// Sets the hero's life status to either alive or dead
+        /// </summary>
+        ISetHeroLifeStatus SetHeroLifeStatus { get; }
 
         /// <summary>
         /// Reference to hero events
