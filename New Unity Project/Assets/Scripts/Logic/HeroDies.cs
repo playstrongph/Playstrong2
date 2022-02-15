@@ -26,7 +26,8 @@ namespace Logic
            //If immortality or similar effects are present, shall prevent the hero from dying
            logicTree.AddCurrent(EventHeroTakesFatalDamage(hero));
            
-           //TODO: Update Dead Status Action
+           //Update Dead Status Action based on current health
+           logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
            
            //TODO: Hero Dies action
            
@@ -52,13 +53,39 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
-
-       private IEnumerator SetHeroDeadStatus(IHero hero)
+        
+       /// <summary>
+       /// Sets the life status to hero dead if health is less or equal to zero.  This has to be wrapped
+       /// inside a coroutine because of the prior event called
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator UpdateHeroDeadStatus(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            var health = hero.HeroLogic.HeroAttributes.Health;
            
+           if(health<=0)
+               hero.HeroLogic.SetHeroLifeStatus.HeroDead();
            
+           logicTree.EndSequence();
+           yield return null;
+       }
+
+
+       private IEnumerator HeroDeath(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var health = hero.HeroLogic.HeroAttributes.Health;
+
+           if (health <= 0)
+           {
+               //TODO: hero dies event
+               //TODO: HeroDeathActions
+               //TODO: Post Hero Death
+               
+           }
+
            logicTree.EndSequence();
            yield return null;
        }
