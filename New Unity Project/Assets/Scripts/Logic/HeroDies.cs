@@ -77,6 +77,38 @@ namespace Logic
            yield return null;
        }
 
+
+       private IEnumerator DeathActions(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+           //Logic
+           //TODO: Destroy all status effects
+           //TODO: Reset Health
+           //TODO: Reset Energy
+           //TODO: Remove from active hero list?
+           //TODO: Remove from living hero list?
+           //TODO: Transfer to Dead hero list?
+           //TODO: Disable Hero Turns
+           //TODO: End Hero Turn (if active)
+           //TODO: Set Hero Inactive Status (logic)
+           
+           
+           //Visual and logic
+           //TODO: Hero dies animation
+           //TODO: HideHeroVisual
+           //TODO: Reset health visual
+           //TODO: Reset Energy Visual
+           //TODO: Set Hero Inactive Status (visual) 
+           
+           
+           
+           
+           
+           logicTree.EndSequence();
+           yield return null;
+       }
+
        #region EVENTS
 
        
