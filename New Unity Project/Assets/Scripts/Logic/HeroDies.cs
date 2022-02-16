@@ -63,9 +63,13 @@ namespace Logic
 
            if (health <= 0)
            {
-               //TODO: hero dies event
+               //hero dies event
+               logicTree.AddCurrent(EventHeroDies(hero));
+               
                //TODO: HeroDeathActions
-               //TODO: After hero dies event
+               
+               //TODO: Event post hero death
+               logicTree.AddCurrent(EventPostHeroDeath(hero));
                
            }
 
@@ -93,6 +97,37 @@ namespace Logic
            //Note that at this point, buffs like immortality will change the health to 1 and keep 
            //the hero alive
            
+           logicTree.EndSequence();
+           yield return null;
+       }
+       
+       /// <summary>
+       /// Hero dies event
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator EventHeroDies(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+           hero.HeroLogic.HeroEvents.EventHeroDies(hero);
+
+           logicTree.EndSequence();
+           yield return null;
+       }
+       
+       /// <summary>
+       /// Post hero Death event - used by resurrect, extinction, and other
+       /// similar events
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator EventPostHeroDeath(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+           hero.HeroLogic.HeroEvents.EventPostHeroDeath(hero);
+
            logicTree.EndSequence();
            yield return null;
        }

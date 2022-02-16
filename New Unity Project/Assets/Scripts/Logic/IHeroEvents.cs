@@ -36,6 +36,7 @@
         event HeroEvents.HeroEvent EBeforeHeroStartTurn;
         event HeroEvents.HeroEvent EHeroTakesFatalDamage;
         event HeroEvents.HeroEvent EHeroDies;
+        event HeroEvents.HeroEvent EPostHeroDeath;
 
         #endregion
 
@@ -233,6 +234,8 @@
         /// </summary>
         /// <param name="hero"></param>
         void EventHeroDies(IHero hero);
+        
+        void EventPostHeroDeath(IHero hero);
 
         #endregion
     }
