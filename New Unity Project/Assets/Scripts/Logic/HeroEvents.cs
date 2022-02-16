@@ -43,6 +43,8 @@ namespace Logic
         public event HeroEvent EAfterHeroEndTurn;
         public event HeroEvent EBeforeHeroStartTurn;
         public event HeroEvent EHeroTakesFatalDamage;
+        
+        public event HeroEvent EHeroDies;
      
         
         
@@ -331,6 +333,15 @@ namespace Logic
             EHeroTakesFatalDamage?.Invoke(hero);
         }
         
+        /// <summary>
+        /// Hero dies event
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventHeroDies(IHero hero)
+        {
+            EHeroDies?.Invoke(hero);
+        }
+        
         
 
 
@@ -586,6 +597,14 @@ namespace Logic
                 foreach (var client in clients)
                     EHeroTakesFatalDamage -= client as HeroEvent;
         }
+        
+        private void UnsubscribeEventHeroDies()
+        {
+            var clients = EHeroDies?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EHeroDies -= client as HeroEvent;
+        }
 
         #endregion
 
@@ -631,8 +650,9 @@ namespace Logic
             UnsubscribeEventAfterHeroTakesMultiTargetAttack();
             UnsubscribeEventAfterHeroEndTurn();
             UnsubscribeEventBeforeHeroStartTurn();
-
             UnsubscribeEventHeroTakesFatalDamage();
+            UnsubscribeEventHeroDies();
         }
+        
     }
 }
