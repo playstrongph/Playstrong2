@@ -83,9 +83,17 @@ namespace Logic
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
            //Logic
-           //TODO: Destroy all status effects
-           //TODO: Reset Health
+           
+           //Destroy all status effects
+           logicTree.AddCurrent(DestroyAllStatusEffects(hero));
+           
+           //Sets health to base value
+           logicTree.AddCurrent(ResetHealth(hero));
+           
            //TODO: Reset Energy
+           logicTree.AddCurrent(ResetEnergy(hero));
+           
+           
            //TODO: Remove from active hero list?
            //TODO: Remove from living hero list?
            //TODO: Transfer to Dead hero list?
@@ -96,18 +104,75 @@ namespace Logic
            
            //Visual and logic
            //TODO: Hero dies animation
-           //TODO: HideHeroVisual
+           
            //TODO: Reset health visual
+           
            //TODO: Reset Energy Visual
-           //TODO: Set Hero Inactive Status (visual) 
+           
+           //TODO: HideHeroVisual
            
            
            
+           //TODO: Set Hero Inactive Status (visual)
+
+           logicTree.EndSequence();
+           yield return null;
+       }
+        
+       /// <summary>
+       /// Destroy all buffs, debuffs, and unique status effects
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator DestroyAllStatusEffects(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
            
+           var heroBuffs = hero.HeroStatusEffects.BuffEffects.StatusEffects;
+           var heroDebuffs = hero.HeroStatusEffects.DebuffEffects.StatusEffects;
+           var uniqueStatusEffects = hero.HeroStatusEffects.UniqueStatusEffects.StatusEffects;
+
+           foreach (var buff in heroBuffs)
+           {
+               buff.RemoveStatusEffect.StartAction(hero);
+           }
+           
+           foreach (var debuff in heroDebuffs)
+           {
+               debuff.RemoveStatusEffect.StartAction(hero);
+           }
+           
+           foreach (var uniqueStatusEffect in uniqueStatusEffects)
+           {
+               uniqueStatusEffect.RemoveStatusEffect.StartAction(hero);
+           }
+           
+           logicTree.EndSequence();
+           yield return null;
+
+       }
+
+       private IEnumerator ResetHealth(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
+           
+           hero.HeroLogic.SetHealth.StartAction(baseHealth);
            
            logicTree.EndSequence();
            yield return null;
        }
+
+       private IEnumerator ResetEnergy(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+           hero.HeroLogic.HeroTimer.ResetHeroTimer();
+           
+           logicTree.EndSequence();
+           yield return null;
+       }
+
 
        #region EVENTS
 
