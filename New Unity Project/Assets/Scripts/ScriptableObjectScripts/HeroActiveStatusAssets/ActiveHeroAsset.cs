@@ -18,8 +18,11 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
             visualTree.AddCurrent(EnableActiveHeroVisuals(hero));
+            
+            //Note: Current usages are logic trees, so we can go direct to visual tree here
         }
-        
+
+
         /// <summary>
         /// Displays green action border, hero portrait, and hero skills
         /// </summary>

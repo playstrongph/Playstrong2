@@ -11,7 +11,22 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
     {
         public virtual void StatusAction(IHero hero)
         {
+            
         }
+        
+        
+        /// <summary>
+        /// Removes the hero from the active heroes list, regardless
+        /// if hero is active or inactive 
+        /// </summary>
+        /// <param name="hero"></param>
+        public void RemoveFromActiveHeroesList(IHero hero)
+        {
+            var turnController = hero.Player.BattleSceneManager.TurnController;
+            turnController.SetActiveHeroes.RemoveHero(hero);
+        }
+
+
 
     }
 }

@@ -82,7 +82,7 @@ namespace Logic
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
-           //Logic
+           //LOGIC
            
            //Destroy all status effects
            logicTree.AddCurrent(DestroyAllStatusEffects(hero));
@@ -90,14 +90,21 @@ namespace Logic
            //Sets health to base value
            logicTree.AddCurrent(ResetHealth(hero));
            
-           //TODO: Reset Energy
+           //Resets hero energy to zero
            logicTree.AddCurrent(ResetEnergy(hero));
-           
-           
-           //TODO: Remove from active hero list?
+
+           //Remove hero from active heroes list
+           logicTree.AddCurrent(RemoveFromActiveHeroesList(hero));
+
            //TODO: Remove from living hero list?
+           
+           
            //TODO: Transfer to Dead hero list?
+           
+           
            //TODO: Disable Hero Turns
+           
+           
            //TODO: End Hero Turn (if active)
            //TODO: Set Hero Inactive Status (logic)
            
@@ -151,7 +158,12 @@ namespace Logic
            yield return null;
 
        }
-
+       
+       /// <summary>
+       /// Reset the health back to base health
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
        private IEnumerator ResetHealth(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -162,13 +174,36 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
-
+       
+       /// <summary>
+       /// Reset the energy to zero
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
        private IEnumerator ResetEnergy(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
            hero.HeroLogic.HeroTimer.ResetHeroTimer();
            
+           logicTree.EndSequence();
+           yield return null;
+       }
+        
+       
+       /// <summary>
+       /// If hero status is active, remove from active heroes list
+       /// this should come first before changing status to inactive
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator RemoveFromActiveHeroesList(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+           //If the hero is active, remove it from the active heroes list
+           hero.HeroLogic.HeroActiveStatus.RemoveFromActiveHeroesList(hero);
+
            logicTree.EndSequence();
            yield return null;
        }
