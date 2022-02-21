@@ -24,7 +24,7 @@ namespace Logic
         /// Used to add hero objects in the living heroes
         /// for inspector troubleshooting purposes only
         /// </summary>
-        List<GameObject> HeroesList { get; }
+        List<GameObject> HeroesGameObjects { get; }
         
         /// <summary>
         /// Returns list of living heroes as IHero

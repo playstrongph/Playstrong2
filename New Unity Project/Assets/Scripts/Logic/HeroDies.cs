@@ -30,6 +30,7 @@ namespace Logic
            logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
            
            //Call hero death actions if life less than or equal to zero
+           //TODO: check if this should be add sibling?
            logicTree.AddCurrent(HeroDeath(hero));
            
            //Note: All three methods above should be coroutines because they depend on the result of
@@ -96,17 +97,19 @@ namespace Logic
            //Remove hero from active heroes list
            logicTree.AddCurrent(RemoveFromActiveHeroesList(hero));
 
-           //TODO: Remove from living hero list?
-           
-           
-           //TODO: Transfer to Dead hero list?
-           
-           
            //TODO: Disable Hero Turns
            
            
            //TODO: End Hero Turn (if active)
            //TODO: Set Hero Inactive Status (logic)
+
+
+           //TODO: Remove from living hero list?
+           //TODO: is this a visual action?
+           logicTree.AddCurrent(RemoveFromAliveHeroesList(hero));
+           
+           //TODO: Transfer to Dead hero list?
+           //TODO: is this a visual action?
            
            
            //Visual and logic
@@ -207,6 +210,26 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
+        
+       /// <summary>
+       /// Removes the hero from the alive heroes (game objects) list
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator RemoveFromAliveHeroesList(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var aliveHeroesGameObjects = hero.Player.AliveHeroes.HeroesGameObjects;
+           var aliveHeroes = hero.Player.AliveHeroes.Heroes;
+
+           if(aliveHeroes.Contains(hero))
+            aliveHeroesGameObjects.Remove(hero.ThisGameObject);
+           
+           logicTree.EndSequence();
+           yield return null;
+       }
+       
+       
 
 
        #region EVENTS

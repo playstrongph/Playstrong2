@@ -21,10 +21,9 @@ namespace Logic
         private List<GameObject> heroes = new List<GameObject>();
         
         /// <summary>
-        /// Used to add hero objects in the living heroes
-        /// for inspector troubleshooting purposes only
+        /// Provides access to heroes list as game objects 
         /// </summary>
-        public List<GameObject> HeroesList => heroes;
+        public List<GameObject> HeroesGameObjects => heroes;
         
         /// <summary>
         /// Returns list of living heroes as IHero

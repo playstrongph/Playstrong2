@@ -38,8 +38,8 @@ namespace Logic
                 var heroObject = Instantiate(heroPrefab, heroesParentLocation);
                 var hero = heroObject.GetComponent<IHero>();
                 
-                //Add to Alive heroes list
-                _player.AliveHeroes.HeroesList.Add(heroObject);
+                //Add to game objects list for inspector visualization purposes
+                _player.AliveHeroes.HeroesGameObjects.Add(heroObject);
                 
                 //Set hero name in the Inspector
                 heroObject.name = heroAsset.HeroName;
