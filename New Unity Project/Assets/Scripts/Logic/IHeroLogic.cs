@@ -111,6 +111,11 @@ namespace Logic
         /// Reference to take damage
         /// </summary>
         ITakeDamage TakeDamage { get; }
+        
+        /// <summary>
+        /// Reference to hero dies
+        /// </summary>
+        IHeroDies HeroDies { get; }
 
         #endregion
     }

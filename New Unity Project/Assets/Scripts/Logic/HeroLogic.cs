@@ -148,6 +148,11 @@ namespace Logic
         /// </summary>
         public ITakeDamage TakeDamage { get; private set; }
 
+        /// <summary>
+        /// Reference to hero dies
+        /// </summary>
+        public IHeroDies HeroDies { get; private set; }
+
         #endregion
 
         private void Awake()
@@ -167,12 +172,10 @@ namespace Logic
             HeroTimer = GetComponent<IHeroTimer>();
             SetHeroActiveStatus = GetComponent<ISetHeroActiveStatus>();
             SetHeroLifeStatus = GetComponent<ISetHeroLifeStatus>();
-            
-            //LastHeroTargets = GetComponent<ILastHeroTargets>();
-            
             HeroEvents = GetComponent<IHeroEvents>();
             DealDamage = GetComponent<IDealDamage>();
             TakeDamage = GetComponent<ITakeDamage>();
+            HeroDies = GetComponent<IHeroDies>();
 
         }
     }
