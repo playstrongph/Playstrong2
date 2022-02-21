@@ -100,22 +100,23 @@ namespace Logic
            //Transfer from alive to dead heroes list
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
 
-           //TODO: End Hero Turn logic? visual? 
-           
-           //TODO: Set Hero Inactive Status (logic)
-
            //Visual and logic
            //TODO: Hero dies animation
            
-           //TODO: Transfer hero.thisGameObject parent (SetParent) from Alive Heroes to Dead Heroes
+           //TODO: Disappear visual: Transfer hero.thisGameObject parent (SetParent) from Alive Heroes to Dead Heroes
            
-           //TODO: Reset health visual
+           //Set health text to the current health value (base value, after reset)
+           logicTree.AddCurrent(ResetHealthVisual(hero));
            
-           //TODO: Reset Energy Visual
+           //Set energy text to the current energy value (zero, after reset)
+           logicTree.AddCurrent(ResetEnergyVisual(hero));
            
            //TODO: Dim hero visual (Used for resurrect purposes)
 
-           //TODO: Set Hero Inactive Status (visual)
+           //TODO: Set Hero Inactive Status (logic and visual)
+           
+           //TODO: End Hero Turn (Logic and Visual)
+           logicTree.AddCurrent(EndDeadHeroTurn(hero));
 
            logicTree.EndSequence();
            yield return null;
@@ -169,7 +170,42 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
+        
+       /// <summary>
+       /// Logic tree wrapper
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator ResetHealthVisual(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var visualTree = hero.CoroutineTrees.MainVisualTree;
+           
+           //Call visual tree 
+           visualTree.AddCurrent(ResetHealthVisualCoroutine(hero));
+           
+           logicTree.EndSequence();
+           yield return null;
+       }
        
+       /// <summary>
+       /// Set health text
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator ResetHealthVisualCoroutine(IHero hero)
+       {
+           var visualTree = hero.CoroutineTrees.MainVisualTree;
+           
+           //Get the current health value (should be base health since it was reset earlier in ResetHealth)
+           var healthValue = hero.HeroLogic.HeroAttributes.Health;
+           
+           hero.HeroVisual.SetHealthVisual.StartAction(healthValue);
+
+           visualTree.EndSequence();
+           yield return null;
+       }
+
        /// <summary>
        /// Reset the energy to zero
        /// </summary>
@@ -185,7 +221,41 @@ namespace Logic
            yield return null;
        }
         
+       /// <summary>
+       /// Set the energy text
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator ResetEnergyVisual(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var visualTree = hero.CoroutineTrees.MainVisualTree;
+           
+           visualTree.AddCurrent(ResetEnergyVisualCoroutine(hero));
+           
+           logicTree.EndSequence();
+           yield return null; 
+       }
        
+       /// <summary>
+       /// Set the current energy text
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator ResetEnergyVisualCoroutine(IHero hero)
+       {
+           var visualTree = hero.CoroutineTrees.MainVisualTree;
+
+           var energyValue = hero.HeroLogic.HeroAttributes.Energy;
+           
+           //Set the current energy value
+           hero.HeroVisual.SetEnergyVisual.StartAction(energyValue);
+
+           visualTree.EndSequence();
+           yield return null; 
+       }
+
+
        /// <summary>
        /// If hero status is active, remove from active heroes list
        /// this should come first before changing status to inactive
@@ -236,12 +306,24 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
-
-       private IEnumerator EndHeroTurn(IHero hero)
+       
+       
+       /// <summary>
+       /// Ends the turn if the dying hero is the current active hero
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator EndDeadHeroTurn(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-
+           var turnController = hero.Player.BattleSceneManager.TurnController;
+           
+           //Check if the dying hero is the current active hero
+           if (hero == turnController.CurrentActiveHero)
+           {
+               //end the current turn
+               turnController.HeroEndTurn.StartAction();
+           }
 
            logicTree.EndSequence();
            yield return null;

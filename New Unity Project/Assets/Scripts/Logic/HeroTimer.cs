@@ -117,7 +117,7 @@ namespace Logic
         {
             var timerFull = turnController.TimerFull;
             var activeHeroes = turnController.ActiveHeroes;
-            var activeHeroesList = turnController.ActiveHeroesList;
+            var activeHeroesList = turnController.HeroesTurnQueue;
             
             //If hero's energy is >= 100%, add to active heroes list
             if (TimerValue >= timerFull)

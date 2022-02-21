@@ -25,7 +25,7 @@ namespace Logic
         /// <returns></returns>
         public void StartAction()
         {
-            var activeHeroesList = _turnController.ActiveHeroesList;
+            var activeHeroesList = _turnController.HeroesTurnQueue;
             
             ShuffleList(activeHeroesList).Sort(CompareListByEnergy);
         }

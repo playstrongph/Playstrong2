@@ -72,17 +72,16 @@ namespace Logic
             set => currentActiveHero = value as Object;
         }
         
-        /// <summary>
-        /// List of active heroes
+        /// <summary> 
         /// Displayed in inspector for debugging purposes
         /// </summary>
         [SerializeField] 
-        private List<Object> activeHeroes = new List<Object>();
+        private List<Object> heroesTurnQueue = new List<Object>();
         
         /// <summary>
         /// Used for adding heroes to the active heroes list 
         /// </summary>
-        public List<Object> ActiveHeroesList => activeHeroes;
+        public List<Object> HeroesTurnQueue => heroesTurnQueue;
         
         /// <summary>
         /// Returns list of active heroes
@@ -93,7 +92,7 @@ namespace Logic
             get
             {
                 var heroes = new List<IHero>();
-                foreach (var heroObject in activeHeroes)
+                foreach (var heroObject in heroesTurnQueue)
                 {
                     var activeHero = heroObject as IHero;
                     heroes.Add(activeHero);

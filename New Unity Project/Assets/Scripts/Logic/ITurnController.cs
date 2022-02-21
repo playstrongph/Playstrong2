@@ -45,7 +45,7 @@ namespace Logic
         /// <summary>
         ///Used for adding heroes to the active heroes list 
         /// </summary>
-        List<Object> ActiveHeroesList { get; }
+        List<Object> HeroesTurnQueue { get; }
 
         /// <summary>
         ///  Returns list of active heroes

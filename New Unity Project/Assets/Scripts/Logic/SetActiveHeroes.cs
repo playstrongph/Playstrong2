@@ -20,7 +20,7 @@ namespace Logic
         public void AddHero(IHero hero)
         {
             var activeHeroes = _turnController.ActiveHeroes;
-            var activeHeroesList = _turnController.ActiveHeroesList;
+            var activeHeroesList = _turnController.HeroesTurnQueue;
 
             if(!activeHeroes.Contains(hero)) 
                 activeHeroesList.Add(hero as Object); 
@@ -33,7 +33,7 @@ namespace Logic
         public void RemoveHero(IHero hero)
         {
             var activeHeroes = _turnController.ActiveHeroes;
-            var activeHeroesList = _turnController.ActiveHeroesList;
+            var activeHeroesList = _turnController.HeroesTurnQueue;
 
             if(!activeHeroes.Contains(hero)) 
                 activeHeroesList.Remove(hero as Object); 
