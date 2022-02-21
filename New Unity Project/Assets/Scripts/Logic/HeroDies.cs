@@ -94,35 +94,27 @@ namespace Logic
            //Resets hero energy to zero
            logicTree.AddCurrent(ResetEnergy(hero));
 
-           //Remove hero from active heroes list
+           //Remove hero from active heroes list 
            logicTree.AddCurrent(RemoveFromActiveHeroesList(hero));
+           
+           //Transfer from alive to dead heroes list
+           logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
 
-           //TODO: Disable Hero Turns
+           //TODO: End Hero Turn logic? visual? 
            
-           
-           //TODO: End Hero Turn (if active)
            //TODO: Set Hero Inactive Status (logic)
 
-
-           //TODO: Remove from living hero list?
-           //TODO: is this a visual action?
-           logicTree.AddCurrent(RemoveFromAliveHeroesList(hero));
-           
-           //TODO: Transfer to Dead hero list?
-           //TODO: is this a visual action?
-           
-           
            //Visual and logic
            //TODO: Hero dies animation
+           
+           //TODO: Transfer hero.thisGameObject parent (SetParent) from Alive Heroes to Dead Heroes
            
            //TODO: Reset health visual
            
            //TODO: Reset Energy Visual
            
-           //TODO: HideHeroVisual
-           
-           
-           
+           //TODO: Dim hero visual (Used for resurrect purposes)
+
            //TODO: Set Hero Inactive Status (visual)
 
            logicTree.EndSequence();
@@ -204,32 +196,58 @@ namespace Logic
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
+           var turnController = hero.Player.BattleSceneManager.TurnController;
+           
            //If the hero is active, remove it from the active heroes list
-           hero.HeroLogic.HeroActiveStatus.RemoveFromActiveHeroesList(hero);
-
+           turnController.SetActiveHeroes.RemoveHero(hero);
+           
            logicTree.EndSequence();
            yield return null;
        }
         
        /// <summary>
        /// Removes the hero from the alive heroes (game objects) list
+       /// and adds it to the dead heroes (game objects) list
        /// </summary>
        /// <param name="hero"></param>
        /// <returns></returns>
-       private IEnumerator RemoveFromAliveHeroesList(IHero hero)
+       private IEnumerator TransferAliveToDeadHeroesList(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            var aliveHeroesGameObjects = hero.Player.AliveHeroes.HeroesGameObjects;
+           var deadHeroesGameObjects = hero.Player.DeadHeroes.HeroesGameObjects;
            var aliveHeroes = hero.Player.AliveHeroes.Heroes;
-
-           if(aliveHeroes.Contains(hero))
-            aliveHeroesGameObjects.Remove(hero.ThisGameObject);
+           var deadHeroes = hero.Player.DeadHeroes.Heroes;
+            
+           //TODO: checking may be unnecessary
+           if (aliveHeroes.Contains(hero))
+           {
+               //remove from alive list
+               aliveHeroesGameObjects.Remove(hero.ThisGameObject);
+               
+               //TODO: Checking may be unnecessary
+               if (!deadHeroes.Contains(hero))
+               {
+                   //add to dead heroes game objects
+                   deadHeroesGameObjects.Add(hero.ThisGameObject);    
+               }
+           }
            
            logicTree.EndSequence();
            yield return null;
        }
-       
-       
+
+       private IEnumerator EndHeroTurn(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+
+
+           logicTree.EndSequence();
+           yield return null;
+       }
+
+
 
 
        #region EVENTS
