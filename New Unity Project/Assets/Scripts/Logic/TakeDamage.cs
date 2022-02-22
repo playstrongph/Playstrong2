@@ -75,6 +75,8 @@ namespace Logic
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
             //TODO: Check Hero Death
+            logicTree.AddCurrent(CheckIfHeroDies(targetHero));
+            
 
             logicTree.EndSequence();
             yield return null;
@@ -114,6 +116,7 @@ namespace Logic
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
             //TODO: Check Hero Death
+            logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -154,6 +157,7 @@ namespace Logic
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
             //TODO: Check Hero Death
+            logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -192,6 +196,7 @@ namespace Logic
             logicTree.AddCurrent(AfterHeroTakesNonSkillDamageEvent());
             
             //TODO: Check Hero Death
+            logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -367,11 +372,24 @@ namespace Logic
             HealthDamage = damage;
             
             hero.HeroLogic.SetHealth.StartAction(newHealth);
-            
-            
         }
         
-        
+        /// <summary>
+        /// Checks if the hero dies, then implements death actions
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
+        private IEnumerator CheckIfHeroDies(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            hero.HeroLogic.HeroDies.CheckFatalDamage(hero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
         //TODO: Visual Updates
 
         #endregion
