@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7690881937343701369}
+  heroes: []
 --- !u!114 &424080648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 211ee84f41082ca42b4dd2b8c4c44e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  heroes: []
 --- !u!114 &6610880474259680077
 MonoBehaviour:
   m_ObjectHideFlags: 0

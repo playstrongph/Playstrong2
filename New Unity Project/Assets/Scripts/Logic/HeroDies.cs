@@ -11,6 +11,8 @@ namespace Logic
     {
 
        private IHeroLogic _heroLogic;
+
+       [SerializeField] private float animationInterval = 1f;
        
        
        [Header("ANIMATIONS")]
@@ -120,24 +122,13 @@ namespace Logic
            //Transfer from alive to dead heroes list
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
 
-           //Visual and logic
-           //TODO: Hero dies animation
-           
-           //Remove the hero from the displayed heroes
-           logicTree.AddCurrent(SetDeadHeroesParent(hero));
-           
-           //Set health text to the current health value (base value, after reset)
-           logicTree.AddCurrent(ResetHealthVisual(hero));
-           
-           //Set energy text to the current energy value (zero, after reset)
-           logicTree.AddCurrent(ResetEnergyVisual(hero));
-           
-           //TODO: Set Hero Inactive Status (logic and visual)
+           //hero dies animation
+           logicTree.AddCurrent(HeroDiesAnimation(hero));
+
+           //Set the hero to "inactive" 
            logicTree.AddCurrent(SetHeroInactive(hero));
 
-           //TODO: Dim hero visual (Used for resurrect purposes)
-
-           //TODO: End Hero Turn (Logic and Visual)
+           //End the hero turn (if currently the active hero)
            logicTree.AddCurrent(EndDeadHeroTurn(hero));
 
            logicTree.EndSequence();
@@ -178,45 +169,52 @@ namespace Logic
        }
 
        /// <summary>
-       /// Logic wrapper for 
+       /// Logic wrapper for hero dies animation
        /// </summary>
        /// <param name="hero"></param>
        /// <returns></returns>
-       private IEnumerator SetDeadHeroesParent(IHero hero)
+       private IEnumerator HeroDiesAnimation(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            var visualTree = hero.CoroutineTrees.MainVisualTree;
 
-           visualTree.AddCurrent(SetDeadHeroesParentVisual(hero));
+           visualTree.AddCurrent(HeroDiesAnimationVisual(hero));
 
            logicTree.EndSequence();
            yield return null;
        }
        
        /// <summary>
-       /// Transfer the hero game object parent to Player.DeadHeroes transform
+       /// Hero dies animation
        /// </summary>
        /// <param name="hero"></param>
        /// <returns></returns>
-       private IEnumerator SetDeadHeroesParentVisual(IHero hero)
+       private IEnumerator HeroDiesAnimationVisual(IHero hero)
        {
            var visualTree = hero.CoroutineTrees.MainVisualTree;
            var deadHeroesParent = hero.Player.DeadHeroes.ThisGameObject;
            var heroObject = hero.ThisGameObject;
-           
-           //TEST
+           var healthValue = hero.HeroLogic.HeroAttributes.Health;
+           var energyValue = hero.HeroLogic.HeroAttributes.Energy;
            var s = DOTween.Sequence();
-           
+           var playDelayInterval = 1f;
+
            s
-               .AppendInterval(2f)    
-               .AppendCallback(()=>
+               .AppendInterval(playDelayInterval)
+               .AppendCallback(() =>
                    DeathAnimationsAsset.PlayAnimation(hero)
                )
-               .AppendInterval(3f)
-               .AppendCallback(()=>
+               .AppendInterval(animationInterval)
+               .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
+               )
+               .AppendCallback(() =>
+                   hero.HeroVisual.SetHealthVisual.StartAction(healthValue)
+               )
+               .AppendCallback(() =>
+                   hero.HeroVisual.SetEnergyVisual.StartAction(energyValue)
                );
-
+           
            visualTree.EndSequence();
            yield return null;
        }
@@ -239,40 +237,7 @@ namespace Logic
            yield return null;
        }
         
-       /// <summary>
-       /// Logic tree wrapper
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetHealthVisual(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           var visualTree = hero.CoroutineTrees.MainVisualTree;
-           
-           //Call visual tree 
-           visualTree.AddCurrent(ResetHealthVisualCoroutine(hero));
-           
-           logicTree.EndSequence();
-           yield return null;
-       }
-       
-       /// <summary>
-       /// Set health text
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetHealthVisualCoroutine(IHero hero)
-       {
-           var visualTree = hero.CoroutineTrees.MainVisualTree;
-           
-           //Get the current health value (should be base health since it was reset earlier in ResetHealth)
-           var healthValue = hero.HeroLogic.HeroAttributes.Health;
-           
-           hero.HeroVisual.SetHealthVisual.StartAction(healthValue);
-
-           visualTree.EndSequence();
-           yield return null;
-       }
+     
 
        /// <summary>
        /// Reset the energy to zero
@@ -288,41 +253,6 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
-        
-       /// <summary>
-       /// Set the energy text
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetEnergyVisual(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           var visualTree = hero.CoroutineTrees.MainVisualTree;
-           
-           visualTree.AddCurrent(ResetEnergyVisualCoroutine(hero));
-           
-           logicTree.EndSequence();
-           yield return null; 
-       }
-       
-       /// <summary>
-       /// Set the current energy text
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetEnergyVisualCoroutine(IHero hero)
-       {
-           var visualTree = hero.CoroutineTrees.MainVisualTree;
-
-           var energyValue = hero.HeroLogic.HeroAttributes.Energy;
-           
-           //Set the current energy value
-           hero.HeroVisual.SetEnergyVisual.StartAction(energyValue);
-
-           visualTree.EndSequence();
-           yield return null; 
-       }
-
 
        /// <summary>
        /// If hero status is active, remove from active heroes list

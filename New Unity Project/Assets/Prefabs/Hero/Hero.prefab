@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8889fc3c4471544d8df6e16145af4a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationInterval: 1.5
   deathAnimationAsset: {fileID: 11400000, guid: fc52f2ac0184d0c42bf080c2c455b9de,
     type: 2}
 --- !u!114 &1458600388
