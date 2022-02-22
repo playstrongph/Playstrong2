@@ -18836,7 +18836,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892078723244562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4754816930656422}
@@ -23478,5 +23478,5 @@ SortingGroup:
   m_GameObject: {fileID: 1892078723244562}
   m_Enabled: 1
   m_SortingLayerID: -666325381
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 30

@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7141874222350928602}
-  - component: {fileID: -7147277168164674755}
+  - component: {fileID: 7097021829813360811}
   m_Layer: 0
-  m_Name: DeathVisualEffect
+  m_Name: DeathAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-7147277168164674755
+--- !u!114 &7097021829813360811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e37cb8b08b766439e49e9de72c8f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialEffect: {fileID: 56520737255928149, guid: ff15c1c1eaae3194689938d79dcb7bfd,
+    type: 3}
 --- !u!1 &7141874222719936455
 GameObject:
   m_ObjectHideFlags: 0
