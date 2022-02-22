@@ -37,7 +37,7 @@ namespace Logic
             //Turn controller end combat turn
             logicTree.AddCurrent(EventEndCombatTurn());
 
-            //Determines the next active hero from the active heroes list 
+            //Determines the next active hero from the active heroes list            
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
             
             logicTree.EndSequence();
