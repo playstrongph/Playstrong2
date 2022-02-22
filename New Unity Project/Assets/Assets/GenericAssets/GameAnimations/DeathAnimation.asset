@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8338d6a72450c5f459234bc5ce431b47, type: 3}
   m_Name: DeathAnimation
   m_EditorClassIdentifier: 
-  gameVisualEffects: []
+  gameVisualEffects:
+  - {fileID: 7097021829813360811, guid: 54787a13a055eb345a78ba65aa9bb5da, type: 3}

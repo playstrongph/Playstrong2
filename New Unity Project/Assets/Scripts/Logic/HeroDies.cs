@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
+using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.HeroLifeStatusAssets;
 using UnityEngine;
 
@@ -9,6 +11,20 @@ namespace Logic
     {
 
        private IHeroLogic _heroLogic;
+       
+       
+       [Header("ANIMATIONS")]
+       [SerializeField]
+       [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+       private ScriptableObject deathAnimationAsset;
+       /// <summary>
+       /// Death animation asset
+       /// </summary>
+       private IGameAnimationsAsset DeathAnimationsAsset
+       {
+           get => deathAnimationAsset as IGameAnimationsAsset;
+           set => deathAnimationAsset = value as ScriptableObject;
+       }
 
        private void Awake()
        {
@@ -185,11 +201,21 @@ namespace Logic
        private IEnumerator SetDeadHeroesParentVisual(IHero hero)
        {
            var visualTree = hero.CoroutineTrees.MainVisualTree;
-
            var deadHeroesParent = hero.Player.DeadHeroes.ThisGameObject;
            var heroObject = hero.ThisGameObject;
            
-           heroObject.transform.SetParent(deadHeroesParent.transform);
+           //TEST
+           var s = DOTween.Sequence();
+           
+           s
+               .AppendInterval(2f)    
+               .AppendCallback(()=>
+                   DeathAnimationsAsset.PlayAnimation(hero)
+               )
+               .AppendInterval(3f)
+               .AppendCallback(()=>
+                   heroObject.transform.SetParent(deadHeroesParent.transform)
+               );
 
            visualTree.EndSequence();
            yield return null;

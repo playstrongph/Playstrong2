@@ -33,14 +33,5 @@ namespace Animation
                 .AppendCallback(() => Destroy(gameObject));
         }
 
-        private void CreateSpecialEffect(IHero hero)
-        {
-            var effect = Instantiate(SpecialEffect, hero.ThisGameObject.transform);
-        }
-
-
-
-
-
     }
 }
