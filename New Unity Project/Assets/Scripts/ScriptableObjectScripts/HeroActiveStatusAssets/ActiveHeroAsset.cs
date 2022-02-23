@@ -17,9 +17,7 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
         public override void StatusAction(IHero hero)
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
-            
-            Debug.Log("Active Hero Status Action: " +hero.HeroName);
-            
+
             visualTree.AddCurrent(EnableActiveHeroVisuals(hero));
             
             //Note: Current usages are logic trees, so we can go direct to visual tree here

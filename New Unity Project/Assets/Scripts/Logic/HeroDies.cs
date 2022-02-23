@@ -125,11 +125,8 @@ namespace Logic
            //hero dies animation
            logicTree.AddCurrent(HeroDiesAnimation(hero));
 
-           //Set the hero to "inactive" 
+           //Set the hero to "inactive"
            logicTree.AddCurrent(SetHeroInactive(hero));
-
-           //End the hero turn (if currently the active hero)
-           logicTree.AddCurrent(EndDeadHeroTurn(hero));
 
            logicTree.EndSequence();
            yield return null;
@@ -313,9 +310,7 @@ namespace Logic
        private IEnumerator SetHeroInactive(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
-           
-           Debug.Log("Hero Dies SetHeroInactive");
-           
+
            //set the hero's active status to "Inactive Hero"
            hero.HeroLogic.SetHeroActiveStatus.InactiveHero();
            
@@ -325,32 +320,6 @@ namespace Logic
            logicTree.EndSequence();
            yield return null;
        }
-
-
-       /// <summary>
-       /// Ends the turn if the dying hero is the current active hero
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator EndDeadHeroTurn(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           var turnController = hero.Player.BattleSceneManager.TurnController;
-           
-           //Check if the dying hero is the current active hero
-           if (hero == turnController.CurrentActiveHero)
-           {
-               Debug.Log("End Dead Hero Turn");
-               
-               //end the current turn
-               logicTree.AddCurrent(turnController.HeroEndTurn.StartAction());
-           }
-
-           logicTree.EndSequence();
-           yield return null;
-       }
-
-
 
 
        #region EVENTS

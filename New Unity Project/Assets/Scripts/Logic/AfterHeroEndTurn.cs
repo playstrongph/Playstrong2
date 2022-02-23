@@ -20,7 +20,6 @@ namespace Logic
         public IEnumerator StartAction()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
-            
 
             //Updates and executes the hero active status and action
             logicTree.AddCurrent(UpdateHeroActiveStatus());
@@ -39,6 +38,9 @@ namespace Logic
 
             //Determines the next active hero from the active heroes list            
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
+            
+            //TEST
+            //logicTree.AddSibling(_turnController.StartNextHeroTurn.StartAction());
             
             logicTree.EndSequence();
             yield return null;

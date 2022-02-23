@@ -53,7 +53,6 @@ namespace Logic
         /// </summary>
         public void InactiveHero()
         {
-            Debug.Log("Set Hero Inactive: " +_heroLogic.Hero.HeroName);
             _heroLogic.HeroActiveStatus = InactiveHeroAsset;
             
         }

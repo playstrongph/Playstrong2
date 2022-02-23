@@ -29,9 +29,7 @@ namespace Logic
             
             //Set the current active hero
             _turnController.CurrentActiveHero = _turnController.ActiveHeroes[_turnController.ActiveHeroes.Count - 1];
-            
-            Debug.Log("Current Active Hero: " +_turnController.CurrentActiveHero.HeroName);
-            
+
             //Remove the current active hero from the hero active heroes list
             _turnController.HeroesTurnQueue.Remove(_turnController.CurrentActiveHero as Object);
             
