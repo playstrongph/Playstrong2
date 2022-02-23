@@ -10,7 +10,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
        
         public override void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
         {
-           
+            //hero.HeroLogic.HeroEvents.EHeroTakesFatalDamage += standardAction.StartAction;
         }
     }
 }
