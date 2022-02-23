@@ -18,9 +18,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
 
-            //logicTree.AddCurrent(turnController.AfterHeroEndTurn.StartAction());
-            
-            //TEST - Delay allows to cleanup the Heroes Turn Queue for dead heroes
+            //Delay allows to cleanup the Heroes Turn Queue for dead heroes
             logicTree.AddSibling(turnController.AfterHeroEndTurn.StartAction());
 
             logicTree.EndSequence();

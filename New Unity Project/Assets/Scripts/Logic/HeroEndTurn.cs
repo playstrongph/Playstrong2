@@ -26,10 +26,7 @@ namespace Logic
             
             //TODO: EventHeroEndTurn
 
-            //Call AfterHeroEndTurn PHASE
-            //logicTree.AddCurrent(_turnController.AfterHeroEndTurn.StartAction());
-            
-            //TEST - Delay allows to cleanup the Heroes Turn Queue for dead heroes
+            //Delay allows to cleanup the Heroes Turn Queue for dead heroes
             logicTree.AddSibling(_turnController.AfterHeroEndTurn.StartAction());
 
             logicTree.EndSequence();
