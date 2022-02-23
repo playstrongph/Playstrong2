@@ -314,6 +314,8 @@ namespace Logic
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
+           Debug.Log("Hero Dies SetHeroInactive");
+           
            //set the hero's active status to "Inactive Hero"
            hero.HeroLogic.SetHeroActiveStatus.InactiveHero();
            
@@ -338,8 +340,10 @@ namespace Logic
            //Check if the dying hero is the current active hero
            if (hero == turnController.CurrentActiveHero)
            {
+               Debug.Log("End Dead Hero Turn");
+               
                //end the current turn
-               turnController.HeroEndTurn.StartAction();
+               logicTree.AddCurrent(turnController.HeroEndTurn.StartAction());
            }
 
            logicTree.EndSequence();

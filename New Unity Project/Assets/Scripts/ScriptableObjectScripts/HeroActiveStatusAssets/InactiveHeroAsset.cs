@@ -12,6 +12,8 @@ namespace ScriptableObjectScripts.HeroActiveStatusAssets
     {
         public override void StatusAction(IHero hero)
         {
+            Debug.Log("Inactive Hero Status Action: " +hero.HeroName);
+            
             var visualTree = hero.CoroutineTrees.MainVisualTree;
             visualTree.AddCurrent(DisableActiveHeroVisuals(hero));
         }
