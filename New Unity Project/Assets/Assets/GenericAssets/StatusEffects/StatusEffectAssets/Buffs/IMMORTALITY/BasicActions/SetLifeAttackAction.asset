@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SetLifeAttackAction
   m_EditorClassIdentifier: 
   flatValue: 1
-  heroAttributeAnimationAsset: {fileID: 0}
+  heroAttributeAnimationAsset: {fileID: 11400000, guid: 791fa693a54744d4fb0197e57dbb7a50,
+    type: 2}

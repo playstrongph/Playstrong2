@@ -96,6 +96,22 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         void UndoStartAction(IHero casterHero,IHero targetHero);
+        
+        /// <summary>
+        /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
+        /// Note that the caster hero and target hero in this case are the same 
+        /// </summary>
+        /// <param name="hero"></param>
+        void StartAction(IHero hero);
+        
+        
+        /// <summary>
+        /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
+        /// Note that the caster hero and target hero in this case are the same 
+        /// </summary>
+        /// <param name="hero"></param>
+        void UndoStartAction(IHero hero);
+
 
         #endregion
 

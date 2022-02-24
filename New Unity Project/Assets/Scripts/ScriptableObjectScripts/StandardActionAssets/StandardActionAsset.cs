@@ -187,6 +187,33 @@ namespace ScriptableObjectScripts.StandardActionAssets
         }
         
         
+        /// <summary>
+        /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
+        /// Note that the caster hero and target hero in this case are the same 
+        /// </summary>
+        /// <param name="hero"></param>
+        public virtual void StartAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Note: caster hero and target hero is the same for single IHero events
+            logicTree.AddCurrent(StartActionCoroutine(hero,hero));
+        }
+        
+        /// <summary>
+        /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
+        /// Note that the caster hero and target hero in this case are the same 
+        /// </summary>
+        /// <param name="hero"></param>
+        public virtual void UndoStartAction(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Note: caster hero and target hero is the same for single IHero events
+            logicTree.AddCurrent(UndoStartActionCoroutine(hero,hero));
+        }
+        
+        
 
         /// <summary>
         /// Base method for actions execution
