@@ -5,22 +5,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
 {
     public interface IBasicEventAsset
     {
-        
-        /// <summary>
-        /// Subscribe to single hero events
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction);
-        
-        /// <summary>
-        /// Unsubscribe to single hero events
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        void UnsubscribeStandardAction(IHero hero, IStandardActionAsset standardAction);
-        
-        
+
         /// <summary>
         /// Subscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
         /// </summary>

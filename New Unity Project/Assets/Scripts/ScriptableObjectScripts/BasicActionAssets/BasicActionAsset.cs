@@ -66,7 +66,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
-                //These are the basic condition target heroes - thisHero,targetHero, allEnemies, etc.
+                
                 var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero);
 
                 //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario

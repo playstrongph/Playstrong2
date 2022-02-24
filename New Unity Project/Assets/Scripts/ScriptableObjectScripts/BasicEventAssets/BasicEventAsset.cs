@@ -10,27 +10,6 @@ namespace ScriptableObjectScripts.BasicEventAssets
     public abstract class BasicEventAsset : ScriptableObject, IBasicEventAsset
     {
         /// <summary>
-        /// Subscribe to single hero events
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        public virtual void SubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
-        {
-            //TEST - no coroutine sub-method like the original
-        }
-        
-        /// <summary>
-        /// Unsubscribe to single hero events
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="standardAction"></param>
-        public virtual void UnsubscribeStandardAction(IHero hero, IStandardActionAsset standardAction)
-        {
-            //TEST - no coroutine sub-method like the original
-        }
-
-
-        /// <summary>
         /// Subscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
         /// </summary>
         /// <param name="casterHero"></param>

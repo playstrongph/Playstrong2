@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: ATTACKUP
+  m_Name: IMMORTALITY
   m_EditorClassIdentifier: 
-  statusEffectName: Attack Up
-  description: Attack +50%
-  icon: {fileID: 5653184534992381442, guid: a47d7dd823067e6418b6a0d85d4d051c, type: 3}
+  statusEffectName: Immortality
+  description: Hero can't die
+  icon: {fileID: 0}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
@@ -22,6 +22,6 @@ MonoBehaviour:
     type: 2}
   statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
     type: 2}
-  statusEffectActions: []
-  basicActions:
-  - {fileID: 11400000, guid: 80491bc5460938c4c85aab75d8efd3f3, type: 2}
+  statusEffectActions:
+  - {fileID: 11400000, guid: 13963b11f7d6566498eba8075c7f13af, type: 2}
+  basicActions: []

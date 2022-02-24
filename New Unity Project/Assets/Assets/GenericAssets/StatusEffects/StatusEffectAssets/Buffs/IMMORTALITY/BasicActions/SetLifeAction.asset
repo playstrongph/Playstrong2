@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: SampleAddBuffAction 1
+  m_Script: {fileID: 11500000, guid: 20e123e385234ac4e913364477f41047, type: 3}
+  m_Name: SetLifeAction
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: 73c3e89196869a443bbad4f37d3bb182, type: 2}
-  statusEffectCounters: 2
-  addBuffChance: 100
+  flatValue: 1
+  heroAttributeAnimationAsset: {fileID: 11400000, guid: 791fa693a54744d4fb0197e57dbb7a50,
+    type: 2}
