@@ -3,6 +3,7 @@ using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.AttackTargetCountTypeAssets;
 using ScriptableObjectScripts.GameAnimationAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -92,14 +93,32 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
+            //TODO: Animation here
+            
             //Check hero inability status before proceeding with attack action
             //this is for counter-attack effects
-            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
+            //casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
+            
+            //TEST
+            logicTree.AddCurrent(AttackAction(casterHero,targetHero));
+            
+            //TODO Animation here
 
             logicTree.EndSequence();
             yield return null;
         }
         
+        //TEST
+        private IEnumerator AttackAction(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
         /// <summary>
         /// Used by Inability Asset under the interface IAttackHero
         /// </summary>
@@ -246,6 +265,112 @@ namespace ScriptableObjectScripts.BasicActionAssets
             if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
                 HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);
         }
+        
+        #endregion
+
+        #region NEW LOGIC TEST REGION
+        
+        /// <summary>
+        /// The specific logic-visual sequence for basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            //TODO: cleanup targetHero and standard action from parent
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            //TODO: Attack Visual
+            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero,targetHero,standardAction));
+
+            //This calls AttackAction's ExecuteAction
+            logicTree.AddCurrent(MainAction(casterHero,targetHero,standardAction));
+            
+            //TODO: Damage Visual?
+            logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero,targetHero,standardAction));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
+        private IEnumerator MainAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+
+            foreach (var hero in heroes)
+            {
+                //calls "ExecuteAction" for living caster and target heroes
+                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator AttackVisualAnimation(IHero casterHero,IHero targetHero,IStandardActionAsset standardAction)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var s = DOTween.Sequence();
+            var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
+         
+
+            s.AppendCallback(() =>
+                    
+                    //foreach loop is inside here
+                    PlayAttackAnimation(casterHero, targetHero, standardAction)
+                )
+                .AppendInterval(attackAnimationInterval)
+                //This is the animation delay interval
+                .AppendCallback(() => visualTree.EndSequence());
+            
+            yield return null;
+        }
+        
+        private IEnumerator DamageVisualAnimation(IHero casterHero,IHero targetHero,IStandardActionAsset standardAction)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var s = DOTween.Sequence();
+            
+            //get the armor value at this instance
+            //var armorValue = targetHero.HeroLogic.HeroAttributes.Armor;
+            //get the health value at this instance
+            //var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
+            
+            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            
+            foreach (var hero in heroes)
+            {
+                var armorValue = hero.HeroLogic.HeroAttributes.Armor;
+                var healthValue = hero.HeroLogic.HeroAttributes.Health;
+                
+                s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
+                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,armorValue,healthValue));
+            }
+
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Append call back method
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        private void PlayAttackAnimation(IHero casterHero, IHero targetHero,IStandardActionAsset standardAction)
+        {
+            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            foreach (var hero in heroes)
+            {
+                AttackAnimationAsset.PlayAnimation(casterHero, hero);      
+            }
+        }
+
 
 
         #endregion
