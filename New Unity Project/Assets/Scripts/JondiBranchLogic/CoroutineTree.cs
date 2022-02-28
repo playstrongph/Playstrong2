@@ -83,6 +83,18 @@ namespace JondiBranchLogic
             CurrentNode.AddChild(value);
         }
         
+        //TEST
+        /// <summary>
+        /// Directly add a visual tree to a logic tree sequence
+        /// Gets rid of logic tree wrappers for visual trees.
+        /// </summary>
+        /// <param name="visualTree"></param>
+        /// <param name="value"></param>
+        public void AddCurrentVisual(ICoroutineTree visualTree, IEnumerator value)
+        {
+            visualTree.AddCurrent(value);
+        }
+
         /// <summary>
         /// Add a coroutine as a child of the root node.
         /// </summary>

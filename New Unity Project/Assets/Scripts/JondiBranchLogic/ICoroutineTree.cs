@@ -78,5 +78,8 @@ namespace JondiBranchLogic
         /// <param name="seconds"></param>
         /// <param name="tree"></param>
         void AddRootWait(float seconds, ICoroutineTree tree);
+        
+        //TEST
+        void AddCurrentVisual(ICoroutineTree visualTree, IEnumerator value);
     }
 }

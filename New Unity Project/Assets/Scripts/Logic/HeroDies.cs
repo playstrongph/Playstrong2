@@ -103,9 +103,10 @@ namespace Logic
        private IEnumerator DeathActions(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
-           
-           //hero dies animation
-           logicTree.AddCurrent(HeroDiesAnimation(hero));
+           var visualTree = hero.CoroutineTrees.MainVisualTree;
+
+           //hero dies animation 
+           logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
            
            //Transfer from alive to dead heroes list
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
@@ -162,33 +163,17 @@ namespace Logic
            
            logicTree.EndSequence();
            yield return null;
-
        }
 
-       /// <summary>
-       /// Logic wrapper for hero dies animation
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator HeroDiesAnimation(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           var visualTree = hero.CoroutineTrees.MainVisualTree;
-
-           visualTree.AddCurrent(HeroDiesAnimationVisual(hero));
-
-           logicTree.EndSequence();
-           yield return null;
-       }
-       
        /// <summary>
        /// Hero dies animation
        /// </summary>
        /// <param name="hero"></param>
        /// <returns></returns>
-       private IEnumerator HeroDiesAnimationVisual(IHero hero)
+       private IEnumerator HeroDiesAnimation(IHero hero)
        {
            var visualTree = hero.CoroutineTrees.MainVisualTree;
+           
            var deadHeroesParent = hero.Player.DeadHeroes.ThisGameObject;
            var heroObject = hero.ThisGameObject;
            var healthValue = hero.HeroLogic.HeroAttributes.Health;
@@ -211,12 +196,10 @@ namespace Logic
                .AppendCallback(() =>
                    hero.HeroVisual.SetEnergyVisual.StartAction(energyValue)
                );
-           
+
            visualTree.EndSequence();
            yield return null;
        }
-       
-       
 
        /// <summary>
        /// Reset the health back to base health
