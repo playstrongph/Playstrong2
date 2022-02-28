@@ -55,7 +55,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
             //Play text update animation
-            visualTree.AddCurrent(BasicActionAnimation(targetHero,flatValue));
+            if(HeroAttributeAnimationAsset != null)
+                visualTree.AddCurrent(BasicActionAnimation(targetHero,flatValue));
+            
+            //Note: HeroAttribute animation can be null when set life action is used in conjunction with another
+            //basic action.  Example: AttackAction
             
             logicTree.EndSequence();
             yield return null;
@@ -76,6 +80,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //text mesh pro GUI
             var healthText = targetHero.HeroVisual.HealthVisual.Text;
+            
             
             HeroAttributeAnimationAsset.PlayAnimation(healthText);
             

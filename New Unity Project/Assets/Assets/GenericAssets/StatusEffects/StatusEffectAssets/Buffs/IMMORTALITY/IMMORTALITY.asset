@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectName: Immortality
   description: Hero can't die
-  icon: {fileID: 0}
+  icon: {fileID: -6604380760595388114, guid: 4d2326916f8e79040add9ce1b3498e28, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
