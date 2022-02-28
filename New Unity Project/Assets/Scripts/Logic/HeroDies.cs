@@ -103,12 +103,12 @@ namespace Logic
        private IEnumerator DeathActions(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-           //Update Dead Status Action based on current health
-           logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
            
-           //Destroy all status effects
-           logicTree.AddCurrent(DestroyAllStatusEffects(hero));
+           //hero dies animation
+           logicTree.AddCurrent(HeroDiesAnimation(hero));
+           
+           //Transfer from alive to dead heroes list
+           logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
            
            //Sets health to base value
            logicTree.AddCurrent(ResetHealth(hero));
@@ -116,14 +116,14 @@ namespace Logic
            //Resets hero energy to zero
            logicTree.AddCurrent(ResetEnergy(hero));
 
+           //Update Dead Status Action based on current health
+           logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
+           
+           //Destroy all status effects
+           logicTree.AddCurrent(DestroyAllStatusEffects(hero));
+
            //Remove hero from active heroes list 
            logicTree.AddCurrent(RemoveFromActiveHeroesList(hero));
-           
-           //Transfer from alive to dead heroes list
-           logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
-
-           //hero dies animation
-           logicTree.AddCurrent(HeroDiesAnimation(hero));
 
            //Set the hero to "inactive"
            logicTree.AddCurrent(SetHeroInactive(hero));

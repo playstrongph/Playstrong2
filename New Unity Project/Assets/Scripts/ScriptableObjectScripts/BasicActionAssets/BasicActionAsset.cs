@@ -17,8 +17,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         protected float MainAnimationDuration = 0f;
 
-        //TEST
-        private readonly List<IHero> _animationTargetHeroes = new List<IHero>();
+        //These are the heroes used in the main execution action logic and visual
+        private readonly List<IHero> _mainExecutionActionHeroes = new List<IHero>();
 
         /// <summary>
        /// Checks for the validity of the conditions and targets before running the
@@ -34,6 +34,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Run all pre-event actions when conditions and targets are valid
             logicTree.AddCurrent(PreExecuteAction(casterHero, targetHero, standardAction));
+            
+            //Get main execution action targets
+            logicTree.AddCurrent(GetMainExecutionActionHeroes(casterHero, targetHero, standardAction));
             
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainExecuteAction(casterHero, targetHero, standardAction));
@@ -88,12 +91,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// Run all the Main Execute Actions logic only
+        /// Test
+        /// Gets the valid action targets for main execution
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        /// <returns></returns>
+        private IEnumerator GetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
@@ -101,8 +106,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //animation target heroes list 
-            _animationTargetHeroes.Clear();
+            _mainExecutionActionHeroes.Clear();
             
+            
+            //TEST START
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
                 var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero);
@@ -116,12 +123,29 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Target action calls execute action if both the caster and target are alive
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,actionTargetHero);
-                    
                     //Animation target heroes
-                    _animationTargetHeroes.Add(actionTargetHero);
+                    _mainExecutionActionHeroes.Add(actionTargetHero);
                 }
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        /// <summary>
+        /// Run all the Main Execute Actions logic only
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        private IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            foreach (var hero in _mainExecutionActionHeroes)
+            {
+                //Target action calls execute action if both the caster and target are alive
+                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
             }
             
             logicTree.EndSequence();
@@ -137,7 +161,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Execute animation for each animation target hero
-            foreach (var animationTargetHero in _animationTargetHeroes)
+            foreach (var animationTargetHero in _mainExecutionActionHeroes)
             {
                 animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
             }

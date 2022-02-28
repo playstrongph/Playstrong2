@@ -17,7 +17,7 @@ MonoBehaviour:
   heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
     type: 3}
   health: 200
-  attack: 210
+  attack: 70
   speed: 220
   chance: 230
   armor: 240
