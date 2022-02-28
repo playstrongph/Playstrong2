@@ -45,6 +45,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(MainAnimationAction(casterHero));
             
             //Animation duration interval before next animation is called
+            //Delay interval is set through MainAnimationDuration
             logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
 
             ////Run all post-event actions when conditions and targets are valid

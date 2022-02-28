@@ -257,17 +257,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator PreExecuteActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
-            
+
             //Pre-skill attack
-            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
             targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetHero);
             
             //Pre-attack
-            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
             targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetHero);
             
