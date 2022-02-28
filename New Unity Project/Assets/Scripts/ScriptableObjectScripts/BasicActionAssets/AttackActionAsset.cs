@@ -282,7 +282,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TODO: cleanup targetHero and standard action from parent
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
+
             //TODO: Attack Visual
             logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero,targetHero,standardAction));
 
@@ -300,9 +300,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator MainAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
 
-            foreach (var hero in heroes)
+            foreach (var hero in MainExecutionActionHeroes)
             {
                 //calls "ExecuteAction" for living caster and target heroes
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
@@ -341,9 +341,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //get the health value at this instance
             //var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
             
-            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
             
-            foreach (var hero in heroes)
+            foreach (var hero in MainExecutionActionHeroes)
             {
                 var armorValue = hero.HeroLogic.HeroAttributes.Armor;
                 var healthValue = hero.HeroLogic.HeroAttributes.Health;
@@ -364,8 +364,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="standardAction"></param>
         private void PlayAttackAnimation(IHero casterHero, IHero targetHero,IStandardActionAsset standardAction)
         {
-            var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
-            foreach (var hero in heroes)
+            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            
+            foreach (var hero in MainExecutionActionHeroes)
             {
                 AttackAnimationAsset.PlayAnimation(casterHero, hero);      
             }

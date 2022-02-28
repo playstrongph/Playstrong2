@@ -133,39 +133,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        //TEST
-        protected List<IHero> ValidTargetHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
-        {
-            //From the perspective of the caster hero
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
-
-            //animation target heroes list 
-            MainExecutionActionHeroes.Clear();
-
-            var validHeroes = new List<IHero>();
-
-            //TEST START
-            for (var index = 0; index < actionTargetHeroes.Count; index++)
-            {
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero);
-                
-                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
-                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
-                
-                //This is effectively the actual "target hero" 
-                var actionTargetHero = actionTargetHeroes[index];
-
-                //Product of all 'And' and 'Or' basic condition logic
-                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
-                {
-                    //Animation target heroes
-                    validHeroes.Add(actionTargetHero);
-                }
-            }
-            
-            return validHeroes;
-        }
-
         /// <summary>
         /// Run all the Main Execute Actions logic only
         /// </summary>
@@ -186,7 +153,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        /// <summary>
+        /*/// <summary>
         /// Play the main execute action animations
         /// </summary>
         /// <param name="casterHero"></param>
@@ -202,7 +169,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             logicTree.EndSequence();
             yield return null;
-        }
+        }*/
 
         /// <summary>
         ///  Run all the standard actions subscribed to the post-action events before the main execute action
