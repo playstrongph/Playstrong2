@@ -33,35 +33,28 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Run all pre-event actions when conditions and targets are valid
-            logicTree.AddCurrent(PreExecuteAction(casterHero, targetHero, standardAction));
-            
-            //Get main execution action targets
+            logicTree.AddCurrent(PreBasicActionEvents(casterHero, targetHero, standardAction));
+
+            //TODO: For cleanup. Set main basic action targets
             logicTree.AddCurrent(GetMainExecutionActionHeroes(casterHero, targetHero, standardAction));
             
             //Run all main actions when conditions and targets are valid
-            logicTree.AddCurrent(MainExecuteAction(casterHero, targetHero, standardAction));
+            logicTree.AddCurrent(MainBasicAction(casterHero, targetHero, standardAction));
             
-            //Run the animation sequence for each target.  Target hero is provided by main execute action (animation targets)
-            //logicTree.AddCurrent(MainAnimationAction(casterHero));
-            
-            //Animation duration interval before next animation is called
-            //Delay interval is set through MainAnimationDuration
-            //logicTree.AddCurrent(AnimationInterval(casterHero,MainAnimationDuration));
-
             ////Run all post-event actions when conditions and targets are valid
-            logicTree.AddCurrent(PostExecuteAction(casterHero, targetHero, standardAction));
+            logicTree.AddCurrent(PostBasicActionEvents(casterHero, targetHero, standardAction));
             
             logicTree.EndSequence();
             yield return null;
         }
 
         /// <summary>
-        /// Run all the standard actions subscribed to the pre-action events before the main execute action
+        /// Leads to "BasicAction.CallPreBasicActionEvents" when both caster and target hero are confirmed alive.
         /// </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        private IEnumerator PreExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        private IEnumerator PreBasicActionEvents(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
@@ -86,6 +79,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
                 }
             }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// All events before Execute Action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            //No action for status effects and other skills
             
             logicTree.EndSequence();
             yield return null;
@@ -139,7 +147,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
-        protected virtual IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected virtual IEnumerator MainBasicAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -152,24 +160,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        /*/// <summary>
-        /// Play the main execute action animations
-        /// </summary>
-        /// <param name="casterHero"></param>
-        private IEnumerator MainAnimationAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Execute animation for each animation target hero
-            foreach (var animationTargetHero in MainExecutionActionHeroes)
-            {
-                animationTargetHero.HeroLogic.HeroLifeStatus.TargetMainAnimation(this,casterHero,animationTargetHero);
-            }
-
-            logicTree.EndSequence();
-            yield return null;
-        }*/
 
         /// <summary>
         ///  Run all the standard actions subscribed to the post-action events before the main execute action
@@ -178,7 +168,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        private IEnumerator PostExecuteAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
+        private IEnumerator PostBasicActionEvents(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
@@ -249,20 +239,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
-        /// <summary>
-        /// All events before Execute Action
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public virtual IEnumerator PreExecuteActionEvents(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //No action for status effects and other skills
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
+       
         
         /// <summary>
         /// All events after Execute Action
@@ -278,45 +255,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        /// <summary>
-        /// Animation duration interval
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="duration"></param>
-        /// <returns></returns>
-        private IEnumerator AnimationInterval(IHero casterHero, float duration)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            visualTree.AddCurrent(AnimationIntervalVisual(casterHero,duration));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-
-
-        /// <summary>
-        /// The animation duration interval (in seconds) before next animation is played
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="duration"></param>
-        /// <returns></returns>
-        private IEnumerator AnimationIntervalVisual(IHero casterHero, float duration)
-        {
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
-            var s = DOTween.Sequence();
-
-            s.AppendInterval(duration)
-                .AppendCallback(() =>
-                    visualTree.EndSequence()
-                );
-            
-            yield return null;
-        }
-        
 
         #region FINAL CONDITION LOGIC
 
@@ -382,58 +320,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             return _finalOrConditionsValue;
         }
 
-
-
-
         #endregion
 
-        #region SHUFFLE LOGIC
-        
-        /// <summary>
-        /// Returns a random list of heroes
-        /// </summary>
-        /// <param name="heroList"></param>
-        /// <returns></returns>
-        protected List<IHero> ShuffleList(List<IHero> heroList)
-        {
-            var randomList = heroList;
-            
-            //Randomize the List
-            for (int i = 0; i < randomList.Count; i++) 
-            {
-                var temp = randomList[i];
-                int randomIndex = Random.Range(i, randomList.Count);
-                randomList[i] = randomList[randomIndex];
-                randomList[randomIndex] = temp;
-            }
-
-            return randomList;
-        }
-        
-        /// <summary>
-        /// Returns a random list of status effects
-        /// </summary>
-        /// <param name="statusEffectsList"></param>
-        /// <returns></returns>
-        protected List<IStatusEffect> ShuffleList(List<IStatusEffect> statusEffectsList)
-        {
-            //Randomize the List
-            for (int i = 0; i < statusEffectsList.Count; i++) 
-            {
-                var temp = statusEffectsList[i];
-                int randomIndex = Random.Range(i, statusEffectsList.Count);
-                statusEffectsList[i] = statusEffectsList[randomIndex];
-                statusEffectsList[randomIndex] = temp;
-            }
-
-            return statusEffectsList;
-        }
-        
-        #endregion
-
-        #region OLD LOGIC
-
-        #endregion
-
+     
     }
 }
