@@ -186,13 +186,15 @@ namespace Logic
                .AppendCallback(() =>
                    DeathAnimationsAsset.PlayAnimation(hero)
                )
+               .AppendCallback(()=> Debug.Log("PlayAnimation"))
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )
-               .AppendCallback(() =>
+               .AppendCallback(()=> Debug.Log("SetHealthVisual"))
+               /*.AppendCallback(() =>
                    hero.HeroVisual.SetHealthVisual.StartAction(healthValue)
-               )
+               )*/
                .AppendCallback(() =>
                    hero.HeroVisual.SetEnergyVisual.StartAction(energyValue)
                );

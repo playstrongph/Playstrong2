@@ -82,7 +82,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Target action calls pre execute action if both the caster and target are alive
+                    //leads to basicAction.PreExecuteActionEvents
                     actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
                 }
             }

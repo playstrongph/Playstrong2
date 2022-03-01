@@ -16,7 +16,7 @@ MonoBehaviour:
   heroClass: Ranger
   heroSprite: {fileID: 3858775757889453395, guid: 16cb092cf2577ee478fb3bd1c5ad6504,
     type: 3}
-  health: 100
+  health: 55
   attack: 110
   speed: 120
   chance: 130
