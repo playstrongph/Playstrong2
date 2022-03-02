@@ -63,7 +63,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         
             //calls the action if the caster is still alive 
             //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
-            logicTree.AddCurrent(basicAction.PreExecuteActionEvents(casterHero,targetHero));
+            logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
         }
         
         /// <summary>
@@ -92,7 +92,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             
             //calls the action if the caster is still alive 
             //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
-            logicTree.AddCurrent(basicAction.PostExecuteActionEvents(casterHero,targetHero));
+            logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
         }
 
        /// <summary>

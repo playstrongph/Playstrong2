@@ -186,15 +186,13 @@ namespace Logic
                .AppendCallback(() =>
                    DeathAnimationsAsset.PlayAnimation(hero)
                )
-               .AppendCallback(()=> Debug.Log("PlayAnimation"))
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )
-               .AppendCallback(()=> Debug.Log("SetHealthVisual"))
-               /*.AppendCallback(() =>
+               .AppendCallback(() =>
                    hero.HeroVisual.SetHealthVisual.StartAction(healthValue)
-               )*/
+               )
                .AppendCallback(() =>
                    hero.HeroVisual.SetEnergyVisual.StartAction(energyValue)
                );
@@ -210,6 +208,8 @@ namespace Logic
        /// <returns></returns>
        private IEnumerator ResetHealth(IHero hero)
        {
+           Debug.Log("ResetHealth");
+           
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
            

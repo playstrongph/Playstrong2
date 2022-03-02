@@ -187,13 +187,13 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 
             foreach (var action in BasicActions)
             {
-                logicTree.AddCurrent(action.PreExecuteActionEvents(casterHero,targetHero));
+                logicTree.AddCurrent(action.CallPreBasicActionEvents(casterHero,targetHero));
 
                 logicTree.AddCurrent(action.ExecuteAction(casterHero,targetHero));
 
                 logicTree.AddCurrent(action.MainAnimation(casterHero, targetHero));
 
-                logicTree.AddCurrent(action.PostExecuteActionEvents(casterHero,targetHero));
+                logicTree.AddCurrent(action.CallPostBasicActionEvents(casterHero,targetHero));
             }
         }
 

@@ -40,7 +40,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        IEnumerator PreExecuteActionEvents(IHero casterHero, IHero targetHero);
+        IEnumerator CallPreBasicActionEvents(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// All the events after execute action
@@ -48,7 +48,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        IEnumerator PostExecuteActionEvents(IHero casterHero, IHero targetHero);
+        IEnumerator CallPostBasicActionEvents(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// Main animation

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.AttackTargetCountTypeAssets;
@@ -12,9 +13,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
     [CreateAssetMenu(fileName = "AttackAction", menuName = "Assets/BasicActions/A/AttackAction")]
     public class AttackActionAsset : BasicActionAsset, IAttackHero
     {
+
+        #region VARIABLES
         
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IAttackTargetCountTypeAsset))] 
         private ScriptableObject attackTargetCountType;
+        
         /// <summary>
         /// Indicates how many attack targets 
         /// </summary>
@@ -43,9 +47,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [Header("ADDITIONAL DAMAGE FACTORS")] 
         [SerializeField] private int flatValue = 0;
 
-        //TODO: CalculatedValue
-        
-        
         [Header("ANIMATIONS")]
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
@@ -81,8 +82,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => heroAttributeAnimationAsset as IGameAnimationsAsset;
             set => heroAttributeAnimationAsset = value as ScriptableObject;
         }
-
         
+        //hero health after attack damage
+        private List<int> _heroHealthAfterAttack = new List<int>();
+        
+        //hero armor after attack damage
+        private List<int> _heroArmorAfterAttack = new List<int>();
+        
+        
+
+        #endregion
+
+
         /// <summary>
         /// Called after confirming target and caster hero are still both alive
         /// </summary>
@@ -93,16 +104,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //TODO: Animation here
-            
-            //Check hero inability status before proceeding with attack action
-            //this is for counter-attack effects
-            //casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
-            
-            //TEST
             logicTree.AddCurrent(AttackAction(casterHero,targetHero));
-            
-            //TODO Animation here
 
             logicTree.EndSequence();
             yield return null;
@@ -113,6 +115,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
+            //leads to basicAction.AttackHero
             casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
             
             logicTree.EndSequence();
@@ -170,6 +173,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Attack target based on attack target count type - single or multi attack
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage));
+            
+            //Gets the value of health and armor right after attack
+            logicTree.AddCurrent(SetHeroHealthAndArmorAfterAttack(targetHero));
+
         }
         
         /// <summary>
@@ -188,6 +195,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Attack target based on attack target count type - single or multi attack
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
+            
+            //Gets the value of health and armor right after attack
+            logicTree.AddCurrent(SetHeroHealthAndArmorAfterAttack(targetHero));
+        }
+
+        private IEnumerator SetHeroHealthAndArmorAfterAttack(IHero hero)
+        {
+            Debug.Log("SetHeroHealthAndArmorAfterAttack");
+            
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
+            _heroArmorAfterAttack.Add(hero.HeroLogic.HeroAttributes.Armor); 
+            _heroHealthAfterAttack.Add(hero.HeroLogic.HeroAttributes.Health);
+            
+            logicTree.EndSequence();
+            yield return null;
         }
 
 
@@ -218,6 +241,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         private IEnumerator BasicAnimation(IHero casterHero,IHero targetHero)
         {
+            Debug.Log("AttackAction Basic Animation");
+            
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             
             //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
@@ -228,11 +253,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Set the value of the main animation duration
             MainAnimationDuration = attackAnimationInterval;
 
-            //get the armor value at this instance
+            //TODO: This needs to be taken earlier
             var armorValue = targetHero.HeroLogic.HeroAttributes.Armor;
             
-            //get the health value at this instance
+            //TODO: This needs to be taken earlier
             var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
+
+            Debug.Log("Armor: " +_heroArmorAfterAttack +" Health: " +_heroHealthAfterAttack);
             
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero, targetHero))
                 .AppendInterval(attackAnimationInterval)
@@ -268,7 +295,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         
         #endregion
 
-        #region NEW LOGIC TEST REGION
+        #region Main Basic Action Phase
         
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -277,11 +304,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        protected override IEnumerator MainExecuteAction(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //TODO: cleanup targetHero and standard action from parent
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            _heroArmorAfterAttack.Clear();
+            _heroHealthAfterAttack.Clear();
 
             //TODO: Attack Visual
             logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero,targetHero,standardAction));
@@ -291,7 +321,26 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //TODO: Damage Visual?
             logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero,targetHero,standardAction));
+            
+            //TODO: Check Hero Death here, not in take damage
+            logicTree.AddCurrent(CheckHeroDeaths(casterHero));
 
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        //TEST
+        private IEnumerator CheckHeroDeaths(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                //leads to basicAction.ExecuteAction
+                hero.HeroLogic.HeroDies.CheckFatalDamage(hero);
+            }
+            
             logicTree.EndSequence();
             yield return null;
         }
@@ -304,7 +353,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             foreach (var hero in MainExecutionActionHeroes)
             {
-                //calls "ExecuteAction" for living caster and target heroes
+                //leads to basicAction.ExecuteAction
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
             }
             
@@ -335,21 +384,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var s = DOTween.Sequence();
-            
-            //get the armor value at this instance
-            //var armorValue = targetHero.HeroLogic.HeroAttributes.Armor;
-            //get the health value at this instance
-            //var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
-            
-            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            var i = 0;
             
             foreach (var hero in MainExecutionActionHeroes)
             {
-                var armorValue = hero.HeroLogic.HeroAttributes.Armor;
-                var healthValue = hero.HeroLogic.HeroAttributes.Health;
-                
+                var index = i;
                 s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
-                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,armorValue,healthValue));
+                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,_heroArmorAfterAttack[index],_heroHealthAfterAttack[index]));
+                i++;
             }
 
             visualTree.EndSequence();
@@ -372,15 +414,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
         }
 
-
-
         #endregion
 
 
 
         #region EVENTS
         
-        public override IEnumerator PreExecuteActionEvents(IHero casterHero,IHero targetHero)
+        /// <summary>
+        /// All events before main basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -399,19 +445,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        public override IEnumerator PostExecuteActionEvents(IHero casterHero,IHero targetHero)
+        public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             //Post-skill attack
-            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
             
             //Post-attack
-            //TODO - Do these events need to have double arguments as well?
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
             
