@@ -72,7 +72,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => attackAnimationAsset = value as ScriptableObject;
         }
         
-        //TEST
+        /// <summary>
+        /// Text animation asset
+        /// </summary>
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
         private ScriptableObject heroAttributeAnimationAsset;
@@ -83,11 +85,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => heroAttributeAnimationAsset = value as ScriptableObject;
         }
         
-        //hero health after attack damage
-        private List<int> _heroHealthAfterAttack = new List<int>();
+        /// <summary>
+        /// Used by set health animation
+        /// </summary>
+        private readonly List<int> _heroHealthAfterAttack = new List<int>();
         
-        //hero armor after attack damage
-        private List<int> _heroArmorAfterAttack = new List<int>();
+        /// <summary>
+        /// Used by set armor animation
+        /// </summary>
+        private readonly List<int> _heroArmorAfterAttack = new List<int>();
         
         
 
@@ -104,23 +110,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            logicTree.AddCurrent(AttackAction(casterHero,targetHero));
+            //leads to AttackActionAsset.AttackHero method
+            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        //TEST
-        private IEnumerator AttackAction(IHero casterHero, IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //leads to basicAction.AttackHero
-            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
 
         /// <summary>
         /// Used by Inability Asset under the interface IAttackHero
@@ -194,12 +190,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
 
             //Attack target based on attack target count type - single or multi attack
+            //Calls deal damage and take damage
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
             
             //Gets the value of health and armor right after attack
             logicTree.AddCurrent(SetHeroHealthAndArmorAfterAttack(targetHero));
         }
 
+        /// <summary>
+        /// Stores value of armor and health used in health and armor
+        /// animations
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <returns></returns>
         private IEnumerator SetHeroHealthAndArmorAfterAttack(IHero hero)
         {
             Debug.Log("SetHeroHealthAndArmorAfterAttack");
@@ -314,13 +317,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             _heroHealthAfterAttack.Clear();
 
             //TODO: Attack Visual
-            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero,targetHero,standardAction));
+            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
 
             //This calls AttackAction's ExecuteAction
-            logicTree.AddCurrent(MainAction(casterHero,targetHero,standardAction));
+            logicTree.AddCurrent(MainAction(casterHero));
             
             //TODO: Damage Visual?
-            logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero,targetHero,standardAction));
+            logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero));
             
             //TODO: Check Hero Death here, not in take damage
             logicTree.AddCurrent(CheckHeroDeaths(casterHero));
@@ -346,7 +349,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
 
-        private IEnumerator MainAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
+        private IEnumerator MainAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
@@ -360,8 +363,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
-        private IEnumerator AttackVisualAnimation(IHero casterHero,IHero targetHero,IStandardActionAsset standardAction)
+        
+        /// <summary>
+        /// This is the attack animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator AttackVisualAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var s = DOTween.Sequence();
@@ -371,7 +379,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             s.AppendCallback(() =>
                     
                     //foreach loop is inside here
-                    PlayAttackAnimation(casterHero, targetHero, standardAction)
+                    PlayAttackAnimation(casterHero)
                 )
                 .AppendInterval(attackAnimationInterval)
                 //This is the animation delay interval
@@ -380,7 +388,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        private IEnumerator DamageVisualAnimation(IHero casterHero,IHero targetHero,IStandardActionAsset standardAction)
+        /// <summary>
+        /// Damage and text visual animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator DamageVisualAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var s = DOTween.Sequence();
@@ -399,15 +412,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// Append call back method
+        /// Used by append call back method
         /// </summary>
         /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <param name="standardAction"></param>
-        private void PlayAttackAnimation(IHero casterHero, IHero targetHero,IStandardActionAsset standardAction)
+        private void PlayAttackAnimation(IHero casterHero)
         {
-            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
-            
             foreach (var hero in MainExecutionActionHeroes)
             {
                 AttackAnimationAsset.PlayAnimation(casterHero, hero);      
