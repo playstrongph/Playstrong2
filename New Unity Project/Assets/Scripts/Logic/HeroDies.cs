@@ -208,8 +208,6 @@ namespace Logic
        /// <returns></returns>
        private IEnumerator ResetHealth(IHero hero)
        {
-           Debug.Log("ResetHealth");
-           
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
            

@@ -84,18 +84,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => heroAttributeAnimationAsset as IGameAnimationsAsset;
             set => heroAttributeAnimationAsset = value as ScriptableObject;
         }
-        
-        /// <summary>
-        /// Used by set health animation
-        /// </summary>
-        private readonly List<int> _heroHealthAfterAttack = new List<int>();
-        
-        /// <summary>
-        /// Used by set armor animation
-        /// </summary>
-        private readonly List<int> _heroArmorAfterAttack = new List<int>();
-        
-        
 
         #endregion
 
@@ -169,9 +157,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Attack target based on attack target count type - single or multi attack
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage));
-            
-            //Gets the value of health and armor right after attack
-            logicTree.AddCurrent(SetHeroHealthAndArmorAfterAttack(targetHero));
 
         }
         
@@ -193,28 +178,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Calls deal damage and take damage
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
             
-            //Gets the value of health and armor right after attack
-            logicTree.AddCurrent(SetHeroHealthAndArmorAfterAttack(targetHero));
         }
 
-        /// <summary>
-        /// Stores value of armor and health used in health and armor
-        /// animations
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <returns></returns>
-        private IEnumerator SetHeroHealthAndArmorAfterAttack(IHero hero)
-        {
-            Debug.Log("SetHeroHealthAndArmorAfterAttack");
-            
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-            _heroArmorAfterAttack.Add(hero.HeroLogic.HeroAttributes.Armor); 
-            _heroHealthAfterAttack.Add(hero.HeroLogic.HeroAttributes.Health);
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
+       
 
 
         #region ATTACK ANIMATION
@@ -262,8 +228,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TODO: This needs to be taken earlier
             var healthValue = targetHero.HeroLogic.HeroAttributes.Health;
 
-            Debug.Log("Armor: " +_heroArmorAfterAttack +" Health: " +_heroHealthAfterAttack);
-            
+
             s.AppendCallback(() => AttackAnimationAsset.PlayAnimation(casterHero, targetHero))
                 .AppendInterval(attackAnimationInterval)
                 .AppendCallback(() => DamageAnimationAsset.PlayAnimation(targetHero))
@@ -312,9 +277,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TODO: cleanup targetHero and standard action from parent
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            _heroArmorAfterAttack.Clear();
-            _heroHealthAfterAttack.Clear();
 
             //TODO: Attack Visual
             logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
@@ -322,13 +284,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //This calls AttackAction's ExecuteAction
             logicTree.AddCurrent(MainAction(casterHero));
 
-            //TODO: Damage Visual?
-            //logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero));
-            
             logicTree.AddCurrent(DamageVisualAnimation2(casterHero));
             
             //TODO: Check Hero Death here, not in take damage
-            logicTree.AddCurrent(CheckHeroDeaths(casterHero));
+            //logicTree.AddCurrent(CheckHeroDeaths(casterHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -391,37 +350,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             yield return null;
         }
-        
-        /// <summary>
-        /// Damage and text visual animation
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator DamageVisualAnimation(IHero casterHero)
-        {
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            
-            var s = DOTween.Sequence();
-            var i = 0;
-            
-          
-            Debug.Log("DamageVisual Animation");
-            
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                var index = i;
 
-                s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
-                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,_heroArmorAfterAttack[index],_heroHealthAfterAttack[index]))
-                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,_heroArmorAfterAttack[index],_heroHealthAfterAttack[index]));
-                i++;
-            }
-
-            visualTree.EndSequence();
-            yield return null;
-        }
-        
         private IEnumerator DamageVisualAnimation2(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
