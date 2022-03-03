@@ -133,6 +133,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Checks if heroes are alive and caster has no inability
                 //Leads to basicAction.ExecuteAction
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+                
+                
+                
             }
             
             logicTree.EndSequence();
@@ -279,12 +282,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 var armor = hero.HeroLogic.HeroAttributes.Armor;
                 var health = hero.HeroLogic.HeroAttributes.Health;
                 
+                //TEST
                 visualTree.AddCurrent(DamageAnimation(hero,armor,health));
             }
 
             logicTree.EndSequence();
             yield return null;
         }
+        
+        
+        //AUXILIARY METHODS
 
         private IEnumerator DamageAnimation(IHero hero, int armor, int health)
         {

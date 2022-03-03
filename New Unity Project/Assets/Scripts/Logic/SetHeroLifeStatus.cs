@@ -37,6 +37,7 @@ namespace Logic
             _heroLogic = GetComponent<IHeroLogic>();
         }
         
+        
         /// <summary>
         /// Sets the hero life status to hero alive
         /// </summary>

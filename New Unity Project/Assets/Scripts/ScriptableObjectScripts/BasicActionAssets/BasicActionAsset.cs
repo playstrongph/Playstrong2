@@ -35,8 +35,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Run all pre-event actions when conditions and targets are valid
             logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
 
-            //Set the hero targets of Main Basic Action Phase
-            logicTree.AddCurrent(SetMainExecutionActionHeroes(casterHero, targetHero, standardAction));
+            //Sets the main action target heroes.  "Void" used here to ensure heroes are set
+            //before basic actions are called
+            SetMainExecutionActionHeroes(casterHero, targetHero, standardAction);
             
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero, standardAction));
@@ -55,12 +56,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        private IEnumerator SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        private void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
-            
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //animation target heroes list 
             MainExecutionActionHeroes.Clear();
@@ -84,9 +83,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     MainExecutionActionHeroes.Add(actionTargetHero);
                 }
             }
-            
-            logicTree.EndSequence();
-            yield return null;
         }
 
 
