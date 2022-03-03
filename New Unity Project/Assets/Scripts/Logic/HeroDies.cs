@@ -46,32 +46,12 @@ namespace Logic
 
            //Call hero death actions if life less than or equal to zero
            //TODO: check if this should be add sibling (TEST)
-           logicTree.AddSibling(HeroDeath(hero));
+           logicTree.AddCurrent(HeroDeath(hero));
            
            //Note: All three methods above should be coroutines because they depend on the result of
            //the previous one
            
        }
-
-       /// <summary>
-       /// Sets the life status to hero dead if health is less or equal to zero.  This has to be wrapped
-       /// inside a coroutine because of the prior event called
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator UpdateHeroDeadStatus(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           var health = hero.HeroLogic.HeroAttributes.Health;
-           
-           if(health<=0)
-               hero.HeroLogic.SetHeroLifeStatus.HeroDead();
-           
-           logicTree.EndSequence();
-           yield return null;
-       }
-
-
        private IEnumerator HeroDeath(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
@@ -79,14 +59,17 @@ namespace Logic
 
            if (health <= 0)
            {
+               //Immediately set the life status to HeroDead to prevent action triggers
+               hero.HeroLogic.SetHeroLifeStatus.HeroDead();
+               
                //hero dies event
-               logicTree.AddCurrent(EventHeroDies(hero));
+               logicTree.AddSibling(EventHeroDies(hero));
                
                //TODO: HeroDeathActions
-               logicTree.AddCurrent(DeathActions(hero));
+               logicTree.AddSibling(DeathActions(hero));
                
                //TODO: Event post hero death
-               logicTree.AddCurrent(EventPostHeroDeath(hero));
+               logicTree.AddSibling(EventPostHeroDeath(hero));
                
            }
 
@@ -118,7 +101,7 @@ namespace Logic
            logicTree.AddCurrent(ResetEnergy(hero));
 
            //Update Dead Status Action based on current health
-           logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
+           //logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
            
            //Destroy all status effects
            logicTree.AddCurrent(DestroyAllStatusEffects(hero));

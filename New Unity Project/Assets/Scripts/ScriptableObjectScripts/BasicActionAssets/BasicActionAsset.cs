@@ -35,8 +35,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Run all pre-event actions when conditions and targets are valid
             logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
 
-            //TODO: For cleanup. Set main basic action targets
-            logicTree.AddCurrent(GetMainExecutionActionHeroes(casterHero, targetHero, standardAction));
+            //Set the hero targets of Main Basic Action Phase
+            logicTree.AddCurrent(SetMainExecutionActionHeroes(casterHero, targetHero, standardAction));
             
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero, standardAction));
@@ -55,7 +55,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        private IEnumerator GetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        private IEnumerator SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
@@ -88,8 +88,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
+
 
         /// <summary>
         /// Leads to "BasicAction.CallPreBasicActionEvents" when both caster and target hero are confirmed alive.

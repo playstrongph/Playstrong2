@@ -282,34 +282,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
 
             //This calls AttackAction's ExecuteAction
+            //Calls DealDamage,TakeDamage, and possibly HeroDies
             logicTree.AddCurrent(MainAction(casterHero));
 
             logicTree.AddCurrent(DamageVisualAnimation2(casterHero));
             
-            //TODO: Check Hero Death here, not in take damage
-            //logicTree.AddCurrent(CheckHeroDeaths(casterHero));
-
             logicTree.EndSequence();
             yield return null;
         }
         
-        //TEST
-        private IEnumerator CheckHeroDeaths(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
-            
-            Debug.Log("Check Hero Deaths");
-
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                //leads to basicAction.ExecuteAction
-                hero.HeroLogic.HeroDies.CheckFatalDamage(hero);
-            }
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
+       
 
 
         private IEnumerator MainAction(IHero casterHero)
