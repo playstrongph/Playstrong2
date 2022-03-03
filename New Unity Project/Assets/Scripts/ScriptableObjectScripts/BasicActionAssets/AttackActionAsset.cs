@@ -87,9 +87,59 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #endregion
 
+        #region EXECUTION
 
+         
         /// <summary>
-        /// Called after confirming target and caster hero are still both alive
+        /// The specific logic-visual sequence for basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            //TODO: cleanup targetHero and standard action from parent
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+
+            //Pure attack animation
+            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
+
+            //This calls AttackAction's ExecuteAction
+            //Calls DealDamage,TakeDamage, and possibly HeroDies
+            logicTree.AddCurrent(MainAction(casterHero));
+            
+            //Damage and attribute text animation
+            logicTree.AddCurrent(DamageVisualAnimation(casterHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        
+        /// <summary>
+        /// Basic actions main logic component.  Calls "ExecuteAction"
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator MainAction(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                //leads to basicAction.ExecuteAction
+                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Inability check.  Calls "Attack Hero" 
         /// </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
@@ -99,6 +149,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //leads to AttackActionAsset.AttackHero method
+            //TODO: Transfer Inability Check to hero alive status, Caster Main Execution
+            //TODO: Cleanup HeroInabilityStatus.AttackAction
             casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
 
             logicTree.EndSequence();
@@ -179,11 +231,84 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
             
         }
+        
+        
 
-       
+        #endregion
+
+        #region ANIMATION
+        
+         /// <summary>
+        /// This is the attack animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator AttackVisualAnimation(IHero casterHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var s = DOTween.Sequence();
+            var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
+         
+
+            s.AppendCallback(() =>
+                    
+                    //foreach loop is inside here
+                    PlayAttackAnimation(casterHero)
+                )
+                .AppendInterval(attackAnimationInterval)
+                //This is the animation delay interval
+                .AppendCallback(() => visualTree.EndSequence());
+            
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Damage and Text animation
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator DamageVisualAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
 
-        #region ATTACK ANIMATION
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                var armor = hero.HeroLogic.HeroAttributes.Armor;
+                var health = hero.HeroLogic.HeroAttributes.Health;
+                
+                visualTree.AddCurrent(DamageAnimation(hero,armor,health));
+            }
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator DamageAnimation(IHero hero, int armor, int health)
+        {
+            var s = DOTween.Sequence();
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+
+            s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
+                .AppendCallback(() => HealthAndArmorTextAnimation(hero,armor,health));
+            
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+
+        /// <summary>
+        /// Used by append call back method
+        /// </summary>
+        /// <param name="casterHero"></param>
+        private void PlayAttackAnimation(IHero casterHero)
+        {
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                AttackAnimationAsset.PlayAnimation(casterHero, hero);      
+            }
+        }
 
         /// <summary>
         /// Armor and Health text animation
@@ -208,128 +333,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         #endregion
-
-        #region Main Basic Action Phase
-        
-        /// <summary>
-        /// The specific logic-visual sequence for basic action
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <param name="standardAction"></param>
-        /// <returns></returns>
-        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
-        {
-            //TODO: cleanup targetHero and standard action from parent
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
-            //Pure attack animation
-            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
-
-            //This calls AttackAction's ExecuteAction
-            //Calls DealDamage,TakeDamage, and possibly HeroDies
-            logicTree.AddCurrent(MainAction(casterHero));
-            
-            //Damage and attribute text animation
-            logicTree.AddCurrent(DamageVisualAnimation(casterHero));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-       
-
-
-        private IEnumerator MainAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
-
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                //leads to basicAction.ExecuteAction
-                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-            }
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// This is the attack animation
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator AttackVisualAnimation(IHero casterHero)
-        {
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            var s = DOTween.Sequence();
-            var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
-         
-
-            s.AppendCallback(() =>
-                    
-                    //foreach loop is inside here
-                    PlayAttackAnimation(casterHero)
-                )
-                .AppendInterval(attackAnimationInterval)
-                //This is the animation delay interval
-                .AppendCallback(() => visualTree.EndSequence());
-            
-            yield return null;
-        }
-
-        private IEnumerator DamageVisualAnimation(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
-
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                var armor = hero.HeroLogic.HeroAttributes.Armor;
-                var health = hero.HeroLogic.HeroAttributes.Health;
-                
-                visualTree.AddCurrent(DamageAnim(hero,armor,health));
-            }
-
-            logicTree.EndSequence();
-            yield return null;
-        }
-
-        private IEnumerator DamageAnim(IHero hero, int armor, int health)
-        {
-            var s = DOTween.Sequence();
-            var visualTree = hero.CoroutineTrees.MainVisualTree;
-
-            s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
-                .AppendCallback(() => HealthAndArmorTextAnimation(hero,armor,health));
-            
-            
-            visualTree.EndSequence();
-            yield return null;
-        }
-
-
-
-
-
-        /// <summary>
-        /// Used by append call back method
-        /// </summary>
-        /// <param name="casterHero"></param>
-        private void PlayAttackAnimation(IHero casterHero)
-        {
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                AttackAnimationAsset.PlayAnimation(casterHero, hero);      
-            }
-        }
-
-        #endregion
-
-
 
         #region EVENTS
         
@@ -430,8 +433,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
         #endregion
-
-
 
     }
 }

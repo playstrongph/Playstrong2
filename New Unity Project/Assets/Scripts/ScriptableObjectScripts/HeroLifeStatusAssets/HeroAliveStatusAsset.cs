@@ -17,6 +17,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
+            
+            
             //Check if the caster is still alive
             targetHero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero,targetHero);
         }
@@ -32,8 +34,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
+            //calls the action if the caster is still alive
+            
+            //TODO: Implement Inability check here
+            
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));   
         }
         
