@@ -365,8 +365,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             //Post-skill attack
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetHero);
             
             //Post-attack
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
@@ -431,10 +431,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #endregion
 
-
-        #region OLD LOGIC
-
-        #endregion
 
 
     }
