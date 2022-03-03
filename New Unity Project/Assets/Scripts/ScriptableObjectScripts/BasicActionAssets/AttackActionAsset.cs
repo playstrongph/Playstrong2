@@ -11,7 +11,7 @@ using UnityEngine.PlayerLoop;
 namespace ScriptableObjectScripts.BasicActionAssets
 {
     [CreateAssetMenu(fileName = "AttackAction", menuName = "Assets/BasicActions/A/AttackAction")]
-    public class AttackActionAsset : BasicActionAsset, IAttackHero
+    public class AttackActionAsset : BasicActionAsset
     {
 
         #region VARIABLES
@@ -130,7 +130,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             foreach (var hero in MainExecutionActionHeroes)
             {
-                //leads to basicAction.ExecuteAction
+                //Checks if heroes are alive and caster has no inability
+                //Leads to basicAction.ExecuteAction
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
             }
             
@@ -148,11 +149,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //leads to AttackActionAsset.AttackHero method
-            //TODO: Transfer Inability Check to hero alive status, Caster Main Execution
-            //TODO: Cleanup HeroInabilityStatus.AttackAction
-            //casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
-            
             AttackHero(casterHero,targetHero);
 
             logicTree.EndSequence();
@@ -165,7 +161,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
-        public void AttackHero(IHero casterHero,IHero targetHero)
+        private void AttackHero(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -210,7 +206,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var criticalAttackDamage = 0;
 
             //Attack target based on attack target count type - single or multi attack
+            //Calls DealDamage, TakeDamage, and checks for hero deaths
             logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage));
+            
+            //TODO: Check if DealDamage and TakeDamage need to be isolated in the future because of its events
 
         }
         
