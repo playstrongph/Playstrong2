@@ -321,9 +321,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //This calls AttackAction's ExecuteAction
             logicTree.AddCurrent(MainAction(casterHero));
-            
+
             //TODO: Damage Visual?
-            logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero));
+            //logicTree.AddCurrentVisual(visualTree, DamageVisualAnimation(casterHero));
+            
+            logicTree.AddCurrent(DamageVisualAnimation2(casterHero));
             
             //TODO: Check Hero Death here, not in take damage
             logicTree.AddCurrent(CheckHeroDeaths(casterHero));
@@ -337,6 +339,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
+            
+            Debug.Log("Check Hero Deaths");
 
             foreach (var hero in MainExecutionActionHeroes)
             {
@@ -396,13 +400,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator DamageVisualAnimation(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            
             var s = DOTween.Sequence();
             var i = 0;
+            
+          
+            Debug.Log("DamageVisual Animation");
             
             foreach (var hero in MainExecutionActionHeroes)
             {
                 var index = i;
+
                 s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
+                    .AppendCallback(() => HealthAndArmorTextAnimation(hero,_heroArmorAfterAttack[index],_heroHealthAfterAttack[index]))
                     .AppendCallback(() => HealthAndArmorTextAnimation(hero,_heroArmorAfterAttack[index],_heroHealthAfterAttack[index]));
                 i++;
             }
@@ -411,6 +422,41 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
+        private IEnumerator DamageVisualAnimation2(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+
+
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                var armor = hero.HeroLogic.HeroAttributes.Armor;
+                var health = hero.HeroLogic.HeroAttributes.Health;
+                
+                visualTree.AddCurrent(DamageAnim(hero,armor,health));
+            }
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator DamageAnim(IHero hero, int armor, int health)
+        {
+            var s = DOTween.Sequence();
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+
+            s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
+                .AppendCallback(() => HealthAndArmorTextAnimation(hero,armor,health));
+            
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+
+
+
+
+
         /// <summary>
         /// Used by append call back method
         /// </summary>
