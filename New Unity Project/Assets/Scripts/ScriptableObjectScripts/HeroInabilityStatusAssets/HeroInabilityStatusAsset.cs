@@ -21,21 +21,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        /// <summary>
-        /// TODO: For clean up
-        /// Attack basic action asset "AttackHero" action based on inability
-        /// </summary>
-        /// <param name="attackHero"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public virtual void AttackAction(IAttackHero attackHero, IHero casterHero, IHero targetHero)
-        {
-            //var logicTree = hero.CoroutineTrees.MainLogicTree;
-            //logicTree.EndSequence();
-            //yield return null;
-        }
-        
+
         /// <summary>
         /// Executes basic action if caster has no Inabilities
         /// </summary>
@@ -43,12 +29,26 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         public virtual void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
-        {
-            //var logicTree = hero.CoroutineTrees.MainLogicTree;
-            //logicTree.EndSequence();
-            //yield return null;
-        }
-        
+        { }
+
         //TODO: Include Other Basic Actions that can't be done when hero has an 'Inability'
+        
+        /// <summary>
+        /// Calls pre basic action events if caster has no Inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CallPreBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        { }
+        
+        /// <summary>
+        /// // Calls post basic action events if caster has no Inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CallPostBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        { }
     }
 }

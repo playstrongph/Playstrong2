@@ -22,18 +22,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        /// <summary>
-        /// Hero proceeds to attack
-        /// </summary>
-        /// <param name="attackHero"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void AttackAction(IAttackHero attackHero, IHero casterHero,IHero targetHero)
-        {
-            attackHero.AttackHero(casterHero,targetHero);
-        }
-        
+
         /// <summary>
         /// Executes basic action if caster has no inability
         /// </summary>
@@ -45,6 +34,30 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));  
+        }
+        
+        /// <summary>
+        ///  Calls pre basic action events if caster has no Inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void CallPreBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
+        }
+        
+        /// <summary>
+        /// // Calls post basic action events if caster has no Inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void CallPostBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
         }
     }
 }

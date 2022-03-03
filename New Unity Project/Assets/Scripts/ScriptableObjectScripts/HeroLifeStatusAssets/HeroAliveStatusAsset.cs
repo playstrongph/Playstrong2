@@ -22,8 +22,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
 
         /// <summary>
-        /// HeroAlive - basic action Execute action 
-        /// After confirming, caster is alive, execute action
+        /// Check Inability and call basic action 
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="casterHero"></param>
@@ -51,19 +50,18 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
         
         /// <summary>
-        /// After confirming the caster is alive, implement the basic action's
-        /// pre execution action
+        /// Check Inability and call basic action events
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-        
-            //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
-            logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
+            //original
+            //logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
+                
+            // Calls pre basic action events if caster has no Inabilities
+            casterHero.HeroLogic.HeroInabilityStatus.CallPreBasicActionEvents(basicAction,casterHero,targetHero);
         }
         
         /// <summary>
@@ -80,19 +78,18 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         }
         
         /// <summary>
-        /// After confirming the caster is alive, implement the basic action's
-        /// post execution action
+        /// Check Inability and call basic action events
         /// </summary>
         /// <param name="basicAction"></param>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         public override void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            //Original
+            //logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
             
-            //calls the action if the caster is still alive 
-            //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
-            logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
+            // Calls post basic action events if caster has no Inabilities
+            casterHero.HeroLogic.HeroInabilityStatus.CallPostBasicActionEvents(basicAction,casterHero,targetHero);
         }
 
        /// <summary>
