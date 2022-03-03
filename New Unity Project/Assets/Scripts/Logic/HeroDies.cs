@@ -44,8 +44,7 @@ namespace Logic
            //If immortality or similar effects are present, shall prevent the hero from dying
            logicTree.AddCurrent(EventHeroTakesFatalDamage(hero));
 
-           //Call hero death actions if life less than or equal to zero
-           //TODO: check if this should be add sibling (TEST)
+           //Set "HeroDead" status then cal hero death actions and events
            logicTree.AddCurrent(HeroDeath(hero));
            
            //Note: All three methods above should be coroutines because they depend on the result of
@@ -65,10 +64,10 @@ namespace Logic
                //hero dies event
                logicTree.AddSibling(EventHeroDies(hero));
                
-               //TODO: HeroDeathActions
+               //Death cleanup and hero reset actions
                logicTree.AddSibling(DeathActions(hero));
                
-               //TODO: Event post hero death
+               //TODO: Event where resurrect and similar effects are called
                logicTree.AddSibling(EventPostHeroDeath(hero));
                
            }
@@ -100,9 +99,6 @@ namespace Logic
            //Resets hero energy to zero
            logicTree.AddCurrent(ResetEnergy(hero));
 
-           //Update Dead Status Action based on current health
-           //logicTree.AddCurrent(UpdateHeroDeadStatus(hero));
-           
            //Destroy all status effects
            logicTree.AddCurrent(DestroyAllStatusEffects(hero));
 
