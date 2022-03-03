@@ -33,5 +33,18 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             attackHero.AttackHero(casterHero,targetHero);
         }
+        
+        /// <summary>
+        /// Executes basic action if caster has no inability
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));  
+        }
     }
 }

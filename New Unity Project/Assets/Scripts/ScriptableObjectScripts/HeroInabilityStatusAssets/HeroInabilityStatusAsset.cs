@@ -23,12 +23,26 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         }
         
         /// <summary>
+        /// TODO: For clean up
         /// Attack basic action asset "AttackHero" action based on inability
         /// </summary>
         /// <param name="attackHero"></param>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         public virtual void AttackAction(IAttackHero attackHero, IHero casterHero, IHero targetHero)
+        {
+            //var logicTree = hero.CoroutineTrees.MainLogicTree;
+            //logicTree.EndSequence();
+            //yield return null;
+        }
+        
+        /// <summary>
+        /// Executes basic action if caster has no Inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             //var logicTree = hero.CoroutineTrees.MainLogicTree;
             //logicTree.EndSequence();

@@ -151,7 +151,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //leads to AttackActionAsset.AttackHero method
             //TODO: Transfer Inability Check to hero alive status, Caster Main Execution
             //TODO: Cleanup HeroInabilityStatus.AttackAction
-            casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
+            //casterHero.HeroLogic.HeroInabilityStatus.AttackAction(this, casterHero,targetHero);
+            
+            AttackHero(casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;

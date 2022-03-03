@@ -17,8 +17,6 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            
-            
             //Check if the caster is still alive
             targetHero.HeroLogic.HeroLifeStatus.CasterMainExecutionAction(basicAction,casterHero,targetHero);
         }
@@ -32,13 +30,11 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            //Original
+            //logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
             
-            //calls the action if the caster is still alive
-            
-            //TODO: Implement Inability check here
-            
-            logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));   
+            //Calls basic action when caster has no inabilities
+            casterHero.HeroLogic.HeroInabilityStatus.ExecuteBasicAction(basicAction,casterHero,targetHero);
         }
         
         /// <summary>

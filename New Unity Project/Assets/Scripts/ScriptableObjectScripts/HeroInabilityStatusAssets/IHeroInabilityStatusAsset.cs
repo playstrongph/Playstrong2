@@ -20,5 +20,14 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void AttackAction(IAttackHero attackHero, IHero casterHero, IHero targetHero);
+        
+        /// <summary>
+        /// Executes basic action if caster hero has no inabilities
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
+        
     }
 }
