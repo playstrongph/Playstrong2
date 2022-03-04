@@ -9,13 +9,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
-       
-        //TEST
-        /// <summary>
-        /// The duration (seconds) of the main animation
-        /// set in the specific basic action
-        /// </summary>
-        protected float MainAnimationDuration = 0f;
 
         //These are the heroes used in the main execution action logic and visual
 
