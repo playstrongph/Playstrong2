@@ -104,9 +104,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
             //Pure attack animation
-            logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
-            
-           
+            logicTree.AddCurrent(AttackVisualAnimation(casterHero));
+
             //This calls AttackAction's ExecuteAction
             //Calls DealDamage,TakeDamage, and possibly HeroDies
             logicTree.AddCurrent(MainAction(casterHero));
@@ -247,22 +246,40 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         private IEnumerator AttackVisualAnimation(IHero casterHero)
         {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            var s = DOTween.Sequence();
-            var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
-         
 
-            s.AppendCallback(() =>
-                    
-                    //foreach loop is inside here
-                    PlayAttackAnimation(casterHero)
-                )
-                .AppendInterval(attackAnimationInterval)
-                //This is the animation delay interval
-                .AppendCallback(() => visualTree.EndSequence());
+            var heroes = new List<IHero>(MainExecutionActionHeroes);
             
+            if(heroes.Count >0)
+                visualTree.AddCurrent(PlayAttackAnimationVisual(casterHero,heroes));
+           
+            logicTree.EndSequence(); 
             yield return null;
         }
+         
+         private IEnumerator PlayAttackAnimationVisual(IHero casterHero, List<IHero> heroes)
+         {
+             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+             var s = DOTween.Sequence();
+             var attackAnimationInterval = AttackAnimationAsset.AnimationDuration;
+
+             
+                 s.AppendCallback(() =>
+                    
+                         //foreach loop is inside here
+                         PlayAttackAnimation(casterHero,heroes)
+                     )
+                     .AppendInterval(attackAnimationInterval)
+                     //This is the animation delay interval
+                     .AppendCallback(() => visualTree.EndSequence());
+             
+
+             yield return null;
+         }
+         
+         
+         
         
         /// <summary>
         /// Damage and Text animation
@@ -274,13 +291,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
-
             foreach (var hero in MainExecutionActionHeroes)
             {
                 var armor = hero.HeroLogic.HeroAttributes.Armor;
                 var health = hero.HeroLogic.HeroAttributes.Health;
-                
-                //TEST
+
                 visualTree.AddCurrent(DamageAnimation(hero,armor,health));
             }
 
@@ -293,13 +308,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         private IEnumerator DamageAnimation(IHero hero, int armor, int health)
         {
-            var s = DOTween.Sequence();
+            var sequence = DOTween.Sequence();
             var visualTree = hero.CoroutineTrees.MainVisualTree;
+            
+            sequence
+             .AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
+             .AppendCallback(() => HealthAndArmorTextAnimation(hero,armor,health));
 
-            s.AppendCallback(() => DamageAnimationAsset.PlayAnimation(hero))
-                .AppendCallback(() => HealthAndArmorTextAnimation(hero,armor,health));
-            
-            
             visualTree.EndSequence();
             yield return null;
         }
@@ -308,9 +323,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Used by append call back method
         /// </summary>
         /// <param name="casterHero"></param>
-        private void PlayAttackAnimation(IHero casterHero)
+        /// <param name="heroes"></param>
+        private void PlayAttackAnimation(IHero casterHero,List<IHero> heroes)
         {
-            foreach (var hero in MainExecutionActionHeroes)
+            foreach (var hero in heroes)
             {
                 AttackAnimationAsset.PlayAnimation(casterHero, hero);      
             }
