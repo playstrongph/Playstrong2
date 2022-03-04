@@ -105,7 +105,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Pure attack animation
             logicTree.AddCurrentVisual(visualTree, AttackVisualAnimation(casterHero));
-
+            
+           
             //This calls AttackAction's ExecuteAction
             //Calls DealDamage,TakeDamage, and possibly HeroDies
             logicTree.AddCurrent(MainAction(casterHero));
@@ -133,9 +134,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Checks if heroes are alive and caster has no inability
                 //Leads to basicAction.ExecuteAction
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-                
-                
-                
             }
             
             logicTree.EndSequence();

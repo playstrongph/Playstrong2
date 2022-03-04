@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections.Generic;
+using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
@@ -76,5 +77,12 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         void CasterMainAnimation(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
+        
+        /// <summary>
+        /// Add living hero to a list
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        void AddToHeroList(List<IHero> heroes, IHero hero);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 using UnityEngine;
@@ -118,6 +119,17 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.MainAnimation(casterHero,targetHero));
         }
+        
+        /// <summary>
+        /// Add a living hero to a heroes list.  Example use: basic actions
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public override void AddToHeroList(List<IHero> heroes, IHero hero)
+        {
+           heroes.Add(hero);
+        }
+
 
       
     }

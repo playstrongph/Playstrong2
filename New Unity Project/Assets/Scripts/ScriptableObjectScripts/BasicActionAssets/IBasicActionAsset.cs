@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using Logic;
 using ScriptableObjectScripts.StandardActionAssets;
 
@@ -57,6 +59,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <returns></returns>
         IEnumerator MainAnimation(IHero casterHero, IHero targetHero);
+
+
+        /// <summary>
+        /// Main Execution Action Heroes list
+        /// </summary>
+        List<IHero> MainExecutionActionHeroes { get; }
+
+
 
 
         #region OLD LOGIC

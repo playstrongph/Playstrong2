@@ -18,7 +18,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected float MainAnimationDuration = 0f;
 
         //These are the heroes used in the main execution action logic and visual
-        protected readonly List<IHero> MainExecutionActionHeroes = new List<IHero>();
+
+        public List<IHero> MainExecutionActionHeroes { get; private set; } = new List<IHero>();
 
         /// <summary>
        /// Checks for the validity of the conditions and targets before running the
@@ -79,8 +80,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
+                    //TEST - Add living heroes (only) to the MainExecutionActionHeroes list
+                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(MainExecutionActionHeroes,actionTargetHero);
+                    
                     //Animation target heroes
-                    MainExecutionActionHeroes.Add(actionTargetHero);
+                    //MainExecutionActionHeroes.Add(actionTargetHero);
                 }
             }
         }

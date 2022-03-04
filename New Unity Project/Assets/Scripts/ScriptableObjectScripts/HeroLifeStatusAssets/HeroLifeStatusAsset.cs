@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 using UnityEngine;
@@ -101,6 +102,16 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public virtual void CasterMainAnimation(IBasicActionAsset basicAction,  IHero casterHero,IHero targetHero)
         {
             
+        }
+        
+        /// <summary>
+        /// Add a living hero to a list.  E.g. used in basic actions main action heroes
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public virtual void AddToHeroList(List<IHero> heroes, IHero hero)
+        {
+           
         }
 
 
