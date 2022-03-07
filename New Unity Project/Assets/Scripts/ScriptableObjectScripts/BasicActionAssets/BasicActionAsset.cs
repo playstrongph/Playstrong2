@@ -26,13 +26,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //Run all pre-event actions when conditions and targets are valid
-            logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
-
             //Sets the main action target heroes.  "Void" used here to ensure heroes are set
             //before basic actions are called
             SetMainExecutionActionHeroes(casterHero, targetHero, standardAction);
             
+            
+            
+            //Run all pre-event actions when conditions and targets are valid
+            logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
+
             //Run all main actions when conditions and targets are valid
             logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero, standardAction));
             
@@ -73,11 +75,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //TEST - Add living heroes (only) to the MainExecutionActionHeroes list
+                    //Add only living heroes (only) to the MainExecutionActionHeroes list
                     actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(MainExecutionActionHeroes,actionTargetHero);
-                    
-                    //Animation target heroes
-                    //MainExecutionActionHeroes.Add(actionTargetHero);
+
                 }
             }
         }

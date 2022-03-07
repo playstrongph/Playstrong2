@@ -99,10 +99,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
-            //TODO: cleanup targetHero and standard action from parent
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
+            
             //Pure attack animation
             logicTree.AddCurrent(AttackVisualAction(casterHero));
 
