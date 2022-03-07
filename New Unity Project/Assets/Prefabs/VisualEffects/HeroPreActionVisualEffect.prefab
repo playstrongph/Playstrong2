@@ -448,9 +448,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4343189324778924588}
-  - component: {fileID: 4343189324778924596}
+  - component: {fileID: 7876984937207715380}
   m_Layer: 0
-  m_Name: HeroProjectileVisualEffect
+  m_Name: HeroPreActionVisualEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4343189324778924596
+--- !u!114 &7876984937207715380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4343189324778924597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d1bd4a09ab6344abeb732aa296ea1, type: 3}
+  m_Script: {fileID: 11500000, guid: 03af56e0ba924c442965c15c37cfdc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 4343189323734811866}

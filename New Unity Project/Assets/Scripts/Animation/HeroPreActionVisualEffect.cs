@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Animation
 {
-    public class HeroProjectileVisualEffect : GameVisualEffects
+    public class HeroPreActionVisualEffect : GameVisualEffects
     {
         /// <summary>
         /// Set in the inspector
@@ -31,10 +31,10 @@ namespace Animation
         /// </summary>
         [SerializeField] private float localScaleMultiplier = 1.5f;
         
-        /// <summary>
+        /*/// <summary>
         /// Additional delay before destroying the game object
         /// </summary>
-        [SerializeField] private float doMoveDuration = 0.25f;
+        [SerializeField] private float doMoveDuration = 0.25f;*/
         
         /// <summary>
         /// Delay between do scale and do move
@@ -49,32 +49,29 @@ namespace Animation
         /// <summary>
         /// Total visual effect duration for hero projectile visual effect
         /// </summary>
-        public override float VisualEffectDuration => doScaleDuration + displayInterval + doMoveDuration;
-
-        public override void PlayVisualEffect(IHero casterHero,IHero targetHero)
+        public override float VisualEffectDuration => doScaleDuration + displayInterval;
+        
+        
+        /// <summary>
+        /// Scales the caster hero to indicate action
+        /// No targetHero requirements - only for argument signature
+        /// </summary>
+        /// <param name="casterHero"></param>
+        public override void PlayVisualEffect(IHero casterHero)
         {
-            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-
             //Set projectile image
             image.sprite = casterHero.HeroVisual.HeroGraphic.HeroImage.sprite;
 
-            var sequence = DOTween.Sequence();
+            var s = DOTween.Sequence();
 
-            sequence
-                    
-                .AppendCallback(() =>
+            s.AppendCallback(() =>
                     transform.DOScale(transform.localScale * localScaleMultiplier,
                             doScaleDuration).SetEase(Ease.InOutQuad))
                 
                 .AppendInterval(doScaleDuration)
                 
                 .AppendInterval(displayInterval)
-                
-                .AppendCallback(() =>
-                    transform.DOMove(targetHero.ThisGameObject.transform.position, doMoveDuration).SetEase(Ease.InOutQuad))
-                
-                .AppendInterval(doMoveDuration)
-                
+
                 .AppendInterval(delayInterval)
                 
                 .AppendCallback(() =>

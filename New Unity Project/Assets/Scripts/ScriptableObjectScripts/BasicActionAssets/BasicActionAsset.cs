@@ -30,7 +30,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //before basic actions are called
             SetMainExecutionActionHeroes(casterHero, targetHero, standardAction);
             
-            
+            //TEST - TODO: Caster Pre Action Animation
+            logicTree.AddCurrent(PreActionAnimation(casterHero));
             
             //Run all pre-event actions when conditions and targets are valid
             logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
@@ -41,12 +42,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostBasicActionPhase(casterHero, targetHero, standardAction));
             
+           
+            
             logicTree.EndSequence();
             yield return null;
         }
-        
+
+        protected virtual IEnumerator PreActionAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
+
         /// <summary>
-        /// TODO: For cleanup. Sets the valid action targets for main basic action.
+        /// Sets the valid action targets for main basic action.
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>

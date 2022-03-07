@@ -71,7 +71,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => attackAnimationAsset as IGameAnimationsAsset;
             set => attackAnimationAsset = value as ScriptableObject;
         }
-        
+
+
         /// <summary>
         /// Text animation asset
         /// </summary>
@@ -83,6 +84,22 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             get => heroAttributeAnimationAsset as IGameAnimationsAsset;
             set => heroAttributeAnimationAsset = value as ScriptableObject;
+        }
+        
+        /// <summary>
+        /// TEST
+        /// Pre attack animation
+        /// </summary>
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject preActionAnimationAsset;
+        /// <summary>
+        /// Attack animation asset
+        /// </summary>
+        private IGameAnimationsAsset PreActionAnimationAsset
+        {
+            get => preActionAnimationAsset as IGameAnimationsAsset;
+            set => preActionAnimationAsset = value as ScriptableObject;
         }
 
         #endregion
@@ -99,7 +116,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
-            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Pure attack animation
@@ -277,7 +293,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
              visualTree.EndSequence();
              yield return null;
         }
-        
+
          /// <summary>
          /// Attack animation delay interval
          /// </summary>
@@ -338,6 +354,36 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
+        
+        protected override IEnumerator PreActionAnimation(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(PreActionVisualAnimation(casterHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        
+        
+        
+        /// <summary>
+        /// TODO: TEST - pre action animation 
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator PreActionVisualAnimation(IHero casterHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            PreActionAnimationAsset.PlayAnimation(casterHero);
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+
         /// <summary>
         /// Armor and Health text animation
         /// </summary>
@@ -359,6 +405,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
                 HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);
         }
+        
+        
+        
+        
+        
         
         #endregion
 
