@@ -146,11 +146,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-      
-        
+
         /// <summary>
-        /// Overriden by the specific basic action (e.g. AttackAction).  Executes the specific basic action
+        /// Overriden by the specific basic action (e.g. AttackAction).  
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
@@ -159,12 +157,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                //Target action calls execute action if both the caster and target are alive
-                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-            }
-            
             logicTree.EndSequence();
             yield return null;
         }

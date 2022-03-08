@@ -417,6 +417,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
+        /// <summary>
+        /// All events after main basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
         public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;

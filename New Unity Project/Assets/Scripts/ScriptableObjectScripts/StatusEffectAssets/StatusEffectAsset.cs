@@ -185,15 +185,15 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            foreach (var action in BasicActions)
+            foreach (var basicAction in BasicActions)
             {
-                logicTree.AddCurrent(action.CallPreBasicActionEvents(casterHero,targetHero));
+                logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
 
-                logicTree.AddCurrent(action.ExecuteAction(casterHero,targetHero));
+                logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
 
-                logicTree.AddCurrent(action.MainAnimation(casterHero, targetHero));
+                logicTree.AddCurrent(basicAction.MainAnimation(casterHero, targetHero));
 
-                logicTree.AddCurrent(action.CallPostBasicActionEvents(casterHero,targetHero));
+                logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
             }
         }
 
@@ -213,11 +213,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
                  logicTree.AddCurrent(action.UndoExecuteAction(casterHero, targetHero));
              }
          }
-        
-       
 
-
-        
         //TODO: remove status effect on death
     }
 }

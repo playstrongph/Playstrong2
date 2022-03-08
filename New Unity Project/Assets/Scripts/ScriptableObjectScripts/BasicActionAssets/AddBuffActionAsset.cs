@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
@@ -24,8 +25,30 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Example 50% chance to add Attack Up
         /// </summary>
         [SerializeField] private int addBuffChance = 0;
-        
-        
+
+        /// <summary>
+        ///  Calls Execute action if: 1) caster and target hero are alive
+        /// 2) caster has no inability effects
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: Pre Add Buff Animation: SFX 
+
+            logicTree.AddCurrent(MainAction(casterHero));
+            
+            //TODO: Post Add Buff Animations: Show symbol, status effect action animation, update status effect counter text
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
@@ -56,6 +79,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var randomChance = Random.Range(1, 101);
             
             //Example - addBuffChance is 75% and random chance is 50.
+            //TODO: Need to carve out animations here: StatusEffect action animations, update status effect counters, 
+            //TODO: show status effect symbol
             if(randomChance <= netBuffChance)
                 StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
         }

@@ -54,6 +54,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             var newCounters = Mathf.Max(existingStatusEffect.CountersValue, counters);
             
             //Update the existing status effect counters
+            //TODO: This is a virtualTree with possible parallel animation
             existingStatusEffect.UpdateStatusEffectCounters.SetCountersToValue(newCounters);
             
             //Update the status effect caster hero
@@ -101,12 +102,10 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             return null;
         }
-        
-       
-        
-        
-             
+
+
         /// <summary>
+        /// TODO: This should be in AddBuff/AddDebuff/AddUniqueStatusEffect
         /// Visual tree queueing for create status effect
         /// </summary>
         /// <param name="targetHero"></param>
@@ -138,12 +137,14 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Subscribe Status Effect Asset. 
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
             
-            //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
-            _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
-
-            //Display the status effect symbol 
+            //Display the status effect symbol
+            //TODO: This is a virtualTree with possible parallel animation
             _newStatusEffect.StatusEffectSymbol.ShowSymbol();
             
+            //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
+            //TODO: This is a virtualTree with possible parallel animation
+            _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
+
             //Set status effect casting status
             if(targetHero==casterHero)
                 _newStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
