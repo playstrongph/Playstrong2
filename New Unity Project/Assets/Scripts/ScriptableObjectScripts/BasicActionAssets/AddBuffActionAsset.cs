@@ -41,8 +41,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TODO: Pre Add Buff Animation: SFX 
 
             logicTree.AddCurrent(MainAction(casterHero));
-            
-            //TODO: Post Add Buff Animations: Show symbol, status effect action animation, update status effect counter text
 
             logicTree.EndSequence();
             yield return null;
