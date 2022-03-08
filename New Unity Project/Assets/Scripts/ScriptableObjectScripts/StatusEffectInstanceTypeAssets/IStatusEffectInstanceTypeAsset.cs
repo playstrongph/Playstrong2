@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections;
+using Logic;
 using ScriptableObjectScripts.StatusEffectAssets;
 
 namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
@@ -14,8 +15,12 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="counters"></param>
         void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters);
         
-        
-        
-        
+        /// <summary>
+        /// TODO: Test - shows the status effect symbol
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator DisplayStatusEffectIcon();
+
+
     }
 }

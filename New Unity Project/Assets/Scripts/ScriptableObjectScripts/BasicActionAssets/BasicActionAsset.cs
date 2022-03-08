@@ -41,9 +41,34 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostBasicActionPhase(casterHero, targetHero, standardAction));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Start action used by status effect asset
+        /// Does not check basic conditions
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        public virtual IEnumerator StartAction(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //Caster pre-action animation
+            logicTree.AddCurrent(PreActionAnimation(casterHero));
             
-           
+            //Run all pre-event actions when conditions and targets are valid
+            logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero));
+
+            //Run all main actions when conditions and targets are valid
+            logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero));
             
+            ////Run all post-event actions when conditions and targets are valid
+            logicTree.AddCurrent(PostBasicActionPhase(casterHero, targetHero));
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -55,9 +80,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
-
-
+        
         /// <summary>
         /// Sets the valid action targets for main basic action.
         /// </summary>
@@ -133,6 +156,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
+        /// Used by status effect assets
+        /// Leads to "BasicAction.CallPreBasicActionEvents" when both caster and target hero are confirmed alive.
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator PreBasicActionPhase(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //leads to basicAction.CallPreBasicActionEvents
+           targetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,targetHero);
+
+           logicTree.EndSequence();
+           yield return null;
+        }
+        
+        /// <summary>
         /// All events before main basic action.  Overriden by specific basic action.
         /// </summary>
         /// <param name="casterHero"></param>
@@ -154,6 +195,20 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         protected virtual IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Specific basic action for status effects
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        protected virtual IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -193,6 +248,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
             
             logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Used by status effects
+        /// Leads to "BasicAction.CallPostBasicActionEvents" when both caster and target hero are confirmed alive.
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator PostBasicActionPhase(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+           
+           //Target action calls pre execute action if both the caster and target are alive
+           targetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,targetHero);
+
+           logicTree.EndSequence();
             yield return null;
         }
         

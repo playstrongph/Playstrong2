@@ -136,11 +136,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             //Subscribe Status Effect Asset. 
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
-            
-            //Display the status effect symbol
-            //TODO: This is a virtualTree with possible parallel animation
-            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
-            
+
             //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
             //TODO: This is a virtualTree with possible parallel animation
             _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
@@ -151,12 +147,34 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             else
                 _newStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
             
-           
+            //Display the status effect symbol
+            //TODO: This is a virtualTree with possible parallel animation
+            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
+            
+            
+            
+            
             //Remove status effect if counters are less than or equal to zero
             if(_newStatusEffect.CountersValue <=0)
                 _newStatusEffect.RemoveStatusEffect.StartAction(targetHero);
-
         }
+        
+        /// <summary>
+        /// TODO: Test exposing visual trees
+        /// TEST - displays status effect symbol 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator DisplayStatusEffectIcon()
+        {
+            var logicTree = _newStatusEffect.StatusEffectCasterHero.CoroutineTrees.MainLogicTree;
+            
+            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
 
 
         /// <summary>
