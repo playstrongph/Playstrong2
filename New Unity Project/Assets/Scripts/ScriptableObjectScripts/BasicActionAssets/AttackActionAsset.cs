@@ -121,8 +121,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Pure attack animation
             logicTree.AddCurrent(AttackVisualAction(casterHero));
 
-            //This calls AttackAction's ExecuteAction
-            //Calls DealDamage,TakeDamage, and possibly HeroDies
+            //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
             
             //Damage and attribute text animation
@@ -132,30 +131,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
-        
         /// <summary>
-        /// Basic actions main logic component.  Calls "ExecuteAction"
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator MainAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            //var heroes = ValidTargetHeroes(casterHero, targetHero, standardAction);
-
-            foreach (var hero in MainExecutionActionHeroes)
-            {
-                //Checks if heroes are alive and caster has no inability
-                //Leads to basicAction.ExecuteAction
-                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-            }
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// Inability check.  Calls "Attack Hero" 
+        /// Calls the basic action's specific effects
         /// </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>

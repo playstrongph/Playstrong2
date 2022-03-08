@@ -8,9 +8,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
     [CreateAssetMenu(fileName = "AddBuffAction", menuName = "Assets/BasicActions/A/AddBuffAction")]
     public class AddBuffActionAsset : BasicActionAsset
     {
-        
-        
-        
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectAsset))]
         private ScriptableObject statusEffectAsset;
 
@@ -33,32 +30,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-
             AddStatusEffect(targetHero,casterHero);
 
             logicTree.EndSequence();
             yield return null;
         }
-        
-        public override IEnumerator MainAnimation(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //No animation for add buff action
-            
-            //TODO:Show Status Effect Symbol
-            
-            //TODO: Define main animation duration interval
-            
-            
 
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        
-        
         /// <summary>
         /// Adds a status effect depending on the status effect instance type and buff resistance/chances
         /// </summary>

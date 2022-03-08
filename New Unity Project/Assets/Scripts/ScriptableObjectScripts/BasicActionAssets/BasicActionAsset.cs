@@ -261,6 +261,27 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Calls Execute action if: 1) caster and target hero are alive
+        /// 2) caster has no inability effects
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        protected virtual IEnumerator MainAction(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                //Checks if heroes are alive and caster has no inability
+                //Leads to basicAction.ExecuteAction
+                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+            }
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
 
 
 
