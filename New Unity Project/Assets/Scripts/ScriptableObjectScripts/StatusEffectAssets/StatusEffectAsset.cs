@@ -46,18 +46,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             get => icon;
             private set => icon = value;
         }
-        
-        /*[SerializeField] private int countersValue = 0;
-        
-        /// <summary>
-        /// Status effect counters duration
-        /// </summary>
-        public int CountersValue
-        {
-            get => countersValue;
-            private set => countersValue = value;
-        }*/
-        
+
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectTypeAsset))]
         private Object statusEffectType;
@@ -158,9 +147,9 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// <param name="hero"></param>
         public void SubscribeAction(IHero hero)
         {
-            foreach (var action in StatusEffectActions)
+            foreach (var statusEffectAction in StatusEffectActions)
             {
-                action.SubscribeStandardAction(hero);
+                statusEffectAction.SubscribeStandardAction(hero);
             }
         }
         
@@ -170,9 +159,9 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// <param name="hero"></param>
         public void UnsubscribeAction(IHero hero)
         {
-            foreach (var action in StatusEffectActions)
+            foreach (var statusEffectAction in StatusEffectActions)
             {
-                action.UnsubscribeStandardAction(hero);
+                statusEffectAction.UnsubscribeStandardAction(hero);
             }
         }
 
@@ -207,10 +196,10 @@ namespace ScriptableObjectScripts.StatusEffectAssets
          {
              var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-             foreach (var action in BasicActions)
+             foreach (var basicAction in BasicActions)
              {
                  //action.ExecuteAction(casterHero,targetHero);
-                 logicTree.AddCurrent(action.UndoExecuteAction(casterHero, targetHero));
+                 logicTree.AddCurrent(basicAction.UndoExecuteAction(casterHero, targetHero));
              }
          }
 
