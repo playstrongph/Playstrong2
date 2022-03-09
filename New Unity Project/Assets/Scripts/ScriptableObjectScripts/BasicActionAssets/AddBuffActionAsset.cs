@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Logic;
+using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
@@ -25,6 +26,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Example 50% chance to add Attack Up
         /// </summary>
         [SerializeField] private int addBuffChance = 0;
+        
+        
+        [Header("ANIMATIONS")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject addStatusEffectAnimationAsset;
+        /// <summary>
+        /// Damage animation asset
+        /// </summary>
+        private IGameAnimationsAsset AddStatusEffectAnimationAsset
+        {
+            get => addStatusEffectAnimationAsset as IGameAnimationsAsset;
+            set => addStatusEffectAnimationAsset = value as ScriptableObject;
+        }
+        
+        
+        
 
         /// <summary>
         ///  Calls Execute action if: 1) caster and target hero are alive
@@ -39,10 +57,35 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //TODO: Pre Add Buff Animation: SFX 
+            logicTree.AddCurrent(AddStatusEffectAnimationVisual(casterHero));
 
             logicTree.AddCurrent(MainAction(casterHero));
 
             logicTree.EndSequence();
+            yield return null;
+        }
+
+        private IEnumerator AddStatusEffectAnimationVisual(IHero casterHero)
+        {
+            var logicTre = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+
+            foreach (var hero in MainExecutionActionHeroes)
+            {
+                visualTree.AddCurrent(AddStatusEffectVisual(hero));
+            }
+            
+            logicTre.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator AddStatusEffectVisual(IHero targetHero)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+
+            AddStatusEffectAnimationAsset.PlayAnimation(targetHero);
+            
+            visualTree.EndSequence();
             yield return null;
         }
 
