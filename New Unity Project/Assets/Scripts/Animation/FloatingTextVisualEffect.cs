@@ -32,7 +32,7 @@ namespace Animation
         /// Duration of the change scale animation 
         /// </summary>
         [Header("DO TWEEN VALUES")]
-        [SerializeField] private float doScaleDuration = 0.2f;
+        [SerializeField] private float doScaleDuration = 1f;
         
         /// <summary>
         /// Scale enhancer
@@ -42,7 +42,7 @@ namespace Animation
         /// <summary>
         /// Number of times the animation bounces
         /// </summary>
-        [SerializeField] private int doScaleLoopCount = 2;
+        [SerializeField] private int doScaleLoopCount = 1;
 
         /// <summary>
         /// Additional delay before destroying the game object
@@ -61,15 +61,15 @@ namespace Animation
         /// Plays the damage animation
         /// </summary>
         /// <param name="text"></param>
-        public override void PlayVisualEffect(TextMeshProUGUI text)
+        public override void PlayVisualEffect(String text)
         {
             //Set display text properties
-            displayText.fontStyle = text.fontStyle;
+            /*displayText.fontStyle = text.fontStyle;
             displayText.fontSize = text.fontSize;
             displayText.faceColor = text.faceColor;
             displayText.color = text.color;
             displayText.text = text.text;
-            displayText.transform.position = text.transform.position;
+            displayText.transform.position = text.transform.position;*/
             
             //Display damage animation
             //canvasGroup.alpha = 1;
@@ -77,10 +77,20 @@ namespace Animation
 
             var s = DOTween.Sequence();
             
+            //TEST
+            var yPos = transform.position.y + 50f;
+            
             //Bounce image animation
-            s.AppendCallback(() =>
+            s
+                /*.AppendCallback(() =>
                     transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
-                        .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
+                        .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))*/
+                
+                .AppendCallback(()=> 
+                    
+                    transform.DOMoveY(yPos,doScaleDuration,true).SetEase(Ease.InOutQuad)
+                    
+                    )
                 
                 
                 

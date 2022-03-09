@@ -1,4 +1,6 @@
-﻿using Logic;
+﻿using System;
+using System.Text;
+using Logic;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +13,11 @@ namespace Animation
         /// </summary>
         /// <param name="text"></param>
         public virtual void PlayVisualEffect(TextMeshProUGUI text)
+        {
+        }
+        
+        
+        public virtual void PlayVisualEffect(String text)
         {
         }
         

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Animation;
 using Logic;
 using TMPro;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace ScriptableObjectScripts.GameAnimationAssets
 {
@@ -86,6 +88,18 @@ namespace ScriptableObjectScripts.GameAnimationAssets
             foreach (var gameVisualEffect in GameVisualEffects)
             {
                 var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, text.gameObject.transform);
+                
+                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
+                
+                visualEffect.PlayVisualEffect(text);
+            }
+        }
+        
+        public void PlayAnimation(String text,IHero targetHero)
+        {
+            foreach (var gameVisualEffect in GameVisualEffects)
+            {
+                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, targetHero.ThisGameObject.transform);
                 
                 var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
                 

@@ -15,5 +15,5 @@ MonoBehaviour:
   statusEffectAsset: {fileID: 11400000, guid: 3cdab27785a7f65498517c4a8416995f, type: 2}
   statusEffectCounters: 2
   addBuffChance: 100
-  addStatusEffectAnimationAsset: {fileID: 11400000, guid: 74f8ea308323201459b90ffa174978a2,
+  addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,
     type: 2}

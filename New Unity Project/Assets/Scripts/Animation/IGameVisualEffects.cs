@@ -1,16 +1,25 @@
-﻿using Logic;
+﻿using System;
+using Logic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Animation
 {
     public interface IGameVisualEffects
     {
         /// <summary>
-        /// Play visual effect, text argument
+        /// Play visual effect, textMeshPro argument
         /// </summary>
         /// <param name="text"></param>
         void PlayVisualEffect(TextMeshProUGUI text);
+        
+        
+        /// <summary>
+        /// Play visual effect, text argument
+        /// </summary>
+        /// <param name="text"></param>
+        void PlayVisualEffect(String text);
 
         /// <summary>
         /// Play visual effect, hero argument

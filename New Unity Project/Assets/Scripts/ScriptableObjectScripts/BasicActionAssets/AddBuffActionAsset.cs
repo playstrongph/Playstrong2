@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.StandardActionAssets;
@@ -75,6 +76,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 visualTree.AddCurrent(AddStatusEffectVisual(hero));
             }
             
+            //TODO: Animation Interval 
+            visualTree.AddCurrent(AttackAnimationInterval(casterHero));
+            
             logicTre.EndSequence();
             yield return null;
         }
@@ -83,9 +87,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
-            AddStatusEffectAnimationAsset.PlayAnimation(targetHero);
+            AddStatusEffectAnimationAsset.PlayAnimation("targetHero",targetHero);
             
             visualTree.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator AttackAnimationInterval(IHero casterHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var sequence = DOTween.Sequence();
+            var attackAnimationInterval = AddStatusEffectAnimationAsset.AnimationDuration;
+
+             
+            sequence
+                .AppendInterval(attackAnimationInterval)
+                //This is the animation delay interval
+                .AppendCallback(() => visualTree.EndSequence());
+             
             yield return null;
         }
 
