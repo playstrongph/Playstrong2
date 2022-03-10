@@ -52,10 +52,9 @@ MonoBehaviour:
   canvas: {fileID: 7141874222832558366}
   image: {fileID: 7141874222719936453}
   displayText: {fileID: 7141874223857600754}
-  doScaleDuration: 1
-  localScaleMultiplier: 1.4
-  doScaleLoopCount: 1
-  delayInterval: 0.1
+  doMoveDuration: 1.5
+  delayInterval: 0.5
+  yOffset: 50
 --- !u!1 &7141874222719936455
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,8 +119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2573425542860655086, guid: f3049c9d5efb8a7429bad7728fdcf20d,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -318,8 +316,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294952704
+  m_fontColor: {r: 0, g: 0.77932453, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -336,11 +334,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.3
+  m_fontSize: 20
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 10
+  m_fontSizeMin: 20
   m_fontSizeMax: 25
   m_fontStyle: 0
   m_HorizontalAlignment: 2

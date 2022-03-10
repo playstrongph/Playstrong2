@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
   m_Name: INVINCIBILITY
   m_EditorClassIdentifier: 
-  statusEffectName: Invincibility
+  statusEffectName: INVINCIBILITY
   description: All damage received is reduced to zero.
   icon: {fileID: 5254438988924342571, guid: 187330b152e90ff4badad00f04c58b7e, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}

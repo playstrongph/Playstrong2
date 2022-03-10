@@ -76,7 +76,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 visualTree.AddCurrent(AddStatusEffectVisual(hero));
             }
             
-            //TODO: Animation Interval 
+            //Animation Interval 
             visualTree.AddCurrent(AttackAnimationInterval(casterHero));
             
             logicTre.EndSequence();
@@ -86,8 +86,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator AddStatusEffectVisual(IHero targetHero)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            //set status effect text name
+            var statusEffectText = StatusEffectAsset.StatusEffectName;
 
-            AddStatusEffectAnimationAsset.PlayAnimation("targetHero",targetHero);
+            AddStatusEffectAnimationAsset.PlayAnimation(statusEffectText,targetHero);
             
             visualTree.EndSequence();
             yield return null;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
   m_Name: HASTE
   m_EditorClassIdentifier: 
-  statusEffectName: Haste
+  statusEffectName: HASTE
   description: Increases target's Speed by 30%.
   icon: {fileID: -5027423351736864352, guid: 8bc6643d9f85aa449bd5bd6f890c7d42, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}

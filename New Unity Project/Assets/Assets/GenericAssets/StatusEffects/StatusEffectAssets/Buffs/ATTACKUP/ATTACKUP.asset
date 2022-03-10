@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
   m_Name: ATTACKUP
   m_EditorClassIdentifier: 
-  statusEffectName: Attack Up
+  statusEffectName: ATTACK UP
   description: Attack +50%
   icon: {fileID: 5653184534992381442, guid: a47d7dd823067e6418b6a0d85d4d051c, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
