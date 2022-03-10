@@ -34,7 +34,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
         private ScriptableObject addStatusEffectAnimationAsset;
         /// <summary>
-        /// Damage animation asset
+        /// Floating Text animation asset
         /// </summary>
         private IGameAnimationsAsset AddStatusEffectAnimationAsset
         {
@@ -57,7 +57,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //TODO: Pre Add Buff Animation: SFX 
+            //Pre-Add Buff Animation
             logicTree.AddCurrent(AddStatusEffectAnimationVisual(casterHero));
 
             logicTree.AddCurrent(MainAction(casterHero));
