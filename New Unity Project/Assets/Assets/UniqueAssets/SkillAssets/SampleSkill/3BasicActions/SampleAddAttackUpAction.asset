@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: SampleAddBuffAction
+  m_Name: SampleAddAttackUpAction
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: 3b9a421924da9b24aa8d46671b3510ad, type: 2}
-  statusEffectCounters: 3
+  statusEffectAsset: {fileID: 11400000, guid: 3cdab27785a7f65498517c4a8416995f, type: 2}
+  statusEffectCounters: 1
   defaultChance: 100
   instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,

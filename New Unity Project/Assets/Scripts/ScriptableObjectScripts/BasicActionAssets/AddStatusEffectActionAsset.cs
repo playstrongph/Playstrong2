@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
-    [CreateAssetMenu(fileName = "AddBuffAction", menuName = "Assets/BasicActions/A/AddBuffAction")]
-    public class AddBuffActionAsset : BasicActionAsset
+    [CreateAssetMenu(fileName = "AddStatusEffect", menuName = "Assets/BasicActions/A/AddStatusEffect")]
+    public class AddStatusEffectActionAsset : BasicActionAsset
     {
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectAsset))]
         private ScriptableObject statusEffectAsset;
@@ -23,7 +23,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int statusEffectCounters = 0;
         
         /// <summary>
-        /// Default add buff chance as utilized by some skills.
+        /// Default add status effect
+        /// chance as utilized by some skills.
         /// Example 50% chance to add Attack Up
         /// </summary>
         [SerializeField] private int defaultChance = 0;
@@ -68,8 +69,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
-      
-
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
@@ -81,7 +80,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
         /// <summary>
-        /// Adds a status effect depending on the status effect instance type and buff resistance/chances
+        /// Adds a status effect depending on the status effect instance type and resistance/chances
         /// </summary>
         /// <param name="targetHero"></param>
         /// <param name="casterHero"></param>
@@ -90,14 +89,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
             //net add status effect chance based on chance and resistance
-            var netBuffChance =
+            var netChance =
                 StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
             
             //Random chance, 1 to 100.
             var randomChance = Random.Range(1, 101);
             
             //Example - addBuffChance is 75% and random chance is 50.
-            if (randomChance <= netBuffChance)
+            if (randomChance <= netChance)
             {
                 //Play add status effect animation
                 visualTree.AddCurrent(AddStatusEffectVisual(targetHero));
