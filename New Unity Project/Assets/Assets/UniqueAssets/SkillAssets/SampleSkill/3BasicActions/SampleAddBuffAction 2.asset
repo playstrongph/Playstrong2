@@ -15,5 +15,6 @@ MonoBehaviour:
   statusEffectAsset: {fileID: 11400000, guid: e3c629bd87f8e76449e917da781b9946, type: 2}
   statusEffectCounters: 2
   defaultChance: 100
+  instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,
     type: 2}

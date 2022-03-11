@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SampleAddBuffAction
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: 3b9a421924da9b24aa8d46671b3510ad, type: 2}
-  statusEffectCounters: 2
+  statusEffectCounters: 3
   defaultChance: 100
+  instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,
     type: 2}

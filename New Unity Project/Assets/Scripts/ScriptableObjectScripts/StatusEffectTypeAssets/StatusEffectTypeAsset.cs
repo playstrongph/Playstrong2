@@ -25,7 +25,14 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             
         }
-
+        
+        /// <summary>
+        /// Net chance to add a status effect
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="defaultChance"></param>
+        /// <returns></returns>
         public virtual int AddStatusEffectNetChance(IHero casterHero, IHero targetHero, int defaultChance)
         {
             return 0;

@@ -26,11 +26,16 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             heroStatusEffects.DebuffEffects.RemoveFromList(heroStatusEffect);
         }
-
+        
+        /// <summary>
+        /// Net chance to add a debuff
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="defaultChance"></param>
+        /// <returns></returns>
         public override int AddStatusEffectNetChance(IHero casterHero,IHero targetHero, int defaultChance)
         {
-            Debug.Log("Add Debuff Net Chance");
-            
             //Caster's total add debuff chance. 
             var debuffChance = casterHero.HeroLogic.ChanceAttributes.DebuffChance + defaultChance;
                         

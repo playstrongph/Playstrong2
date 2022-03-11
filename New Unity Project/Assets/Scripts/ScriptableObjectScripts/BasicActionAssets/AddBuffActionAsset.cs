@@ -27,6 +27,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Example 50% chance to add Attack Up
         /// </summary>
         [SerializeField] private int defaultChance = 0;
+
+        [SerializeField] private float instantiateDelay = 0.5f;
         
         
         [Header("ANIMATIONS")]
@@ -54,62 +56,75 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //TODO: Transfer this
-            logicTree.AddCurrent(AddStatusEffectAnimationVisual(casterHero));
-
-            //Embedded visuals:  show status effect icon in execute action logic
-            //logicTree.AddCurrent(MainAction(casterHero));
-
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        //TODO: Transfer this to CreateStatusEffectVisual inside statuseffect instance type
-        private IEnumerator AddStatusEffectAnimationVisual(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
-            /*foreach (var hero in ExecuteActionTargetHeroes)
-            {
-                visualTree.AddCurrent(AddStatusEffectVisual(hero));
-            }*/
+            //Instantiate "Loading" buffer
+            logicTree.AddCurrent(InstantiateIntervalVisual(casterHero));
             
             logicTree.AddCurrent(MainAction(casterHero));
             
-            //Animation Interval 
-            //visualTree.AddCurrent(AddStatusEffectAnimationInterval(casterHero));
-            
+            //Parallel animation interval
             logicTree.AddCurrent(AddStatusEffectIntervalVisual(casterHero));
-            
+
             logicTree.EndSequence();
+            yield return null;
+        }
+
+      
+
+        public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            AddStatusEffect(casterHero,targetHero);
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        /// <summary>
+        /// Adds a status effect depending on the status effect instance type and buff resistance/chances
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <param name="casterHero"></param>
+        private void AddStatusEffect(IHero casterHero, IHero targetHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+
+            //net add status effect chance based on chance and resistance
+            var netBuffChance =
+                StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
+            
+            //Random chance, 1 to 100.
+            var randomChance = Random.Range(1, 101);
+            
+            //Example - addBuffChance is 75% and random chance is 50.
+            if (randomChance <= netBuffChance)
+            {
+                //Play add status effect animation
+                visualTree.AddCurrent(AddStatusEffectVisual(targetHero));
+                
+                //Add status effect
+                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
+            }
+        }
+        
+        /// <summary>
+        /// Add status effect animation/s (floating text)
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator AddStatusEffectVisual(IHero targetHero)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            //set status effect text name
+            var statusEffectText = StatusEffectAsset.StatusEffectName;
+
+            AddStatusEffectAnimationAsset.PlayAnimation(statusEffectText,targetHero);
+            
+            visualTree.EndSequence();
             yield return null;
         }
         
-        protected override IEnumerator MainAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-
-            
-            /*foreach (var hero in ExecuteActionTargetHeroes)
-            {
-                visualTree.AddCurrent(AddStatusEffectVisual(hero));
-            }*/
-
-            foreach (var hero in ExecuteActionTargetHeroes)
-            {
-                //Checks if heroes are alive and caster has no inability
-                //Leads to basicAction.ExecuteAction
-                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-            }
-            
-            visualTree.AddCurrent(AddStatusEffectAnimationInterval(casterHero));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-
         /// <summary>
         /// Animation interval logic tree wrapper
         /// </summary>
@@ -126,63 +141,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTre.EndSequence();
             yield return null;
         }
-
-        public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-
-            AddStatusEffect(casterHero,targetHero);
-            
-            //visualTree.AddCurrent(AddStatusEffectVisual(hero));
-
-            logicTree.EndSequence();
-            yield return null;
-        }
-
+        
         /// <summary>
-        /// Adds a status effect depending on the status effect instance type and buff resistance/chances
+        /// Parallel animation interval delay
         /// </summary>
-        /// <param name="targetHero"></param>
         /// <param name="casterHero"></param>
-        private void AddStatusEffect(IHero casterHero, IHero targetHero)
-        {
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
-            
-            //Add status effect based on status effect asset type, chance, and resistances
-            //StatusEffectAsset.StatusEffectType.AddTypeOfStatusEffect(StatusEffectAsset,casterHero,targetHero,defaultChance,statusEffectCounters);
-            
-            //Effective add buff chance
-            var netBuffChance =
-                StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
-            
-            //Random chance, 1 to 100.
-            var randomChance = Random.Range(1, 101);
-            
-            //Example - addBuffChance is 75% and random chance is 50.
-            //TODO: Need to carve out animations here: StatusEffect action animations, update status effect counters, 
-            //TODO: show status effect symbol
-            if (randomChance <= netBuffChance)
-            {
-                visualTree.AddCurrent(AddStatusEffectVisual(targetHero));
-                
-                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
-            }
-        }
-        
-        
-        private IEnumerator AddStatusEffectVisual(IHero targetHero)
-        {
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
-            //set status effect text name
-            var statusEffectText = StatusEffectAsset.StatusEffectName;
-
-            AddStatusEffectAnimationAsset.PlayAnimation(statusEffectText,targetHero);
-            
-            visualTree.EndSequence();
-            yield return null;
-        }
-        
+        /// <returns></returns>
         private IEnumerator AddStatusEffectAnimationInterval(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
@@ -192,6 +156,44 @@ namespace ScriptableObjectScripts.BasicActionAssets
              
             sequence
                 .AppendInterval(attackAnimationInterval)
+                //This is the animation delay interval
+                .AppendCallback(() => visualTree.EndSequence());
+             
+            yield return null;
+        }
+        
+        
+        /// <summary>
+        /// Instantiate interval logic wrapper
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator InstantiateIntervalVisual(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(InstantiateInterval(casterHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+
+
+        /// <summary>
+        /// Small visual delay for instantiation of game objects
+        /// like a "loading' buffer
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        private IEnumerator InstantiateInterval(IHero casterHero)
+        {
+            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var sequence = DOTween.Sequence();
+
+            sequence
+                .AppendInterval(instantiateDelay)
                 //This is the animation delay interval
                 .AppendCallback(() => visualTree.EndSequence());
              

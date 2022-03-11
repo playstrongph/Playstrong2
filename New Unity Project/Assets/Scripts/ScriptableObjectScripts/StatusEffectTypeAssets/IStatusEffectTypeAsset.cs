@@ -18,7 +18,14 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         /// <param name="heroStatusEffects"></param>
         /// <param name="heroStatusEffect"></param>
         void RemoveFromStatusEffectsList(IHeroStatusEffects heroStatusEffects, IStatusEffect heroStatusEffect);
-
+        
+        /// <summary>
+        /// Net chance to add a status effect
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="defaultChance"></param>
+        /// <returns></returns>
         int AddStatusEffectNetChance(IHero casterHero, IHero targetHero, int defaultChance);
 
     }

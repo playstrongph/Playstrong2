@@ -27,11 +27,16 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             heroStatusEffects.UniqueStatusEffects.RemoveFromList(heroStatusEffect);
         }
-
+        
+        /// <summary>
+        /// Net chance to add a unique status effect
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="defaultChance"></param>
+        /// <returns></returns>
         public override int AddStatusEffectNetChance(IHero casterHero,IHero targetHero, int defaultChance)
         {
-            Debug.Log("Unique Status Effect Net Chance");
-
             return defaultChance;
         }
         
