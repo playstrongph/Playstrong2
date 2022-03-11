@@ -16,5 +16,10 @@
         /// Probability for hero to inflict buff
         /// </summary>
         int BuffChance { get; set; }
+        
+        /// <summary>
+        /// Additional chance to inflict a debuff.  Default debuff chance is set in the AddStatusEffect action default chance
+        /// </summary>
+        int DebuffChance { get; set; }
     }
 }

@@ -27,5 +27,10 @@
         /// Probability to resist buff effects
         /// </summary>
         int BuffResistance { get; set; }
+        
+        /// <summary>
+        /// Probability to resist debuff effects
+        /// </summary>
+        int DebuffResistance { get; set; }
     }
 }

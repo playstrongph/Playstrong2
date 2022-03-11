@@ -31,15 +31,27 @@ namespace Logic
             set => penetrateArmorChance = value;
         }
 
-        [SerializeField] private int buffChance = 100;
+        [SerializeField] private int buffChance = 0;
         /// <summary>
-        /// Probability for hero to inflict buff, default value is 100
+        /// Additional chance to inflict a buff.  Default buff chance is set in the AddStatusEffect action default chance
         /// </summary>
         public int BuffChance
         {
             get => buffChance;
             set => buffChance = value;
         }
+        
+        [SerializeField] private int debuffChance = 0;
+        /// <summary>
+        /// Additional chance to inflict a debuff.  Default debuff chance is set in the AddStatusEffect action default chance
+        /// </summary>
+        public int DebuffChance
+        {
+            get => debuffChance;
+            set => debuffChance = value;
+        }
+        
+       
 
 
     }

@@ -26,7 +26,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Default add buff chance as utilized by some skills.
         /// Example 50% chance to add Attack Up
         /// </summary>
-        [SerializeField] private int addBuffChance = 0;
+        [SerializeField] private int defaultChance = 0;
         
         
         [Header("ANIMATIONS")]
@@ -129,8 +129,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         private void AddStatusEffect(IHero targetHero, IHero casterHero)
         {
-            //Caster's total add buff chance. 
-            var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + addBuffChance;
+            
+            //TODO: shall calculate chance based on statusEffectType
+            StatusEffectAsset.StatusEffectType.AddTypeOfStatusEffect(StatusEffectAsset,casterHero,targetHero,defaultChance,statusEffectCounters);
+            
+            
+            /*//Caster's total add buff chance. 
+            var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + defaultChance;
             
             //Target's buff resistance
             var buffResistance = targetHero.HeroLogic.ResistanceAttributes.BuffResistance;
@@ -145,7 +150,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TODO: Need to carve out animations here: StatusEffect action animations, update status effect counters, 
             //TODO: show status effect symbol
             if(randomChance <= netBuffChance)
-                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);
+                StatusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,StatusEffectAsset,statusEffectCounters);*/
         }
 
       

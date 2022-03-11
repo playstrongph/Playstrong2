@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectTypeAssets
@@ -25,6 +26,14 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
             
         }
         
-        
+        /// <summary>
+        /// Used by AddStatusEffect asset to add status effects based on type
+        /// </summary>
+        public virtual void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero,IHero targetHero, int defaultChance, int counters)
+        {
+            
+        }
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Logic;
+using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StatusEffectTypeAssets
@@ -25,6 +26,23 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         public override void RemoveFromStatusEffectsList(IHeroStatusEffects heroStatusEffects, IStatusEffect heroStatusEffect)
         {
             heroStatusEffects.UniqueStatusEffects.RemoveFromList(heroStatusEffect);
+        }
+        
+        /// <summary>
+        /// Used by AddStatusEffect asset to add status effects based on type
+        /// </summary>
+        public override void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero,IHero targetHero, int defaultChance, int counters)
+        {
+            Debug.Log("Add UniqueStatusEffectType");
+            
+            //unique status effects have no hero "chances" ar "resistances
+            var netChance = defaultChance;
+            
+            //Random chance, 1 to 100.
+            var randomChance = Random.Range(1, 101);
+            
+            if(randomChance <= netChance)
+                statusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,statusEffectAsset,counters);
         }
         
     }
