@@ -242,13 +242,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             
             //Parallel animation processing for multiple targets
-            foreach (var hero in MainExecutionActionHeroes)
+            foreach (var hero in ExecuteActionTargetHeroes)
             {
                 visualTree.AddCurrent(AttackAnimationVisual(casterHero,hero));
             }
             
             //Single delay interval for parallel animations.  Don't call if there are no heroes alive 
-            if(MainExecutionActionHeroes.Count > 0)
+            if(ExecuteActionTargetHeroes.Count > 0)
                 visualTree.AddCurrent(AttackAnimationInterval(casterHero));
            
             logicTree.EndSequence(); 
@@ -301,7 +301,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
-            foreach (var hero in MainExecutionActionHeroes)
+            foreach (var hero in ExecuteActionTargetHeroes)
             {
                 var armor = hero.HeroLogic.HeroAttributes.Armor;
                 var health = hero.HeroLogic.HeroAttributes.Health;

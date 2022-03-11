@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using ScriptableObjectScripts.GameAnimationAssets;
 using UnityEngine;
 
 namespace Logic
@@ -7,6 +8,20 @@ namespace Logic
     public class StatusEffectSymbol : MonoBehaviour, IStatusEffectSymbol
     {
         private IStatusEffect _statusEffect;
+        
+        //TEST
+        [Header("ANIMATIONS")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject addStatusEffectAnimationAsset;
+        /// <summary>
+        /// Floating Text animation asset
+        /// </summary>
+        private IGameAnimationsAsset AddStatusEffectAnimationAsset
+        {
+            get => addStatusEffectAnimationAsset as IGameAnimationsAsset;
+            set => addStatusEffectAnimationAsset = value as ScriptableObject;
+        }
 
         private void Awake()
         {
@@ -36,22 +51,25 @@ namespace Logic
         {
             var logicTree = _statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             
-            logicTree.AddCurrent(ShowSymbolCoroutine());
+            logicTree.AddCurrent(ShowSymbolVisual());
 
         }
 
-        private IEnumerator ShowSymbolCoroutine()
+        private IEnumerator ShowSymbolVisual()
         {
             var logicTree = _statusEffect.StatusEffectTargetHero.CoroutineTrees.MainLogicTree;
             var visualTree = _statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
             
-            visualTree.AddCurrent(ShowSymbolVisual());
+            //TEST
+            //visualTree.AddCurrent(AddStatusEffectVisual(_statusEffect.StatusEffectTargetHero));
             
+            visualTree.AddCurrent(DisplayStatusEffectIcon());
+
             logicTree.EndSequence();
             yield return null;
         }
         
-        private IEnumerator ShowSymbolVisual()
+        private IEnumerator DisplayStatusEffectIcon()
         {
            
             var visualTree = _statusEffect.StatusEffectTargetHero.CoroutineTrees.MainVisualTree;
@@ -67,6 +85,26 @@ namespace Logic
             visualTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Add status effect animation
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator AddStatusEffectVisual(IHero targetHero)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            //set status effect text name
+            var statusEffectText = _statusEffect.StatusEffectName;
+
+            AddStatusEffectAnimationAsset.PlayAnimation(statusEffectText,targetHero);
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        
         
         
 

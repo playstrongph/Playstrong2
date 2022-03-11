@@ -26,37 +26,21 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             heroStatusEffects.DebuffEffects.RemoveFromList(heroStatusEffect);
         }
-        
-        /// <summary>
-        /// Add "debuff" type status effect
-        /// </summary>
-        /// <param name="statusEffectAsset"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <param name="defaultChance"></param>
-        /// <param name="counters"></param>
-        public override void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero,IHero targetHero, int defaultChance, int counters)
+
+        public override int AddStatusEffectNetChance(IHero casterHero,IHero targetHero, int defaultChance)
         {
-            Debug.Log("Add Debuff Type");
+            Debug.Log("Add Debuff Net Chance");
             
-            //Caster's total add buff chance. 
-            //TODO: change to debuff chance
+            //Caster's total add debuff chance. 
             var debuffChance = casterHero.HeroLogic.ChanceAttributes.DebuffChance + defaultChance;
                         
-            //Target's buff resistance
+            //Target's debuff resistance
             var debuffResistance = targetHero.HeroLogic.ResistanceAttributes.DebuffResistance;
                         
-            //Effective add buff chance
+            //Effective add debuff chance
             var netDebuffChance = debuffChance - debuffResistance;
-                        
-            //Random chance, 1 to 100.
-            var randomChance = Random.Range(1, 101);
-                       
-            //Example - addBuffChance is 75% and random chance is 50.
-            //TODO: Need to carve out animations here: StatusEffect action animations, update status effect counters, 
-            //TODO: show status effect symbol
-            if(randomChance <= netDebuffChance)
-                statusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,statusEffectAsset,counters);
+
+            return netDebuffChance;
         }
     }
 }

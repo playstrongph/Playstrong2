@@ -73,7 +73,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Main Execution Action Heroes list
         /// </summary>
-        List<IHero> MainExecutionActionHeroes { get; }
+        List<IHero> ExecuteActionTargetHeroes { get; }
 
 
 

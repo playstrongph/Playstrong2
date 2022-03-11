@@ -12,7 +12,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         //These are the heroes used in the main execution action logic and visual
 
-        public List<IHero> MainExecutionActionHeroes { get; private set; } = new List<IHero>();
+        public List<IHero> ExecuteActionTargetHeroes { get; private set; } = new List<IHero>();
 
         /// <summary>
        /// Checks for the validity of the conditions and targets before running the
@@ -94,7 +94,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
             
             //animation target heroes list 
-            MainExecutionActionHeroes.Clear();
+            ExecuteActionTargetHeroes.Clear();
             
             
             //TEST START
@@ -112,7 +112,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Add only living heroes (only) to the MainExecutionActionHeroes list
-                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(MainExecutionActionHeroes,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(ExecuteActionTargetHeroes,actionTargetHero);
 
                 }
             }
@@ -337,7 +337,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            foreach (var hero in MainExecutionActionHeroes)
+            foreach (var hero in ExecuteActionTargetHeroes)
             {
                 //Checks if heroes are alive and caster has no inability
                 //Leads to basicAction.ExecuteAction
@@ -433,7 +433,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
 
             //animation target heroes list 
-            MainExecutionActionHeroes.Clear();
+            ExecuteActionTargetHeroes.Clear();
 
             //TEST START
             for (var index = 0; index < actionTargetHeroes.Count; index++)
@@ -450,11 +450,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Animation target heroes
-                    MainExecutionActionHeroes.Add(actionTargetHero);
+                    ExecuteActionTargetHeroes.Add(actionTargetHero);
                 }
             }
             
-            return MainExecutionActionHeroes;
+            return ExecuteActionTargetHeroes;
         }
 
         #endregion

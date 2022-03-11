@@ -25,13 +25,10 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             
         }
-        
-        /// <summary>
-        /// Used by AddStatusEffect asset to add status effects based on type
-        /// </summary>
-        public virtual void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero,IHero targetHero, int defaultChance, int counters)
+
+        public virtual int AddStatusEffectNetChance(IHero casterHero, IHero targetHero, int defaultChance)
         {
-            
+            return 0;
         }
 
 

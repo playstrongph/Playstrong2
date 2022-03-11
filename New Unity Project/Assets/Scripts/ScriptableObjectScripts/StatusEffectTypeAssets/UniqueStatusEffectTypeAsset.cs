@@ -27,22 +27,12 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         {
             heroStatusEffects.UniqueStatusEffects.RemoveFromList(heroStatusEffect);
         }
-        
-        /// <summary>
-        /// Used by AddStatusEffect asset to add status effects based on type
-        /// </summary>
-        public override void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero,IHero targetHero, int defaultChance, int counters)
+
+        public override int AddStatusEffectNetChance(IHero casterHero,IHero targetHero, int defaultChance)
         {
-            Debug.Log("Add UniqueStatusEffectType");
-            
-            //unique status effects have no hero "chances" ar "resistances
-            var netChance = defaultChance;
-            
-            //Random chance, 1 to 100.
-            var randomChance = Random.Range(1, 101);
-            
-            if(randomChance <= netChance)
-                statusEffectAsset.StatusEffectInstanceType.AddStatusEffect(targetHero,casterHero,statusEffectAsset,counters);
+            Debug.Log("Unique Status Effect Net Chance");
+
+            return defaultChance;
         }
         
     }

@@ -19,12 +19,7 @@ namespace ScriptableObjectScripts.StatusEffectTypeAssets
         /// <param name="heroStatusEffect"></param>
         void RemoveFromStatusEffectsList(IHeroStatusEffects heroStatusEffects, IStatusEffect heroStatusEffect);
 
-
-        /// <summary>
-        /// Used by AddStatusEffect asset to add status effects based on type
-        /// </summary>
-        void AddTypeOfStatusEffect(IStatusEffectAsset statusEffectAsset, IHero casterHero, IHero targetHero,
-            int defaultChance, int counters);
+        int AddStatusEffectNetChance(IHero casterHero, IHero targetHero, int defaultChance);
 
     }
 }
