@@ -116,6 +116,7 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         private void CreateStatusEffectVisual(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters)
         {
             var statusEffectPrefab = targetHero.HeroStatusEffects.StatusEffectPrefab;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             //Instantiate status effect game object
             var statusEffectObject = Instantiate(statusEffectPrefab.ThisGameObject,
@@ -136,13 +137,12 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
 
             //Subscribe Status Effect Asset. 
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
-            
-            //Display the status effect symbol
-            //TODO: This is a virtualTree with possible parallel animation
-            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
 
             //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
             _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
+            
+            //Display the status effect symbol.  This already calls a visualTree
+            _newStatusEffect.StatusEffectSymbol.ShowSymbol();
 
             //Set status effect casting status
             if(targetHero==casterHero)
@@ -170,9 +170,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             yield return null;
         }
 
-
-
-
         /// <summary>
         /// Creates the status effect preview game object
         /// </summary>
@@ -192,6 +189,11 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Load preview status effect values
             _newStatusEffect.PreviewStatusEffect.UpdatePreviewStatusEffect(statusEffectAsset);
         }
+
+
+        
+        
+        
 
 
 

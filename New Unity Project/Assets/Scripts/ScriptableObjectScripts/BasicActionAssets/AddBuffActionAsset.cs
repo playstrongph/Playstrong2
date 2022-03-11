@@ -57,15 +57,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //Pre-Add Buff Animation
+          
+            //TODO: Transfer this
             logicTree.AddCurrent(AddStatusEffectAnimationVisual(casterHero));
-
+            
             logicTree.AddCurrent(MainAction(casterHero));
+            
+            //TODO: AddStatusEffectAnimationInterval here
 
             logicTree.EndSequence();
             yield return null;
         }
-
+        
+        //TODO: Transfer this to CreateStatusEffectVisual inside statuseffect instance type
         private IEnumerator AddStatusEffectAnimationVisual(IHero casterHero)
         {
             var logicTre = casterHero.CoroutineTrees.MainLogicTree;
@@ -77,7 +81,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
             
             //Animation Interval 
-            visualTree.AddCurrent(AttackAnimationInterval(casterHero));
+            visualTree.AddCurrent(AddStatusEffectAnimationInterval(casterHero));
             
             logicTre.EndSequence();
             yield return null;
@@ -96,7 +100,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        private IEnumerator AttackAnimationInterval(IHero casterHero)
+        private IEnumerator AddStatusEffectAnimationInterval(IHero casterHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
             var sequence = DOTween.Sequence();
@@ -129,11 +133,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         private void AddStatusEffect(IHero targetHero, IHero casterHero)
         {
-            
-            //TODO: shall calculate chance based on statusEffectType
+            //Add status effect based on status effect asset type, chance, and resistances
             StatusEffectAsset.StatusEffectType.AddTypeOfStatusEffect(StatusEffectAsset,casterHero,targetHero,defaultChance,statusEffectCounters);
-            
-            
+
+            //TODO: Delete this after cleanup
             /*//Caster's total add buff chance. 
             var buffChance = casterHero.HeroLogic.ChanceAttributes.BuffChance + defaultChance;
             
