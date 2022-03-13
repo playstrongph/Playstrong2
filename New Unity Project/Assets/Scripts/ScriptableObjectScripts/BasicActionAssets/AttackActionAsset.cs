@@ -356,8 +356,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// /// <param name="healthValue"></param>
         private void HealthAndArmorTextAnimation(IHero targetHero, int armorValue, int healthValue)
         {
-            //Set Armor text
-            targetHero.HeroVisual.SetArmorVisual.StartAction(armorValue);
             //Set health text
             targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
             
