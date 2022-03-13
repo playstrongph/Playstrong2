@@ -357,7 +357,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private void HealthAndArmorTextAnimation(IHero targetHero, int armorValue, int healthValue)
         {
             //Set health text
-            targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
+            //targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
             
             //Animate armor text
             if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )

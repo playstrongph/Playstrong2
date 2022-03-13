@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Logic
 {
@@ -18,7 +19,8 @@ namespace Logic
         {
             _heroLogic.HeroAttributes.Chance = value;
         }
-
+        
+       
         
 
 
