@@ -493,12 +493,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8696197855875235219, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
-        type: 3}
-      propertyPath: textAnimationAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 791fa693a54744d4fb0197e57dbb7a50,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba9a23d29ea48ef4695e6d72bede7e4d, type: 3}
 --- !u!1 &255753305

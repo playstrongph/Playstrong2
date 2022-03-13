@@ -34,6 +34,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             //logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
             
             //Calls basic action when caster has no inabilities
+            
+            Debug.Log("Caster Main Execution Action: " +basicAction.ToString() +" " +casterHero.HeroName);
+            
             casterHero.HeroLogic.HeroInabilityStatus.ExecuteBasicAction(basicAction,casterHero,targetHero);
         }
         

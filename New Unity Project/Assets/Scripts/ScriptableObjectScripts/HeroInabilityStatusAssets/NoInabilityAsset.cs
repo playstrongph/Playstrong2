@@ -31,6 +31,8 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="targetHero"></param>
         public override void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
+            Debug.Log("No Inability: " +basicAction.ToString());
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));  

@@ -20,10 +20,8 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         {
             
         }
-        
-       
-       
-        
+
+
         /// <summary>
         /// Create a new status effect
         /// </summary>

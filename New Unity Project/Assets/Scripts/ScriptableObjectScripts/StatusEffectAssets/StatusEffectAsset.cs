@@ -176,17 +176,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 
             foreach (var basicAction in BasicActions)
             {
-                
-                //TEST
                 logicTree.AddCurrent(basicAction.StartAction(casterHero, targetHero));
-
-                /*logicTree.AddCurrent(basicAction.CallPreBasicActionEvents(casterHero,targetHero));
-
-                logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
-
-                logicTree.AddCurrent(basicAction.MainAnimation(casterHero, targetHero));
-
-                logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));*/
             }
         }
 

@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using TMPro;
 using UnityEngine;
 
@@ -38,6 +39,25 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => heroAttributeAnimationAsset as IGameAnimationsAsset;
             set => heroAttributeAnimationAsset = value as ScriptableObject;
         }
+        
+        /// <summary>
+        /// The specific logic-visual sequence for basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
+        {
+            Debug.Log("Increase Attack MainBasicActionPhase");
+            
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //base class method that calls execute action after checking life status and inability status
+            logicTree.AddCurrent(MainAction(casterHero));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
 
 
         /// <summary>
@@ -48,6 +68,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
+            Debug.Log("Increase Attack Execute Action");
+            
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;
@@ -67,7 +89,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator UndoExecuteAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            //var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
             var newValue = targetHero.HeroLogic.HeroAttributes.Attack - _changeValue;
@@ -76,13 +98,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             targetHero.HeroLogic.SetAttack.StartAction(newValue);
             
             //Update the attack text with no animation
-            visualTree.AddCurrent(SetAttackVisual(targetHero,newValue));
+            //visualTree.AddCurrent(SetAttackVisual(targetHero,newValue));
             
             logicTree.EndSequence();
             yield return null;
         }
         
-        /// <summary>
+        /*/// <summary>
         /// Text Update Animation
         /// </summary>
         /// <param name="casterHero"></param>
@@ -104,10 +126,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             logicTree.EndSequence();
             yield return null;
-        }
+        }*/
 
 
-        /// <summary>
+        /*/// <summary>
         /// Updates the attack "text" in game
         /// used separately by undo execute action
         /// </summary>
@@ -144,7 +166,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             visualTree.EndSequence();
             yield return null;
-        }
+        }*/
 
 
 
