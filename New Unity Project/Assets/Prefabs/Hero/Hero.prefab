@@ -343,6 +343,7 @@ MonoBehaviour:
   penetrateArmorResistance: 0
   inabilityResistance: 0
   buffResistance: 0
+  debuffResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   criticalChance: 0
   penetrateArmorChance: 0
   buffChance: 0
+  debuffChance: 0
 --- !u!114 &4264826968411871100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,6 +530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageTaken: 0
+  damageAnimationAsset: {fileID: 11400000, guid: 9ebb69daab9716943a061dd7ba079806,
+    type: 2}
 --- !u!114 &4568563575096113590
 MonoBehaviour:
   m_ObjectHideFlags: 0

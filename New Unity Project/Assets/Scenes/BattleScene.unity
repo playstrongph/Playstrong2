@@ -383,6 +383,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
+    - target: {fileID: 3084773073971299198, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
+        type: 3}
+      propertyPath: damageAnimationAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ebb69daab9716943a061dd7ba079806,
+        type: 2}
     - target: {fileID: 7962901023046380151, guid: ba9a23d29ea48ef4695e6d72bede7e4d,
         type: 3}
       propertyPath: m_Name

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using ScriptableObjectScripts.GameAnimationAssets;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -35,6 +36,23 @@ namespace Logic
         /// Damage dealt to armor, used in armor text animation
         /// </summary>
         public int ArmorDamage { get; private set; }
+        
+        
+        
+        [Header("ANIMATIONS")]
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject damageAnimationAsset;
+        /// <summary>
+        /// Damage animation asset
+        /// </summary>
+        private IGameAnimationsAsset DamageAnimationAsset
+        {
+            get => damageAnimationAsset as IGameAnimationsAsset;
+            set => damageAnimationAsset = value as ScriptableObject;
+        }
+        
+        
 
         private void Awake()
         {
@@ -222,11 +240,12 @@ namespace Logic
         private IEnumerator HeroTakesDamage(IHero hero,int finalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: percent damage distribution?
-            
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
+
             ComputeNewArmor(hero,finalDamage);
             ComputeNewHealth(hero,_residualDamage);
+
+            visualTree.AddCurrent(PlayDamageAnimation(hero));
 
             logicTree.EndSequence();
             yield return null;
@@ -241,10 +260,28 @@ namespace Logic
         private IEnumerator HeroTakesDamageIgnoreArmor(IHero hero,int finalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var visualTree = hero.CoroutineTrees.MainVisualTree;
             
             ComputeNewHealth(hero,finalDamage);
-            
+
+            visualTree.AddCurrent(PlayDamageAnimation(hero));
+
             logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Damage animation when hero takes damage
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator PlayDamageAnimation(IHero targetHero)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            DamageAnimationAsset.PlayAnimation(targetHero);  
+            
+            visualTree.EndSequence();
             yield return null;
         }
 

@@ -48,18 +48,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int flatValue = 0;
 
         [Header("ANIMATIONS")]
-        [SerializeField]
-        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
-        private ScriptableObject damageAnimationAsset;
-        /// <summary>
-        /// Damage animation asset
-        /// </summary>
-        private IGameAnimationsAsset DamageAnimationAsset
-        {
-            get => damageAnimationAsset as IGameAnimationsAsset;
-            set => damageAnimationAsset = value as ScriptableObject;
-        }
-        
+
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
         private ScriptableObject attackAnimationAsset;
@@ -305,7 +294,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             {
                 var armor = hero.HeroLogic.HeroAttributes.Armor;
                 var health = hero.HeroLogic.HeroAttributes.Health;
-
+                
                 visualTree.AddCurrent(DamageAnimation(hero,armor,health));
             }
 
@@ -324,7 +313,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
 
-            DamageAnimationAsset.PlayAnimation(hero);
+            //DamageAnimationAsset.PlayAnimation(hero);
+            
             HealthAndArmorTextAnimation(hero,armor,health);
 
             visualTree.EndSequence();
@@ -342,12 +332,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
-        
-        
+
         /// <summary>
-        /// TODO: TEST - pre action animation 
+        /// Pre-action visuals
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
@@ -382,12 +369,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
                 HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);
         }
-        
-        
-        
-        
-        
-        
+
         #endregion
 
         #region EVENTS
