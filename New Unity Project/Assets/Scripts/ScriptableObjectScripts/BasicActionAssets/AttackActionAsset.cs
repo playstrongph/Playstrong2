@@ -61,20 +61,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => attackAnimationAsset = value as ScriptableObject;
         }
 
-
-        /// <summary>
-        /// Text animation asset
-        /// </summary>
-        [SerializeField]
-        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
-        private ScriptableObject heroAttributeAnimationAsset;
-
-        private IGameAnimationsAsset HeroAttributeAnimationAsset
-        {
-            get => heroAttributeAnimationAsset as IGameAnimationsAsset;
-            set => heroAttributeAnimationAsset = value as ScriptableObject;
-        }
-        
         /// <summary>
         /// TEST
         /// Pre attack animation
@@ -112,10 +98,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
-            
-            //Damage and attribute text animation
-            logicTree.AddCurrent(DamageVisualAction(casterHero));
-            
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -280,49 +263,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
              yield return null;
          }
 
-        /// <summary>
-        /// Variable setter of Damage animation
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <returns></returns>
-        private IEnumerator DamageVisualAction(IHero casterHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
 
-            foreach (var hero in ExecuteActionTargetHeroes)
-            {
-                var armor = hero.HeroLogic.HeroAttributes.Armor;
-                var health = hero.HeroLogic.HeroAttributes.Health;
-                
-                visualTree.AddCurrent(DamageAnimation(hero,armor,health));
-            }
-
-            logicTree.EndSequence();
-            yield return null;
-        }
-
-        /// <summary>
-        /// Damage animation
-        /// </summary>
-        /// <param name="hero"></param>
-        /// <param name="armor"></param>
-        /// <param name="health"></param>
-        /// <returns></returns>
-        private IEnumerator DamageAnimation(IHero hero, int armor, int health)
-        {
-            var visualTree = hero.CoroutineTrees.MainVisualTree;
-
-            //DamageAnimationAsset.PlayAnimation(hero);
-            
-            HealthAndArmorTextAnimation(hero,armor,health);
-
-            visualTree.EndSequence();
-            yield return null;
-        }
-
-        
-        protected override IEnumerator PreActionAnimation(IHero casterHero)
+         protected override IEnumerator PreActionAnimation(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
@@ -348,25 +290,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
-        /// <summary>
-        /// Armor and Health text animation
-        /// </summary>
-        /// <param name="targetHero"></param>
-        /// <param name="armorValue"></param>
-        /// /// <param name="healthValue"></param>
-        private void HealthAndArmorTextAnimation(IHero targetHero, int armorValue, int healthValue)
-        {
-            //Set health text
-            //targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
-            
-            //Animate armor text
-            /*if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )
-                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);*/
-            
-            //Animate health text only when damage taken is greater than zero
-            /*if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
-                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);*/
-        }
+      
 
         #endregion
 
