@@ -17,10 +17,9 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            
             _heroLogic.HeroAttributes.Attack = value;
             
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             logicTree.AddCurrent(SetTextVisual(value));
         }
         
