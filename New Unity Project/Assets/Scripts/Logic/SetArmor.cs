@@ -17,10 +17,11 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            _heroLogic.HeroAttributes.Armor = value;
-            
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            logicTree.AddCurrent(SetArmorVisual(value));
+            
+            _heroLogic.HeroAttributes.Armor = value;
+
+            logicTree.AddCurrent(SetTextVisual(value));
         }
         
         /// <summary>
@@ -28,12 +29,12 @@ namespace Logic
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private IEnumerator SetArmorVisual(int value)
+        private IEnumerator SetTextVisual(int value)
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             
-            visualTree.AddCurrent(ArmorVisual(value));
+            visualTree.AddCurrent(TextVisual(value));
             
             logicTree.EndSequence();
             yield return null;
@@ -44,7 +45,7 @@ namespace Logic
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        private IEnumerator ArmorVisual(int value)
+        private IEnumerator TextVisual(int value)
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             var hero = _heroLogic.Hero;
