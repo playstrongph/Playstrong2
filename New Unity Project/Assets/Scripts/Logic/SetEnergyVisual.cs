@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ScriptableObjectScripts.GameAnimationAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ namespace Logic
     {   
         
         private IHeroVisual _heroVisual;
-        
+
         private void Awake()
         {
             _heroVisual = GetComponent<IHeroVisual>();
@@ -34,6 +35,8 @@ namespace Logic
             
             energyText.text = energyDisplayText.ToString() +"%";
             energyIcon.fillAmount = energyDisplayText/100f;
+            
+            
         }
         
         /// <summary>

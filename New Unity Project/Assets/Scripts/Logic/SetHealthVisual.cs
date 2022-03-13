@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ScriptableObjectScripts.GameAnimationAssets;
+using UnityEngine;
 
 namespace Logic
 {
@@ -8,6 +9,20 @@ namespace Logic
     public class SetHealthVisual : MonoBehaviour, ISetHealthVisual
     {
         private IHeroVisual _heroVisual;
+        
+        
+        /// <summary>
+        /// Text animation asset
+        /// </summary>
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject textAnimationAsset;
+
+        private IGameAnimationsAsset TextAnimationAsset
+        {
+            get => textAnimationAsset as IGameAnimationsAsset;
+            set => textAnimationAsset = value as ScriptableObject;
+        }
         
         private void Awake()
         {
@@ -30,9 +45,14 @@ namespace Logic
             
             //var healthValue = heroLogic.HeroAttributes.Health;
             var healthValue = value;
+            var hero = _heroVisual.Hero;
             
             _heroVisual.HealthVisual.Text.text = healthValue.ToString();
             _heroVisual.HealthVisual.Text.color = GetTextColor(baseValue,healthValue );
+            
+            //Also prevents animation during initialization 
+            if(hero.HeroLogic.TakeDamage.HealthDamage > 0 )
+                TextAnimationAsset.PlayAnimation(hero.HeroVisual.HealthVisual.Text);
         }
         
         private Color GetTextColor(int baseValue, int value)

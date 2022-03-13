@@ -18,7 +18,6 @@ namespace Logic
         public void StartAction(IHeroAsset heroAsset)
         {
             StartActionLogic(heroAsset);
-            LoadHeroVisualAttributes();
         }
         
         /// <summary>
@@ -29,15 +28,14 @@ namespace Logic
         {
             var heroAttributes = _heroLogic.HeroAttributes;
             var initialEnergy = 0;
-           
-            
+
             //BASE VALUES 
             heroAttributes.BaseAttack = heroAsset.Attack;
             heroAttributes.BaseArmor = heroAsset.Armor;
             heroAttributes.BaseChance = heroAsset.Chance;
             heroAttributes.BaseHealth = heroAsset.Health;
             heroAttributes.BaseSpeed = heroAsset.Speed;
-            
+
             //CURRENT VALUES
             _heroLogic.SetAttack.StartAction(heroAsset.Attack);
             _heroLogic.SetArmor.StartAction(heroAsset.Armor);
@@ -48,21 +46,6 @@ namespace Logic
             _heroLogic.SetEnergy.SetToValue(initialEnergy);
         }
         
-        /// <summary>
-        /// Loads visual component of hero attributes
-        /// </summary>
-        private void LoadHeroVisualAttributes()
-        {
-            var heroVisual = _heroLogic.Hero.HeroVisual;
-            var energy = (int)heroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
-            
-            heroVisual.SetAttackVisual.StartAction(_heroLogic.HeroAttributes.Attack);
-            heroVisual.SetArmorVisual.StartAction(_heroLogic.HeroAttributes.Armor);
-            heroVisual.SetHealthVisual.StartAction(_heroLogic.HeroAttributes.Health);
-            heroVisual.SetFightingSpiritVisual.StartAction(_heroLogic.HeroAttributes.FightingSpirit);
-            
-            heroVisual.SetEnergyVisual.StartAction(energy);
-            
-        }
+      
     }
 }

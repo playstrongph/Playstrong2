@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ScriptableObjectScripts.GameAnimationAssets;
 using UnityEngine;
 
 namespace Logic
@@ -9,6 +10,19 @@ namespace Logic
     public class SetArmorVisual : MonoBehaviour, ISetArmorVisual
     {
         private IHeroVisual _heroVisual;
+        
+        /// <summary>
+        /// Text animation asset
+        /// </summary>
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject textAnimationAsset;
+
+        private IGameAnimationsAsset TextAnimationAsset
+        {
+            get => textAnimationAsset as IGameAnimationsAsset;
+            set => textAnimationAsset = value as ScriptableObject;
+        }
         
         private void Awake()
         {
@@ -27,14 +41,15 @@ namespace Logic
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
             var armorValue = heroLogic.HeroAttributes.Armor;
-            
-            //Clamp minimum display value to zero
-            //var armorVisualValue = Mathf.Max(0, armorValue);
-            
-            //TEST
+
             var armorVisualValue = Mathf.Max(0, value);
+            var hero = _heroVisual.Hero;
             
             _heroVisual.ArmorVisual.Text.text = armorVisualValue.ToString();
+            
+            //Also prevents animation during initialization 
+            if(hero.HeroLogic.TakeDamage.ArmorDamage > 0 )
+                TextAnimationAsset.PlayAnimation(hero.HeroVisual.ArmorVisual.Text);
 
             if(armorValue <=0)
                 HideTextAndIcon();

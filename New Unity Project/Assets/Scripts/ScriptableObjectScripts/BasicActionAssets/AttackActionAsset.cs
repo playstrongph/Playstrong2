@@ -360,12 +360,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //targetHero.HeroVisual.SetHealthVisual.StartAction(healthValue);
             
             //Animate armor text
-            if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )
-                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);
+            /*if(targetHero.HeroLogic.TakeDamage.ArmorDamage > 0 )
+                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.ArmorVisual.Text);*/
             
             //Animate health text only when damage taken is greater than zero
-            if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
-                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);
+            /*if(targetHero.HeroLogic.TakeDamage.HealthDamage > 0 )
+                HeroAttributeAnimationAsset.PlayAnimation(targetHero.HeroVisual.HealthVisual.Text);*/
         }
 
         #endregion
