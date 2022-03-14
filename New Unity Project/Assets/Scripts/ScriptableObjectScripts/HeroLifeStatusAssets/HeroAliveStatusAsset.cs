@@ -30,13 +30,6 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="targetHero"></param>
         public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
-            //Original
-            //logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
-            
-            //Calls basic action when caster has no inabilities
-            
-            Debug.Log("Caster Main Execution Action: " +basicAction.ToString() +" " +casterHero.HeroName);
-            
             casterHero.HeroLogic.HeroInabilityStatus.ExecuteBasicAction(basicAction,casterHero,targetHero);
         }
         

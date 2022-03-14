@@ -54,6 +54,8 @@ namespace Logic
        private IEnumerator HeroDeath(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+           
            var health = hero.HeroLogic.HeroAttributes.Health;
 
            if (health <= 0)
@@ -168,12 +170,6 @@ namespace Logic
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
-               )
-               .AppendCallback(() =>
-                   hero.HeroVisual.SetHealthVisual.StartAction(healthValue)
-               )
-               .AppendCallback(() =>
-                   hero.HeroVisual.SetEnergyVisual.StartAction(energyValue)
                );
 
            visualTree.EndSequence();
@@ -188,6 +184,7 @@ namespace Logic
        private IEnumerator ResetHealth(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
+
            var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
            
            hero.HeroLogic.SetHealth.StartAction(baseHealth);
@@ -207,7 +204,9 @@ namespace Logic
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
-           hero.HeroLogic.HeroTimer.ResetHeroTimer();
+           //hero.HeroLogic.HeroTimer.ResetHeroTimer();
+           
+           hero.HeroLogic.SetEnergy.ResetToZero();
            
            logicTree.EndSequence();
            yield return null;

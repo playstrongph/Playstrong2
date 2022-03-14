@@ -31,9 +31,12 @@ namespace Logic
         public void ResetToZero()
         {
             var heroTimer = _heroLogic.HeroTimer;
+            var zeroEnergy = 0;
             
             heroTimer.ResetHeroTimer();
             
+            var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(SetTextVisual(zeroEnergy));
         }
         
         /// <summary>

@@ -12,18 +12,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Set life to a fixed amount
         /// </summary>
         [SerializeField] private int flatValue = 1;
-        
-        [Header("ANIMATIONS")]
-        [SerializeField]
-        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
-        private ScriptableObject heroAttributeAnimationAsset;
 
-        private IGameAnimationsAsset HeroAttributeAnimationAsset
-        {
-            get => heroAttributeAnimationAsset as IGameAnimationsAsset;
-            set => heroAttributeAnimationAsset = value as ScriptableObject;
-        }
-        
         /// <summary>
         /// Set health logic
         /// </summary>
@@ -40,51 +29,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Note: No undo execute action
             
             logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// logic wrapper for set health visual
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <returns></returns>
-        public override IEnumerator MainAnimation(IHero casterHero, IHero targetHero)
-        {
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-
-            //Play text update animation
-            if(HeroAttributeAnimationAsset != null)
-                visualTree.AddCurrent(BasicActionAnimation(targetHero,flatValue));
-            
-            //Note: HeroAttribute animation can be null when set life action is used in conjunction with another
-            //basic action.  Example: AttackAction
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// Set health visual
-        /// </summary>
-        /// <param name="targetHero"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        private IEnumerator BasicActionAnimation(IHero targetHero,int value)
-        {
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-
-            //set text value
-            targetHero.HeroVisual.SetHealthVisual.StartAction(value);
-            
-            //text mesh pro GUI
-            var healthText = targetHero.HeroVisual.HealthVisual.Text;
-            
-            
-            HeroAttributeAnimationAsset.PlayAnimation(healthText);
-            
-            visualTree.EndSequence();
             yield return null;
         }
 

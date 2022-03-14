@@ -51,57 +51,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator UndoExecuteAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-
+            
             var newValue = targetHero.HeroLogic.HeroAttributes.Speed - _changeValue;
             
             //Set the new attack value in hero attributes
             targetHero.HeroLogic.SetSpeed.StartAction(newValue);
-            
-            //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetHero,newValue));
-            
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        /// <summary>
-        /// Text Update Animation
-        /// </summary>
-        ///  <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <returns></returns>
-        public override IEnumerator MainAnimation(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
-            //get the speed value at this instance
-            var speedValue =  targetHero.HeroLogic.HeroAttributes.Speed;
-            
-            //Update the energy bar and text color
-            visualTree.AddCurrent(SetSpeedVisual(targetHero,speedValue));
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        /// <summary>
-        /// Update the energy speed and text value 
-        /// </summary>
-        /// <param name="hero"></param>
-        ///  /// <param name="value"></param>
-        /// <returns></returns>
-        private IEnumerator SetSpeedVisual(IHero hero,int value)
-        {
-            var visualTree = hero.CoroutineTrees.MainVisualTree;
-          
-            
-            hero.HeroVisual.SetSpeedVisual.StartAction(value);
-
-            visualTree.EndSequence();
-            yield return null;
-        }
+     
         
         
     }

@@ -38,11 +38,6 @@ namespace Logic
             
             //Reset the energy of the current active hero
             _turnController.CurrentActiveHero.HeroLogic.SetEnergy.ResetToZero();
-            
-           
-            //Set energy visual
-            var energy = (int) _turnController.CurrentActiveHero.HeroVisual.Hero.HeroLogic.HeroTimer.TimerValuePercent;
-            visualTree.AddCurrent(SetEnergyVisual(energy));
 
             //TODO: Event call - EventCombatStartTurn
             
@@ -50,16 +45,6 @@ namespace Logic
             logicTree.AddCurrent(_turnController.BeforeHeroStartTurn.StartAction());
 
             logicTree.EndSequence();
-            yield return null;
-        }
-
-        private IEnumerator SetEnergyVisual(int value)
-        {
-            var visualTree = _turnController.CoroutineTrees.MainVisualTree;
-            
-            _turnController.CurrentActiveHero.HeroVisual.SetEnergyVisual.StartAction(value);
-            
-            visualTree.EndSequence();
             yield return null;
         }
     }

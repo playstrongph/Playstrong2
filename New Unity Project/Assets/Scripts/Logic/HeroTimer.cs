@@ -104,11 +104,9 @@ namespace Logic
             
             //Set hero energy attribute
             HeroLogic.HeroAttributes.Energy = Mathf.FloorToInt(TimerValuePercent);
+
         }
-        
-       
-        
-        
+
         /// <summary>
         /// Updates the active heroes in turn controller
         /// </summary>
