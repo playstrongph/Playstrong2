@@ -256,8 +256,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected virtual IEnumerator MainAction(IHero casterHero)
         {
-            Debug.Log("Basic Action Main Action: " +this.ToString());
-            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             foreach (var hero in ExecuteActionTargetHeroes)
