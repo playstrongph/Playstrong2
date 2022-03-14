@@ -176,6 +176,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 
             foreach (var basicAction in BasicActions)
             {
+                //TEST
                 logicTree.AddCurrent(basicAction.StartAction(casterHero, targetHero));
             }
         }

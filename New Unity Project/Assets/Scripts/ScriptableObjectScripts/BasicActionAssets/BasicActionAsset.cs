@@ -56,7 +56,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public virtual IEnumerator StartAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-
+            
+            //TEST
+            SetMainExecutionActionHeroes(casterHero, targetHero);
+            
             //Caster pre-action animation
             logicTree.AddCurrent(PreActionAnimation(casterHero));
             
@@ -116,6 +119,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
                 }
             }
+        }
+        
+        //TEST
+        private void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero)
+        {
+            ExecuteActionTargetHeroes.Clear();
+            
+            ExecuteActionTargetHeroes.Add(targetHero);
         }
 
 
