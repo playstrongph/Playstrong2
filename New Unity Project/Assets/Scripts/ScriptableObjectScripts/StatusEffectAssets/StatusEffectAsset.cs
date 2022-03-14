@@ -166,7 +166,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         }
 
         /// <summary>
-        /// Apply status effect 
+        /// Directly calls execute action since start action is already called by AddStatusEffectAction 
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
@@ -176,8 +176,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
 
             foreach (var basicAction in BasicActions)
             {
-                //TEST
-                logicTree.AddCurrent(basicAction.StartAction(casterHero, targetHero));
+                logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
             }
         }
 

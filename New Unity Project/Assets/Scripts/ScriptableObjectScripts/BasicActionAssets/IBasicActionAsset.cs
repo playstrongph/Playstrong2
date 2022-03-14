@@ -20,15 +20,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         IEnumerator StartAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction);
 
         /// <summary>
-        /// Start action used by status effect assets.  Does not need to check
-        /// for basic conditions (specific to skills)
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <returns></returns>
-        IEnumerator StartAction(IHero casterHero, IHero targetHero);
-
-        /// <summary>
         /// Executes the basic action logic
         /// Exclusively used by hero life status
         /// </summary>

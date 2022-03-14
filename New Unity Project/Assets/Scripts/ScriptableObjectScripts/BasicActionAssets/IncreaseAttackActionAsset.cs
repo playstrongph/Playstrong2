@@ -45,8 +45,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
         /// <returns></returns>
-        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             Debug.Log("Increase Attack MainBasicActionPhase");
             
