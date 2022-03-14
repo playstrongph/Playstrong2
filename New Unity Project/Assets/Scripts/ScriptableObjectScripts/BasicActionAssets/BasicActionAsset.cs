@@ -37,7 +37,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.AddCurrent(PreBasicActionPhase(casterHero, targetHero, standardAction));
 
             //Run all main actions when conditions and targets are valid
-            logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero, standardAction));
+            logicTree.AddCurrent(MainBasicActionPhase(casterHero, targetHero));
             
             ////Run all post-event actions when conditions and targets are valid
             logicTree.AddCurrent(PostBasicActionPhase(casterHero, targetHero, standardAction));
@@ -147,8 +147,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
-        /// <param name="standardAction"></param>
-        protected virtual IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected virtual IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
