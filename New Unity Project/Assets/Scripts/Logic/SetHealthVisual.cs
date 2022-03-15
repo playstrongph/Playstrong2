@@ -42,12 +42,12 @@ namespace Logic
         {
             var heroLogic = _heroVisual.Hero.HeroLogic;
             var baseValue = heroLogic.HeroAttributes.BaseHealth;
-            
-            //var healthValue = heroLogic.HeroAttributes.Health;
+
             var healthValue = value;
             var hero = _heroVisual.Hero;
-            
+
             _heroVisual.HealthVisual.Text.text = healthValue.ToString();
+            
             _heroVisual.HealthVisual.Text.color = GetTextColor(baseValue,healthValue );
             
             //Also prevents animation during initialization 

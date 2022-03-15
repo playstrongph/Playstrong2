@@ -33,6 +33,8 @@ namespace Logic
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             
+           
+            
             visualTree.AddCurrent(TextVisual(value));
             
             logicTree.EndSequence();

@@ -96,10 +96,10 @@ namespace Logic
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
            
            //Sets health to base value
-           logicTree.AddCurrent(ResetHealth(hero));
+           //logicTree.AddCurrent(ResetHealth(hero));
            
            //Resets hero energy to zero
-           logicTree.AddCurrent(ResetEnergy(hero));
+           //logicTree.AddCurrent(ResetEnergy(hero));
 
            //Destroy all status effects
            logicTree.AddCurrent(DestroyAllStatusEffects(hero));
@@ -159,6 +159,7 @@ namespace Logic
            var heroObject = hero.ThisGameObject;
            var healthValue = hero.HeroLogic.HeroAttributes.Health;
            var energyValue = hero.HeroLogic.HeroAttributes.Energy;
+           var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
            var s = DOTween.Sequence();
            var playDelayInterval = 1f;
 
@@ -170,48 +171,16 @@ namespace Logic
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
-               );
-
+               )
+               //Reset to base health
+               .AppendCallback(() => hero.HeroLogic.SetHealth.StartAction(baseHealth))
+               //Reset energy to zero
+               .AppendCallback(() => hero.HeroLogic.SetEnergy.ResetToZero());
+           
            visualTree.EndSequence();
            yield return null;
        }
-
-       /// <summary>
-       /// Reset the health back to base health
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetHealth(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-
-           var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
-           
-           hero.HeroLogic.SetHealth.StartAction(baseHealth);
-           
-           logicTree.EndSequence();
-           yield return null;
-       }
-        
-     
-
-       /// <summary>
-       /// Reset the energy to zero
-       /// </summary>
-       /// <param name="hero"></param>
-       /// <returns></returns>
-       private IEnumerator ResetEnergy(IHero hero)
-       {
-           var logicTree = hero.CoroutineTrees.MainLogicTree;
-           
-           //hero.HeroLogic.HeroTimer.ResetHeroTimer();
-           
-           hero.HeroLogic.SetEnergy.ResetToZero();
-           
-           logicTree.EndSequence();
-           yield return null;
-       }
-
+       
        /// <summary>
        /// If hero status is active, remove from active heroes list
        /// this should come first before changing status to inactive
