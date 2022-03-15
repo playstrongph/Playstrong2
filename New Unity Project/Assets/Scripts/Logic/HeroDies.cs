@@ -172,9 +172,9 @@ namespace Logic
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )
-               //Set health visual
+               //Reset Health Text
                .AppendCallback(() => hero.HeroVisual.SetHealthVisual.StartAction(baseHealth))
-               //Reset energy to zero
+               //Reset Energy Text
                .AppendCallback(() => hero.HeroVisual.SetEnergyVisual.StartAction(0));
            
            visualTree.EndSequence();
