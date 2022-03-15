@@ -25,6 +25,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private int _changeValue = 0;
         
         /// <summary>
+        /// The specific logic-visual sequence for basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //base class method that calls execute action after checking life status and inability status
+            logicTree.AddCurrent(MainAction(casterHero));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
         /// Increase speed logic execution
         /// </summary>
         /// <param name="casterHero"></param>

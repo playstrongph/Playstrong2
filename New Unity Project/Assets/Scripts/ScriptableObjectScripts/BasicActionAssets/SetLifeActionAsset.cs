@@ -12,7 +12,25 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Set life to a fixed amount
         /// </summary>
         [SerializeField] private int flatValue = 1;
+        
+        
+        /// <summary>
+        /// The specific logic-visual sequence for basic action
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
+            //base class method that calls execute action after checking life status and inability status
+            logicTree.AddCurrent(MainAction(casterHero));
+
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
         /// <summary>
         /// Set health logic
         /// </summary>
