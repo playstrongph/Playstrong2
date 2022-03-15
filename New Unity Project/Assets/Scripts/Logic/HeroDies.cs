@@ -100,15 +100,15 @@ namespace Logic
 
            //Set the hero to "inactive"
            logicTree.AddCurrent(SetHeroInactive(hero));
+           
+           //Sets health to base value
+           logicTree.AddCurrent(ResetHealth(hero));
+           
+           //Resets hero energy to zero
+           logicTree.AddCurrent(ResetEnergy(hero));
 
            //hero dies animation 
            logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
-
-           //Sets health to base value
-           //logicTree.AddCurrent(ResetHealth(hero));
-           
-           //Resets hero energy to zero
-           //logicTree.AddCurrent(ResetEnergy(hero));
 
            logicTree.EndSequence();
            yield return null;
@@ -172,36 +172,54 @@ namespace Logic
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )
-               .AppendInterval(animationInterval)
-               //Reset to base health
-               .AppendCallback(() => hero.HeroLogic.SetHealth.StartAction(baseHealth))
+               //Set health visual
+               .AppendCallback(() => hero.HeroVisual.SetHealthVisual.StartAction(baseHealth))
                //Reset energy to zero
-               .AppendCallback(() => hero.HeroLogic.SetEnergy.ResetToZero());
+               .AppendCallback(() => hero.HeroVisual.SetEnergyVisual.StartAction(0));
            
            visualTree.EndSequence();
            yield return null;
        }
-
-       /*private IEnumerator ResetHealth(IHero hero)
+       
+       /// <summary>
+       /// No visual call since there is an animation with delay in between
+       /// Need to immediately effect reset of health before revive is called
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
+       private IEnumerator ResetHealth(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
            var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
-           hero.HeroLogic.SetHealth.StartAction(baseHealth);
+           
+           //No Visuals
+           hero.HeroLogic.HeroAttributes.Health = baseHealth;
+           
+           //hero.HeroLogic.SetHealth.StartAction(baseHealth);
            
            logicTree.EndSequence();
            yield return null;
        }
        
+       /// <summary>
+       /// No visual call since there is an animation with delay in between
+       /// Need to immediately effect reset of health before revive is called
+       /// </summary>
+       /// <param name="hero"></param>
+       /// <returns></returns>
        private IEnumerator ResetEnergy(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+           //No Visuals
+           hero.HeroLogic.HeroTimer.ResetHeroTimer(); 
 
-           hero.HeroLogic.SetEnergy.ResetToZero();
+           //hero.HeroLogic.SetEnergy.ResetToZero();
            
            logicTree.EndSequence();
            yield return null;
-       }*/
+       }
 
        /// <summary>
        /// If hero status is active, remove from active heroes list

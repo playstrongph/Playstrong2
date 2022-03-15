@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Logic
@@ -32,9 +33,7 @@ namespace Logic
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
-            
-           
-            
+
             visualTree.AddCurrent(TextVisual(value));
             
             logicTree.EndSequence();
@@ -50,7 +49,7 @@ namespace Logic
         {
             var visualTree = _heroLogic.Hero.CoroutineTrees.MainVisualTree;
             var hero = _heroLogic.Hero;
-            
+
             hero.HeroVisual.SetHealthVisual.StartAction(value);
             
             visualTree.EndSequence();
