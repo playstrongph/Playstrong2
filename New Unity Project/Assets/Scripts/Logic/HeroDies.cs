@@ -63,15 +63,14 @@ namespace Logic
                //Immediately set the life status to HeroDead to prevent action triggers
                hero.HeroLogic.SetHeroLifeStatus.HeroDead();
                
-               //hero dies event
+               //death effects should be called here
                logicTree.AddSibling(EventHeroDies(hero));
                
                //Death cleanup and hero reset actions
                logicTree.AddSibling(DeathActions(hero));
                
-               //TODO: Event where resurrect and similar effects are called
+               //Exclusive for Resurrect type effects only
                logicTree.AddSibling(EventPostHeroDeath(hero));
-               
            }
 
            logicTree.EndSequence();
