@@ -92,7 +92,7 @@ namespace Logic
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
-            //TODO: Check Hero Death - Don't call here
+            //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
             
 
@@ -133,7 +133,7 @@ namespace Logic
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
-            //TODO: Check Hero Death
+            //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
@@ -174,7 +174,7 @@ namespace Logic
             
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
-            //TODO: Check Hero Death
+            //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
@@ -213,7 +213,7 @@ namespace Logic
             
             logicTree.AddCurrent(AfterHeroTakesNonSkillDamageEvent());
             
-            //TODO: Check Hero Death
+            //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
 
             logicTree.EndSequence();
