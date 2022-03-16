@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statusEffectName: RECOVERY
   description: 'Recovers 15% of max Health at the start of every turn. '
-  icon: {fileID: 0}
-  statusEffectType: {fileID: 0}
-  statusEffectCounterType: {fileID: 0}
-  statusEffectCounterUpdateType: {fileID: 0}
-  statusEffectInstanceType: {fileID: 0}
+  icon: {fileID: 21300000, guid: bd79422a772e68c4aa521d8ff990c230, type: 3}
+  statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
+  statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
+    type: 2}
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 1992abcd8f15f4443919c9a2dfd0a2c0,
+    type: 2}
+  statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
+    type: 2}
   statusEffectActions: []
   basicActions: []
