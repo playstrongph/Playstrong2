@@ -30,6 +30,16 @@ namespace Logic
             get => penetrateArmorChance;
             set => penetrateArmorChance = value;
         }
+        
+        [SerializeField] private int healChance = 0;
+        /// <summary>
+        /// Probability for hero to cast healing
+        /// </summary>
+        public int HealChance
+        {
+            get => healChance;
+            set => healChance = value;
+        }
 
         [SerializeField] private int buffChance = 0;
         /// <summary>

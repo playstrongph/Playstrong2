@@ -19,6 +19,11 @@
         int PenetrateArmorResistance { get; set; }
         
         /// <summary>
+        /// Probability for the hero to resist healing
+        /// </summary>
+        int HealResistance { get; set; }
+
+        /// <summary>
         /// Probability for a hero to resist stun, sleep, and other inability effects
         /// </summary>
         int InabilityResistance { get; set; }

@@ -45,6 +45,16 @@ namespace Logic
             set => penetrateArmorResistance = value;
         }
         
+        [SerializeField] private int healResistance;
+        /// <summary>
+        /// Probability for hero to resist healing 
+        /// </summary>
+        public int HealResistance
+        {
+            get => healResistance;
+            set => healResistance = value;
+        }
+        
         [SerializeField] private int inabilityResistance;
         /// <summary>
         /// Probability for a hero to resist stun, sleep, and other inability effects

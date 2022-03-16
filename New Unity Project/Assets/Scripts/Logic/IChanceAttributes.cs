@@ -13,6 +13,11 @@
         int PenetrateArmorChance { get; set; }
         
         /// <summary>
+        /// Probability for hero to cast healing
+        /// </summary>
+        int HealChance { get; set; }
+
+        /// <summary>
         /// Probability for hero to inflict buff
         /// </summary>
         int BuffChance { get; set; }

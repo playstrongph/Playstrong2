@@ -18,10 +18,14 @@ namespace Logic
 
         public void StartAction(int value)
         {
-            _heroLogic.HeroAttributes.Health = value;
-            
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
-            logicTree.AddCurrent(SetTextVisual(value));
+            var baseHealth = _heroLogic.HeroAttributes.BaseHealth;
+            //Cap the new health value to the base health value
+            var newHealthValue = Mathf.Min(baseHealth, value);
+            
+            _heroLogic.HeroAttributes.Health = newHealthValue;
+            
+            logicTree.AddCurrent(SetTextVisual(newHealthValue));
         }
 
         /// <summary>
