@@ -48,6 +48,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e37cb8b08b766439e49e9de72c8f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialEffect: {fileID: 56520737255928149, guid: ff15c1c1eaae3194689938d79dcb7bfd,
-    type: 3}
+  specialEffect: {fileID: 0}
   delayInterval: 1
