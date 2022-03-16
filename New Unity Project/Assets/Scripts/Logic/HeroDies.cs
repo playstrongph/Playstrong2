@@ -165,8 +165,8 @@ namespace Logic
            var playDelayInterval = 1f;
 
            s
-               /*.AppendInterval(playDelayInterval)
-               .AppendCallback(() =>
+               .AppendInterval(playDelayInterval)
+               /*.AppendCallback(() =>
                    DeathAnimationsAsset.PlayAnimation(hero))*/
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
