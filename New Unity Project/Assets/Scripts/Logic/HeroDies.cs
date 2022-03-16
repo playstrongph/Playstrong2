@@ -90,6 +90,9 @@ namespace Logic
 
            //Transfer from alive to dead heroes list
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
+           
+           //hero dies animation 
+           logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
 
            //Destroy all status effects
            logicTree.AddCurrent(DestroyAllStatusEffects(hero));
@@ -106,8 +109,7 @@ namespace Logic
            //Resets hero energy to zero
            logicTree.AddCurrent(ResetEnergy(hero));
 
-           //hero dies animation 
-           logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
+          
 
            logicTree.EndSequence();
            yield return null;
@@ -163,10 +165,9 @@ namespace Logic
            var playDelayInterval = 1f;
 
            s
-               .AppendInterval(playDelayInterval)
+               /*.AppendInterval(playDelayInterval)
                .AppendCallback(() =>
-                   DeathAnimationsAsset.PlayAnimation(hero)
-               )
+                   DeathAnimationsAsset.PlayAnimation(hero))*/
                .AppendInterval(animationInterval)
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
