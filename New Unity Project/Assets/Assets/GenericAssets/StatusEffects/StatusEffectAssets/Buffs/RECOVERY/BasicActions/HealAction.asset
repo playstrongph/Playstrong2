@@ -16,3 +16,4 @@ MonoBehaviour:
   flatValue: 0
   percentCasterBaseHealthValue: 0
   percentTargetBaseHealthValue: 15
+  healAnimationAsset: {fileID: 11400000, guid: 777464ad79db0a946a0c24327f6a9a07, type: 2}

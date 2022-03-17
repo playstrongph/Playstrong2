@@ -93,6 +93,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Pure attack animation
+            //TODO: transfer this to execute action
             logicTree.AddCurrent(AttackVisualAction(casterHero));
 
             //base class method that calls execute action after checking life status and inability status

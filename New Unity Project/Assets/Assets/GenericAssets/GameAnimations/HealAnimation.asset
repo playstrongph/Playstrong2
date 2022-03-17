@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8338d6a72450c5f459234bc5ce431b47, type: 3}
   m_Name: HealAnimation
   m_EditorClassIdentifier: 
-  gameVisualEffects: []
+  gameVisualEffects:
+  - {fileID: 1619601962551883916, guid: f29bd994981d4d04994e3d1d15bdecf3, type: 3}

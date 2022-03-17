@@ -1,15 +1,17 @@
 ﻿using DG.Tweening;
 using Logic;
+using ScriptableObjectScripts.GameAnimationAssets;
 using UnityEngine;
 
 namespace Animation
 {
-    public class DeathVisualEffect : GameVisualEffects
+    public class HealVisualEffect : GameVisualEffects
     {
         [SerializeField] private GameObject specialEffect;
 
         [SerializeField] private float delayInterval = 1f;
-        
+
+
         private GameObject SpecialEffect
         {
             get => specialEffect;
@@ -32,6 +34,5 @@ namespace Animation
                 
                 .AppendCallback(() => Destroy(gameObject));
         }
-
     }
 }
