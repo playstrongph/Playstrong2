@@ -59,7 +59,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Heal Animation
-            logicTree.AddCurrent(HealVisualAction(targetHero));
+            logicTree.AddCurrent(HealVisualAction(casterHero));
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
