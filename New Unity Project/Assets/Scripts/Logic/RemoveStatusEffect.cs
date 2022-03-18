@@ -40,7 +40,7 @@ namespace Logic
             
             //TEST
             //TODO: fix hero,hero
-            _statusEffect.StatusEffectAsset.UndoApplyAction(hero,hero);
+            //_statusEffect.StatusEffectAsset.UndoApplyAction(hero,hero);
             
             //Removes status effect from the respective list - buff, debuff, or unique status effects list
             _statusEffect.StatusEffectType.RemoveFromStatusEffectsList(heroStatusEffects,_statusEffect);

@@ -60,7 +60,7 @@ namespace Logic
         }
         
         /// <summary>
-        /// 
+        /// Create unique instances of standard actions and basic conditions
         /// </summary>
         /// <param name="statusEffectAsset"></param>
         private void CreateUniqueStatusEffectAsset(IStatusEffectAsset statusEffectAsset)
@@ -69,8 +69,9 @@ namespace Logic
             _statusEffect.StatusEffectAsset = Instantiate(statusEffectAsset as ScriptableObject) as IStatusEffectAsset;
 
             CreateUniqueStandardActions();
-
-            CreateUniqueBasicActions();
+            
+            //TODO: Delete
+            //CreateUniqueBasicActions();
 
             CreateUniqueBasicConditions();
         }
@@ -116,7 +117,7 @@ namespace Logic
 
         }
         
-        /// <summary>
+        /*/// <summary>
         /// Creates unique object instances of Basic Actions
         /// </summary>
         private void CreateUniqueBasicActions()
@@ -132,7 +133,7 @@ namespace Logic
 
                 i++;
             }
-        }
+        }*/
 
         /// <summary>
         /// Create unique basic conditions

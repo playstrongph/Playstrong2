@@ -114,33 +114,8 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             }
         }
         public List<ScriptableObject> StatusEffectActionObjects => statusEffectActions;
-        
-        
-        
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicActionAsset))]
-        private List<ScriptableObject> basicActions = new List<ScriptableObject>();
-        /// <summary>
-        /// Status Effect Basic Actions
-        /// </summary>
-        public List<IBasicActionAsset> BasicActions
-        {
-            get
-            {
-                var newBasicActions = new List<IBasicActionAsset>();
-                
-                foreach (var scriptableObject in basicActions)
-                {
-                    var basicAction = scriptableObject as IBasicActionAsset;
-                    newBasicActions.Add(basicAction);
-                }
-                
-                return newBasicActions;
-            }
-        }
-        
-        public List<ScriptableObject> BasicActionObjects => basicActions;
 
-       
+
         /// <summary>
         /// Subscribe status effect action
         /// </summary>
@@ -165,38 +140,6 @@ namespace ScriptableObjectScripts.StatusEffectAssets
             }
         }
 
-        /// <summary>
-        /// Directly calls execute action since start action is already called by AddStatusEffectAction 
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public void ApplyAction(IHero casterHero, IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-
-            foreach (var basicAction in BasicActions)
-            {
-                logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));
-            }
-        }
-
-
-        /// <summary>
-         /// Unapply the status effect
-         /// </summary>
-         /// <param name="casterHero"></param>
-         /// <param name="targetHero"></param>
-         public void UndoApplyAction(IHero casterHero, IHero targetHero)
-         {
-             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-             foreach (var basicAction in BasicActions)
-             {
-                 //action.ExecuteAction(casterHero,targetHero);
-                 logicTree.AddCurrent(basicAction.UndoExecuteAction(casterHero, targetHero));
-             }
-         }
-
-        //TODO: remove status effect on death
+        
     }
 }

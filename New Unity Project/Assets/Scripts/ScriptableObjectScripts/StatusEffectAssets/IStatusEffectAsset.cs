@@ -61,17 +61,7 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// Returns status effect actions as scriptable objects
         /// </summary>
         List<ScriptableObject> StatusEffectActionObjects { get; }
-        
-        /// <summary>
-        /// Status effect asset basic actions
-        /// </summary>
-        List<IBasicActionAsset> BasicActions { get; }
-        
-        /// <summary>
-        /// Status effect asset basic action objects
-        /// </summary>
-        List<ScriptableObject> BasicActionObjects { get; }
-        
+
         /// <summary>
         /// Apply status effect action
         /// </summary>
@@ -83,21 +73,6 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// </summary>
         /// <param name="hero"></param>
         void UnsubscribeAction(IHero hero);
-        
-        /// <summary>
-        /// Apply status effect basic action
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        void ApplyAction(IHero casterHero, IHero targetHero);
-        
-        /// <summary>
-        /// Unapply status effect basic action
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        void UndoApplyAction(IHero casterHero, IHero targetHero);
-
 
     }
 }

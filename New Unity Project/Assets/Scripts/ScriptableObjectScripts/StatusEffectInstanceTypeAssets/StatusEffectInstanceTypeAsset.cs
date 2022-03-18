@@ -136,10 +136,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Subscribe Status Effect Asset (Immediately starts action if event is status effect event)
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
 
-            //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
-            //TODO: For cleanup
-            //_newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
-            
             //Display the status effect symbol.  This already calls a visualTree
             _newStatusEffect.StatusEffectSymbol.ShowSymbol();
 
