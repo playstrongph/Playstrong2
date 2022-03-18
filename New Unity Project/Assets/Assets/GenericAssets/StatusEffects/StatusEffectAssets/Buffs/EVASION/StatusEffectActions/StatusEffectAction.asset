@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d077990b910f834ebac4108795f4c87, type: 3}
-  m_Name: SampleSkillAction
+  m_Script: {fileID: 11500000, guid: 32eb56c136c7b9043a6254241e933c24, type: 3}
+  m_Name: StatusEffectAction
   m_EditorClassIdentifier: 
-  basicEvent: {fileID: 11400000, guid: 1b63dccf3cee3724ab2e5242d2656b58, type: 2}
+  basicEvent: {fileID: 11400000, guid: 269598a789ae200429d3b03805fc538d, type: 2}
   subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicConditionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab,
     type: 2}
-  orBasicConditions:
-  - {fileID: 11400000, guid: f2600ac79650d5648bc586e145d3f348, type: 2}
+  orBasicConditions: []
   andBasicConditions: []
-  basicActionTargets: {fileID: 11400000, guid: 63e0f89219f7d864ca1e3114a76f3049, type: 2}
+  basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActions:
-  - {fileID: 11400000, guid: 566f51e5f8325a348a4d00efcf19782b, type: 2}
-  - {fileID: 11400000, guid: 0e291ca42ba03364095c2305a5d1271f, type: 2}
+  - {fileID: 11400000, guid: 5418212dd655c7046a02700cdb7cf855, type: 2}

@@ -133,11 +133,12 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
             //Hide the status effect symbol first
             _newStatusEffect.StatusEffectSymbol.HideSymbol();
 
-            //Subscribe Status Effect Asset. 
+            //Subscribe Status Effect Asset (Immediately starts action if event is status effect event)
             _newStatusEffect.StatusEffectAsset.SubscribeAction(targetHero);
 
             //Apply Status effect asset basic actions.  Note that there is no longer a need for start now basic event
-            _newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
+            //TODO: For cleanup
+            //_newStatusEffect.StatusEffectAsset.ApplyAction(casterHero,targetHero);
             
             //Display the status effect symbol.  This already calls a visualTree
             _newStatusEffect.StatusEffectSymbol.ShowSymbol();
