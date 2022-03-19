@@ -9,21 +9,32 @@ namespace Logic
         /// Hero event signature - only the casterHero is required
         /// </summary>
         public delegate void HeroEvent(IHero hero);
+        
+        /// <summary>
+        /// Hero event signature where both caster and target heroes are required
+        /// </summary>
+        public delegate void HeroesEvent(IHero casterHero, IHero targetHero);
 
         #region EVENT DELEGATES
 
-        public event HeroEvent EBeforeHeroSkillAttacks;
-        public event HeroEvent EBeforeHeroIsSkillAttacked;
-        public event HeroEvent EBeforeHeroAttacks;
-        public event HeroEvent EBeforeHeroIsAttacked;
-        public event HeroEvent EAfterHeroAttacks;
-        public event HeroEvent EAfterHeroIsAttacked;
+        public event HeroesEvent EBeforeHeroSkillAttacks;
+        public event HeroesEvent EBeforeHeroIsSkillAttacked;
+        public event HeroesEvent EBeforeHeroAttacks;
+        public event HeroesEvent EBeforeHeroIsAttacked;
+        public event HeroesEvent EAfterHeroAttacks;
+        public event HeroesEvent EAfterHeroIsAttacked;
         public event HeroEvent EAfterHeroSkillAttacks;
         public event HeroEvent EAfterHeroIsSkillAttacked;
         public event HeroEvent EBeforeHeroCriticalStrikes;
         public event HeroEvent EBeforeHeroIsDealtCriticalStrike;
         public event HeroEvent EAfterHeroIsDealtCriticalStrike;
         public event HeroEvent EAfterHeroDealsCriticalStrike;
+        
+        
+        
+        
+        
+        
         public event HeroEvent EBeforeHeroDealsSkillDamage;
         public event HeroEvent EBeforeHeroTakesSkillDamage;
         public event HeroEvent EAfterHeroDealsSkillDamage;
@@ -57,55 +68,61 @@ namespace Logic
         /// <summary>
         /// Before caster hero skill attacks 
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroSkillAttacks(IHero hero)
+        /// <param name="casterHero"></param>
+        ///  /// <param name="targetHero"></param>
+        public void EventBeforeHeroSkillAttacks(IHero casterHero, IHero targetHero)
         {
-            EBeforeHeroSkillAttacks?.Invoke(hero);
+            EBeforeHeroSkillAttacks?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before targeted hero is attacked 
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventEBeforeHeroIsSkillAttacked(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param> 
+        public void EventEBeforeHeroIsSkillAttacked(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroIsSkillAttacked?.Invoke(hero);
+            EBeforeHeroIsSkillAttacked?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before the caster hero attacks
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroAttacks(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroAttacks(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroAttacks?.Invoke(hero);
+            EBeforeHeroAttacks?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before the targeted hero is attacked
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroIsAttacked(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroIsAttacked(IHero casterHero, IHero targetHero)
         {
-            EBeforeHeroIsAttacked?.Invoke(hero);
+            EBeforeHeroIsAttacked?.Invoke(casterHero, targetHero);
         }
         
         /// <summary>
         /// After the caster hero attacks
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroAttacks(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroAttacks(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroAttacks?.Invoke(hero);
+            EAfterHeroAttacks?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After the targeted hero
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroIsAttacked(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroIsAttacked(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroIsAttacked?.Invoke(hero);
+            EAfterHeroIsAttacked?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
@@ -364,7 +381,7 @@ namespace Logic
             var clients = EBeforeHeroSkillAttacks?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroSkillAttacks -= client as HeroEvent;
+                    EBeforeHeroSkillAttacks -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventEBeforeHeroIsSkillAttacked()
@@ -372,7 +389,7 @@ namespace Logic
             var clients = EBeforeHeroIsSkillAttacked?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroIsSkillAttacked -= client as HeroEvent;
+                    EBeforeHeroIsSkillAttacked -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroAttacks()
@@ -380,7 +397,7 @@ namespace Logic
             var clients = EBeforeHeroAttacks?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroAttacks -= client as HeroEvent;
+                    EBeforeHeroAttacks -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroIsAttacked()
@@ -388,7 +405,7 @@ namespace Logic
             var clients = EBeforeHeroIsAttacked?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroIsAttacked -= client as HeroEvent;
+                    EBeforeHeroIsAttacked -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroAttacks()
@@ -396,7 +413,7 @@ namespace Logic
             var clients = EAfterHeroAttacks?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroAttacks -= client as HeroEvent;
+                    EAfterHeroAttacks -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroIsAttacked()
@@ -404,7 +421,7 @@ namespace Logic
             var clients = EAfterHeroIsAttacked?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroIsAttacked -= client as HeroEvent;
+                    EAfterHeroIsAttacked -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroSkillAttacks()

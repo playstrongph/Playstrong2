@@ -4,18 +4,23 @@
     {
         #region EVENT DELEGATES
 
-        event HeroEvents.HeroEvent EBeforeHeroSkillAttacks;
-        event HeroEvents.HeroEvent EBeforeHeroIsSkillAttacked;
-        event HeroEvents.HeroEvent EBeforeHeroAttacks;
-        event HeroEvents.HeroEvent EBeforeHeroIsAttacked;
-        event HeroEvents.HeroEvent EAfterHeroAttacks;
-        event HeroEvents.HeroEvent EAfterHeroIsAttacked;
+        event HeroEvents.HeroesEvent EBeforeHeroSkillAttacks;
+        event HeroEvents.HeroesEvent EBeforeHeroIsSkillAttacked;
+        event HeroEvents.HeroesEvent EBeforeHeroAttacks;
+        event HeroEvents.HeroesEvent EBeforeHeroIsAttacked;
+        event HeroEvents.HeroesEvent EAfterHeroAttacks;
+        event HeroEvents.HeroesEvent EAfterHeroIsAttacked;
         event HeroEvents.HeroEvent EAfterHeroSkillAttacks;
         event HeroEvents.HeroEvent EAfterHeroIsSkillAttacked;
         event HeroEvents.HeroEvent EBeforeHeroCriticalStrikes;
         event HeroEvents.HeroEvent EBeforeHeroIsDealtCriticalStrike;
         event HeroEvents.HeroEvent EAfterHeroIsDealtCriticalStrike;
         event HeroEvents.HeroEvent EAfterHeroDealsCriticalStrike;
+        
+        
+        
+        
+        
         event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroTakesSkillDamage;
         event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
@@ -46,38 +51,44 @@
         /// <summary>
         /// Before caster hero skill attacks 
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroSkillAttacks(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroSkillAttacks(IHero casterHero, IHero targetHero);
 
         /// <summary>
         /// Before targeted hero is attacked 
         /// </summary>
-        /// <param name="hero"></param>
-        void EventEBeforeHeroIsSkillAttacked(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventEBeforeHeroIsSkillAttacked(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// Before the caster hero attacks
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroAttacks(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void EventBeforeHeroAttacks(IHero casterHero, IHero targetHero);
 
         /// <summary>
         /// Before the targeted hero is attacked
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroIsAttacked(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroIsAttacked(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// After the caster hero attacks
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroAttacks(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventAfterHeroAttacks(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// After the hero is attacked
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroIsAttacked(IHero hero);
+        /// / <param name="casterHero"></param>
+        /// / <param name="targetHero"></param>
+        void EventAfterHeroIsAttacked(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// After the hero skill attacks

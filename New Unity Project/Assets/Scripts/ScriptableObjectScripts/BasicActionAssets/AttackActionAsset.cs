@@ -320,12 +320,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //Pre-skill attack
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero);
-            targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetHero);
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(casterHero,targetHero);
             
             //Pre-attack
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero);
-            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetHero);
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(casterHero,targetHero);
             
             //Pre-Critical
             PreCriticalAttackEvent(casterHero,targetHero);
@@ -352,8 +352,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetHero);
             
             //Post-attack
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero);
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero);
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(casterHero,targetHero);
             
             //Post-Critical
             PostCriticalAttackEvent(casterHero,targetHero);
