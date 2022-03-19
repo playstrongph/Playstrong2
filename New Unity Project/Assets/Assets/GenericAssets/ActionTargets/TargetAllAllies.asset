@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SampleSkillEffectAsset
+  m_Script: {fileID: 11500000, guid: d97dfc7c315762549b99ede9f53fbd11, type: 3}
+  m_Name: TargetAllAllies
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: 7baa31850399cd0478b1e62f14018b6d, type: 2}
-  - {fileID: 11400000, guid: 17736ba7b107b5641a5f37968db62716, type: 2}
