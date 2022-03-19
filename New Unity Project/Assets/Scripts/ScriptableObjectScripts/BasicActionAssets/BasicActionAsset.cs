@@ -151,6 +151,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
+            //base class method that calls execute action after checking life status and inability status
+            logicTree.AddCurrent(MainAction(casterHero));
+
             logicTree.EndSequence();
             yield return null;
         }

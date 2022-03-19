@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: EVASION
+  m_Name: SHIELD
   m_EditorClassIdentifier: 
-  statusEffectName: EVASION
+  statusEffectName: SHIELD
   description: 50% Damage Reduction
-  icon: {fileID: 245940820880710147, guid: c3f1b7f74c267234fa0b0417197a5600, type: 3}
+  icon: {fileID: -6717884257390833292, guid: aac1e00416986a0498e8af18f9c53ace, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
@@ -24,4 +24,3 @@ MonoBehaviour:
     type: 2}
   statusEffectActions:
   - {fileID: 11400000, guid: d2fd23872ff594f43a19746964d5b066, type: 2}
-  basicActions: []
