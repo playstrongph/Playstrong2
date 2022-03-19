@@ -61,6 +61,16 @@ namespace Logic
             set => debuffChance = value;
         }
         
+        [SerializeField] private int counterAttackChance = 0;
+        /// <summary>
+        /// Additional chance to counter attack with a basic skill.
+        /// </summary>
+        public int CounterAttackChance
+        {
+            get => counterAttackChance;
+            set => counterAttackChance = value;
+        }
+        
        
 
 

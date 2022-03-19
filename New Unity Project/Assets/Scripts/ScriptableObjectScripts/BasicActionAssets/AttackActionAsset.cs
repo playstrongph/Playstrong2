@@ -347,6 +347,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             //Post-skill attack
+            //TODO: shall need both caster and target heroes
             casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero);
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetHero);
             

@@ -37,5 +37,10 @@
         /// Probability to resist debuff effects
         /// </summary>
         int DebuffResistance { get; set; }
+        
+        /// <summary>
+        /// Probability for a hero to resist a counter attack
+        /// </summary>
+        int CounterAttackResistance { get; set; }
     }
 }

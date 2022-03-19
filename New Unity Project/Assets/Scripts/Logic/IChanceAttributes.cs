@@ -26,5 +26,10 @@
         /// Additional chance to inflict a debuff.  Default debuff chance is set in the AddStatusEffect action default chance
         /// </summary>
         int DebuffChance { get; set; }
+        
+        /// <summary>
+        /// Additional chance to counter attack with a basic skill.
+        /// </summary>
+        int CounterAttackChance { get; set; }
     }
 }

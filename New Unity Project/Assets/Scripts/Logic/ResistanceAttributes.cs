@@ -84,6 +84,16 @@ namespace Logic
             get => debuffResistance;
             set => debuffResistance = value;
         }
+        
+        [SerializeField] private int counterAttackResistance;
+        /// <summary>
+        /// Probability for a hero to resist a counter attack
+        /// </summary>
+        public int CounterAttackResistance
+        {
+            get => counterAttackResistance;
+            set => counterAttackResistance = value;
+        }
 
     }
 }
