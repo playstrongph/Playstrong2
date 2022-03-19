@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Animation
 {
-    public class DamageVisualEffect : GameVisualEffects
+    public class CriticalDamageVisualEffect : GameVisualEffects
     {
         /// <summary>
         /// Damage animation canvas
@@ -88,7 +88,7 @@ namespace Animation
             var damageValue = targetedHero.HeroLogic.TakeDamage.FinalDamageTaken;
     
             //Display damage text
-            text.text = "-" + damageValue.ToString();
+            text.text = "-" + damageValue.ToString() +"!";
 
             var s = DOTween.Sequence();
             

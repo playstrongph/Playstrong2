@@ -52,6 +52,18 @@ namespace Logic
             set => damageAnimationAsset = value as ScriptableObject;
         }
         
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject criticalDamageAnimationAsset;
+        /// <summary>
+        /// Damage animation asset
+        /// </summary>
+        private IGameAnimationsAsset CriticalDamageAnimationAsset
+        {
+            get => criticalDamageAnimationAsset as IGameAnimationsAsset;
+            set => criticalDamageAnimationAsset = value as ScriptableObject;
+        }
+        
         
 
         private void Awake()
@@ -246,14 +258,7 @@ namespace Logic
             ComputeNewArmor(hero,finalDamage);
             ComputeNewHealth(hero,_residualDamage);
 
-            if (criticalDamage > 0)
-            {
-                //TODO: PlayCriticalDamageAnimation 
-            }
-            else
-            {
-                visualTree.AddCurrent(PlayDamageAnimation(hero));    
-            }
+            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
 
             logicTree.EndSequence();
             yield return null;
@@ -273,16 +278,7 @@ namespace Logic
             
             ComputeNewHealth(hero,finalDamage);
 
-            if (criticalDamage > 0)
-            {
-                //TODO: PlayCriticalDamageAnimation 
-            }
-            else
-            {
-                visualTree.AddCurrent(PlayDamageAnimation(hero));    
-            }
-
-            
+            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
 
             logicTree.EndSequence();
             yield return null;
@@ -298,6 +294,21 @@ namespace Logic
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
             DamageAnimationAsset.PlayAnimation(targetHero);  
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Critical Damage animation when hero takes damage
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private IEnumerator PlayCriticalDamageAnimation(IHero targetHero)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            CriticalDamageAnimationAsset.PlayAnimation(targetHero);  
             
             visualTree.EndSequence();
             yield return null;

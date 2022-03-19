@@ -341,6 +341,7 @@ MonoBehaviour:
   targetAttackResistance: 0
   criticalResistance: 0
   penetrateArmorResistance: 0
+  healResistance: 0
   inabilityResistance: 0
   buffResistance: 0
   debuffResistance: 0
@@ -358,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   criticalChance: 0
   penetrateArmorChance: 0
+  healChance: 0
   buffChance: 0
   debuffChance: 0
 --- !u!114 &4264826968411871100
@@ -531,6 +533,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageTaken: 0
   damageAnimationAsset: {fileID: 11400000, guid: 9ebb69daab9716943a061dd7ba079806,
+    type: 2}
+  criticalDamageAnimationAsset: {fileID: 11400000, guid: a2c03f49a3829d24cae87b2c03b20ba1,
     type: 2}
 --- !u!114 &4568563575096113590
 MonoBehaviour:
@@ -5020,7 +5024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700a670a0a594ee4daf918c6496f0bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAnimationAsset: {fileID: 11400000, guid: 791fa693a54744d4fb0197e57dbb7a50, type: 2}
 --- !u!114 &1601184839
 MonoBehaviour:
   m_ObjectHideFlags: 0
