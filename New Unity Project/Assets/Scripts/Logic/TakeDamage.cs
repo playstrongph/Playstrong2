@@ -87,8 +87,8 @@ namespace Logic
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
-                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken)
-                : HeroTakesDamage(targetHero,FinalDamageTaken));
+                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
@@ -128,8 +128,8 @@ namespace Logic
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
-                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken)
-                : HeroTakesDamage(targetHero,FinalDamageTaken));
+                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
@@ -169,8 +169,8 @@ namespace Logic
             
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
-                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken)
-                : HeroTakesDamage(targetHero,FinalDamageTaken));
+                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
+                : HeroTakesDamage(targetHero,FinalDamageTaken,0));
             
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
             
@@ -208,8 +208,8 @@ namespace Logic
             
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
-                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken)
-                : HeroTakesDamage(targetHero,FinalDamageTaken));
+                ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
+                : HeroTakesDamage(targetHero,FinalDamageTaken,0));
             
             logicTree.AddCurrent(AfterHeroTakesNonSkillDamageEvent());
             
@@ -236,8 +236,9 @@ namespace Logic
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="finalDamage"></param>
+        /// /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private IEnumerator HeroTakesDamage(IHero hero,int finalDamage)
+        private IEnumerator HeroTakesDamage(IHero hero,int finalDamage, int criticalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             var visualTree = hero.CoroutineTrees.MainVisualTree;
@@ -245,7 +246,14 @@ namespace Logic
             ComputeNewArmor(hero,finalDamage);
             ComputeNewHealth(hero,_residualDamage);
 
-            visualTree.AddCurrent(PlayDamageAnimation(hero));
+            if (criticalDamage > 0)
+            {
+                //TODO: PlayCriticalDamageAnimation 
+            }
+            else
+            {
+                visualTree.AddCurrent(PlayDamageAnimation(hero));    
+            }
 
             logicTree.EndSequence();
             yield return null;
@@ -256,15 +264,25 @@ namespace Logic
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="finalDamage"></param>
+        ///  /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private IEnumerator HeroTakesDamageIgnoreArmor(IHero hero,int finalDamage)
+        private IEnumerator HeroTakesDamageIgnoreArmor(IHero hero,int finalDamage, int criticalDamage)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             var visualTree = hero.CoroutineTrees.MainVisualTree;
             
             ComputeNewHealth(hero,finalDamage);
 
-            visualTree.AddCurrent(PlayDamageAnimation(hero));
+            if (criticalDamage > 0)
+            {
+                //TODO: PlayCriticalDamageAnimation 
+            }
+            else
+            {
+                visualTree.AddCurrent(PlayDamageAnimation(hero));    
+            }
+
+            
 
             logicTree.EndSequence();
             yield return null;

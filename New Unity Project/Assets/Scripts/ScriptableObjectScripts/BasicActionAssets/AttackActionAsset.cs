@@ -76,6 +76,19 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => preActionAnimationAsset as IGameAnimationsAsset;
             set => preActionAnimationAsset = value as ScriptableObject;
         }
+        
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
+        private ScriptableObject criticalStrikeAnimationAsset;
+        /// <summary>
+        /// Critical Attack animation asset
+        /// </summary>
+        private IGameAnimationsAsset CriticalStrikeAnimationAsset
+        {
+            get => preActionAnimationAsset as IGameAnimationsAsset;
+            set => preActionAnimationAsset = value as ScriptableObject;
+        }
+        
 
         #endregion
 
@@ -343,7 +356,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Post-Critical
             PostCriticalAttackEvent(casterHero,targetHero);
-            
+
+
             logicTree.EndSequence();
             yield return null;
         }
