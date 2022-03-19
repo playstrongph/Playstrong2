@@ -347,9 +347,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
             
             //Post-skill attack
-            //TODO: shall need both caster and target heroes
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero);
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetHero);
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(casterHero,targetHero);
             
             //Post-attack
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero,targetHero);
@@ -382,8 +381,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             if (randomChance <= netChance)
             {
                 //TODO - Do these events need to have double arguments as well?
-                casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero);
-                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetHero);
+                casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero,targetHero);
+                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(casterHero,targetHero);
             }
 
         }
@@ -407,8 +406,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             if (randomChance <= netChance)
             {
                 //TODO - Do these events need to have double arguments as well?
-                casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero);
-                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetHero);
+                casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero,targetHero);
+                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(casterHero,targetHero);
             }
 
         }

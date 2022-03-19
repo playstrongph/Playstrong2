@@ -10,17 +10,14 @@
         event HeroEvents.HeroesEvent EBeforeHeroIsAttacked;
         event HeroEvents.HeroesEvent EAfterHeroAttacks;
         event HeroEvents.HeroesEvent EAfterHeroIsAttacked;
-        event HeroEvents.HeroEvent EAfterHeroSkillAttacks;
-        event HeroEvents.HeroEvent EAfterHeroIsSkillAttacked;
-        event HeroEvents.HeroEvent EBeforeHeroCriticalStrikes;
-        event HeroEvents.HeroEvent EBeforeHeroIsDealtCriticalStrike;
-        event HeroEvents.HeroEvent EAfterHeroIsDealtCriticalStrike;
-        event HeroEvents.HeroEvent EAfterHeroDealsCriticalStrike;
-        
-        
-        
-        
-        
+        event HeroEvents.HeroesEvent EAfterHeroSkillAttacks;
+        event HeroEvents.HeroesEvent EAfterHeroIsSkillAttacked;
+        event HeroEvents.HeroesEvent EBeforeHeroCriticalStrikes;
+        event HeroEvents.HeroesEvent EBeforeHeroIsDealtCriticalStrike;
+        event HeroEvents.HeroesEvent EAfterHeroIsDealtCriticalStrike;
+        event HeroEvents.HeroesEvent EAfterHeroDealsCriticalStrike;
+
+
         event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroTakesSkillDamage;
         event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
@@ -93,38 +90,44 @@
         /// <summary>
         /// After the hero skill attacks
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroSkillAttacks(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void EventAfterHeroSkillAttacks(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// After the targeted hero is skill attacked
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroIsSkillAttacked(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void EventAfterHeroIsSkillAttacked(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// Before the caster hero deals critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroCriticalStrikes(IHero hero);
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void EventBeforeHeroCriticalStrikes(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// Before the targeted hero is dealt critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroIsDealtCriticalStrike(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroIsDealtCriticalStrike(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// After the targeted hero is dealt critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroIsDealtCriticalStrike(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventAfterHeroIsDealtCriticalStrike(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// After the caster hero deals critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroDealsCriticalStrike(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventAfterHeroDealsCriticalStrike(IHero casterHero,IHero targetHero);
         
         /// <summary>
         /// Before hero deals skill damage

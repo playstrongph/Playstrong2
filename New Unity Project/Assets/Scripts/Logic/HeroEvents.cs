@@ -23,12 +23,12 @@ namespace Logic
         public event HeroesEvent EBeforeHeroIsAttacked;
         public event HeroesEvent EAfterHeroAttacks;
         public event HeroesEvent EAfterHeroIsAttacked;
-        public event HeroEvent EAfterHeroSkillAttacks;
-        public event HeroEvent EAfterHeroIsSkillAttacked;
-        public event HeroEvent EBeforeHeroCriticalStrikes;
-        public event HeroEvent EBeforeHeroIsDealtCriticalStrike;
-        public event HeroEvent EAfterHeroIsDealtCriticalStrike;
-        public event HeroEvent EAfterHeroDealsCriticalStrike;
+        public event HeroesEvent EAfterHeroSkillAttacks;
+        public event HeroesEvent EAfterHeroIsSkillAttacked;
+        public event HeroesEvent EBeforeHeroCriticalStrikes;
+        public event HeroesEvent EBeforeHeroIsDealtCriticalStrike;
+        public event HeroesEvent EAfterHeroIsDealtCriticalStrike;
+        public event HeroesEvent EAfterHeroDealsCriticalStrike;
         
         
         
@@ -128,55 +128,61 @@ namespace Logic
         /// <summary>
         /// After the caster hero skill attacks
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroSkillAttacks(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroSkillAttacks(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroSkillAttacks?.Invoke(hero);
+            EAfterHeroSkillAttacks?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After the targeted hero is skill attacked
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroIsSkillAttacked(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroIsSkillAttacked(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroIsSkillAttacked?.Invoke(hero);
+            EAfterHeroIsSkillAttacked?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before the caster hero deals critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroCriticalStrikes(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroCriticalStrikes(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroCriticalStrikes?.Invoke(hero);
+            EBeforeHeroCriticalStrikes?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before the targeted hero is dealt critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroIsDealtCriticalStrike(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroIsDealtCriticalStrike(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroIsDealtCriticalStrike?.Invoke(hero);
+            EBeforeHeroIsDealtCriticalStrike?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After the targeted hero is dealt critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroIsDealtCriticalStrike(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroIsDealtCriticalStrike(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroIsDealtCriticalStrike?.Invoke(hero);
+            EAfterHeroIsDealtCriticalStrike?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After the hero deals critical strike
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroDealsCriticalStrike(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroDealsCriticalStrike(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroDealsCriticalStrike?.Invoke(hero);
+            EAfterHeroDealsCriticalStrike?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
@@ -429,7 +435,7 @@ namespace Logic
             var clients = EAfterHeroSkillAttacks?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroSkillAttacks -= client as HeroEvent;
+                    EAfterHeroSkillAttacks -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroIsSkillAttacked()
@@ -437,7 +443,7 @@ namespace Logic
             var clients = EAfterHeroIsSkillAttacked?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroIsSkillAttacked -= client as HeroEvent;
+                    EAfterHeroIsSkillAttacked -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroCriticalStrikes()
@@ -445,7 +451,7 @@ namespace Logic
             var clients = EBeforeHeroCriticalStrikes?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroCriticalStrikes -= client as HeroEvent;
+                    EBeforeHeroCriticalStrikes -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroIsDealtCriticalStrike()
@@ -453,7 +459,7 @@ namespace Logic
             var clients = EBeforeHeroIsDealtCriticalStrike?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroIsDealtCriticalStrike -= client as HeroEvent;
+                    EBeforeHeroIsDealtCriticalStrike -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroIsDealtCriticalStrike()
@@ -461,7 +467,7 @@ namespace Logic
             var clients = EAfterHeroIsDealtCriticalStrike?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroIsDealtCriticalStrike -= client as HeroEvent;
+                    EAfterHeroIsDealtCriticalStrike -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroDealsCriticalStrike()
@@ -469,7 +475,7 @@ namespace Logic
             var clients = EAfterHeroDealsCriticalStrike?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroDealsCriticalStrike -= client as HeroEvent;
+                    EAfterHeroDealsCriticalStrike -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroDealsSkillDamage()
