@@ -29,6 +29,7 @@ namespace Logic
         public event HeroesEvent EBeforeHeroIsDealtCriticalStrike;
         public event HeroesEvent EAfterHeroIsDealtCriticalStrike;
         public event HeroesEvent EAfterHeroDealsCriticalStrike;
+        public event HeroesEvent EBeforeHeroCounterAttacks;
         
         
         
@@ -183,6 +184,16 @@ namespace Logic
         public void EventAfterHeroDealsCriticalStrike(IHero casterHero,IHero targetHero)
         {
             EAfterHeroDealsCriticalStrike?.Invoke(casterHero,targetHero);
+        }
+        
+        /// <summary>
+        /// Before the hero counter attacks
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroCounterAttacks(IHero casterHero,IHero targetHero)
+        {
+            EBeforeHeroCounterAttacks?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
@@ -478,6 +489,14 @@ namespace Logic
                     EAfterHeroDealsCriticalStrike -= client as HeroesEvent;
         }
         
+        private void UnsubscribeEventBeforeHeroCounterAttacks()
+        {
+            var clients = EBeforeHeroCounterAttacks?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EBeforeHeroCounterAttacks -= client as HeroesEvent;
+        }
+        
         private void UnsubscribeEventBeforeHeroDealsSkillDamage()
         {
             var clients = EBeforeHeroDealsSkillDamage?.GetInvocationList();
@@ -672,6 +691,8 @@ namespace Logic
             UnsubscribeEventBeforeHeroIsDealtCriticalStrike();
             UnsubscribeEventAfterHeroIsDealtCriticalStrike();
             UnsubscribeEventAfterHeroDealsCriticalStrike();
+            UnsubscribeEventBeforeHeroCounterAttacks();
+            
             UnsubscribeEventBeforeHeroDealsSkillDamage();
             UnsubscribeEventBeforeHeroTakesSkillDamage();
             UnsubscribeEventAfterHeroDealsSkillDamage();

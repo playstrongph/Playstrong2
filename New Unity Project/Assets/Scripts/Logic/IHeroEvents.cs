@@ -16,6 +16,7 @@
         event HeroEvents.HeroesEvent EBeforeHeroIsDealtCriticalStrike;
         event HeroEvents.HeroesEvent EAfterHeroIsDealtCriticalStrike;
         event HeroEvents.HeroesEvent EAfterHeroDealsCriticalStrike;
+        event HeroEvents.HeroesEvent EBeforeHeroCounterAttacks;
 
 
         event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
@@ -128,6 +129,13 @@
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void EventAfterHeroDealsCriticalStrike(IHero casterHero,IHero targetHero);
+
+        /// <summary>
+        ///  Before the hero counter attacks
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroCounterAttacks(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// Before hero deals skill damage
