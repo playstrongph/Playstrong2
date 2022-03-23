@@ -15,7 +15,7 @@ MonoBehaviour:
   statusEffectName: SMASH
   description: +50% Critical Damage
   icon: {fileID: -5833504902694999444, guid: 197a4310b19809e479ac21daee3762e8, type: 3}
-  statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
+  statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
   statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
