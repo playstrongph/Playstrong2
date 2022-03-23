@@ -15,9 +15,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
     {
 
         #region VARIABLES
-        
-       
-        
+
 
         #endregion
 
@@ -60,33 +58,33 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var netCounterChance = counterChance - counterResistance;
             var randomChance = Random.Range(1f, 101f);
             var temporaryResistance = 1000;
-            
-                     
 
             if (randomChance <= netCounterChance)
             {
-                //TODO: CounterAttack Chance and Resistance Checking (void)
-            
-                //If counter chance true
-                //TODO: Temporary Increase of counterAttacker counter attack resistance (IEnumerator)
+                
+                //Prevent counterattack of a counterattack
                 logicTree.AddCurrent(ChanceCounterResistance(targetHero,temporaryResistance));
             
                 //Counter Attack Action
                 logicTree.AddCurrent(CounterAction(casterHero,targetHero));
             
-                //TODO: Remove Temporary Increase of counterAttacker counter attack resistance (IEnumerator)
+                //Return counterattack resistance to normal
                 logicTree.AddCurrent(ChanceCounterResistance(targetHero,-temporaryResistance));
             }
         }
-
+        
+        /// <summary>
+        /// Change the counter attack resistance
+        /// </summary>
+        /// <param name="counterAttacker"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private IEnumerator ChanceCounterResistance(IHero counterAttacker, int value)
         {
             var logicTree = counterAttacker.CoroutineTrees.MainLogicTree;
             var temporaryResistance = value;
 
             counterAttacker.HeroLogic.ResistanceAttributes.CounterAttackResistance += temporaryResistance;
-            
-            Debug.Log("CounterAttacker Resistance: " +counterAttacker.HeroLogic.ResistanceAttributes.CounterAttackResistance);
 
             logicTree.EndSequence();
             yield return null;

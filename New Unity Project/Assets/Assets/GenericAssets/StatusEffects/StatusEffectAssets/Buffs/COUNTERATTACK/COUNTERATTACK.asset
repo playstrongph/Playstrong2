@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: COUNTERATTACK
   m_EditorClassIdentifier: 
   statusEffectName: COUNTERATTACK
-  description: Counterattacks with basic skill when attacked.
+  description: +100% chance to counter attack with the basic skill.
   icon: {fileID: -8634586599603724717, guid: 4e53c168b1ddae7409de90aa1d7adec3, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
