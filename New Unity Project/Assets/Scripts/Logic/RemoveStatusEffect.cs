@@ -75,6 +75,14 @@ namespace Logic
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
 
+            DestroyGameObjects();
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+
+        private void DestroyGameObjects()
+        {
             var statusEffectPreviewObject = _statusEffect.PreviewStatusEffect.ThisGameObject;
             
             if(statusEffectPreviewObject!=null)
@@ -82,9 +90,6 @@ namespace Logic
             
             if(this.gameObject != null)
                 Destroy(this.gameObject);
-            
-            visualTree.EndSequence();
-            yield return null;
         }
 
     }
