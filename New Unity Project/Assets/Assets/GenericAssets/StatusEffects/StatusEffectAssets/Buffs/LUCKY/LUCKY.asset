@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: SMASH
+  m_Name: LUCKY
   m_EditorClassIdentifier: 
-  statusEffectName: SMASH
-  description: +50% Critical Damage
-  icon: {fileID: -5833504902694999444, guid: 197a4310b19809e479ac21daee3762e8, type: 3}
+  statusEffectName: LUCKY
+  description: '+100% skill chance. '
+  icon: {fileID: -3155732317472865195, guid: 45474d9d8d04a2644b90e7b567841eaf, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
@@ -23,4 +23,4 @@ MonoBehaviour:
   statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
     type: 2}
   statusEffectActions:
-  - {fileID: 11400000, guid: 5a1babfdaf7a73b49b07783dfd7e91ef, type: 2}
+  - {fileID: 11400000, guid: f9b4542996fbf824a9c529acd3126071, type: 2}
