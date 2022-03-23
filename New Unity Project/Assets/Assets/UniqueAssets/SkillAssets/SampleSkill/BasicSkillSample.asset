@@ -19,6 +19,6 @@ MonoBehaviour:
     type: 3}
   skillTypeAsset: {fileID: 11400000, guid: 2f8355899267f3041a9326b2ca319666, type: 2}
   baseCooldown: 0
-  skillTargetsAsset: {fileID: 11400000, guid: 53f8e961d49a0424585dcc79f30d849a, type: 2}
+  skillTargetsAsset: {fileID: 11400000, guid: 643261c3c3dc7e14d9eece7e4b0d1015, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 6cefc260956c40a44973d55b4a3e3835,
     type: 2}

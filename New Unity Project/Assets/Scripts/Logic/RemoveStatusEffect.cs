@@ -77,9 +77,11 @@ namespace Logic
 
             var statusEffectPreviewObject = _statusEffect.PreviewStatusEffect.ThisGameObject;
             
-            Destroy(statusEffectPreviewObject);
+            if(statusEffectPreviewObject!=null)
+                Destroy(statusEffectPreviewObject);
             
-            Destroy(this.gameObject);
+            if(this.gameObject != null)
+                Destroy(this.gameObject);
             
             visualTree.EndSequence();
             yield return null;

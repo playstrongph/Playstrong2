@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d077990b910f834ebac4108795f4c87, type: 3}
-  m_Name: SampleSkillAction 1
+  m_Name: SampleActiveSkillAction
   m_EditorClassIdentifier: 
   basicEvent: {fileID: 11400000, guid: 1b63dccf3cee3724ab2e5242d2656b58, type: 2}
   subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
@@ -21,4 +21,4 @@ MonoBehaviour:
   andBasicConditions: []
   basicActionTargets: {fileID: 11400000, guid: 9963824717bbc734498db44d351e40b2, type: 2}
   basicActions:
-  - {fileID: 11400000, guid: 87c5f2bc908170d41b9eafe92f3fb5a6, type: 2}
+  - {fileID: 11400000, guid: 68392934b9ef1ca4ab16f08d6c991f61, type: 2}
