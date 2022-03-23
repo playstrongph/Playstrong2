@@ -56,7 +56,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //The caster hero is the target of the counter attack
             var counterResistance = casterHero.HeroLogic.ResistanceAttributes.CounterAttackResistance;
             var netCounterChance = counterChance - counterResistance;
-            var randomChance = Random.Range(1f, 101f);
+            var randomChance = Random.Range(1, 101);
             var temporaryResistance = 1000;
 
             if (randomChance <= netCounterChance)
