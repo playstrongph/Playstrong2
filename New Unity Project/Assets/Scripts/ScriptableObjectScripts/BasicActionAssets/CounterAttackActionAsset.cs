@@ -133,8 +133,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //targetHero is the counter attacker
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
             
-            //TODO: Create Pre-CounterAttack events
+            //casterHero is the one being counter attacked (attacker)
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -150,7 +154,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //TODO: Create Post-CounterAttack events
+            //targetHero is the counter attacker
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
+            
+            //casterHero is the one being counter attacked (attacker)
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;
