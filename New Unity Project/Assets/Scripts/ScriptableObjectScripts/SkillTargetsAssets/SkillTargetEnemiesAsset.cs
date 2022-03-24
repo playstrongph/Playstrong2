@@ -30,14 +30,12 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
         /// <returns></returns>
         private List<IHero> GetTargets(IHero hero)
         {
-            var finalTargets = new List<IHero>();
-            var tauntEnemies = new List<IHero>();
-            var stealthEnemies = new List<IHero>();
             var allEnemies = new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
 
-            //Initially, the final targets are all enemies
-            finalTargets = allEnemies;
-            
+            var finalTargets = new List<IHero>(allEnemies);
+            var tauntEnemies = new List<IHero>();
+            var stealthEnemies = new List<IHero>();
+
             //Remove stealth targets from the final targets
             foreach (var enemy in allEnemies)
             {
