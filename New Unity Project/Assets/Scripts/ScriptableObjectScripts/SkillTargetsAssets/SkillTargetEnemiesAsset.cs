@@ -32,7 +32,8 @@ namespace ScriptableObjectScripts.SkillTargetsAssets
         {
             var allEnemies = new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
 
-            var finalTargets = new List<IHero>(allEnemies);
+            var finalTargets = new List<IHero>(hero.Player.OtherPlayer.AliveHeroes.Heroes);
+            
             var tauntEnemies = new List<IHero>();
             var stealthEnemies = new List<IHero>();
 

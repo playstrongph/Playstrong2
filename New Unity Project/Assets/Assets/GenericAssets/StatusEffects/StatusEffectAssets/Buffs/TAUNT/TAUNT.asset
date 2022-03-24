@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: STEALTH
+  m_Name: TAUNT
   m_EditorClassIdentifier: 
-  statusEffectName: STEALTH
+  statusEffectName: TAUNT
   description: Hero can't be targeted by enemies
-  icon: {fileID: 21300000, guid: 05c23beb459a5624fa3501bf3b2c23c0, type: 3}
+  icon: {fileID: 5538540869049845428, guid: 9b31c9459c1cd184a952bdad867d23c3, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
