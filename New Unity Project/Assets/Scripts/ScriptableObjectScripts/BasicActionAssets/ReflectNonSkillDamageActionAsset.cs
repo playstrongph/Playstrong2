@@ -56,7 +56,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
            //TODO: remove reflect damage hero basis as arg after Take Non Skill Damage cleanup
             reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageHeroBasis,
-                reflectDamageHeroBasis, reflectDamage, penetrateArmorChance);
+                reflectDamageRecipient, reflectDamage, penetrateArmorChance);
 
         }
 
