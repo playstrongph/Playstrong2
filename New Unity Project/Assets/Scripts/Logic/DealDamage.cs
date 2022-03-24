@@ -98,7 +98,8 @@ namespace Logic
         }
         
         /// <summary>
-        /// For non-skill damage sources like weapons, status effects, etc. 
+        /// For non-skill damage sources like weapons, status effects, etc.
+        /// TODO:  caster Hero not required, for cleanup.  DealNonSkillDamage is not required, only TakeNonSkillDamage
         /// </summary>
         ///  <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
@@ -112,11 +113,13 @@ namespace Logic
             
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var finalNonSkillDamage = ComputeNonSkillDamage(casterHero,nonSkillDamage);
-
+            
+            //TODO: For cleanup, hero can't deal non-skill damage (only status effects and other sources)
             logicTree.AddCurrent(EventBeforeDealingNonSkillDamage(casterHero,targetHero));
             
             logicTree.AddCurrent(targetHero.HeroLogic.TakeDamage.TakeNonSkillDamage(casterHero,targetHero,finalNonSkillDamage, penetrateArmorChance));
             
+            //TODO: For cleanup, hero can't deal non-skill damage (only status effects and other sources)
             logicTree.AddCurrent(EventAfterDealingNonSkillDamage(casterHero,targetHero));
             
             logicTree.EndSequence();
@@ -128,9 +131,8 @@ namespace Logic
         private IEnumerator EventBeforeHeroDealsSkillDamage(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO - 2 arguments?
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroDealsSkillDamage(casterHero);
+
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroDealsSkillDamage(casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -141,7 +143,7 @@ namespace Logic
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //TODO - 2 arguments?
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsSkillDamage(casterHero);
+            casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsSkillDamage(casterHero,targetHero);
 
             logicTree.EndSequence();
             yield return null;

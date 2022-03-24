@@ -33,12 +33,16 @@ namespace Logic
         public event HeroesEvent EBeforeHeroIsCounterAttacked;
         public event HeroesEvent EAfterHeroCounterAttacks;
         public event HeroesEvent EAfterHeroIsCounterAttacked;
-        public event HeroEvent EBeforeHeroDealsSkillDamage;
-        public event HeroEvent EBeforeHeroTakesSkillDamage;
-        public event HeroEvent EAfterHeroDealsSkillDamage;
-        public event HeroEvent EAfterHeroTakesSkillDamage;
+        public event HeroesEvent EBeforeHeroDealsSkillDamage;
+        public event HeroesEvent EBeforeHeroTakesSkillDamage;
+        public event HeroesEvent EAfterHeroDealsSkillDamage;
+        public event HeroesEvent EAfterHeroTakesSkillDamage;
+        
+        //TODO: For cleanup, event is not possible
         public event HeroEvent EBeforeDealingNonSkillDamage;
         public event HeroEvent EBeforeHeroTakesNonSkillDamage;
+        
+        //TODO: For cleanup, event is not possible
         public event HeroEvent EAfterDealingNonSkillDamage;
         public event HeroEvent EAfterHeroTakesNonSkillDamage;
         public event HeroEvent EBeforeHeroDealsSingleTargetAttack;
@@ -224,39 +228,43 @@ namespace Logic
         }
         
         /// <summary>
-        /// Before hero deals skill damage 
+        /// Before hero deals attack skill damage 
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroDealsSkillDamage(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroDealsSkillDamage(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroDealsSkillDamage?.Invoke(hero);
+            EBeforeHeroDealsSkillDamage?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// Before hero takes skill damage 
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventBeforeHeroTakesSkillDamage(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventBeforeHeroTakesSkillDamage(IHero casterHero,IHero targetHero)
         {
-            EBeforeHeroTakesSkillDamage?.Invoke(hero);
+            EBeforeHeroTakesSkillDamage?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After hero deals skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroDealsSkillDamage(IHero hero)
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventAfterHeroDealsSkillDamage(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroDealsSkillDamage?.Invoke(hero);
+            EAfterHeroDealsSkillDamage?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
         /// After hero takes skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        public void EventAfterHeroTakesSkillDamage(IHero hero)
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        public void EventAfterHeroTakesSkillDamage(IHero casterHero,IHero targetHero)
         {
-            EAfterHeroTakesSkillDamage?.Invoke(hero);
+            EAfterHeroTakesSkillDamage?.Invoke(casterHero,targetHero);
         }
         
         /// <summary>
@@ -553,7 +561,7 @@ namespace Logic
             var clients = EBeforeHeroDealsSkillDamage?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroDealsSkillDamage -= client as HeroEvent;
+                    EBeforeHeroDealsSkillDamage -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeHeroTakesSkillDamage()
@@ -561,7 +569,7 @@ namespace Logic
             var clients = EBeforeHeroTakesSkillDamage?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EBeforeHeroTakesSkillDamage -= client as HeroEvent;
+                    EBeforeHeroTakesSkillDamage -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroDealsSkillDamage()
@@ -569,7 +577,7 @@ namespace Logic
             var clients = EAfterHeroDealsSkillDamage?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroDealsSkillDamage -= client as HeroEvent;
+                    EAfterHeroDealsSkillDamage -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventAfterHeroTakesSkillDamage()
@@ -577,7 +585,7 @@ namespace Logic
             var clients = EAfterHeroTakesSkillDamage?.GetInvocationList();
             if (clients != null)
                 foreach (var client in clients)
-                    EAfterHeroTakesSkillDamage -= client as HeroEvent;
+                    EAfterHeroTakesSkillDamage -= client as HeroesEvent;
         }
         
         private void UnsubscribeEventBeforeDealingNonSkillDamage()

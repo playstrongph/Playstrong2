@@ -20,10 +20,15 @@
         event HeroEvents.HeroesEvent EBeforeHeroIsCounterAttacked;
         event HeroEvents.HeroesEvent EAfterHeroCounterAttacks;
         event HeroEvents.HeroesEvent EAfterHeroIsCounterAttacked;
-        event HeroEvents.HeroEvent EBeforeHeroDealsSkillDamage;
-        event HeroEvents.HeroEvent EBeforeHeroTakesSkillDamage;
-        event HeroEvents.HeroEvent EAfterHeroDealsSkillDamage;
-        event HeroEvents.HeroEvent EAfterHeroTakesSkillDamage;
+        event HeroEvents.HeroesEvent EBeforeHeroDealsSkillDamage;
+        event HeroEvents.HeroesEvent EBeforeHeroTakesSkillDamage;
+        
+        event HeroEvents.HeroesEvent EAfterHeroDealsSkillDamage;
+        event HeroEvents.HeroesEvent EAfterHeroTakesSkillDamage;
+        
+        
+        
+        
         event HeroEvents.HeroEvent EBeforeDealingNonSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroTakesNonSkillDamage;
         event HeroEvents.HeroEvent EAfterDealingNonSkillDamage;
@@ -158,31 +163,36 @@
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void EventAfterHeroIsCounterAttacked(IHero casterHero, IHero targetHero);
-        
+
         /// <summary>
-        /// Before hero deals skill damage
+        /// Before hero deals attack skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroDealsSkillDamage(IHero hero);
-        
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroDealsSkillDamage(IHero casterHero, IHero targetHero);
+
         /// <summary>
         /// Before hero takes skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeHeroTakesSkillDamage(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventBeforeHeroTakesSkillDamage(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// After hero deals skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroDealsSkillDamage(IHero hero);
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void EventAfterHeroDealsSkillDamage(IHero casterHero, IHero targetHero);
         
         /// <summary>
         /// After hero takes skill damage
         /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterHeroTakesSkillDamage(IHero hero);
-        
+        ///  <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        void EventAfterHeroTakesSkillDamage(IHero casterHero,IHero targetHero);
+
+
         /// <summary>
         /// Before a non-hero source deals damage (e.g. weapons, status effects)
         /// </summary>

@@ -95,14 +95,14 @@ namespace Logic
             //Single Attack Type Damage
             FinalDamageTaken = ComputeSingleAttackDamage(targetHero,nonCriticalDamage, criticalDamage);
 
-            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
 
-            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
@@ -136,14 +136,14 @@ namespace Logic
             //Multi Attack Type Damage
             FinalDamageTaken = ComputeMultiAttackDamage(targetHero,nonCriticalDamage, criticalDamage);
 
-            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
 
-            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
@@ -177,14 +177,14 @@ namespace Logic
             //Non-attack skill damage
             FinalDamageTaken = ComputeNonAttackSkillDamage(targetHero,nonAttackSkillDamage,0);
             
-            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,0));
             
-            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent());
+            logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Check if hero dies
             logicTree.AddCurrent(CheckIfHeroDies(targetHero));
@@ -196,6 +196,7 @@ namespace Logic
         
         /// <summary>
         /// Non-skill damage - e.g. status effect damage, weapon damage
+        /// TODO:  caster Hero not required, for cleanup. 
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
@@ -463,11 +464,11 @@ namespace Logic
         /// TODO: make public and transfer to basic action
         /// </summary>
         /// <returns></returns>
-        private IEnumerator BeforeHeroTakesSkillDamageEvent()
+        private IEnumerator BeforeHeroTakesSkillDamageEvent(IHero casterHero,IHero targetHero)
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
-           _heroLogic.HeroEvents.EventBeforeHeroTakesSkillDamage(_heroLogic.Hero);
+           _heroLogic.HeroEvents.EventBeforeHeroTakesSkillDamage(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;
@@ -478,11 +479,11 @@ namespace Logic
         ///  TODO: make public and transfer to basic action
         /// </summary>
         /// <returns></returns>
-        private IEnumerator AfterHeroTakesSkillDamageEvent()
+        private IEnumerator AfterHeroTakesSkillDamageEvent(IHero casterHero,IHero targetHero)
         {
             var logicTree = _heroLogic.Hero.CoroutineTrees.MainLogicTree;
             
-            _heroLogic.HeroEvents.EventAfterHeroTakesSkillDamage(_heroLogic.Hero);
+            _heroLogic.HeroEvents.EventAfterHeroTakesSkillDamage(casterHero,targetHero);
             
             logicTree.EndSequence();
             yield return null;
