@@ -345,6 +345,7 @@ MonoBehaviour:
   inabilityResistance: 0
   buffResistance: 0
   debuffResistance: 0
+  counterAttackResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,6 +363,7 @@ MonoBehaviour:
   healChance: 0
   buffChance: 0
   debuffChance: 0
+  counterAttackChance: 0
 --- !u!114 &4264826968411871100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,7 +676,7 @@ SortingGroup:
   m_GameObject: {fileID: 3830259919145749636}
   m_Enabled: 1
   m_SortingLayerID: -1851260875
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 3
 --- !u!1 &3992229479853335050
 GameObject:
@@ -4476,6 +4478,7 @@ GameObject:
   - component: {fileID: 7962901023791411643}
   - component: {fileID: 7962901023791411642}
   - component: {fileID: 7962901023791411641}
+  - component: {fileID: 219302753}
   m_Layer: 0
   m_Name: HeroGraphicCanvas
   m_TagString: Untagged
@@ -4570,6 +4573,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!210 &219302753
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962901023791411647}
+  m_Enabled: 1
+  m_SortingLayerID: -1851260875
+  m_SortingLayer: 2
+  m_SortingOrder: 1
 --- !u!1 &7962901023843741584
 GameObject:
   m_ObjectHideFlags: 0

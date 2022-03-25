@@ -51,12 +51,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Note: the casterHero is the target of the reflect damage, and the target hero is just a dummy (not required)
             var reflectDamageHeroBasis = targetHero;
             var reflectDamageRecipient = casterHero;
-
             var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
-            
-            
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
             if(reflectDamage>0) 
-               reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance);
+               logicTree.AddCurrent(reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance));
 
         }
 

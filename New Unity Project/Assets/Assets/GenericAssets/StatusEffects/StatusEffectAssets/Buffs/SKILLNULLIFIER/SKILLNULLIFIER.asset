@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
-  m_Name: REFLECT
+  m_Name: SKILLNULLIFIER
   m_EditorClassIdentifier: 
-  statusEffectName: REFLECT
-  description: Deal 30% of skill damage recived back to the attacker.
-  icon: {fileID: -7692579728152458077, guid: bbf459af9d037a24ba78f10255a0db20, type: 3}
+  statusEffectName: SKILLNULLIFIER
+  description: Reduce the next skill damage taken to zero.
+  icon: {fileID: 7822528638035835509, guid: c6f7312dd285f4046a6cb2fd188d7767, type: 3}
   statusEffectType: {fileID: 11400000, guid: 4ef17e38a95e26243b66ae1d65fa207e, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
     type: 2}
@@ -23,4 +23,5 @@ MonoBehaviour:
   statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
     type: 2}
   statusEffectActions:
-  - {fileID: 11400000, guid: 0494895abafdf89469e1342560cc50d2, type: 2}
+  - {fileID: 11400000, guid: 1b2d8035d7447f846ba20277a8c98bda, type: 2}
+  - {fileID: 11400000, guid: 18d4c4048f566e64ebde8d4c05f60402, type: 2}
