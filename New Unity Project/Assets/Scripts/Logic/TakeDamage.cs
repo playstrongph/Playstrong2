@@ -92,10 +92,10 @@ namespace Logic
             var netChance = chance - resistance;
             var randomChance = Random.Range(1, 101);
             
-            //Single Attack Type Damage
-            FinalDamageTaken = ComputeSingleAttackDamage(targetHero,nonCriticalDamage, criticalDamage);
-
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
+            
+            //Single Attack Type Damage
+            logicTree.AddCurrent(ComputeSingleAttackDamage(targetHero,nonCriticalDamage, criticalDamage));
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
@@ -133,10 +133,10 @@ namespace Logic
             var netChance = chance - resistance;
             var randomChance = Random.Range(1, 101);
             
-            //Multi Attack Type Damage
-            FinalDamageTaken = ComputeMultiAttackDamage(targetHero,nonCriticalDamage, criticalDamage);
-
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
+            
+            //Multi Attack Type Damage
+            logicTree.AddCurrent(ComputeMultiAttackDamage(targetHero,nonCriticalDamage, criticalDamage));
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
@@ -174,11 +174,11 @@ namespace Logic
             var netChance = chance - resistance;
             var randomChance = Random.Range(1, 101);
             
-            //Non-attack skill damage
-            FinalDamageTaken = ComputeNonAttackSkillDamage(targetHero,nonAttackSkillDamage,0);
-            
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
             
+            //Non-attack skill damage
+            logicTree.AddCurrent(ComputeNonAttackSkillDamage(targetHero,nonAttackSkillDamage,0));
+
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
@@ -213,11 +213,12 @@ namespace Logic
             var netChance = penetrateArmorChance - resistance;
             var randomChance = Random.Range(1, 101);
             
-            //Non-skill Damage
-            FinalDamageTaken = ComputeNonSkillDamage(targetHero,nonSkillDamage,0);
-
+            
             logicTree.AddCurrent(BeforeHeroTakesNonSkillDamageEvent());
             
+            //Non-skill Damage
+            logicTree.AddCurrent(ComputeNonSkillDamage(targetHero,nonSkillDamage,0));
+
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
@@ -325,8 +326,10 @@ namespace Logic
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private int ComputeSingleAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeSingleAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
         {
+            
+            
             var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
             
             var singleAttackDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.SingleTakeDamageReduction/100f,1);
@@ -338,9 +341,12 @@ namespace Logic
             var floatFinalDamage = (1 - allDamageReduction) * (1 - singleAttackDamageReduction) *
                 (1 - skillDamageReduction) * damage;
 
-            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
-            return finalTakeDamage;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            logicTree.EndSequence();
+            yield return null;
+
         }
         
         /// <summary>
@@ -350,7 +356,7 @@ namespace Logic
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private int ComputeMultiAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeMultiAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
         {
             var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
             
@@ -363,9 +369,11 @@ namespace Logic
             var floatFinalDamage = (1 - allDamageReduction) * (1 - multiAttackDamageReduction) *
                 (1 - skillDamageReduction) * damage;
 
-            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
-            return finalTakeDamage;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            logicTree.EndSequence();
+            yield return null;
         }
         
         /// <summary>
@@ -375,7 +383,7 @@ namespace Logic
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private int ComputeNonAttackSkillDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeNonAttackSkillDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
         {
             var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
             
@@ -385,9 +393,11 @@ namespace Logic
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - skillDamageReduction) * damage;
 
-            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
-            return finalTakeDamage;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            logicTree.EndSequence();
+            yield return null;
         }
         
         /// <summary>
@@ -397,7 +407,7 @@ namespace Logic
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
         /// <returns></returns>
-        private int ComputeNonSkillDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeNonSkillDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
         {
             var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
             
@@ -407,9 +417,11 @@ namespace Logic
 
             var floatFinalDamage = (1 - allDamageReduction) * (1 - nonSkillDamageReduction) * damage;
 
-            var finalTakeDamage = Mathf.RoundToInt(floatFinalDamage);
+            FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
-            return finalTakeDamage;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            logicTree.EndSequence();
+            yield return null;
         }
         
         /// <summary>
