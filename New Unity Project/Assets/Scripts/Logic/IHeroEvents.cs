@@ -22,16 +22,9 @@
         event HeroEvents.HeroesEvent EAfterHeroIsCounterAttacked;
         event HeroEvents.HeroesEvent EBeforeHeroDealsSkillDamage;
         event HeroEvents.HeroesEvent EBeforeHeroTakesSkillDamage;
-        
         event HeroEvents.HeroesEvent EAfterHeroDealsSkillDamage;
         event HeroEvents.HeroesEvent EAfterHeroTakesSkillDamage;
-        
-        
-        
-        
-        event HeroEvents.HeroEvent EBeforeDealingNonSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroTakesNonSkillDamage;
-        event HeroEvents.HeroEvent EAfterDealingNonSkillDamage;
         event HeroEvents.HeroEvent EAfterHeroTakesNonSkillDamage;
         event HeroEvents.HeroEvent EBeforeHeroDealsSingleTargetAttack;
         event HeroEvents.HeroEvent EBeforeHeroTakesSingleTargetAttack;
@@ -192,25 +185,12 @@
         ///  <param name="targetHero"></param>
         void EventAfterHeroTakesSkillDamage(IHero casterHero,IHero targetHero);
 
-
-        /// <summary>
-        /// Before a non-hero source deals damage (e.g. weapons, status effects)
-        /// </summary>
-        /// <param name="hero"></param>
-        void EventBeforeDealingNonSkillDamage(IHero hero);
-        
         /// <summary>
         /// Before hero takes damage from a non-hero source (e.g. weapons, status effects)
         /// </summary>
         /// <param name="hero"></param>
         void EventBeforeHeroTakesNonSkillDamage(IHero hero);
-        
-        /// <summary>
-        ///  After a non-hero source deals damage (e.g. weapons, status effects)
-        /// </summary>
-        /// <param name="hero"></param>
-        void EventAfterDealingNonSkillDamage(IHero hero);
-        
+
         /// <summary>
         /// After a hero takes damage from a non-hero source (e.g. weapons, status effects)
         /// </summary>

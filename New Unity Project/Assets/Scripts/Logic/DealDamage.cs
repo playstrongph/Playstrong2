@@ -108,20 +108,11 @@ namespace Logic
         /// <returns></returns>
         public IEnumerator DealNonSkillDamage(IHero casterHero, IHero targetHero, int nonSkillDamage, int penetrateArmorChance)
         {
-            //var casterHero = _heroLogic.Hero;
-            //var targetedHero = casterHero.HeroLogic.LastHeroTargets.TargetedHero;
-            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var finalNonSkillDamage = ComputeNonSkillDamage(casterHero,nonSkillDamage);
-            
-            //TODO: For cleanup, hero can't deal non-skill damage (only status effects and other sources)
-            logicTree.AddCurrent(EventBeforeDealingNonSkillDamage(casterHero,targetHero));
-            
+
             logicTree.AddCurrent(targetHero.HeroLogic.TakeDamage.TakeNonSkillDamage(casterHero,targetHero,finalNonSkillDamage, penetrateArmorChance));
-            
-            //TODO: For cleanup, hero can't deal non-skill damage (only status effects and other sources)
-            logicTree.AddCurrent(EventAfterDealingNonSkillDamage(casterHero,targetHero));
-            
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -149,27 +140,7 @@ namespace Logic
             yield return null;
         }
         
-        private IEnumerator EventBeforeDealingNonSkillDamage(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO - 2 arguments?
-            casterHero.HeroLogic.HeroEvents.EventBeforeDealingNonSkillDamage(casterHero);
-
-            logicTree.EndSequence();
-            yield return null;
-        }
-        
-        private IEnumerator EventAfterDealingNonSkillDamage(IHero casterHero,IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO - 2 arguments?
-            casterHero.HeroLogic.HeroEvents.EventAfterDealingNonSkillDamage(casterHero);
-
-            logicTree.EndSequence();
-            yield return null;
-        }
+       
 
         #endregion
 
