@@ -461,6 +461,9 @@ namespace Logic
             HealthDamage = damage;
             
             hero.HeroLogic.SetHealth.StartAction(newHealth);
+
+            Debug.Log("Final Damage: " +damage +" New Health: " +newHealth);
+
         }
 
 
