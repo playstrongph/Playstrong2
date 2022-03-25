@@ -54,8 +54,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
             
-           //TODO: remove reflect damage hero basis as arg after Take Non Skill Damage cleanup
-           reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance);
+            
+            if(reflectDamage>0) 
+               reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance);
 
         }
 
@@ -79,8 +80,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Note: the casterHero is the target of the reflect damage, and the target hero is the source of the reflect damage
             var reflectDamageRecipient = casterHero;
+            var reflectDamageHeroBasis = targetHero;
+            var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
             
-            reflectDamageRecipient.HeroLogic.HeroEvents.EventBeforeHeroTakesNonSkillDamage(reflectDamageRecipient);
+            if(reflectDamage>0) 
+                reflectDamageRecipient.HeroLogic.HeroEvents.EventBeforeHeroTakesNonSkillDamage(reflectDamageRecipient);
 
             logicTree.EndSequence();
             yield return null;
@@ -98,8 +102,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Note: the casterHero is the target of the reflect damage, and the target hero is the source of the reflect damage
             var reflectDamageRecipient = casterHero;
+            var reflectDamageHeroBasis = targetHero;
+            var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
             
-            reflectDamageRecipient.HeroLogic.HeroEvents.EventAfterHeroTakesNonSkillDamage(reflectDamageRecipient);
+            
+            if(reflectDamage>0) 
+                reflectDamageRecipient.HeroLogic.HeroEvents.EventAfterHeroTakesNonSkillDamage(reflectDamageRecipient);
 
             logicTree.EndSequence();
             yield return null;
