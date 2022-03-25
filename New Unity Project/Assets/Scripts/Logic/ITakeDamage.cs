@@ -31,7 +31,7 @@ namespace Logic
         IEnumerator TakeMultiAttackDamage(IHero casterHero,IHero targetHero, int nonCriticalDamage, int criticalDamage);
 
         IEnumerator TakeNonAttackSkillDamage(IHero casterHero,IHero targetHero, int nonAttackSkillDamage, int penetrateArmorChance);
-        IEnumerator TakeNonSkillDamage(IHero casterHero,IHero targetHero, int nonSkillDamage, int penetrateArmorChance);
+        IEnumerator TakeNonSkillDamage(IHero targetHero, int nonSkillDamage, int penetrateArmorChance);
         
         /// <summary>
         /// Used in health text animation

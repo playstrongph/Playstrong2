@@ -55,8 +55,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
             
            //TODO: remove reflect damage hero basis as arg after Take Non Skill Damage cleanup
-            reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageHeroBasis,
-                reflectDamageRecipient, reflectDamage, penetrateArmorChance);
+           reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance);
 
         }
 

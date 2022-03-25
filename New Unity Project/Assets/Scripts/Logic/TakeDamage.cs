@@ -198,12 +198,11 @@ namespace Logic
         /// Non-skill damage - e.g. status effect damage, weapon damage
         /// TODO:  caster Hero not required, for cleanup. 
         /// </summary>
-        /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <param name="nonSkillDamage"></param>
         /// <param name="penetrateArmorChance"></param>
         /// <returns></returns>
-        public IEnumerator TakeNonSkillDamage(IHero casterHero, IHero targetHero,int nonSkillDamage, int penetrateArmorChance)
+        public IEnumerator TakeNonSkillDamage(IHero targetHero,int nonSkillDamage, int penetrateArmorChance)
         {
             //var targetedHero = _heroLogic.Hero;
             

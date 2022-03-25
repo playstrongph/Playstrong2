@@ -108,10 +108,10 @@ namespace Logic
         /// <returns></returns>
         public IEnumerator DealNonSkillDamage(IHero casterHero, IHero targetHero, int nonSkillDamage, int penetrateArmorChance)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var finalNonSkillDamage = ComputeNonSkillDamage(casterHero,nonSkillDamage);
 
-            logicTree.AddCurrent(targetHero.HeroLogic.TakeDamage.TakeNonSkillDamage(casterHero,targetHero,finalNonSkillDamage, penetrateArmorChance));
+            logicTree.AddCurrent(targetHero.HeroLogic.TakeDamage.TakeNonSkillDamage(targetHero,finalNonSkillDamage, penetrateArmorChance));
 
             logicTree.EndSequence();
             yield return null;
