@@ -31,6 +31,8 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public override void UnsubscribeStandardAction(IHero thisHero, IHero targetHero, IStandardActionAsset standardAction)
         {
+            Debug.Log("Unsubscribe after hero takes skill damage");
+            
             //This is a single IHero arg event
             thisHero.HeroLogic.HeroEvents.EAfterHeroTakesSkillDamage -= standardAction.StartAction;
         }
