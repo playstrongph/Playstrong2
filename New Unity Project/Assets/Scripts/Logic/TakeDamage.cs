@@ -94,13 +94,16 @@ namespace Logic
             
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
             
-            //Single Attack Type Damage
+            /*//Single Attack Type Damage
             logicTree.AddCurrent(ComputeSingleAttackDamage(targetHero,nonCriticalDamage, criticalDamage));
 
             //Apply take damage
+            //TODO: Put this inside ComputeDamage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
-                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));*/
+            
+            logicTree.AddCurrent(ComputeSingleAttackDamage(targetHero,nonCriticalDamage, criticalDamage,netChance,randomChance));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
@@ -139,6 +142,7 @@ namespace Logic
             logicTree.AddCurrent(ComputeMultiAttackDamage(targetHero,nonCriticalDamage, criticalDamage));
 
             //Apply take damage
+            //TODO: Put this inside ComputeDamage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
@@ -180,6 +184,7 @@ namespace Logic
             logicTree.AddCurrent(ComputeNonAttackSkillDamage(targetHero,nonAttackSkillDamage,0));
 
             //Apply take damage
+            //TODO: Put this inside ComputeDamage
             logicTree.AddCurrent(randomChance <= netChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,0));
@@ -221,6 +226,7 @@ namespace Logic
 
             //Apply take damage
             logicTree.AddCurrent(randomChance <= netChance
+                //TODO: Put this inside ComputeDamage
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,0)
                 : HeroTakesDamage(targetHero,FinalDamageTaken,0));
             
@@ -257,6 +263,7 @@ namespace Logic
             var visualTree = hero.CoroutineTrees.MainVisualTree;
 
             ComputeNewArmor(hero,finalDamage);
+            
             ComputeNewHealth(hero,_residualDamage);
 
             visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
@@ -284,6 +291,8 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
         }
+        
+       
         
         /// <summary>
         /// Damage animation when hero takes damage
@@ -328,7 +337,7 @@ namespace Logic
         /// <returns></returns>
         private IEnumerator ComputeSingleAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage)
         {
-            
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
             
             var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
             
@@ -342,8 +351,50 @@ namespace Logic
                 (1 - skillDamageReduction) * damage;
 
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
+
+            Debug.Log("Compute Single Attack Damage Final Damage Taken: " +FinalDamageTaken);
             
+           
+            logicTree.EndSequence();
+            yield return null;
+
+        }
+        
+        /// <summary>
+        /// TODO: TEST
+        /// Calculates final single attack take damage
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="nonCriticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+         /// <param name="netChance"></param>
+        /// <param name="randomChance"></param> 
+        /// <returns></returns>
+        private IEnumerator ComputeSingleAttackDamage(IHero hero,int nonCriticalDamage, int criticalDamage, int netChance, int randomChance)
+        {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            var allDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
+            
+            var singleAttackDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.SingleTakeDamageReduction/100f,1);
+            
+            var skillDamageReduction = Mathf.Min(hero.HeroLogic.DamageAttributes.SkillTakeDamageReduction/100f,1);
+            
+            var damage = criticalDamage + nonCriticalDamage;
+
+            var floatFinalDamage = (1 - allDamageReduction) * (1 - singleAttackDamageReduction) *
+                                   (1 - skillDamageReduction) * damage;
+
+            FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
+            
+            //Apply take damage
+            logicTree.AddCurrent(randomChance <= netChance
+                ? HeroTakesDamageIgnoreArmor(hero,FinalDamageTaken,criticalDamage)
+                : HeroTakesDamage(hero,FinalDamageTaken,criticalDamage));
+
+            Debug.Log("Compute Single Attack Damage Final Damage Taken: " +FinalDamageTaken);
+            
+           
             logicTree.EndSequence();
             yield return null;
 
@@ -435,9 +486,13 @@ namespace Logic
             var armor = hero.HeroLogic.HeroAttributes.Armor;
 
             ArmorDamage = damage;
+            
+            Debug.Log("Compute New Armor Final Damage Taken: " +damage);
 
             //No residual damage when armor is greater than damage
             _residualDamage = Mathf.Max(0,damage - armor);
+            
+            Debug.Log("Compute New Armor Residual Damage: " +_residualDamage);
             
             //New armor is zero when damage is greater than armor
             var newArmor = Mathf.Max(0, armor - damage);
