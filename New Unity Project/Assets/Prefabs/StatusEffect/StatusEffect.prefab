@@ -241,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663c41b3a335f9440b6f2568b1a85307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exemptionList:
+  - {fileID: 11400000, guid: ff816e04af8b55b4181fe33b1d87b2c5, type: 2}
 --- !u!114 &8347972122509097006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d196b98eba37924d9b78aa8e810d9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,
-    type: 2}
 --- !u!1 &9025590045478412368
 GameObject:
   m_ObjectHideFlags: 0

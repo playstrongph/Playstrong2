@@ -1,11 +1,34 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
 namespace Logic
 {
     public class RemoveStatusEffect : MonoBehaviour, IRemoveStatusEffect
     {
+
+        [SerializeField] private List<ScriptableObject> exemptionList = new List<ScriptableObject>();
+        
+        /// <summary>
+        /// Status effects not to be removed at death
+        /// </summary>
+        private List<IStatusEffectAsset> ExemptionList
+        {
+            get
+            {
+                var exemptedList = new List<IStatusEffectAsset>();
+                foreach (var statusEffectObject in exemptionList)
+                {
+                    var statusEffect = statusEffectObject as IStatusEffectAsset;
+                    exemptedList.Add(statusEffect);
+                }
+
+                return exemptedList;
+            }
+        }
 
         private IStatusEffect _statusEffect;
 
@@ -21,12 +44,39 @@ namespace Logic
         public void StartAction(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
+
             logicTree.AddCurrent(RemoveEffect(hero));
         }
         
         /// <summary>
-        /// Reverses the statusEffect 'effect' and destroys it 
+        /// Remove status effects not part of the exemption list when the hero dies
+        /// </summary>
+        /// <param name="hero"></param>
+        public void RemoveAtDeath(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            //Need to use status effect name because of status effect asset "clones"
+            var exemptionListNames = new List<String>();
+            
+            //Name of status effect to be checked against the exemption list
+            var statusEffectName = _statusEffect.StatusEffectName;
+
+            foreach (var exemptStatusEffectAsset in ExemptionList)
+            {
+               exemptionListNames.Add(exemptStatusEffectAsset.StatusEffectName);
+            }
+            
+            //if status effect is not in the exemption list, you can remove
+            if(!exemptionListNames.Contains(statusEffectName))
+                logicTree.AddCurrent(RemoveEffect(hero));
+            
+        }
+        
+        
+        
+        /// <summary>
+        /// Reverses the statusEffect 'effect' and destroys it  
         /// </summary>
         /// <param name="hero"></param>
         /// <returns></returns>
@@ -37,11 +87,7 @@ namespace Logic
 
             //Unapply status effect action
             _statusEffect.StatusEffectAsset.UnsubscribeAction(hero);
-            
-            //TEST
-            //TODO: fix hero,hero
-            //_statusEffect.StatusEffectAsset.UndoApplyAction(hero,hero);
-            
+
             //Removes status effect from the respective list - buff, debuff, or unique status effects list
             _statusEffect.StatusEffectType.RemoveFromStatusEffectsList(heroStatusEffects,_statusEffect);
             

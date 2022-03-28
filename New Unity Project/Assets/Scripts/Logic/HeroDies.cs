@@ -92,7 +92,7 @@ namespace Logic
            logicTree.AddCurrent(TransferAliveToDeadHeroesList(hero));
 
            //Destroy all status effects
-           logicTree.AddCurrent(DestroyAllStatusEffects(hero));
+           logicTree.AddCurrent(RemoveStatusEffectsAtDeath(hero));
 
            //Remove hero from active heroes list 
            logicTree.AddCurrent(RemoveFromActiveHeroesList(hero));
@@ -118,7 +118,7 @@ namespace Logic
        /// </summary>
        /// <param name="hero"></param>
        /// <returns></returns>
-       private IEnumerator DestroyAllStatusEffects(IHero hero)
+       private IEnumerator RemoveStatusEffectsAtDeath(IHero hero)
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
@@ -128,17 +128,23 @@ namespace Logic
 
            foreach (var buff in heroBuffs)
            {
-               buff.RemoveStatusEffect.StartAction(hero);
+               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
+               buff.RemoveStatusEffect.RemoveAtDeath(hero);
+               //buff.RemoveStatusEffect.StartAction(hero);
            }
            
            foreach (var debuff in heroDebuffs)
            {
-               debuff.RemoveStatusEffect.StartAction(hero);
+               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
+               debuff.RemoveStatusEffect.RemoveAtDeath(hero);
+               //debuff.RemoveStatusEffect.StartAction(hero);
            }
            
            foreach (var uniqueStatusEffect in uniqueStatusEffects)
            {
-               uniqueStatusEffect.RemoveStatusEffect.StartAction(hero);
+               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
+               uniqueStatusEffect.RemoveStatusEffect.RemoveAtDeath(hero);
+               //uniqueStatusEffect.RemoveStatusEffect.StartAction(hero);
            }
            
            logicTree.EndSequence();

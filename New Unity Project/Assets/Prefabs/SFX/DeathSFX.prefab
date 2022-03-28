@@ -4687,7 +4687,7 @@ SortingGroup:
   m_GameObject: {fileID: 56520737255928145}
   m_Enabled: 1
   m_SortingLayerID: -736495317
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
 --- !u!1 &56520737255928147
 GameObject:
@@ -9376,7 +9376,7 @@ SortingGroup:
   m_GameObject: {fileID: 56520737255928147}
   m_Enabled: 1
   m_SortingLayerID: -736495317
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
 --- !u!1 &56520737255928149
 GameObject:
@@ -14122,7 +14122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnlyDeactivate: 1
+  OnlyDeactivate: 0
 --- !u!1 &56520737255928151
 GameObject:
   m_ObjectHideFlags: 0
@@ -18946,5 +18946,5 @@ SortingGroup:
   m_GameObject: {fileID: 56520737255928153}
   m_Enabled: 1
   m_SortingLayerID: -736495317
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
