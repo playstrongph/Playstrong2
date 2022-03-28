@@ -18,9 +18,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private float reflectValue = 0;
 
         [SerializeField] private int penetrateArmorChance = 0;
-        
-        [SerializeField] private int percentPenetrateArmor = 0;
-
 
         #endregion
 
@@ -55,6 +52,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var reflectDamageRecipient = casterHero;
             var reflectDamage = Mathf.RoundToInt((reflectValue / 100f) * reflectDamageHeroBasis.HeroLogic.TakeDamage.FinalDamageTaken);
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            var dealDamagePenetrateArmor = casterHero.HeroLogic.DamageAttributes.DealDamagePenetrateArmor;
+            var takeDamagePenetrateArmor = targetHero.HeroLogic.DamageAttributes.TakeDamagePenetrateArmor;
+            //Return only the maximum value of penetrate armor 
+            var percentPenetrateArmor = Mathf.Max(dealDamagePenetrateArmor, takeDamagePenetrateArmor);
 
             if(reflectDamage>0) 
                logicTree.AddCurrent(reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance,percentPenetrateArmor));
