@@ -202,14 +202,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
+
             foreach (var hero in ExecuteActionTargetHeroes)
             {
                 visualTree.AddCurrent(ResurrectAnimation(hero));
             }
             
-            if(ExecuteActionTargetHeroes.Count > 0)
-                visualTree.AddCurrent(AnimationInterval(targetHero));
+            
+            //TODO: For now, no animation interval
+            /*if(ExecuteActionTargetHeroes.Count > 0)
+                visualTree.AddCurrent(AnimationInterval(targetHero));*/
             
             logicTree.EndSequence();
             yield return null;

@@ -77,7 +77,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => preActionAnimationAsset = value as ScriptableObject;
         }
         
-        [SerializeField]
+        /*[SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(IGameAnimationsAsset))]
         private ScriptableObject criticalStrikeAnimationAsset;
         /// <summary>
@@ -87,7 +87,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             get => preActionAnimationAsset as IGameAnimationsAsset;
             set => preActionAnimationAsset = value as ScriptableObject;
-        }
+        }*/
         
 
         #endregion
