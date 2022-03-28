@@ -100,7 +100,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
         /// <summary>
-        /// Increase attack logic execution
+        /// Resurrect hero logic
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
@@ -222,12 +222,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var sequence = DOTween.Sequence();
             var aliveHeroesParent = targetHero.Player.AliveHeroes.ThisGameObject;
             var heroObject = targetHero.ThisGameObject;
-            var playDelayInterval = 4f;
+            
+            //Note:Hero dies animation is 2 seconds, this needs to be greater than that, plus a buffer
+            var playDelayInterval = 3f;
             
             sequence
                 .AppendInterval(playDelayInterval)
-                .AppendCallback(()=> Debug.Log("Set Parent Alive Heroes"))
                 .AppendCallback(() => heroObject.transform.SetParent(aliveHeroesParent.transform))
+                
+                //TODO: Replace with Resurrect Animation Asset
                 .AppendCallback(() => HealAnimationAsset.PlayAnimation(targetHero));
 
             visualTree.EndSequence();

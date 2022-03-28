@@ -152,6 +152,8 @@ namespace Logic
        /// <returns></returns>
        private IEnumerator HeroDiesAnimation(IHero hero)
        {
+           
+           
            var visualTree = hero.CoroutineTrees.MainVisualTree;
            
            var deadHeroesParent = hero.Player.DeadHeroes.ThisGameObject;
@@ -159,16 +161,15 @@ namespace Logic
            var healthValue = hero.HeroLogic.HeroAttributes.Health;
            var energyValue = hero.HeroLogic.HeroAttributes.Energy;
            var baseHealth = hero.HeroLogic.HeroAttributes.BaseHealth;
-           var s = DOTween.Sequence();
+           var sequence = DOTween.Sequence();
            var playDelayInterval = 1f;
 
-           s
+           sequence
                .AppendInterval(playDelayInterval)
                .AppendCallback(() =>
                    DeathAnimationsAsset.PlayAnimation(hero)
                )
                .AppendInterval(animationInterval)
-               .AppendCallback(()=> Debug.Log("Set Parent Dead Heroes"))
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )
