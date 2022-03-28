@@ -128,23 +128,17 @@ namespace Logic
 
            foreach (var buff in heroBuffs)
            {
-               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
                buff.RemoveStatusEffect.RemoveAtDeath(hero);
-               //buff.RemoveStatusEffect.StartAction(hero);
            }
            
            foreach (var debuff in heroDebuffs)
            {
-               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
                debuff.RemoveStatusEffect.RemoveAtDeath(hero);
-               //debuff.RemoveStatusEffect.StartAction(hero);
            }
            
            foreach (var uniqueStatusEffect in uniqueStatusEffects)
            {
-               //TODO: Change this to RemoveStatusEffect.RemoveAtDeath
                uniqueStatusEffect.RemoveStatusEffect.RemoveAtDeath(hero);
-               //uniqueStatusEffect.RemoveStatusEffect.StartAction(hero);
            }
            
            logicTree.EndSequence();

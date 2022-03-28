@@ -57,7 +57,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-           
+            logicTree.AddCurrent(ResurrectHero(targetHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -74,12 +74,40 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Set hero to alive status
             hero.HeroLogic.SetHeroLifeStatus.HeroAlive();
+            
+            //TODO: Destroy Resurrect StatusEffects
+            logicTree.AddCurrent(RemoveStatusEffects(hero));
 
             //TODO: TransferToAliveHeroesList
             logicTree.AddCurrent(TransferToAliveHeroList(hero));
 
-            //TODO: Destroy Resurrect StatusEffects
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator RemoveStatusEffects(IHero hero)
+        {
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+           
+            var heroBuffs = hero.HeroStatusEffects.BuffEffects.StatusEffects;
+            var heroDebuffs = hero.HeroStatusEffects.DebuffEffects.StatusEffects;
+            var uniqueStatusEffects = hero.HeroStatusEffects.UniqueStatusEffects.StatusEffects;
 
+            foreach (var buff in heroBuffs)
+            {
+                buff.RemoveStatusEffect.StartAction(hero);
+            }
+           
+            foreach (var debuff in heroDebuffs)
+            {
+                debuff.RemoveStatusEffect.StartAction(hero);
+            }
+           
+            foreach (var uniqueStatusEffect in uniqueStatusEffects)
+            {
+                uniqueStatusEffect.RemoveStatusEffect.StartAction(hero);
+            }
+           
             logicTree.EndSequence();
             yield return null;
         }
