@@ -61,7 +61,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        private void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected virtual void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
@@ -288,7 +288,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         private int _finalOrConditionsValue;
 
-        private int FinalConditionValue(IHero hero, IStandardActionAsset standardAction)
+        protected int FinalConditionValue(IHero hero, IStandardActionAsset standardAction)
         {
             var finalCondition = AllAndBasicConditionsValue(hero, standardAction) * AllOrBasicConditionsValue(hero,standardAction);
             return finalCondition;

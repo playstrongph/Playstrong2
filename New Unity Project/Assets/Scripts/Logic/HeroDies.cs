@@ -168,6 +168,7 @@ namespace Logic
                    DeathAnimationsAsset.PlayAnimation(hero)
                )
                .AppendInterval(animationInterval)
+               .AppendCallback(()=> Debug.Log("Set Parent Dead Heroes"))
                .AppendCallback(() =>
                    heroObject.transform.SetParent(deadHeroesParent.transform)
                )

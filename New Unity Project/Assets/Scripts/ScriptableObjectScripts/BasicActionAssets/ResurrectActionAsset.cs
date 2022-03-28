@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 
@@ -36,9 +37,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Resurrect Action Main Basic Action Phase:" +casterHero.HeroName );
-            
+
             //Heal Animation
             logicTree.AddCurrent(ResurrectVisualAction(casterHero));
 
@@ -49,6 +48,39 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
+        protected override void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            //From the perspective of the caster hero
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
+            
+            //animation target heroes list 
+            ExecuteActionTargetHeroes.Clear();
+            
+            
+            //TEST START
+            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero);
+                
+                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
+                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
+                
+                //This is effectively the actual "target hero" 
+                var actionTargetHero = actionTargetHeroes[index];
+
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(ExecuteActionTargetHeroes,actionTargetHero);
+                    
+                    //Add action target hero
+                    ExecuteActionTargetHeroes.Add(actionTargetHero);
+
+                }
+            }
+        }
+        
+        
         /// <summary>
         /// Have to override dead hero checking
         /// </summary>
@@ -57,18 +89,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected override IEnumerator MainAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Main Action target heroes count: " +ExecuteActionTargetHeroes.Count);
-        
+
             foreach (var hero in ExecuteActionTargetHeroes)
             {
-                //Checks if heroes are alive and caster has no inability
-                //Leads to basicAction.ExecuteAction
-
-                //hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-                
-                Debug.Log("Execute Action hero: " +hero.HeroName );
-                
                 logicTree.AddCurrent(ExecuteAction(casterHero,hero));
             }
             
@@ -85,8 +108,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Resurrect Action Execute Action: " +targetHero.HeroName);
 
             logicTree.AddCurrent(ResurrectHero(targetHero));
 
@@ -102,15 +123,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator ResurrectHero(IHero hero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
+
             //Set hero to alive status
             hero.HeroLogic.SetHeroLifeStatus.HeroAlive();
             
-            //TODO: Destroy Resurrect StatusEffects
-            logicTree.AddCurrent(RemoveStatusEffects(hero));
-
             //TODO: TransferToAliveHeroesList
             logicTree.AddCurrent(TransferToAliveHeroList(hero));
+            
+            //TODO: Destroy Resurrect StatusEffects
+            logicTree.AddCurrent(RemoveStatusEffects(hero));
 
             logicTree.EndSequence();
             yield return null;
@@ -201,10 +222,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var sequence = DOTween.Sequence();
             var aliveHeroesParent = targetHero.Player.AliveHeroes.ThisGameObject;
             var heroObject = targetHero.ThisGameObject;
-            var playDelayInterval = 1f;
+            var playDelayInterval = 4f;
             
             sequence
                 .AppendInterval(playDelayInterval)
+                .AppendCallback(()=> Debug.Log("Set Parent Alive Heroes"))
                 .AppendCallback(() => heroObject.transform.SetParent(aliveHeroesParent.transform))
                 .AppendCallback(() => HealAnimationAsset.PlayAnimation(targetHero));
 
