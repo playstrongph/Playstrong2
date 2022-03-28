@@ -41,9 +41,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var damageAttributes = targetHero.HeroLogic.DamageAttributes;
 
             damageAttributes.AllTakeDamageReduction += value;
-            
-            Debug.Log("Increase Damage Reduction: " + damageAttributes.AllTakeDamageReduction);
-            
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -54,9 +52,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var damageAttributes = targetHero.HeroLogic.DamageAttributes;
 
             damageAttributes.AllTakeDamageReduction -= value;
-            
-            Debug.Log("Reduce Damage Reduction: " + damageAttributes.AllTakeDamageReduction);
-            
+
             logicTree.EndSequence();
             yield return null;
         }
