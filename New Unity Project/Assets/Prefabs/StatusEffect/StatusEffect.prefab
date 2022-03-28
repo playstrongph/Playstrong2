@@ -241,7 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663c41b3a335f9440b6f2568b1a85307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exemptionList: []
+  exemptionList:
+  - {fileID: 11400000, guid: 336fe7a34870cd641be6977bbc638102, type: 2}
 --- !u!114 &8347972122509097006
 MonoBehaviour:
   m_ObjectHideFlags: 0

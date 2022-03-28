@@ -194,9 +194,7 @@ namespace Logic
            
            //No Visuals
            hero.HeroLogic.HeroAttributes.Health = baseHealth;
-           
-           //hero.HeroLogic.SetHealth.StartAction(baseHealth);
-           
+
            logicTree.EndSequence();
            yield return null;
        }
@@ -211,11 +209,8 @@ namespace Logic
        {
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
-           //No Visuals
-           hero.HeroLogic.HeroTimer.ResetHeroTimer(); 
+           hero.HeroLogic.HeroTimer.ResetHeroTimer();
 
-           //hero.HeroLogic.SetEnergy.ResetToZero();
-           
            logicTree.EndSequence();
            yield return null;
        }

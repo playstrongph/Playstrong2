@@ -261,10 +261,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
+
             foreach (var hero in ExecuteActionTargetHeroes)
             {
                 //Checks if heroes are alive and caster has no inability
                 //Leads to basicAction.ExecuteAction
+
                 hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
             }
             

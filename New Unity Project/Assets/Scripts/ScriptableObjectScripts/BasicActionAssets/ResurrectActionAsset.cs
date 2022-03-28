@@ -37,12 +37,41 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
+            Debug.Log("Resurrect Action Main Basic Action Phase:" +casterHero.HeroName );
+            
             //Heal Animation
             logicTree.AddCurrent(ResurrectVisualAction(casterHero));
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
 
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Have to override dead hero checking
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <returns></returns>
+        protected override IEnumerator MainAction(IHero casterHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            Debug.Log("Main Action target heroes count: " +ExecuteActionTargetHeroes.Count);
+        
+            foreach (var hero in ExecuteActionTargetHeroes)
+            {
+                //Checks if heroes are alive and caster has no inability
+                //Leads to basicAction.ExecuteAction
+
+                //hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+                
+                Debug.Log("Execute Action hero: " +hero.HeroName );
+                
+                logicTree.AddCurrent(ExecuteAction(casterHero,hero));
+            }
+            
             logicTree.EndSequence();
             yield return null;
         }
@@ -56,6 +85,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            
+            Debug.Log("Resurrect Action Execute Action: " +targetHero.HeroName);
 
             logicTree.AddCurrent(ResurrectHero(targetHero));
 
@@ -162,15 +193,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-
+        
+        //TODO: TEST
         private IEnumerator ResurrectAnimation(IHero targetHero)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            var sequence = DOTween.Sequence();
+            var aliveHeroesParent = targetHero.Player.AliveHeroes.ThisGameObject;
+            var heroObject = targetHero.ThisGameObject;
+            var playDelayInterval = 1f;
             
-            //TODO: Provision for die animation interval here using DoTween sequence
-            
-            HealAnimationAsset.PlayAnimation(targetHero);
-            
+            sequence
+                .AppendInterval(playDelayInterval)
+                .AppendCallback(() => heroObject.transform.SetParent(aliveHeroesParent.transform))
+                .AppendCallback(() => HealAnimationAsset.PlayAnimation(targetHero));
+
             visualTree.EndSequence();
             yield return null;
         }
