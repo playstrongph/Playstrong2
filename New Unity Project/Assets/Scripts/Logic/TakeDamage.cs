@@ -78,14 +78,15 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        public IEnumerator TakeSingleAttackDamage(IHero casterHero,IHero targetHero,int nonCriticalDamage, int criticalDamage)
+        public IEnumerator TakeSingleAttackDamage(IHero casterHero,IHero targetHero,int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
 
-            logicTree.AddCurrent(ComputeSingleAttackDamage(casterHero,targetHero,nonCriticalDamage,criticalDamage));
+            logicTree.AddCurrent(ComputeSingleAttackDamage(casterHero,targetHero,nonCriticalDamage,criticalDamage,percentPenetrateArmor));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
@@ -102,15 +103,16 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        ///  <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        public IEnumerator TakeMultiAttackDamage(IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage)
+        public IEnumerator TakeMultiAttackDamage(IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Multi Attack Type Damage
-            logicTree.AddCurrent(ComputeMultiAttackDamage(casterHero,targetHero,nonCriticalDamage, criticalDamage));
+            logicTree.AddCurrent(ComputeMultiAttackDamage(casterHero,targetHero,nonCriticalDamage, criticalDamage,percentPenetrateArmor));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
@@ -129,15 +131,16 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonAttackSkillDamage"></param>
         /// <param name="penetrateArmorChance"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        public IEnumerator TakeNonAttackSkillDamage(IHero casterHero, IHero targetHero, int nonAttackSkillDamage, int penetrateArmorChance)
+        public IEnumerator TakeNonAttackSkillDamage(IHero casterHero, IHero targetHero, int nonAttackSkillDamage, int penetrateArmorChance, int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             logicTree.AddCurrent(BeforeHeroTakesSkillDamageEvent(casterHero,targetHero));
             
             //Non-attack skill damage
-            logicTree.AddCurrent(ComputeNonAttackSkillDamage(casterHero,targetHero,nonAttackSkillDamage,0));
+            logicTree.AddCurrent(ComputeNonAttackSkillDamage(casterHero,targetHero,nonAttackSkillDamage,0,percentPenetrateArmor));
 
             logicTree.AddCurrent(AfterHeroTakesSkillDamageEvent(casterHero,targetHero));
             
@@ -156,15 +159,16 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonSkillDamage"></param>
         /// <param name="penetrateChance"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        public IEnumerator TakeNonSkillDamage(IHero targetHero,int nonSkillDamage, int penetrateChance)
+        public IEnumerator TakeNonSkillDamage(IHero targetHero,int nonSkillDamage, int penetrateChance,int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             logicTree.AddCurrent(BeforeHeroTakesNonSkillDamageEvent());
             
             //Non-skill Damage
-            logicTree.AddCurrent(ComputeNonSkillDamage(targetHero,penetrateChance,nonSkillDamage,0));
+            logicTree.AddCurrent(ComputeNonSkillDamage(targetHero,penetrateChance,nonSkillDamage,0,percentPenetrateArmor));
 
             logicTree.AddCurrent(AfterHeroTakesNonSkillDamageEvent());
             
@@ -191,14 +195,17 @@ namespace Logic
         /// </summary>
         /// <param name="hero"></param>
         /// <param name="finalDamage"></param>
-        /// /// <param name="criticalDamage"></param>
+        /// <param name="criticalDamage"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        private IEnumerator HeroTakesDamage(IHero hero,int finalDamage, int criticalDamage)
+        private IEnumerator HeroTakesDamage(IHero hero,int finalDamage, int criticalDamage, int percentPenetrateArmor)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
             var visualTree = hero.CoroutineTrees.MainVisualTree;
 
-            ComputeNewArmor(hero,finalDamage);
+            //ComputeNewArmor(hero,finalDamage);
+            
+            ComputeNewArmor(hero,finalDamage,percentPenetrateArmor);
             
             ComputeNewHealth(hero,_residualDamage);
 
@@ -272,8 +279,9 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        private IEnumerator ComputeSingleAttackDamage(IHero casterHero, IHero targetHero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeSingleAttackDamage(IHero casterHero, IHero targetHero,int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
@@ -298,7 +306,7 @@ namespace Logic
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
-                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage,percentPenetrateArmor));
 
             logicTree.EndSequence();
             yield return null;
@@ -312,8 +320,9 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        private IEnumerator ComputeMultiAttackDamage(IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeMultiAttackDamage(IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var allDamageReduction = Mathf.Min(targetHero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
@@ -337,7 +346,7 @@ namespace Logic
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
-                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage,percentPenetrateArmor));
             
            
             logicTree.EndSequence();
@@ -351,8 +360,9 @@ namespace Logic
         /// <param name="targetHero"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        ///  <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        private IEnumerator ComputeNonAttackSkillDamage(IHero casterHero, IHero targetHero,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeNonAttackSkillDamage(IHero casterHero, IHero targetHero,int nonCriticalDamage, int criticalDamage, int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var allDamageReduction = Mathf.Min(targetHero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
@@ -371,7 +381,7 @@ namespace Logic
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
-                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage,percentPenetrateArmor));
             
            
             logicTree.EndSequence();
@@ -385,8 +395,9 @@ namespace Logic
         ///  <param name="penetrateChance"></param>
         /// <param name="nonCriticalDamage"></param>
         /// <param name="criticalDamage"></param>
+        /// <param name="percentPenetrateArmor"></param>
         /// <returns></returns>
-        private IEnumerator ComputeNonSkillDamage(IHero targetHero,int penetrateChance,int nonCriticalDamage, int criticalDamage)
+        private IEnumerator ComputeNonSkillDamage(IHero targetHero,int penetrateChance,int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var allDamageReduction = Mathf.Min(targetHero.HeroLogic.DamageAttributes.AllTakeDamageReduction/100f,1);
@@ -406,7 +417,7 @@ namespace Logic
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
-                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage));
+                : HeroTakesDamage(targetHero,FinalDamageTaken,criticalDamage,percentPenetrateArmor));
             
             logicTree.EndSequence();
             yield return null;
@@ -429,6 +440,39 @@ namespace Logic
 
             //New armor is zero when damage is greater than armor
             var newArmor = Mathf.Max(0, armor - damage);
+            
+            //Update armor attribute
+            hero.HeroLogic.SetArmor.StartAction(newArmor);
+
+        }
+        
+        /// <summary>
+        /// TODO: TEST - penetrate armor instead of completely ignore armor
+        /// Calculates the value of the new armor
+        /// and residual damage
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="damage"></param>
+        /// <param name="percentPenetrateArmor"></param>
+        private void ComputeNewArmor(IHero hero, int damage,int percentPenetrateArmor)
+        {
+            var armor = hero.HeroLogic.HeroAttributes.Armor;
+            
+            //value of damage that penetrates armor
+            var healthDamage = Mathf.RoundToInt(damage * percentPenetrateArmor / 100f);
+            
+            //value of damage that armor takes
+            var armorDamage = Mathf.Max(0,damage - healthDamage);
+            
+            //Used in armor text animation purposes
+            ArmorDamage = armorDamage;
+
+            //No residual damage when armor is greater than damage
+            //total residual damage is health damage plus damage in excess of armor 
+            _residualDamage = Mathf.Max(0,armorDamage - armor) + healthDamage;
+
+            //New armor is zero when damage is greater than armor
+            var newArmor = Mathf.Max(0, armor - armorDamage);
             
             //Update armor attribute
             hero.HeroLogic.SetArmor.StartAction(newArmor);

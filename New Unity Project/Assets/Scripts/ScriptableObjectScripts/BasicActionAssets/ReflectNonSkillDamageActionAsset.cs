@@ -18,6 +18,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private float reflectValue = 0;
 
         [SerializeField] private int penetrateArmorChance = 0;
+        
+        [SerializeField] private int percentPenetrateArmor = 0;
 
 
         #endregion
@@ -55,7 +57,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             if(reflectDamage>0) 
-               logicTree.AddCurrent(reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance));
+               logicTree.AddCurrent(reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance,percentPenetrateArmor));
 
         }
 
