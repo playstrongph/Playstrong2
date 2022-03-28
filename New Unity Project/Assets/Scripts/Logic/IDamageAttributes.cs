@@ -7,6 +7,11 @@
         /// Default value is 100%.
         /// </summary>
         int CriticalDamage { get; set; }
+        
+        /// <summary>
+        /// Percent of damage that penetrates armor
+        /// </summary>
+        int PenetrateArmor { get; set; }
 
         /// <summary>
         /// All deal damage types percent reduction

@@ -6,7 +6,7 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
 {
     public abstract class AttackTargetCountTypeAsset : ScriptableObject, IAttackTargetCountTypeAsset
     {
-        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage)
+        public virtual IEnumerator StartAction(IDealDamage dealDamage, IHero casterHero, IHero targetHero, int nonCriticalDamage, int criticalDamage,int percentPenetrateArmor)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             

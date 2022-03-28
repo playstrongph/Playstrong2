@@ -181,10 +181,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var dealDamage = casterHero.HeroLogic.DealDamage;
             var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
             var criticalAttackDamage = 0;
+            var percentPenetrateArmor = targetHero.HeroLogic.DamageAttributes.PenetrateArmor;
 
             //Attack target based on attack target count type - single or multi attack
             //Calls DealDamage, TakeDamage, and checks for hero deaths
-            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage));
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero,targetHero,nonCriticalAttackDamage,criticalAttackDamage,percentPenetrateArmor));
             
             //TODO: Check if DealDamage and TakeDamage need to be isolated in the future because of its events
 
@@ -203,10 +204,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
             var criticalFactor = casterHero.HeroLogic.DamageAttributes.CriticalDamage + skillCriticalDamage;
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
+            var percentPenetrateArmor = targetHero.HeroLogic.DamageAttributes.PenetrateArmor;
 
             //Attack target based on attack target count type - single or multi attack
             //Calls deal damage and take damage
-            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage));
+            logicTree.AddCurrent(AttackTargetCountType.StartAction(dealDamage,casterHero, targetHero,nonCriticalAttackDamage,criticalAttackDamage,percentPenetrateArmor));
             
         }
         
