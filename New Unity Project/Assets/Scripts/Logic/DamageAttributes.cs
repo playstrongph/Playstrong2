@@ -25,15 +25,25 @@ namespace Logic
             set => criticalDamage = value;
         }
         
-        [Header("TAKE DAMAGE FACTORS")] [SerializeField]
-        private int penetrateArmor = 0;
+        [SerializeField]private int dealDamagePenetrateArmor = 0;
         /// <summary>
-        /// Percent of damage that penetrates armor 
+        /// Percent of damage dealt that penetrates armor 
         /// </summary>
-        public int PenetrateArmor
+        public int DealDamagePenetrateArmor
         {
-            get => penetrateArmor;
-            set => penetrateArmor = value;
+            get => dealDamagePenetrateArmor;
+            set => dealDamagePenetrateArmor = value;
+        }
+        
+        [Header("TAKE DAMAGE FACTORS")] [SerializeField]
+        private int takeDamagePenetrateArmor = 0;
+        /// <summary>
+        /// Percent of damage taken that penetrates armor 
+        /// </summary>
+        public int TakeDamagePenetrateArmor
+        {
+            get => takeDamagePenetrateArmor;
+            set => takeDamagePenetrateArmor = value;
         }
         
         

@@ -9,9 +9,14 @@
         int CriticalDamage { get; set; }
         
         /// <summary>
-        /// Percent of damage that penetrates armor
+        /// Percent of damage taken that penetrates armor
         /// </summary>
-        int PenetrateArmor { get; set; }
+        int TakeDamagePenetrateArmor { get; set; }
+        
+        /// <summary>
+        /// Percent of damage dealt that penetrates armor
+        /// </summary>
+        int DealDamagePenetrateArmor { get; set; }
 
         /// <summary>
         /// All deal damage types percent reduction

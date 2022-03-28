@@ -181,7 +181,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var dealDamage = casterHero.HeroLogic.DealDamage;
             var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
             var criticalAttackDamage = 0;
-            var percentPenetrateArmor = targetHero.HeroLogic.DamageAttributes.PenetrateArmor;
+            
+            var dealDamagePenetrateArmor = casterHero.HeroLogic.DamageAttributes.DealDamagePenetrateArmor;
+            var takeDamagePenetrateArmor = targetHero.HeroLogic.DamageAttributes.TakeDamagePenetrateArmor;
+            //Return only the maximum value of penetrate armor 
+            var percentPenetrateArmor = Mathf.Max(dealDamagePenetrateArmor, takeDamagePenetrateArmor);
 
             //Attack target based on attack target count type - single or multi attack
             //Calls DealDamage, TakeDamage, and checks for hero deaths
@@ -204,7 +208,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var nonCriticalAttackDamage = casterHero.HeroLogic.HeroAttributes.Attack + flatValue;
             var criticalFactor = casterHero.HeroLogic.DamageAttributes.CriticalDamage + skillCriticalDamage;
             var criticalAttackDamage = Mathf.RoundToInt(criticalFactor*nonCriticalAttackDamage/100f);
-            var percentPenetrateArmor = targetHero.HeroLogic.DamageAttributes.PenetrateArmor;
+            
+            var dealDamagePenetrateArmor = casterHero.HeroLogic.DamageAttributes.DealDamagePenetrateArmor;
+            var takeDamagePenetrateArmor = targetHero.HeroLogic.DamageAttributes.TakeDamagePenetrateArmor;
+            //Return only the maximum value of penetrate armor 
+            var percentPenetrateArmor = Mathf.Max(dealDamagePenetrateArmor, takeDamagePenetrateArmor);
 
             //Attack target based on attack target count type - single or multi attack
             //Calls deal damage and take damage
