@@ -228,6 +228,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Note:Hero dies animation is 2 seconds, this needs to be greater than that, plus a buffer
             var playDelayInterval = 3f;
             
+            var heroStartTurn = targetHero.Player.BattleSceneManager.TurnController.HeroStartTurn;
+            
+            //
+            heroStartTurn.VisualDelay = playDelayInterval;
+            
             sequence
                 .AppendInterval(playDelayInterval)
                 .AppendCallback(() => heroObject.transform.SetParent(aliveHeroesParent.transform))

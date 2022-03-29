@@ -10,5 +10,9 @@ namespace Logic
         /// </summary>
         /// <returns></returns>
         IEnumerator StartAction();
+        
+        
+        //TODO:TEST
+        float VisualDelay { get; set; }
     }
 }

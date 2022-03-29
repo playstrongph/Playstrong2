@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Logic
@@ -10,6 +11,8 @@ namespace Logic
         private void Awake()
         {
             _turnController = GetComponent<ITurnController>();
+
+            //VisualDelay = 3f;
         }
         
         /// <summary>
@@ -22,9 +25,12 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var currentActiveHero = _turnController.CurrentActiveHero;
             
-            //TODO: UpdateSkillReadinessStatus
+            //TODO: UpdateSkillReadinessStatus ?
             
             //TODO: EVENT - EventHeroStartTurn
+            
+            //TODO: Visual Delay
+            logicTree.AddCurrent(ActiveStatusDelay());
             
             //Run the current hero active status action
             logicTree.AddCurrent(CurrentActiveStatusAction());
@@ -38,6 +44,42 @@ namespace Logic
             logicTree.EndSequence();
             yield return null;
         }
+        
+        //TODO: TEST - start turn visual delay
+
+        public float VisualDelay { get; set; }
+
+        private IEnumerator ActiveStatusDelay()
+        {
+            var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            var visualTree = _turnController.CoroutineTrees.MainVisualTree;
+            
+            visualTree.AddCurrent(VisualActiveStatusDelay());
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+        private IEnumerator VisualActiveStatusDelay()
+        {
+            var visualTree = _turnController.CoroutineTrees.MainVisualTree;
+
+            var sequence = DOTween.Sequence();
+
+            sequence
+                .AppendInterval(VisualDelay)
+                
+                //Reset visual delay back to none
+                .AppendCallback(()=> VisualDelay = 0)
+                
+                .AppendCallback(() => visualTree.EndSequence());
+
+            yield return null;
+        }
+        
+        //TODO: TEST - start turn visual delay
+        
+        
         
         /// <summary>
         /// Executes the action of the hero's current active status
