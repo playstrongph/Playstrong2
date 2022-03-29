@@ -152,8 +152,6 @@ namespace Logic
        /// <returns></returns>
        private IEnumerator HeroDiesAnimation(IHero hero)
        {
-           
-           
            var visualTree = hero.CoroutineTrees.MainVisualTree;
            
            var deadHeroesParent = hero.Player.DeadHeroes.ThisGameObject;

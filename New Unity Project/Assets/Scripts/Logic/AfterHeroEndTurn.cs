@@ -38,16 +38,14 @@ namespace Logic
 
             //Determines the next active hero from the active heroes list            
             logicTree.AddCurrent(_turnController.StartNextHeroTurn.StartAction());
-            
-            //TEST
-            //logicTree.AddSibling(_turnController.StartNextHeroTurn.StartAction());
-            
+
             logicTree.EndSequence();
             yield return null;
             
         }
         
         /// <summary>
+        /// TODO: Review if this can be removed since it's moved to SelectDragTarget.Use Skill
         /// Updates the hero active status and executes the status action
         /// </summary>
         /// <returns></returns>

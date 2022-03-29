@@ -198,15 +198,13 @@ namespace Logic
             
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             var skill = SkillTargetCollider.Skill;
-                
-            //set caster hero's targeted hero
-            //TODO: For cleanup
-            //casterHero.HeroLogic.LastHeroTargets.SetTargetedHero(_validSkillTargetHero);
-            
-            
 
             //Call all EventSkillDragTarget subscribers' start action
             skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero,targetHero);
+            
+            //TODO: TEST -  Copied from AfterHeroEndTurn. UpdateHeroActiveStatus 
+            casterHero.HeroLogic.SetHeroActiveStatus.InactiveHero();
+            casterHero.HeroLogic.HeroActiveStatus.StatusAction(casterHero);
             
             logicTree.EndSequence();
             yield return null;
