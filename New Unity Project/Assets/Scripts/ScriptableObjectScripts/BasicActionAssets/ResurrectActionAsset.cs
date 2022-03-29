@@ -230,7 +230,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             var heroStartTurn = targetHero.Player.BattleSceneManager.TurnController.HeroStartTurn;
             
-            //
+            //Introduce a visual delay before hero starts turn
             heroStartTurn.VisualDelay = playDelayInterval;
             
             sequence
