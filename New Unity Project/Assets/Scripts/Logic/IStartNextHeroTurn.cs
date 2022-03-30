@@ -14,6 +14,6 @@ namespace Logic
         /// <summary>
         /// Delays the visual start of the hero timers
         /// </summary>
-        float DelayStartHeroTimers { get; set; }
+        float NextTurnVisualDelay { get; set; }
     }
 }

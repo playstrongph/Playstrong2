@@ -8,8 +8,8 @@ namespace Logic
     {
         private ITurnController _turnController;
         
-        //TEST
-        public float DelayStartHeroTimers { get; set; }
+        //Programmable delay for next hero turn (or start hero timers)
+        public float NextTurnVisualDelay { get; set; }
 
         private void Awake()
         {
@@ -28,9 +28,9 @@ namespace Logic
             var sequence = DOTween.Sequence();
 
             sequence
-                .AppendInterval(DelayStartHeroTimers)
+                .AppendInterval(NextTurnVisualDelay)
                 .AppendCallback(StartNextTurn)
-                .AppendCallback(() => DelayStartHeroTimers = 0f);
+                .AppendCallback(() => NextTurnVisualDelay = 0f);
 
             logicTree.EndSequence();
             yield return null;

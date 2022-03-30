@@ -209,7 +209,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var startNextHeroDelay = 5f;
 
             //Introduce a visual delay before Hero Timers and hero turn starts
-            turnController.StartNextHeroTurn.DelayStartHeroTimers = startNextHeroDelay;
+            turnController.StartNextHeroTurn.NextTurnVisualDelay = startNextHeroDelay;
 
             foreach (var hero in ExecuteActionTargetHeroes)
             {
@@ -219,8 +219,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        //TODO: TEST
+
         private IEnumerator ResurrectAnimation(IHero targetHero)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
