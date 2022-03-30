@@ -33,10 +33,10 @@ namespace Logic
         public void RemoveHero(IHero hero)
         {
             var activeHeroes = _turnController.ActiveHeroes;
-            var activeHeroesList = _turnController.HeroesTurnQueue;
+            var heroesTurnQueue = _turnController.HeroesTurnQueue;
 
             if(!activeHeroes.Contains(hero)) 
-                activeHeroesList.Remove(hero as Object); 
+                heroesTurnQueue.Remove(hero as Object); 
         }
 
 
