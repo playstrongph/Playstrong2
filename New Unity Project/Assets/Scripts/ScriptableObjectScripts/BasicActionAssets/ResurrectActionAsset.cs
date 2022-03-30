@@ -10,9 +10,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
 {
     [CreateAssetMenu(fileName = "ResurrectAction", menuName = "Assets/BasicActions/R/ResurrectAction")]
     public class ResurrectActionAsset : BasicActionAsset
-    {
+    {  
+        /// <summary>
+        /// Total animation delay of resurrect hero
+        /// </summary>
+        //[SerializeField] private float playDelayInterval = 4f;
         
-
         [Header("ANIMATIONS")] 
 
         [SerializeField]
@@ -202,6 +205,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            var turnController = targetHero.Player.BattleSceneManager.TurnController;
+            var startNextHeroDelay = 5f;
+
+            //Introduce a visual delay before Hero Timers and hero turn starts
+            turnController.StartNextHeroTurn.DelayStartHeroTimers = startNextHeroDelay;
 
             foreach (var hero in ExecuteActionTargetHeroes)
             {
@@ -219,17 +227,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var sequence = DOTween.Sequence();
             var aliveHeroesParent = targetHero.Player.AliveHeroes.ThisGameObject;
             var heroObject = targetHero.ThisGameObject;
-            
-            //Note:Hero dies animation is 2 seconds, this needs to be greater than that, plus a buffer
-            var playDelayInterval = 3f;
-            
-            var heroStartTurn = targetHero.Player.BattleSceneManager.TurnController.HeroStartTurn;
-            
-            //Introduce a visual delay before hero starts turn
-            heroStartTurn.SetVisualDelay(playDelayInterval); 
-            
+            var heroDiesInterval = 3f;  //Note: 2 sec hero dies interval plus 1 second buffer
+
             sequence
-                .AppendInterval(playDelayInterval)
+                .AppendInterval(heroDiesInterval)
                 .AppendCallback(() => heroObject.transform.SetParent(aliveHeroesParent.transform))
                 
                 //TODO: Replace with Resurrect Animation Asset

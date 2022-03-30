@@ -7,10 +7,18 @@ namespace Logic
     {
         private ITurnController _turnController;
         
+        //TEST
+        /// <summary>
+        /// Delays the start of update timers
+        /// </summary>
+        public float DelayUpdateTimer { get; set; }
+
         private readonly List<IHero> _allLivingHeroes = new List<IHero>();
         private void Awake()
         {
             _turnController = GetComponent<ITurnController>();
+            
+           
         }
 
         /// <summary>
