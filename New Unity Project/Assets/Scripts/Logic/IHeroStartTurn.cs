@@ -10,9 +10,11 @@ namespace Logic
         /// </summary>
         /// <returns></returns>
         IEnumerator StartAction();
-        
-        
-        //TODO:TEST
-        float VisualDelay { get; set; }
+
+        /// <summary>
+        /// Sets the hero start turn visual delay in seconds
+        /// </summary>
+        /// <param name="value"></param>
+        void SetVisualDelay(float value);
     }
 }

@@ -207,12 +207,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             {
                 visualTree.AddCurrent(ResurrectAnimation(hero));
             }
-            
-            
-            //TODO: For now, no animation interval
-            /*if(ExecuteActionTargetHeroes.Count > 0)
-                visualTree.AddCurrent(AnimationInterval(targetHero));*/
-            
+
             logicTree.EndSequence();
             yield return null;
         }
@@ -231,7 +226,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var heroStartTurn = targetHero.Player.BattleSceneManager.TurnController.HeroStartTurn;
             
             //Introduce a visual delay before hero starts turn
-            heroStartTurn.VisualDelay = playDelayInterval;
+            heroStartTurn.SetVisualDelay(playDelayInterval); 
             
             sequence
                 .AppendInterval(playDelayInterval)

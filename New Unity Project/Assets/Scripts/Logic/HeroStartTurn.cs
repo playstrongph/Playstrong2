@@ -8,11 +8,11 @@ namespace Logic
     {
         private ITurnController _turnController;
 
+        private float visualDelay = 0; 
+
         private void Awake()
         {
             _turnController = GetComponent<ITurnController>();
-
-            //VisualDelay = 3f;
         }
         
         /// <summary>
@@ -45,10 +45,13 @@ namespace Logic
             yield return null;
         }
         
-        //TODO: TEST - start turn visual delay
+      
 
-        public float VisualDelay { get; set; }
-
+     
+        /// <summary>
+        /// Visual delay for hero start turn
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator ActiveStatusDelay()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
@@ -67,20 +70,26 @@ namespace Logic
             var sequence = DOTween.Sequence();
 
             sequence
-                .AppendInterval(VisualDelay)
+                .AppendInterval(visualDelay)
                 
-                //Reset visual delay back to none
-                .AppendCallback(()=> VisualDelay = 0)
+                //Reset visual delay back to zero (none)
+                .AppendCallback(()=> visualDelay = 0)
                 
                 .AppendCallback(() => visualTree.EndSequence());
 
             yield return null;
         }
         
-        //TODO: TEST - start turn visual delay
-        
-        
-        
+        /// <summary>
+        /// Sets the visual delay in seconds
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetVisualDelay(float value)
+        {
+            visualDelay = value;
+        }
+
+
         /// <summary>
         /// Executes the action of the hero's current active status
         /// </summary>
