@@ -57,8 +57,6 @@ namespace Logic
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
             var visualTree = _turnController.CoroutineTrees.MainVisualTree;
             
-            Debug.Log("hero start turn visual delay");
-            
             visualTree.AddCurrent(VisualActiveStatusDelay());
             
             logicTree.EndSequence();

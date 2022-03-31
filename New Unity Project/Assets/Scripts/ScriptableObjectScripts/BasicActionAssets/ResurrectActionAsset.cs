@@ -92,12 +92,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected override IEnumerator MainAction(IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+          
 
             foreach (var hero in ExecuteActionTargetHeroes)
             {
                 logicTree.AddCurrent(ExecuteAction(casterHero,hero));
             }
-            
+
             logicTree.EndSequence();
             yield return null;
         }
