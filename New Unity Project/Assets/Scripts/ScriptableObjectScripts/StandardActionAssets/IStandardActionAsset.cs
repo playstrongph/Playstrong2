@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.ActionTargetAssets;
+using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.BasicConditionAssets;
 using UnityEngine;
 
@@ -16,7 +17,9 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Hero subscribers to the basic events
         /// </summary>
         IActionTargetAsset Subscribers { get; set; }
-        
+
+        List<ScriptableObject> BasicActionObjects { get; }
+
         /// <summary>
         /// Hero targets used in the basic condition logic
         /// </summary>

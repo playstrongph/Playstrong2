@@ -61,6 +61,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Compute change in attack value
             _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
+            Debug.Log("Execute Action _changeValue: " +_changeValue);
+            
+            
             var newValue = targetHero.HeroLogic.HeroAttributes.Attack + _changeValue;
             
             //Set the new attack value in hero attributes
@@ -74,6 +77,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             //var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            Debug.Log("Undo Execute Action _changeValue: " +_changeValue);
 
             //Use the change value set in execute action earlier
             var newValue = targetHero.HeroLogic.HeroAttributes.Attack - _changeValue;

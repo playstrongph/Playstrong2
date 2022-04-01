@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ScriptableObjectScripts.ActionTargetAssets;
 using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.BasicConditionAssets;
@@ -69,9 +70,8 @@ namespace Logic
             _statusEffect.StatusEffectAsset = Instantiate(statusEffectAsset as ScriptableObject) as IStatusEffectAsset;
 
             CreateUniqueStandardActions();
-            
-            //TODO: Delete
-            //CreateUniqueBasicActions();
+
+            CreateUniqueBasicActions();
 
             CreateUniqueBasicConditions();
         }
@@ -113,27 +113,31 @@ namespace Logic
                 i++;
             }
 
-           
-
         }
         
-        /*/// <summary>
+        /// <summary>
         /// Creates unique object instances of Basic Actions
         /// </summary>
         private void CreateUniqueBasicActions()
         {
-            var i = 0;
-            foreach (var basicAction in _statusEffect.StatusEffectAsset.BasicActions)
+            var standardActions = new List<IStandardActionAsset>();
+            
+            foreach (var statusEffectActionObject in _statusEffect.StatusEffectAsset.StatusEffectActionObjects)
             {
-                //Create a unique instance of the basic action
-                var cloneBasicAction = Instantiate(basicAction as ScriptableObject) as IBasicActionAsset;
-                
-                //replace the basic action with unique clones
-                _statusEffect.StatusEffectAsset.BasicActionObjects[i] = cloneBasicAction as ScriptableObject;
-
-                i++;
+                var standardAction = statusEffectActionObject as IStandardActionAsset;
+                standardActions.Add(standardAction);
             }
-        }*/
+
+            foreach (var standardAction in standardActions)
+            {
+                for (int k = standardAction.BasicActionObjects.Count-1; k >=0; k--)
+                {
+                    var cloneBasicActionObject = Instantiate(standardAction.BasicActionObjects[k]);
+                    standardAction.BasicActionObjects[k] = cloneBasicActionObject;
+                }
+                    
+            }
+        }
 
         /// <summary>
         /// Create unique basic conditions
