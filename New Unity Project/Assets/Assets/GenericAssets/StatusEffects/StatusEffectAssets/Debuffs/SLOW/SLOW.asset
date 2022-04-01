@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
+  m_Name: SLOW
+  m_EditorClassIdentifier: 
+  statusEffectName: SLOW
+  description: Decreases target's Speed by 30%.
+  icon: {fileID: -4242690658182547736, guid: 68ee878894cb3c24ca059e064f9c057d, type: 3}
+  statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
+  statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
+    type: 2}
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
+    type: 2}
+  statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
+    type: 2}
+  statusEffectActions:
+  - {fileID: 11400000, guid: 10b4e0f3037a1374e86890b2fc43e430, type: 2}
