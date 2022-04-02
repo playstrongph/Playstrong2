@@ -115,6 +115,11 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         }
         public List<ScriptableObject> StatusEffectActionObjects => statusEffectActions;
 
+        /// <summary>
+        /// Reference to the created status effect
+        /// </summary>
+        public IStatusEffect StatusEffectReference { get; set; }
+
 
         /// <summary>
         /// Subscribe status effect action

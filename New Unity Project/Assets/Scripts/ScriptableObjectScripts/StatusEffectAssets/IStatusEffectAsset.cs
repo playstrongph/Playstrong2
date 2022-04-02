@@ -61,6 +61,11 @@ namespace ScriptableObjectScripts.StatusEffectAssets
         /// Returns status effect actions as scriptable objects
         /// </summary>
         List<ScriptableObject> StatusEffectActionObjects { get; }
+        
+        /// <summary>
+        /// Reference to the created status effect
+        /// </summary>
+        IStatusEffect StatusEffectReference { get; set; }
 
         /// <summary>
         /// Apply status effect action

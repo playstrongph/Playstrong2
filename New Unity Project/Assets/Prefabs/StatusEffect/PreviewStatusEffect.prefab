@@ -265,7 +265,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Passive effects do not activate. Effective only against Heroes.
+  m_text: Hero takes additional 15% damage and has an additional 15% chance to receive
+    critical strike.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c458860444f68a64bb7a3e6508e01e58, type: 2}
   m_sharedMaterial: {fileID: 4491592743849078351, guid: c458860444f68a64bb7a3e6508e01e58,
@@ -293,11 +294,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 8
+  m_fontSize: 6.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 8
+  m_fontSizeMin: 6.5
   m_fontSizeMax: 10
   m_fontStyle: 0
   m_HorizontalAlignment: 8

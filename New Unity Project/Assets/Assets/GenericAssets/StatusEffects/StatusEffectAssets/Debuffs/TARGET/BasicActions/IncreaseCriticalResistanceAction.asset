@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc93f44ef6f6fb41838a405dc68bdf1, type: 3}
   m_Name: IncreaseCriticalResistanceAction
   m_EditorClassIdentifier: 
-  criticalResistance: -100
+  criticalResistance: -15

@@ -74,7 +74,12 @@ namespace Logic
             CreateUniqueBasicActions();
 
             CreateUniqueBasicConditions();
+            
+            //Create status effect reference
+            if (_statusEffect.StatusEffectAsset != null)
+                _statusEffect.StatusEffectAsset.StatusEffectReference = _statusEffect;
         }
+        
         
         /// <summary>
         /// Creates unique object instances of standard action, 
