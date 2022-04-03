@@ -108,6 +108,9 @@ namespace Logic
 
            //hero dies animation 
            logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
+           
+           //TODO: EndTurnIfCurrentActiveHero
+           logicTree.AddCurrent(EndTurnIfCurrentActiveHero(hero));
 
            logicTree.EndSequence();
            yield return null;
@@ -281,6 +284,21 @@ namespace Logic
            //execute the status action
            hero.HeroLogic.HeroActiveStatus.StatusAction(hero);
 
+           logicTree.EndSequence();
+           yield return null;
+       }
+
+       private IEnumerator EndTurnIfCurrentActiveHero(IHero hero)
+       {
+           var logicTree = hero.CoroutineTrees.MainLogicTree;
+           var turnController = hero.Player.BattleSceneManager.TurnController;
+           var currentActiveHero = turnController.CurrentActiveHero;
+            
+           //if dying hero is currently the active hero
+           if (hero == currentActiveHero)
+               logicTree.AddCurrent(turnController.HeroEndTurn.StartAction());
+           
+           
            logicTree.EndSequence();
            yield return null;
        }
