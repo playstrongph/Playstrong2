@@ -26,6 +26,37 @@ namespace Logic
         }
         
         /// <summary>
+        /// Receive Bonus energy based on resistance
+        /// </summary>
+        /// <param name="energyValue"></param>
+        public void IncreaseBonusEnergy(int energyValue)
+        {
+            var bonusEnergyResistance = _heroLogic.ResistanceAttributes.BonusEnergyResistance;
+            var bonusEnergyDefaultChance = 100;
+            var netBonusEnergyChance = bonusEnergyDefaultChance - bonusEnergyResistance;
+            var randomChance = Random.Range(1, 101);
+
+            var newEnergyValue = energyValue + _heroLogic.HeroAttributes.Energy;
+            
+            if(randomChance <= netBonusEnergyChance)
+                SetToValue(newEnergyValue);
+
+        }
+        
+        /// <summary>
+        /// Receive Bonus energy based on resistance
+        /// </summary>
+        /// <param name="energyValue"></param>
+        public void DecreaseBonusEnergy(int energyValue)
+        {
+            //Clamp minimum energy value to zero
+            var newEnergyValue = Mathf.Max(_heroLogic.HeroAttributes.Energy - energyValue,0);
+
+            SetToValue(newEnergyValue);
+        }
+
+
+        /// <summary>
         /// Sets the energy and hero timer units to zero
         /// </summary>
         public void ResetToZero()

@@ -42,5 +42,10 @@
         /// Probability for a hero to resist a counter attack
         /// </summary>
         int CounterAttackResistance { get; set; }
+
+        /// <summary>
+        /// Probability for a hero to receive bonus energy 
+        /// </summary>
+        int BonusEnergyResistance { get; set; }
     }
 }

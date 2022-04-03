@@ -94,6 +94,16 @@ namespace Logic
             get => counterAttackResistance;
             set => counterAttackResistance = value;
         }
+        
+        [SerializeField] private int bonusEnergyResistance;
+        /// <summary>
+        /// Probability for a hero to receive bonus energy 
+        /// </summary>
+        public int BonusEnergyResistance
+        {
+            get => bonusEnergyResistance;
+            set => bonusEnergyResistance = value;
+        }
 
     }
 }
