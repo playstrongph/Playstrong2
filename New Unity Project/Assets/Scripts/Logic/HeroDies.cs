@@ -109,7 +109,7 @@ namespace Logic
            //hero dies animation 
            logicTree.AddCurrentVisual(visualTree, HeroDiesAnimation(hero));
            
-           //TODO: EndTurnIfCurrentActiveHero
+           //End turn if current hero is the dying hero
            logicTree.AddCurrent(EndTurnIfCurrentActiveHero(hero));
 
            logicTree.EndSequence();
