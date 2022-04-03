@@ -11,15 +11,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
         
-        
-        //TODO: TEST - References
+        /// <summary>
+        /// Basic action reference to its respective status effect
+        /// </summary>
         public IStatusEffect StatusEffectReference { get; set; }
-        
-        //TODO: TEST - References END
-        
-        
-        
-        
+
 
         //These are the heroes used in the main execution action logic and visual
         public List<IHero> ExecuteActionTargetHeroes { get; private set; } = new List<IHero>();

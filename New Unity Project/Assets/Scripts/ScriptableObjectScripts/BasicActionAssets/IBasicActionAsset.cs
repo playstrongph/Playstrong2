@@ -10,13 +10,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
     public interface IBasicActionAsset
     {
        
-        //TODO: TEST - References
+        /// <summary>
+        /// Basic action reference to its respective status effect
+        /// </summary>
         IStatusEffect StatusEffectReference { get; set; }
 
-        //TODO: TEST - References END
-       
-        
-        
         /// <summary>
         /// Checks if all conditions are met (basic conditions plus caster and target life status)
         /// before proceeding to execute action 

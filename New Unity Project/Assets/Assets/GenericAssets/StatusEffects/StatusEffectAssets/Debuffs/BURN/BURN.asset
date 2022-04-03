@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d2c993779e29145841811b0340e673, type: 3}
+  m_Name: BURN
+  m_EditorClassIdentifier: 
+  statusEffectName: BURN
+  description: Hero takes 50% of BURN caster's attack as damage, ignores armor.
+  icon: {fileID: -2155852121259104947, guid: 74206892ec8a0344a96ed352e795d166, type: 3}
+  statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
+  statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
+    type: 2}
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 1992abcd8f15f4443919c9a2dfd0a2c0,
+    type: 2}
+  statusEffectInstanceType: {fileID: 11400000, guid: 4c1706fa46fecb44f9da2fcc2490811d,
+    type: 2}
+  statusEffectActions:
+  - {fileID: 11400000, guid: 161a059393c2c9249b3ba21cbb556160, type: 2}
