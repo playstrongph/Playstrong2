@@ -20,6 +20,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
 
         List<ScriptableObject> BasicActionObjects { get; }
 
+        List<IBasicActionAsset> BasicActions { get; }
+
         /// <summary>
         /// Hero targets used in the basic condition logic
         /// </summary>

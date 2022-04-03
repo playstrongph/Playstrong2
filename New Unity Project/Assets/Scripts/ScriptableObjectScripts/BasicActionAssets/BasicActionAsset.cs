@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.StandardActionAssets;
+using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
     public abstract class BasicActionAsset : ScriptableObject, IBasicActionAsset
     {
+        
+        
+        //TODO: TEST - References
+        public IStatusEffect StatusEffectReference { get; set; }
+        
+        //TODO: TEST - References END
+        
+        
+        
+        
 
         //These are the heroes used in the main execution action logic and visual
-
         public List<IHero> ExecuteActionTargetHeroes { get; private set; } = new List<IHero>();
 
         /// <summary>

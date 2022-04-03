@@ -20,6 +20,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int percentTargetBaseHealth = 0;
         [SerializeField] private int percentCasterBaseHealth = 0;
 
+        [Header("Status Effect Base Attack Factors")] 
+        [SerializeField] private int percentStatusEffectCasterBaseAttack = 0;
+        [SerializeField] private int percentStatusEffectTargetBaseAttack = 0;
+
         /// <summary>
         /// The specific logic-visual sequence for basic action
         /// </summary>
@@ -78,9 +82,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var casterBaseHealthDamage = Mathf.RoundToInt(casterBaseHealth * percentCasterBaseHealth / 100f);
             var targetBaseHealthDamage = Mathf.RoundToInt(targetBaseHealth * percentTargetBaseHealth / 100f);
+            var statusEffectCasterBaseAttackDamage = 0;
+            var statusEffectTargetBaseAttackDamage = 0;
             
+            if (StatusEffectReference != null)
+            {
+                statusEffectCasterBaseAttackDamage = Mathf.RoundToInt(
+                    StatusEffectReference.StatusEffectCasterHero.HeroLogic.HeroAttributes.BaseAttack *
+                    percentStatusEffectCasterBaseAttack / 100f);
+                
+                statusEffectTargetBaseAttackDamage = Mathf.RoundToInt(
+                    StatusEffectReference.StatusEffectTargetHero.HeroLogic.HeroAttributes.BaseAttack *
+                    percentStatusEffectTargetBaseAttack / 100f);
+                
+            }
+
             //compute total damage
-            var damage = flatDamage + casterBaseHealthDamage+targetBaseHealthDamage;
+            var damage = flatDamage + casterBaseHealthDamage+targetBaseHealthDamage + statusEffectCasterBaseAttackDamage + statusEffectTargetBaseAttackDamage;
 
             return damage;
         }

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flatDamage: 0
   percentPenetrateArmor: 100
-  percentTargetBaseHealth: 100
+  percentTargetBaseHealth: 5
   percentCasterBaseHealth: 0
+  percentStatusEffectCasterBaseAttack: 0

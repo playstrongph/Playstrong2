@@ -139,6 +139,9 @@ namespace Logic
                 {
                     var cloneBasicActionObject = Instantiate(standardAction.BasicActionObjects[k]);
                     standardAction.BasicActionObjects[k] = cloneBasicActionObject;
+                    
+                    //Set basic action status effect reference
+                    standardAction.BasicActions[k].StatusEffectReference = _statusEffect;
                 }
                     
             }

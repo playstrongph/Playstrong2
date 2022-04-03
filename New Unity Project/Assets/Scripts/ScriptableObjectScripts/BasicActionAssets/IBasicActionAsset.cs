@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Logic;
 using ScriptableObjectScripts.StandardActionAssets;
+using ScriptableObjectScripts.StatusEffectAssets;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
     public interface IBasicActionAsset
     {
+       
+        //TODO: TEST - References
+        IStatusEffect StatusEffectReference { get; set; }
+
+        //TODO: TEST - References END
+       
+        
         
         /// <summary>
         /// Checks if all conditions are met (basic conditions plus caster and target life status)

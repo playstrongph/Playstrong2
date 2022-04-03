@@ -121,7 +121,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IBasicActionAsset))]private List<ScriptableObject> basicActions = new List<ScriptableObject>();
 
         public List<ScriptableObject> BasicActionObjects => basicActions;
-        private List<IBasicActionAsset> BasicActions
+        public List<IBasicActionAsset> BasicActions
         {
             get
             {
