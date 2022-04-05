@@ -51,8 +51,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private void DisableActiveSkills(IHero hero)
         {
             var skills = hero.HeroSkills.AllSkills;
+            var displaySkills = hero.DisplayHeroSkills.AllSkills;
 
             foreach (var skill in skills)
+            {
+                skill.SkillLogic.UpdateSkillEnableStatus.DisableActiveSkill();
+            }
+            
+            foreach (var skill in displaySkills)
             {
                 skill.SkillLogic.UpdateSkillEnableStatus.DisableActiveSkill();
             }
@@ -71,8 +77,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private void EnableActiveSkills(IHero hero)
         {
             var skills = hero.HeroSkills.AllSkills;
+            var displaySkills = hero.DisplayHeroSkills.AllSkills;
 
             foreach (var skill in skills)
+            {
+                skill.SkillLogic.UpdateSkillEnableStatus.EnableActiveSkill();
+            }
+            
+            foreach (var skill in displaySkills)
             {
                 skill.SkillLogic.UpdateSkillEnableStatus.EnableActiveSkill();
             }

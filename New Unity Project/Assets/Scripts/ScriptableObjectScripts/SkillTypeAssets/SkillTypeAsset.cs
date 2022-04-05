@@ -78,9 +78,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             var visualTree = skill.CoroutineTrees.MainVisualTree;
 
             skill.SkillVisual.SilenceGraphic.enabled = true;
-            
-            
-            
+
             visualTree.EndSequence();
             yield return null;
         }
