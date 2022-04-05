@@ -48,11 +48,18 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         public override void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
+           
+            
             //Set skill enable status to SkillDisabled
             skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+            
+            //TODO:TEST
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(DisableSkillVisual(skill));
+
         }
         
         public override void EnableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
@@ -62,6 +69,10 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+            
+            //TODO:TEST
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(EnableSkillVisual(skill));
         }
         
         /// <summary>

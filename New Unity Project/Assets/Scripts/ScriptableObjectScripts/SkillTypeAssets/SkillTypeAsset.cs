@@ -64,6 +64,41 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             visualTree.EndSequence();
             yield return null;
         }
+        
+        
+        /// <summary>
+        /// Displays "X" graphic over the skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        protected IEnumerator DisableSkillVisual(ISkill skill)
+        {
+            
+            
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+
+            skill.SkillVisual.SilenceGraphic.enabled = true;
+            
+            
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Hides "X" graphic over the skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        protected IEnumerator EnableSkillVisual(ISkill skill)
+        {
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+
+            skill.SkillVisual.SilenceGraphic.enabled = false;
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
 
 
 
