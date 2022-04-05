@@ -38,6 +38,11 @@ namespace Logic
         Image SkillGraphic { get; }
         
         /// <summary>
+        /// Silence skill graphic
+        /// </summary>
+        Image SilenceGraphic { get; }
+
+        /// <summary>
         /// Interface reference to the skill cooldown image
         /// </summary>
         Image CooldownIcon { get; }

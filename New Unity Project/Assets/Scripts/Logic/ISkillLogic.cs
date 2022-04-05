@@ -48,6 +48,11 @@ namespace Logic
         /// Reference to skill events
         /// </summary>
         ISkillEvents SkillEvents { get; }
+        
+        /// <summary>
+        /// Used by silence and seal effects
+        /// </summary>
+        IUpdateSkillEnableStatus UpdateSkillEnableStatus { get; }
 
 
     }

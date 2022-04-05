@@ -76,6 +76,16 @@ namespace Logic
         }
         
         /// <summary>
+        /// Reference to the silence graphic image
+        /// </summary>
+        [SerializeField] private Image silenceGraphic;
+        public Image SilenceGraphic
+        {
+            get => silenceGraphic;
+            set => silenceGraphic = value;
+        }
+        
+        /// <summary>
         /// Reference to the skill cooldown image
         /// </summary>
         [SerializeField] private Image cooldownIcon;

@@ -10,7 +10,7 @@ namespace ScriptableObjectScripts.SkillEnableStatusAssets
         /// Skill enabled status action 
         /// </summary>
         /// <param name="skill"></param>
-        public override void StatusAction(ISkill skill)
+        public override void  StatusAction(ISkill skill)
         {
             skill.SkillLogic.UpdateSkillReadiness.EnableSkillReadiness();         
         }

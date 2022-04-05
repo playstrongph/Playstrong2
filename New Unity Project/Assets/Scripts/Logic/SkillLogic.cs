@@ -68,6 +68,11 @@ namespace Logic
         /// Reference to skill events
         /// </summary>
         public ISkillEvents SkillEvents { get; private set; }
+        
+        /// <summary>
+        /// Used by silence and seal effects
+        /// </summary>
+        public IUpdateSkillEnableStatus UpdateSkillEnableStatus { get; private set; }
 
         private void Awake()
         {
@@ -78,6 +83,7 @@ namespace Logic
             UpdateSkillReadiness = GetComponent<IUpdateSkillReadiness>();
             OtherSkillAttributes = GetComponent<IOtherSkillAttributes>();
             SkillEvents = GetComponent<ISkillEvents>();
+            UpdateSkillEnableStatus = GetComponent<IUpdateSkillEnableStatus>();
         }
     }
 }
