@@ -50,6 +50,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillReadyActions(ISkill skill)
         {
+            //TODO: Enabled Passive Skill actions
         }
         
         /// <summary>
@@ -58,6 +59,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillNotReadyActions(ISkill skill)
         {
+            //TODO: Disabled Passive Skill actions
         }
         
         

@@ -48,8 +48,6 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         public override void DisableActiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
         {
-           
-            
             //Set skill enable status to SkillDisabled
             skill.SkillLogic.SkillAttributes.SkillEnableStatus = skillEnableStatusAsset;
             

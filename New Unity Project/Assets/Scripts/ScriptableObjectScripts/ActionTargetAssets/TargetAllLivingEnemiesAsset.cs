@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
-    [CreateAssetMenu(fileName = "TargetAllEnemies", menuName = "Assets/ActionTargets/TargetAllEnemies")]
-    public class TargetAllEnemiesAsset : ActionTargetAsset
+    [CreateAssetMenu(fileName = "TargetAllLivingEnemies", menuName = "Assets/ActionTargets/TargetAllLivingEnemies")]
+    public class TargetAllLivingEnemiesAsset : ActionTargetAsset
     {
         /// <summary>
         /// Returns the hero's targeted hero

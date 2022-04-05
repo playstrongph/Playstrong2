@@ -28,6 +28,17 @@ namespace Logic
             get => deadHeroes as IDeadHeroes;
             set => deadHeroes = value as Object;
         }
+        
+        /// <summary>
+        /// Reference to extinct heroes
+        /// </summary>
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IExtinctHeroes))]
+        private Object extinctHeroes;
+        public IExtinctHeroes ExtinctHeroes
+        {
+            get => extinctHeroes as IExtinctHeroes;
+            set => extinctHeroes = value as Object;
+        }
 
         /// <summary>
         /// Reference access to hero skills

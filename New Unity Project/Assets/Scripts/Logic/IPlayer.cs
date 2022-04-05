@@ -16,6 +16,11 @@ namespace Logic
         IDeadHeroes DeadHeroes { get; }
         
         /// <summary>
+        /// Access to extinct heroes
+        /// </summary>
+        IExtinctHeroes ExtinctHeroes { get; }
+
+        /// <summary>
         /// Interface access to hero skills
         /// </summary>
         ISkillsAllHeroes SkillsAllHeroes { get; }
