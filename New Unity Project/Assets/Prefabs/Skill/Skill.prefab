@@ -948,6 +948,7 @@ MonoBehaviour:
   frameLight2D: {fileID: 6737599795114918276}
   frameGraphic: {fileID: 359849407779702826}
   skillGraphic: {fileID: 359849406935786434}
+  silenceGraphic: {fileID: 8221504373447247313}
   cooldownIcon: {fileID: 359849408546566664}
   cooldownText: {fileID: 359849408485530952}
 --- !u!114 &1242302769
