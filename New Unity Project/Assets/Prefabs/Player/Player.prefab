@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aliveHeroes: {fileID: 7690881936412398595}
   deadHeroes: {fileID: 7690881937709346213}
+  extinctHeroes: {fileID: 4134112199337419177}
   skillsAllHeroes: {fileID: 7690881937506106446}
   portraits: {fileID: 7690881938280664285}
   displaySkills: {fileID: 7690881937302385363}
