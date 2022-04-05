@@ -591,13 +591,13 @@ Transform:
   m_Children:
   - {fileID: 1276296725}
   - {fileID: 795551809}
-  - {fileID: 1507737919}
   - {fileID: 69477366}
   - {fileID: 86515348}
   - {fileID: 872859061}
   - {fileID: 1382460084}
   - {fileID: 1612361738}
   - {fileID: 8061476668367394086}
+  - {fileID: 1861145011}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1250,12 +1250,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 745994084}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1507737919 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1984551562}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1564666721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,37 +1379,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 229347228}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1731547312
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1731547313}
-  m_Layer: 0
-  m_Name: ExtinctiHeroes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1731547313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731547312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1507737919}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1984551562
+--- !u!1001 &1861145010
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1425,7 +1389,7 @@ PrefabInstance:
     - target: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -169.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
         type: 3}
@@ -1460,7 +1424,7 @@ PrefabInstance:
     - target: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
         type: 3}
@@ -1484,6 +1448,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f18f434d02c7a438691e672098eb5d, type: 3}
+--- !u!4 &1861145011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7690881937343701368, guid: d1f18f434d02c7a438691e672098eb5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1861145010}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1451263235349852441
 PrefabInstance:
   m_ObjectHideFlags: 0
