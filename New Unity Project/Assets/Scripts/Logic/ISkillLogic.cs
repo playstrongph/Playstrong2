@@ -43,6 +43,11 @@ namespace Logic
         /// Updates the skill readiness status and executes status actions
         /// </summary>
         IUpdateSkillReadiness UpdateSkillReadiness { get; }
+            
+        /// <summary>
+        /// Update the skill used last turn status
+        /// </summary>
+        IUpdateSkillLastUsedStatus UpdateSkillLastUsedStatus { get; }
         
         /// <summary>
         /// Reference to skill events

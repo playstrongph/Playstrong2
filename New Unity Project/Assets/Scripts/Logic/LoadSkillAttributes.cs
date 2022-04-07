@@ -19,7 +19,11 @@ namespace Logic
             skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
             skillAttributes.Cooldown = skillAsset.BaseCooldown;
             
-            //SET SKILL PROPERTIES AND STATUSES
+            //SET DEFAULT SKILL PROPERTIES AND STATUSES
+            //Todo - change this to a method call instead of a 'setter'
+            skillAttributes.SkillLastUsedStatus = _skillLogic.UpdateSkillLastUsedStatus.SkillNotUsedLastTurnAsset; 
+            
+            //SET SKILL ASSET REFERENCED SKILL PROPERTIES AND STATUSES
             skillAttributes.SkillType = skillAsset.SkillTypeAsset;
             skillAttributes.SkillTargets = skillAsset.SkillTargetsAsset;
             skillAttributes.SkillCooldownType = skillAsset.SkillCooldownTypeAsset;

@@ -60,6 +60,11 @@ namespace Logic
         public IUpdateSkillReadiness UpdateSkillReadiness { get; private set; }
         
         /// <summary>
+        /// Updates the skill last used status
+        /// </summary>
+        public IUpdateSkillLastUsedStatus UpdateSkillLastUsedStatus { get; private set; }
+
+        /// <summary>
         /// Reference to the other skill attributes
         /// </summary>
         public IOtherSkillAttributes OtherSkillAttributes { get; private set; }
@@ -84,6 +89,7 @@ namespace Logic
             OtherSkillAttributes = GetComponent<IOtherSkillAttributes>();
             SkillEvents = GetComponent<ISkillEvents>();
             UpdateSkillEnableStatus = GetComponent<IUpdateSkillEnableStatus>();
+            UpdateSkillLastUsedStatus = GetComponent<IUpdateSkillLastUsedStatus>();
         }
     }
 }
