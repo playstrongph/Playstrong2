@@ -10,7 +10,8 @@ namespace ScriptableObjectScripts.SkillLastUsedStatusAssets
         /// Allows skill cooldown reduction next turn
         /// </summary>
         /// <param name="skill"></param>
-        public virtual void StatusAction(ISkill skill)
+        ///   /// <param name="counter"></param>
+        public virtual void StatusAction(ISkill skill,int counter)
         {
             
         }

@@ -115,13 +115,13 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         {
             var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
+
+            //TODO: Transfer this to skill last used turn status
+            //skillAttributes.Cooldown -= counter;
+            //skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
             
-            
-            skillAttributes.Cooldown -= counter;
-            skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
-            
-            //TODO: UpdateSkillReadinessStatus
-            skill.SkillLogic.UpdateSkillReadiness.StartAction();
+            //TODO Test
+            skillAttributes.SkillLastUsedStatus.StatusAction(skill,counter);
             
             //Update the skill and display skill visual cooldown text
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
@@ -138,7 +138,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
             //Compensates for the skill cooldown reduction right after the skill is used
-            var cooldownCompensation = 1;
+            //var cooldownCompensation = 1;
             
             skillAttributes.Cooldown = maxSkillCooldown;
 
@@ -149,7 +149,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
             
             //TODO - Temp, need a better solution
-            skillAttributes.Cooldown += cooldownCompensation;
+            //skillAttributes.Cooldown += cooldownCompensation;
         }
 
         public override void UpdateSkillReadiness(ISkill skill)

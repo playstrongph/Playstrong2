@@ -1,5 +1,6 @@
 ﻿using ScriptableObjectScripts.SkillCooldownTypeAssets;
 using ScriptableObjectScripts.SkillEnableStatusAssets;
+using ScriptableObjectScripts.SkillLastUsedStatusAssets;
 using ScriptableObjectScripts.SkillReadinessStatusAssets;
 using ScriptableObjectScripts.SkillTargetsAssets;
 using ScriptableObjectScripts.SkillTypeAssets;

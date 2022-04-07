@@ -11,9 +11,10 @@ namespace ScriptableObjectScripts.SkillLastUsedStatusAssets
         /// Allows skill cooldown reduction next turn
         /// </summary>
         /// <param name="skill"></param>
-        public override void StatusAction(ISkill skill)
+        ///  <param name="counter"></param>
+        public override void StatusAction(ISkill skill,int counter)
         {
-            //TODO: Switch status to NotUsedLastTurn
+            skill.SkillLogic.UpdateSkillLastUsedStatus.SetNotUsedSkillLastTurn();
         }
         
         

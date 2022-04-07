@@ -57,6 +57,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
             _skillParent.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
             //TODO: Set skillLastUsedStatus to LastTurn
+            _skillParent.SkillLogic.UpdateSkillLastUsedStatus.SetUsedSkillLastTurn();
         }
 
     }

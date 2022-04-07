@@ -1,6 +1,6 @@
 ﻿using Logic;
 
-namespace ScriptableObjectScripts.SkillReadinessStatusAssets
+namespace ScriptableObjectScripts.SkillLastUsedStatusAssets
 {
     public interface ISkillLastUsedStatusAsset
     {
@@ -8,6 +8,7 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
         /// Allows skill cooldown reduction next turn
         /// </summary>
         /// <param name="skill"></param>
-        void StatusAction(ISkill skill);
+        /// /// <param name="counter"></param>
+        void StatusAction(ISkill skill,int counter);
     }
 }
