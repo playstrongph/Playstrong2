@@ -21,13 +21,25 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Checks if skill is Ready before executing skill start action
         /// </summary>
-        /// <param name="casterHero"></param>
+        /// <param name="hero"></param>
         /// <param name="targetHero"></param>
-        public override void StartAction(IHero casterHero,IHero targetHero)
+        public override void StartAction(IHero hero,IHero targetHero)
         {
+            Debug.Log("Skill Action Asset Override Start Action");
+            
             //TODO - check args if correct
-            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,casterHero,targetHero);
+            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,hero,targetHero);
 
+        }
+        
+        /// <summary>
+        /// Checks if skill is Ready before executing skill start action
+        /// </summary>
+        /// <param name="hero"></param>
+        public override void StartAction(IHero hero)
+        {
+            //Note: caster hero and target hero is the same for single IHero events
+            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,hero,hero);
         }
         
         /// <summary>
@@ -38,15 +50,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="targetHero"></param>
         public void SkillStartAction(IHero casterHero,IHero targetHero)
         {
-            //TODO - Check if this is still needed - can be void?
-            //var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            //logicTree.AddCurrent(SetUsingPassiveSkillStatus());
-
             //Call base class start action
             base.StartAction(casterHero,targetHero);
-            
-            //TODO - Check if this is still needed - can be void?
-            //logicTree.AddCurrent(SetHeroUsedPassiveSkill());
         }
 
     }

@@ -15,6 +15,9 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+            
+            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill);
+            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill.CasterHero);
         }
         
         public override void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
@@ -24,6 +27,9 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
+            
+            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
+            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);
 
         }
         
@@ -53,9 +59,8 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillReadyActions(ISkill skill)
         {
-            //TODO: Enabled Passive Skill actions
-            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
-            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);
+         
+         
         }
         
         /// <summary>
@@ -64,9 +69,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillNotReadyActions(ISkill skill)
         {
-            //TODO: Disabled Passive Skill actions
-            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill);
-            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill.CasterHero);
+            
         }
         
         

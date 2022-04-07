@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
   m_Name: PassiveSkillSample
   m_EditorClassIdentifier: 
-  skillName: ActiveSkill2
-  skillDescription: The quick brown fox jumps over the lazy dog. 77
-  skillEffectAsset: {fileID: 11400000, guid: 612d333a5f98d814ca50ddbc5b82af92, type: 2}
+  skillName: PassiveSkill
+  skillDescription: At the start of your turn, give all allies LUCKY
+  skillEffectAsset: {fileID: 11400000, guid: 7db6c1437d2981b4dbe666ae1adf2e03, type: 2}
   skillIcon: {fileID: -1275177327444788608, guid: 1e34d481195a8b94caf686256c37b8fa,
     type: 3}
   skillTypeAsset: {fileID: 11400000, guid: 8a7626581c2f0aa458b6d8d26522444b, type: 2}
-  baseCooldown: 2
-  skillTargetsAsset: {fileID: 11400000, guid: 53f8e961d49a0424585dcc79f30d849a, type: 2}
+  baseCooldown: 1
+  skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 6cefc260956c40a44973d55b4a3e3835,
     type: 2}

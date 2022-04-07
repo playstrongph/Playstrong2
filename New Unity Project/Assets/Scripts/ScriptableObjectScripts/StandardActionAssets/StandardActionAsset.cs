@@ -220,13 +220,15 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Base method for actions execution
         /// </summary>
-        /// <param name="casterHero"></param>
+        /// <param name="hero"></param>
         ///  <param name="targetHero"></param>
-        public virtual void StartAction(IHero casterHero, IHero targetHero)
+        public virtual void StartAction(IHero hero, IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            
+            Debug.Log("Base Standard Action Start Action");
 
-            logicTree.AddCurrent(StartActionCoroutine(casterHero,targetHero));
+            logicTree.AddCurrent(StartActionCoroutine(hero,targetHero));
         }
 
         /// <summary>
