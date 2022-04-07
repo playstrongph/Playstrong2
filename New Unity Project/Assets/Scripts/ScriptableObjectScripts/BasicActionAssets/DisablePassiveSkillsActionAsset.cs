@@ -41,14 +41,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
-            DisableActiveSkills(targetHero);
-           
+            DisablePassiveSkills(targetHero);
             
             logicTree.EndSequence();
             yield return null;
         }
-
-        private void DisableActiveSkills(IHero hero)
+        
+       
+        private void DisablePassiveSkills(IHero hero)
         {
             var skills = hero.HeroSkills.AllSkills;
             var displaySkills = hero.DisplayHeroSkills.AllSkills;
@@ -68,13 +68,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
-            EnableActiveSkills(targetHero);
+            EnablePassiveSkills(targetHero);
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        private void EnableActiveSkills(IHero hero)
+        private void EnablePassiveSkills(IHero hero)
         {
             var skills = hero.HeroSkills.AllSkills;
             var displaySkills = hero.DisplayHeroSkills.AllSkills;
