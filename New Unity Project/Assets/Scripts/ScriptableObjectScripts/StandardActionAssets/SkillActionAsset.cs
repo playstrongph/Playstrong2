@@ -25,8 +25,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="targetHero"></param>
         public override void StartAction(IHero hero,IHero targetHero)
         {
-            Debug.Log("Skill Action Asset Override Start Action");
-            
             //TODO - check args if correct
             _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,hero,targetHero);
 

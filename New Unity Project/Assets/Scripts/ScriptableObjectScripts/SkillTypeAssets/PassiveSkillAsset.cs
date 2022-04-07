@@ -16,8 +16,16 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
             
-            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill);
-            skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill.CasterHero);
+            //Note: this is for preview skills, which have no skillEffectAsset
+            if (skill.SkillLogic.SkillEffect != null)  
+            {
+                skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill);
+                skill.SkillLogic.SkillEffect.UnsubscribeSkillEffect(skill.CasterHero);    
+            }
+            
+            //Display "X" visual
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(DisableSkillVisual(skill));
         }
         
         public override void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset)
@@ -28,9 +36,16 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
             
-            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
-            skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);
-
+            //Note: this is for preview skills, which have no skillEffectAsset
+            if (skill.SkillLogic.SkillEffect != null)
+            {
+                skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
+                skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);    
+            }
+            
+            //Remove "X" visual
+            var visualTree = skill.CoroutineTrees.MainVisualTree;
+            visualTree.AddCurrent(EnableSkillVisual(skill));
         }
         
         /// <summary>

@@ -73,8 +73,6 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <returns></returns>
         protected IEnumerator DisableSkillVisual(ISkill skill)
         {
-            
-            
             var visualTree = skill.CoroutineTrees.MainVisualTree;
 
             skill.SkillVisual.SilenceGraphic.enabled = true;

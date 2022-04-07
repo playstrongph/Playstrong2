@@ -225,8 +225,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public virtual void StartAction(IHero hero, IHero targetHero)
         {
             var logicTree = hero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Base Standard Action Start Action");
 
             logicTree.AddCurrent(StartActionCoroutine(hero,targetHero));
         }
