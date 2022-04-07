@@ -53,8 +53,6 @@ namespace Logic
             set => skillEnableStatus = value as ScriptableObject;
         }
 
-
-
         [SerializeField]
         [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
         private ScriptableObject skillReadiness;
@@ -66,6 +64,20 @@ namespace Logic
             get => skillReadiness as ISkillReadinessStatusAsset;
             set => skillReadiness = value as ScriptableObject;
         }
+        
+        [SerializeField]
+        [RequireInterfaceAttribute.RequireInterface(typeof(ISkillLastUsedStatusAsset))]
+        private ScriptableObject skillLastUsedStatus;
+        /// <summary>
+        /// Skill 'used last turn' or 'skill not used last turn' readiness status 
+        /// </summary>
+        public ISkillLastUsedStatusAsset SkillLastUsedStatus
+        {
+            get => skillLastUsedStatus as ISkillLastUsedStatusAsset;
+            set => skillLastUsedStatus = value as ScriptableObject;
+        }
+        
+        
 
 
         /// <summary>

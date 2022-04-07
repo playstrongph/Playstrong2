@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 2798504930243116092}
   - component: {fileID: 69477368}
   - component: {fileID: 6405361284868594001}
+  - component: {fileID: 1108525548}
   - component: {fileID: 1595532410864436150}
   - component: {fileID: 4422343254684008384}
   m_Layer: 0
@@ -294,6 +295,7 @@ MonoBehaviour:
   baseCooldown: 0
   skillEnableStatus: {fileID: 0}
   skillReadiness: {fileID: 0}
+  skillLastUsedStatus: {fileID: 0}
   skillType: {fileID: 0}
   skillTargets: {fileID: 0}
   skillCooldownType: {fileID: 0}
@@ -363,6 +365,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillEnabledAsset: {fileID: 11400000, guid: 95ffeecbea434384d813720511451a26, type: 2}
   skillDisabledAsset: {fileID: 11400000, guid: f714540f1c49f27419146198381d1c9d, type: 2}
+--- !u!114 &1108525548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359849407772675572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027d2f7a35caf0d45a5a21132a09af6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillUsedLastTurnAsset: {fileID: 11400000, guid: 89efc0e41f8330f40a50a6a78916e883,
+    type: 2}
+  skillNotUsedLastTurnAsset: {fileID: 11400000, guid: 605940fcd7c006f4c86976ce66ed93b7,
+    type: 2}
 --- !u!114 &1595532410864436150
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,6 +27,11 @@ namespace Logic
         /// Skill 'Ready' or 'Not Ready' readiness status 
         /// </summary>
         ISkillReadinessStatusAsset SkillReadiness { get; set; }
+        
+        /// <summary>
+        /// Skill used or not used last turn
+        /// </summary>
+        ISkillLastUsedStatusAsset SkillLastUsedStatus { get; set; }
 
         /// <summary>
         /// Skill type reference

@@ -55,6 +55,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
             
             //TEST - TODO: Reset Skill Cooldown
             _skillParent.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
+            
+            //TODO: Set skillLastUsedStatus to LastTurn
         }
 
     }
