@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroInabilityStatusAssets
@@ -58,6 +59,17 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
+        }
+        
+        /// <summary>
+        /// If there are no inabilities, proceed with the skill action
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
+        {
+            skillAction.SkillStartAction(casterHero,targetHero);
         }
     }
 }

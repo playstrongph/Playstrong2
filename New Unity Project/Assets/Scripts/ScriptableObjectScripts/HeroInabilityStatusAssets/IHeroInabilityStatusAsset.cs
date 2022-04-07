@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 
 namespace ScriptableObjectScripts.HeroInabilityStatusAssets
 {
@@ -36,6 +37,16 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void CallPostBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
+
+
+        /// <summary>
+        /// Start skill action if the casterHero has no inabilities
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+         void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero);
+
 
     }
 }

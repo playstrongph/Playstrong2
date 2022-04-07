@@ -26,7 +26,10 @@ namespace ScriptableObjectScripts.SkillReadinessStatusAssets
        /// <param name="targetHero"></param>
         public override void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
         {
-            skillAction.SkillStartAction(casterHero,targetHero);
+            var casterInabilityStatus = casterHero.HeroLogic.HeroInabilityStatus;
+            
+            //Check that casterHero has no inabilities before starting skill action
+            casterInabilityStatus.SkillStartAction(skillAction,casterHero,targetHero);
         }
 
     }

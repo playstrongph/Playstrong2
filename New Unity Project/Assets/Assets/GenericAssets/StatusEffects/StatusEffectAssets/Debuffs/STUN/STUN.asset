@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: STUN
   m_EditorClassIdentifier: 
   statusEffectName: STUN
-  description: Hero misses the next turn.
+  description: Hero can't act next turn.
   icon: {fileID: -2000798982301277983, guid: eca06af6f435f3a4f9b051673e1a45d6, type: 3}
   statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: 0ab9ab29b3a5df447819a0f787ce856f,
