@@ -42,13 +42,16 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             //Compensates for the skill cooldown reduction right after the skill is used
             var cooldownCompensation = 1;
             
-            skillAttributes.Cooldown = maxSkillCooldown + cooldownCompensation;
+            skillAttributes.Cooldown = maxSkillCooldown;
 
             //Update skill readiness and start its action
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
+            
+            //TODO - Temp, need a better solution
+            skillAttributes.Cooldown += cooldownCompensation;
         }
         
         

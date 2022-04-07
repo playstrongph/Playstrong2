@@ -59,7 +59,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillReadyActions(ISkill skill)
         {
-         
+            // Leave blank: Visual Purposes only
          
         }
         
@@ -69,7 +69,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         public override void SkillNotReadyActions(ISkill skill)
         {
-            
+            // Leave blank: Visual Purposes only
         }
         
         

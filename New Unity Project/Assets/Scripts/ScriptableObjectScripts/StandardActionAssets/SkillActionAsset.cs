@@ -52,6 +52,9 @@ namespace ScriptableObjectScripts.StandardActionAssets
         {
             //Call base class start action
             base.StartAction(casterHero,targetHero);
+            
+            //TEST - TODO: Reset Skill Cooldown
+            _skillParent.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
         }
 
     }

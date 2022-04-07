@@ -218,8 +218,9 @@ namespace Logic
         {
             var skill = SkillTargetCollider.Skill;
             var logicTree = skill.CasterHero.CoroutineTrees.MainLogicTree;
-
-            skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
+            
+            //TODO: Test - transferred to SkillActionAsset
+            //skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
             logicTree.EndSequence();
             yield return null;
