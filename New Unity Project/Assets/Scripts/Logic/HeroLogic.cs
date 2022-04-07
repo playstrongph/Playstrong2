@@ -55,6 +55,20 @@ namespace Logic
             get => heroLifeStatus as IHeroLifeStatusAsset;
             set => heroLifeStatus = value as ScriptableObject;
         }
+        
+        [Header("HERO FACTORS")]
+        
+        [SerializeField] private int inabilityFactor = 0;
+        
+        /// <summary>
+        /// Factors used to determine the amount of overlapping inabilities on the hero
+        /// No inabilities equates to a value of zero
+        /// </summary>
+        public int InabilityFactor
+        {
+            set => inabilityFactor = value;
+            get => inabilityFactor;
+        }
 
         #region COMPONENT REFERENCES
 
@@ -132,6 +146,11 @@ namespace Logic
         /// Sets the hero's life status to either hero dead or hero alive
         /// </summary>
         public ISetHeroLifeStatus SetHeroLifeStatus { get; private set; }
+        
+        /// <summary>
+        /// Set with or no inability
+        /// </summary>
+        public ISetHeroInabilityStatus SetHeroInabilityStatus { get; private set; }
 
         /// <summary>
         /// Reference to hero events
@@ -176,6 +195,7 @@ namespace Logic
             DealDamage = GetComponent<IDealDamage>();
             TakeDamage = GetComponent<ITakeDamage>();
             HeroDies = GetComponent<IHeroDies>();
+            SetHeroInabilityStatus = GetComponent<ISetHeroInabilityStatus>();
 
         }
     }

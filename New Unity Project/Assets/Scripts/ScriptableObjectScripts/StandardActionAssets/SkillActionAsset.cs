@@ -51,10 +51,10 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //Call base class start action
             base.StartAction(casterHero,targetHero);
             
-            //TEST - TODO: Reset Skill Cooldown
+            //Reset Skill Cooldown after skill use
             _skillParent.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
-            //TODO: Set skillLastUsedStatus to LastTurn
+            //Set skillLastUsedStatus to used last turn
             _skillParent.SkillLogic.UpdateSkillLastUsedStatus.SetUsedSkillLastTurn();
         }
 

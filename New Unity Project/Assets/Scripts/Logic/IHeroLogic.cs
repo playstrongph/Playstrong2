@@ -19,6 +19,12 @@ namespace Logic
         IHeroInabilityStatusAsset HeroInabilityStatus { get; set; }
 
         IHeroLifeStatusAsset HeroLifeStatus { get; set; }
+        
+        /// <summary>
+        /// Factors used to determine the amount of overlapping inabilities on the hero
+        /// No inabilities equates to a value of zero
+        /// </summary>
+        int InabilityFactor { get; set; }
 
         #region COMPONENT REFERENCES
 
@@ -116,6 +122,11 @@ namespace Logic
         /// Reference to hero dies
         /// </summary>
         IHeroDies HeroDies { get; }
+        
+        /// <summary>
+        /// Set with or no Inability
+        /// </summary>
+        ISetHeroInabilityStatus SetHeroInabilityStatus { get;}
 
         #endregion
     }
