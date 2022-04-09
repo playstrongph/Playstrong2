@@ -370,7 +370,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         #region TEST LOGIC
 
         
-        /// <summary>
+        /*/// <summary>
         /// TODO: TEST - Returns valid Targets
         /// </summary>
         /// <param name="casterHero"></param>
@@ -405,7 +405,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
             
             return ExecuteActionTargetHeroes;
-        }
+        }*/
 
         #endregion
 

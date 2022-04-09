@@ -11,6 +11,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <summary>
         /// Subscribes the standard action to the single IHero argument event
         /// Note that for single IHero argument events, this hero and target hero are the same
+        /// but subscribe standard action should still be target hero
         /// </summary>
         /// <param name="thisHero"></param>
         /// /// <param name="targetHero"></param>
@@ -27,6 +28,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <summary>
         /// Unsubscribes the standard action to the single IHero argument event
         /// Note that for single IHero argument events, this hero and target hero are the same
+        /// but subscribe standard action should still be target hero
         /// </summary>
         /// <param name="thisHero"></param>
         /// /// <param name="targetHero"></param>
