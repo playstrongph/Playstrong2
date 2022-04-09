@@ -79,8 +79,9 @@ namespace Logic
             //Create status effect reference
             if (_statusEffect.StatusEffectAsset != null)
                 _statusEffect.StatusEffectAsset.StatusEffectReference = _statusEffect;
-
-            SetStatusEffectActionAssetCasterHeroReference(_statusEffect.StatusEffectCasterHero);
+            
+            //Call this after the unique instances are created
+            SetStatusEffectActionAssetCasterHeroReference();
         }
         
         
@@ -181,8 +182,7 @@ namespace Logic
         /// <summary>
         /// Sets the caster hero reference
         /// </summary>
-        /// <param name="casterHero"></param>
-        private void SetStatusEffectActionAssetCasterHeroReference(IHero casterHero)
+        private void SetStatusEffectActionAssetCasterHeroReference()
         {
             foreach (var statusEffectAction in _statusEffect.StatusEffectAsset.StatusEffectActions)
             {
