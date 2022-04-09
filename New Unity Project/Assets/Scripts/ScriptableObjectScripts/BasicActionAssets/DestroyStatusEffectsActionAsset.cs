@@ -26,7 +26,25 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         [SerializeField] private int randomBuffs = 0;
 
-        [SerializeField] private List<IStatusEffectAsset> _statusEffectAssets;
+        [SerializeField] private List<ScriptableObject> removeStatusEffectAssets = new List<ScriptableObject>();
+        
+        /// <summary>
+        /// Status effects not to be removed 
+        /// </summary>
+        private List<IStatusEffectAsset> RemoveStatusEffectAssets
+        {
+            get
+            {
+                var removalList = new List<IStatusEffectAsset>();
+                foreach (var statusEffectObject in removeStatusEffectAssets)
+                {
+                    var statusEffect = statusEffectObject as IStatusEffectAsset;
+                    removalList.Add(statusEffect);
+                }
+
+                return removalList;
+            }
+        }
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -83,7 +101,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             allStatusEffects.AddRange(buffs);
             allStatusEffects.AddRange(debuffs);
 
-            foreach (var  statusEffectAsset in _statusEffectAssets)
+            foreach (var  statusEffectAsset in RemoveStatusEffectAssets)
             {
                 var statusEffectAssetName = statusEffectAsset.StatusEffectName;
 

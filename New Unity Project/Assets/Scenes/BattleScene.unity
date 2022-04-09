@@ -809,6 +809,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492938962}
     m_Modifications:
+    - target: {fileID: 3758751352414681440, guid: e787de88d498b7741bc5501b00237415,
+        type: 3}
+      propertyPath: deathExemptionList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9025590045280894976, guid: e787de88d498b7741bc5501b00237415,
         type: 3}
       propertyPath: m_LocalPosition.x
