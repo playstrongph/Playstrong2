@@ -19,6 +19,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [Header("Base Health Factors")]
         [SerializeField] private int percentTargetBaseHealth = 0;
         [SerializeField] private int percentCasterBaseHealth = 0;
+        
+        [Header("Damage Factors")]
+        [SerializeField] private int percentDamageTaken = 0;
 
         [Header("Status Effect Base Attack Factors")] 
         [SerializeField] private int percentStatusEffectCasterBaseAttack = 0;
@@ -77,14 +80,36 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         private int ComputeTotalDamage(IHero casterHero,IHero targetHero)
         {
+            var totalBaseHealthDamage = TotalBaseHealthDamage(casterHero, targetHero);
+            var totalStatusEffectBaseAttackDamage = TotalStatusEffectBaseAttackDamage();
+            var totalDamageTakenAndDealt = TotalDamageTakenAndDealt(targetHero);
+
+            //compute total damage
+            var damage = flatDamage + totalBaseHealthDamage + totalStatusEffectBaseAttackDamage + totalDamageTakenAndDealt;
+
+            return damage;
+        }
+        
+        private int TotalBaseHealthDamage(IHero casterHero,IHero targetHero)
+        {
+
             var casterBaseHealth = casterHero.HeroLogic.HeroAttributes.BaseHealth;
             var targetBaseHealth = targetHero.HeroLogic.HeroAttributes.BaseHealth;
 
             var casterBaseHealthDamage = Mathf.RoundToInt(casterBaseHealth * percentCasterBaseHealth / 100f);
             var targetBaseHealthDamage = Mathf.RoundToInt(targetBaseHealth * percentTargetBaseHealth / 100f);
+
+            var damage = casterBaseHealthDamage + targetBaseHealthDamage;
+            
+            return damage;
+        }
+
+        private int TotalStatusEffectBaseAttackDamage()
+        {
+
             var statusEffectCasterBaseAttackDamage = 0;
             var statusEffectTargetBaseAttackDamage = 0;
-            
+
             if (StatusEffectReference != null)
             {
                 statusEffectCasterBaseAttackDamage = Mathf.RoundToInt(
@@ -94,12 +119,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 statusEffectTargetBaseAttackDamage = Mathf.RoundToInt(
                     StatusEffectReference.StatusEffectTargetHero.HeroLogic.HeroAttributes.BaseAttack *
                     percentStatusEffectTargetBaseAttack / 100f);
-                
             }
 
-            //compute total damage
-            var damage = flatDamage + casterBaseHealthDamage+targetBaseHealthDamage + statusEffectCasterBaseAttackDamage + statusEffectTargetBaseAttackDamage;
+            var damage = statusEffectCasterBaseAttackDamage + statusEffectTargetBaseAttackDamage;
+            
+            return damage;
+        }
 
+        private int TotalDamageTakenAndDealt(IHero targetHero)
+        {   
+            //Note: Final damage dealt is the same as final damage taken, just different hero perspective
+
+            var targetDamageTaken = targetHero.HeroLogic.TakeDamage.FinalDamageTaken;
+
+            var targetPercentDamageTaken = Mathf.RoundToInt(targetDamageTaken * percentDamageTaken / 100f);
+
+            var damage = targetPercentDamageTaken;
+            
             return damage;
         }
 
