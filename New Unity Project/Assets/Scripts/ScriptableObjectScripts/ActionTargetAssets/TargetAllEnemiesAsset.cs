@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.ActionTargetAssets
@@ -12,8 +13,9 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
+        /// <param name="standardActionAsset"></param>
         /// <returns></returns>
-        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero)
+        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
         {
             //Should be from the perspective of the caster hero
             var allLivingEnemies = casterHero.Player.OtherPlayer.AliveHeroes.Heroes;

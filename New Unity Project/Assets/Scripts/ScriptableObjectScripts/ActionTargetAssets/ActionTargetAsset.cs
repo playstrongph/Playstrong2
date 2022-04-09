@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Logic;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.ActionTargetAssets
@@ -28,8 +29,9 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
+        /// <param name="standardActionAsset"></param>
         /// <returns></returns>
-        public virtual List<IHero> GetActionTargets(IHero casterHero, IHero targetHero)
+        public virtual List<IHero> GetActionTargets(IHero casterHero, IHero targetHero, IStandardActionAsset standardActionAsset)
         {
             var actionTargets = new List<IHero>();
             

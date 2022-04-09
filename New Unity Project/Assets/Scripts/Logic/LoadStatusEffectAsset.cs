@@ -81,7 +81,7 @@ namespace Logic
                 _statusEffect.StatusEffectAsset.StatusEffectReference = _statusEffect;
             
             //Call this after the unique instances are created
-            SetStatusEffectActionAssetCasterHeroReference();
+            SetStatusEffectActionAssetHeroReferences();
         }
         
         
@@ -180,13 +180,14 @@ namespace Logic
         }
         
         /// <summary>
-        /// Sets the caster hero reference
+        /// Sets the hero reference
         /// </summary>
-        private void SetStatusEffectActionAssetCasterHeroReference()
+        private void SetStatusEffectActionAssetHeroReferences()
         {
             foreach (var statusEffectAction in _statusEffect.StatusEffectAsset.StatusEffectActions)
             {
                 statusEffectAction.StatusEffectCasterHero = _statusEffect.StatusEffectCasterHero;
+                statusEffectAction.StatusEffectTargetHero = _statusEffect.StatusEffectTargetHero;
             }
         }
 

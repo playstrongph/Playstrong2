@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
-    [CreateAssetMenu(fileName = "TargetHero", menuName = "Assets/ActionTargets/TargetHero")]
-    public class TargetHeroAsset : ActionTargetAsset
+    [CreateAssetMenu(fileName = "StatusEffectTargetHero", menuName = "Assets/ActionTargets/StatusEffectTargetHero")]
+    public class StatusEffectTargetHeroAsset : ActionTargetAsset
     {
         /// <summary>
-        /// Returns the hero's targeted hero
+        /// Returns the status effect target hero
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
@@ -17,12 +17,12 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <returns></returns>
         public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
         {
-            var actionTargets = new List<IHero>{targetHero};
+            var statusEffectActionAsset = standardActionAsset as IStatusEffectActionAsset;
 
-            //var targetHero = hero.HeroLogic.LastHeroTargets.TargetedHero;
+            var statusEffectTargetHero = statusEffectActionAsset?.StatusEffectTargetHero;
             
-            //actionTargets.Add(targetHero);
-            
+            var actionTargets = new List<IHero>{statusEffectTargetHero};
+
             return actionTargets;
         }
         

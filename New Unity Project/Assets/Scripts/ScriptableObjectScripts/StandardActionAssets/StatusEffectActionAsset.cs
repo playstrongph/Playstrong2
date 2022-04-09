@@ -7,12 +7,18 @@ namespace ScriptableObjectScripts.StandardActionAssets
     public class StatusEffectActionAsset : StandardActionAsset, IStatusEffectActionAsset
     {
 
-        //TEST
+        
         /// <summary>
         /// Requires a unique instance of the status effect action asset to set the reference
         /// Reference is set in LoadStatusEffectAsset.cs
         /// </summary>
         public IHero StatusEffectCasterHero { get; set; }
+        
+        /// <summary>
+        /// Requires a unique instance of the status effect action asset to set the reference
+        /// Reference is set in LoadStatusEffectAsset.cs
+        /// </summary>
+        public IHero StatusEffectTargetHero { get; set; }
 
         /// <summary>
         /// Executes the base class method StartActionCoroutine
