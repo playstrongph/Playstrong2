@@ -86,6 +86,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //compute total damage
             var damage = flatDamage + totalBaseHealthDamage + totalStatusEffectBaseAttackDamage + totalDamageTakenAndDealt;
+            
+            Debug.Log("Deal Non-Skill Damage: " +damage);
 
             return damage;
         }

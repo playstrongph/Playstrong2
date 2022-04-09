@@ -313,6 +313,8 @@ namespace Logic
         public void EventAfterHeroTakesSingleTargetAttack(IHero hero)
         {
             EAfterHeroTakesSingleTargetAttack?.Invoke(hero);
+            
+            Debug.Log("EventAfterHeroTakesSingleTargetAttack: " +hero.HeroName);
         }
         
         /// <summary>

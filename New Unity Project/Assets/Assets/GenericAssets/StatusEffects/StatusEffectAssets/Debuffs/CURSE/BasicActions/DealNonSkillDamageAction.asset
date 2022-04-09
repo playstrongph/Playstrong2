@@ -16,6 +16,6 @@ MonoBehaviour:
   percentPenetrateArmor: 0
   percentTargetBaseHealth: 0
   percentCasterBaseHealth: 0
-  percentDamageTaken: 10
+  percentDamageTaken: 50
   percentStatusEffectCasterBaseAttack: 0
   percentStatusEffectTargetBaseAttack: 0

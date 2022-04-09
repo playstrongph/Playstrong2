@@ -18,7 +18,9 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void SubscribeStandardAction(IHero thisHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             //This is a single IHero arg event 
-            thisHero.HeroLogic.HeroEvents.EAfterHeroTakesSingleTargetAttack += standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EAfterHeroTakesSingleTargetAttack += standardAction.StartAction;
+            
+            Debug.Log("Target Hero: " +targetHero.HeroName);
         }
         
         
@@ -32,7 +34,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void UnsubscribeStandardAction(IHero thisHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             //This is a single IHero arg event
-            thisHero.HeroLogic.HeroEvents.EAfterHeroTakesSingleTargetAttack -= standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EAfterHeroTakesSingleTargetAttack -= standardAction.StartAction;
         }
         
        

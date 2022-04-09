@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
-  m_Name: SampleHero
+  m_Name: SampleLunaHero 2
   m_EditorClassIdentifier: 
-  heroName: LunaSample
+  heroName: 2 LunaSample
   heroClass: Warrior
   heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
     type: 3}
-  health: 180
-  attack: 70
-  speed: 220
-  chance: 230
-  armor: 240
-  fightingSpirit: 250
+  health: 170
+  attack: 22
+  speed: 190
+  chance: 170
+  armor: 210
+  fightingSpirit: 139
   heroSkillAssets:
   - {fileID: 11400000, guid: d64f329e34c9502468e088a5ed6c4f0a, type: 2}
   - {fileID: 11400000, guid: 9d41826b7480bd04ab51a1e0481b5a52, type: 2}
-  - {fileID: 11400000, guid: 5513111481d3ba04a8d16c4781fa3dd6, type: 2}

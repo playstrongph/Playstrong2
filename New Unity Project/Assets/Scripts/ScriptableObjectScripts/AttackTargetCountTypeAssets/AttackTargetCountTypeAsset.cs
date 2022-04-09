@@ -53,6 +53,8 @@ namespace ScriptableObjectScripts.AttackTargetCountTypeAssets
             casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsSingleTargetAttack(casterHero);
             targetHero.HeroLogic.HeroEvents.EventAfterHeroTakesSingleTargetAttack(targetHero);
             
+         
+            
             logicTree.EndSequence();
             yield return null;
         }
