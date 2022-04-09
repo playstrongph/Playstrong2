@@ -10,17 +10,17 @@ namespace Logic
     public class RemoveStatusEffect : MonoBehaviour, IRemoveStatusEffect
     {
 
-        [SerializeField] private List<ScriptableObject> exemptionList = new List<ScriptableObject>();
+        [SerializeField] private List<ScriptableObject> deathExemptionList = new List<ScriptableObject>();
         
         /// <summary>
         /// Status effects not to be removed at death
         /// </summary>
-        private List<IStatusEffectAsset> ExemptionList
+        private List<IStatusEffectAsset> DeathExemptionList
         {
             get
             {
                 var exemptedList = new List<IStatusEffectAsset>();
-                foreach (var statusEffectObject in exemptionList)
+                foreach (var statusEffectObject in deathExemptionList)
                 {
                     var statusEffect = statusEffectObject as IStatusEffectAsset;
                     exemptedList.Add(statusEffect);
@@ -62,7 +62,7 @@ namespace Logic
             //Name of status effect to be checked against the exemption list
             var statusEffectName = _statusEffect.StatusEffectName;
 
-            foreach (var exemptStatusEffectAsset in ExemptionList)
+            foreach (var exemptStatusEffectAsset in DeathExemptionList)
             {
                exemptionListNames.Add(exemptStatusEffectAsset.StatusEffectName);
             }

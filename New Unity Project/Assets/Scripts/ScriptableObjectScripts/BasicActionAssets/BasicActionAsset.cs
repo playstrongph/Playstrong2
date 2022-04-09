@@ -279,6 +279,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Shuffle status effects list
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        protected List<IStatusEffect> ShuffleStatusEffectsList(List<IStatusEffect> list)
+        {
+            //Randomize the List
+            for (var i = 0; i < list.Count; i++) 
+            {
+                var temp = list[i];
+                var randomIndex = Random.Range(i, list.Count);
+                list[i] = list[randomIndex];
+                list[randomIndex] = temp;
+            }
+            return list;
+        }
 
 
 
