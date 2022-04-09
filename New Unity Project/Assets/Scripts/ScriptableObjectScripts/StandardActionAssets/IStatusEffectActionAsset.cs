@@ -5,6 +5,11 @@ namespace ScriptableObjectScripts.StandardActionAssets
     public interface IStatusEffectActionAsset
     {
         /// <summary>
+        /// Requires a unique instance of the status effect action asset to set the reference
+        /// </summary>
+        IHero StatusEffectCasterHero { get; set; }
+
+        /// <summary>
         /// Executes the base class method StartActionCoroutine
         /// </summary>
         /// <param name="casterHero"></param>

@@ -6,6 +6,7 @@ using ScriptableObjectScripts.BasicConditionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using ScriptableObjectScripts.StatusEffectAssets;
 using UnityEngine;
+using Debug = System.Diagnostics.Debug;
 
 namespace Logic
 {
@@ -78,6 +79,16 @@ namespace Logic
             //Create status effect reference
             if (_statusEffect.StatusEffectAsset != null)
                 _statusEffect.StatusEffectAsset.StatusEffectReference = _statusEffect;
+                
+            
+            //Set the unique status effect action caster hero reference
+            Debug.Assert(_statusEffect.StatusEffectAsset != null, "_statusEffect.StatusEffectAsset != null");
+            foreach (var statusEffectAction in _statusEffect.StatusEffectAsset.StatusEffectActions)
+            {
+                statusEffectAction.StatusEffectCasterHero = _statusEffect.StatusEffectCasterHero;
+            }
+
+
         }
         
         
@@ -102,18 +113,8 @@ namespace Logic
                 standardAction.BasicActionTargets =
                         Instantiate(standardAction.BasicActionTargets as ScriptableObject) as IActionTargetAsset;
 
-                // ReSharper disable once PossibleNullReferenceException
-                //Initialize caster hero reference
-                //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
-                //standardAction.BasicActionTargets.InitializeStatusEffectCasterHero(_statusEffect);
-                
                 //Create unique instance of subscribers
                 standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionTargetAsset;
-                
-                // ReSharper disable once PossibleNullReferenceException
-                //Initialize caster hero reference
-                //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
-                //standardAction.Subscribers.InitializeStatusEffectCasterHero(_statusEffect);
 
                 i++;
             }
