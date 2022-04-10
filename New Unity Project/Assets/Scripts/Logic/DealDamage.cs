@@ -6,6 +6,18 @@ namespace Logic
 {
     public class DealDamage : MonoBehaviour, IDealDamage
     {
+        
+        [Header("SET IN RUNTIME")][SerializeField]private int finalDamageDealt;
+        /// <summary>
+        /// Final damage dealt by attacking hero, also same as
+        /// final damage taken by targeted hero.
+        /// </summary>
+        public int FinalDamageDealt
+        {
+            get => finalDamageDealt;
+            set => finalDamageDealt = value;
+        }
+        
         private IHeroLogic _heroLogic;
 
         private void Awake()

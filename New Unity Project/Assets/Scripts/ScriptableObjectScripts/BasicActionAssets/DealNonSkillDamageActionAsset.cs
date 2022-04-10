@@ -21,7 +21,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int percentCasterBaseHealth = 0;
         
         [Header("Damage Factors")]
-        [SerializeField] private int percentDamageTaken = 0;
+        [SerializeField] private int targetPercentDamageTaken = 0;
+        [SerializeField] private int targetPercentDamageDealt = 0;
+        [SerializeField] private int casterPercentDamageDealt = 0;
+        [SerializeField] private int casterPercentDamageTaken = 0;
 
         [Header("Status Effect Base Attack Factors")] 
         [SerializeField] private int percentStatusEffectCasterBaseAttack = 0;
@@ -84,12 +87,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var totalBaseHealthDamage = TotalBaseHealthDamage(casterHero, targetHero);
             var totalStatusEffectBaseAttackDamage = TotalStatusEffectBaseAttackDamage();
-            var totalDamageTakenAndDealt = TotalDamageTakenAndDealt(targetHero);
+            
+            var targetTotalDamageTaken = TargetTotalDamageTaken(targetHero);
+            var targetTotalDamageDealt = TargetTotalDamageDealt(targetHero);
+            
+            var casterTotalDamageDealt = CasterTotalDamageDealt(casterHero);
+            var casterTotalDamageTaken = CasterTotalDamageTaken(casterHero);
 
             //compute total damage
-            var damage = flatDamage + totalBaseHealthDamage + totalStatusEffectBaseAttackDamage + totalDamageTakenAndDealt;
-            
-            Debug.Log("Deal Non-Skill Damage: " +damage +" to target hero: " +targetHero.HeroName +" by caster hero: " +casterHero.HeroName);
+            var damage = flatDamage + totalBaseHealthDamage + totalStatusEffectBaseAttackDamage + 
+                         targetTotalDamageTaken + casterTotalDamageDealt +targetTotalDamageDealt + casterTotalDamageTaken;
 
             return damage;
         }
@@ -130,16 +137,47 @@ namespace ScriptableObjectScripts.BasicActionAssets
             return damage;
         }
 
-        private int TotalDamageTakenAndDealt(IHero targetHero)
+        private int TargetTotalDamageTaken(IHero targetHero)
         {   
             //Note: Final damage dealt is the same as final damage taken, just different hero perspective
 
             var targetDamageTaken = targetHero.HeroLogic.TakeDamage.FinalDamageTaken;
 
-            var targetPercentDamageTaken = Mathf.RoundToInt(targetDamageTaken * percentDamageTaken / 100f);
+            var damage = Mathf.RoundToInt(targetDamageTaken * this.targetPercentDamageTaken / 100f);
 
-            var damage = targetPercentDamageTaken;
-            
+            return damage;
+        }
+        
+        private int TargetTotalDamageDealt(IHero targetHero)
+        {   
+            //Note: Final damage dealt is the same as final damage taken, just different hero perspective
+
+            var targetDamageDealt = targetHero.HeroLogic.DealDamage.FinalDamageDealt;
+
+            var damage = Mathf.RoundToInt(targetDamageDealt * this.targetPercentDamageDealt / 100f);
+
+            return damage;
+        }
+        
+        private int CasterTotalDamageDealt(IHero casterHero)
+        {   
+            //Note: Final damage dealt is the same as final damage taken, just different hero perspective
+
+            var casterDamageDealt = casterHero.HeroLogic.DealDamage.FinalDamageDealt;
+
+            var damage = Mathf.RoundToInt(casterDamageDealt * this.casterPercentDamageDealt / 100f);
+
+            return damage;
+        }
+        
+        private int CasterTotalDamageTaken(IHero casterHero)
+        {   
+            //Note: Final damage dealt is the same as final damage taken, just different hero perspective
+
+            var casterDamageTaken = casterHero.HeroLogic.TakeDamage.FinalDamageTaken;
+
+            var damage = Mathf.RoundToInt(casterDamageTaken * this.casterPercentDamageTaken / 100f);
+
             return damage;
         }
 

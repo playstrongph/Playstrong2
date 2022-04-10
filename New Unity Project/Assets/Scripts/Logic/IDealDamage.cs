@@ -3,7 +3,13 @@
 namespace Logic
 {
     public interface IDealDamage
-    {   
+    {
+        /// <summary>
+        /// Final damage dealt by attacking hero, also same as
+        /// final damage taken by targeted hero.
+        /// </summary>
+        int FinalDamageDealt { get; set; }
+
         /// <summary>
         /// Deals single attack damage
         /// </summary>

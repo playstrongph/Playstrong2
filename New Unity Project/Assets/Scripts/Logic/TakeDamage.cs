@@ -303,6 +303,10 @@ namespace Logic
 
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
+            //TEST - Set Final Damage Dealt by caster hero
+            casterHero.HeroLogic.DealDamage.FinalDamageDealt = FinalDamageTaken;
+            
+            
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
@@ -343,6 +347,9 @@ namespace Logic
 
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
+            //TEST - Set Final Damage Dealt by caster hero
+            casterHero.HeroLogic.DealDamage.FinalDamageDealt = FinalDamageTaken;
+            
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
                 ? HeroTakesDamageIgnoreArmor(targetHero,FinalDamageTaken,criticalDamage)
@@ -377,6 +384,9 @@ namespace Logic
             var randomPenetrateChance = Random.Range(1, 101);
 
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
+            
+            //TEST - Set Final Damage Dealt by caster hero
+            casterHero.HeroLogic.DealDamage.FinalDamageDealt = FinalDamageTaken;
             
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
@@ -413,6 +423,8 @@ namespace Logic
             var randomPenetrateChance = Random.Range(1, 101);
             
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
+            
+            
             
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance
