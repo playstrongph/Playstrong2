@@ -67,7 +67,7 @@ namespace Logic
         /// All hero unique status effects
         /// </summary>
         public IUniqueStatusEffects UniqueStatusEffects { get; private set; }
-        
+
         /// <summary>
         /// Updates all the status effect counters
         /// </summary>
@@ -80,5 +80,27 @@ namespace Logic
             UniqueStatusEffects = GetComponent<IUniqueStatusEffects>();
             UpdateStatusEffectCounters = GetComponent<IUpdateAllStatusEffectCounters>();
         }
+
+        
+        /// <summary>
+        /// Returns a list of all the hero's status effects - buffs, debuffs, unique status effects
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        public List<IStatusEffect> GetAllStatusEffects(IHero targetHero)
+        {
+            var allStatusEffects = new List<IStatusEffect>();
+            
+            allStatusEffects.AddRange(targetHero.HeroStatusEffects.BuffEffects.StatusEffects);
+            allStatusEffects.AddRange(targetHero.HeroStatusEffects.DebuffEffects.StatusEffects);
+            allStatusEffects.AddRange(targetHero.HeroStatusEffects.UniqueStatusEffects.StatusEffects);
+
+            return allStatusEffects;
+
+        }
+
+
+
+
     }
 }

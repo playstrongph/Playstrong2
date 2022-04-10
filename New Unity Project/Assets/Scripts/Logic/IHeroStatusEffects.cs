@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Logic
 {
@@ -23,6 +24,8 @@ namespace Logic
         /// Returns preview status effect prefab as an interface object
         /// </summary>
         IPreviewStatusEffect PreviewStatusEffectPrefab { get; }
+        
+        
 
         /// <summary>
         /// All hero buff effects
@@ -33,6 +36,8 @@ namespace Logic
         /// All herod debuff effects
         /// </summary>
         IDebuffEffects DebuffEffects { get; }
+
+        List<IStatusEffect> GetAllStatusEffects(IHero targetHero);
         
         /// <summary>
         /// All hero unique status effects

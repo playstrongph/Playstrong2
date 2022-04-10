@@ -17,7 +17,7 @@ MonoBehaviour:
     is shocked.  Bomb counters can't be changed.
   icon: {fileID: -2613247888821195678, guid: 2be8dbe6ba99e9743a2e68da102be560, type: 3}
   statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
-  statusEffectCounterType: {fileID: 11400000, guid: 10e67937708c5eb43a3b16f2b9078a1d,
+  statusEffectCounterType: {fileID: 11400000, guid: f44dd62e4c4a1d3498855c29f8f1a126,
     type: 2}
   statusEffectCounterUpdateType: {fileID: 11400000, guid: 1992abcd8f15f4443919c9a2dfd0a2c0,
     type: 2}
