@@ -19,6 +19,6 @@ MonoBehaviour:
   targetPercentDamageTaken: 0
   targetPercentDamageDealt: 0
   casterPercentDamageDealt: 0
-  casterPercentDamageTaken: 50
+  casterPercentDamageTaken: 10
   percentStatusEffectCasterBaseAttack: 0
   percentStatusEffectTargetBaseAttack: 0
