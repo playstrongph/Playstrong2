@@ -26,6 +26,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [Header("Status Effect Base Attack Factors")] 
         [SerializeField] private int percentStatusEffectCasterBaseAttack = 0;
         [SerializeField] private int percentStatusEffectTargetBaseAttack = 0;
+        
+        
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
