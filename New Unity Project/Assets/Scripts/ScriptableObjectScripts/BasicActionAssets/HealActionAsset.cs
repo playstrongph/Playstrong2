@@ -20,18 +20,24 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Increase value by a fixed amount
         /// </summary>
-        [Header("Healing Factors")]
+        [Header("HEALING FACTORS")]
         [SerializeField] private int flatValue = 0;
-
+        
+        
         /// <summary>
         /// Increase value by percentage health factor
         /// </summary>
+        [Header("Health Factors")]
         [SerializeField] private int percentCasterBaseHealthValue = 0;
         
         /// <summary>
         /// Increase value by percentage health factor
         /// </summary>
         [SerializeField] private int percentTargetBaseHealthValue = 0;
+        
+        [Header("Damage Factors")]
+        [SerializeField] private int percentCasterDamageDealt = 0;
+        [SerializeField] private int percentTargetDamageTaken = 0;
 
         [Header("ANIMATIONS")] 
 
@@ -99,21 +105,62 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         private void HealHero(IHero casterHero, IHero targetHero)
         {
-            //Healing based on percentage health
+            //Healing factors calculation
+            var baseHealthHeal = BaseHealthHeal(casterHero, targetHero);
+            var damageDealtOrTakenHeal = DamageDealtOrTakenHeal(casterHero, targetHero);
+            
+            //Set total healing here
+            var totalHealing = flatValue + baseHealthHeal +damageDealtOrTakenHeal;
+            
+            //New Health calculations
+            var newHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealing;
+            targetHero.HeroLogic.SetHealth.StartAction(newHealth);
+        }
+        
+        /// <summary>
+        /// Total healing based on base health
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private int BaseHealthHeal(IHero casterHero,IHero targetHero)
+        {
+            var healValue = 0;
             
             var casterBaseHealth = casterHero.HeroLogic.HeroAttributes.BaseHealth;
             var targetBaseHealth = targetHero.HeroLogic.HeroAttributes.BaseHealth;
+
             var casterBaseHealthHealValue = Mathf.RoundToInt(casterBaseHealth * percentCasterBaseHealthValue / 100f);
             var targetBaseHealthHealValue = Mathf.RoundToInt(targetBaseHealth * percentTargetBaseHealthValue / 100f);
 
-            var healAmount = flatValue + casterBaseHealthHealValue + targetBaseHealthHealValue;
-
-            var newHealth = targetHero.HeroLogic.HeroAttributes.Health + healAmount;
-
-            targetHero.HeroLogic.SetHealth.StartAction(newHealth);
-
+            healValue = casterBaseHealthHealValue + targetBaseHealthHealValue;
+            
+            return healValue;
         }
         
+        /// <summary>
+        /// Total healing based on damage dealt or taken
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private int DamageDealtOrTakenHeal(IHero casterHero,IHero targetHero)
+        {
+            var healValue = 0;
+            var casterDamageDealt = casterHero.HeroLogic.DealDamage.FinalDamageDealt;
+            var targetDamageTaken = targetHero.HeroLogic.TakeDamage.FinalDamageTaken;
+
+            var casterDamageDealtHealValue = Mathf.RoundToInt(casterDamageDealt * percentCasterDamageDealt / 100f);
+            var targetDamageTakenHealValue = Mathf.RoundToInt(targetDamageTaken * percentTargetDamageTaken / 100f);
+
+            healValue = casterDamageDealtHealValue + targetDamageTakenHealValue;
+            
+            return healValue;
+        }
+
+
+        #region VISUALS REGION
+
         /// <summary>
         /// Healing Animation and Healing Amount Text Display
         /// </summary>
@@ -165,6 +212,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
              
             yield return null;
         }
+
+        #endregion"
+        
+        
+        
+        
+       
 
 
 
