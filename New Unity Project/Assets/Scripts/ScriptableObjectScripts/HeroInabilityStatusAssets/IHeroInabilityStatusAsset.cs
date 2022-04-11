@@ -11,8 +11,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// Turn controller action based on inability
         /// </summary>
         /// <param name="turnController"></param>
+        /// <param name="currentActiveHero"></param>
         /// <returns></returns>
-        IEnumerator TurnControllerAction(ITurnController turnController);
+        IEnumerator TurnControllerAction(ITurnController turnController,IHero currentActiveHero);
 
         /// <summary>
         /// Executes basic action if caster hero has no inabilities

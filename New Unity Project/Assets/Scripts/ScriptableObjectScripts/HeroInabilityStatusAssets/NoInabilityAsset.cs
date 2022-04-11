@@ -13,10 +13,14 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// Hero proceeds to start the turn
         /// </summary>
         /// <param name="turnController"></param>
+        /// <param name="currentActiveHero"></param>
         /// <returns></returns>
-        public override IEnumerator TurnControllerAction(ITurnController turnController)
+        public override IEnumerator TurnControllerAction(ITurnController turnController,IHero currentActiveHero)
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
+
+            Debug.Log("No Inability, Inability factor: " +currentActiveHero.HeroLogic.InabilityFactor 
+                                                         +" Hero Inability Status: " +currentActiveHero.HeroLogic.HeroInabilityStatus);
             
             turnController.BeforeHeroStartTurn.HeroStartTurn();
             

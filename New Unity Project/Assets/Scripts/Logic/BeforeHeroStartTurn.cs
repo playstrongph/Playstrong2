@@ -32,12 +32,30 @@ namespace Logic
             logicTree.AddCurrent(UpdateStatusEffects());
             
             //execute hero action relative to hero inability status 
-            logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.TurnControllerAction(_turnController));
+            //logicTree.AddCurrent(currentActiveHero.HeroLogic.HeroInabilityStatus.TurnControllerAction(_turnController,currentActiveHero));
+            
+            logicTree.AddCurrent(BeforeStartTurnAction(currentActiveHero));
 
             logicTree.EndSequence();
             yield return null;
         }
-        
+
+
+        private IEnumerator BeforeStartTurnAction(IHero currentActiveHero)
+        {
+            var logicTree = currentActiveHero.CoroutineTrees.MainLogicTree;
+
+            var inabilityStatus = currentActiveHero.HeroLogic.HeroInabilityStatus;
+
+            logicTree.AddCurrent(inabilityStatus.TurnControllerAction(_turnController, currentActiveHero));
+            
+            logicTree.EndSequence();
+            yield return null;
+            
+        }
+
+
+
         /// <summary>
         /// Starts the hero turn when hero has no inability
         /// called by NoInabilityAsset's status action

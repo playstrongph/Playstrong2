@@ -19,7 +19,7 @@ MonoBehaviour:
   statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: f44dd62e4c4a1d3498855c29f8f1a126,
     type: 2}
-  statusEffectCounterUpdateType: {fileID: 11400000, guid: 1992abcd8f15f4443919c9a2dfd0a2c0,
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
     type: 2}
   statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
     type: 2}

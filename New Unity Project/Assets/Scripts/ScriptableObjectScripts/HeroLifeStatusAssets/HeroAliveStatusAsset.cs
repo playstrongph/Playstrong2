@@ -49,16 +49,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         
         
         //TEST - END 11 Apr 2022
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
         /// <summary>
         /// After confirming target is alive, check if caster is alive
         /// before implementing the basic action's pre execution action
@@ -152,7 +146,10 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
            heroes.Add(hero);
         }
 
+    
+        
+        
 
-      
+
     }
 }

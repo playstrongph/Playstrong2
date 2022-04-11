@@ -12,8 +12,9 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// Turn controller action based on inability
         /// </summary>
         /// <param name="turnController"></param>
+        /// <param name="currentActiveHero"></param>
         /// <returns></returns>
-        public virtual IEnumerator TurnControllerAction(ITurnController turnController)
+        public virtual IEnumerator TurnControllerAction(ITurnController turnController,IHero currentActiveHero)
         {
             //With Inability - turnController.StartHeroNextTurn
             //No Inability - turnController.StartHeroTurn
