@@ -18,8 +18,6 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         public override IEnumerator TurnControllerAction(ITurnController turnController,IHero currentActiveHero)
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Has Inability, Inability factor: " +currentActiveHero.HeroLogic.InabilityFactor);
 
             //Delay allows to cleanup the Heroes Turn Queue for dead heroes
             logicTree.AddSibling(turnController.AfterHeroEndTurn.StartAction());

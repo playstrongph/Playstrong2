@@ -42,8 +42,6 @@ namespace Logic
         public void HasInability()
         {
             _heroLogic.HeroInabilityStatus = HasInabilityAsset;
-            
-            Debug.Log("Hero: " +_heroLogic.Hero.HeroName);
         }
         
         /// <summary>
