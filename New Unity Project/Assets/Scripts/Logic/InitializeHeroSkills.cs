@@ -94,6 +94,10 @@ namespace Logic
                 //add skills to playerSkillsAllHeroes list
                 playerSkillsAllHeroes.AllHeroesSkills.Add(skill);
                 
+                //Disable preview skill glows
+                displaySkill.SkillVisual.FrameGlowImage.gameObject.SetActive(false);
+                displaySkill.SkillVisual.FrameLight2D.gameObject.SetActive(false);
+                
             }
             
             //VISUAL Hide hero skills and display skills
