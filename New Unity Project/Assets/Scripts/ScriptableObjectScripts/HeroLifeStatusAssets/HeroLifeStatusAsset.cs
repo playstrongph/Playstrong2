@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
@@ -31,6 +32,37 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             
         }
+        
+        
+        
+        //TEST 11 Apr 2022
+        public virtual void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            
+        }
+        
+        public virtual void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            
+        }
+        
+        
+        //TEST - END 11 Apr 2022
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         /// <summary>
         /// After confirming target is alive, check if caster is alive

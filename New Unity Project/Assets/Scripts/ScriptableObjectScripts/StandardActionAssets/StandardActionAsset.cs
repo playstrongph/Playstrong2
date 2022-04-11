@@ -193,13 +193,17 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
         /// Note that the caster hero and target hero in this case are the same 
         /// </summary>
-        /// <param name="hero"></param>
-        public virtual void StartAction(IHero hero)
+        /// <param name="casterHero"></param>
+        public virtual void StartAction(IHero casterHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
+            //TODO: Alive Checking and Caster inability Checking here
+            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,casterHero);
+            
+            //TODO: Remove this 
             //Note: caster hero and target hero is the same for single IHero events
-            logicTree.AddCurrent(StartActionCoroutine(hero,hero));
+            //logicTree.AddCurrent(ExecuteStartAction(hero,hero));
         }
         
         /// <summary>
@@ -220,24 +224,31 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Base method for actions execution
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
-        public virtual void StartAction(IHero hero, IHero targetHero)
+        public virtual void StartAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = hero.CoroutineTrees.MainLogicTree;
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            //TODO: Alive Checking and Caster inability Checking here
+            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,targetHero);
 
-            logicTree.AddCurrent(StartActionCoroutine(hero,targetHero));
+            //TODO: Remove this 
+            //logicTree.AddCurrent(ExecuteStartAction(casterHero,targetHero));
         }
 
         /// <summary>
         /// Start basic actions
+        /// TODO: Change caller to NoInabilityAsset
         /// </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         /// <returns></returns>
-        private IEnumerator StartActionCoroutine(IHero casterHero, IHero targetHero)
+        public IEnumerator ExecuteStartAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            
 
             //Iterate per basic action
             foreach (var basicAction in BasicActions)

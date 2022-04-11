@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
@@ -32,6 +33,31 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         {
             casterHero.HeroLogic.HeroInabilityStatus.ExecuteBasicAction(basicAction,casterHero,targetHero);
         }
+        
+        
+        //TEST 11 Apr 2022
+        public override void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            targetHero.HeroLogic.HeroLifeStatus.CasterStandardAction(standardAction,casterHero,targetHero);
+        }
+        
+        public override void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            //TODO: Check inability status
+            casterHero.HeroLogic.HeroInabilityStatus.ExecuteStandardAction(standardAction,casterHero,targetHero);
+        }
+        
+        
+        //TEST - END 11 Apr 2022
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         /// <summary>
         /// After confirming target is alive, check if caster is alive

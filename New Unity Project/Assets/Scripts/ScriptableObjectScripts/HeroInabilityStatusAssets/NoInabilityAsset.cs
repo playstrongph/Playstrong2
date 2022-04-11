@@ -37,6 +37,16 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));  
         }
         
+        
+        //TODO: StandardActionStartAction
+        public override void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(standardAction.ExecuteStartAction(casterHero,targetHero));
+            
+        }
+
+
         /// <summary>
         ///  Calls pre basic action events if caster has no Inabilities
         /// </summary>

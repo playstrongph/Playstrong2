@@ -21,23 +21,23 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Checks if skill is Ready before executing skill start action
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
-        public override void StartAction(IHero hero,IHero targetHero)
+        public override void StartAction(IHero casterHero,IHero targetHero)
         {
             //TODO - check args if correct
-            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,hero,targetHero);
+            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,casterHero,targetHero);
 
         }
         
         /// <summary>
         /// Checks if skill is Ready before executing skill start action
         /// </summary>
-        /// <param name="hero"></param>
-        public override void StartAction(IHero hero)
+        /// <param name="casterHero"></param>
+        public override void StartAction(IHero casterHero)
         {
             //Note: caster hero and target hero is the same for single IHero events
-            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,hero,hero);
+            _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,casterHero,casterHero);
         }
         
         /// <summary>

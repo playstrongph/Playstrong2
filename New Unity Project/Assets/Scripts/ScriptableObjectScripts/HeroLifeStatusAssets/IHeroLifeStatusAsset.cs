@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
 {
@@ -25,6 +26,15 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
+        
+        
+        
+        //TEST
+        void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
+
+        void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
+
+        //TEST - END
         
         /// <summary>
         /// After confirming target is alive, check if caster is alive

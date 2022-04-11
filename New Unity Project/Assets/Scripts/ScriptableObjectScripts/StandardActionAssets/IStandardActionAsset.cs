@@ -91,9 +91,9 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Base method for actions execution
         /// </summary>
-        /// <param name="hero"></param>
+        /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
-        void StartAction(IHero hero,IHero targetHero);
+        void StartAction(IHero casterHero,IHero targetHero);
 
         /// <summary>
         /// Undo the start action.  Primarily used by status effects
@@ -106,8 +106,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Start action used by single IHero events (e.g. eventHeroTakesFatalDamage).
         /// Note that the caster hero and target hero in this case are the same 
         /// </summary>
-        /// <param name="hero"></param>
-        void StartAction(IHero hero);
+        /// <param name="casterHero"></param>
+        void StartAction(IHero casterHero);
         
         
         /// <summary>
@@ -116,6 +116,15 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// </summary>
         /// <param name="hero"></param>
         void UndoStartAction(IHero hero);
+
+        
+        /// <summary>
+        /// start action when heroes are alive and caster is not disabled
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        IEnumerator ExecuteStartAction(IHero casterHero, IHero targetHero);
 
 
         #endregion

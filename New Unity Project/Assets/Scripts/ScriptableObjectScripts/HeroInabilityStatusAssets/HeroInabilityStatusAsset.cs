@@ -34,6 +34,15 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
 
         //TODO: Include Other Basic Actions that can't be done when hero has an 'Inability'
         
+        
+        //TEST
+        public virtual void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        { }
+        
+        
+        //TEST - END
+        
+        
         /// <summary>
         /// Calls pre basic action events if caster has no Inabilities
         /// </summary>

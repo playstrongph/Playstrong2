@@ -21,6 +21,10 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
+        
+        //TEST
+        void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
+        //TEST - END
 
         /// <summary>
         /// Calls pre basic action events if caster has no Inabilities
