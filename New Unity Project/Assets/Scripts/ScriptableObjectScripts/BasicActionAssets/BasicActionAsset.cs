@@ -92,7 +92,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Add only living heroes (only) to the MainExecutionActionHeroes list
                     actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(ExecuteActionTargetHeroes,actionTargetHero);
-
                 }
             }
         }
@@ -125,7 +124,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //leads to basicAction.CallPreBasicActionEvents
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
+                    //actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
+                    
+                    //TEST - Skip life status checking since already done at standard action level
+                    logicTree.AddCurrent(CallPreBasicActionEvents(casterHero,targetHero));
+                    
+                    
                 }
             }
             
@@ -191,7 +195,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Target action calls pre execute action if both the caster and target are alive
-                    actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,actionTargetHero);
+                    //actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,actionTargetHero);
+                    
+                    logicTree.AddCurrent(CallPostBasicActionEvents(casterHero,targetHero));
                 }
             }
             
@@ -270,10 +276,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             foreach (var hero in ExecuteActionTargetHeroes)
             {
-                //Checks if heroes are alive and caster has no inability
-                //Leads to basicAction.ExecuteAction
+                //TODO: Test - life/inability checking transferred
+                //hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
 
-                hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
+                logicTree.AddCurrent(ExecuteAction(casterHero,hero));  
+                
             }
             
             logicTree.EndSequence();

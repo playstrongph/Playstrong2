@@ -31,11 +31,23 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //base.StartAction(casterHero,targetHero);
             
             //TEST
-            base.StartAction(StatusEffectCasterHero,targetHero);
+            //base.StartAction(StatusEffectCasterHero,targetHero);
             
-            //TODO: Override casterHero life/Inability status checks here
+            StartAction(StatusEffectCasterHero,targetHero);
         }
         
+        /// <summary>
+        /// Skips checking life/inability status of heroes
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void StartAction(IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.AddCurrent(ExecuteStartAction(casterHero,targetHero));
+        }
+
         /// <summary>
         /// Undoes the status effect start action
         /// </summary>

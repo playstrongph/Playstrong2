@@ -196,14 +196,10 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="casterHero"></param>
         public virtual void StartAction(IHero casterHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Alive Checking and Caster inability Checking here
+            //Check if both the caster and target heroes are alive
+            //Also checks if the caster hero has no inability
+            //Leads to calling ExecuteStartAction
             casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,casterHero);
-            
-            //TODO: Remove this 
-            //Note: caster hero and target hero is the same for single IHero events
-            //logicTree.AddCurrent(ExecuteStartAction(hero,hero));
         }
         
         /// <summary>
@@ -228,27 +224,23 @@ namespace ScriptableObjectScripts.StandardActionAssets
         ///  <param name="targetHero"></param>
         public virtual void StartAction(IHero casterHero, IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Alive Checking and Caster inability Checking here
+
+            //Check if both the caster and target heroes are alive
+            //Also checks if the caster hero has no inability
+            //Leads to calling ExecuteStartAction
             casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,targetHero);
 
-            //TODO: Remove this 
-            //logicTree.AddCurrent(ExecuteStartAction(casterHero,targetHero));
         }
 
         /// <summary>
         /// Start basic actions
-        /// TODO: Change caller to NoInabilityAsset
-        /// </summary>
+        ///  </summary>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
         /// <returns></returns>
         public IEnumerator ExecuteStartAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            
 
             //Iterate per basic action
             foreach (var basicAction in BasicActions)
