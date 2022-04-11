@@ -18,7 +18,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void SubscribeStandardAction(IHero thisHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             //This is a single IHero arg event 
-            thisHero.HeroLogic.HeroEvents.EBeforeHeroStartTurn += standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EBeforeHeroStartTurn += standardAction.StartAction;
         }
         
         
@@ -32,7 +32,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void UnsubscribeStandardAction(IHero thisHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             //This is a single IHero arg event
-            thisHero.HeroLogic.HeroEvents.EBeforeHeroStartTurn -= standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EBeforeHeroStartTurn -= standardAction.StartAction;
         }
         
        

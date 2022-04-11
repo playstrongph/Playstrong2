@@ -44,6 +44,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
+            
+            Debug.Log("Caster Hero:" +casterHero.HeroName +" Target Hero: " +targetHero.HeroName);
 
             logicTree.EndSequence();
             yield return null;

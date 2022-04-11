@@ -32,6 +32,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
             
             //TEST
             base.StartAction(StatusEffectCasterHero,targetHero);
+            
+            //TODO: Override casterHero life/Inability status checks here
         }
         
         /// <summary>
