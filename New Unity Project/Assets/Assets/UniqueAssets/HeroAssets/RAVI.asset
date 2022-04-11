@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
+  m_Name: RAVI
+  m_EditorClassIdentifier: 
+  heroName: RAVI
+  heroClass: WARRIOR
+  heroSprite: {fileID: -1065749174427518883, guid: 474fdc26ba2f7ff4ea78ea46f2e29c10,
+    type: 3}
+  health: 732
+  attack: 96
+  speed: 102
+  chance: 0
+  armor: 0
+  fightingSpirit: 0
+  heroSkillAssets: []

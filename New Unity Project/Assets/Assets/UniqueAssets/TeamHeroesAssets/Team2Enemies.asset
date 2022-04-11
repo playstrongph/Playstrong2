@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec775602760604e46bde29a4bfbcab85, type: 3}
-  m_Name: AllyHeroes
+  m_Name: Team2Enemies
   m_EditorClassIdentifier: 
   teamHeroes:
-  - {fileID: 11400000, guid: 4021ad0a253a6e646aa37c5c873358bd, type: 2}
-  - {fileID: 11400000, guid: 602fcc48a24e21d4782adc7b4ddaf1e9, type: 2}
-  - {fileID: 11400000, guid: dab5aa23c93bcfe47afc6f36cb6a6d93, type: 2}
-  - {fileID: 11400000, guid: b4d5b48a60307624e95d2a8e739aa533, type: 2}
+  - {fileID: 11400000, guid: 25eabf9967754084e90e2fb55e95dc93, type: 2}
+  - {fileID: 11400000, guid: 870a554cf35beea408f8401754e8c16a, type: 2}
+  - {fileID: 11400000, guid: 8d20e0bccd1afb54c9344f30ec70776a, type: 2}
+  - {fileID: 11400000, guid: 68231771601d5294b808bedf12aca50c, type: 2}
