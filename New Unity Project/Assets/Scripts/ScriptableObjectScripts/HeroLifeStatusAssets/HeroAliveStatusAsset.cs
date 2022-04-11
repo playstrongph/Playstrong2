@@ -11,6 +11,44 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
     public class HeroAliveStatusAsset : HeroLifeStatusAsset
     {
         /// <summary>
+       /// Target hero life check
+       /// </summary>
+       /// <param name="standardAction"></param>
+       /// <param name="casterHero"></param>
+       /// <param name="targetHero"></param>
+        public override void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            targetHero.HeroLogic.HeroLifeStatus.CasterStandardAction(standardAction,casterHero,targetHero);
+        }
+        
+       /// <summary>
+       /// Caster hero life check, leading to caster hero inability check 
+       /// </summary>
+       /// <param name="standardAction"></param>
+       /// <param name="casterHero"></param>
+       /// <param name="targetHero"></param>
+        public override void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            casterHero.HeroLogic.HeroInabilityStatus.ExecuteStandardAction(standardAction,casterHero,targetHero);
+        }
+
+        /// <summary>
+        /// Add a living hero to a heroes list.  Example use: basic actions
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public override void AddToHeroList(List<IHero> heroes, IHero hero)
+        {
+           heroes.Add(hero);
+        }
+
+
+
+        #region Old Logic
+
+        
+        /*
+        /// <summary>
         /// Target HeroAlive - call hero Caster Action 
         /// After confirming target is alive, check if caster is alive
         /// </summary>
@@ -34,25 +72,6 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             casterHero.HeroLogic.HeroInabilityStatus.ExecuteBasicAction(basicAction,casterHero,targetHero);
         }
         
-        
-        //TEST 11 Apr 2022
-        public override void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
-        {
-            targetHero.HeroLogic.HeroLifeStatus.CasterStandardAction(standardAction,casterHero,targetHero);
-        }
-        
-        public override void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
-        {
-            //TODO: Check inability status
-            casterHero.HeroLogic.HeroInabilityStatus.ExecuteStandardAction(standardAction,casterHero,targetHero);
-        }
-        
-        
-        //TEST - END 11 Apr 2022
-
-
-
-
         /// <summary>
         /// After confirming target is alive, check if caster is alive
         /// before implementing the basic action's pre execution action
@@ -108,13 +127,13 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             // Calls post basic action events if caster has no Inabilities
             casterHero.HeroLogic.HeroInabilityStatus.CallPostBasicActionEvents(basicAction,casterHero,targetHero);
         }
-
-       /// <summary>
-       /// After confirming target is alive, check if caster is still alive
-       /// </summary>
-       /// <param name="basicAction"></param>
-       /// <param name="casterHero"></param>
-       /// <param name="targetHero"></param>
+        
+        /// <summary>
+        /// After confirming target is alive, check if caster is still alive
+        /// </summary>
+        /// <param name="basicAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
         public override void TargetMainAnimation(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         {
             //call the hero alive status of the original caster hero (the attacker, or healer)
@@ -135,20 +154,9 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             //TODO - Does this have to be an IEnumerator? Nothing wrong with IEnumerator so far
             logicTree.AddCurrent(basicAction.MainAnimation(casterHero,targetHero));
         }
-        
-        /// <summary>
-        /// Add a living hero to a heroes list.  Example use: basic actions
-        /// </summary>
-        /// <param name="heroes"></param>
-        /// <param name="hero"></param>
-        public override void AddToHeroList(List<IHero> heroes, IHero hero)
-        {
-           heroes.Add(hero);
-        }
+        */
 
-    
-        
-        
+        #endregion
 
 
     }

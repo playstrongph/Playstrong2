@@ -10,6 +10,40 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
     public abstract class HeroLifeStatusAsset : ScriptableObject, IHeroLifeStatusAsset
     {
         /// <summary>
+        /// Target hero life check
+        /// </summary>
+        /// <param name="standardAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Caster hero life check
+        /// </summary>
+        /// <param name="standardAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        {
+            
+        }
+        
+        /// <summary>
+        /// Add a living hero to a list.  E.g. used in basic actions main action heroes
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public virtual void AddToHeroList(List<IHero> heroes, IHero hero)
+        {
+           
+        }
+
+        #region OLD LOGIC
+
+        /*/// <summary>
         /// After confirming target is alive, check if caster is alive
         /// before implementing the basic action's main execution action
         /// </summary>
@@ -33,38 +67,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
             
         }
         
-        
-        
-        //TEST 11 Apr 2022
-        public virtual void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
-        {
-            
-        }
-        
-        public virtual void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
-        {
-            
-        }
-        
-        
-        //TEST - END 11 Apr 2022
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-        /// <summary>
+         /// <summary>
         /// After confirming target is alive, check if caster is alive
         /// before implementing the basic action's pre execution action
         /// </summary>
@@ -134,17 +137,31 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         public virtual void CasterMainAnimation(IBasicActionAsset basicAction,  IHero casterHero,IHero targetHero)
         {
             
-        }
+        }*/
+
+        #endregion
         
-        /// <summary>
-        /// Add a living hero to a list.  E.g. used in basic actions main action heroes
-        /// </summary>
-        /// <param name="heroes"></param>
-        /// <param name="hero"></param>
-        public virtual void AddToHeroList(List<IHero> heroes, IHero hero)
-        {
-           
-        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+       
+        
+       
 
 
     }

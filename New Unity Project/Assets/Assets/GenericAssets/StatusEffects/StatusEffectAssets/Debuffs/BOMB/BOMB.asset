@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BOMB
   m_EditorClassIdentifier: 
   statusEffectName: BOMB
-  description: At detonation, hero takes damage equal to the caster's attack and
-    is shocked.  Bomb counters can't be changed.
+  description: At detonation, take the caster's attack as damage and get SHOCKED. 
+    Bomb counters can't be changed.
   icon: {fileID: -2613247888821195678, guid: 2be8dbe6ba99e9743a2e68da102be560, type: 3}
   statusEffectType: {fileID: 11400000, guid: 716daa75e0500674c85d9d4ec18cd835, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: f44dd62e4c4a1d3498855c29f8f1a126,
     type: 2}
-  statusEffectCounterUpdateType: {fileID: 11400000, guid: 929ea9849814c9c449f874cb5df1cf31,
+  statusEffectCounterUpdateType: {fileID: 11400000, guid: 1992abcd8f15f4443919c9a2dfd0a2c0,
     type: 2}
   statusEffectInstanceType: {fileID: 11400000, guid: 8f2f9b766af1dc347b36fe39437978df,
     type: 2}

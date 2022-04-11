@@ -1,5 +1,7 @@
-﻿using Logic;
+﻿using System.Collections.Generic;
+using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
+using ScriptableObjectScripts.StandardActionAssets;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.HeroLifeStatusAssets
@@ -8,73 +10,36 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
     public class HeroDeadStatusAsset : HeroLifeStatusAsset
     {
         /// <summary>
-        /// Target HeroDead - Do nothing
-        /// After confirming target is alive, check if caster is alive
+        /// Target hero life check
         /// </summary>
-        /// <param name="basicAction"></param>
+        /// <param name="standardAction"></param>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
-        public override void TargetMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
-        {
-            
-        }
-        
-        /// <summary> 
-        /// HeroDead - Do nothing
-        /// After confirming, caster is alive, execute action
-        /// </summary>
-        /// <param name="basicAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
-        {
-               
-        }
-        
-        /// <summary>
-        /// HeroDead - Do nothing
-        /// </summary>
-        /// <param name="basicAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void TargetPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        public override void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
         {
             
         }
         
         /// <summary>
-        /// HeroDead - Do nothing
+        /// Caster hero life check
         /// </summary>
-        /// <param name="basicAction"></param>
+        /// <param name="standardAction"></param>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
-        public override void CasterPreExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        public override void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
         {
             
         }
         
         /// <summary>
-        /// HeroDead - Do nothing
+        /// Add a living hero to a list.  E.g. used in basic actions main action heroes
         /// </summary>
-        /// <param name="basicAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void TargetPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public override void AddToHeroList(List<IHero> heroes, IHero hero)
         {
-            
-        }
-        
-        /// <summary>
-        /// HeroDead - Do nothing
-        /// </summary>
-        /// <param name="basicAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void CasterPostExecutionAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
-        {
-            
+           
         }
 
-      
     }
 }

@@ -7,7 +7,33 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
 {
     public interface IHeroLifeStatusAsset
     {
+        
         /// <summary>
+        /// Target hero life check
+        /// </summary>
+        /// <param name="standardAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
+        
+        /// <summary>
+        /// Caster hero life and inability check
+        /// </summary>
+        /// <param name="standardAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
+
+        /// <summary>
+        /// Add living hero to a list
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        void AddToHeroList(List<IHero> heroes, IHero hero);
+
+        #region OLD LOGIC
+
+        /*/// <summary>
         /// Target HeroAlive - call hero Caster Action
         /// Target HeroDead - Do nothing
         /// After confirming target is alive, check if caster is alive
@@ -27,16 +53,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         ///  <param name="targetHero"></param>
         void CasterMainExecutionAction(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
         
-        
-        
-        //TEST
-        void TargetStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
-
-        void CasterStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero);
-
-        //TEST - END
-        
-        /// <summary>
+          /// <summary>
         /// After confirming target is alive, check if caster is alive
         /// before implementing the basic action's pre execution action
         /// </summary>
@@ -86,13 +103,8 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="basicAction"></param>
         /// <param name="casterHero"></param>
         ///  <param name="targetHero"></param>
-        void CasterMainAnimation(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);
-        
-        /// <summary>
-        /// Add living hero to a list
-        /// </summary>
-        /// <param name="heroes"></param>
-        /// <param name="hero"></param>
-        void AddToHeroList(List<IHero> heroes, IHero hero);
+        void CasterMainAnimation(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero);*/
+
+        #endregion
     }
 }

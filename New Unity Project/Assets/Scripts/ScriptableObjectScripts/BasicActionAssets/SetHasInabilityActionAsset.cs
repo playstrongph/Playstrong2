@@ -39,15 +39,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //if there are no inability immunities
             if (inabilityResistance <= 0)
             {
-                
-                //Debug.Log("Hero Inability Factor: "  +targetHero.HeroLogic.InabilityFactor);
-                
                 //Increase inability factor, for multiple inabilities
                 targetHero.HeroLogic.InabilityFactor += inabilityFactor;
-                
-                //Debug.Log("New Hero Inability Factor: "  +targetHero.HeroLogic.InabilityFactor +" Add: " +inabilityFactor );
-
-
                 targetHero.HeroLogic.SetHeroInabilityStatus.HasInability();
             }
             

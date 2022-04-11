@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SHOCK
   m_EditorClassIdentifier: 
   statusEffectName: SHOCK
-  description: Hero misses the next turn.  Can't be dispelled.
+  description: Hero misses a turn.  Can't be dispelled.
   icon: {fileID: 2715435097457428830, guid: 23d679f29f57b044f8b8a5dc08d19eec, type: 3}
   statusEffectType: {fileID: 11400000, guid: 555f43a4310c7774ead6a395d71b5886, type: 2}
   statusEffectCounterType: {fileID: 11400000, guid: f44dd62e4c4a1d3498855c29f8f1a126,
