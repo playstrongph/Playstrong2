@@ -19,16 +19,33 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             var logicTree = turnController.CoroutineTrees.MainLogicTree;
 
-            Debug.Log("No Inability, Inability factor: " +currentActiveHero.HeroLogic.InabilityFactor 
-                                                         +" Hero Inability Status: " +currentActiveHero.HeroLogic.HeroInabilityStatus);
-            
             turnController.BeforeHeroStartTurn.HeroStartTurn();
             
             logicTree.EndSequence();
             yield return null;
         }
+        
+        public override void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            logicTree.AddCurrent(standardAction.ExecuteStartAction(casterHero,targetHero));
+            
+        }
 
         /// <summary>
+        /// If there are no inabilities, proceed with the skill action
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public override void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
+        {
+            skillAction.SkillStartAction(casterHero,targetHero);
+        }
+
+        #region OLD LOGIC
+
+        /*/// <summary>
         /// Executes basic action if caster has no inability
         /// </summary>
         /// <param name="basicAction"></param>
@@ -40,16 +57,6 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             
             logicTree.AddCurrent(basicAction.ExecuteAction(casterHero,targetHero));  
         }
-        
-        
-        //TODO: StandardActionStartAction
-        public override void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero, IHero targetHero)
-        {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            logicTree.AddCurrent(standardAction.ExecuteStartAction(casterHero,targetHero));
-            
-        }
-
 
         /// <summary>
         ///  Calls pre basic action events if caster has no Inabilities
@@ -73,17 +80,8 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             logicTree.AddCurrent(basicAction.CallPostBasicActionEvents(casterHero,targetHero));
-        }
-        
-        /// <summary>
-        /// If there are no inabilities, proceed with the skill action
-        /// </summary>
-        /// <param name="skillAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public override void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
-        {
-            skillAction.SkillStartAction(casterHero,targetHero);
-        }
+        }*/
+
+        #endregion
     }
 }

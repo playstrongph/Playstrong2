@@ -25,6 +25,27 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         }
 
         /// <summary>
+        /// Start skill action if the casterHero has no inabilities
+        /// </summary>
+        /// <param name="skillAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
+        {
+        }
+        
+        /// <summary>
+        /// Standard action start action
+        /// </summary>
+        /// <param name="standardAction"></param>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public virtual void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
+        { }
+
+        #region OLD LOGIC
+
+        /*/// <summary>
         /// Executes basic action if caster has no Inabilities
         /// </summary>
         /// <param name="basicAction"></param>
@@ -33,16 +54,6 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         public virtual void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
         { }
 
-        //TODO: Include Other Basic Actions that can't be done when hero has an 'Inability'
-        
-        
-        //TEST
-        public virtual void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
-        { }
-        
-        
-        //TEST - END
-        
         
         /// <summary>
         /// Calls pre basic action events if caster has no Inabilities
@@ -60,16 +71,10 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         public virtual void CallPostBasicActionEvents(IBasicActionAsset basicAction, IHero casterHero,IHero targetHero)
-        { }
+        { }*/
         
-        /// <summary>
-        /// Start skill action if the casterHero has no inabilities
-        /// </summary>
-        /// <param name="skillAction"></param>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        public virtual void SkillStartAction(ISkillActionAsset skillAction, IHero casterHero, IHero targetHero)
-        {
-        }
+      
+
+        #endregion
     }
 }

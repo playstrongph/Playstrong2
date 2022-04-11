@@ -28,14 +28,7 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
             yield return null;
         }
 
-        public override void ExecuteBasicAction(IBasicActionAsset basicAction, IHero casterHero, IHero targetHero)
-        {
-            Debug.Log("CasterHero: " +casterHero.HeroName);
-            Debug.Log("TargetHero: " +targetHero.HeroName);
-            
-            Debug.Log("Caster Inability Status: " +casterHero.HeroLogic.HeroInabilityStatus);
-            Debug.Log("Target Inability Status: " +targetHero.HeroLogic.HeroInabilityStatus);
-        }
+       
 
         
         

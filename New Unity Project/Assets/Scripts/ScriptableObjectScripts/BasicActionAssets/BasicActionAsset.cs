@@ -36,7 +36,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //before basic actions are called
             SetMainExecutionActionHeroes(casterHero, targetHero, standardAction);
             
-            //TEST - TODO: Caster Pre Action Animation
+            //Caster Pre Action Animation
             logicTree.AddCurrent(PreActionAnimation(casterHero));
             
             //Run all pre-event actions when conditions and targets are valid
@@ -74,8 +74,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //animation target heroes list 
             ExecuteActionTargetHeroes.Clear();
-            
-            
+
             //TEST START
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
@@ -123,13 +122,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //leads to basicAction.CallPreBasicActionEvents
-                    //actionTargetHero.HeroLogic.HeroLifeStatus.TargetPreExecutionAction(this,casterHero,actionTargetHero);
-                    
-                    //TEST - Skip life status checking since already done at standard action level
-                    logicTree.AddCurrent(CallPreBasicActionEvents(casterHero,targetHero));
-                    
-                    
+                    logicTree.AddCurrent(CallPreBasicActionEvents(casterHero,actionTargetHero));
                 }
             }
             
@@ -194,10 +187,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    //Target action calls pre execute action if both the caster and target are alive
-                    //actionTargetHero.HeroLogic.HeroLifeStatus.TargetPostExecutionAction(this,casterHero,actionTargetHero);
-                    
-                    logicTree.AddCurrent(CallPostBasicActionEvents(casterHero,targetHero));
+                    logicTree.AddCurrent(CallPostBasicActionEvents(casterHero,actionTargetHero));
                 }
             }
             
@@ -273,14 +263,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-
-            foreach (var hero in ExecuteActionTargetHeroes)
+            foreach (var actionTargetHero in ExecuteActionTargetHeroes)
             {
-                //TODO: Test - life/inability checking transferred
-                //hero.HeroLogic.HeroLifeStatus.TargetMainExecutionAction(this,casterHero,hero);
-
-                logicTree.AddCurrent(ExecuteAction(casterHero,hero));  
-                
+                logicTree.AddCurrent(ExecuteAction(casterHero,actionTargetHero));
             }
             
             logicTree.EndSequence();
@@ -374,45 +359,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         #endregion
 
 
-        #region TEST LOGIC
+        #region OLD LOGIC
 
         
-        /*/// <summary>
-        /// TODO: TEST - Returns valid Targets
-        /// </summary>
-        /// <param name="casterHero"></param>
-        /// <param name="targetHero"></param>
-        /// <param name="standardAction"></param>
-        /// <returns></returns>
-        protected List<IHero> GetValidTargets(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
-        {
-            //From the perspective of the caster hero
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero);
-
-            //animation target heroes list 
-            ExecuteActionTargetHeroes.Clear();
-
-            //TEST START
-            for (var index = 0; index < actionTargetHeroes.Count; index++)
-            {
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero);
-                
-                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
-                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
-                
-                //This is effectively the actual "target hero" 
-                var actionTargetHero = actionTargetHeroes[index];
-
-                //Product of all 'And' and 'Or' basic condition logic
-                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
-                {
-                    //Animation target heroes
-                    ExecuteActionTargetHeroes.Add(actionTargetHero);
-                }
-            }
-            
-            return ExecuteActionTargetHeroes;
-        }*/
+        
 
         #endregion
 
