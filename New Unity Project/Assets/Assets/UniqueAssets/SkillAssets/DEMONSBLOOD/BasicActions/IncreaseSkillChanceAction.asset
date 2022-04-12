@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e208c21eeb61445b247bf51929e4ad, type: 3}
-  m_Name: StatusEffectCountersCondition
+  m_Script: {fileID: 11500000, guid: 816e219808b20654f9797074f17b5f76, type: 3}
+  m_Name: IncreaseSkillChanceAction
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: 408699856d300e7419f4cadb2e24d047, type: 2}
-  lessThanLimit: 1
-  greaterThanLimit: -99
+  bonusChance: 5

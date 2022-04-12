@@ -16,8 +16,8 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         }
         
         [Header("Set Limit Value")]
-        [SerializeField] private int lowerLimit = -99;
-        [SerializeField] private int upperLimit = -99;
+        [SerializeField] private int lessThanLimit = -99;
+        [SerializeField] private int greaterThanLimit = -99;
 
         protected override int CheckConditionValue(IHero hero)
         {
@@ -35,15 +35,17 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 if (statusEffect.StatusEffectName == StatusEffectAsset.StatusEffectName)
                     statusEffectCounters = statusEffect.CountersValue;
             }
-            
-            //This means upper limit condition
-            if(upperLimit >=0)
-                if (statusEffectCounters <= upperLimit)
+
+            //Value greater than zero means less than limit is enforced
+            if(lessThanLimit >=0)
+                //This means lower limit condition
+                if (statusEffectCounters <= lessThanLimit)
                     value = 1;  //Condition is met
             
-            //This means lower limit condition
-            if(lowerLimit >=0)
-                if (statusEffectCounters >= lowerLimit)
+           
+            if(greaterThanLimit >=0)
+                //This means upper limit condition
+                if (statusEffectCounters >= greaterThanLimit)
                     value = 1;  //Condition is met
             
             

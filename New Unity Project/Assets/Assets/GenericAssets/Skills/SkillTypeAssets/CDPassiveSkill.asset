@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ec258cee151c7c41a6abae680833608, type: 3}
-  m_Name: PassiveSkill
+  m_Name: CDPassiveSkill
   m_EditorClassIdentifier: 
-  startingSkillReadiness: {fileID: 11400000, guid: 80b36681a906f54499e6840228e37f0f,
+  startingSkillReadiness: {fileID: 11400000, guid: 44e72a367e8c48b46832a04e30241d18,
     type: 2}
   startingSkillEnableStatus: {fileID: 11400000, guid: 95ffeecbea434384d813720511451a26,
     type: 2}
