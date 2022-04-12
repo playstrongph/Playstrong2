@@ -38,18 +38,28 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             }
             
             //Value greater than zero means greater than limit is enforced
-            if(greaterThanLimit >=0)
+            if(lessThanLimit >=0)
                 //Counters are less than or equal to upper limit
                 if (skillCounters <= lessThanLimit)
-                    value = 1;  //Condition is met
+                {
+                    value = 1;
+                    Debug.Log("Value is less than or equal to limit");
+                }
+
+              
             
             //Value greater than zero means less than limit is enforced
-            if(lessThanLimit >=0)
+            if(greaterThanLimit >=0)
                 //Counters are greater than lower limit
                 if (skillCounters >= greaterThanLimit)
+                {
                     value = 1;  //Condition is met
+                    Debug.Log("Value is greater than or equal to limit"); 
+                }
+
             
             
+            Debug.Log("Skill Counters: " +skillCounters +" value: " +value);
             
             return value;
         }

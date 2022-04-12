@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SkillEffectAsset
+  m_Script: {fileID: 11500000, guid: 763e349df02b7e0479d006238ff5b4b5, type: 3}
+  m_Name: IncreaseSkillCountersAction
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: a4d9f2ba02bb314429b897ebc8c4415d, type: 2}
-  - {fileID: 11400000, guid: 4f2797be8cd6fd441807794647bb3da0, type: 2}
+  skillAsset: {fileID: 11400000, guid: 147f4528dbb32ec46b1a3b36f21bca14, type: 2}
+  countersValue: 1

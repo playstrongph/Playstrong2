@@ -18,8 +18,6 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void SubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
             casterHero.HeroLogic.HeroEvents.EBeforeHeroAttacks += standardAction.StartAction;
-            
-            Debug.Log("BeforeHeroAttacksEvent "+"CasterHero: " +casterHero.HeroName +" TargetHero: " +targetHero.HeroName);
         }
         
         

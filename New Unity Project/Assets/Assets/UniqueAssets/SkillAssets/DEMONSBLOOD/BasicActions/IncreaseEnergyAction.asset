@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SkillEffectAsset
+  m_Script: {fileID: 11500000, guid: 3b36e821613d3ee4498d2043b54f4fe6, type: 3}
+  m_Name: IncreaseEnergyAction
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: a4d9f2ba02bb314429b897ebc8c4415d, type: 2}
-  - {fileID: 11400000, guid: 4f2797be8cd6fd441807794647bb3da0, type: 2}
+  flatValue: 10
