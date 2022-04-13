@@ -25,7 +25,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5901803967277966774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8436924063294365318}
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162, y: -324}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682124303501609405
@@ -55,6 +55,7 @@ MonoBehaviour:
   specialEffect: {fileID: 9114878572475846335, guid: d9ae2e698cef1554b92fafbca3bc8e85,
     type: 3}
   delayInterval: 0.5
+  fadeInterval: 4
   fadeAlphaStart: 2
   fadeAlphaEnd: 0
 --- !u!1 &6778223611851538793
@@ -115,8 +116,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -736495317
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &244135214612466293
 MonoBehaviour:

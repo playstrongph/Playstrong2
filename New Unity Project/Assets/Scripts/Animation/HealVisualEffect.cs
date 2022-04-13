@@ -11,7 +11,7 @@ namespace Animation
     {
         [SerializeField] private Canvas canvas;
 
-        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private CanvasGroup canvasGroup = null;
 
         [SerializeField] private TextMeshProUGUI text = null;
 
@@ -21,7 +21,7 @@ namespace Animation
 
         [Header("DO TWEEN VALUES")]
         
-        //[SerializeField] private int fadeInterval = 0;
+        [SerializeField] private int fadeInterval = 0;
         [SerializeField]private int fadeAlphaStart = 0;
         [SerializeField] private int fadeAlphaEnd = 0;
         //[SerializeField] private int textDelayInterval = 0;
@@ -45,14 +45,14 @@ namespace Animation
         public override void PlayVisualEffect(IHero targetHero)
         {
             var s = DOTween.Sequence();
-            
+
             s.AppendCallback(() =>
                     Instantiate(SpecialEffect, targetHero.ThisGameObject.transform))
-                
+
                 //TEST
-                .AppendInterval(delayInterval+1f)
-                
-                .AppendCallback(() => Destroy(gameObject));
+                .AppendInterval(delayInterval);
+
+            //.AppendCallback(() => Destroy(gameObject));
         }
 
 
@@ -63,14 +63,19 @@ namespace Animation
         public override void PlayVisualEffect(string localText)
         {
             text.text = "+" + localText;
+            
             canvasGroup.alpha = fadeAlphaStart;
             
             var sequence = DOTween.Sequence();
 
             sequence
-                .AppendCallback(() => canvasGroup.DOFade(fadeAlphaEnd, delayInterval));
-                
-            
+                .AppendCallback(() => canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
+                .AppendInterval(fadeInterval)
+                .OnComplete(() => Destroy(gameObject));
+
+            //.AppendCallback(() => Destroy(gameObject));
+
+
         }
     }
 }
