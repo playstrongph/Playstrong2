@@ -53,6 +53,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
             set => healAnimationAsset = value as ScriptableObject;
         }
         
+        //TODO: Test
+        /// <summary>
+        /// Local variable for total healing amount
+        /// </summary>
+        [SerializeField] private int totalHealValue = 0;
+        
         
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -110,10 +116,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var damageDealtOrTakenHeal = DamageDealtOrTakenHeal(casterHero, targetHero);
             
             //Set total healing here
-            var totalHealing = flatValue + baseHealthHeal +damageDealtOrTakenHeal;
-            
+            totalHealValue = flatValue + baseHealthHeal +damageDealtOrTakenHeal;
+
             //New Health calculations
-            var newHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealing;
+            var newHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealValue;
             targetHero.HeroLogic.SetHealth.StartAction(newHealth);
         }
         
@@ -186,8 +192,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator HealAnimation(IHero targetHero)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            
-            HealAnimationAsset.PlayAnimation(targetHero);
+
+            HealAnimationAsset.PlayAnimation(totalHealValue.ToString(),targetHero);
             
             visualTree.EndSequence();
             yield return null;

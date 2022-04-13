@@ -96,16 +96,13 @@ namespace Animation
             s.AppendCallback(() =>
                     transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
                         .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
-                .AppendInterval(doScaleDuration * doScaleLoopCount)
                 
+                .AppendInterval(doScaleDuration * doScaleLoopCount)
                 .AppendCallback(() =>
                     //Fade the damage image
                     canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
-                
                 .AppendInterval(fadeInterval)
-                
                 .AppendInterval(delayInterval)
-                
                 .AppendCallback(() => Destroy(gameObject));
 
         }

@@ -104,6 +104,8 @@ namespace ScriptableObjectScripts.GameAnimationAssets
                 var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
                 
                 visualEffect.PlayVisualEffect(text);
+                
+                visualEffect.PlayVisualEffect(targetHero);
             }
         }
 
