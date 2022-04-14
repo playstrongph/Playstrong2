@@ -51,7 +51,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-        protected override void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected override void SetMainExecutionActionTargetHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);

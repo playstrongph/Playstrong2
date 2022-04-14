@@ -21,6 +21,13 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="hero"></param>
         /// <returns></returns>
         List<IHero> GetEventSubscribers(IHero hero);
+        
+        /// <summary>
+        /// Returns a list of heroes subscribing to the skill event.  Default is the skill caster hero
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        List<IHero> GetEventSubscribers(ISkill skill);
 
         /*/// <summary>
         /// Initializes the skill's caster hero used by SkillCasterHero action target

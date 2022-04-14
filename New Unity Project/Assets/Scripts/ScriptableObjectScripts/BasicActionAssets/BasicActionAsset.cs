@@ -34,7 +34,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Sets the main action target heroes.  "Void" used here to ensure heroes are set
             //before basic actions are called
-            SetMainExecutionActionHeroes(casterHero, targetHero, standardAction);
+            SetMainExecutionActionTargetHeroes(casterHero, targetHero, standardAction);
             
             //Caster Pre Action Animation
             logicTree.AddCurrent(PreActionAnimation(casterHero));
@@ -67,7 +67,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         /// <returns></returns>
-        protected virtual void SetMainExecutionActionHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        protected virtual void SetMainExecutionActionTargetHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);
