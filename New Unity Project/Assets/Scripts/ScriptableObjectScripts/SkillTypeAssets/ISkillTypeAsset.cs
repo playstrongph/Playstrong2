@@ -65,5 +65,12 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         /// <param name="skill"></param>
         ///  /// <param name="skillEnableStatusAsset"></param>
         void EnablePassiveSkill(ISkill skill, ISkillEnableStatusAsset skillEnableStatusAsset);
+        
+        
+        
+        //TEST
+        void UpdateSkillReadiness(ISkill skill,IUpdateSkillReadiness updateSkillReadiness);
+        
+        
     }
 }

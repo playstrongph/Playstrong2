@@ -28,7 +28,18 @@ namespace Logic
             get => cooldown;
             set => cooldown = value;
         }
+
+        [SerializeField] private int fightingSpiritCost;
         
+        /// <summary>
+        /// The fighting spirit cost of the skill
+        /// </summary>
+        public int FightingSpiritCost
+        {
+            get => fightingSpiritCost;
+            set => fightingSpiritCost = value;
+        }
+
         /// <summary>
         /// Base skill cooldown reference
         /// </summary>

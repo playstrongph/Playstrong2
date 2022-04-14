@@ -90,7 +90,19 @@ namespace AssetsScriptableObjects
             get => baseCooldown;
             private set => baseCooldown = value;
         }
+
+        [Header("Fighting Spirit Cost")] [SerializeField]
+        private int fightingSpiritCost;
         
+        /// <summary>
+        /// Skill's fighting spirit cost
+        /// </summary>
+        public int FightingSpiritCost
+        {
+            get => fightingSpiritCost;
+            private set => fightingSpiritCost = value;
+        }
+
         /// <summary>
         /// Skill Targets 
         /// </summary>

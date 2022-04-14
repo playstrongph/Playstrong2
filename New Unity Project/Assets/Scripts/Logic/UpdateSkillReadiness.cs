@@ -94,18 +94,22 @@ namespace Logic
         /// </summary>
         private void StartActionLogic()
         {
-            var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
+            /*var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
 
             if (skillCooldown <= 0)
                 SetSkillReady();
             else
-                SetSkillNotReady();
+                SetSkillNotReady();*/
+            
+            //TODO: condition for set skill ready here should be based on skill type, special consideration for fighting active skill 
+            _skillLogic.SkillAttributes.SkillType.UpdateSkillReadiness(_skillLogic.Skill,this);
+            
         }
 
         /// <summary>
         /// Set skill status to 'Ready' and execute status actions
         /// </summary>
-        private void SetSkillReady()
+        public void SetSkillReady()
         {
             _skillLogic.SkillAttributes.SkillReadiness = SkillReadyAsset;
             _skillLogic.SkillAttributes.SkillReadiness.StatusAction(_skillLogic.Skill);
@@ -114,7 +118,7 @@ namespace Logic
         /// <summary>
         /// Set skill status to 'Not Ready' and execute status actions
         /// </summary>
-        private void SetSkillNotReady()
+        public void SetSkillNotReady()
         {
             _skillLogic.SkillAttributes.SkillReadiness = SkillNotReadyAsset;
             _skillLogic.SkillAttributes.SkillReadiness.StatusAction(_skillLogic.Skill);

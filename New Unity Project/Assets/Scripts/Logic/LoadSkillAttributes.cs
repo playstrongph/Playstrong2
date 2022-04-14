@@ -19,6 +19,9 @@ namespace Logic
             skillAttributes.BaseCooldown = skillAsset.BaseCooldown;
             skillAttributes.Cooldown = skillAsset.BaseCooldown;
             
+            //TEST
+            skillAttributes.FightingSpiritCost = skillAsset.FightingSpiritCost;
+            
             //SET DEFAULT SKILL PROPERTIES AND STATUSES
             _skillLogic.UpdateSkillLastUsedStatus.SetNotUsedSkillLastTurn();
             

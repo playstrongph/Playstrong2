@@ -39,6 +39,11 @@ namespace AssetsScriptableObjects
         int BaseCooldown { get; }
         
         /// <summary>
+        /// Reference to the skill's fighting spirit cost
+        /// </summary>
+        int FightingSpiritCost { get; }
+
+        /// <summary>
         /// Skill targets asset
         /// </summary>
         ISkillTargetsAsset SkillTargetsAsset { get; }

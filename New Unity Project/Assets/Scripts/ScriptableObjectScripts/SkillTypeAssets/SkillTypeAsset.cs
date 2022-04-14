@@ -95,6 +95,19 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             visualTree.EndSequence();
             yield return null;
         }
+        
+        
+        //TEST - 14 April 2022
+        public virtual void UpdateSkillReadiness(ISkill skill, IUpdateSkillReadiness updateSkillReadiness)
+        {
+            var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
+
+            if (skillCooldown <= 0)
+                updateSkillReadiness.SetSkillReady();
+            else
+                updateSkillReadiness.SetSkillNotReady();
+        }
+        //TEST - END
 
 
 

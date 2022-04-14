@@ -13,12 +13,12 @@ namespace Logic
         /// Skill cooldown reference
         /// </summary>
         int Cooldown { get; set; }
-        
+
         /// <summary>
         /// Base Cooldown reference
         /// </summary>
         int BaseCooldown { get; set; }
-        
+
         /// <summary>
         /// Skill is enabled or disabled status
         /// </summary>
@@ -28,7 +28,7 @@ namespace Logic
         /// Skill 'Ready' or 'Not Ready' readiness status 
         /// </summary>
         ISkillReadinessStatusAsset SkillReadiness { get; set; }
-        
+
         /// <summary>
         /// Skill used or not used last turn
         /// </summary>
@@ -43,11 +43,17 @@ namespace Logic
         /// Skill valid targets - allies, enemies, other allies, or none (passive skills))
         /// </summary>
         ISkillTargetsAsset SkillTargets { get; set; }
-        
+
         /// <summary>
         /// Skill cooldown types - normal, immutable, and no cooldown
         /// </summary>
         ISkillCooldownTypeAsset SkillCooldownType { get; set; }
+
+        /// <summary>
+        /// The fighting spirit cost of the skill
+        /// </summary>
+        int FightingSpiritCost { get; set; }
+
 
     }
 }

@@ -25,6 +25,14 @@ namespace Logic
         /// </summary>
         void DisableSkillReadiness();
 
-
+        /// <summary>
+        /// Set skill ready status and actions
+        /// </summary>
+        void SetSkillReady();
+        
+        /// <summary>
+        /// Set skill not ready status and actions
+        /// </summary>
+        void SetSkillNotReady();
     }
 }
