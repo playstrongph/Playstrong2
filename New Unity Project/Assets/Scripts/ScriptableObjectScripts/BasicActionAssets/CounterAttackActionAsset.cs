@@ -93,7 +93,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
 
 
-
+        /// <summary>
+        /// Counter attack with basic skill
+        /// </summary>
+        /// <param name="attacker"></param>
+        /// <param name="counterAttacker"></param>
+        /// <returns></returns>
         private IEnumerator CounterAction(IHero attacker, IHero counterAttacker)
         {
             var logicTree = counterAttacker.CoroutineTrees.MainLogicTree;
