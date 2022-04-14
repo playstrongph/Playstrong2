@@ -47,12 +47,7 @@ namespace Animation
             var s = DOTween.Sequence();
 
             s.AppendCallback(() =>
-                    Instantiate(SpecialEffect, targetHero.ThisGameObject.transform))
-
-                //TEST
-                .AppendInterval(delayInterval);
-
-            //.AppendCallback(() => Destroy(gameObject));
+                Instantiate(SpecialEffect, targetHero.ThisGameObject.transform));
         }
 
 
@@ -64,17 +59,24 @@ namespace Animation
         {
             text.text = "+" + localText;
             
-            canvasGroup.alpha = fadeAlphaStart;
+            //canvasGroup.alpha = fadeAlphaStart;
+            canvasGroup.alpha = 0;
             
             var sequence = DOTween.Sequence();
+            var fadeInTime = 0.5f;
 
             sequence
+                //Heal amount fade-in sequence
+                .AppendInterval(fadeInTime)   
+                .AppendCallback(() => canvasGroup.DOFade(fadeAlphaStart, 1))
+                .AppendInterval(fadeInTime)
+                
+                //heal amount fade-out sequence
                 .AppendCallback(() => canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
-                .AppendInterval(fadeInterval)
+                
+                .AppendInterval(fadeInterval) //Do Fade delay interval
+                .AppendInterval(delayInterval) //ensures animation is completed before destroying
                 .OnComplete(() => Destroy(gameObject));
-
-            //.AppendCallback(() => Destroy(gameObject));
-
 
         }
     }

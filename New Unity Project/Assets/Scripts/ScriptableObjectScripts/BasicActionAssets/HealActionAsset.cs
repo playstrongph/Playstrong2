@@ -117,9 +117,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Set total healing here
             totalHealValue = flatValue + baseHealthHeal +damageDealtOrTakenHeal;
+            
+            //TEST
+            var maxHealAmount = targetHero.HeroLogic.HeroAttributes.BaseHealth -
+                                targetHero.HeroLogic.HeroAttributes.Health;
+            
+            //if max heal amount is negative
+            if (maxHealAmount <= 0)
+                maxHealAmount = 0;
+
+            //total healing amount is capped to the difference of base and max health
+            totalHealValue = Mathf.Min(totalHealValue, maxHealAmount);
 
             //New Health calculations
             var newHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealValue;
+            
             targetHero.HeroLogic.SetHealth.StartAction(newHealth);
         }
         
