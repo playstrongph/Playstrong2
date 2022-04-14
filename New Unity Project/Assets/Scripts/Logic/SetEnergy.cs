@@ -36,7 +36,7 @@ namespace Logic
             var netBonusEnergyChance = bonusEnergyDefaultChance - bonusEnergyResistance;
             var randomChance = Random.Range(1, 101);
 
-            var newEnergyValue = energyValue + _heroLogic.HeroAttributes.Energy;
+            var newEnergyValue = Mathf.Max(energyValue + _heroLogic.HeroAttributes.Energy,0);
             
             if(randomChance <= netBonusEnergyChance)
                 SetToValue(newEnergyValue);

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
-  m_Name: PassiveSkillSample
+  m_Name: PASSINGSKILLSAMPLE
   m_EditorClassIdentifier: 
   skillName: PassiveSkill
   skillDescription: At the start of your turn, give all allies LUCKY
@@ -19,6 +19,7 @@ MonoBehaviour:
     type: 3}
   skillTypeAsset: {fileID: 11400000, guid: 8a7626581c2f0aa458b6d8d26522444b, type: 2}
   baseCooldown: 1
+  fightingSpiritCost: 0
   skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 6cefc260956c40a44973d55b4a3e3835,
     type: 2}

@@ -25,4 +25,4 @@ MonoBehaviour:
   heroSkillAssets:
   - {fileID: 11400000, guid: da4d9f37d8e61864c99dfaeece04323f, type: 2}
   - {fileID: 11400000, guid: 147f4528dbb32ec46b1a3b36f21bca14, type: 2}
-  - {fileID: 11400000, guid: 3eab375b954374848ab8b5418320574c, type: 2}
+  - {fileID: 11400000, guid: 864d053204f6c0144bbcd9a51118a4e9, type: 2}

@@ -94,14 +94,8 @@ namespace Logic
         /// </summary>
         private void StartActionLogic()
         {
-            /*var skillCooldown = _skillLogic.SkillAttributes.Cooldown;
 
-            if (skillCooldown <= 0)
-                SetSkillReady();
-            else
-                SetSkillNotReady();*/
-            
-            //TODO: condition for set skill ready here should be based on skill type, special consideration for fighting active skill 
+            //Condition for set skill ready here should be based on skill type, special consideration for fighting active skill 
             _skillLogic.SkillAttributes.SkillType.UpdateSkillReadiness(_skillLogic.Skill,this);
             
         }

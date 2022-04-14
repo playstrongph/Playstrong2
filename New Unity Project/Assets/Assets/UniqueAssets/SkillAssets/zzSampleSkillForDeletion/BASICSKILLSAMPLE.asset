@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
-  m_Name: BasicSkillSample
+  m_Name: BASICSKILLSAMPLE
   m_EditorClassIdentifier: 
   skillName: BasicSkill
   skillDescription: The quick brown fox jumps over the lazy dog.
@@ -19,6 +19,7 @@ MonoBehaviour:
     type: 3}
   skillTypeAsset: {fileID: 11400000, guid: 2f8355899267f3041a9326b2ca319666, type: 2}
   baseCooldown: 0
+  fightingSpiritCost: 0
   skillTargetsAsset: {fileID: 11400000, guid: 643261c3c3dc7e14d9eece7e4b0d1015, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 6cefc260956c40a44973d55b4a3e3835,
     type: 2}
