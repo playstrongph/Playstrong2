@@ -97,7 +97,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         }
         
         
-        //TEST - 14 April 2022
+       
         public virtual void UpdateSkillReadiness(ISkill skill, IUpdateSkillReadiness updateSkillReadiness)
         {
             var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
@@ -106,6 +106,12 @@ namespace ScriptableObjectScripts.SkillTypeAssets
                 updateSkillReadiness.SetSkillReady();
             else
                 updateSkillReadiness.SetSkillNotReady();
+        }
+        
+        //TEST - 14 April 2022
+        public virtual void ConsumeFightingSpirit(ISkill skill)
+        {
+            
         }
         //TEST - END
 

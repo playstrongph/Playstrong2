@@ -110,6 +110,19 @@ namespace ScriptableObjectScripts.SkillTypeAssets
                 updateSkillReadiness.SetSkillNotReady();
         }
         
+        //TEST
+        public override void ConsumeFightingSpirit(ISkill skill)
+        {
+            var spiritCost = skill.SkillLogic.SkillAttributes.FightingSpiritCost;
+            var heroSpirit = skill.CasterHero.HeroLogic.HeroAttributes.FightingSpirit;
+
+            var netSpirit = heroSpirit - spiritCost;
+            
+            //Negative result is clamped to zero
+            netSpirit = Mathf.Max(0, netSpirit);
+            
+            skill.CasterHero.HeroLogic.SetFightingSpirit.StartAction(netSpirit);
+        }
         
 
 

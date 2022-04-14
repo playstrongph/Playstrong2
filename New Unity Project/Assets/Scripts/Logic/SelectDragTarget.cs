@@ -181,8 +181,10 @@ namespace Logic
             //TODO: UseSkillEffect IEnumerator
             logicTree.AddCurrent(UseSkillEffect());
             
+            //Note: Reset skill cooldown moved to skill action asset
+            
             //ResetSkillCooldown
-            logicTree.AddCurrent(ResetSkillCooldown());
+            logicTree.AddCurrent(ConsumeFightingSpirit());
 
             //UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
             logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());
@@ -211,17 +213,16 @@ namespace Logic
         }
         
         /// <summary>
-        /// Reset skill cooldown after skill use
+        /// Consumes fighting spirit after skill use 
         /// </summary>
         /// <returns></returns>
-        private IEnumerator ResetSkillCooldown()
+        private IEnumerator ConsumeFightingSpirit()
         {
             var skill = SkillTargetCollider.Skill;
             var logicTree = skill.CasterHero.CoroutineTrees.MainLogicTree;
-            
-            //TODO: Test - transferred to SkillActionAsset
-            //skill.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
-            
+
+            skill.SkillLogic.SkillAttributes.SkillType.ConsumeFightingSpirit(skill);
+
             logicTree.EndSequence();
             yield return null;
         }

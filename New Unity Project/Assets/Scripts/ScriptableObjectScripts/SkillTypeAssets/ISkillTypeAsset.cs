@@ -70,7 +70,9 @@ namespace ScriptableObjectScripts.SkillTypeAssets
         
         //TEST
         void UpdateSkillReadiness(ISkill skill,IUpdateSkillReadiness updateSkillReadiness);
-        
-        
+
+        void ConsumeFightingSpirit(ISkill skill);
+
+
     }
 }
