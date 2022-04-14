@@ -227,10 +227,13 @@ namespace Logic
             yield return null;
         }
 
+        /// <summary>
+        /// Dummy action method assigned when skill readiness status is 'Not Ready'
+        /// </summary>
+        private void NoAction()
+        {
+        }
 
-
-
-        #region DRAGTARGETVISUALS
 
         /// <summary>
         /// Displays the line and cross hair when the mouse is dragged a certain distance
@@ -304,16 +307,5 @@ namespace Logic
             
             SkillTargetCollider.Draggable.DisableDraggable();
         }
-        
-        #endregion
-        
-        /// <summary>
-        /// Dummy action method assigned when skill readiness status is 'Not Ready'
-        /// </summary>
-        private void NoAction()
-        {
-        }
-
-
     }
 }

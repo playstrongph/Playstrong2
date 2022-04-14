@@ -110,7 +110,10 @@ namespace ScriptableObjectScripts.SkillTypeAssets
                 updateSkillReadiness.SetSkillNotReady();
         }
         
-        //TEST
+        /// <summary>
+        /// Consumes fighting spirit after using a fight active skill
+        /// </summary>
+        /// <param name="skill"></param>
         public override void ConsumeFightingSpirit(ISkill skill)
         {
             var spiritCost = skill.SkillLogic.SkillAttributes.FightingSpiritCost;
