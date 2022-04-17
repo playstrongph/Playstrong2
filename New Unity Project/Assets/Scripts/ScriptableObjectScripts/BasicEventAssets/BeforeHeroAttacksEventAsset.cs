@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public override void SubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            casterHero.HeroLogic.HeroEvents.EBeforeHeroAttacks += standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EBeforeHeroAttacks += standardAction.StartAction;
         }
         
         
@@ -30,7 +30,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public override void UnsubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            casterHero.HeroLogic.HeroEvents.EBeforeHeroAttacks -= standardAction.StartAction;
+            targetHero.HeroLogic.HeroEvents.EBeforeHeroAttacks -= standardAction.StartAction;
         }
         
        

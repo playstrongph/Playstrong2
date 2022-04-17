@@ -11,13 +11,14 @@ namespace ScriptableObjectScripts.BasicEventAssets
     {
         /// <summary>
         /// Subscribes the standard action to the HERO specific basic event - e.g. EventDragSkillTarget
+        /// Note: TargetHero should always be used by the inheritors, since it is determined by GetValidTargets
         /// </summary>
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <param name="standardAction"></param>
         public virtual void SubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            //TEST - no coroutine sub-method like the original
+            
         }
         
         /// <summary>
@@ -28,7 +29,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public virtual void UnsubscribeStandardAction(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            //TEST - no coroutine sub-method like the original
+            
         }
         
         /// <summary>
@@ -38,7 +39,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public virtual void SubscribeStandardAction(ISkill skill, IStandardActionAsset standardAction)
         {
-            //TEST - no coroutine sub-method like the original
+            
         }
         
         /// <summary>
@@ -48,7 +49,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         /// <param name="standardAction"></param>
         public virtual void UnsubscribeStandardAction(ISkill skill, IStandardActionAsset standardAction)
         {
-            //TEST - no coroutine sub-method like the original
+            
         }
         
         

@@ -143,12 +143,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         /// <summary>
         /// Subscribe standard action to each hero (subscriber) event
+        /// Basic events should ALWAYS use targetHero in the subscription
         /// </summary>
         /// <param name="casterHero"></param>
         /// <returns></returns>
         public void SubscribeStandardAction(IHero casterHero)
         {
-            //The targetHero is the subscriber ?
             foreach (var subscriber in Subscribers.GetEventSubscribers(casterHero))
             {
                 BasicEvent.SubscribeStandardAction(casterHero,subscriber,this);
@@ -162,7 +162,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <returns></returns>
         public void UnsubscribeStandardAction(IHero casterHero)
         {
-            //The targetHero is the subscriber ?
             foreach (var subscriber in Subscribers.GetEventSubscribers(casterHero))
             {
                 BasicEvent.UnsubscribeStandardAction(casterHero,subscriber,this);
@@ -171,6 +170,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         /// <summary>
         /// Subscribe standard action to the skill event
+        /// Drag skill subscriber should always be ThisHero
         /// </summary>
         /// <param name="skill"></param>
         /// <returns></returns>
@@ -181,6 +181,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         /// <summary>
         /// Unsubscribe standard action to the skill event
+        /// Drag skill subscriber should always be ThisHero
         /// </summary>
         /// <param name="skill"></param>
         public void UnsubscribeStandardAction(ISkill skill)
