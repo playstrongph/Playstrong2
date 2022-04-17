@@ -39,12 +39,12 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        public override void AddToTargetsHeroList(List<IHero> heroes, IHero hero)
+        public override void AddToHeroTargetsList(List<IHero> heroes, IHero hero)
         {
            heroes.Add(hero);
         }
         
-        public override void AddToHeroCasterList(List<IHero> heroes, IHero hero)
+        public override void AddToHeroCastersList(List<IHero> heroes, IHero hero)
         {
             //check first if hero has no Inability
            hero.HeroLogic.HeroInabilityStatus.AddToCastersHeroList(heroes,hero);

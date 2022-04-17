@@ -36,12 +36,12 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        public virtual void AddToTargetsHeroList(List<IHero> heroes, IHero hero)
+        public virtual void AddToHeroTargetsList(List<IHero> heroes, IHero hero)
         {
            
         }
         
-        public virtual void AddToHeroCasterList(List<IHero> heroes, IHero hero)
+        public virtual void AddToHeroCastersList(List<IHero> heroes, IHero hero)
         {
            
         }

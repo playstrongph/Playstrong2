@@ -96,7 +96,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Add only living heroes (only) to the MainExecutionActionHeroes list
-                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToTargetsHeroList(ExecuteActionTargetHeroes,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroTargetsList(ExecuteActionTargetHeroes,actionTargetHero);
                 }
             }
         }
@@ -131,8 +131,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Add only living heroes (only) to the MainExecutionActionHeroes list
-                    //TODO: Should also check if living hero has no Inability
-                    actionCasterHero.HeroLogic.HeroLifeStatus.AddToTargetsHeroList(ExecuteActionCasterHeroes,actionCasterHero);
+                    actionCasterHero.HeroLogic.HeroLifeStatus.AddToHeroCastersList(ExecuteActionCasterHeroes,actionCasterHero);
                 }
             }
         }
@@ -147,9 +146,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
-            var actionCasterHeroes = standardAction.BasicActionCasters.GetActionHeroes(casterHero,targetHero,standardAction);
+            /*//These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
+            //var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
+            var actionTargetHeroes = ExecuteActionTargetHeroes;
+            
+            //var actionCasterHeroes = standardAction.BasicActionCasters.GetActionHeroes(casterHero,targetHero,standardAction);
+            var actionCasterHeroes = ExecuteActionCasterHeroes;
+            
             var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
 
             foreach (var actionCasterHero in actionCasterHeroes)
@@ -168,6 +171,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
                         logicTree.AddCurrent(CallPreBasicActionEvents(actionCasterHero,actionTargetHero));
                     }
                 }
+            }*/
+            
+            foreach (var actionCasterHero in ExecuteActionCasterHeroes)
+            {
+                foreach (var actionTargetHero in ExecuteActionTargetHeroes)
+                {
+                    logicTree.AddCurrent(CallPreBasicActionEvents(actionCasterHero,actionTargetHero));
+                }    
             }
 
             logicTree.EndSequence();
@@ -214,8 +225,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         private IEnumerator PostBasicActionPhase(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            /*var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
@@ -233,6 +246,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     logicTree.AddCurrent(CallPostBasicActionEvents(casterHero,actionTargetHero));
                 }
+            }*/
+            
+            foreach (var actionCasterHero in ExecuteActionCasterHeroes)
+            {
+                foreach (var actionTargetHero in ExecuteActionTargetHeroes)
+                {
+                    logicTree.AddCurrent(CallPostBasicActionEvents(actionCasterHero,actionTargetHero));
+                }    
             }
             
             logicTree.EndSequence();
@@ -307,11 +328,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            foreach (var actionTargetHero in ExecuteActionTargetHeroes)
+            foreach (var actionCasterHero in ExecuteActionCasterHeroes)
             {
-                logicTree.AddCurrent(ExecuteAction(casterHero,actionTargetHero));
+                foreach (var actionTargetHero in ExecuteActionTargetHeroes)
+                {
+                    logicTree.AddCurrent(ExecuteAction(actionCasterHero,actionTargetHero));
+                }    
             }
-            
+
             logicTree.EndSequence();
             yield return null;
         }

@@ -29,14 +29,14 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        void AddToTargetsHeroList(List<IHero> heroes, IHero hero);
+        void AddToHeroTargetsList(List<IHero> heroes, IHero hero);
         
         /// <summary>
         /// Add to living casters hero list
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        void AddToHeroCasterList(List<IHero> heroes, IHero hero);
+        void AddToHeroCastersList(List<IHero> heroes, IHero hero);
 
         #region OLD LOGIC
 
