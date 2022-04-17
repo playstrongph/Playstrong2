@@ -204,7 +204,7 @@ namespace Logic
             //Call all EventSkillDragTarget subscribers' start action
             skill.SkillLogic.SkillEvents.EventDragSkillTarget(casterHero,targetHero);
             
-            //TODO: TEST -  Copied from AfterHeroEndTurn. UpdateHeroActiveStatus 
+            //Set hero active status and execute the status actions 
             casterHero.HeroLogic.SetHeroActiveStatus.InactiveHero();
             casterHero.HeroLogic.HeroActiveStatus.StatusAction(casterHero);
             
