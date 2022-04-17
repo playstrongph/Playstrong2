@@ -54,7 +54,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected override void SetMainExecutionActionTargetHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
             
             //animation target heroes list 
             ExecuteActionTargetHeroes.Clear();
@@ -63,7 +63,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TEST START
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
                 
                 //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;

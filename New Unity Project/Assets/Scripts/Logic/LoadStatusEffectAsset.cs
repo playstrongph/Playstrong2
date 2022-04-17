@@ -104,10 +104,16 @@ namespace Logic
                 // ReSharper disable once PossibleNullReferenceException
                 //Create a unique instance of action targets
                 standardAction.BasicActionTargets =
-                        Instantiate(standardAction.BasicActionTargets as ScriptableObject) as IActionTargetAsset;
+                        Instantiate(standardAction.BasicActionTargets as ScriptableObject) as IActionHeroesAsset;
+                
+                
+                //TODO - TEST: BasicActionCasters
+                //Create a unique instance of action casters
+                standardAction.BasicActionCasters = Instantiate(standardAction.BasicActionCasters as ScriptableObject) as IActionHeroesAsset;
+                
 
                 //Create unique instance of subscribers
-                standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionTargetAsset;
+                standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionHeroesAsset;
 
                 i++;
             }

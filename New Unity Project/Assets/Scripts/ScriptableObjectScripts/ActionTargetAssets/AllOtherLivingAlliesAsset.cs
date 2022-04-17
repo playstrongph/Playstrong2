@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
     [CreateAssetMenu(fileName = "AllOtherLivingAllies", menuName = "Assets/ActionTargets/AllOtherLivingAllies")]
-    public class AllOtherLivingAlliesAsset : ActionTargetAsset
+    public class AllOtherLivingAlliesAsset : ActionHeroesAsset
     {
         /// <summary>
         /// Returns the hero's targeted hero
@@ -15,7 +15,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="targetHero"></param>
         /// <param name="standardActionAsset"></param>
         /// <returns></returns>
-        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
+        public override List<IHero> GetActionHeroes(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
         {
             //Should be from the perspective of the caster hero
             var allAllies = casterHero.Player.AliveHeroes.Heroes;

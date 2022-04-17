@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
     [CreateAssetMenu(fileName = "SkillCasterHero", menuName = "Assets/ActionTargets/SkillCasterHero")]
-    public class SkillCasterHeroAsset : ActionTargetAsset
+    public class SkillCasterHeroAsset : ActionHeroesAsset
     {
         /*/// <summary>
         /// Returns the hero's targeted hero

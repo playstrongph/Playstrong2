@@ -70,7 +70,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected virtual void SetMainExecutionActionTargetHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //From the perspective of the caster hero
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
             
             //animation target heroes list 
             ExecuteActionTargetHeroes.Clear();
@@ -78,7 +78,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //TEST START
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
                 
                 //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
@@ -104,14 +104,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator PreBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
             //These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
             
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
                 
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
 
                 //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
@@ -170,13 +170,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         private IEnumerator PostBasicActionPhase(IHero casterHero, IHero targetHero, IStandardActionAsset standardAction)
         {
-            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+            var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             for (var index = 0; index < actionTargetHeroes.Count; index++)
             {
                 //These are the basic condition target heroes - thisHero,targetHero, allEnemies, etc.
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionTargets(casterHero,targetHero,standardAction);
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
                 
                 //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
                 var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;

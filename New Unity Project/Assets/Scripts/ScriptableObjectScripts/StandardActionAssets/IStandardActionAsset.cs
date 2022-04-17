@@ -16,7 +16,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Hero subscribers to the basic events
         /// </summary>
-        IActionTargetAsset Subscribers { get; set; }
+        IActionHeroesAsset Subscribers { get; set; }
 
         List<ScriptableObject> BasicActionObjects { get; }
 
@@ -25,9 +25,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Hero targets used in the basic condition logic
         /// </summary>
-        IActionTargetAsset BasicConditionTargets { get; set; }
-        
-        
+        IActionHeroesAsset BasicConditionTargets { get; set; }
+
         /// <summary>
         /// List of basic conditions in 'OR' logic configuration
         /// Returns orBasicConditions as list of basic condition assets
@@ -53,10 +52,15 @@ namespace ScriptableObjectScripts.StandardActionAssets
         List<ScriptableObject> AndBasicConditionsScriptableObjects { get; }
         
         /// <summary>
-        /// Heroes used ion basic action logic
+        /// Hero targets for basic action logic
         /// </summary>
-        IActionTargetAsset BasicActionTargets { get; set; }
+        IActionHeroesAsset BasicActionTargets { get; set; }
         
+        
+        /// <summary>
+        /// Hero casters for basic action logic 
+        /// </summary>
+        IActionHeroesAsset BasicActionCasters { get; set; }
 
         #endregion
 

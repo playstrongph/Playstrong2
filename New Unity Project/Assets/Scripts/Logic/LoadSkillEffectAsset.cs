@@ -58,19 +58,19 @@ namespace Logic
                 var standardAction = _skillLogic.SkillEffect.StandardActions[i]; 
 
                 //Create unique basic action targets and set skill parent reference
-                standardAction.BasicActionTargets = Instantiate(standardAction.BasicActionTargets as ScriptableObject) as IActionTargetAsset;
+                standardAction.BasicActionTargets = Instantiate(standardAction.BasicActionTargets as ScriptableObject) as IActionHeroesAsset;
                 
                 //TODO:TEST cleanup - action targets will not be generic if referencing such as these are used
                 //standardAction.BasicActionTargets?.InitializeSkillCasterHero(_skillLogic.Skill);
                 
                 //Create unique basic condition targets and set skill parent reference
-                standardAction.BasicConditionTargets = Instantiate(standardAction.BasicConditionTargets as ScriptableObject) as IActionTargetAsset;
+                standardAction.BasicConditionTargets = Instantiate(standardAction.BasicConditionTargets as ScriptableObject) as IActionHeroesAsset;
                 
                 //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
                 //standardAction.BasicConditionTargets?.InitializeSkillCasterHero(_skillLogic.Skill);
                 
                 //Create unique basic event subscribers and initialize skill parent reference
-                standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionTargetAsset;
+                standardAction.Subscribers = Instantiate(standardAction.Subscribers as ScriptableObject) as IActionHeroesAsset;
                 
                 //TODO:TEST cleanup- action targets will not be generic if referencing such as these are used
                 //standardAction.Subscribers?.InitializeSkillCasterHero(_skillLogic.Skill);

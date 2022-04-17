@@ -6,7 +6,7 @@ using UnityEngine;
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
     [CreateAssetMenu(fileName = "StatusEffectTargetHero", menuName = "Assets/ActionTargets/StatusEffectTargetHero")]
-    public class StatusEffectTargetHeroAsset : ActionTargetAsset
+    public class StatusEffectTargetHeroAsset : ActionHeroesAsset
     {
         /// <summary>
         /// Returns the status effect target hero
@@ -15,7 +15,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         /// <param name="targetHero"></param>
         /// <param name="standardActionAsset"></param>
         /// <returns></returns>
-        public override List<IHero> GetActionTargets(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
+        public override List<IHero> GetActionHeroes(IHero casterHero,IHero targetHero, IStandardActionAsset standardActionAsset)
         {
             var statusEffectActionAsset = standardActionAsset as IStatusEffectActionAsset;
 

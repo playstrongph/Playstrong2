@@ -31,10 +31,10 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <summary>
         /// Hero subscribers to the basic events
         /// </summary>
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))] private ScriptableObject subscribers;
-        public IActionTargetAsset Subscribers
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionHeroesAsset))] private ScriptableObject subscribers;
+        public IActionHeroesAsset Subscribers
         {
-            get => subscribers as IActionTargetAsset;
+            get => subscribers as IActionHeroesAsset;
             set => subscribers = value as ScriptableObject;
         }
         
@@ -43,10 +43,10 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// Hero targets used in the basic condition logic
         /// </summary>
         [Header("BASIC CONDITION COMPONENTS")]
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))]private ScriptableObject basicConditionTargets;
-        public IActionTargetAsset BasicConditionTargets
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionHeroesAsset))]private ScriptableObject basicConditionTargets;
+        public IActionHeroesAsset BasicConditionTargets
         {
-            get => basicConditionTargets as IActionTargetAsset;
+            get => basicConditionTargets as IActionHeroesAsset;
             set => basicConditionTargets = value as ScriptableObject;
         }
         
@@ -103,14 +103,27 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public List<ScriptableObject> AndBasicConditionsScriptableObjects => andBasicConditions;
         
         
-        /// <summary>
-        /// Heroes used ion basic action logic
-        /// </summary>
+        
         [Header("BASIC ACTION COMPONENTS")]
-        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionTargetAsset))]private ScriptableObject basicActionTargets;
-        public IActionTargetAsset BasicActionTargets
+        
+        
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionHeroesAsset))]private ScriptableObject basicActionCasters;
+        /// <summary>
+        /// Basic Action caster heroes
+        /// </summary>
+        public IActionHeroesAsset BasicActionCasters
         {
-            get => basicActionTargets as IActionTargetAsset;
+            get => basicActionCasters as IActionHeroesAsset;
+            set => basicActionCasters = value as ScriptableObject;
+        }
+
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(IActionHeroesAsset))]private ScriptableObject basicActionTargets;
+        /// <summary>
+        /// Basic Action target heroes
+        /// </summary>
+        public IActionHeroesAsset BasicActionTargets
+        {
+            get => basicActionTargets as IActionHeroesAsset;
             set => basicActionTargets = value as ScriptableObject;
         }
         
