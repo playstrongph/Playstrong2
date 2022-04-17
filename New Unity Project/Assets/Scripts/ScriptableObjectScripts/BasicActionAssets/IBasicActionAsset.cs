@@ -71,19 +71,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Main Execution Action Heroes list
         /// </summary>
         List<IHero> ExecuteActionTargetHeroes { get; }
+        
+        /// <summary>
+        /// Main Execution Action Casters List
+        /// </summary>
+        List<IHero> ExecuteActionCasterHeroes { get;}
 
 
 
 
         #region OLD LOGIC
 
-        /*/// <summary>
-        /// Checks if the targeted and targeting hero are both alive before
-        /// executing the basic action.  Can be overriden to bypass these checks
-        /// as required - e.g. resurrect, base stats change
-        /// </summary>
-        /// <param name="hero"></param>
-        IEnumerator StartAction(IHero hero);*/
 
         #endregion
     }

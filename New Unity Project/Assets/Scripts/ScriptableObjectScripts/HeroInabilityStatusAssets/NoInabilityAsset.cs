@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
@@ -42,7 +43,18 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         {
             skillAction.SkillStartAction(casterHero,targetHero);
         }
-
+        
+        /// <summary>
+        /// Add to casters hero list
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public override void AddToCastersHeroList(List<IHero> heroes, IHero hero)
+        {
+            heroes.Add(hero);
+        }
+        
+        
         #region OLD LOGIC
 
         /*/// <summary>

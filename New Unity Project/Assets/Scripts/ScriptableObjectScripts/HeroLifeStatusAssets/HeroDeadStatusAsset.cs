@@ -36,7 +36,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        public override void AddToHeroList(List<IHero> heroes, IHero hero)
+        public override void AddToTargetsHeroList(List<IHero> heroes, IHero hero)
         {
            
         }

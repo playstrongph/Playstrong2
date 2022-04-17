@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Logic;
 using ScriptableObjectScripts.BasicActionAssets;
 using ScriptableObjectScripts.StandardActionAssets;
@@ -42,6 +43,16 @@ namespace ScriptableObjectScripts.HeroInabilityStatusAssets
         /// <param name="targetHero"></param>
         public virtual void ExecuteStandardAction(IStandardActionAsset standardAction, IHero casterHero,IHero targetHero)
         { }
+        
+        /// <summary>
+        /// Add to casters hero list
+        /// </summary>
+        /// <param name="heroes"></param>
+        /// <param name="hero"></param>
+        public virtual void AddToCastersHeroList(List<IHero> heroes, IHero hero)
+        {
+            
+        }
 
         #region OLD LOGIC
 

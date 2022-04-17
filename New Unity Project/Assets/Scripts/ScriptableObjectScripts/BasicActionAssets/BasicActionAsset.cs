@@ -19,6 +19,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         //These are the heroes used in the main execution action logic and visual
         public List<IHero> ExecuteActionTargetHeroes { get; private set; } = new List<IHero>();
+        
+        //TODO - Test
+        public List<IHero> ExecuteActionCasterHeroes { get; private set; } = new List<IHero>();
 
         /// <summary>
        /// Checks for the validity of the conditions and targets before running the
@@ -35,6 +38,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Sets the main action target heroes.  "Void" used here to ensure heroes are set
             //before basic actions are called
             SetMainExecutionActionTargetHeroes(casterHero, targetHero, standardAction);
+            
+            //TEST
+            SetMainExecutionActionCasterHeroes(casterHero, targetHero, standardAction);
             
             //Caster Pre Action Animation
             logicTree.AddCurrent(PreActionAnimation(casterHero));
@@ -71,7 +77,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             //From the perspective of the caster hero
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
-            
+
             //animation target heroes list 
             ExecuteActionTargetHeroes.Clear();
 
@@ -90,7 +96,43 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
                     //Add only living heroes (only) to the MainExecutionActionHeroes list
-                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToHeroList(ExecuteActionTargetHeroes,actionTargetHero);
+                    actionTargetHero.HeroLogic.HeroLifeStatus.AddToTargetsHeroList(ExecuteActionTargetHeroes,actionTargetHero);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Sets the valid action targets for main basic action.
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <param name="standardAction"></param>
+        /// <returns></returns>
+        protected virtual void SetMainExecutionActionCasterHeroes(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
+        {
+            //From the perspective of the caster hero
+            var actionCasterHeroes = standardAction.BasicActionCasters.GetActionHeroes(casterHero,targetHero,standardAction);
+
+            //animation target heroes list 
+            ExecuteActionCasterHeroes.Clear();
+
+            //TEST START
+            for (var index = 0; index < actionCasterHeroes.Count; index++)
+            {
+                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
+                
+                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
+                var conditionIndex = conditionTargetHeroes.Count < actionCasterHeroes.Count ? 0 : index;
+                
+                //This is effectively the actual "target hero" 
+                var actionCasterHero = actionCasterHeroes[index];
+
+                //Product of all 'And' and 'Or' basic condition logic
+                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                {
+                    //Add only living heroes (only) to the MainExecutionActionHeroes list
+                    //TODO: Should also check if living hero has no Inability
+                    actionCasterHero.HeroLogic.HeroLifeStatus.AddToTargetsHeroList(ExecuteActionCasterHeroes,actionCasterHero);
                 }
             }
         }
@@ -103,29 +145,31 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="standardAction"></param>
         private IEnumerator PreBasicActionPhase(IHero casterHero, IHero targetHero,  IStandardActionAsset standardAction)
         {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
             //These are the basic action target heroes - thisHero,targetHero, allEnemies, etc.
             var actionTargetHeroes = standardAction.BasicActionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
-            
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var actionCasterHeroes = standardAction.BasicActionCasters.GetActionHeroes(casterHero,targetHero,standardAction);
+            var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
 
-            for (var index = 0; index < actionTargetHeroes.Count; index++)
+            foreach (var actionCasterHero in actionCasterHeroes)
             {
-                
-                var conditionTargetHeroes = standardAction.BasicConditionTargets.GetActionHeroes(casterHero,targetHero,standardAction);
-
-                //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
-                var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : index;
-                
-                //This is effectively the actual "target hero" 
-                var actionTargetHero = actionTargetHeroes[index];
-
-                //Product of all 'And' and 'Or' basic condition logic
-                if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                for (var targetIndex = 0; targetIndex < actionTargetHeroes.Count; targetIndex++)
                 {
-                    logicTree.AddCurrent(CallPreBasicActionEvents(casterHero,actionTargetHero));
+                    //This is effectively the actual "target hero" 
+                    var actionTargetHero = actionTargetHeroes[targetIndex];
+
+                    //Use index 0 if basic condition targets does not follow a multiple basic action targets scenario
+                    var conditionIndex = conditionTargetHeroes.Count < actionTargetHeroes.Count ? 0 : targetIndex;
+
+                    //Product of all 'And' and 'Or' basic condition logic
+                    if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
+                    {
+                        logicTree.AddCurrent(CallPreBasicActionEvents(actionCasterHero,actionTargetHero));
+                    }
                 }
             }
-            
+
             logicTree.EndSequence();
             yield return null;
         }

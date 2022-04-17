@@ -34,13 +34,22 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
 
         /// <summary>
         /// Add a living hero to a heroes list.  Example use: basic actions
+        /// TODO: Create AddToTargetHeroList and AddToCasterHero list.  Caster hero list checks for inability
+        /// 
         /// </summary>
         /// <param name="heroes"></param>
         /// <param name="hero"></param>
-        public override void AddToHeroList(List<IHero> heroes, IHero hero)
+        public override void AddToTargetsHeroList(List<IHero> heroes, IHero hero)
         {
            heroes.Add(hero);
         }
+        
+        public override void AddToHeroCasterList(List<IHero> heroes, IHero hero)
+        {
+            //check first if hero has no Inability
+           hero.HeroLogic.HeroInabilityStatus.AddToCastersHeroList(heroes,hero);
+        }
+        
 
 
 
