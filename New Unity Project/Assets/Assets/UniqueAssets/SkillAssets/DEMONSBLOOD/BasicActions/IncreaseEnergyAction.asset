@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b36e821613d3ee4498d2043b54f4fe6, type: 3}
   m_Name: IncreaseEnergyAction
   m_EditorClassIdentifier: 
-  flatValue: 10
+  flatValue: 25

@@ -73,8 +73,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             {
                 standardAction.StartAction(casterHero,targetHero);
             }
-            
-            Debug.Log("Caster Hero: " +casterHero.HeroName +" Target Hero: " +targetHero.HeroName);
 
             logicTree.EndSequence();
             yield return null;

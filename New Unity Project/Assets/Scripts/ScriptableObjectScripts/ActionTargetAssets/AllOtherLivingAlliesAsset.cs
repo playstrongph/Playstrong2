@@ -40,11 +40,6 @@ namespace ScriptableObjectScripts.ActionTargetAssets
 
             var actionTargets = ShuffleList(new List<IHero>(allOtherAllies));
 
-            foreach (var actionTarget in actionTargets)
-            {
-                Debug.Log("Subscriber: " +actionTarget.HeroName);
-            }
-            
             return actionTargets;
             
         }

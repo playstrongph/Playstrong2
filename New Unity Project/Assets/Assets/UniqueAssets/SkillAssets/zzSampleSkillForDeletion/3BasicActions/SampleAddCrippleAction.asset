@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SampleAddCrippleAction
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: 32b5dbaf06e2e1744bee93076a2e4ddf, type: 2}
-  statusEffectCounters: 2
+  statusEffectCounters: 1
   defaultChance: 100
   instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,

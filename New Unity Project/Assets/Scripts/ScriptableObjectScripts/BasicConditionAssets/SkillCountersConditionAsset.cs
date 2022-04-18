@@ -57,10 +57,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                     Debug.Log("Value is greater than or equal to limit"); 
                 }
 
-            
-            
-            Debug.Log("Skill Counters: " +skillCounters +" value: " +value);
-            
             return value;
         }
     }
