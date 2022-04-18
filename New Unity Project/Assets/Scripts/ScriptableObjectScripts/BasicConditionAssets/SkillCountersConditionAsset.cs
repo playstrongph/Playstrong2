@@ -43,7 +43,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 if (skillCounters <= lessThanLimit)
                 {
                     value = 1;
-                    Debug.Log("Value is less than or equal to limit");
                 }
 
               
@@ -54,7 +53,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 if (skillCounters >= greaterThanLimit)
                 {
                     value = 1;  //Condition is met
-                    Debug.Log("Value is greater than or equal to limit"); 
                 }
 
             return value;

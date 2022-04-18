@@ -210,10 +210,16 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="casterHero"></param>
         public virtual void StartAction(IHero casterHero)
         {
-            //Check if both the caster and target heroes are alive
+            /*//Check if both the caster and target heroes are alive
             //Also checks if the caster hero has no inability
             //Leads to calling ExecuteStartAction
-            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,casterHero);
+            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,casterHero);*/
+            
+            //TEST - no checking of life status, since this is done at basic action
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.AddCurrent(ExecuteStartAction(casterHero,casterHero));
+
         }
         
         /// <summary>
@@ -239,10 +245,14 @@ namespace ScriptableObjectScripts.StandardActionAssets
         public virtual void StartAction(IHero casterHero, IHero targetHero)
         {
 
-            //Check if both the caster and target heroes are alive
+            /*//Check if both the caster and target heroes are alive
             //Also checks if the caster hero has no inability
             //Leads to calling ExecuteStartAction
-            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,targetHero);
+            casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,targetHero);*/
+            
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            logicTree.AddCurrent(ExecuteStartAction(casterHero,targetHero));
 
         }
 
