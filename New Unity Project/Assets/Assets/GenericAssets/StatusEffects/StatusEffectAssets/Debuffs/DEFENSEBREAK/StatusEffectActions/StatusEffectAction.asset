@@ -18,6 +18,7 @@ MonoBehaviour:
     type: 2}
   orBasicConditions: []
   andBasicConditions: []
+  basicActionCasters: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActions:
   - {fileID: 11400000, guid: 878da848775b9f4438e2f2a97c4fd40f, type: 2}

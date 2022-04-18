@@ -20,7 +20,7 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             var statusEffectActionAsset = standardActionAsset as IStatusEffectActionAsset;
 
             var statusEffectTargetHero = statusEffectActionAsset?.StatusEffectTargetHero;
-            
+
             var actionTargets = new List<IHero>{statusEffectTargetHero};
 
             return actionTargets;
