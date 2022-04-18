@@ -214,8 +214,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //Also checks if the caster hero has no inability
             //Leads to calling ExecuteStartAction
             casterHero.HeroLogic.HeroLifeStatus.TargetStandardAction(this,casterHero,casterHero);*/
-            
-            //TEST - no checking of life status, since this is done at basic action
+
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(ExecuteStartAction(casterHero,casterHero));
