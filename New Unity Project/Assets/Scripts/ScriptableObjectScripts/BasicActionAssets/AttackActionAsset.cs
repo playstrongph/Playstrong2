@@ -364,6 +364,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero,targetHero);
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(casterHero,targetHero);
             
+           
+            
             //Post-Critical
             PostCriticalAttackEvent(casterHero,targetHero);
 
