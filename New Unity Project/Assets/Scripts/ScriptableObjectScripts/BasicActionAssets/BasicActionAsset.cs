@@ -333,10 +333,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 foreach (var actionTargetHero in ExecuteActionTargetHeroes)
                 {
                     logicTree.AddCurrent(ExecuteAction(actionCasterHero,actionTargetHero));
-                    
-                    Debug.Log("CasterHero: " +actionCasterHero.HeroName +" TargetHero: " +actionTargetHero.HeroName );
-                    
-                    
                 }    
             }
 

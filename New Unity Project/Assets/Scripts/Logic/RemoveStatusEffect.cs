@@ -120,7 +120,7 @@ namespace Logic
         private IEnumerator DestroyStatusEffectAndPreviewGameObjectsVisual(IHero hero)
         {
             var visualTree = hero.CoroutineTrees.MainVisualTree;
-
+            
             DestroyGameObjects();
             
             visualTree.EndSequence();
@@ -131,11 +131,14 @@ namespace Logic
         {
             var statusEffectPreviewObject = _statusEffect.PreviewStatusEffect.ThisGameObject;
             
-            if(statusEffectPreviewObject!=null)
-                Destroy(statusEffectPreviewObject);
+                if(statusEffectPreviewObject!=null)
+                    Destroy(statusEffectPreviewObject);
             
-            if(this.gameObject != null)
-                Destroy(this.gameObject);
+                if(this.gameObject != null)
+                    Destroy(this.gameObject);    
+            
+
+            
         }
 
     }
