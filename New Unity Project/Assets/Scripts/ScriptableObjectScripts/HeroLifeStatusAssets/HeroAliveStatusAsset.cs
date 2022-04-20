@@ -41,8 +41,7 @@ namespace ScriptableObjectScripts.HeroLifeStatusAssets
         /// <param name="hero"></param>
         public override void AddToHeroTargetsList(List<IHero> heroes, IHero hero)
         {
-            Debug.Log("HeroAlive AddToHeroTargetsList ");
-           heroes.Add(hero);
+            heroes.Add(hero);
         }
         
         public override void AddToHeroCastersList(List<IHero> heroes, IHero hero)

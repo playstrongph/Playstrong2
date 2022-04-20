@@ -10,7 +10,7 @@ namespace Logic
         /// <summary>
         /// Returns the inheriting class as a game object
         /// </summary>
-        GameObject ThisGameObject { get; }
+        GameObject ThisGameObject { get;}
         
         /// <summary>
         /// Updates the preview status effect game object details from the status effect asset 

@@ -41,12 +41,15 @@ namespace Logic
             get => descriptionText;
             set => descriptionText = value;
         }
-        
+
+
+        //[SerializeField] private GameObject thisGameObject;
+
         /// <summary>
         /// Returns this as a game object
         /// </summary>
         public GameObject ThisGameObject => this.gameObject;
-        
+
         /// <summary>
         /// Updates the preview status effect game object details from the status effect asset 
         /// </summary>

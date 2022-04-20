@@ -14,13 +14,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
         /// <param name="statusEffectAsset"></param>
         /// <param name="counters"></param>
         void AddStatusEffect(IHero targetHero, IHero casterHero, IStatusEffectAsset statusEffectAsset, int counters);
-        
-        /// <summary>
-        /// TODO: Test - shows the status effect symbol
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator DisplayStatusEffectIcon();
-
 
     }
 }

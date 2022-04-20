@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SampleAddBurnAction
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: 050d9d635b3679d4da3ef3e966bef7e6, type: 2}
-  statusEffectCounters: 2
+  statusEffectCounters: 5
   defaultChance: 100
   instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,

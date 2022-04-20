@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c173b2b19efc2f34b902dbd1a18e22fa, type: 3}
   m_Name: ResurrectAction
   m_EditorClassIdentifier: 
-  playDelayInterval: 4
-  healAnimationAsset: {fileID: 11400000, guid: 777464ad79db0a946a0c24327f6a9a07, type: 2}
+  healAnimationAsset: {fileID: 11400000, guid: 74f8ea308323201459b90ffa174978a2, type: 2}
