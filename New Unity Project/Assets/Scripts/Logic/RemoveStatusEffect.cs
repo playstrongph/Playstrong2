@@ -119,6 +119,8 @@ namespace Logic
         /// <param name="hero"></param>
         private IEnumerator DestroyStatusEffectAndPreviewGameObjectsVisual(IHero hero)
         {
+            
+            
             var visualTree = hero.CoroutineTrees.MainVisualTree;
             
             DestroyGameObjects();
@@ -129,6 +131,9 @@ namespace Logic
 
         private void DestroyGameObjects()
         {
+
+            Debug.Log("Remove Status Effect: DestroyGameObjects");
+                
             var statusEffectPreviewObject = _statusEffect.PreviewStatusEffect.ThisGameObject;
             
                 if(statusEffectPreviewObject!=null)

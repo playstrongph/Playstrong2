@@ -63,10 +63,6 @@ namespace ScriptableObjectScripts.StatusEffectInstanceTypeAssets
                 _newStatusEffect.UpdateStatusEffectCastingStatus.SetFreshCastStatus();
             else
                 _newStatusEffect.UpdateStatusEffectCastingStatus.SetOldCastStatus();
-            
-            //Remove status effect if counters are less than or equal to zero
-            if(_newStatusEffect.CountersValue <=0)
-                _newStatusEffect.RemoveStatusEffect.StartAction(targetHero);
         }
         
         /// <summary>
