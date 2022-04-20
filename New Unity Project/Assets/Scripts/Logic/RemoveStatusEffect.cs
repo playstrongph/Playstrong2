@@ -131,19 +131,14 @@ namespace Logic
 
         private void DestroyGameObjects()
         {
-
-            Debug.Log("Remove Status Effect: DestroyGameObjects");
-                
             var statusEffectPreviewObject = _statusEffect.PreviewStatusEffect.ThisGameObject;
             
                 if(statusEffectPreviewObject!=null)
                     Destroy(statusEffectPreviewObject);
             
                 if(this.gameObject != null)
-                    Destroy(this.gameObject);    
-            
+                    Destroy(this.gameObject);
 
-            
         }
 
     }
