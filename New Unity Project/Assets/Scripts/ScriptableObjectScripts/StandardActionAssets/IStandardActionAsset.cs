@@ -129,6 +129,20 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="targetHero"></param>
         /// <returns></returns>
         IEnumerator ExecuteStartAction(IHero casterHero, IHero targetHero);
+        
+        /// <summary>
+        /// Set basic action target heroes
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        void SetTargetHeroes(IHero hero, List<IHero> heroes);
+        
+        /// <summary>
+        /// Set basic action caster heroes
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        void SetCasterHeroes(IHero hero, List<IHero> heroes);
 
 
         #endregion

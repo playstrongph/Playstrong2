@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections.Generic;
+using Logic;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StandardActionAssets
@@ -57,6 +58,26 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //Set skillLastUsedStatus to used last turn
             _skillParent.SkillLogic.UpdateSkillLastUsedStatus.SetUsedSkillLastTurn();
         }
-
+        
+        /// <summary>
+        /// Check target life status
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public override void SetTargetHeroes(IHero hero, List<IHero> heroes)
+        {
+            hero.HeroLogic.HeroLifeStatus.AddToHeroTargetsList(heroes,hero);
+        }  
+        
+        /// <summary>
+        /// Check caster life and inability status
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public override void SetCasterHeroes(IHero hero, List<IHero> heroes)
+        {
+            hero.HeroLogic.HeroLifeStatus.AddToHeroCastersList(heroes,hero);
+        }
+        
     }
 }

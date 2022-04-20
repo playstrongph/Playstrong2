@@ -306,6 +306,26 @@ namespace ScriptableObjectScripts.StandardActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        /// <summary>
+        /// Set basic action target heroes
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public virtual void SetTargetHeroes(IHero hero, List<IHero> heroes)
+        {
+            Debug.Log("Set Target Heroes Base Class StandardAction Asset");
+        }
+        
+        /// <summary>
+        /// Set basic action caster heroes
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public virtual void SetCasterHeroes(IHero hero, List<IHero> heroes)
+        {
+            Debug.Log("Set Target Heroes Base Class StandardAction Asset");
+        }
 
 
         #endregion

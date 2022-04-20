@@ -1,4 +1,5 @@
-﻿using Logic;
+﻿using System.Collections.Generic;
+using Logic;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.StandardActionAssets
@@ -63,7 +64,25 @@ namespace ScriptableObjectScripts.StandardActionAssets
         
         
         
+        /// <summary>
+        /// No checking of life/inability status for status effects
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public override void SetTargetHeroes(IHero hero, List<IHero> heroes)
+        {
+            heroes.Add(hero);
+        }  
         
+        /// <summary>
+        /// No checking of life/inability status for status effects
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="heroes"></param>
+        public override void SetCasterHeroes(IHero hero, List<IHero> heroes)
+        {
+            heroes.Add(hero);
+        }
         
         
        
