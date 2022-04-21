@@ -27,7 +27,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// chance as utilized by some skills.
         /// Example 50% chance to add Attack Up
         /// </summary>
-        [SerializeField] private int defaultChance = 0;
+        [SerializeField] private int defaultChance = 100;
 
         [SerializeField] private float instantiateDelay = 0.5f;
         

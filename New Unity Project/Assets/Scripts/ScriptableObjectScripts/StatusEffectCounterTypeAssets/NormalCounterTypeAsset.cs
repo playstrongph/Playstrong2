@@ -23,6 +23,8 @@ namespace ScriptableObjectScripts.StatusEffectCounterTypeAssets
             
             statusEffect.CountersValue += counters;
             
+            statusEffect.CountersValue = Mathf.Max(0, statusEffect.CountersValue);
+            
             logicTree.AddCurrent(UpdateCountersVisual(statusEffect));
             
             logicTree.AddCurrent(CheckRemoveStatusEffect(statusEffect));

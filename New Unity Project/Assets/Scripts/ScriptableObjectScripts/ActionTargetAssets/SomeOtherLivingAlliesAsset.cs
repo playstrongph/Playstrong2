@@ -5,10 +5,12 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.ActionTargetAssets
 {
-    [CreateAssetMenu(fileName = "AllOtherLivingAllies", menuName = "Assets/ActionTargets/AllOtherLivingAllies")]
-    public class AllOtherLivingAlliesAsset : ActionHeroesAsset
+    [CreateAssetMenu(fileName = "SomeOtherLivingAllies", menuName = "Assets/ActionTargets/SomeOtherLivingAllies")]
+    public class SomeOtherLivingAlliesAsset : ActionHeroesAsset
     {
 
+        [SerializeField] private int allyCount = 0;
+        
         /// <summary>
         /// Returns the hero's targeted hero
         /// </summary>
@@ -27,7 +29,17 @@ namespace ScriptableObjectScripts.ActionTargetAssets
 
             var actionTargets = ShuffleList(new List<IHero>(allOtherAllies));
             
-            return actionTargets;
+            //Get the lesser count between the other living allies and indicated ally count
+            var targetsCount = Mathf.Min(actionTargets.Count, allyCount);
+            
+            var finalActionTargets = new List<IHero>();
+        
+            for (int i = 0; i < targetsCount; i++)
+            {
+                finalActionTargets.Add(actionTargets[i]);
+            }
+            
+            return finalActionTargets;
         }
         
         public override List<IHero> GetEventSubscribers(IHero casterHero)
@@ -40,8 +52,18 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             allOtherAllies.Remove(casterHero);
 
             var actionTargets = ShuffleList(new List<IHero>(allOtherAllies));
+            
+            //Get the lesser count between the other living allies and indicated ally count
+            var targetsCount = Mathf.Min(actionTargets.Count, allyCount);
+            
+            var finalActionTargets = new List<IHero>();
 
-            return actionTargets;
+            for (int i = 0; i < targetsCount; i++)
+            {
+                finalActionTargets.Add(actionTargets[i]);
+            }
+            
+            return finalActionTargets;
             
         }
 
