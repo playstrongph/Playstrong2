@@ -191,8 +191,6 @@ namespace Logic
             
             //UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
             logicTree.AddCurrent(UpdateSkillReadiness(skill));
-            
-           
 
             //End hero turn coroutine
             logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
