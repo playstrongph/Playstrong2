@@ -9,11 +9,11 @@ namespace Logic
         /// </summary>
         void StartAction();
         
-        /// <summary>
+        /*/// <summary>
         /// Coroutine version for sequential logic
         /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
         /// </summary>
-        IEnumerator StartActionCoroutine();
+        IEnumerator StartActionCoroutine();*/
         
         /// <summary>
         /// Sets skill readiness start action back to default 

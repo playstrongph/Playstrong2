@@ -186,8 +186,13 @@ namespace Logic
             //ResetSkillCooldown
             logicTree.AddCurrent(ConsumeFightingSpirit());
 
+            /*//UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
+            logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());*/
+            
             //UpdateSkillReadiness coroutine (needs to wait for use skill effect to finish)
-            logicTree.AddCurrent(skill.SkillLogic.UpdateSkillReadiness.StartActionCoroutine());
+            logicTree.AddCurrent(UpdateSkillReadiness(skill));
+            
+           
 
             //End hero turn coroutine
             logicTree.AddCurrent(casterHero.Player.BattleSceneManager.TurnController.HeroEndTurn.StartAction());
@@ -223,6 +228,21 @@ namespace Logic
 
             skill.SkillLogic.SkillAttributes.SkillType.ConsumeFightingSpirit(skill);
 
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        /// <summary>
+        /// Updates the skill readiness
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
+        private IEnumerator UpdateSkillReadiness(ISkill skill)
+        {
+            var logicTree = skill.CoroutineTrees.MainLogicTree;
+            
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
+            
             logicTree.EndSequence();
             yield return null;
         }

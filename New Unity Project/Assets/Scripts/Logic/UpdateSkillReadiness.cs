@@ -50,7 +50,7 @@ namespace Logic
             _startAction();
         }
         
-        /// <summary>
+        /*/// <summary>
         /// Coroutine version for sequential logic
         /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
         /// </summary>
@@ -62,7 +62,7 @@ namespace Logic
             
             logicTree.EndSequence();
             yield return null;
-        }
+        }*/
         
         /// <summary>
         /// Sets skill readiness start action back to default 
