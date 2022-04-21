@@ -156,7 +156,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         {
             var visualTree = skill.CoroutineTrees.MainVisualTree;
             
-            //UpdateSkillReadinessStatus
+            //Skill Type check and Skill Enabled Check
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //TODO - is this required?

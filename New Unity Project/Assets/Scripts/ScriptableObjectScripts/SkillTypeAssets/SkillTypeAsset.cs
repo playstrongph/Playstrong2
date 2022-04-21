@@ -100,6 +100,8 @@ namespace ScriptableObjectScripts.SkillTypeAssets
        
         public virtual void UpdateSkillReadiness(ISkill skill, IUpdateSkillReadiness updateSkillReadiness)
         {
+            Debug.Log("Skill Cooldown Value Check");
+            
             var skillCooldown = skill.SkillLogic.SkillAttributes.Cooldown;
 
             if (skillCooldown <= 0)
