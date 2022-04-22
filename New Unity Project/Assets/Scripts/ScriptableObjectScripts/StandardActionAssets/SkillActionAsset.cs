@@ -26,8 +26,6 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="targetHero"></param>
         public override void StartAction(IHero casterHero,IHero targetHero)
         {
-            Debug.Log("Skill Action Start Action");
-            
             //TODO - check args if correct
             _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,casterHero,targetHero);
 
@@ -54,9 +52,11 @@ namespace ScriptableObjectScripts.StandardActionAssets
             //Call base class start action
             base.StartAction(casterHero,targetHero);
             
+            //TODO: Transfer this to skill effect, inside a logic tree
             //Reset Skill Cooldown after skill use
             _skillParent.SkillLogic.UpdateSkillCooldown.UseSkillResetCooldown();
             
+            //TODO: Transfer this to skill effect, inside a logic tree
             //Set skillLastUsedStatus to used last turn
             _skillParent.SkillLogic.UpdateSkillLastUsedStatus.SetUsedSkillLastTurn();
         }

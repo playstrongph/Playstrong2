@@ -136,20 +136,15 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
             var maxSkillCooldown = skillAttributes.BaseCooldown;
-            
-            //Compensates for the skill cooldown reduction right after the skill is used
-            //var cooldownCompensation = 1;
-            
-            skillAttributes.Cooldown = maxSkillCooldown;
 
-            //UpdateSkillReadinessStatus
-            skill.SkillLogic.UpdateSkillReadiness.StartAction();
+            skillAttributes.Cooldown = maxSkillCooldown;
             
+            //Update skill readiness and start its action
+            //TODO: Removed - skill readiness update happens at useSkill/HeroStartTurn?
+            //skill.SkillLogic.UpdateSkillReadiness.StartAction();
+
             //Update the skill and display skill visual cooldown text
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));
-            
-            //TODO - Temp, need a better solution
-            //skillAttributes.Cooldown += cooldownCompensation;
         }
 
         public override void UpdateSkillReadiness(ISkill skill)
