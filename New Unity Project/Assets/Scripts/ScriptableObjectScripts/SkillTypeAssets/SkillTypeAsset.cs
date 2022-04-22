@@ -108,12 +108,15 @@ namespace ScriptableObjectScripts.SkillTypeAssets
                 updateSkillReadiness.SetSkillNotReady();
         }
         
-        //TEST - 14 April 2022
+        /// <summary>
+        /// Reduces the fighting spirit of the hero
+        /// </summary>
+        /// <param name="skill"></param>
         public virtual void ConsumeFightingSpirit(ISkill skill)
         {
             
         }
-        //TEST - END
+        
 
 
 

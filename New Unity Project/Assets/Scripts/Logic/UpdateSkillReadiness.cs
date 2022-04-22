@@ -12,7 +12,7 @@ namespace Logic
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
         private ScriptableObject skillReadyAsset;
-        private ISkillReadinessStatusAsset SkillReadyAsset
+        public ISkillReadinessStatusAsset SkillReadyAsset
         {
             get => skillReadyAsset as ISkillReadinessStatusAsset;
             set => skillReadyAsset = value as ScriptableObject;
@@ -23,7 +23,7 @@ namespace Logic
         /// </summary>
         [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ISkillReadinessStatusAsset))]
         private ScriptableObject skillNotReadyAsset;
-        private ISkillReadinessStatusAsset SkillNotReadyAsset
+        public ISkillReadinessStatusAsset SkillNotReadyAsset
         {
             get => skillNotReadyAsset as ISkillReadinessStatusAsset;
             set => skillNotReadyAsset = value as ScriptableObject;
@@ -49,20 +49,6 @@ namespace Logic
         {
             _startAction();
         }
-        
-        /*/// <summary>
-        /// Coroutine version for sequential logic
-        /// Set skill readiness to 'Ready' or 'Not Ready' depending on skill type
-        /// </summary>
-        public IEnumerator StartActionCoroutine()
-        {
-            var logicTree = _skillLogic.Skill.CoroutineTrees.MainLogicTree;
-            
-            StartAction();
-            
-            logicTree.EndSequence();
-            yield return null;
-        }*/
         
         /// <summary>
         /// Sets skill readiness start action back to default 

@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d077990b910f834ebac4108795f4c87, type: 3}
-  m_Name: SkillAction3
+  m_Name: SkillAction2
   m_EditorClassIdentifier: 
   basicEvent: {fileID: 11400000, guid: 1b63dccf3cee3724ab2e5242d2656b58, type: 2}
   subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicConditionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30,
     type: 2}
-  orBasicConditions:
-  - {fileID: 11400000, guid: be74dd6b1507a634cb140ded143436d1, type: 2}
+  orBasicConditions: []
   andBasicConditions: []
-  basicActionCasters: {fileID: 11400000, guid: 2fbd27376e12bef478e52fe4d26a963a, type: 2}
-  basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
+  basicActionCasters: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
+  basicActionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicActions:
-  - {fileID: 11400000, guid: 4e06a4063abc0d94f868af882ee7ad1b, type: 2}
+  - {fileID: 11400000, guid: fd0cd5a7c072fe94991982756b96af03, type: 2}

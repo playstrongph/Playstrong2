@@ -53,8 +53,7 @@ namespace ScriptableObjectScripts.SkillTypeAssets
             
             //Execute skill disabled status action
             skill.SkillLogic.SkillAttributes.SkillEnableStatus.StatusAction(skill);
-            
-            //TODO:TEST
+
             var visualTree = skill.CoroutineTrees.MainVisualTree;
             visualTree.AddCurrent(DisableSkillVisual(skill));
 

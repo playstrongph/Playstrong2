@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using ScriptableObjectScripts.SkillReadinessStatusAssets;
 
 namespace Logic
 {
@@ -34,5 +35,15 @@ namespace Logic
         /// Set skill not ready status and actions
         /// </summary>
         void SetSkillNotReady();
+        
+        /// <summary>
+        /// Reference to skill ready status asset
+        /// </summary>
+        ISkillReadinessStatusAsset SkillReadyAsset { get; }
+        
+        /// <summary>
+        /// Reference to skill not ready status asset
+        /// </summary>
+        ISkillReadinessStatusAsset SkillNotReadyAsset { get; }
     }
 }
