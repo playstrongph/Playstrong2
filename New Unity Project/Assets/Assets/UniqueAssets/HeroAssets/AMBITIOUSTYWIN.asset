@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
-  m_Name: CERISE
+  m_Name: AMBITIOUSTYWIN
   m_EditorClassIdentifier: 
-  heroName: CERISE
-  heroClass: Ranger
-  heroSprite: {fileID: -1807008145433730001, guid: 2e435d9266ec4964d882631f33890fc8,
+  heroName: AMBITIOUSTYWIN
+  heroClass: Knight
+  heroSprite: {fileID: -3220098531062584719, guid: 190be516c7f2d1447b9c03a98fed4d28,
     type: 3}
-  health: 529
-  attack: 97
-  speed: 122
-  chance: 27
+  health: 807
+  attack: 89
+  speed: 104
+  chance: 0
   armor: 0
   fightingSpirit: 0
   heroSkillAssets:
-  - {fileID: 11400000, guid: 6c242be52e0c1644c99cfa84793b1513, type: 2}
-  - {fileID: 11400000, guid: b58c3277ee6b781419439d4993d58f99, type: 2}
-  - {fileID: 11400000, guid: 01f4e1fa8e77f7540ac643b46c66760f, type: 2}
+  - {fileID: 11400000, guid: dd572b7a423004649890bd3dde27bdcb, type: 2}

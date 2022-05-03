@@ -20,7 +20,7 @@ MonoBehaviour:
   attack: 96
   speed: 102
   chance: 0
-  armor: 0
+  armor: 131
   fightingSpirit: 0
   heroSkillAssets:
   - {fileID: 11400000, guid: da4d9f37d8e61864c99dfaeece04323f, type: 2}
