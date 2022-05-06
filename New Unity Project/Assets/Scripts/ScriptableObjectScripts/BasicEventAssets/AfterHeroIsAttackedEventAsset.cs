@@ -20,6 +20,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
             //This is a single IHero arg event 
             targetHero.HeroLogic.HeroEvents.EAfterHeroIsAttacked += standardAction.StartAction;
             
+            
            
         }
         

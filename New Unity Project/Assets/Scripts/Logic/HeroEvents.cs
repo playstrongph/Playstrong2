@@ -119,6 +119,7 @@ namespace Logic
         public void EventAfterHeroIsAttacked(IHero casterHero,IHero targetHero)
         {
             EAfterHeroIsAttacked?.Invoke(casterHero,targetHero);
+
         }
         
         /// <summary>

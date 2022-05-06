@@ -362,7 +362,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Post-attack
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero,targetHero);
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(casterHero,targetHero);
+            
+            //TEST - should this be inverted?
+            //targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero,casterHero);
             
            
             

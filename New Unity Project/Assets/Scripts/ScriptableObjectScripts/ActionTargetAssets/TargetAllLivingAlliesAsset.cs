@@ -19,7 +19,9 @@ namespace ScriptableObjectScripts.ActionTargetAssets
         {
             //Should be from the perspective of the caster hero
             var allAllies = casterHero.Player.AliveHeroes.Heroes;
-
+            
+            Debug.Log("Target All Living Allies Get Action Heroes");
+            
             var actionTargets = ShuffleList(new List<IHero>(allAllies));
             
             return actionTargets;

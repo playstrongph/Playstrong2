@@ -24,3 +24,4 @@ MonoBehaviour:
   fightingSpirit: 0
   heroSkillAssets:
   - {fileID: 11400000, guid: dd572b7a423004649890bd3dde27bdcb, type: 2}
+  - {fileID: 11400000, guid: dd4fea2cd4992b847bbd9b3788383f2c, type: 2}

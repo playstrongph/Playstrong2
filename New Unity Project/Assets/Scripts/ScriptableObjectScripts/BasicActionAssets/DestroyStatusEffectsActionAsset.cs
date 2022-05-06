@@ -74,7 +74,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-        
+
             DestroyStatusEffects(targetHero);
             
             DestroyRandomBuffs(targetHero,randomBuffs);
@@ -137,8 +137,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="debuffCount"></param>
         private void DestroyRandomDebuffs(IHero hero, int debuffCount)
         {
-            var allDebuffs = ShuffleStatusEffectsList(hero.HeroStatusEffects.BuffEffects.StatusEffects);
-            
+            var allDebuffs = ShuffleStatusEffectsList(hero.HeroStatusEffects.DebuffEffects.StatusEffects);
             var index = Mathf.Min(allDebuffs.Count, debuffCount);
 
             for (int i = index; i > 0; i--)
