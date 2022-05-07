@@ -140,7 +140,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //targetHero is the counter attacker
-            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(targetHero,casterHero);
             
             //casterHero is the one being counter attacked (attacker)
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(casterHero,targetHero);
@@ -160,7 +160,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //targetHero is the counter attacker
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(targetHero,casterHero);
             
             //casterHero is the one being counter attacked (attacker)
             casterHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(casterHero,targetHero);
