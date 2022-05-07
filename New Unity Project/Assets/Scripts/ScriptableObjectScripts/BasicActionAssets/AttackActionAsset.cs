@@ -331,11 +331,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             //Pre-skill attack
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroSkillAttacks(casterHero,targetHero);
-            targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(casterHero,targetHero);
+            
+            //Note - invert the roles of caster and target in the argument
+            targetHero.HeroLogic.HeroEvents.EventEBeforeHeroIsSkillAttacked(targetHero,casterHero);
             
             //Pre-attack
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroAttacks(casterHero,targetHero);
-            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(casterHero,targetHero);
+            
+            //Note - invert the roles of caster and target in the argument
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsAttacked(targetHero,casterHero);
             
             //Pre-Critical
             PreCriticalAttackEvent(casterHero,targetHero);
@@ -358,13 +362,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //Post-skill attack
             casterHero.HeroLogic.HeroEvents.EventAfterHeroSkillAttacks(casterHero,targetHero);
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(casterHero,targetHero);
+            
+            //Invert the roles of caster and target in the argument
+            targetHero.HeroLogic.HeroEvents.EventAfterHeroIsSkillAttacked(targetHero,casterHero);
             
             //Post-attack
             casterHero.HeroLogic.HeroEvents.EventAfterHeroAttacks(casterHero,targetHero);
-            
-            //TEST - should this be inverted?
-            //targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(casterHero,targetHero);
+
+            //Invert the roles of caster and target in the argument
             targetHero.HeroLogic.HeroEvents.EventAfterHeroIsAttacked(targetHero,casterHero);
             
            
@@ -397,7 +402,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             {
                 //TODO - Do these events need to have double arguments as well?
                 casterHero.HeroLogic.HeroEvents.EventBeforeHeroCriticalStrikes(casterHero,targetHero);
-                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(casterHero,targetHero);
+                
+                //Invert the roles of caster and target in the argument
+                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsDealtCriticalStrike(targetHero,casterHero);
             }
 
         }
@@ -422,7 +429,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             {
                 //TODO - Do these events need to have double arguments as well?
                 casterHero.HeroLogic.HeroEvents.EventAfterHeroDealsCriticalStrike(casterHero,targetHero);
-                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(casterHero,targetHero);
+                
+                //Invert the roles of caster and target in the argument
+                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsDealtCriticalStrike(targetHero,casterHero);
             }
 
         }
