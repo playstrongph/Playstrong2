@@ -31,8 +31,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+
+            //Counter Attacker: Caster hero
+            //Counter Target: TargetHero
             
-            CounterAttackHero(casterHero,targetHero);
+            CounterAttackHero(targetHero,casterHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -42,34 +45,33 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Counter attack target hero using basic skill
         /// </summary>
-        /// <param name="casterHero"></param>
-        ///  <param name="targetHero"></param>
-        private void CounterAttackHero(IHero casterHero,IHero targetHero)
+        /// <param name="counterTarget"></param>
+        ///  <param name="counterAttacker"></param>
+        private void CounterAttackHero(IHero counterTarget,IHero counterAttacker)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Note: the casterHero in the args is the Attacker, and the targetHero is the counterAttacker
+            var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
 
+            
+            
             //The target hero is the counter attacker
-            var counterChance = targetHero.HeroLogic.ChanceAttributes.CounterAttackChance;
+            var counterChance = counterAttacker.HeroLogic.ChanceAttributes.CounterAttackChance;
             
             //The caster hero is the target of the counter attack
-            var counterResistance = casterHero.HeroLogic.ResistanceAttributes.CounterAttackResistance;
+            var counterResistance = counterTarget.HeroLogic.ResistanceAttributes.CounterAttackResistance;
             var netCounterChance = counterChance - counterResistance;
             var randomChance = Random.Range(1, 101);
             var temporaryResistance = 1000;
 
             if (randomChance <= netCounterChance)
             {
-                
                 //Prevent counterattack of a counterattack
-                logicTree.AddCurrent(ChanceCounterResistance(targetHero,temporaryResistance));
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
             
                 //Counter Attack Action
-                logicTree.AddCurrent(CounterAction(casterHero,targetHero));
+                logicTree.AddCurrent(CounterAction(counterTarget,counterAttacker));
             
                 //Return counterattack resistance to normal
-                logicTree.AddCurrent(ChanceCounterResistance(targetHero,-temporaryResistance));
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
             }
         }
         
@@ -96,10 +98,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Counter attack with basic skill
         /// </summary>
-        /// <param name="attacker"></param>
+        /// <param name="counterTarget"></param>
         /// <param name="counterAttacker"></param>
         /// <returns></returns>
-        private IEnumerator CounterAction(IHero attacker, IHero counterAttacker)
+        private IEnumerator CounterAction(IHero counterTarget, IHero counterAttacker)
         {
             var logicTree = counterAttacker.CoroutineTrees.MainLogicTree;
             
@@ -110,7 +112,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             foreach (var standardAction in standardActions)
             {
-                standardAction.StartAction(counterAttacker,attacker);
+                standardAction.StartAction(counterAttacker,counterTarget);
             }
 
             logicTree.EndSequence();
