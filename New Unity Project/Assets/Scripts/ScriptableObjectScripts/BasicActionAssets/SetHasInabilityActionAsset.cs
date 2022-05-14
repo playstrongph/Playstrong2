@@ -20,7 +20,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));

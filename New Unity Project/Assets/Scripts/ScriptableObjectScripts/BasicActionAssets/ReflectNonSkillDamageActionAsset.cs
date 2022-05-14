@@ -79,7 +79,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             //Note: the casterHero is the target of the reflect damage, and the target hero is the source of the reflect damage
             var reflectDamageRecipient = casterHero;
@@ -101,7 +101,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
             //Note: the casterHero is the target of the reflect damage, and the target hero is the source of the reflect damage
             var reflectDamageRecipient = casterHero;

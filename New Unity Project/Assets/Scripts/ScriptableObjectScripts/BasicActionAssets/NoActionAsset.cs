@@ -16,7 +16,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             logicTree.EndSequence();
             yield return null;
@@ -30,9 +30,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
-            Debug.Log("No Action Caster Hero:" +casterHero.HeroName);
+           
 
             logicTree.EndSequence();
             yield return null;

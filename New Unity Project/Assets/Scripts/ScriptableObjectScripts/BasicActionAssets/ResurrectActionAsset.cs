@@ -39,8 +39,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
-            Debug.Log("Resurrect Main Basic Action Phase");
-            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //Heal Animation
@@ -93,7 +91,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainAction(IHero casterHero)
         {
-            Debug.Log("Resurrect Main Action" +" ExecutionTargetHeroes Count: " +ExecuteActionTargetHeroes.Count);
+            //Debug.Log("Resurrect Main Action" +" ExecutionTargetHeroes Count: " +ExecuteActionTargetHeroes.Count);
             
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
           
@@ -131,7 +129,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private IEnumerator ResurrectHero(IHero hero)
         {
             
-            Debug.Log("Resurrect hero: " +hero.HeroName);
+            //Debug.Log("Resurrect hero: " +hero.HeroName);
             
             var logicTree = hero.CoroutineTrees.MainLogicTree;
 
