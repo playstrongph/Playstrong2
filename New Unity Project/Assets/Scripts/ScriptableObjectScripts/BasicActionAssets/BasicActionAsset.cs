@@ -277,11 +277,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Calls Execute action if: 1) caster and target hero are alive
         /// 2) caster has no inability effects
         /// </summary>
-        /// <param name="casterHero"></param>
+        /// <param name="hero"></param>
         /// <returns></returns>
-        protected virtual IEnumerator MainAction(IHero casterHero)
+        protected virtual IEnumerator MainAction(IHero hero)
         {
-            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            var logicTree = hero.CoroutineTrees.MainLogicTree;
 
             foreach (var actionCasterHero in ExecuteActionCasterHeroes)
             {
