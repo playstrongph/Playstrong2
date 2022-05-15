@@ -123,6 +123,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var allBuffs = ShuffleStatusEffectsList(hero.HeroStatusEffects.BuffEffects.StatusEffects);
             
             var index = Mathf.Min(allBuffs.Count, buffCount);
+            
+            //Debug.Log("Buffs Count: " +allBuffs.Count +" index: " +index);
 
             for (int i = index; i > 0; i--)
             {
@@ -140,7 +142,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var allDebuffs = ShuffleStatusEffectsList(hero.HeroStatusEffects.DebuffEffects.StatusEffects);
             var index = Mathf.Min(allDebuffs.Count, debuffCount);
 
-            for (int i = index; i > 0; i--)
+            for (int i = 0; i < index; i++)
             {
                 allDebuffs[i].RemoveStatusEffect.StartAction(hero);
             }
