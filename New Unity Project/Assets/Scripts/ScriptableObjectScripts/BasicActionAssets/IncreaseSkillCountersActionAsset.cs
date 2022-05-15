@@ -79,7 +79,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
 
             if (_targetSkill != null)
+            {
                 _targetSkill.SkillLogic.OtherSkillAttributes.SkillCounters += countersValue;
+                
+                //Clamp to a minimum of zero
+                _targetSkill.SkillLogic.OtherSkillAttributes.SkillCounters =
+                    Mathf.Max(_targetSkill.SkillLogic.OtherSkillAttributes.SkillCounters, 0);
+            }
+
+            
 
         }
 
