@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SampleAddAttackDownAction
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: 9cfa8fcb73a642945b33b1974a948c83, type: 2}
-  statusEffectCounters: 1
+  statusEffectCounters: 2
   defaultChance: 100
   instantiateDelay: 0.35
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,

@@ -37,11 +37,14 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                     skillCounters = skill.SkillLogic.OtherSkillAttributes.SkillCounters;
             }
             
+            
+            
             //Value greater than zero means greater than limit is enforced
             if(lessThanLimit >=0)
                 //Counters are less than or equal to upper limit
-                if (skillCounters <= lessThanLimit)
+                if (skillCounters < lessThanLimit)
                 {
+                    Debug.Log("skill Counters: " +skillCounters +" less than limit: " +lessThanLimit);
                     value = 1;
                 }
 
@@ -50,11 +53,14 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             //Value greater than zero means less than limit is enforced
             if(greaterThanLimit >=0)
                 //Counters are greater than lower limit
-                if (skillCounters >= greaterThanLimit)
+                if (skillCounters > greaterThanLimit)
                 {
+                    Debug.Log("skill Counters: " +skillCounters +" greater than limit: " +lessThanLimit);
                     value = 1;  //Condition is met
                 }
-
+            
+            Debug.Log("Return Value:" +value);
+            
             return value;
         }
     }
