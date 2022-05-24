@@ -16,6 +16,7 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             set => skillAsset = value as ScriptableObject;
         }
         
+        [Header("Negative value means limit is DISABLED")]
         [Header("Set Limit Value")]
         [SerializeField] private int lessThanLimit = -99;
         [SerializeField] private int greaterThanLimit = -99;
@@ -44,7 +45,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 //Counters are less than or equal to upper limit
                 if (skillCounters < lessThanLimit)
                 {
-                    Debug.Log("skill Counters: " +skillCounters +" less than limit: " +lessThanLimit);
                     value = 1;
                 }
 
@@ -55,12 +55,9 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 //Counters are greater than lower limit
                 if (skillCounters > greaterThanLimit)
                 {
-                    Debug.Log("skill Counters: " +skillCounters +" greater than limit: " +lessThanLimit);
                     value = 1;  //Condition is met
                 }
-            
-            Debug.Log("Return Value:" +value);
-            
+
             return value;
         }
     }
