@@ -79,6 +79,11 @@ namespace Logic
                 var skillStandardActionClone = standardActionClone as ISkillActionAsset;
                 skillStandardActionClone?.InitializeSkillReference(_skillLogic.Skill);
                 
+                
+                //Set Skill Caster Reference, used by Action Target Hero: SkillCasterHeroAsset
+                if (skillStandardActionClone != null)
+                    skillStandardActionClone.SkillCasterHero = _skillLogic.Skill.CasterHero;
+
                 i++;
 
             }

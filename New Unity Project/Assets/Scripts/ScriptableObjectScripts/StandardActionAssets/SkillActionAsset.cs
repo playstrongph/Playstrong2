@@ -9,6 +9,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
     {
         //The skill containing the skill action asset
         private ISkill _skillParent;
+       
+        /// <summary>
+        /// Requires a unique instance of the skill action asset to set the reference
+        /// Reference is set in LoadSkillEffectAsset.cs
+        /// </summary>
+        public IHero SkillCasterHero { get; set; }
         
         /// <summary>
         /// Initialized during LoadAttributes create unique standard actions

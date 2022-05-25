@@ -8,11 +8,11 @@
         /// <summary>
         /// Start of combat event
         /// </summary>
-        void EventStartCombatTurn();
+        void EventStartCombatTurn(IHero hero);
 
         /// <summary>
         /// End of combat event
         /// </summary>
-        void EventEndCombatTurn();
+        void EventEndCombatTurn(IHero hero);
     }
 }

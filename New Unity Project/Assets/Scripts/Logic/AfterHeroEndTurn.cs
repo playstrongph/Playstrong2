@@ -121,8 +121,9 @@ namespace Logic
         private IEnumerator EventEndCombatTurn()
         {
             var logicTree = _turnController.CoroutineTrees.MainLogicTree;
+            var currentActiveHero = _turnController.CurrentActiveHero;
             
-            _turnController.TurnControllerEvents.EventEndCombatTurn();
+            _turnController.TurnControllerEvents.EventEndCombatTurn(currentActiveHero);
 
             logicTree.EndSequence();
             yield return null;

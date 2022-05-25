@@ -9,7 +9,7 @@ namespace Logic
         /// <summary>
         /// Turn controller event signature 
         /// </summary>
-        public delegate void TurnControllerEvent();
+        public delegate void TurnControllerEvent(IHero hero);
 
         #region EVENT DELEGATES
 
@@ -24,17 +24,17 @@ namespace Logic
         /// <summary>
         /// Start of combat event
         /// </summary>
-        public void EventStartCombatTurn()
+        public void EventStartCombatTurn(IHero hero)
         {
-            EStartCombatTurn?.Invoke();
+            EStartCombatTurn?.Invoke(hero);
         }
         
         /// <summary>
         /// End of combat event
         /// </summary>
-        public void EventEndCombatTurn()
+        public void EventEndCombatTurn(IHero hero)
         {
-            EEndCombatTurn?.Invoke();
+            EEndCombatTurn?.Invoke(hero);
         }
         
 

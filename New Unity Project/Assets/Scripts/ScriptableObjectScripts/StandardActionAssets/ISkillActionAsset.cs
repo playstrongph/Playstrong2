@@ -17,5 +17,12 @@ namespace ScriptableObjectScripts.StandardActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         void SkillStartAction(IHero casterHero,IHero targetHero);
+        
+        
+        /// <summary>
+        /// Requires a unique instance of the skill action asset to set the reference
+        /// Reference is set in LoadSkillEffectAsset.cs
+        /// </summary>
+        IHero SkillCasterHero { get; set; }
     }
 }
