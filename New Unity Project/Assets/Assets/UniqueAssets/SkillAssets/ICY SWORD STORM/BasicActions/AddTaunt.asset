@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: AddStatusEffect
+  m_Name: AddTaunt
   m_EditorClassIdentifier: 
   statusEffectAsset: {fileID: 11400000, guid: ff816e04af8b55b4181fe33b1d87b2c5, type: 2}
   statusEffectCounters: 1
