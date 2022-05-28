@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fcf05be279f5064a90a82d7607500d1, type: 3}
-  m_Name: SampleAddRageAction
+  m_Name: AddStatusEffect1
   m_EditorClassIdentifier: 
-  statusEffectAsset: {fileID: 11400000, guid: dab70cd69cdf9794086c6106204998de, type: 2}
-  statusEffectCounters: 1
-  defaultChance: 100
-  instantiateDelay: 0.35
+  statusEffectAsset: {fileID: 11400000, guid: adf08cb0580c67b4cbb0d33a8c407bce, type: 2}
+  statusEffectCounters: 2
+  defaultChance: 50
+  instantiateDelay: 0.5
   addStatusEffectAnimationAsset: {fileID: 11400000, guid: ff2bbf82d2fde7e47b94e07e1579e741,
     type: 2}
