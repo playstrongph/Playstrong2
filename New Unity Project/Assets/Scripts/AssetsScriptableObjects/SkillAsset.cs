@@ -30,7 +30,7 @@ namespace AssetsScriptableObjects
         /// <summary>
         /// Reference to the skill ability text
         /// </summary>
-        [TextArea(2, 3)] [SerializeField] 
+        [TextArea(5, 5)] [SerializeField] 
         private string skillDescription;
 
         public String SkillDescription
