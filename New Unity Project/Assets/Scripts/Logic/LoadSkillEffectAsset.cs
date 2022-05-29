@@ -137,7 +137,7 @@ namespace Logic
         /// Note that caster and target hero are just the same, to avoid creating
         /// another delegate type in skill events
         /// </summary>
-        public void InitializeSkillEvent()
+        private void InitializeSkillEvent()
         {
             var skillHero = _skillLogic.Skill.CasterHero;
             

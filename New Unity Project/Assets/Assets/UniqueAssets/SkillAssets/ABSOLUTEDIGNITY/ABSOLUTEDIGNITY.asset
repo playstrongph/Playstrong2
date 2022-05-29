@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
   m_Name: ABSOLUTEDIGNITY
   m_EditorClassIdentifier: 
-  skillName: 
-  skillDescription: 
-  skillEffectAsset: {fileID: 0}
-  skillIcon: {fileID: 0}
-  skillTypeAsset: {fileID: 0}
+  skillName: ABSOLUTEDIGNITY
+  skillDescription: Immune to STUN and SLEEP, and has 30% chance to counterattack. 
+    After counter-attacking ,gain HASTE and give EVASION to all allies.
+  skillEffectAsset: {fileID: 11400000, guid: 276897254e811554f8bcda5c23cde6fd, type: 2}
+  skillIcon: {fileID: 7432864866275865094, guid: de5adb27d3c04a24da65c899083caa09,
+    type: 3}
+  skillTypeAsset: {fileID: 11400000, guid: 50a68ee1a77e04e4f968ee80ca1d3a1e, type: 2}
   baseCooldown: 0
   fightingSpiritCost: 0
-  skillTargetsAsset: {fileID: 0}
-  skillCooldownTypeAsset: {fileID: 0}
+  skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
+  skillCooldownTypeAsset: {fileID: 11400000, guid: cc4c8b90983ec8d4fa2cc4d2f087974c,
+    type: 2}

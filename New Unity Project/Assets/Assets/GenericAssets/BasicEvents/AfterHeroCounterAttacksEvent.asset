@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55f0f6fdbbabbac47853f43dc36bdd8f, type: 3}
-  m_Name: IncreaseCounterAttackChanceAction
+  m_Script: {fileID: 11500000, guid: add55c4bf70c4274ea7d40d80419b3c8, type: 3}
+  m_Name: AfterHeroCounterAttacksEvent
   m_EditorClassIdentifier: 
-  counterAttackChance: 100
