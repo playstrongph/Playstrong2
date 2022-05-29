@@ -14,6 +14,13 @@ namespace Logic
         /// </summary>
         public event SkillEvent EDragSkillTarget;
         
+        
+        //TEST
+        /// <summary>
+        /// Skill Initialization event
+        /// </summary>
+        public event SkillEvent EInitializeSkill;
+        
         private ISkillLogic _skillLogic;
 
         private void Awake()
@@ -31,6 +38,18 @@ namespace Logic
             EDragSkillTarget?.Invoke(casterHero,targetHero);
         }
         
+        //TEST
+        /// <summary>
+        /// Used by non-event based effects on skills
+        /// Example - Immune to stun and sleep
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        public void EventInitializeSkill(IHero casterHero,IHero targetHero)
+        {
+            EInitializeSkill?.Invoke(casterHero,targetHero);
+        }
+        
         private void OnDestroy()
         {
             UnsubscribeAllClients();           
@@ -42,6 +61,7 @@ namespace Logic
         private void UnsubscribeAllClients()
         {
             UnsubscribeEventDragSkillTarget();
+            UnsubscribeEventInitializeSkill();
         }
         
         
@@ -54,6 +74,18 @@ namespace Logic
             if (clients != null)
                 foreach (var client in clients)
                     EDragSkillTarget -= client as SkillEvent;
+                
+        }
+        
+        /// <summary>
+        /// Unsubscribe all skill initialization events
+        /// </summary>
+        private void UnsubscribeEventInitializeSkill()
+        {
+            var clients = EInitializeSkill?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EInitializeSkill -= client as SkillEvent;
                 
         }
     }
