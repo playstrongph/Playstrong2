@@ -35,7 +35,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             var inabilityResistance = targetHero.HeroLogic.ResistanceAttributes.InabilityResistance;
-            
+
             //if there are no inability immunities
             if (inabilityResistance <= 0)
             {

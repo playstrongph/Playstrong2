@@ -2,7 +2,6 @@
 {
     public interface IImmunityAttributes
     {
-        int SleepImmunity { get; set; }
-        int StunImmunity { get; set; }
+        int StunEffectsImmunity { get; set; }
     }
 }

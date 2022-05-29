@@ -17,19 +17,13 @@ namespace Logic
         
         
         [Header("Debuff Immunities")]
-
-        [SerializeField ]private int sleepImmunity;
-        public int SleepImmunity
-        {
-            get => sleepImmunity;
-            set => sleepImmunity = value;
-        }
+      
         
-        [SerializeField ]private int stunImmunity;
-        public int StunImmunity
+        [SerializeField ]private int stunEffectsImmunity;
+        public int StunEffectsImmunity
         {
-            get => stunImmunity;
-            set => stunImmunity = value;
+            get => stunEffectsImmunity;
+            set => stunEffectsImmunity = value;
         }
 
         
