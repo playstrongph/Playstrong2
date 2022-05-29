@@ -31,6 +31,9 @@ namespace Logic
             
             //Basic conditions - last
             InitializeUniqueBasicConditions();
+
+            //Event used by passive skills
+            InitializeSkillEvent();
         }
         
         /// <summary>
@@ -128,8 +131,20 @@ namespace Logic
                 }
             }
         }
+        
+        /// <summary>
+        /// Calls Initialize Skill Event
+        /// Note that caster and target hero are just the same, to avoid creating
+        /// another delegate type in skill events
+        /// </summary>
+        public void InitializeSkillEvent()
+        {
+            var skillHero = _skillLogic.Skill.CasterHero;
+            
+            _skillLogic.SkillEvents.EventInitializeSkill(skillHero,skillHero);
+        }
 
-        
-        
+
+
     }
 }
