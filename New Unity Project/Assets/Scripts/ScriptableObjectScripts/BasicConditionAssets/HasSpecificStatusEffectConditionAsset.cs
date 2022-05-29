@@ -30,8 +30,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                     value = 1;
             }
             
-            Debug.Log("Has Specific Status Effect. Value: " +value);
-            
             return value;
         }
     }

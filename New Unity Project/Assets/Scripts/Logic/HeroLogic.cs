@@ -1,4 +1,5 @@
-﻿using ScriptableObjectScripts.HeroActiveStatusAssets;
+﻿using System.Security.Permissions;
+using ScriptableObjectScripts.HeroActiveStatusAssets;
 using ScriptableObjectScripts.HeroInabilityStatusAssets;
 using ScriptableObjectScripts.HeroLifeStatusAssets;
 using UnityEngine;
@@ -69,6 +70,8 @@ namespace Logic
             set => inabilityFactor = value;
             get => inabilityFactor;
         }
+        
+        
 
         #region COMPONENT REFERENCES
 
@@ -171,6 +174,12 @@ namespace Logic
         /// Reference to hero dies
         /// </summary>
         public IHeroDies HeroDies { get; private set; }
+        
+        
+        /// <summary>
+        /// Reerence to Immunity Attributes
+        /// </summary>
+        public IImmunityAttributes ImmunityAttributes { get; private set; }
 
         #endregion
 
@@ -196,6 +205,7 @@ namespace Logic
             TakeDamage = GetComponent<ITakeDamage>();
             HeroDies = GetComponent<IHeroDies>();
             SetHeroInabilityStatus = GetComponent<ISetHeroInabilityStatus>();
+            ImmunityAttributes = GetComponent<IImmunityAttributes>();
 
         }
     }

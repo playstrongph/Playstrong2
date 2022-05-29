@@ -127,6 +127,11 @@ namespace Logic
         /// Set with or no Inability
         /// </summary>
         ISetHeroInabilityStatus SetHeroInabilityStatus { get;}
+        
+        /// <summary>
+        /// Status effect immunities
+        /// </summary>
+        IImmunityAttributes ImmunityAttributes { get; }
 
         #endregion
     }

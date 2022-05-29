@@ -29,13 +29,9 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 if (statusEffect.StatusEffectName == StatusEffectAsset.StatusEffectName)
                     value = 1;
             }
-            
-            
-            
+
             //Returns 0 if status effect is present and 1 if not present
             value = value == 1 ? 0 : 1;
-            
-            Debug.Log("Has No Specific Status Effect. Value: " +value);
 
             return value;
         }

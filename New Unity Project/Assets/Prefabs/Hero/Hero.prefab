@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 1458600388}
   - component: {fileID: 2068203322}
   - component: {fileID: 5691763508500235242}
+  - component: {fileID: 9045387293113016060}
   m_Layer: 0
   m_Name: HeroLogic
   m_TagString: Untagged
@@ -302,6 +303,7 @@ MonoBehaviour:
   heroInabilityStatus: {fileID: 11400000, guid: 89ca26f2e92316c4b83d3f802d13e1e1,
     type: 2}
   heroLifeStatus: {fileID: 11400000, guid: 0f72273172a5a494a94972d9fe862588, type: 2}
+  inabilityFactor: 0
 --- !u!114 &8137904070298217024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,6 +348,7 @@ MonoBehaviour:
   buffResistance: 0
   debuffResistance: 0
   counterAttackResistance: 0
+  bonusEnergyResistance: 0
 --- !u!114 &4706899635905714222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   criticalDamage: 100
+  dealDamagePenetrateArmor: 0
+  takeDamagePenetrateArmor: 0
   allDealDamageReduction: 0
   singleDealDamageReduction: 0
   multiDealDamageReduction: 0
@@ -521,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f985382e013e63745aacb9bbc12a9ac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finalDamageDealt: 0
 --- !u!114 &3084773073971299198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +603,27 @@ MonoBehaviour:
     type: 2}
   heroDeadStatusAsset: {fileID: 11400000, guid: dfbb4142cb8fc6b43a0a47067e6f9f69,
     type: 2}
+--- !u!114 &9045387293113016060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a0c77826d854a4984902f8fbd60d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetAttackResistance: 0
+  criticalResistance: 0
+  penetrateArmorResistance: 0
+  healResistance: 0
+  inabilityResistance: 0
+  buffResistance: 0
+  debuffResistance: 0
+  counterAttackResistance: 0
+  bonusEnergyResistance: 0
 --- !u!1 &3830259919145749636
 GameObject:
   m_ObjectHideFlags: 0

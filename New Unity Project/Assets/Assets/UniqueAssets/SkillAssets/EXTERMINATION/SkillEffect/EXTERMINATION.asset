@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EXTERMINATION
   m_EditorClassIdentifier: 
   skillName: EXTERMINATION
-  skillDescription: Gain +10 Attack this turn before attacking, with a 50% chance
-    to DEFENSE BREAK(2).  100% chance and ignores IMMUNITY when in RAGE.
+  skillDescription: 50% chance to DEFENSE BREAK(2), then gain +10 Attack this turn
+    before attacking.  Has 100% chance and ignores IMMUNITY when in RAGE.
   skillEffectAsset: {fileID: 11400000, guid: 845939a7b8e16c54e986c0ca7fd73e53, type: 2}
   skillIcon: {fileID: -1252413636286531248, guid: 98cd342dc83f4e04fb07e243cc8fcc93,
     type: 3}
