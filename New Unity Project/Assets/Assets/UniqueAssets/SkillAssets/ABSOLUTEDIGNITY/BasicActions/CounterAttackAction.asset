@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SkillEffectAsset
+  m_Script: {fileID: 11500000, guid: 3907ad650a90d064e9fff4164378f409, type: 3}
+  m_Name: CounterAttackAction
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: f4aae7aeb1769c148857c9e7e58f1fde, type: 2}
-  - {fileID: 11400000, guid: 5ca315309502bb148a5a2db68e8e467e, type: 2}

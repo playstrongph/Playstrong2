@@ -22,14 +22,36 @@ namespace Logic
             foreach (var skill in mainPlayerAllHeroesSkills)
             {
                 skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
+                
                 skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);
+                
+                //TEST
+                InitializeSkillEvent(skill);
             }
             
             foreach (var skill in enemyPlayerAllHeroesSkills)
             {
                 skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill);
+                
                 skill.SkillLogic.SkillEffect.SubscribeSkillEffect(skill.CasterHero);
+                
+                //TEST
+                InitializeSkillEvent(skill);
             }
+            
+        }
+        
+        /// <summary>
+        /// Calls Initialize Skill Event
+        /// Note that caster and target hero are just the same, to avoid creating
+        /// another delegate type in skill events
+        /// </summary>
+        private void InitializeSkillEvent(ISkill skill)
+        {
+            var skillHero = skill.CasterHero;
+            
+            skill.SkillLogic.SkillEvents.EventInitializeSkill(skillHero,skillHero);
+            
             
         }
     }

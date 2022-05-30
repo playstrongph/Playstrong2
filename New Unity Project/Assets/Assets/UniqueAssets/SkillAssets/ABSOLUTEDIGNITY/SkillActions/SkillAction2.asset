@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d077990b910f834ebac4108795f4c87, type: 3}
   m_Name: SkillAction2
   m_EditorClassIdentifier: 
-  basicEvent: {fileID: 11400000, guid: c6b5ca81935f46647ad563d3b1a0efba, type: 2}
+  basicEvent: {fileID: 11400000, guid: c3d36e3617d120d44af3d813e7055cda, type: 2}
   subscribers: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicConditionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab,
     type: 2}
   orBasicConditions: []
   andBasicConditions: []
   basicActionCasters: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
-  basicActionTargets: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
+  basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActions:
-  - {fileID: 11400000, guid: 23ba27a1e8b0230408cb80f297d9cc45, type: 2}
+  - {fileID: 11400000, guid: 17cad9a0de0913a47a19aefa569433aa, type: 2}

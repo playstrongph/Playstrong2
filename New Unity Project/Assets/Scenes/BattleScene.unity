@@ -238,6 +238,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skill
       objectReference: {fileID: 0}
+    - target: {fileID: 359849408559764561, guid: ac3fb736160c8c14cbbe8fe3d1a573de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2991085503959968117, guid: ac3fb736160c8c14cbbe8fe3d1a573de,
         type: 3}
       propertyPath: m_Camera

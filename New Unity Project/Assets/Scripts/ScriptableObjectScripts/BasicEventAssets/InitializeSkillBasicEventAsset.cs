@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.BasicEventAssets
         {
             skill.SkillLogic.SkillEvents.EInitializeSkill += standardAction.StartAction;
             
-            Debug.Log("EInitializeSkill: " +skill.SkillName +"Hero: " +skill.CasterHero.HeroName);
+            Debug.Log("InitializeSkill SubscribeStandardAction");
         }
         
         /// <summary>

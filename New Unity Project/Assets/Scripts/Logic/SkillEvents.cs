@@ -48,6 +48,7 @@ namespace Logic
         public void EventInitializeSkill(IHero casterHero,IHero targetHero)
         {
             EInitializeSkill?.Invoke(casterHero,targetHero);
+            
         }
         
         private void OnDestroy()
