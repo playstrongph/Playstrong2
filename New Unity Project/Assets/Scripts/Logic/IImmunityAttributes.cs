@@ -6,20 +6,12 @@ namespace Logic
 {
     public interface IImmunityAttributes
     {
-
-        List<ScriptableObject> DebuffScriptableObjects { get; }
-
-        List<IStatusEffectAsset> Debuffs { get; }
         
-        List<ScriptableObject> BuffScriptableObjects { get; }
-
-        List<IStatusEffectAsset> Buffs { get; }
+        List<ScriptableObject> ImmunitiesScriptableObjects { get; }
         
-        List<ScriptableObject> UniqueStatusEffectsScriptableObjects { get; }
+        List<IStatusEffectAsset> Immunities { get; }
 
-        List<IStatusEffectAsset> UniqueStatusEffects { get; }
-        
 
-        int StunEffectsImmunity { get; set; }
+        //int StunEffectsImmunity { get; set; }
     }
 }

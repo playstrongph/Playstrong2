@@ -31,6 +31,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         [SerializeField] private float instantiateDelay = 0.5f;
         
+        /// <summary>
+        /// For status effects in the hero's immunity list.
+        /// Ignore immunities should have a much larger number than this
+        /// </summary>
+        [SerializeField] private int immunityResistance = 1000;
+        
         
         [Header("ANIMATIONS")]
         [SerializeField]
@@ -57,11 +63,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Instantiate "Loading" buffer
+            //TODO: Shouldn't this be moved inside "AddStatusEffect?"
             logicTree.AddCurrent(InstantiateIntervalVisual(casterHero));
             
             logicTree.AddCurrent(MainAction(casterHero));
             
             //Parallel animation interval
+            //TODO: Shouldn't this be moved inside "AddStatusEffect?"
             logicTree.AddCurrent(AddStatusEffectIntervalVisual(casterHero));
 
             logicTree.EndSequence();
@@ -86,10 +94,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private void AddStatusEffect(IHero casterHero, IHero targetHero)
         {
             var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            
+            //Check if status effect is in the immunities
+            var statusEffectResistance = CheckTargetHeroImmunities(targetHero);
 
-            //net add status effect chance based on chance and resistance
-            var netChance =
+            //net add status effect chance based on caster hero chance and target hero resistance
+            var netStatusEffectChance =
                 StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
+            
+            //final add status effect Chance
+            var netChance = netStatusEffectChance - statusEffectResistance;
             
             //Random chance, 1 to 100.
             var randomChance = Random.Range(1, 101);
@@ -105,6 +119,27 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
         }
         
+        /// <summary>
+        /// Returns immunityResistance value of 500 if the status effect is in the immunity list
+        /// Otherwise, returns zero
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private int CheckTargetHeroImmunities(IHero targetHero)
+        {
+            var heroImmunities = targetHero.HeroLogic.ImmunityAttributes.Immunities;
+
+            var resistanceValue = 0;
+
+            foreach (var heroImmunity in heroImmunities)
+            {
+                if (StatusEffectAsset.StatusEffectName == heroImmunity.StatusEffectName)
+                    resistanceValue = immunityResistance;
+            }
+
+            return resistanceValue;
+        }
+
         /// <summary>
         /// Add status effect animation/s (floating text)
         /// </summary>

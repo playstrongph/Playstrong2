@@ -1,22 +1,24 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.StandardActionAssets;
+using ScriptableObjectScripts.StatusEffectAssets;
 using TMPro;
 using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
-    [CreateAssetMenu(fileName = "SetStunEffectsImmunityAction", menuName = "Assets/BasicActions/S/SetStunEffectsImmunityAction")]
-    public class SetStunEffectsImmunityActionAsset : BasicActionAsset
-    {   
-        /*/// <summary>
-        /// Increase value by a fixed amount
-        /// </summary>
-        [SerializeField] private int flatValue = 1000;*/
+    /// <summary>
+    /// Adds and Removes status effect assets in the hero's immunity attributes
+    /// </summary>
+    [CreateAssetMenu(fileName = "AddImmunityAction", menuName = "Assets/BasicActions/A/AddImmunityAction")]
+    public class AddImmunityActionAsset : BasicActionAsset
+    {
 
-
+        [SerializeField][RequireInterfaceAttribute.RequireInterface(typeof(IStatusEffectAsset))]
+        private List<ScriptableObject> immunities = new List<ScriptableObject>();
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -46,7 +48,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            //targetHero.HeroLogic.ImmunityAttributes.StunEffectsImmunity += flatValue;
+            var heroImmunitiesScriptableObjects = targetHero.HeroLogic.ImmunityAttributes.ImmunitiesScriptableObjects;
+
+            foreach (var immunity in immunities)
+            {
+                heroImmunitiesScriptableObjects.Add(immunity);
+            }
             
             logicTree.EndSequence();
             yield return null;
@@ -56,7 +63,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
-            //targetHero.HeroLogic.ImmunityAttributes.StunEffectsImmunity -= flatValue;
+            var heroImmunitiesScriptableObjects = targetHero.HeroLogic.ImmunityAttributes.ImmunitiesScriptableObjects;
+            
+            foreach (var immunity in immunities)
+            {
+                heroImmunitiesScriptableObjects.Remove(immunity);
+            }
 
             logicTree.EndSequence();
             yield return null;
