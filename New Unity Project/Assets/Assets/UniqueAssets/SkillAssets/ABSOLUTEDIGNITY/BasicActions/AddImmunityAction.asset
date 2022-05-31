@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dffe638ebd72294b84aa0dbea002531, type: 3}
-  m_Name: SetStunEffectsImmunityAction
+  m_Script: {fileID: 11500000, guid: 10f567e45218b764ea2117bb6c6a154a, type: 3}
+  m_Name: AddImmunityAction
   m_EditorClassIdentifier: 
-  flatValue: 1000
+  immunities:
+  - {fileID: 11400000, guid: 7f2c8836ddef34a4bb4bef7942e50e5d, type: 2}
+  - {fileID: 11400000, guid: 9be09cdae03ca4b4a974c255bf7589cc, type: 2}

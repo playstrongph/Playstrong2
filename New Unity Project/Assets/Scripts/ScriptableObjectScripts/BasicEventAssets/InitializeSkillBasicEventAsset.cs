@@ -16,8 +16,6 @@ namespace ScriptableObjectScripts.BasicEventAssets
         public override void SubscribeStandardAction(ISkill skill, IStandardActionAsset standardAction)
         {
             skill.SkillLogic.SkillEvents.EInitializeSkill += standardAction.StartAction;
-            
-            Debug.Log("InitializeSkill SubscribeStandardAction");
         }
         
         /// <summary>

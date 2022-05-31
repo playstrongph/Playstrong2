@@ -21,5 +21,5 @@ MonoBehaviour:
   basicActionCasters: {fileID: 11400000, guid: 11924fc23dd6f7c4584367a19ea17e30, type: 2}
   basicActionTargets: {fileID: 11400000, guid: e2ee4cab9549fd248a75c44c87e398ab, type: 2}
   basicActions:
-  - {fileID: 11400000, guid: 12db7191659cf3648b9fd66494380e0e, type: 2}
+  - {fileID: 11400000, guid: 612c6e9208ddd4a46995982550266901, type: 2}
   - {fileID: 11400000, guid: cd6aa55361e503145936091f9dd0d8c6, type: 2}

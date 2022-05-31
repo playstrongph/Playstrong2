@@ -253,8 +253,7 @@ namespace ScriptableObjectScripts.StandardActionAssets
             
             logicTree.AddCurrent(ExecuteStartAction(casterHero,targetHero));
             
-            Debug.Log("Base Standard Action Asset");
-
+          
         }
 
         /// <summary>

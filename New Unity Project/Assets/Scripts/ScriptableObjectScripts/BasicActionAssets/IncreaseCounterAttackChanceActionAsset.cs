@@ -44,8 +44,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Increase Counter Chance: " +targetHero.HeroName);
 
             targetHero.HeroLogic.ChanceAttributes.CounterAttackChance += counterAttackChance;
             
