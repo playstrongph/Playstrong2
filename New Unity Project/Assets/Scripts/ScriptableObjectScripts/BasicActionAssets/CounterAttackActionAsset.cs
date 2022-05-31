@@ -52,32 +52,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
 
-            
-            
-            /*//The target hero is the counter attacker
-            var counterChance = counterAttacker.HeroLogic.ChanceAttributes.CounterAttackChance;
-            
-            //The caster hero is the target of the counter attack
-            var counterResistance = counterTarget.HeroLogic.ResistanceAttributes.CounterAttackResistance;
-            var netCounterChance = counterChance - counterResistance;
-            var randomChance = Random.Range(1, 101);*/
-            
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
-
-            /*if (randomChance <= netCounterChance)
-            {
-                //Prevent counterattack of a counterattack
-                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
-            
-                //Counter Attack Action
-                logicTree.AddCurrent(CounterAction(counterTarget,counterAttacker));
-            
-                //Return counterattack resistance to normal
-                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
-            }*/
-            
-            Debug.Log("Success Chance: " +_successChance);
             
             if (_successChance > 0)
             {
@@ -109,9 +85,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
 
-
-
-
         /// <summary>
         /// Counter attack with basic skill
         /// </summary>
@@ -135,10 +108,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
-        
-        
-
 
         #endregion
 
@@ -160,13 +129,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-
-            /*//targetHero is the counter attacker
-            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(targetHero,casterHero);*/
-
-            CounterAttackSuccessChance(casterHero, targetHero);
             
-            Debug.Log("Success Chance: " +_successChance);
+            //Calculate the counter attack success chance
+            CounterAttackSuccessChance(casterHero, targetHero);
 
             if (_successChance > 0)
             {
@@ -190,8 +155,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            Debug.Log("Success Chance: " +_successChance);
 
             if (_successChance > 0)
             {
@@ -201,8 +164,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //targetHero is the one being counter attacked (attacker)
                 targetHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(targetHero,casterHero);    
             }
-
-            
             
             logicTree.EndSequence();
             yield return null;
@@ -216,12 +177,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var counterResistance = counterTarget.HeroLogic.ResistanceAttributes.CounterAttackResistance;
             var netCounterChance = counterChance - counterResistance;
             var randomChance = Random.Range(1, 101);
-            
-            Debug.Log("CounterAttacker: " +counterAttacker.HeroName);
-            
-            Debug.Log("CounterTarget: " +counterTarget.HeroName);
-            
-            Debug.Log("Net Counter Chance: " +netCounterChance +" randomChance: " +randomChance);
 
             _successChance = randomChance <= netCounterChance ? 100 : 0;
         }
