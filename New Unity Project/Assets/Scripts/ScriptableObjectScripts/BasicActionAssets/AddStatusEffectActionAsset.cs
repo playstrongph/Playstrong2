@@ -62,14 +62,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //Instantiate "Loading" buffer
-            //TODO: Shouldn't this be moved inside "AddStatusEffect?"
+            //Parallel Instantiate "Loading" buffer
             logicTree.AddCurrent(InstantiateIntervalVisual(casterHero));
             
             logicTree.AddCurrent(MainAction(casterHero));
             
             //Parallel animation interval
-            //TODO: Shouldn't this be moved inside "AddStatusEffect?"
             logicTree.AddCurrent(AddStatusEffectIntervalVisual(casterHero));
 
             logicTree.EndSequence();
@@ -93,7 +91,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         private void AddStatusEffect(IHero casterHero, IHero targetHero)
         {
-            var visualTree = casterHero.CoroutineTrees.MainVisualTree;
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
             //Check if status effect is in the immunities
             var statusEffectResistance = CheckTargetHeroImmunities(targetHero);
