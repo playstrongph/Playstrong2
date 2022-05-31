@@ -74,6 +74,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
+            
+            Debug.Log("casterHero: " +casterHero.HeroName +" targetHero: " +targetHero.HeroName);
 
             DestroyStatusEffects(targetHero);
             
