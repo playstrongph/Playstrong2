@@ -16,6 +16,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region VARIABLES
 
+        private int _successChance = 0;
 
         #endregion
 
@@ -53,16 +54,32 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             
             
-            //The target hero is the counter attacker
+            /*//The target hero is the counter attacker
             var counterChance = counterAttacker.HeroLogic.ChanceAttributes.CounterAttackChance;
             
             //The caster hero is the target of the counter attack
             var counterResistance = counterTarget.HeroLogic.ResistanceAttributes.CounterAttackResistance;
             var netCounterChance = counterChance - counterResistance;
-            var randomChance = Random.Range(1, 101);
+            var randomChance = Random.Range(1, 101);*/
+            
+            //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
 
-            if (randomChance <= netCounterChance)
+            /*if (randomChance <= netCounterChance)
+            {
+                //Prevent counterattack of a counterattack
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
+            
+                //Counter Attack Action
+                logicTree.AddCurrent(CounterAction(counterTarget,counterAttacker));
+            
+                //Return counterattack resistance to normal
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
+            }*/
+            
+            Debug.Log("Success Chance: " +_successChance);
+            
+            if (_successChance > 0)
             {
                 //Prevent counterattack of a counterattack
                 logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
@@ -118,6 +135,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
+        
+        
+        
 
 
         #endregion
@@ -137,17 +157,25 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator CallPreBasicActionEvents(IHero targetHero,IHero casterHero)
+        public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            //targetHero is the counter attacker
-            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(targetHero,casterHero);
+            /*//targetHero is the counter attacker
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(targetHero,casterHero);*/
+
+            CounterAttackSuccessChance(casterHero, targetHero);
             
-            //Debug.Log("BeforeHeroCounterAttacks.  CounterAttacker:" +targetHero +" CounterTarget: " +casterHero);
-            
-            //casterHero is the one being counter attacked (attacker)
-            casterHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(casterHero,targetHero);
+            Debug.Log("Success Chance: " +_successChance);
+
+            if (_successChance > 0)
+            {
+                //casterHero is the counter attacker
+                casterHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
+
+                //targetHero is the one being counter attacked (attacker)
+                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(targetHero,casterHero);     
+            }
 
             logicTree.EndSequence();
             yield return null;
@@ -159,24 +187,46 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator CallPostBasicActionEvents(IHero targetHero,IHero casterHero)
+        public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
-            //targetHero is the counter attacker
-            targetHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(targetHero,casterHero);
+            Debug.Log("Success Chance: " +_successChance);
 
-            //Debug.Log("AfterHeroCounterAttacks.  CounterAttacker:" +targetHero +" CounterTarget: " +casterHero);
-            
-            //casterHero is the one being counter attacked (attacker)
-            casterHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(casterHero,targetHero);
-            
+            if (_successChance > 0)
+            {
+                //casterHero is the counter attacker
+                casterHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
 
+                //targetHero is the one being counter attacked (attacker)
+                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(targetHero,casterHero);    
+            }
+
+            
+            
             logicTree.EndSequence();
             yield return null;
         }
-        
-       
+
+
+        private void CounterAttackSuccessChance(IHero counterAttacker,IHero counterTarget)
+        {
+            //The caster hero is the target of the counter attack
+            var counterChance = counterAttacker.HeroLogic.ChanceAttributes.CounterAttackChance;
+            var counterResistance = counterTarget.HeroLogic.ResistanceAttributes.CounterAttackResistance;
+            var netCounterChance = counterChance - counterResistance;
+            var randomChance = Random.Range(1, 101);
+            
+            Debug.Log("CounterAttacker: " +counterAttacker.HeroName);
+            
+            Debug.Log("CounterTarget: " +counterTarget.HeroName);
+            
+            Debug.Log("Net Counter Chance: " +netCounterChance +" randomChance: " +randomChance);
+
+            _successChance = randomChance <= netCounterChance ? 100 : 0;
+        }
+
+
         #endregion
 
     }
