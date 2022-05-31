@@ -137,12 +137,14 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
+        public override IEnumerator CallPreBasicActionEvents(IHero targetHero,IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //targetHero is the counter attacker
             targetHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(targetHero,casterHero);
+            
+            //Debug.Log("BeforeHeroCounterAttacks.  CounterAttacker:" +targetHero +" CounterTarget: " +casterHero);
             
             //casterHero is the one being counter attacked (attacker)
             casterHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(casterHero,targetHero);
@@ -157,15 +159,18 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public override IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
+        public override IEnumerator CallPostBasicActionEvents(IHero targetHero,IHero casterHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //targetHero is the counter attacker
             targetHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(targetHero,casterHero);
+
+            //Debug.Log("AfterHeroCounterAttacks.  CounterAttacker:" +targetHero +" CounterTarget: " +casterHero);
             
             //casterHero is the one being counter attacked (attacker)
             casterHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(casterHero,targetHero);
+            
 
             logicTree.EndSequence();
             yield return null;

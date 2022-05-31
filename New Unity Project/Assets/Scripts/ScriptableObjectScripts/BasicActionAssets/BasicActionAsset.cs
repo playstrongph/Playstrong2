@@ -154,6 +154,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 foreach (var actionTargetHero in ExecuteActionTargetHeroes)
                 {
                     logicTree.AddCurrent(CallPreBasicActionEvents(actionCasterHero,actionTargetHero));
+                    
+                    //logicTree.AddCurrent(CallPreBasicActionEvents(actionTargetHero,actionCasterHero));
                 }    
             }
 
@@ -208,6 +210,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 foreach (var actionTargetHero in ExecuteActionTargetHeroes)
                 {
                     logicTree.AddCurrent(CallPostBasicActionEvents(actionCasterHero,actionTargetHero));
+                    
+                    //logicTree.AddCurrent(CallPostBasicActionEvents(actionTargetHero,actionCasterHero));
                 }    
             }
             

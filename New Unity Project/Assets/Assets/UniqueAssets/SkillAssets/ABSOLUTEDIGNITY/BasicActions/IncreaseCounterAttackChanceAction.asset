@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f0f6fdbbabbac47853f43dc36bdd8f, type: 3}
   m_Name: IncreaseCounterAttackChanceAction
   m_EditorClassIdentifier: 
-  counterAttackChance: 100
+  counterAttackChance: 30
