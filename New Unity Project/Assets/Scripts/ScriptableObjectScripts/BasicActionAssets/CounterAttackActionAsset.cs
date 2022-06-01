@@ -131,7 +131,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             //Calculate the counter attack success chance
-            CounterAttackSuccessChance(casterHero, targetHero);
+            ChanceSuccess(casterHero, targetHero);
 
             if (_successChance > 0)
             {
@@ -170,7 +170,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
 
-        private void CounterAttackSuccessChance(IHero counterAttacker,IHero counterTarget)
+        private void ChanceSuccess(IHero counterAttacker,IHero counterTarget)
         {
             //The caster hero is the target of the counter attack
             var counterChance = counterAttacker.HeroLogic.ChanceAttributes.CounterAttackChance;

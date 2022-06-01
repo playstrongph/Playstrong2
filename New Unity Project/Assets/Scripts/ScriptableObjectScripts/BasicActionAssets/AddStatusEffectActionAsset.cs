@@ -36,6 +36,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Ignore immunities should have a much larger number than this
         /// </summary>
         [SerializeField] private int immunityResistance = 1000;
+
+        private int _successChance = 0;
         
         
         [Header("ANIMATIONS")]
@@ -92,23 +94,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         private void AddStatusEffect(IHero casterHero, IHero targetHero)
         {
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-            var logicTree = targetHero.CoroutineTrees.MainLogicTree;
-            
-            //Check if status effect is in the immunities
-            var statusEffectResistance = CheckTargetHeroImmunities(targetHero);
 
-            //net add status effect chance based on caster hero chance and target hero resistance
-            var netStatusEffectChance =
-                StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
-            
-            //final add status effect Chance
-            var netChance = netStatusEffectChance - statusEffectResistance;
-            
-            //Random chance, 1 to 100.
-            var randomChance = Random.Range(1, 101);
-            
-            //Example - addBuffChance is 75% and random chance is 50.
-            if (randomChance <= netChance)
+            if (_successChance>0)
             {
                 //Play add status effect animation
                 visualTree.AddCurrent(AddStatusEffectVisual(targetHero));
@@ -233,7 +220,40 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
 
-      
+        private void ChanceSuccess(IHero casterHero,IHero targetHero)
+        {
+            var statusEffectResistance = CheckTargetHeroImmunities(targetHero);
+
+            //net add status effect chance based on caster hero chance and target hero resistance
+            var netStatusEffectChance =
+                StatusEffectAsset.StatusEffectType.AddStatusEffectNetChance(casterHero, targetHero, defaultChance);
+            
+            //final add status effect Chance
+            var netChance = netStatusEffectChance - statusEffectResistance;
+            
+            //Random chance, 1 to 100.
+            var randomChance = Random.Range(1, 101);
+            
+            //Example - addBuffChance is 75% and random chance is 50.
+            _successChance = randomChance <= netChance ? 100 : 0;
+        }
+
+
+        #region EVENTS
+        
+        public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            ChanceSuccess(casterHero,targetHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+
+        #endregion
+
+       
 
 
 

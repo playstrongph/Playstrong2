@@ -39,6 +39,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int percentCasterDamageDealt = 0;
         [SerializeField] private int percentTargetDamageTaken = 0;
 
+
+        private int _successChance = 0;
+
         [Header("ANIMATIONS")] 
 
         [SerializeField]
@@ -92,12 +95,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            var healChance = casterHero.HeroLogic.ChanceAttributes.HealChance + defaultChance;
-            var healResistance = targetHero.HeroLogic.ResistanceAttributes.HealResistance;
-            var netChance = healChance - healResistance;
-            var randomChance = Random.Range(1f, 100f);
-            
-            if(randomChance <= netChance)
+            if (_successChance > 0)
                 HealHero(casterHero,targetHero);
 
             logicTree.EndSequence();
@@ -232,11 +230,36 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
 
         #endregion"
+
+        #region EVENTS
+
+        public override IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
+        {
+            var logicTree = casterHero.CoroutineTrees.MainLogicTree;
+            
+            //Calculate the counter attack success chance
+            ChanceSuccess(casterHero, targetHero);
+            
+            logicTree.EndSequence();
+            yield return null;
+        }
+        
+
+        #endregion
         
         
         
-        
-       
+        private void ChanceSuccess(IHero casterHero,IHero targetHero)
+        {
+            var healChance = casterHero.HeroLogic.ChanceAttributes.HealChance + defaultChance;
+            var healResistance = targetHero.HeroLogic.ResistanceAttributes.HealResistance;
+            var netChance = healChance - healResistance;
+            var randomChance = Random.Range(1f, 100f);
+
+            _successChance = randomChance <= netChance ? 100 : 0;
+        }
+
+
 
 
 
