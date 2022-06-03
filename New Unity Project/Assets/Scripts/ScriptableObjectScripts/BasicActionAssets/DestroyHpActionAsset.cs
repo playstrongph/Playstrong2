@@ -72,7 +72,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var baseHealth = targetHero.HeroLogic.HeroAttributes.BaseHealth;
             var currentHealth = targetHero.HeroLogic.HeroAttributes.Health;
 
-            var newBaseHealth = Mathf.Max(0, baseHealth - flatValue - Mathf.RoundToInt(percentValue * baseHealth));
+            var newBaseHealth = Mathf.Max(0, baseHealth - flatValue - Mathf.RoundToInt(baseHealth*percentValue/100f));
 
             targetHero.HeroLogic.HeroAttributes.BaseHealth = newBaseHealth;
             

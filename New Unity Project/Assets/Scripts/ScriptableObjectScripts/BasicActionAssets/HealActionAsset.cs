@@ -14,7 +14,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Default chance to heal.  Primarily used by skills, 100% for status effects
         /// </summary>
         [Header("Default Healing Chance")]
-        [SerializeField] private int defaultChance = 0;
+        [SerializeField] private int defaultChance = 100;
 
 
         /// <summary>

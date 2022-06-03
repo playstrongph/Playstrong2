@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ADVENTMORTELIX
   m_EditorClassIdentifier: 
   skillName: ADVENTMORTELIX
-  skillDescription: Gain RAGE(2) then attack and destroy 10HP from all enemies. 
-    Heal for 50% of your max life.
+  skillDescription: Gain RAGE(2) then destroy 10HP and attack all enemies.  Heal
+    for 50% of your max life.
   skillEffectAsset: {fileID: 11400000, guid: 787de5154d0e37643b3d3cb5837b74e7, type: 2}
   skillIcon: {fileID: -6057296704687467268, guid: 839278b6ec3e53140b6f140a652cbe16,
     type: 3}
