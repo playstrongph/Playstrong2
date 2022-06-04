@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afaba4c53fba5de4bb2c656ec66fbac1, type: 3}
+  m_Name: AttackAction
+  m_EditorClassIdentifier: 
+  attackTargetCountType: {fileID: 11400000, guid: c22cbd54481e65c44a6a97046bc4108d,
+    type: 2}
+  skillCriticalChance: 0
+  skillCriticalDamage: 0
+  flatValue: 0
+  attackAnimationAsset: {fileID: 11400000, guid: d58e53a4db7d71c4fbbefbb8e14f8cdf,
+    type: 2}
+  preActionAnimationAsset: {fileID: 11400000, guid: d03d844aa3ba6c14faacbc66d5f8b206,
+    type: 2}
