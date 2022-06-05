@@ -16,9 +16,15 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
         {
             var visualTree = skill.CoroutineTrees.MainVisualTree;
             var skillAttributes = skill.SkillLogic.SkillAttributes;
+            var maxSkillCooldown = skillAttributes.BaseCooldown;
 
             skillAttributes.Cooldown -= counter;
-            skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
+            
+            //skillAttributes.Cooldown = Mathf.Max(skillAttributes.Cooldown, 0);
+            
+            //Clamp to 0 in case of negative values
+            //Clamp to maxSkillCooldown for higher values
+            skillAttributes.Cooldown = Mathf.Clamp(skillAttributes.Cooldown, 0, maxSkillCooldown);
             
             //TODO: UpdateSkillReadinessStatus
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
@@ -39,7 +45,12 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
             skillAttributes.Cooldown += counter;
-            skillAttributes.Cooldown = Mathf.Min(skillAttributes.Cooldown, maxSkillCooldown);
+            
+            //skillAttributes.Cooldown = Mathf.Min(skillAttributes.Cooldown, maxSkillCooldown);
+            
+            //Clamp to 0 in case of negative values
+            //Clamp to maxSkillCooldown for higher values
+            skillAttributes.Cooldown = Mathf.Clamp(skillAttributes.Cooldown, 0, maxSkillCooldown);
             
             //TODO: UpdateSkillReadinessStatus
             skill.SkillLogic.UpdateSkillReadiness.StartAction();
@@ -60,6 +71,7 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             var maxSkillCooldown = skillAttributes.BaseCooldown;
             
             skillAttributes.Cooldown = value;
+            
             skillAttributes.Cooldown = Mathf.Clamp(skillAttributes.Cooldown, 0, maxSkillCooldown);
             
             //TODO: UpdateSkillReadinessStatus

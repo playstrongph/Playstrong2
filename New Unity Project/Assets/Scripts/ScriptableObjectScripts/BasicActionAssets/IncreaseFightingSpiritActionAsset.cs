@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DG.Tweening;
 using Logic;
 using ScriptableObjectScripts.GameAnimationAssets;
@@ -15,6 +16,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Increase value by a fixed amount
         /// </summary>
         [SerializeField] private int flatValue = 0;
+        
+        /// <summary>
+        /// Set multiplier to 1 to enable, 0 is disabled
+        /// </summary>
+        [Header("Multipliers")]
+        [SerializeField] private int buffCountMultiplier = 0;
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -44,7 +51,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + flatValue;
+            var buffsMultiplier = BuffCountMultiplier(targetHero);
+
+            var totalValue = flatValue * (1 + buffsMultiplier);
+
+            var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + totalValue;
             
             targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);
 
@@ -52,7 +63,26 @@ namespace ScriptableObjectScripts.BasicActionAssets
             yield return null;
         }
         
-     
+        /// <summary>
+        /// Total number of buffs multiplier
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        private int BuffCountMultiplier(IHero targetHero)
+        {
+            var value = 0;
+
+            var buffCount = targetHero.HeroStatusEffects.BuffEffects.StatusEffects.Count;
+            
+            //Minus 1 is due to factoring out flat value in the total value calculation
+            value = buffCountMultiplier * buffCount - 1;
+
+            value = Mathf.Clamp(value, 0, 1);
+            
+            return value;
+        }
+
+
 
     }
 }

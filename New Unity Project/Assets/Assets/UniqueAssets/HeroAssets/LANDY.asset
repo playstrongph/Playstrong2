@@ -21,6 +21,7 @@ MonoBehaviour:
   speed: 112
   chance: 0
   armor: 0
-  fightingSpirit: 0
+  fightingSpirit: 50
   heroSkillAssets:
   - {fileID: 11400000, guid: a54ec6d811c5e154d91a04d34696f98e, type: 2}
+  - {fileID: 11400000, guid: 1fa97abd8c21fe947974379696d099ee, type: 2}
