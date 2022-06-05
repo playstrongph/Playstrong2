@@ -75,7 +75,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
             
-            Debug.Log("casterHero: " +casterHero.HeroName +" targetHero: " +targetHero.HeroName);
+            //Debug.Log("casterHero: " +casterHero.HeroName +" targetHero: " +targetHero.HeroName);
 
             DestroyStatusEffects(targetHero);
             

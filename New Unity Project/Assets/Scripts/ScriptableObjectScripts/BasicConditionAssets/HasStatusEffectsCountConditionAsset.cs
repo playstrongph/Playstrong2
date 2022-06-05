@@ -41,35 +41,42 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         {
             //Default is False
             var value = 0;
+            var buffValue = 0;
+            var debuffValue = 0;
+            var uniqueEffectsValue = 0;
 
             var buffs = hero.HeroStatusEffects.BuffEffects.StatusEffects.Count;
             var debuffs = hero.HeroStatusEffects.DebuffEffects.StatusEffects.Count;
             var uniqueEffects = hero.HeroStatusEffects.UniqueStatusEffects.StatusEffects.Count;
 
-            var buffValue = 0;
-            var debuffValue = 0;
-            var uniqueEffectsValue = 0;
-            
+
             //Buff value logic
-            buffValue = buffs > buffsGreaterThan ? 1 : 0;
-            buffValue = buffs < buffsLessThan ? 1 : 0;
-            buffValue = buffs == buffsEqualTo ? 1 : 0;
+            var buffValue1 = buffs > buffsGreaterThan ? 1 : 0;
+            var buffValue2 = buffs < buffsLessThan ? 1 : 0;
+            var buffValue3 = buffs == buffsEqualTo ? 1 : 0;
+            
+            //if any of the above is true, value is 1
+            buffValue = Mathf.Clamp(buffValue1 + buffValue2 + buffValue3, 0, 1);       
             
             //Debuff value logic
-            debuffValue = debuffs > debuffsGreaterThan ? 1 : 0;
-            debuffValue = debuffs < debuffsLessThan ? 1 : 0;
-            debuffValue = debuffs == debuffsEqualTo ? 1 : 0;
+            var debuffValue1 = debuffs > debuffsGreaterThan ? 1 : 0;
+            var debuffValue2 = debuffs < debuffsLessThan ? 1 : 0;
+            var debuffValue3 = debuffs == debuffsEqualTo ? 1 : 0;
+            
+            //if any of the above is true, value is 1
+            debuffValue = Mathf.Clamp(debuffValue1 + debuffValue2 + debuffValue3,0,1);
             
             //Unique effect value logic
-            uniqueEffectsValue = uniqueEffects > uniqueEffectsGreaterThan ? 1 : 0;
-            uniqueEffectsValue = uniqueEffects < uniqueEffectsLessThan ? 1 : 0;
-            uniqueEffectsValue = uniqueEffects == uniqueEffectsEqualTo ? 1 : 0;
+            var uniqueEffectsValue1 = uniqueEffects > uniqueEffectsGreaterThan ? 1 : 0;
+            var uniqueEffectsValue2 = uniqueEffects < uniqueEffectsLessThan ? 1 : 0;
+            var uniqueEffectsValue3 = uniqueEffects == uniqueEffectsEqualTo ? 1 : 0;
+
+            uniqueEffectsValue = Mathf.Clamp(uniqueEffectsValue1 + uniqueEffectsValue2 + uniqueEffectsValue3, 0, 1);
             
             
             //Set to 1 if any of the conditions above is met
-            value = buffValue + debuffValue + uniqueEffectsValue;
-        
-            
+            value = Mathf.Clamp(buffValue + debuffValue + uniqueEffectsValue,0,1);
+
             return value;
         }
     }

@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b36e821613d3ee4498d2043b54f4fe6, type: 3}
-  m_Name: IncreaseEnergyAction
+  m_Name: IncreaseEnergyAction30
   m_EditorClassIdentifier: 
-  flatValue: 15
+  flatValue: 30
