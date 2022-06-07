@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Logic;
+using ScriptableObjectScripts.CalculatedValuesAssets;
 using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using TMPro;
@@ -21,7 +23,28 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Set multiplier to 1 to enable, 0 is disabled
         /// </summary>
         [Header("Multipliers")]
-        [SerializeField] private int buffCountMultiplier = 0;
+        [SerializeField] private int flatMultiplier = 1; //Default value is 1 (increase by flat value amount);
+
+        [SerializeField] [RequireInterfaceAttribute.RequireInterface(typeof(ICalculatedValueAsset))]private List<ScriptableObject> calculatedValueAssets;
+        private List<ICalculatedValueAsset> CalculatedValueAssets
+        {
+            
+            get
+            {
+                var newCalculatedValueAssets = new List<ICalculatedValueAsset>();
+                foreach (var calculatedValueAssetObject in calculatedValueAssets)
+                {
+                    var newCalculatedValueAsset = calculatedValueAssetObject as ICalculatedValueAsset;
+                    newCalculatedValueAssets.Add(newCalculatedValueAsset);
+                }
+                return newCalculatedValueAssets;
+            }
+
+            set => calculatedValueAssets = new List<ScriptableObject>();
+        }
+
+        
+       
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -51,36 +74,38 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            var buffsMultiplier = BuffCountMultiplier(targetHero);
-
-            var totalValue = flatValue * (1 + buffsMultiplier);
-
-            var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + totalValue;
+            //This is the final multiplier to the fighting spirit flat value
+            var totalMultiplier = 0f;
             
-            targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);
+            //Increase total multiplier by calculated value assets
+            foreach (var calculatedValue in CalculatedValueAssets)
+            {
+                totalMultiplier += calculatedValue.CalculatedValue;
+            }
+            
+            //Increase total multiplier by a flat multiplier factor
+            totalMultiplier += flatMultiplier;
+            
+            //TODO: Insert other multipliers here in the future
+            
+            //This is the final change in fighting spirit value  
+            var finalFightingSpiritDeltaValue = flatValue * Mathf.RoundToInt(totalMultiplier);
+            
+            
+            //If there will be a chance in the fighting spirit amount, whether negative or positive
+            if (finalFightingSpiritDeltaValue != 0)
+            {
+                //Total fighting spirit increase is totalMultiplier * fighting spirit flat value
+                var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + finalFightingSpiritDeltaValue;
+
+                targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);    
+            }
 
             logicTree.EndSequence();
             yield return null;
         }
         
-        /// <summary>
-        /// Total number of buffs multiplier
-        /// </summary>
-        /// <param name="targetHero"></param>
-        /// <returns></returns>
-        private int BuffCountMultiplier(IHero targetHero)
-        {
-            var value = 0;
-
-            var buffCount = targetHero.HeroStatusEffects.BuffEffects.StatusEffects.Count;
-            
-            //Minus 1 is due to factoring out flat value in the total value calculation
-            value = buffCountMultiplier * buffCount - 1;
-
-            value = Mathf.Clamp(value, 0, 1);
-            
-            return value;
-        }
+      
 
 
 

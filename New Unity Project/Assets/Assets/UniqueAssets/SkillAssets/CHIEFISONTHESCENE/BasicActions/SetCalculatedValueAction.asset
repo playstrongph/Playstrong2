@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb912b72f8f6004caad6ffe7fbae747, type: 3}
-  m_Name: IncreaseFightingSpiritAction
+  m_Script: {fileID: 11500000, guid: ffd632218828f594cb67cc8cbb3528da, type: 3}
+  m_Name: SetCalculatedValueAction
   m_EditorClassIdentifier: 
-  flatValue: 10
-  flatMultiplier: 0
-  calculatedValueAssets:
-  - {fileID: 11400000, guid: 98ea92455e7d8194688f4ec969301511, type: 2}
+  calculatedValueAsset: {fileID: 11400000, guid: 98ea92455e7d8194688f4ec969301511,
+    type: 2}
