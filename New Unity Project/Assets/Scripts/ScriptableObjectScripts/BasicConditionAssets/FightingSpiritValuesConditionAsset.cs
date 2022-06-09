@@ -26,8 +26,6 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             var value = 0;
 
             var fightingSpirit = hero.HeroLogic.HeroAttributes.FightingSpirit;
-            
-            Debug.Log("Hero: " +hero.HeroName);
 
             if (fightingSpirit < lessThanLimit)
             {

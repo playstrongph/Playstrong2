@@ -91,6 +91,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //This is the final change in fighting spirit value  
             var finalFightingSpiritDeltaValue = flatValue * Mathf.RoundToInt(totalMultiplier);
             
+            Debug.Log("Delta Value: " +finalFightingSpiritDeltaValue);
             
             //If there will be a chance in the fighting spirit amount, whether negative or positive
             if (finalFightingSpiritDeltaValue != 0)
@@ -98,7 +99,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Total fighting spirit increase is totalMultiplier * fighting spirit flat value
                 var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + finalFightingSpiritDeltaValue;
 
-                targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);    
+                targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);
+                
+                
             }
 
             logicTree.EndSequence();
