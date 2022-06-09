@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SkillEffectAsset
+  m_Script: {fileID: 11500000, guid: a356544e8e415574cb73b1fe5d580975, type: 3}
+  m_Name: FightingSpiritGreaterThan99
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: c3885b613656fc046b1701de0328dbe4, type: 2}
-  - {fileID: 11400000, guid: 19731917477c6ac44a544328f5b004d8, type: 2}
+  skillAsset: {fileID: 11400000, guid: 9d63448f2cae82e46a3d694354e1106c, type: 2}
+  lessThanLimit: -9999999
+  greaterThanLimit: 99
+  equalToLimit: -99999999
