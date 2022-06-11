@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SkillEffectAsset
   m_EditorClassIdentifier: 
   standardActions:
+  - {fileID: 11400000, guid: 319ff4727adfeef40af911731ad5e6f1, type: 2}
   - {fileID: 11400000, guid: bb62acdb86f06f04ca2c789d825e1f57, type: 2}
   - {fileID: 11400000, guid: c3885b613656fc046b1701de0328dbe4, type: 2}
   - {fileID: 11400000, guid: 19731917477c6ac44a544328f5b004d8, type: 2}
-  - {fileID: 11400000, guid: 319ff4727adfeef40af911731ad5e6f1, type: 2}
   - {fileID: 11400000, guid: 1cc6600040d5ca142acb62117ee456ce, type: 2}
   - {fileID: 11400000, guid: 400d17536be4e6b489fcab15c91a03ef, type: 2}
