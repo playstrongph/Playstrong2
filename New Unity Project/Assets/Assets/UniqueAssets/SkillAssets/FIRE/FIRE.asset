@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FIRE
   m_EditorClassIdentifier: 
   skillName: FIRE
-  skillDescription: Attack the target enemy then gain 15% Energy.  Double the energy
-    and fighting spirit gained if the enemy has buffs.
+  skillDescription: Attack the target enemy then gain 15% Energy.  Gain 10 fighting
+    spirit for each enemy buff and addtional 15% energy.
   skillEffectAsset: {fileID: 11400000, guid: b8bf7b823820d204e9671d1eb07225f6, type: 2}
   skillIcon: {fileID: 1098286324429101383, guid: 20986f5e23fc3c9418791e23686d2086,
     type: 3}
