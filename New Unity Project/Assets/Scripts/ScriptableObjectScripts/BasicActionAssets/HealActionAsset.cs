@@ -39,8 +39,9 @@ namespace ScriptableObjectScripts.BasicActionAssets
         [SerializeField] private int percentCasterDamageDealt = 0;
         [SerializeField] private int percentTargetDamageTaken = 0;
 
+        private int successChance = 0;
 
-        private int _successChance = 0;
+        private int newHeroHealth = 0;
 
         [Header("ANIMATIONS")] 
 
@@ -72,12 +73,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Heal Animation
-            logicTree.AddCurrent(HealVisualAction(casterHero));
 
             //base class method that calls execute action after checking life status and inability status
             logicTree.AddCurrent(MainAction(casterHero));
+            
+            //Heal Animation
+            logicTree.AddCurrent(HealVisualAction(casterHero));
 
             logicTree.EndSequence();
             yield return null;
@@ -95,7 +96,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            if (_successChance > 0)
+            if (successChance > 0)
                 HealHero(casterHero,targetHero);
 
             logicTree.EndSequence();
@@ -111,11 +112,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             //Healing factors calculation
             var baseHealthHeal = BaseHealthHeal(casterHero, targetHero);
-            var damageDealtOrTakenHeal = DamageDealtOrTakenHeal(casterHero, targetHero);
             
+            var damageDealtOrTakenHeal = DamageDealtOrTakenHeal(casterHero, targetHero);
+
             //Set total healing here
             totalHealValue = flatValue + baseHealthHeal +damageDealtOrTakenHeal;
-            
+
             //TEST
             var maxHealAmount = targetHero.HeroLogic.HeroAttributes.BaseHealth -
                                 targetHero.HeroLogic.HeroAttributes.Health;
@@ -128,11 +130,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             totalHealValue = Mathf.Min(totalHealValue, maxHealAmount);
 
             //New Health calculations
-            var newHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealValue;
-            
-            targetHero.HeroLogic.SetHealth.StartAction(newHealth);
+            newHeroHealth = targetHero.HeroLogic.HeroAttributes.Health + totalHealValue;
+
         }
-        
+
         /// <summary>
         /// Total healing based on base health
         /// </summary>
@@ -189,23 +190,15 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             foreach (var hero in ExecuteActionTargetHeroes)
             {
-                visualTree.AddCurrent(HealAnimation(hero));
+                HealAnimationAsset.PlayAnimation(totalHealValue.ToString(),hero);
+
+                hero.HeroLogic.SetHealth.StartAction(newHeroHealth);
             }
             
             if(ExecuteActionTargetHeroes.Count > 0)
                 visualTree.AddCurrent(AnimationInterval(targetHero));
             
             logicTree.EndSequence();
-            yield return null;
-        }
-
-        private IEnumerator HealAnimation(IHero targetHero)
-        {
-            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
-
-            HealAnimationAsset.PlayAnimation(totalHealValue.ToString(),targetHero);
-            
-            visualTree.EndSequence();
             yield return null;
         }
         
@@ -243,7 +236,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
             logicTree.EndSequence();
             yield return null;
         }
-        
 
         #endregion
         
@@ -256,12 +248,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var netChance = healChance - healResistance;
             var randomChance = Random.Range(1f, 100f);
 
-            _successChance = randomChance <= netChance ? 100 : 0;
+            successChance = randomChance <= netChance ? 100 : 0;
         }
-
-
-
-
 
     }
 }
