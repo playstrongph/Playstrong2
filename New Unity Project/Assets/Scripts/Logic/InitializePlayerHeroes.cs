@@ -62,10 +62,21 @@ namespace Logic
                 
                 //Initializes hero skills and display skills
                 hero.InitializeHeroSkills.StartAction(heroAsset);
+                
+                //Subscribe default actions - counterattack, etc.
+                SubscribeCounterAttack(hero);
             }
-            
-            //logicTree.EndSequence();
-            //yield return null;
+        }
+        
+        
+        /// <summary>
+        /// Subscribe default actions
+        /// counter attack action
+        /// </summary>
+        /// <param name="hero"></param>
+        private void SubscribeCounterAttack(IHero hero)
+        {
+            hero.HeroLogic.HeroEvents.EAfterHeroIsAttacked += hero.HeroLogic.CounterAttack.CounterAttackHero;
         }
 
 

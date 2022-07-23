@@ -40,10 +40,7 @@ namespace Logic
             //Set Hero  skills and display Skills reference
             hero.HeroSkills = heroSkills;
             hero.DisplayHeroSkills = displaySkills;
-            
-            //TEST
-            SubscribeCounterAttack();
-            
+
             //Create Hero Skills and set values using skillAssets
             foreach (var skillAsset in skillAssets)
             {
@@ -109,10 +106,6 @@ namespace Logic
 
         }
         
-        //TEST
-        private void SubscribeCounterAttack()
-        {
-            hero.HeroLogic.HeroEvents.EAfterHeroIsAttacked += hero.HeroLogic.CounterAttack.CounterAttackHero;
-        }
+       
     }
 }

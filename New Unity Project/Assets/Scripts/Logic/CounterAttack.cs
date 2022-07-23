@@ -32,53 +32,21 @@ namespace Logic
         ///  <param name="targetHero"></param>
         public void CounterAttackHero(IHero casterHero,IHero targetHero)
         {
-            /*Debug.Log("Counter Attack Hero");
-            
-            var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
-
-            //prevents counterAttack of a counterAttack
-            var temporaryResistance = 1000;
-            
-            ChanceSuccess(counterAttacker,counterTarget);
-            
-            Debug.Log("CounterAttacker: " +counterAttacker.HeroName +" counterTarget: " +counterTarget.HeroName);
-            
-            Debug.Log("Success Chance: " +successChance);
-            
-            if (successChance > 0)
-            {
-                logicTree.AddCurrent(PreCounterAttackEvents(counterAttacker,counterTarget));
-                
-                //Prevent counterattack of a counterattack
-                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
-            
-                //Counter Attack Action
-                logicTree.AddCurrent(CounterAction(counterTarget,counterAttacker));
-            
-                //Return counterattack resistance to normal
-                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
-                
-                logicTree.AddCurrent(PostCounterAttackEvents(counterAttacker,counterTarget));
-            }*/
+            //Counter Attacker: Caster hero
+            //Counter Target: TargetHero
             
             CounterAttackAction(targetHero,casterHero);
         }
         
         private void CounterAttackAction(IHero counterTarget,IHero counterAttacker)
         {
-            Debug.Log("Counter Attack Hero");
-            
             var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
 
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
             
             ChanceSuccess(counterAttacker,counterTarget);
-            
-            Debug.Log("CounterAttacker: " +counterAttacker.HeroName +" counterTarget: " +counterTarget.HeroName);
-            
-            Debug.Log("Success Chance: " +successChance);
-            
+
             if (successChance > 0)
             {
                 logicTree.AddCurrent(PreCounterAttackEvents(counterAttacker,counterTarget));
