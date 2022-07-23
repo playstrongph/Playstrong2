@@ -1,34 +1,46 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Logic
 {
     
-    public class CounterAttack : MonoBehaviour
+    public class CounterAttack : MonoBehaviour, ICounterAttack
     {
 
         #region VARIABLES
 
-        private int _successChance = 0;
+        private int successChance = 0;
+
+        private IHeroLogic heroLogic;
 
         #endregion
 
         #region EXECUTION
+
+        private void Awake()
+        {
+            heroLogic = GetComponent<IHeroLogic>();
+        }
+
 
         /// <summary>
         /// Counter attack target hero using basic skill
         /// </summary>
         /// <param name="counterTarget"></param>
         ///  <param name="counterAttacker"></param>
-        private void CounterAttackHero(IHero counterTarget,IHero counterAttacker)
+        public void CounterAttackHero(IHero counterTarget,IHero counterAttacker)
         {
             var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
 
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
             
-            if (_successChance > 0)
+            if (successChance > 0)
             {
+                logicTree.AddCurrent(PreCounterAttackEvents(counterAttacker,counterTarget));
+                
                 //Prevent counterattack of a counterattack
                 logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
             
@@ -37,6 +49,8 @@ namespace Logic
             
                 //Return counterattack resistance to normal
                 logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
+                
+                logicTree.AddCurrent(PostCounterAttackEvents(counterAttacker,counterTarget));
             }
         }
         
@@ -98,21 +112,15 @@ namespace Logic
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public IEnumerator CallPreBasicActionEvents(IHero casterHero,IHero targetHero)
+        public IEnumerator PreCounterAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
-            
-            //Calculate the counter attack success chance
-            ChanceSuccess(casterHero, targetHero);
 
-            if (_successChance > 0)
-            {
-                //casterHero is the counter attacker
-                casterHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
+            //casterHero is the counter attacker
+            casterHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
 
-                //targetHero is the one being counter attacked (attacker)
-                targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(targetHero,casterHero);     
-            }
+            //targetHero is the one being counter attacked (attacker)
+            targetHero.HeroLogic.HeroEvents.EventBeforeHeroIsCounterAttacked(targetHero,casterHero);
 
             logicTree.EndSequence();
             yield return null;
@@ -124,19 +132,16 @@ namespace Logic
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public IEnumerator CallPostBasicActionEvents(IHero casterHero,IHero targetHero)
+        public IEnumerator PostCounterAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            if (_successChance > 0)
-            {
-                //casterHero is the counter attacker
-                casterHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
+           //casterHero is the counter attacker
+           casterHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
 
-                //targetHero is the one being counter attacked (attacker)
-                targetHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(targetHero,casterHero);    
-            }
-            
+           //targetHero is the one being counter attacked (attacker)
+           targetHero.HeroLogic.HeroEvents.EventAfterHeroIsCounterAttacked(targetHero,casterHero);  
+           
             logicTree.EndSequence();
             yield return null;
         }
@@ -150,7 +155,7 @@ namespace Logic
             var netCounterChance = counterChance - counterResistance;
             var randomChance = Random.Range(1, 101);
 
-            _successChance = randomChance <= netCounterChance ? 100 : 0;
+            successChance = randomChance <= netCounterChance ? 100 : 0;
         }
 
 

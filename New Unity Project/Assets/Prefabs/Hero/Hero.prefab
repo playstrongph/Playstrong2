@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 2068203322}
   - component: {fileID: 5691763508500235242}
   - component: {fileID: 9045387293113016060}
+  - component: {fileID: 229347230}
   m_Layer: 0
   m_Name: HeroLogic
   m_TagString: Untagged
@@ -615,15 +616,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a0c77826d854a4984902f8fbd60d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetAttackResistance: 0
-  criticalResistance: 0
-  penetrateArmorResistance: 0
-  healResistance: 0
-  inabilityResistance: 0
-  buffResistance: 0
-  debuffResistance: 0
-  counterAttackResistance: 0
-  bonusEnergyResistance: 0
+  immunities: []
+--- !u!114 &229347230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2494495862489387502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7294c384db5e714094b07e4c363afbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3830259919145749636
 GameObject:
   m_ObjectHideFlags: 0

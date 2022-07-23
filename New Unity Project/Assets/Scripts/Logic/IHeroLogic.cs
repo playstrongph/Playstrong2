@@ -132,6 +132,11 @@ namespace Logic
         /// Status effect immunities
         /// </summary>
         IImmunityAttributes ImmunityAttributes { get; }
+        
+        /// <summary>
+        /// Reference to counterattack default action
+        /// </summary>
+        ICounterAttack CounterAttack { get; }
 
         #endregion
     }

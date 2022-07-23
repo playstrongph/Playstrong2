@@ -180,6 +180,11 @@ namespace Logic
         /// Reerence to Immunity Attributes
         /// </summary>
         public IImmunityAttributes ImmunityAttributes { get; private set; }
+        
+        /// <summary>
+        /// Reference to counter attack default action
+        /// </summary>
+        public ICounterAttack CounterAttack { get; private set; }
 
         #endregion
 
@@ -206,6 +211,7 @@ namespace Logic
             HeroDies = GetComponent<IHeroDies>();
             SetHeroInabilityStatus = GetComponent<ISetHeroInabilityStatus>();
             ImmunityAttributes = GetComponent<IImmunityAttributes>();
+            CounterAttack = GetComponent<ICounterAttack>();
 
         }
     }

@@ -16,7 +16,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
         #region VARIABLES
 
-        private int _successChance = 0;
+        private int successChance = 0;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
             
-            if (_successChance > 0)
+            if (successChance > 0)
             {
                 //Prevent counterattack of a counterattack
                 logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
@@ -133,7 +133,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //Calculate the counter attack success chance
             ChanceSuccess(casterHero, targetHero);
 
-            if (_successChance > 0)
+            if (successChance > 0)
             {
                 //casterHero is the counter attacker
                 casterHero.HeroLogic.HeroEvents.EventBeforeHeroCounterAttacks(casterHero,targetHero);
@@ -156,7 +156,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
-            if (_successChance > 0)
+            if (successChance > 0)
             {
                 //casterHero is the counter attacker
                 casterHero.HeroLogic.HeroEvents.EventAfterHeroCounterAttacks(casterHero,targetHero);
@@ -178,7 +178,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var netCounterChance = counterChance - counterResistance;
             var randomChance = Random.Range(1, 101);
 
-            _successChance = randomChance <= netCounterChance ? 100 : 0;
+            successChance = randomChance <= netCounterChance ? 100 : 0;
         }
 
 
