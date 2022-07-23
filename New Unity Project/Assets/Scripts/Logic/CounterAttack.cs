@@ -37,6 +37,8 @@ namespace Logic
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
             
+            ChanceSuccess(counterAttacker,counterTarget);
+            
             if (successChance > 0)
             {
                 logicTree.AddCurrent(PreCounterAttackEvents(counterAttacker,counterTarget));
@@ -112,7 +114,7 @@ namespace Logic
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public IEnumerator PreCounterAttackEvents(IHero casterHero,IHero targetHero)
+        private IEnumerator PreCounterAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -132,7 +134,7 @@ namespace Logic
         /// <param name="casterHero"></param>
         /// <param name="targetHero"></param>
         /// <returns></returns>
-        public IEnumerator PostCounterAttackEvents(IHero casterHero,IHero targetHero)
+        private IEnumerator PostCounterAttackEvents(IHero casterHero,IHero targetHero)
         {
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
