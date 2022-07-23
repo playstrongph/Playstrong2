@@ -8,19 +8,19 @@ namespace Logic
     /// </summary>
     public class InitializeHeroSkills : MonoBehaviour, IInitializeHeroSkills
     {
-        private IHero _hero;
+        private IHero hero;
 
         private void Awake()
         {
-            _hero = GetComponent<IHero>();
+            hero = GetComponent<IHero>();
         }
 
         public void StartAction(IHeroAsset heroAsset)
         {
-            var heroSkillsPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.HeroSkillsPrefab.ThisGameObject;
-            var skillPrefab = _hero.Player.BattleSceneManager.BattleSceneSettings.SkillPrefab.ThisGameObject;
-            var heroSkillsTransform = _hero.Player.SkillsAllHeroes.ThisGameObject.transform;
-            var displaySkillsTransform = _hero.Player.DisplaySkills.ThisGameObject.transform;
+            var heroSkillsPrefab = hero.Player.BattleSceneManager.BattleSceneSettings.HeroSkillsPrefab.ThisGameObject;
+            var skillPrefab = hero.Player.BattleSceneManager.BattleSceneSettings.SkillPrefab.ThisGameObject;
+            var heroSkillsTransform = hero.Player.SkillsAllHeroes.ThisGameObject.transform;
+            var displaySkillsTransform = hero.Player.DisplaySkills.ThisGameObject.transform;
             
             var skillAssets = heroAsset.HeroSkillAssets;
 
@@ -32,14 +32,17 @@ namespace Logic
             var displaySkills = displaySkillsObject.GetComponent<IHeroSkills>();
 
             //all skills of all heroes of the player
-            var playerSkillsAllHeroes = _hero.Player.SkillsAllHeroes;
+            var playerSkillsAllHeroes = hero.Player.SkillsAllHeroes;
             
             heroSkillsObject.name = heroAsset.HeroName + "Skills";
             displaySkillsObject.name = heroAsset.HeroName + "DisplaySkills";
             
             //Set Hero  skills and display Skills reference
-            _hero.HeroSkills = heroSkills;
-            _hero.DisplayHeroSkills = displaySkills;
+            hero.HeroSkills = heroSkills;
+            hero.DisplayHeroSkills = displaySkills;
+            
+            //TEST
+            SubscribeCounterAttack();
             
             //Create Hero Skills and set values using skillAssets
             foreach (var skillAsset in skillAssets)
@@ -58,8 +61,8 @@ namespace Logic
                 displaySkill.SkillName = skillAsset.SkillName;
                 
                 //Set hero reference
-                skill.CasterHero = _hero;
-                displaySkill.CasterHero = _hero;
+                skill.CasterHero = hero;
+                displaySkill.CasterHero = hero;
 
                 //Add to hero skills objects list
                 heroSkills.AllSkillsObjects().Add(skillObject);
@@ -104,6 +107,12 @@ namespace Logic
             heroSkills.HideHeroSkills();
             displaySkills.HideHeroSkills();
 
+        }
+        
+        //TEST
+        private void SubscribeCounterAttack()
+        {
+            hero.HeroLogic.HeroEvents.EAfterHeroIsAttacked += hero.HeroLogic.CounterAttack.CounterAttackHero;
         }
     }
 }

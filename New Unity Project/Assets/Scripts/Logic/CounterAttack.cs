@@ -28,16 +28,56 @@ namespace Logic
         /// <summary>
         /// Counter attack target hero using basic skill
         /// </summary>
-        /// <param name="counterTarget"></param>
-        ///  <param name="counterAttacker"></param>
-        public void CounterAttackHero(IHero counterTarget,IHero counterAttacker)
+        /// <param name="casterHero"></param>
+        ///  <param name="targetHero"></param>
+        public void CounterAttackHero(IHero casterHero,IHero targetHero)
         {
+            /*Debug.Log("Counter Attack Hero");
+            
             var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
 
             //prevents counterAttack of a counterAttack
             var temporaryResistance = 1000;
             
             ChanceSuccess(counterAttacker,counterTarget);
+            
+            Debug.Log("CounterAttacker: " +counterAttacker.HeroName +" counterTarget: " +counterTarget.HeroName);
+            
+            Debug.Log("Success Chance: " +successChance);
+            
+            if (successChance > 0)
+            {
+                logicTree.AddCurrent(PreCounterAttackEvents(counterAttacker,counterTarget));
+                
+                //Prevent counterattack of a counterattack
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,temporaryResistance));
+            
+                //Counter Attack Action
+                logicTree.AddCurrent(CounterAction(counterTarget,counterAttacker));
+            
+                //Return counterattack resistance to normal
+                logicTree.AddCurrent(ChanceCounterResistance(counterAttacker,-temporaryResistance));
+                
+                logicTree.AddCurrent(PostCounterAttackEvents(counterAttacker,counterTarget));
+            }*/
+            
+            CounterAttackAction(targetHero,casterHero);
+        }
+        
+        private void CounterAttackAction(IHero counterTarget,IHero counterAttacker)
+        {
+            Debug.Log("Counter Attack Hero");
+            
+            var logicTree = counterTarget.CoroutineTrees.MainLogicTree;
+
+            //prevents counterAttack of a counterAttack
+            var temporaryResistance = 1000;
+            
+            ChanceSuccess(counterAttacker,counterTarget);
+            
+            Debug.Log("CounterAttacker: " +counterAttacker.HeroName +" counterTarget: " +counterTarget.HeroName);
+            
+            Debug.Log("Success Chance: " +successChance);
             
             if (successChance > 0)
             {
@@ -148,7 +188,11 @@ namespace Logic
             yield return null;
         }
 
-
+        /// <summary>
+        /// Checks if hero counter attacks
+        /// </summary>
+        /// <param name="counterAttacker"></param>
+        /// <param name="counterTarget"></param>
         private void ChanceSuccess(IHero counterAttacker,IHero counterTarget)
         {
             //The caster hero is the target of the counter attack
