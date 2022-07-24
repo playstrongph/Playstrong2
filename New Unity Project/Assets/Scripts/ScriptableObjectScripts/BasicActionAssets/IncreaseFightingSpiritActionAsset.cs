@@ -98,8 +98,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 var fightingSpirit = targetHero.HeroLogic.HeroAttributes.FightingSpirit + finalFightingSpiritDeltaValue;
 
                 targetHero.HeroLogic.SetFightingSpirit.StartAction(fightingSpirit);
-                
-                
+
             }
 
             logicTree.EndSequence();

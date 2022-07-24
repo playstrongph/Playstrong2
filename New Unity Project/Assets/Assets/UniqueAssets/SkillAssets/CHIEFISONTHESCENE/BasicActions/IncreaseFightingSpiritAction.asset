@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb912b72f8f6004caad6ffe7fbae747, type: 3}
   m_Name: IncreaseFightingSpiritAction
   m_EditorClassIdentifier: 
-  flatValue: 10
+  flatValue: 20
   flatMultiplier: 0
   calculatedValueAssets:
   - {fileID: 11400000, guid: 98ea92455e7d8194688f4ec969301511, type: 2}
