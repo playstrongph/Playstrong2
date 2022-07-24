@@ -60,6 +60,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             if(reflectDamage>0) 
                logicTree.AddCurrent(reflectDamageRecipient.HeroLogic.TakeDamage.TakeNonSkillDamage(reflectDamageRecipient, reflectDamage, penetrateArmorChance,percentPenetrateArmor));
+            
+            Debug.Log("Reflect Damage: " +reflectDamage);
 
         }
 

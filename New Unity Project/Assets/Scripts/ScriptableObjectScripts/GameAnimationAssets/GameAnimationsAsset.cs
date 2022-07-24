@@ -108,6 +108,22 @@ namespace ScriptableObjectScripts.GameAnimationAssets
                 visualEffect.PlayVisualEffect(targetHero);
             }
         }
+        
+        /// <summary>
+        /// Play animation - single hero argument
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="value"></param>
+        public void PlayAnimation(IHero hero,int value)
+        {
+            foreach (var gameVisualEffect in GameVisualEffects)
+            {
+                var gameVisualEffectObject = Instantiate(gameVisualEffect.ThisGameObject, hero.ThisGameObject.transform);
+                var visualEffect = gameVisualEffectObject.GetComponent<IGameVisualEffects>();
+                
+                visualEffect.PlayVisualEffect(hero,value);
+            }
+        }
 
     }
 }

@@ -76,7 +76,7 @@ namespace Animation
         public override float VisualEffectDuration => (doScaleDuration * doScaleLoopCount) + fadeInterval;
 
 
-        /// <summary>
+        /*/// <summary>
         /// Plays the damage animation
         /// </summary>
         /// <param name="targetedHero"></param>
@@ -86,7 +86,34 @@ namespace Animation
             canvasGroup.alpha = fadeAlphaStart;
             
             var damageValue = targetedHero.HeroLogic.TakeDamage.FinalDamageTaken;
-    
+
+            //Display damage text
+            text.text = "-" + damageValue.ToString();
+
+            var s = DOTween.Sequence();
+            
+            //Bounce image animation
+            s.AppendCallback(() =>
+                    transform.DOScale(transform.localScale * localScaleMultiplier, doScaleDuration)
+                        .SetLoops(doScaleLoopCount, LoopType.Yoyo).SetEase(Ease.InOutQuad))
+                
+                .AppendInterval(doScaleDuration * doScaleLoopCount)
+                .AppendCallback(() =>
+                    //Fade the damage image
+                    canvasGroup.DOFade(fadeAlphaEnd, fadeInterval))
+                .AppendInterval(fadeInterval)
+                .AppendInterval(delayInterval)
+                .AppendCallback(() => Destroy(gameObject));
+
+        }*/
+        
+        public override void PlayVisualEffect(IHero targetedHero,int value)
+        {
+            //Display damage animation
+            canvasGroup.alpha = fadeAlphaStart;
+            
+            var damageValue = value;
+
             //Display damage text
             text.text = "-" + damageValue.ToString();
 

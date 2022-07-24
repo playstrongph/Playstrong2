@@ -30,6 +30,15 @@ namespace Animation
         }
         
         /// <summary>
+        /// Play visual effect, hero argument, and int value
+        /// </summary>
+        /// <param name="hero"></param>
+        /// <param name="value"></param>
+        public virtual void PlayVisualEffect(IHero hero,int value)
+        {
+        }
+        
+        /// <summary>
         /// Play visual effect - caster to target hero effect (2 arguments)
         /// </summary>
         /// <param name="casterHero"></param>

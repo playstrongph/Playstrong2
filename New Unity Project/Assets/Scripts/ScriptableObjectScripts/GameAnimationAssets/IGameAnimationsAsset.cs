@@ -29,5 +29,7 @@ namespace ScriptableObjectScripts.GameAnimationAssets
         /// </summary>
         float AnimationDuration { get; }
 
+        void PlayAnimation(IHero hero, int value);
+
     }
 }

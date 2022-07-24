@@ -209,7 +209,9 @@ namespace Logic
             
             ComputeNewHealth(hero,_residualDamage);
 
-            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
+            //visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
+            
+            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero,finalDamage) : PlayDamageAnimation(hero,finalDamage));
 
             logicTree.EndSequence();
             yield return null;
@@ -229,15 +231,15 @@ namespace Logic
             
             ComputeNewHealth(hero,finalDamage);
 
-            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
+            //visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero) : PlayDamageAnimation(hero));
+            
+            visualTree.AddCurrent(criticalDamage > 0 ? PlayCriticalDamageAnimation(hero,finalDamage) : PlayDamageAnimation(hero,finalDamage));
 
             logicTree.EndSequence();
             yield return null;
         }
-        
-       
-        
-        /// <summary>
+
+        /*/// <summary>
         /// Damage animation when hero takes damage
         /// </summary>
         /// <param name="targetHero"></param>
@@ -262,6 +264,32 @@ namespace Logic
             var visualTree = targetHero.CoroutineTrees.MainVisualTree;
             
             CriticalDamageAnimationAsset.PlayAnimation(targetHero);  
+            
+            visualTree.EndSequence();
+            yield return null;
+        }*/
+        
+        private IEnumerator PlayDamageAnimation(IHero targetHero,int value)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            DamageAnimationAsset.PlayAnimation(targetHero,value);  
+            
+            visualTree.EndSequence();
+            yield return null;
+        }
+        
+        /// <summary>
+        /// Critical Damage animation when hero takes damage
+        /// </summary>
+        /// <param name="targetHero"></param>
+        /// /// <param name="value"></param>
+        /// <returns></returns>
+        private IEnumerator PlayCriticalDamageAnimation(IHero targetHero,int value)
+        {
+            var visualTree = targetHero.CoroutineTrees.MainVisualTree;
+            
+            CriticalDamageAnimationAsset.PlayAnimation(targetHero,value);  
             
             visualTree.EndSequence();
             yield return null;
@@ -424,7 +452,7 @@ namespace Logic
             
             FinalDamageTaken = Mathf.RoundToInt(floatFinalDamage);
             
-            
+            Debug.Log("Non Skill Damage Final Damage Taken: " +FinalDamageTaken);
             
             //Apply take damage
             logicTree.AddCurrent(randomPenetrateChance <= netPenetrateChance

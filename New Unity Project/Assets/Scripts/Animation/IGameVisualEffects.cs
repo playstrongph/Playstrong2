@@ -43,5 +43,7 @@ namespace Animation
         /// Returns the game visual effect as a game object
         /// </summary>
         GameObject ThisGameObject { get; }
+
+        void PlayVisualEffect(IHero hero, int value);
     }
 }
