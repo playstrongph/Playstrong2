@@ -21,6 +21,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// Skill counters increase amount
         /// </summary>
         [SerializeField] private int countersValue = 0;
+        
+        /// <summary>
+        /// random number upper limit, max exclusive
+        /// </summary>
+        [SerializeField] private int randomCountersUpperLimit = 0;
+
+        
+        /// <summary>
+        /// total counters multiplier - usually used to indicate sign
+        /// </summary>
+        [SerializeField] private int countersMultiplier = 1;
 
         private ISkillAsset SkillAsset
         {
@@ -31,7 +42,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Skill to increase counters of
         /// </summary>
-        private ISkill _targetSkill;
+        private ISkill targetSkill;
         
 
         /// <summary>
@@ -75,12 +86,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
             foreach (var skill in allSkills)
             {
                 if (SkillAsset.SkillName == skill.SkillName)
-                    _targetSkill = skill;
+                    targetSkill = skill;
             }
 
-            if (_targetSkill != null)
+            //Note: Max exclusive for int in random range
+            var randomCountersValue = Random.Range(1, randomCountersUpperLimit);
+
+            var totalCountersValue = countersValue + randomCountersValue;
+
+            totalCountersValue *= countersMultiplier;
+            
+            Debug.Log("Total Counters Value: " +totalCountersValue);
+
+            if (targetSkill != null)
             {
-                _targetSkill.SkillLogic.UpdateSkillCooldown.IncreaseCooldown(countersValue);
+                targetSkill.SkillLogic.UpdateSkillCooldown.IncreaseCooldown(totalCountersValue);
             }
 
             
