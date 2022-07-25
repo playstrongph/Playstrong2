@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
+  m_Name: LUNA
+  m_EditorClassIdentifier: 
+  heroName: LUNA
+  heroClass: Warrior
+  heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
+    type: 3}
+  health: 62
+  attack: 11
+  speed: 109
+  chance: 0
+  armor: 0
+  fightingSpirit: 0
+  heroSkillAssets:
+  - {fileID: 11400000, guid: 1ef0df2f2da10ac448b3a08019c4625c, type: 2}

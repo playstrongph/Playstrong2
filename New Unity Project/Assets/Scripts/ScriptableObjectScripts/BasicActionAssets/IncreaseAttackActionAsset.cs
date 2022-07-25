@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using Logic;
+using ScriptableObjectScripts.CalculatedValuesAssets;
 using ScriptableObjectScripts.GameAnimationAssets;
 using ScriptableObjectScripts.StandardActionAssets;
 using TMPro;
@@ -21,12 +22,23 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         [SerializeField] private int percentValue = 0;
 
-        //TODO: CalculatedValue
-        
+        /// <summary>
+        /// Calculated value
+        /// </summary>
+        [SerializeField] private ScriptableObject calculatedValueAsset;
+        private ICalculatedValueAsset CalculatedValueAsset
+        {
+            get => calculatedValueAsset as ICalculatedValueAsset;
+            set => calculatedValueAsset = value as ScriptableObject;
+        }
+
+        [Header("CHANGE VALUE MULTIPLIER")] [SerializeField]
+        private int changeMultiplier = 1;
+
         /// <summary>
         /// change in attribute value - used by execute and undo execute action
         /// </summary>
-        private int _changeValue = 0;
+        private int changeValue = 0;
 
         /// <summary>
         /// The specific logic-visual sequence for basic action
@@ -57,11 +69,21 @@ namespace ScriptableObjectScripts.BasicActionAssets
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;
-            
-            //Compute change in attack value
-            _changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue;
 
-            var newValue = targetHero.HeroLogic.HeroAttributes.Attack + _changeValue;
+            var calculatedValue = 0;
+
+            if (CalculatedValueAsset != null)
+            {
+                calculatedValue = (int)CalculatedValueAsset.CalculatedValue;
+            }
+
+            //Compute change in attack value
+            changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue +calculatedValue;
+            
+            //Multiply with factor
+            changeValue *= changeMultiplier;
+
+            var newValue = targetHero.HeroLogic.HeroAttributes.Attack + changeValue;
             
             //Set the new attack value in hero attributes
             targetHero.HeroLogic.SetAttack.StartAction(newValue);
@@ -76,7 +98,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
-            var newValue = targetHero.HeroLogic.HeroAttributes.Attack - _changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Attack - changeValue;
             
             //Set the new attack value in hero attributes
             targetHero.HeroLogic.SetAttack.StartAction(newValue);
