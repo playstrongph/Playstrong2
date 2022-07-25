@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
   m_Name: SkillEffectAsset
   m_EditorClassIdentifier: 
-  standardActions: []
+  standardActions:
+  - {fileID: 11400000, guid: 9bd46ebe4030f764e96a20d68b4a251d, type: 2}

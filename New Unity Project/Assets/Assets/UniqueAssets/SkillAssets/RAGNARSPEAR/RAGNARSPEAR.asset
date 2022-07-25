@@ -19,7 +19,7 @@ MonoBehaviour:
   skillIcon: {fileID: 1543135148769935022, guid: aa5017efc68c9064cb6857831b13ddd5,
     type: 3}
   skillTypeAsset: {fileID: 11400000, guid: 7a6600c8b3493fb41a40502c9ab7c3a0, type: 2}
-  baseCooldown: 10
+  baseCooldown: 1
   fightingSpiritCost: 0
   skillTargetsAsset: {fileID: 11400000, guid: 643261c3c3dc7e14d9eece7e4b0d1015, type: 2}
   skillCooldownTypeAsset: {fileID: 11400000, guid: 08321c5db338ccf4dafa035d5bd9da6e,

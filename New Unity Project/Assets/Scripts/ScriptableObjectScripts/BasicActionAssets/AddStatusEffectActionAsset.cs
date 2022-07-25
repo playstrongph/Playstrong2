@@ -106,7 +106,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         }
         
         /// <summary>
-        /// Returns immunityResistance value of 500 if the status effect is in the immunity list
+        /// Returns immunityResistance value of 1000 if the status effect is in the immunity list
         /// Otherwise, returns zero
         /// </summary>
         /// <param name="targetHero"></param>
