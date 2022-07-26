@@ -61,5 +61,10 @@
         /// Base Chance
         /// </summary>
         int BaseChance { get; set; }
+        
+        /// <summary>
+        /// Passive attack 
+        /// </summary>
+        int PassiveAttack { get; set; }
     }
 }

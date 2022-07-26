@@ -37,6 +37,9 @@ namespace Logic
         public event HeroesEvent EBeforeHeroTakesSkillDamage;
         public event HeroesEvent EAfterHeroDealsSkillDamage;
         public event HeroesEvent EAfterHeroTakesSkillDamage;
+        
+        
+        //Single args
         public event HeroEvent EBeforeHeroTakesNonSkillDamage;
         public event HeroEvent EAfterHeroTakesNonSkillDamage;
         public event HeroEvent EBeforeHeroDealsSingleTargetAttack;
@@ -52,6 +55,9 @@ namespace Logic
         public event HeroEvent EHeroTakesFatalDamage;
         public event HeroEvent EHeroDies;
         public event HeroEvent EPostHeroDeath;
+        
+        //TEST NEW
+        public event HeroEvent EAfterHeroChangesHealth;
      
         
         
@@ -397,7 +403,16 @@ namespace Logic
             EPostHeroDeath?.Invoke(hero);
         }
         
-        
+        /// <summary>
+        /// After hero changes health - damage, heal, set health, etc.
+        /// </summary>
+        /// <param name="hero"></param>
+        public void EventAfterHeroChangesHealth(IHero hero)
+        {
+            EAfterHeroChangesHealth?.Invoke(hero);
+        }
+
+
 
 
         #endregion
@@ -688,14 +703,22 @@ namespace Logic
                 foreach (var client in clients)
                     EPostHeroDeath -= client as HeroEvent;
         }
+        
+        private void UnsubscribeEventAfterHeroChangesHealth()
+        {
+            var clients = EAfterHeroChangesHealth?.GetInvocationList();
+            if (clients != null)
+                foreach (var client in clients)
+                    EAfterHeroChangesHealth -= client as HeroEvent;
+        }
 
         #endregion
 
-        private IHeroLogic _heroLogic;
+        private IHeroLogic heroLogic;
         
         private void Awake()
         {
-            _heroLogic = GetComponent<IHeroLogic>();
+            heroLogic = GetComponent<IHeroLogic>();
         }
         
         /// <summary>
@@ -738,6 +761,8 @@ namespace Logic
             UnsubscribeEventHeroTakesFatalDamage();
             UnsubscribeEventHeroDies();
             UnsubscribeEventPostHeroDeath();
+
+            UnsubscribeEventAfterHeroChangesHealth();
         }
         
     }

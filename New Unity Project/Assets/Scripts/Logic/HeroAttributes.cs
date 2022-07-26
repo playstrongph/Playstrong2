@@ -7,7 +7,7 @@ namespace Logic
         /// <summary>
         /// Hero logic reference
         /// </summary>
-        private IHeroLogic _heroLogic;
+        private IHeroLogic heroLogic;
         
         /// <summary>
         /// Hero current attack
@@ -139,11 +139,22 @@ namespace Logic
             set => baseChance = value;
         }
         
-        
+        /// <summary>
+        /// Passive values
+        /// </summary>
+        [Header("PASSIVE VALUES")] [SerializeField]
+        private int passiveAttack;
+        public int PassiveAttack
+        {
+            get => passiveAttack;
+            set => passiveAttack = value;
+        }
+
+
 
         private void Awake()
         {
-            _heroLogic = GetComponent<IHeroLogic>();
+            heroLogic = GetComponent<IHeroLogic>();
         }
         
     }

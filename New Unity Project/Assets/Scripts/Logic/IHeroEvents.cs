@@ -39,6 +39,9 @@
         event HeroEvents.HeroEvent EHeroTakesFatalDamage;
         event HeroEvents.HeroEvent EHeroDies;
         event HeroEvents.HeroEvent EPostHeroDeath;
+        
+        //TEST NEW
+        event HeroEvents.HeroEvent EAfterHeroChangesHealth;
 
         #endregion
 
@@ -270,6 +273,12 @@
         void EventHeroDies(IHero hero);
         
         void EventPostHeroDeath(IHero hero);
+
+        /// <summary>
+        /// After hero changes health - damage, heal, set health, etc.
+        /// </summary>
+        /// <param name="hero"></param>
+        void EventAfterHeroChangesHealth(IHero hero);
 
         #endregion
     }
