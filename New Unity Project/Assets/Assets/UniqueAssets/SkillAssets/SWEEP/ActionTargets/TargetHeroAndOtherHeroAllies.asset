@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527d1d4b305af6c4eaaec3d986aa33cd, type: 3}
   m_Name: TargetHeroAndOtherHeroAllies
   m_EditorClassIdentifier: 
-  otherAllyCount: 1
+  otherAllyCount: 100
   calculatedHeroTargetsAsset: {fileID: 11400000, guid: d66778d299d47a447946e627b1c51b79,
     type: 2}
