@@ -22,6 +22,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// </summary>
         [SerializeField] private int percentValue = 0;
 
+        
+        /// <summary>
+        /// Set to a value > 0 to use Passive Attack
+        /// </summary>
+        [SerializeField] private int passiveAttackMultiplier = 0;
+
         /// <summary>
         /// Calculated value
         /// </summary>
@@ -31,7 +37,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => calculatedValueAsset as ICalculatedValueAsset;
             set => calculatedValueAsset = value as ScriptableObject;
         }
-
+        
+        
+        /// <summary>
+        /// 1 for increase, -1 for decrease.  Default is 1 or increase
+        /// </summary>
         [Header("CHANGE VALUE MULTIPLIER")] [SerializeField]
         private int changeMultiplier = 1;
 
@@ -70,6 +80,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
 
             var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;
 
+            var passiveAttackValue = targetHero.HeroLogic.HeroAttributes.PassiveAttack*passiveAttackMultiplier;
+
             var calculatedValue = 0;
 
             if (CalculatedValueAsset != null)
@@ -78,7 +90,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
 
             //Compute change in attack value
-            changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue +calculatedValue;
+            changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue +calculatedValue + passiveAttackValue;
             
             //Multiply with factor
             changeValue *= changeMultiplier;

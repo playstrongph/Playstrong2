@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfc93f44ef6f6fb41838a405dc68bdf1, type: 3}
-  m_Name: IncreaseCriticalResistanceAction
+  m_Script: {fileID: 11500000, guid: a769bbdae99be8347a9c63b106745cdb, type: 3}
+  m_Name: IncreasePassiveAttackActionS2
   m_EditorClassIdentifier: 
-  criticalResistance: 20
+  flatValue: 0
+  percentValue: 20
+  calculatedValueAsset: {fileID: 0}
+  changeMultiplier: 1

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
-  m_Name: SkillEffectAsset
+  m_Script: {fileID: 11500000, guid: a769bbdae99be8347a9c63b106745cdb, type: 3}
+  m_Name: DecreasePassiveAttackActionS3
   m_EditorClassIdentifier: 
-  standardActions:
-  - {fileID: 11400000, guid: 211461fedf677e64a8df24884d18dc02, type: 2}
-  - {fileID: 11400000, guid: b7cef304114c96045897e4e4cda1872b, type: 2}
+  flatValue: 0
+  percentValue: 20
+  calculatedValueAsset: {fileID: 0}
+  changeMultiplier: -1
