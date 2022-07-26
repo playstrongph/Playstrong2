@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a4234b8d1ecc240a17f85f65b078c1, type: 3}
+  m_Name: SetHeroTargetsAction
+  m_EditorClassIdentifier: 
+  calculatedValueAsset: {fileID: 11400000, guid: d66778d299d47a447946e627b1c51b79,
+    type: 2}

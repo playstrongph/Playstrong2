@@ -9,10 +9,20 @@ namespace ScriptableObjectScripts.CalculatedValuesAssets
 
         public float CalculatedValue { get; set; }
 
+        public List<IHero> CalculatedHeroes { get; set; }
+
         public virtual void GetCalculatedValue(IHero heroBasis)
         {
            
         }
+        
+        public virtual List<IHero> GetCalculatedHeroList(IHero heroBasis)
+        {
+            var heroes = new List<IHero>();
+            return heroes;
+        }
+        
+        
 
         protected List<int> ShuffleList(List<int> values)
         {

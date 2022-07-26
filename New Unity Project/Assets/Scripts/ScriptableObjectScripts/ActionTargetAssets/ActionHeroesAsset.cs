@@ -44,6 +44,22 @@ namespace ScriptableObjectScripts.ActionTargetAssets
             return eventSubscribers;
             
         }
+        
+        /// <summary>
+        /// Used by Set Hero Targets Basic Actions to ensure a consistent random heroes for the basic actions
+        /// </summary>
+        /// <param name="casterHero"></param>
+        /// <param name="targetHero"></param>
+        /// <returns></returns>
+        public virtual List<IHero> SetActionHeroes(IHero casterHero, IHero targetHero)
+        {
+            var actionHeroes = new List<IHero>();
+            
+            Debug.Log("Base Class Set Action Heroes");
+
+            return actionHeroes;
+
+        }
 
         /// <summary>
         /// Returns a randomized hero list.

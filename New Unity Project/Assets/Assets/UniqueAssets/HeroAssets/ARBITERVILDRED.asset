@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ca7ee1c9572204cbf97b262df90021, type: 3}
+  m_Name: ARBITERVILDRED
+  m_EditorClassIdentifier: 
+  heroName: ARBITERVILDRED
+  heroClass: Thief
+  heroSprite: {fileID: 4326882273387473174, guid: daef64a3a9c69d94ba18a89e0650209c,
+    type: 3}
+  health: 513
+  attack: 128
+  speed: 116
+  chance: 0
+  armor: 0
+  fightingSpirit: 0
+  heroSkillAssets:
+  - {fileID: 11400000, guid: 3d33b561c41afac48b97f84c8daa9bd5, type: 2}
