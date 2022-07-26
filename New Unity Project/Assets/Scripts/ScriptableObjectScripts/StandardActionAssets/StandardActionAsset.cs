@@ -218,6 +218,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
             
             logicTree.AddCurrent(ExecuteStartAction(casterHero,casterHero));
+            
+            Debug.Log("Base StandardAction StartAction Single Hero Arg");
 
         }
         

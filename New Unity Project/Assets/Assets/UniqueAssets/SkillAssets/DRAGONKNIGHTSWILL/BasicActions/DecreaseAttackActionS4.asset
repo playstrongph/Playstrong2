@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17be90ba12c9e95438badfdae4e95f58, type: 3}
-  m_Name: DecreaseAttackActionS3
+  m_Name: DecreaseAttackActionS4
   m_EditorClassIdentifier: 
   flatValue: 0
   percentValue: 20

@@ -44,6 +44,8 @@ namespace ScriptableObjectScripts.StandardActionAssets
         {
             //Note: caster hero and target hero is the same for single IHero events
             _skillParent.SkillLogic.SkillAttributes.SkillReadiness.SkillStartAction(this,casterHero,casterHero);
+            
+            Debug.Log("Base Skill Action Asset Start Action, Single Hero: " +casterHero.HeroName);
         }
         
         /// <summary>

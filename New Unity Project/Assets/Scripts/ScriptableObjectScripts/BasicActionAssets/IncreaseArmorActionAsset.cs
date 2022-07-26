@@ -9,8 +9,8 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
-    [CreateAssetMenu(fileName = "IncreasePassiveAttackAction", menuName = "Assets/BasicActions/I/IncreasePassiveAttackAction")]
-    public class IncreasePassiveAttackActionAsset : BasicActionAsset
+    [CreateAssetMenu(fileName = "IncreaseArmorAction", menuName = "Assets/BasicActions/I/IncreaseArmorAction")]
+    public class IncreaseArmorActionAsset : BasicActionAsset
     {   
         /// <summary>
         /// Increase value by a fixed amount
@@ -20,8 +20,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// Increase value by a percentage attack amount
         /// </summary>
-        [SerializeField] private int percentValue = 0;
-
+        [SerializeField] private int percentBaseHealthValue = 0;
+        
         /// <summary>
         /// Calculated value
         /// </summary>
@@ -31,7 +31,11 @@ namespace ScriptableObjectScripts.BasicActionAssets
             get => calculatedValueAsset as ICalculatedValueAsset;
             set => calculatedValueAsset = value as ScriptableObject;
         }
-
+        
+        
+        /// <summary>
+        /// 1 for increase, -1 for decrease.  Default is 1 or increase
+        /// </summary>
         [Header("CHANGE VALUE MULTIPLIER")] [SerializeField]
         private int changeMultiplier = 1;
 
@@ -68,7 +72,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;
+            var baseValue = targetHero.HeroLogic.HeroAttributes.BaseHealth;
 
             var calculatedValue = 0;
 
@@ -78,16 +82,16 @@ namespace ScriptableObjectScripts.BasicActionAssets
             }
 
             //Compute change in attack value
-            changeValue = Mathf.RoundToInt(baseValue * percentValue / 100f) + flatValue +calculatedValue;
+            changeValue = Mathf.RoundToInt(baseValue * percentBaseHealthValue / 100f) + flatValue +calculatedValue;
             
             //Multiply with factor
             changeValue *= changeMultiplier;
 
-            var newValue = targetHero.HeroLogic.HeroAttributes.PassiveAttack + changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Armor + changeValue;
             
-            //Set the new passive attack value in hero attributes
-            targetHero.HeroLogic.HeroAttributes.PassiveAttack = newValue;
-
+            //Set the new attack value in hero attributes
+            targetHero.HeroLogic.SetArmor.StartAction(newValue);
+            
             logicTree.EndSequence();
             yield return null;
         }
@@ -98,10 +102,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
             //var visualTree = targetHero.CoroutineTrees.MainVisualTree;
 
             //Use the change value set in execute action earlier
-            var newValue = targetHero.HeroLogic.HeroAttributes.PassiveAttack - changeValue;
+            var newValue = targetHero.HeroLogic.HeroAttributes.Armor - changeValue;
             
-            //Set the new passive attack value in hero attributes
-            targetHero.HeroLogic.HeroAttributes.PassiveAttack = newValue;
+            //Set the new attack value in hero attributes
+            targetHero.HeroLogic.SetArmor.StartAction(newValue);
 
             logicTree.EndSequence();
             yield return null;

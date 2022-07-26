@@ -43,19 +43,19 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             if (passiveAttack < lessThanFlatLimit)
             {
                 value = 1;
-                Debug.Log("Less than flat limit true: " +hero.HeroName);
+                //Debug.Log("Less than flat limit true: " +hero.HeroName);
             }
 
             if (passiveAttack > greaterThanFlatLimit)
             {
                 value = 1;  //Condition is met
-                Debug.Log("Greater than flat limit true: " +hero.HeroName);
+                //Debug.Log("Greater than flat limit true: " +hero.HeroName);
             }
 
             if (passiveAttack == equalToFlatLimit)
             {
                 value = 1;  //Condition is met
-                Debug.Log("Equal to flat limit true: " +hero.HeroName);
+                //Debug.Log("Equal to flat limit true: " +hero.HeroName);
             }
 
 
@@ -64,22 +64,22 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             if (passiveAttack < Mathf.RoundToInt(baseAttack * percentBaseAttackLessThanLimit / 100f))
             {
                 value = 1;  //Condition is met
-                Debug.Log("percentBaseAttackLessThanLimit true: " +hero.HeroName);
+                //Debug.Log("percentBaseAttackLessThanLimit true: " +hero.HeroName);
             }
 
             if (passiveAttack > Mathf.RoundToInt(baseAttack * percentBaseAttackGreaterThanLimit / 100f))
             {
                 value = 1;  //Condition is met
-                Debug.Log("percentBaseAttackGreaterThanLimit true: " +hero.HeroName);
+                //Debug.Log("percentBaseAttackGreaterThanLimit true: " +hero.HeroName);
             }
 
             if (passiveAttack == Mathf.RoundToInt(baseAttack * percentBaseAttackEqualToLimit / 100f))
             {
                 value = 1;  //Condition is met
-                Debug.Log("percentBaseAttackEqualToLimit true " +hero.HeroName);
+                //Debug.Log("percentBaseAttackEqualToLimit true " +hero.HeroName);
             }
             
-            Debug.Log("Value: " +value);
+            //Debug.Log("Value: " +value);
 
             return value;
         }

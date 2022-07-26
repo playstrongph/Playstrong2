@@ -98,8 +98,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
-                    Debug.Log("SetMainExecutionActionTargetHeroes True");
-                    
                     //Set caster heroes depending on skill/statusEffect action asset
                     standardAction.SetTargetHeroes(actionTargetHero,ExecuteActionTargetHeroes);
                 }
@@ -137,8 +135,6 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Set caster heroes depending on skill/statusEffect action asset
                     standardAction.SetCasterHeroes(actionCasterHero,ExecuteActionCasterHeroes);
-                    
-                    Debug.Log("SetMainExecutionActionCasterHeroes True");
                 }
             }
         }

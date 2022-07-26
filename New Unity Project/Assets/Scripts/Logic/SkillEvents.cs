@@ -21,11 +21,11 @@ namespace Logic
         /// </summary>
         public event SkillEvent EInitializeSkill;
         
-        private ISkillLogic _skillLogic;
+        private ISkillLogic skillLogic;
 
         private void Awake()
         {
-            _skillLogic = GetComponent<ISkillLogic>();
+            skillLogic = GetComponent<ISkillLogic>();
         }
         
         /// <summary>

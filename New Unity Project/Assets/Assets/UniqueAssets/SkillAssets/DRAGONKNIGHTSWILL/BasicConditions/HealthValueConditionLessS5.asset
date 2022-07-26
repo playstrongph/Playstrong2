@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd22a8a2df8ac244dbda1b41bfa07b5d, type: 3}
-  m_Name: HealthValueConditionLessS3
+  m_Name: HealthValueConditionLessS5
   m_EditorClassIdentifier: 
   lessThanFlatLimit: -9999999
   greaterThanFlatLimit: 9999999

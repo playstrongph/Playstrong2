@@ -16,8 +16,8 @@ MonoBehaviour:
   heroClass: Warrior
   heroSprite: {fileID: -293913937357786450, guid: 36ffb6a72d5976148a31281c4df70984,
     type: 3}
-  health: 62
-  attack: 11
+  health: 626
+  attack: 111
   speed: 109
   chance: 0
   armor: 0

@@ -19,6 +19,8 @@ namespace ScriptableObjectScripts.BasicEventAssets
         {
             //This is a single IHero arg event 
             targetHero.HeroLogic.HeroEvents.EAfterHeroChangesHealth += standardAction.StartAction;
+            
+            Debug.Log("AfterHero Changes Health Subscribe Action");
         }
         
         
