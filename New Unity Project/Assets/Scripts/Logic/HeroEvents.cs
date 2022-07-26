@@ -411,7 +411,7 @@ namespace Logic
         {
             EAfterHeroChangesHealth?.Invoke(hero);
             
-            Debug.Log("Event Hero Changes Health: " +hero.HeroName);
+            //Debug.Log("Event Hero Changes Health: " +hero.HeroName);
         }
 
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IncreaseAttackActionS2
   m_EditorClassIdentifier: 
   flatValue: 0
-  percentValue: 0
-  passiveAttackMultiplier: 1
+  percentValue: 20
+  passiveAttackMultiplier: 0
   calculatedValueAsset: {fileID: 0}
   changeMultiplier: 1

@@ -76,6 +76,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         public override IEnumerator ExecuteAction(IHero casterHero,IHero targetHero)
         {
+            Debug.Log("Increase Attack Action");
+            
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
             var baseValue = targetHero.HeroLogic.HeroAttributes.BaseAttack;

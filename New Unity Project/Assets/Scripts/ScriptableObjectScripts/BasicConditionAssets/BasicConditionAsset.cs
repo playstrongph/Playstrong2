@@ -28,6 +28,9 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         /// <returns></returns>
         public int ConditionValue(IHero hero)
         {
+            
+            Debug.Log("Condition Value");
+            
             return CheckConditionValue(hero);
         }
         

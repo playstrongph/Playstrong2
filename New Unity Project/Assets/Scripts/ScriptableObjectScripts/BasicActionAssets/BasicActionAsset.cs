@@ -98,6 +98,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 //Product of all 'And' and 'Or' basic condition logic
                 if (FinalConditionValue(conditionTargetHeroes[conditionIndex],standardAction) > 0)
                 {
+                    Debug.Log("SetMainExecutionActionTargetHeroes True");
+                    
                     //Set caster heroes depending on skill/statusEffect action asset
                     standardAction.SetTargetHeroes(actionTargetHero,ExecuteActionTargetHeroes);
                 }
@@ -135,6 +137,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
                 {
                     //Set caster heroes depending on skill/statusEffect action asset
                     standardAction.SetCasterHeroes(actionCasterHero,ExecuteActionCasterHeroes);
+                    
+                    Debug.Log("SetMainExecutionActionCasterHeroes True");
                 }
             }
         }
@@ -320,12 +324,12 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <summary>
         /// AllAndBasicConditionsValue accumulator
         /// </summary>
-        private int _finalAndConditionsValue;
+        private int finalAndConditionsValue;
         
         /// <summary>
         /// AllAndBasicConditionsValue accumulator
         /// </summary>
-        private int _finalOrConditionsValue;
+        private int finalOrConditionsValue;
 
         protected int FinalConditionValue(IHero hero, IStandardActionAsset standardAction)
         {
@@ -343,17 +347,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             if (standardAction.AndBasicConditions.Count > 0)
             {
-                _finalAndConditionsValue = 1;
+                finalAndConditionsValue = 1;
                 foreach (var basicCondition in standardAction.AndBasicConditions)
                 {
-                    _finalAndConditionsValue *= basicCondition.ConditionValue(hero);
-                    _finalAndConditionsValue = Mathf.Clamp(_finalAndConditionsValue, 0, 1);
+                    finalAndConditionsValue *= basicCondition.ConditionValue(hero);
+                    finalAndConditionsValue = Mathf.Clamp(finalAndConditionsValue, 0, 1);
                 }
             }
             else
-                _finalAndConditionsValue = 1; 
+                finalAndConditionsValue = 1; 
             
-            return _finalAndConditionsValue;
+            return finalAndConditionsValue;
         }
         
         /// <summary>
@@ -366,17 +370,17 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             if (standardAction.OrBasicConditions.Count > 0)
             {
-                _finalOrConditionsValue = 0;
+                finalOrConditionsValue = 0;
                 foreach (var basicCondition in standardAction.OrBasicConditions)
                 {
-                    _finalOrConditionsValue += basicCondition.ConditionValue(hero);
-                    _finalOrConditionsValue = Mathf.Clamp(_finalOrConditionsValue, 0, 1);
+                    finalOrConditionsValue += basicCondition.ConditionValue(hero);
+                    finalOrConditionsValue = Mathf.Clamp(finalOrConditionsValue, 0, 1);
 
                 }
             }
-            else _finalOrConditionsValue =  1;
+            else finalOrConditionsValue =  1;
 
-            return _finalOrConditionsValue;
+            return finalOrConditionsValue;
         }
 
         #endregion
