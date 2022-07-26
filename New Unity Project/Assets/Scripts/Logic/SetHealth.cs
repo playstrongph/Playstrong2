@@ -26,6 +26,10 @@ namespace Logic
             _heroLogic.HeroAttributes.Health = newHealthValue;
             
             logicTree.AddCurrent(SetTextVisual(newHealthValue));
+            
+            //TEST
+            //call event hero changes health
+            _heroLogic.HeroEvents.EventAfterHeroChangesHealth(_heroLogic.Hero);
         }
 
         /// <summary>

@@ -410,6 +410,8 @@ namespace Logic
         public void EventAfterHeroChangesHealth(IHero hero)
         {
             EAfterHeroChangesHealth?.Invoke(hero);
+            
+            //Debug.Log("Event Hero Changes Health: " +hero.HeroName);
         }
 
 

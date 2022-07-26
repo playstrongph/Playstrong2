@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
+  m_Name: DRAGONKNIGHTSWILL
+  m_EditorClassIdentifier: 
+  skillName: DRAGONKNIGHTSWILL
+  skillDescription: '+20% Critical Strike chance and resistance, +20% Attack if life
+    is 50% or more of max health.  At the start of your turn, gain 12 armor if life
+    is at less than 50% max health. '
+  skillEffectAsset: {fileID: 11400000, guid: d6f44c30cff549347bf2795f6b1c8997, type: 2}
+  skillIcon: {fileID: 5659145096553648248, guid: b6e1628f0607fde45b8004afc9c8a5c8,
+    type: 3}
+  skillTypeAsset: {fileID: 11400000, guid: 50a68ee1a77e04e4f968ee80ca1d3a1e, type: 2}
+  baseCooldown: 0
+  fightingSpiritCost: 0
+  skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
+  skillCooldownTypeAsset: {fileID: 11400000, guid: cc4c8b90983ec8d4fa2cc4d2f087974c,
+    type: 2}
