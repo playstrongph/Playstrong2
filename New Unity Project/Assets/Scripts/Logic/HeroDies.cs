@@ -213,6 +213,8 @@ namespace Logic
            var logicTree = hero.CoroutineTrees.MainLogicTree;
            
            hero.HeroLogic.HeroTimer.ResetHeroTimer();
+           
+           Debug.Log("Death Reset Energy ");
 
            logicTree.EndSequence();
            yield return null;

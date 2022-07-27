@@ -39,7 +39,7 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
-            Debug.Log("Resurrect Action Main Basic Action Phase, TargetHero: " +targetHero.HeroName +" Caster Hero: " +casterHero.HeroName);
+            
             
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
@@ -143,6 +143,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
             
             //TODO: Destroy Resurrect StatusEffects
             logicTree.AddCurrent(RemoveStatusEffects(hero));
+            
+            Debug.Log("Resurrect Action Main Basic Action Phase, TargetHero: " +hero.HeroName +" Caster Hero: " +hero.HeroName);
 
             logicTree.EndSequence();
             yield return null;

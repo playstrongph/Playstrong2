@@ -9,30 +9,13 @@ using UnityEngine;
 
 namespace ScriptableObjectScripts.BasicActionAssets
 {
-    [CreateAssetMenu(fileName = "IncreaseSkillCooldownAction", menuName = "Assets/BasicActions/I/IncreaseSkillCooldownAction")]
-    public class IncreaseSkillCooldownActionAsset : BasicActionAsset
+    [CreateAssetMenu(fileName = "ResetSkillCooldownToMaxAction", menuName = "Assets/BasicActions/R/ResetSkillCooldownToMaxAction")]
+    public class ResetSkillCooldownToMaxActionAsset : BasicActionAsset
     {
         /// <summary>
         /// Target skill
         /// </summary>
         [SerializeField] private ScriptableObject skillAsset;
-        
-        /// <summary>
-        /// Skill counters increase amount
-        /// </summary>
-        [SerializeField] private int countersValue = 0;
-        
-        /// <summary>
-        /// random number upper limit, max exclusive
-        /// </summary>
-        [SerializeField] private int randomCountersUpperLimit = 0;
-
-        
-        /// <summary>
-        /// total counters multiplier - usually used to indicate sign
-        /// </summary>
-        [SerializeField] private int countersMultiplier = 1;
-
         private ISkillAsset SkillAsset
         {
             get => skillAsset as ISkillAsset;
@@ -73,13 +56,13 @@ namespace ScriptableObjectScripts.BasicActionAssets
         {
             var logicTree = targetHero.CoroutineTrees.MainLogicTree;
 
-            IncreaseSkillCooldown(targetHero);
+            ResetSkillCooldown(targetHero);
             
             logicTree.EndSequence();
             yield return null;
         }
 
-        private void IncreaseSkillCooldown(IHero targetHero)
+        private void ResetSkillCooldown(IHero targetHero)
         {
             var allSkills = targetHero.HeroSkills.AllSkills;
 
@@ -89,21 +72,10 @@ namespace ScriptableObjectScripts.BasicActionAssets
                     targetSkill = skill;
             }
 
-            //Note: Max exclusive for int in random range
-            var randomCountersValue = Random.Range(1, randomCountersUpperLimit);
-
-            var totalCountersValue = countersValue + randomCountersValue;
-
-            totalCountersValue *= countersMultiplier;
-            
-            //Debug.Log("Total Counters Value: " +totalCountersValue);
-
             if (targetSkill != null)
             {
-                targetSkill.SkillLogic.UpdateSkillCooldown.IncreaseCooldown(totalCountersValue);
+                targetSkill.SkillLogic.UpdateSkillCooldown.ResetCooldownToMax();
             }
-
-            
 
         }
 

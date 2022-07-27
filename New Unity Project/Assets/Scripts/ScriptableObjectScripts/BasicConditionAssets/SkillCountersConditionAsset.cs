@@ -16,10 +16,10 @@ namespace ScriptableObjectScripts.BasicConditionAssets
             set => skillAsset = value as ScriptableObject;
         }
         
-        [Header("Negative value means limit is DISABLED")]
-        [Header("Set Limit Value")]
-        [SerializeField] private int lessThanLimit = -99;
-        [SerializeField] private int greaterThanLimit = -99;
+       
+        [Header("Set Limit Value, Exclusive")]
+        [SerializeField] private int lessThanLimit = -9999;
+        [SerializeField] private int greaterThanLimit = -9999;
 
         protected override int CheckConditionValue(IHero hero)
         {
@@ -57,7 +57,7 @@ namespace ScriptableObjectScripts.BasicConditionAssets
                 {
                     value = 1;  //Condition is met
                 }
-
+            
             return value;
         }
     }

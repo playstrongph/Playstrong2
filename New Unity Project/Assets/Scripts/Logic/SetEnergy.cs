@@ -40,6 +40,8 @@ namespace Logic
             
             if(randomChance <= netBonusEnergyChance)
                 SetToValue(newEnergyValue);
+            
+            Debug.Log("Increase Energy");
 
         }
         
