@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Logic
 {
@@ -46,6 +47,8 @@ namespace Logic
         public void ResetCooldownToMax()
         {
             _skillLogic.SkillAttributes.SkillCooldownType.ResetCooldownToMax(_skill);
+            
+            
         }
         
         /// <summary>
@@ -83,6 +86,10 @@ namespace Logic
         {
             _skillLogic.SkillAttributes.SkillCooldownType.UpdateSkillReadiness(_skill);
         }
+        
+        
+        
+       
 
 
 

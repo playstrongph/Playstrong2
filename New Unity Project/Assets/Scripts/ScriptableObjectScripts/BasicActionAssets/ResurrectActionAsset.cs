@@ -39,6 +39,8 @@ namespace ScriptableObjectScripts.BasicActionAssets
         /// <returns></returns>
         protected override IEnumerator MainBasicActionPhase(IHero casterHero, IHero targetHero)
         {
+            Debug.Log("Resurrect Action Main Basic Action Phase, TargetHero: " +targetHero.HeroName +" Caster Hero: " +casterHero.HeroName);
+            
             var logicTree = casterHero.CoroutineTrees.MainLogicTree;
 
             //Heal Animation

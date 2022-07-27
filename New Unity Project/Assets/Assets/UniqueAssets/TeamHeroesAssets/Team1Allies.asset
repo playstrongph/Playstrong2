@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Team1Allies
   m_EditorClassIdentifier: 
   teamHeroes:
-  - {fileID: 11400000, guid: 14d4aab7e4aa0c4409437f4a82268054, type: 2}
+  - {fileID: 11400000, guid: e76a90d04641bf943bc6585657e4b80e, type: 2}
   - {fileID: 11400000, guid: da0ca609b81c3c14c83cd9d5036419a7, type: 2}
   - {fileID: 11400000, guid: a38214a081361514ca7e0d8d2faa32d3, type: 2}
   - {fileID: 11400000, guid: 72a39c9574b43e144971a1f402f8664f, type: 2}

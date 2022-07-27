@@ -35,8 +35,10 @@ namespace Logic
             //Run the current hero active status action
             logicTree.AddCurrent(CurrentActiveStatusAction());
             
+            
+            //TEST - moved this to SkillType Update Skill readiness
             //Update skill readiness based on skill cooldown
-            logicTree.AddCurrent(UpdateAllSkillsReadinessStatus());
+            //logicTree.AddCurrent(UpdateAllSkillsReadinessStatus());
             
             //Re-enable end turn button
             logicTree.AddCurrent(EnableEndTurnButton());

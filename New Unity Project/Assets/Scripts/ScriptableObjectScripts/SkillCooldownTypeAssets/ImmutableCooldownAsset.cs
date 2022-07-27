@@ -47,9 +47,8 @@ namespace ScriptableObjectScripts.SkillCooldownTypeAssets
             
             skillAttributes.Cooldown = maxSkillCooldown;
 
-            //Update skill readiness and start its action
-            //TODO: Removed - skill readiness update happens at useSkill/HeroStartTurn?
-            //skill.SkillLogic.UpdateSkillReadiness.StartAction();
+            //Update Skill Readiness Status
+            skill.SkillLogic.UpdateSkillReadiness.StartAction();
             
             //Update the skill and display skill visual cooldown text
             visualTree.AddCurrent(UpdateSkillCooldownVisual(skill));

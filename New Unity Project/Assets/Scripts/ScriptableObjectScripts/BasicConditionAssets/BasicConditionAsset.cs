@@ -8,7 +8,7 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         /// <summary>
         /// The skill originator of the basic condition
         /// </summary>
-        protected ISkill SkillParent;
+        protected ISkill skillParent;
         
         /// <summary>
         /// Set the skill parent during initialization
@@ -17,7 +17,7 @@ namespace ScriptableObjectScripts.BasicConditionAssets
         /// <param name="skill"></param>
         public void InitializeSkillParent(ISkill skill)
         {
-            SkillParent = skill;
+            skillParent = skill;
         }
 
         /// <summary>

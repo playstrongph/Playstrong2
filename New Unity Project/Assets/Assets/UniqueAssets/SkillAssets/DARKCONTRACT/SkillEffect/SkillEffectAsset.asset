@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 527d1d4b305af6c4eaaec3d986aa33cd, type: 3}
-  m_Name: TargetHeroAndOtherHeroAllies
+  m_Script: {fileID: 11500000, guid: 52e1ad4ce501d334c81306a36b34c637, type: 3}
+  m_Name: SkillEffectAsset
   m_EditorClassIdentifier: 
-  otherAllyCount: 1
-  calculatedHeroTargetsAsset: {fileID: 11400000, guid: d66778d299d47a447946e627b1c51b79,
-    type: 2}
+  standardActions:
+  - {fileID: 11400000, guid: 49090ef427f342a4cbd865b2d76ff640, type: 2}

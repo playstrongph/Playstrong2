@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefdae0b3ffc85a419423e22f69e3b29, type: 3}
+  m_Name: DARKCONTRACT
+  m_EditorClassIdentifier: 
+  skillName: DARKCONTRACT
+  skillDescription: Revives at death with full health, +100% energy, and DARK BLADE
+    ready.
+  skillEffectAsset: {fileID: 11400000, guid: 3f63205a3f8f1ac41819c503a6b87df3, type: 2}
+  skillIcon: {fileID: 3431120839050380304, guid: d69a6617a29404e4eb49ee8bdc00f70d,
+    type: 3}
+  skillTypeAsset: {fileID: 11400000, guid: 8a7626581c2f0aa458b6d8d26522444b, type: 2}
+  baseCooldown: 1
+  fightingSpiritCost: 0
+  skillTargetsAsset: {fileID: 11400000, guid: a48c69c3442db454697e63448f82130a, type: 2}
+  skillCooldownTypeAsset: {fileID: 11400000, guid: 08321c5db338ccf4dafa035d5bd9da6e,
+    type: 2}

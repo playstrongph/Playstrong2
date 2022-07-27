@@ -401,6 +401,8 @@ namespace Logic
         public void EventPostHeroDeath(IHero hero)
         {
             EPostHeroDeath?.Invoke(hero);
+            
+            Debug.Log("Event Post Hero Death: " +hero.HeroName);
         }
         
         /// <summary>
